@@ -2,7 +2,7 @@
 Copyright (c) 2007, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.net/yui/license.txt
-version: 2.4.0
+version: 2.4.1
 */
 
 
@@ -9050,4 +9050,4 @@ toString: function() {
 }
     
 }); // END YAHOO.lang.extend
-YAHOO.register("menu", YAHOO.widget.Menu, {version: "2.4.0", build: "733"});
+YAHOO.register("menu", YAHOO.widget.Menu, {version: "2.4.1", build: "742"});

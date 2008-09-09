@@ -2,7 +2,7 @@
 Copyright (c) 2007, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.net/yui/license.txt
-version: 2.4.0
+version: 2.4.1
 */
 /**
  * SWFObject v1.5: Flash Player detection and embed - http://blog.deconcept.com/swfobject/
@@ -330,10 +330,14 @@ YAHOO.extend(YAHOO.widget.FlashAdapter, YAHOO.util.AttributeProvider,
 	{
 		//standard SWFObject embed
 		var swfObj = new deconcept.SWFObject(swfURL, swfID, "100%", "100%", version, backgroundColor, expressInstall);
+		
+		if(expressInstall)
+		{
+			swfObj.useExpressInstall(expressInstall);
+		}
 
 		//make sure we can communicate with ExternalInterface
 		swfObj.addParam("allowScriptAccess", "always");
-		
 		//again, a useful ExternalInterface trick
 		swfObj.addVariable("allowedDomain", document.location.hostname);
 
@@ -1706,4 +1710,4 @@ YAHOO.lang.extend(YAHOO.widget.PieSeries, YAHOO.widget.Series,
 	categoryField: null
 });
 
-YAHOO.register("charts", YAHOO.widget.Chart, {version: "2.4.0", build: "733"});
+YAHOO.register("charts", YAHOO.widget.Chart, {version: "2.4.1", build: "742"});

@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>yuiloader&nbsp; <span class="subtitle">2.4.0</span></h3>
+        <h3>yuiloader&nbsp; <span class="subtitle">2.4.1</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_yuiloader.html">yuiloader</a>
@@ -69,7 +69,7 @@
 <span class="c">         */</span>
         <span class="nx">info</span><span class="o">:</span> <span class="o">{</span>
 
-    <span class="s1">&#39;base&#39;</span><span class="o">:</span> <span class="s1">&#39;http://yui.yahooapis.com/2.4.0/build/&#39;</span><span class="o">,</span>
+    <span class="s1">&#39;base&#39;</span><span class="o">:</span> <span class="s1">&#39;http://yui.yahooapis.com/2.4.1/build/&#39;</span><span class="o">,</span>
 
     <span class="s1">&#39;skin&#39;</span><span class="o">:</span> <span class="o">{</span>
         <span class="s1">&#39;defaultSkin&#39;</span><span class="o">:</span> <span class="s1">&#39;sam&#39;</span><span class="o">,</span>
@@ -258,13 +258,15 @@
         <span class="s1">&#39;reset-fonts-grids&#39;</span><span class="o">:</span> <span class="o">{</span>
             <span class="s1">&#39;type&#39;</span><span class="o">:</span> <span class="s1">&#39;css&#39;</span><span class="o">,</span>
             <span class="s1">&#39;path&#39;</span><span class="o">:</span> <span class="s1">&#39;reset-fonts-grids/reset-fonts-grids.css&#39;</span><span class="o">,</span>
-            <span class="s1">&#39;supersedes&#39;</span><span class="o">:</span> <span class="o">[</span><span class="s1">&#39;reset&#39;</span><span class="o">,</span> <span class="s1">&#39;fonts&#39;</span><span class="o">,</span> <span class="s1">&#39;grids&#39;</span><span class="o">]</span>
+            <span class="s1">&#39;supersedes&#39;</span><span class="o">:</span> <span class="o">[</span><span class="s1">&#39;reset&#39;</span><span class="o">,</span> <span class="s1">&#39;fonts&#39;</span><span class="o">,</span> <span class="s1">&#39;grids&#39;</span><span class="o">,</span> <span class="s1">&#39;reset-fonts&#39;</span><span class="o">],</span>
+            <span class="s1">&#39;rollup&#39;</span><span class="o">:</span> <span class="m">3</span>
         <span class="o">},</span>
 
         <span class="s1">&#39;reset-fonts&#39;</span><span class="o">:</span> <span class="o">{</span>
             <span class="s1">&#39;type&#39;</span><span class="o">:</span> <span class="s1">&#39;css&#39;</span><span class="o">,</span>
             <span class="s1">&#39;path&#39;</span><span class="o">:</span> <span class="s1">&#39;reset-fonts/reset-fonts.css&#39;</span><span class="o">,</span>
-            <span class="s1">&#39;supersedes&#39;</span><span class="o">:</span> <span class="o">[</span><span class="s1">&#39;reset&#39;</span><span class="o">,</span> <span class="s1">&#39;fonts&#39;</span><span class="o">]</span>
+            <span class="s1">&#39;supersedes&#39;</span><span class="o">:</span> <span class="o">[</span><span class="s1">&#39;reset&#39;</span><span class="o">,</span> <span class="s1">&#39;fonts&#39;</span><span class="o">],</span>
+            <span class="s1">&#39;rollup&#39;</span><span class="o">:</span> <span class="m">2</span>
         <span class="o">},</span>
 
         <span class="s1">&#39;selector&#39;</span><span class="o">:</span> <span class="o">{</span>
@@ -497,16 +499,16 @@
         <span class="k">this</span><span class="o">.</span><span class="nx">allowRollup</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
 
         <span class="c">/**</span>
-<span class="c">         * Filter to apply to result url.  This filter will modify the default</span>
+<span class="c">         * A filter to apply to result urls.  This filter will modify the default</span>
 <span class="c">         * path for all modules.  The default path for the YUI library is the</span>
 <span class="c">         * minified version of the files (e.g., event-min.js).  The filter property</span>
 <span class="c">         * can be a predefined filter or a custom filter.  The valid predefined </span>
 <span class="c">         * filters are:</span>
 <span class="c">         * &lt;dl&gt;</span>
-<span class="c">         *  &lt;dt&gt;debug&lt;/dt&gt;</span>
+<span class="c">         *  &lt;dt&gt;DEBUG&lt;/dt&gt;</span>
 <span class="c">         *  &lt;dd&gt;Selects the debug versions of the library (e.g., event-debug.js).</span>
 <span class="c">         *      This option will automatically include the logger widget&lt;/dd&gt;</span>
-<span class="c">         *  &lt;dt&gt;raw&lt;/dt&gt;</span>
+<span class="c">         *  &lt;dt&gt;RAW&lt;/dt&gt;</span>
 <span class="c">         *  &lt;dd&gt;Selects the non-minified version of the library (e.g., event.js).</span>
 <span class="c">         * &lt;/dl&gt;</span>
 <span class="c">         * You can also define a custom filter, which must be an object literal </span>
@@ -517,10 +519,6 @@
 <span class="c">         *      &#39;replaceStr&#39;: &quot;-debug.js&quot;</span>
 <span class="c">         *  &amp;#125;</span>
 <span class="c">         * &lt;/pre&gt;</span>
-<span class="c">         * Note: the default base path for the YUI library is http://yui.yahooapis.com.</span>
-<span class="c">         * Only the minified versions of the components are available on this host,</span>
-<span class="c">         * so if you choose to use the raw or debug versions of the files, you will</span>
-<span class="c">         * have to host these files locally, and change the &quot;base&quot; property.</span>
 <span class="c">         * @property filter</span>
 <span class="c">         * @type string|{searchExp: string, replaceStr: string}</span>
 <span class="c">         */</span>

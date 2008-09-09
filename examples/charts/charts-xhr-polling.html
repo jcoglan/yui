@@ -75,7 +75,8 @@
 	<h1>Charts Control (experimental): Chart with DataSource Polling</h1>
 	
 	<div class="exampleIntro">
-	<p>The <a href="http://developer.yahoo.com/yui/charts/">YUI Charts Control</a> provides built-in support for iterative polling for data over XHR using an XHR <a href="http://developer.yahoo.com/yui/datasource/">DataSource</a> instance.  In the example below, iterative polling causes the chart to refresh every several seconds and animate its display to represent the new data.</p>			
+	<p>The <a href="http://developer.yahoo.com/yui/charts/">YUI Charts Control</a> provides built-in support for iterative polling for data over XHR using an XHR <a href="http://developer.yahoo.com/yui/datasource/">DataSource</a> instance.  In the example below, iterative polling causes the chart to refresh every several seconds and animate its display to represent the new data.</p>
+<p>Please note: The YUI Charts Control requires Flash Player 9.0.45 or higher. The latest version of Flash Player is available at the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player Download Center</a>.</p>			
 	</div>	
 					
 	<div class="example-container module ">
@@ -87,7 +88,7 @@
 	<!--BEGIN SOURCE CODE FOR EXAMPLE =============================== -->
 	
 	<span class="chart_title"></span>
-<div id="chart">Unable to load Flash content.</div>
+<div id="chart">Unable to load Flash content. The YUI Charts Control requires Flash Player 9.0.45 or higher. You can download the latest version of Flash Player from the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player Download Center</a>.</p></div>
 
 <script type="text/javascript">
 
@@ -115,7 +116,8 @@
 		xField: "Name",
 		yField: "Value",
 		yAxis: yAxis,
-		polling: 2000
+		polling: 2000,
+		expressInstall: "assets/expressinstall.swf"
 	});
 </script>	
 	<!--END SOURCE CODE FOR EXAMPLE =============================== -->

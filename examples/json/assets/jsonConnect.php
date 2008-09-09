@@ -1,4 +1,5 @@
 <?php
+/* yadl_spaceid - Skip Stamping */
 header('Content-Type: application/json');
 
 $messages =<<<END

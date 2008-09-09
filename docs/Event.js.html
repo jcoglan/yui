@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Event Utility&nbsp; <span class="subtitle">2.4.0</span></h3>
+        <h3>Event Utility&nbsp; <span class="subtitle">2.4.1</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_event.html">event</a>
@@ -1078,7 +1078,7 @@
 <span class="c"></span>                             <span class="o">!</span><span class="nx">o</span><span class="o">.</span><span class="nx">tagName</span>            <span class="o">&amp;&amp;</span> <span class="c">// o is not an HTML element</span>
 <span class="c"></span>                             <span class="o">!</span><span class="nx">o</span><span class="o">.</span><span class="nx">alert</span>              <span class="o">&amp;&amp;</span> <span class="c">// o is not a window</span>
 <span class="c"></span>                             <span class="k">typeof</span> <span class="nx">o</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">!==</span> <span class="s2">&quot;undefined&quot;</span> <span class="o">);</span>
-                <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="nx">ex</span><span class="o">)</span> <span class="o">{</span>
                     <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;_isValidCollection error, assuming that &quot;</span> <span class="o">+</span>
                 <span class="s2">&quot; this is a cross frame problem and not a collection&quot;</span><span class="o">,</span> <span class="s2">&quot;warn&quot;</span><span class="o">);</span>
                     <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
@@ -1390,16 +1390,20 @@
 
                 <span class="nx">unloadListeners</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
 
-                <span class="c">// use clearAttributes to handle IE memory leaks</span>
-<span class="c"></span>                <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">ua</span><span class="o">.</span><span class="nx">IE</span> <span class="o">&amp;&amp;</span> <span class="nx">listeners</span> <span class="o">&amp;&amp;</span> <span class="nx">listeners</span><span class="o">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="m">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c">// call clearAttributes or remove listeners to handle IE memory leaks</span>
+<span class="c"></span>                <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">ua</span><span class="o">.</span><span class="nx">ie</span> <span class="o">&amp;&amp;</span> <span class="nx">listeners</span> <span class="o">&amp;&amp;</span> <span class="nx">listeners</span><span class="o">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="m">0</span><span class="o">)</span> <span class="o">{</span>
                     <span class="nx">j</span> <span class="o">=</span> <span class="nx">listeners</span><span class="o">.</span><span class="nx">length</span><span class="o">;</span>
                     <span class="k">while</span> <span class="o">(</span><span class="nx">j</span><span class="o">)</span> <span class="o">{</span>
                         <span class="nx">index</span> <span class="o">=</span> <span class="nx">j</span><span class="o">-</span><span class="m">1</span><span class="o">;</span>
                         <span class="nx">l</span> <span class="o">=</span> <span class="nx">listeners</span><span class="o">[</span><span class="nx">index</span><span class="o">];</span>
                         <span class="k">if</span> <span class="o">(</span><span class="nx">l</span><span class="o">)</span> <span class="o">{</span>
-                            <span class="nx">l</span><span class="o">[</span><span class="nx">EU</span><span class="o">.</span><span class="nx">EL</span><span class="o">].</span><span class="nx">clearAttributes</span><span class="o">();</span>
-                        <span class="o">}</span> 
-                        <span class="nx">j</span> <span class="o">=</span> <span class="nx">j</span> <span class="o">-</span> <span class="m">1</span><span class="o">;</span>
+                            <span class="c">//try {</span>
+<span class="c"></span>                                <span class="c">//l[EU.EL].clearAttributes(); // errors on window objects</span>
+<span class="c"></span>                            <span class="c">//} catch(ex) {</span>
+<span class="c"></span>                            <span class="nx">EU</span><span class="o">.</span><span class="nx">removeListener</span><span class="o">(</span><span class="nx">l</span><span class="o">[</span><span class="nx">EU</span><span class="o">.</span><span class="nx">EL</span><span class="o">],</span> <span class="nx">l</span><span class="o">[</span><span class="nx">EU</span><span class="o">.</span><span class="nx">TYPE</span><span class="o">],</span> <span class="nx">l</span><span class="o">[</span><span class="nx">EU</span><span class="o">.</span><span class="nx">FN</span><span class="o">],</span> <span class="nx">index</span><span class="o">);</span>
+                            <span class="c">//}</span>
+<span class="c"></span>                        <span class="o">}</span> 
+                        <span class="nx">j</span><span class="o">--;</span>
                     <span class="o">}</span>
                     <span class="nx">l</span><span class="o">=</span><span class="kc">null</span><span class="o">;</span>
                 <span class="o">}</span>
@@ -1497,7 +1501,7 @@
 <span class="c">                    // throws an error until the doc is ready</span>
 <span class="c">                    n.doScroll(&#39;left&#39;); </span>
 <span class="c">                    ready = true;</span>
-<span class="c">                } catch(er){ </span>
+<span class="c">                } catch(ex){ </span>
 <span class="c">                    // document is not ready</span>
 <span class="c">                }</span>
 <span class="c"></span>
@@ -1635,7 +1639,7 @@
 <span class="c">                    n.doScroll(&#39;left&#39;);</span>
 <span class="c">                    n = null;</span>
 <span class="c">                    YAHOO.util.Event._ready();</span>
-<span class="c">                } catch (e){</span>
+<span class="c">                } catch (ex){</span>
 <span class="c">                    n = null;</span>
 <span class="c">setTimeout(arguments.callee, YAHOO.util.Event.POLL_INTERVAL);</span>
 <span class="c">                }</span>
@@ -1651,7 +1655,7 @@
                     <span class="nx">EU</span><span class="o">.</span><span class="nx">_dri</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
                     <span class="nx">EU</span><span class="o">.</span><span class="nx">_ready</span><span class="o">();</span>
                     <span class="nx">n</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">{</span> 
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nx">ex</span><span class="o">)</span> <span class="o">{</span> 
                     <span class="nx">n</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
                 <span class="o">}</span>
             <span class="o">},</span> <span class="nx">EU</span><span class="o">.</span><span class="nx">POLL_INTERVAL</span><span class="o">);</span> 

@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>editor&nbsp; <span class="subtitle">2.4.0</span></h3>
+        <h3>editor&nbsp; <span class="subtitle">2.4.1</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_editor.html">editor</a>
@@ -98,7 +98,7 @@
 <span class="c">    * @method _cleanClassName</span>
 <span class="c">    * @description Makes a useable classname from dynamic data, by dropping it to lowercase and replacing spaces with -&#39;s.</span>
 <span class="c">    * @param {String} str The classname to clean up</span>
-<span class="c">    * @returns {String}</span>
+<span class="c">    * @return {String}</span>
 <span class="c">    */</span>
     <span class="k">function</span> <span class="nx">_cleanClassName</span><span class="o">(</span><span class="nx">str</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">return</span> <span class="nx">str</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/ /g</span><span class="o">,</span> <span class="s1">&#39;-&#39;</span><span class="o">).</span><span class="nx">toLowerCase</span><span class="o">();</span>
@@ -416,7 +416,7 @@
 <span class="c">        * @private _createIframe</span>
 <span class="c">        * @description Creates the DOM and YUI Element for the iFrame editor area.</span>
 <span class="c">        * @param {String} id The string ID to prefix the iframe with</span>
-<span class="c">        * @returns {Object} iFrame object</span>
+<span class="c">        * @return {Object} iFrame object</span>
 <span class="c">        */</span>
         <span class="nx">_createIframe</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
             <span class="k">var</span> <span class="nx">ifrmDom</span> <span class="o">=</span> <span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s1">&#39;iframe&#39;</span><span class="o">);</span>
@@ -452,7 +452,7 @@
 <span class="c">        * @description Checks to see if an Element reference is a valid one and has a certain tag type</span>
 <span class="c">        * @param {HTMLElement} el The element to check</span>
 <span class="c">        * @param {String} tag The tag that the element needs to be</span>
-<span class="c">        * @returns {Boolean}</span>
+<span class="c">        * @return {Boolean}</span>
 <span class="c">        */</span>
         <span class="nx">_isElement</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="nx">tag</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">if</span> <span class="o">(</span><span class="nx">el</span> <span class="o">&amp;&amp;</span> <span class="nx">el</span><span class="o">.</span><span class="nx">tagName</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="nx">el</span><span class="o">.</span><span class="nx">tagName</span><span class="o">.</span><span class="nx">toLowerCase</span><span class="o">()</span> <span class="o">==</span> <span class="nx">tag</span><span class="o">))</span> <span class="o">{</span>
@@ -468,7 +468,7 @@
 <span class="c">        * @description Checks to see if an Element reference or one of it&#39;s parents is a valid one and has a certain tag type</span>
 <span class="c">        * @param {HTMLElement} el The element to check</span>
 <span class="c">        * @param {String} tag The tag that the element needs to be</span>
-<span class="c">        * @returns HTMLElement</span>
+<span class="c">        * @return HTMLElement</span>
 <span class="c">        */</span>
         <span class="nx">_hasParent</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="nx">tag</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">if</span> <span class="o">(!</span><span class="nx">el</span> <span class="o">||</span> <span class="o">!</span><span class="nx">el</span><span class="o">.</span><span class="nx">parentNode</span><span class="o">)</span> <span class="o">{</span>
@@ -560,7 +560,7 @@
 <span class="c">        * @private</span>
 <span class="c">        * @method _hasSelection</span>
 <span class="c">        * @description Determines if there is a selection in the editor document.</span>
-<span class="c">        * @returns {Boolean}</span>
+<span class="c">        * @return {Boolean}</span>
 <span class="c">        */</span>
         <span class="nx">_hasSelection</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
             <span class="k">var</span> <span class="nx">sel</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_getSelection</span><span class="o">();</span>
@@ -592,7 +592,7 @@
 <span class="c">        * @private</span>
 <span class="c">        * @method _getSelection</span>
 <span class="c">        * @description Handles the different selection objects across the A-Grade list.</span>
-<span class="c">        * @returns {Object} Selection Object</span>
+<span class="c">        * @return {Object} Selection Object</span>
 <span class="c">        */</span>
         <span class="nx">_getSelection</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
             <span class="k">var</span> <span class="nx">_sel</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
@@ -663,7 +663,7 @@
 <span class="c">        * @private</span>
 <span class="c">        * @method _getRange</span>
 <span class="c">        * @description Handles the different range objects across the A-Grade list.</span>
-<span class="c">        * @returns {Object} Range Object</span>
+<span class="c">        * @return {Object} Range Object</span>
 <span class="c">        */</span>
         <span class="nx">_getRange</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
             <span class="k">var</span> <span class="nx">sel</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_getSelection</span><span class="o">();</span>
@@ -707,7 +707,7 @@
 <span class="c">        * @private</span>
 <span class="c">        * @method _toggleDesignMode</span>
 <span class="c">        * @description Toggles the designMode of the iFrame document on and off.</span>
-<span class="c">        * @returns {String} The state that it was set to.</span>
+<span class="c">        * @return {String} The state that it was set to.</span>
 <span class="c">        */</span>
         <span class="nx">_toggleDesignMode</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
             <span class="k">var</span> <span class="nx">_dMode</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_getDoc</span><span class="o">().</span><span class="nx">designMode</span><span class="o">.</span><span class="nx">toLowerCase</span><span class="o">(),</span>
@@ -868,7 +868,7 @@
 <span class="c">        * @private</span>
 <span class="c">        * @method _getSelectedElement</span>
 <span class="c">        * @description This method will attempt to locate the element that was last interacted with, either via selection, location or event.</span>
-<span class="c">        * @returns {HTMLElement} The currently selected element.</span>
+<span class="c">        * @return {HTMLElement} The currently selected element.</span>
 <span class="c">        */</span>
         <span class="nx">_getSelectedElement</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
             <span class="k">var</span> <span class="nx">doc</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_getDoc</span><span class="o">(),</span>
@@ -968,7 +968,7 @@
 <span class="c">        * @method _getDomPath</span>
 <span class="c">        * @description This method will attempt to build the DOM path from the currently selected element.</span>
 <span class="c">        * @param HTMLElement el The element to start with, if not provided _getSelectedElement is used</span>
-<span class="c">        * @returns {Array} An array of node references that will create the DOM Path.</span>
+<span class="c">        * @return {Array} An array of node references that will create the DOM Path.</span>
 <span class="c">        */</span>
         <span class="nx">_getDomPath</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">el</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">if</span> <span class="o">(!</span><span class="nx">el</span><span class="o">)</span> <span class="o">{</span>
@@ -1107,7 +1107,7 @@
 <span class="c">        * @description Method is called at the beginning of all event handlers to check if this element or a parent element has the class yui-noedit (this.CLASS_NOEDIT) applied.</span>
 <span class="c">        * If it does, then this method will stop the event and return true. The event handlers will then return false and stop the nodeChange from occuring. This method will also</span>
 <span class="c">        * disable and enable the Editor&#39;s toolbar based on the noedit state.</span>
-<span class="c">        * @returns Boolean</span>
+<span class="c">        * @return Boolean</span>
 <span class="c">        */</span>
         <span class="nx">_isNonEditable</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">ev</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;allowNoEdit&#39;</span><span class="o">))</span> <span class="o">{</span>
@@ -2387,7 +2387,7 @@
 <span class="c">        * @private</span>
 <span class="c">        * @method _getBlankImage</span>
 <span class="c">        * @description Retrieves the full url of the image to use as the blank image.</span>
-<span class="c">        * @returns {String} The URL to the blank image</span>
+<span class="c">        * @return {String} The URL to the blank image</span>
 <span class="c">        */</span>
         <span class="nx">_getBlankImage</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
             <span class="k">if</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">DOMReady</span><span class="o">)</span> <span class="o">{</span>
@@ -3454,7 +3454,7 @@
 <span class="c">        * @method _cleanIncomingHTML</span>
 <span class="c">        * @param {String} html The unfiltered HTML</span>
 <span class="c">        * @description Process the HTML with a few regexes to clean it up and stabilize the input</span>
-<span class="c">        * @returns {String} The filtered HTML</span>
+<span class="c">        * @return {String} The filtered HTML</span>
 <span class="c">        */</span>
         <span class="nx">_cleanIncomingHTML</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">html</span><span class="o">)</span> <span class="o">{</span>
             <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;strong([^&gt;]*)&gt;/gi</span><span class="o">,</span> <span class="s1">&#39;&lt;b$1&gt;&#39;</span><span class="o">);</span>
@@ -3467,7 +3467,7 @@
 <span class="c">        * @method cleanHTML</span>
 <span class="c">        * @param {String} html The unfiltered HTML</span>
 <span class="c">        * @description Process the HTML with a few regexes to clean it up and stabilize the output</span>
-<span class="c">        * @returns {String} The filtered HTML</span>
+<span class="c">        * @return {String} The filtered HTML</span>
 <span class="c">        */</span>
         <span class="nx">cleanHTML</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">html</span><span class="o">)</span> <span class="o">{</span>
             <span class="c">//Start Filtering Output</span>
@@ -3586,7 +3586,7 @@
 <span class="c">        * @method filter_invalid_lists</span>
 <span class="c">        * @param String html The HTML string to filter</span>
 <span class="c">        * @description Filters invalid ol and ul list markup, converts this: &lt;li&gt;&lt;/li&gt;&lt;ol&gt;..&lt;/ol&gt; to this: &lt;li&gt;&lt;/li&gt;&lt;li&gt;&lt;ol&gt;..&lt;/ol&gt;&lt;/li&gt;</span>
-<span class="c">        * @returns String</span>
+<span class="c">        * @return String</span>
 <span class="c">        */</span>
         <span class="nx">filter_invalid_lists</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">html</span><span class="o">)</span> <span class="o">{</span>
             <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;\/li&gt;\n/gi</span><span class="o">,</span> <span class="s1">&#39;&lt;/li&gt;&#39;</span><span class="o">);</span>
@@ -3609,7 +3609,7 @@
 <span class="c">        * @method filter_safari</span>
 <span class="c">        * @param String html The HTML string to filter</span>
 <span class="c">        * @description Filters strings specific to Safari</span>
-<span class="c">        * @returns String</span>
+<span class="c">        * @return String</span>
 <span class="c">        */</span>
         <span class="nx">filter_safari</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">html</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">browser</span><span class="o">.</span><span class="nx">webkit</span><span class="o">)</span> <span class="o">{</span>
@@ -3629,7 +3629,7 @@
 <span class="c">        * @method filter_internals</span>
 <span class="c">        * @param String html The HTML string to filter</span>
 <span class="c">        * @description Filters internal RTE strings and bogus attrs we don&#39;t want</span>
-<span class="c">        * @returns String</span>
+<span class="c">        * @return String</span>
 <span class="c">        */</span>
         <span class="nx">filter_internals</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">html</span><span class="o">)</span> <span class="o">{</span>
 		    <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/\r/g</span><span class="o">,</span> <span class="s1">&#39;&#39;</span><span class="o">);</span>
@@ -3663,7 +3663,7 @@
 <span class="c">        * @method filter_all_rgb</span>
 <span class="c">        * @param String str The HTML string to filter</span>
 <span class="c">        * @description Converts all RGB color strings found in passed string to a hex color, example: style=&quot;color: rgb(0, 255, 0)&quot; converts to style=&quot;color: #00ff00&quot;</span>
-<span class="c">        * @returns String</span>
+<span class="c">        * @return String</span>
 <span class="c">        */</span>
         <span class="nx">filter_all_rgb</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">str</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">var</span> <span class="nx">exp</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="o">(</span><span class="s2">&quot;rgb\\s*?\\(\\s*?([0-9]+).*?,\\s*?([0-9]+).*?,\\s*?([0-9]+).*?\\)&quot;</span><span class="o">,</span> <span class="s2">&quot;gi&quot;</span><span class="o">);</span>
@@ -3681,7 +3681,7 @@
 <span class="c">        * @method filter_rgb</span>
 <span class="c">        * @param String css The CSS string containing rgb(#,#,#);</span>
 <span class="c">        * @description Converts an RGB color string to a hex color, example: rgb(0, 255, 0) converts to #00ff00</span>
-<span class="c">        * @returns String</span>
+<span class="c">        * @return String</span>
 <span class="c">        */</span>
         <span class="nx">filter_rgb</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">css</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">if</span> <span class="o">(</span><span class="nx">css</span><span class="o">.</span><span class="nx">toLowerCase</span><span class="o">().</span><span class="nx">indexOf</span><span class="o">(</span><span class="s1">&#39;rgb&#39;</span><span class="o">)</span> <span class="o">!=</span> <span class="o">-</span><span class="m">1</span><span class="o">)</span> <span class="o">{</span>
@@ -3707,7 +3707,7 @@
 <span class="c">        * @param String html The HTML to filter</span>
 <span class="c">        * @param String markup The markup type to filter to</span>
 <span class="c">        * @description HTML Pre Filter</span>
-<span class="c">        * @returns String</span>
+<span class="c">        * @return String</span>
 <span class="c">        */</span>
         <span class="nx">pre_filter_linebreaks</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">html</span><span class="o">,</span> <span class="nx">markup</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">browser</span><span class="o">.</span><span class="nx">webkit</span><span class="o">)</span> <span class="o">{</span>
@@ -3733,7 +3733,7 @@
 <span class="c">        * @param String html The HTML to filter</span>
 <span class="c">        * @param String markup The markup type to filter to</span>
 <span class="c">        * @description HTML Pre Filter</span>
-<span class="c">        * @returns String</span>
+<span class="c">        * @return String</span>
 <span class="c">        */</span>
         <span class="nx">post_filter_linebreaks</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">html</span><span class="o">,</span> <span class="nx">markup</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">if</span> <span class="o">(</span><span class="nx">markup</span> <span class="o">==</span> <span class="s1">&#39;xhtml&#39;</span><span class="o">)</span> <span class="o">{</span>
@@ -3930,7 +3930,7 @@
 <span class="c">        * @method getEditorById</span>
 <span class="c">        * @description Returns a reference to the Editor object associated with the given textarea</span>
 <span class="c">        * @param {String/HTMLElement} id The id or reference of the textarea to return the Editor instance of</span>
-<span class="c">        * @returns Object &lt;a href=&quot;YAHOO.widget.Editor.html&quot;&gt;YAHOO.widget.Editor&lt;/a&gt;</span>
+<span class="c">        * @return Object &lt;a href=&quot;YAHOO.widget.Editor.html&quot;&gt;YAHOO.widget.Editor&lt;/a&gt;</span>
 <span class="c">        */</span>
         <span class="nx">getEditorById</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">id</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">if</span> <span class="o">(!</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isString</span><span class="o">(</span><span class="nx">id</span><span class="o">))</span> <span class="o">{</span>

@@ -2,7 +2,7 @@
 Copyright (c) 2007, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.net/yui/license.txt
-version: 2.4.0
+version: 2.4.1
 */
 /**
  * Provides methods to parse JSON strings and convert objects to JSON strings.
@@ -268,4 +268,4 @@ YAHOO.lang.JSON = {
         return _stringify(o,w,d);
     }
 };
-YAHOO.register("json", YAHOO.lang.JSON, {version: "2.4.0", build: "733"});
+YAHOO.register("json", YAHOO.lang.JSON, {version: "2.4.1", build: "742"});

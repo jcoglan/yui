@@ -2,7 +2,7 @@
 Copyright (c) 2007, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.net/yui/license.txt
-version: 2.4.0
+version: 2.4.1
 */
 /**
  * The drag and drop utility provides a framework for building drag and drop
@@ -3252,4 +3252,4 @@ YAHOO.extend(YAHOO.util.DDTarget, YAHOO.util.DragDrop, {
         return ("DDTarget " + this.id);
     }
 });
-YAHOO.register("dragdrop", YAHOO.util.DragDropMgr, {version: "2.4.0", build: "733"});
+YAHOO.register("dragdrop", YAHOO.util.DragDropMgr, {version: "2.4.1", build: "742"});

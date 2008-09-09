@@ -2,7 +2,7 @@
 Copyright (c) 2007, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.net/yui/license.txt
-version: 2.4.0
+version: 2.4.1
 */
 /**
  * Provides color conversion and validation utils
@@ -1752,4 +1752,4 @@ YAHOO.util.Color = function() {
     };
 
 })();
-YAHOO.register("colorpicker", YAHOO.widget.ColorPicker, {version: "2.4.0", build: "733"});
+YAHOO.register("colorpicker", YAHOO.widget.ColorPicker, {version: "2.4.1", build: "742"});

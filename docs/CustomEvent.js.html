@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Event Utility&nbsp; <span class="subtitle">2.4.0</span></h3>
+        <h3>Event Utility&nbsp; <span class="subtitle">2.4.1</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_event.html">event</a>
@@ -291,9 +291,9 @@
                 <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
                     <span class="k">try</span> <span class="o">{</span>
                         <span class="nx">ret</span> <span class="o">=</span> <span class="nx">s</span><span class="o">.</span><span class="nx">fn</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="nx">scope</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">type</span><span class="o">,</span> <span class="nx">args</span><span class="o">,</span> <span class="nx">s</span><span class="o">.</span><span class="nx">obj</span><span class="o">);</span>
-                    <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">{</span>
-                        <span class="k">this</span><span class="o">.</span><span class="nx">lastError</span> <span class="o">=</span> <span class="nx">e</span><span class="o">;</span>
-                        <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="k">this</span> <span class="o">+</span> <span class="s2">&quot; subscriber exception: &quot;</span> <span class="o">+</span> <span class="nx">e</span><span class="o">,</span>
+                    <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="nx">ex</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="k">this</span><span class="o">.</span><span class="nx">lastError</span> <span class="o">=</span> <span class="nx">ex</span><span class="o">;</span>
+                        <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="k">this</span> <span class="o">+</span> <span class="s2">&quot; subscriber exception: &quot;</span> <span class="o">+</span> <span class="nx">ex</span><span class="o">,</span>
                                   <span class="s2">&quot;error&quot;</span><span class="o">,</span> <span class="s2">&quot;Event&quot;</span><span class="o">);</span>
                     <span class="o">}</span>
                 <span class="o">}</span>

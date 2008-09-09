@@ -2,7 +2,7 @@
 Copyright (c) 2007, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.net/yui/license.txt
-version: 2.4.0
+version: 2.4.1
 */
 /**
  * Provides a mechanism to fetch remote resources and
@@ -640,4 +640,4 @@ YAHOO.util.Get = function() {
     };
 }();
 
-YAHOO.register("get", YAHOO.util.Get, {version: "2.4.0", build: "733"});
+YAHOO.register("get", YAHOO.util.Get, {version: "2.4.1", build: "742"});

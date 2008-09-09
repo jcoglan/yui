@@ -2,7 +2,7 @@
 Copyright (c) 2007, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.net/yui/license.txt
-version: 2.4.0
+version: 2.4.1
 */
 /**
  * The selector module provides helper methods allowing CSS3 Selectors to be used with DOM elements.
@@ -637,4 +637,4 @@ Selector.CHARS = CHARS;
 Selector.TOKENS = X;
 Y.Selector = Selector;
 })();
-YAHOO.register("selector", YAHOO.util.Selector, {version: "2.4.0", build: "733"});
+YAHOO.register("selector", YAHOO.util.Selector, {version: "2.4.1", build: "742"});
