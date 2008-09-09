@@ -1,0 +1,293 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>API: yui   yui-core.js  (YUI Library)</title>
+	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body id="yahoo-com">
+
+<div id="doc3" class="yui-t2">
+
+	<div id="hd">
+        <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
+        <h3>yui&nbsp; <span class="subtitle">3.0.0pr1</span></h3>
+        <p>
+        <a href="./index.html">Yahoo! UI Library</a> 
+            &gt; <a href="./module_yui.html">yui</a>
+                
+                 &gt; yui-core.js (source view) 
+            </p>
+
+
+	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> <label for="showprivate">Show Private</label></span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> <label for="showprotected">Show Protected</label></span>
+    <span id="classopts"><input type="checkbox" name="showdeprecated" id="showdeprecated" /> <label for="showdeprecated">Show Deprecated</label></span>
+            </form>
+
+                    <div id="srcout">
+                        <style>
+                            #doc3 #classopts { display:none; }
+                        </style>
+<div class="highlight" ><pre><span class="c">/*</span>
+<span class="c"> * YUI core utilities</span>
+<span class="c"> * @module yui</span>
+<span class="c"> * @submodule core</span>
+<span class="c"> */</span>
+<span class="c">// requires lang</span>
+<span class="c"></span><span class="nx">YUI</span><span class="o">.</span><span class="nx">add</span><span class="o">(</span><span class="s2">&quot;core&quot;</span><span class="o">,</span> <span class="k">function</span><span class="o">(</span><span class="nx">Y</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="k">var</span> <span class="nx">L</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">Lang</span><span class="o">,</span> 
+    <span class="nx">A</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nb">Array</span><span class="o">,</span>
+    <span class="nx">OP</span> <span class="o">=</span> <span class="nb">Object</span><span class="o">.</span><span class="nx">prototype</span><span class="o">,</span> 
+    <span class="nx">IEF</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;toString&quot;</span><span class="o">,</span> <span class="s2">&quot;valueOf&quot;</span><span class="o">],</span> 
+    <span class="nx">PROTO</span> <span class="o">=</span> <span class="s1">&#39;prototype&#39;</span><span class="o">,</span>
+
+    <span class="c">/**</span>
+<span class="c">     * IE will not enumerate native functions in a derived object even if the</span>
+<span class="c">     * function was overridden.  This is a workaround for specific functions </span>
+<span class="c">     * we care about on the Object prototype. </span>
+<span class="c">     * @property _iefix</span>
+<span class="c">     * @param {Function} r  the object to receive the augmentation</span>
+<span class="c">     * @param {Function} s  the object that supplies the properties to augment</span>
+<span class="c">     * @param w a whitelist object (the keys are the valid items to reference)</span>
+<span class="c">     * @private</span>
+<span class="c">     * @for YUI</span>
+<span class="c">     */</span>
+    <span class="nx">_iefix</span> <span class="o">=</span> <span class="o">(</span><span class="nx">Y</span><span class="o">.</span><span class="nx">UA</span> <span class="o">&amp;&amp;</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">UA</span><span class="o">.</span><span class="nx">ie</span><span class="o">)</span> <span class="o">?</span>
+        <span class="k">function</span><span class="o">(</span><span class="nx">r</span><span class="o">,</span> <span class="nx">s</span><span class="o">,</span> <span class="nx">w</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="k">var</span> <span class="nx">i</span><span class="o">=</span><span class="m">0</span><span class="o">,</span> <span class="nx">a</span><span class="o">=</span><span class="nx">IEF</span><span class="o">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">a</span><span class="o">.</span><span class="nx">length</span><span class="o">;</span> <span class="nx">i</span><span class="o">=</span><span class="nx">i</span><span class="o">+</span><span class="m">1</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">a</span><span class="o">[</span><span class="nx">i</span><span class="o">],</span> <span class="nx">f</span> <span class="o">=</span> <span class="nx">s</span><span class="o">[</span><span class="nx">n</span><span class="o">];</span>
+                <span class="k">if</span> <span class="o">(</span><span class="nx">L</span><span class="o">.</span><span class="nx">isFunction</span><span class="o">(</span><span class="nx">f</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="nx">f</span> <span class="o">!=</span> <span class="nx">OP</span><span class="o">[</span><span class="nx">n</span><span class="o">])</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(!</span><span class="nx">w</span> <span class="o">||</span> <span class="o">(</span><span class="nx">n</span> <span class="k">in</span> <span class="nx">w</span><span class="o">))</span> <span class="o">{</span>
+                        <span class="nx">r</span><span class="o">[</span><span class="nx">n</span><span class="o">]=</span><span class="nx">f</span><span class="o">;</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{};</span>
+   
+
+    <span class="c">/**</span>
+<span class="c">     * Returns a new object containing all of the properties of</span>
+<span class="c">     * all the supplied objects.  The properties from later objects</span>
+<span class="c">     * will overwrite those in earlier objects.  Passing in a</span>
+<span class="c">     * single object will create a shallow copy of it.  For a deep</span>
+<span class="c">     * copy, use clone.</span>
+<span class="c">     * @method merge</span>
+<span class="c">     * @param arguments {Object*} the objects to merge</span>
+<span class="c">     * @return {object} the new merged object</span>
+<span class="c">     */</span>
+    <span class="nx">Y</span><span class="o">.</span><span class="nx">merge</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c">// var o={}, a=arguments;</span>
+<span class="c"></span>        <span class="c">// for (var i=0, l=a.length; i&lt;l; i=i+1) {</span>
+<span class="c"></span>        <span class="c">//var a=arguments, o=Y.Object(a[0]);</span>
+<span class="c"></span>        <span class="k">var</span> <span class="nx">a</span><span class="o">=</span><span class="nx">arguments</span><span class="o">,</span> <span class="nx">o</span><span class="o">={};</span>
+        <span class="k">for</span> <span class="o">(</span><span class="k">var</span> <span class="nx">i</span><span class="o">=</span><span class="m">0</span><span class="o">,</span> <span class="nx">l</span><span class="o">=</span><span class="nx">a</span><span class="o">.</span><span class="nx">length</span><span class="o">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">l</span><span class="o">;</span> <span class="nx">i</span><span class="o">=</span><span class="nx">i</span><span class="o">+</span><span class="m">1</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nx">Y</span><span class="o">.</span><span class="nx">mix</span><span class="o">(</span><span class="nx">o</span><span class="o">,</span> <span class="nx">a</span><span class="o">[</span><span class="nx">i</span><span class="o">],</span> <span class="kc">true</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="nx">o</span><span class="o">;</span>
+    <span class="o">};</span>
+       
+    <span class="c">/**</span>
+<span class="c">     * Applies the supplier&#39;s properties to the receiver.  By default</span>
+<span class="c">     * all prototype and static propertes on the supplier are applied</span>
+<span class="c">     * to the corresponding spot on the receiver.  By default all</span>
+<span class="c">     * properties are applied, and a property that is already on the</span>
+<span class="c">     * reciever will not be overwritten.  The default behavior can</span>
+<span class="c">     * be modified by supplying the appropriate parameters.</span>
+<span class="c">     *</span>
+<span class="c">     * @TODO add constants for the modes</span>
+<span class="c">     *</span>
+<span class="c">     * @method mix</span>
+<span class="c">     * @param {Function} r  the object to receive the augmentation</span>
+<span class="c">     * @param {Function} s  the object that supplies the properties to augment</span>
+<span class="c">     * @param ov {boolean} if true, properties already on the receiver</span>
+<span class="c">     * will be overwritten if found on the supplier.</span>
+<span class="c">     * @param wl {string[]} a whitelist.  If supplied, only properties in </span>
+<span class="c">     * this list will be applied to the receiver.</span>
+<span class="c">     * @param {int} mode what should be copies, and to where</span>
+<span class="c">     *        default(0): object to object</span>
+<span class="c">     *        1: prototype to prototype (old augment)</span>
+<span class="c">     *        2: prototype to prototype and object props (new augment)</span>
+<span class="c">     *        3: prototype to object</span>
+<span class="c">     *        4: object to prototype</span>
+<span class="c">     * @param merge {boolean} merge objects instead of overwriting/ignoring</span>
+<span class="c">     * Used by Y.aggregate</span>
+<span class="c">     * @return {object} the augmented object</span>
+<span class="c">     * @TODO review for PR2</span>
+<span class="c">     */</span>
+    <span class="nx">Y</span><span class="o">.</span><span class="nx">mix</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">r</span><span class="o">,</span> <span class="nx">s</span><span class="o">,</span> <span class="nx">ov</span><span class="o">,</span> <span class="nx">wl</span><span class="o">,</span> <span class="nx">mode</span><span class="o">,</span> <span class="nx">merge</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="k">if</span> <span class="o">(!</span><span class="nx">s</span><span class="o">||!</span><span class="nx">r</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nx">Y</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="k">var</span> <span class="nx">w</span> <span class="o">=</span> <span class="o">(</span><span class="nx">wl</span> <span class="o">&amp;&amp;</span> <span class="nx">wl</span><span class="o">.</span><span class="nx">length</span><span class="o">)</span> <span class="o">?</span> <span class="nx">A</span><span class="o">.</span><span class="nx">hash</span><span class="o">(</span><span class="nx">wl</span><span class="o">)</span> <span class="o">:</span> <span class="kc">null</span><span class="o">,</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">merge</span><span class="o">,</span>
+
+            <span class="nx">f</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">fr</span><span class="o">,</span> <span class="nx">fs</span><span class="o">,</span> <span class="nx">proto</span><span class="o">,</span> <span class="nx">iwl</span><span class="o">)</span> <span class="o">{</span>
+
+                <span class="k">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="nx">m</span> <span class="o">&amp;&amp;</span> <span class="nx">L</span><span class="o">.</span><span class="nx">isArray</span><span class="o">(</span><span class="nx">fr</span><span class="o">);</span>
+
+                <span class="k">for</span> <span class="o">(</span><span class="k">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">fs</span><span class="o">)</span> <span class="o">{</span> 
+
+                    <span class="c">// We never want to overwrite the prototype</span>
+<span class="c"></span>                    <span class="c">// if (PROTO === i) {</span>
+<span class="c"></span>                    <span class="k">if</span> <span class="o">(</span><span class="nx">PROTO</span> <span class="o">===</span> <span class="nx">i</span> <span class="o">||</span> <span class="s1">&#39;_yuid&#39;</span> <span class="o">===</span> <span class="nx">i</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="k">continue</span><span class="o">;</span>
+                    <span class="o">}</span>
+
+                    <span class="c">// Y.log(&#39;i: &#39; + i + &quot;, &quot; + fs[i]);</span>
+<span class="c"></span>                    <span class="c">// @TODO deal with the hasownprop issue</span>
+<span class="c"></span>
+                    <span class="c">// check white list if it was supplied</span>
+<span class="c"></span>                    <span class="k">if</span> <span class="o">(!</span><span class="nx">w</span> <span class="o">||</span> <span class="nx">iwl</span> <span class="o">||</span> <span class="o">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">w</span><span class="o">))</span> <span class="o">{</span>
+                        <span class="c">// if the receiver has this property, it is an object,</span>
+<span class="c"></span>                        <span class="c">// and merge is specified, merge the two objects.</span>
+<span class="c"></span>                        <span class="k">if</span> <span class="o">(</span><span class="nx">m</span> <span class="o">&amp;&amp;</span> <span class="nx">L</span><span class="o">.</span><span class="nx">isObject</span><span class="o">(</span><span class="nx">fr</span><span class="o">[</span><span class="nx">i</span><span class="o">],</span> <span class="kc">true</span><span class="o">))</span> <span class="o">{</span>
+                            <span class="c">// console.log(&#39;aggregate RECURSE: &#39; + i);</span>
+<span class="c"></span>                            <span class="c">// @TODO recursive or no?</span>
+<span class="c"></span>                            <span class="c">// Y.mix(fr[i], fs[i]); // not recursive</span>
+<span class="c"></span>                            <span class="nx">f</span><span class="o">(</span><span class="nx">fr</span><span class="o">[</span><span class="nx">i</span><span class="o">],</span> <span class="nx">fs</span><span class="o">[</span><span class="nx">i</span><span class="o">],</span> <span class="nx">proto</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span> <span class="c">// recursive</span>
+<span class="c"></span>                        <span class="c">// otherwise apply the property only if overwrite</span>
+<span class="c"></span>                        <span class="c">// is specified or the receiver doesn&#39;t have one.</span>
+<span class="c"></span>                        <span class="c">// @TODO make sure the &#39;arr&#39; check isn&#39;t desructive</span>
+<span class="c"></span>                        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(!</span><span class="nx">arr</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="nx">ov</span> <span class="o">||</span> <span class="o">!(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">fr</span><span class="o">)))</span> <span class="o">{</span>
+                            <span class="c">// console.log(&#39;hash: &#39; + i);</span>
+<span class="c"></span>                            <span class="nx">fr</span><span class="o">[</span><span class="nx">i</span><span class="o">]</span> <span class="o">=</span> <span class="nx">fs</span><span class="o">[</span><span class="nx">i</span><span class="o">];</span>
+                        <span class="c">// if merge is specified and the receiver is an array,</span>
+<span class="c"></span>                        <span class="c">// append the array item</span>
+<span class="c"></span>                        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nx">arr</span><span class="o">)</span> <span class="o">{</span>
+                            <span class="c">// console.log(&#39;array: &#39; + i);</span>
+<span class="c"></span>                            <span class="c">// @TODO probably will need to remove dups</span>
+<span class="c"></span>                            <span class="nx">fr</span><span class="o">.</span><span class="nx">push</span><span class="o">(</span><span class="nx">fs</span><span class="o">[</span><span class="nx">i</span><span class="o">]);</span>
+                        <span class="o">}</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+
+                <span class="nx">_iefix</span><span class="o">(</span><span class="nx">fr</span><span class="o">,</span> <span class="nx">fs</span><span class="o">,</span> <span class="nx">w</span><span class="o">);</span>
+            <span class="o">};</span>
+
+        <span class="k">var</span> <span class="nx">rp</span> <span class="o">=</span> <span class="nx">r</span><span class="o">.</span><span class="nx">prototype</span><span class="o">,</span> <span class="nx">sp</span> <span class="o">=</span> <span class="nx">s</span><span class="o">.</span><span class="nx">prototype</span><span class="o">;</span>
+
+        <span class="nx">switch</span> <span class="o">(</span><span class="nx">mode</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nx">case</span> <span class="m">1</span><span class="o">:</span> <span class="c">// proto to proto</span>
+<span class="c"></span>                <span class="nx">f</span><span class="o">(</span><span class="nx">rp</span><span class="o">,</span> <span class="nx">sp</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="nx">case</span> <span class="m">2</span><span class="o">:</span> <span class="c">// object to object and proto to proto</span>
+<span class="c"></span>                <span class="nx">f</span><span class="o">(</span><span class="nx">r</span><span class="o">,</span> <span class="nx">s</span><span class="o">);</span>
+                <span class="nx">f</span><span class="o">(</span><span class="nx">rp</span><span class="o">,</span> <span class="nx">sp</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="nx">case</span> <span class="m">3</span><span class="o">:</span> <span class="c">// proto to static</span>
+<span class="c"></span>                <span class="nx">f</span><span class="o">(</span><span class="nx">r</span><span class="o">,</span> <span class="nx">sp</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="nx">case</span> <span class="m">4</span><span class="o">:</span> <span class="c">// static to proto</span>
+<span class="c"></span>                <span class="nx">f</span><span class="o">(</span><span class="nx">rp</span><span class="o">,</span> <span class="nx">s</span><span class="o">);</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="nx">default</span><span class="o">:</span>  <span class="c">// object to object</span>
+<span class="c"></span>                <span class="nx">f</span><span class="o">(</span><span class="nx">r</span><span class="o">,</span> <span class="nx">s</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="nx">r</span><span class="o">;</span>
+    <span class="o">};</span>
+
+    
+
+<span class="o">},</span> <span class="s2">&quot;@VERSION@&quot;</span><span class="o">);</span>
+</pre></div>
+                    </div>
+			</div>
+		</div>
+		<div class="yui-b">
+            <div class="nav">
+
+                    <div class="module">
+                        <h4>Modules</h4>
+                        <ul class="content">
+
+                                <li class=""><a href="module_anim.html">anim</a></li>
+
+                                <li class=""><a href="module_attribute.html">attribute</a></li>
+
+                                <li class=""><a href="module_base.html">base</a></li>
+
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
+                                <li class=""><a href="module_dd.html">dd</a></li>
+
+                                <li class=""><a href="module_dd-plugin.html">dd-plugin</a></li>
+
+                                <li class=""><a href="module_dom.html">dom</a></li>
+
+                                <li class=""><a href="module_dump.html">dump</a></li>
+
+                                <li class=""><a href="module_event.html">event</a></li>
+
+                                <li class=""><a href="module_io.html">io</a></li>
+
+                                <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_node.html">node</a></li>
+
+                                <li class=""><a href="module_oop.html">oop</a></li>
+
+                                <li class=""><a href="module_queue.html">queue</a></li>
+
+                                <li class=""><a href="module_substitute.html">substitute</a></li>
+
+                                <li class="selected"><a href="module_yui.html">yui</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="module">
+                        <h4>Classes</h4>
+                        <ul class="content">
+                                <li class=""><a href="Get.html">Get</a></li>
+                                <li class=""><a href="Lang.html">Lang</a></li>
+                                <li class=""><a href="Loader.html">Loader</a></li>
+                                <li class=""><a href="UA.html">UA</a></li>
+                                <li class=""><a href="YUI.html">YUI</a></li>
+                                <li class=""><a href="YUI~array.html">YUI~array</a></li>
+                                <li class=""><a href="YUI~object.html">YUI~object</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="module">
+                        <h4>Files</h4>
+                        <ul class="content">        
+                                <li class=""><a href="get.js.html">get.js</a></li>
+                                <li class=""><a href="loader.js.html">loader.js</a></li>
+                                <li class=""><a href="yui-array.js.html">yui-array.js</a></li>
+                                <li class="selected"><a href="yui-core.js.html">yui-core.js</a></li>
+                                <li class=""><a href="yui-dump.js.html">yui-dump.js</a></li>
+                                <li class=""><a href="yui-init.js.html">yui-init.js</a></li>
+                                <li class=""><a href="yui-lang.js.html">yui-lang.js</a></li>
+                                <li class=""><a href="yui-later.js.html">yui-later.js</a></li>
+                                <li class=""><a href="yui-log.js.html">yui-log.js</a></li>
+                                <li class=""><a href="yui-object.js.html">yui-object.js</a></li>
+                                <li class=""><a href="yui-ua.js.html">yui-ua.js</a></li>
+                                <li class=""><a href="yui.js.html">yui.js</a></li>
+                        </ul>
+                    </div>
+
+
+
+
+
+            </div>
+		</div>
+	</div>
+	<div id="ft">
+        <hr />
+        Copyright &copy; 2008 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+</body>
+</html>

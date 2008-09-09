@@ -1,0 +1,633 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>API: dom   dom-screen.js  (YUI Library)</title>
+	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body id="yahoo-com">
+
+<div id="doc3" class="yui-t2">
+
+	<div id="hd">
+        <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
+        <h3>dom&nbsp; <span class="subtitle">3.0.0pr1</span></h3>
+        <p>
+        <a href="./index.html">Yahoo! UI Library</a> 
+            &gt; <a href="./module_dom.html">dom</a>
+                
+                 &gt; dom-screen.js (source view) 
+            </p>
+
+
+	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> <label for="showprivate">Show Private</label></span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> <label for="showprotected">Show Protected</label></span>
+    <span id="classopts"><input type="checkbox" name="showdeprecated" id="showdeprecated" /> <label for="showdeprecated">Show Deprecated</label></span>
+            </form>
+
+                    <div id="srcout">
+                        <style>
+                            #doc3 #classopts { display:none; }
+                        </style>
+<div class="highlight" ><pre><span class="nx">YUI</span><span class="o">.</span><span class="nx">add</span><span class="o">(</span><span class="s1">&#39;dom-screen&#39;</span><span class="o">,</span> <span class="k">function</span><span class="o">(</span><span class="nx">Y</span><span class="o">)</span> <span class="o">{</span>
+
+<span class="c">/**</span>
+<span class="c"> * Adds position and region management functionality to DOM.</span>
+<span class="c"> * @module dom</span>
+<span class="c"> * @submodule dom-screen</span>
+<span class="c"> * @for DOM</span>
+<span class="c"> */</span>
+
+<span class="k">var</span> <span class="nx">OFFSET_TOP</span> <span class="o">=</span> <span class="s1">&#39;offsetTop&#39;</span><span class="o">,</span>
+    <span class="nx">DOCUMENT_ELEMENT</span> <span class="o">=</span> <span class="s1">&#39;documentElement&#39;</span><span class="o">,</span>
+    <span class="nx">COMPAT_MODE</span> <span class="o">=</span> <span class="s1">&#39;compatMode&#39;</span><span class="o">,</span>
+    <span class="nx">OFFSET_LEFT</span> <span class="o">=</span> <span class="s1">&#39;offsetLeft&#39;</span><span class="o">,</span>
+    <span class="nx">OFFSET_PARENT</span> <span class="o">=</span> <span class="s1">&#39;offsetParent&#39;</span><span class="o">,</span>
+    <span class="nx">POSITION</span> <span class="o">=</span> <span class="s1">&#39;position&#39;</span><span class="o">,</span>
+    <span class="nx">FIXED</span> <span class="o">=</span> <span class="s1">&#39;fixed&#39;</span><span class="o">,</span>
+    <span class="nx">RELATIVE</span> <span class="o">=</span> <span class="s1">&#39;relative&#39;</span><span class="o">,</span>
+    <span class="nx">LEFT</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="o">,</span>
+    <span class="nx">TOP</span> <span class="o">=</span> <span class="s1">&#39;top&#39;</span><span class="o">,</span>
+    <span class="nx">SCROLL_LEFT</span> <span class="o">=</span> <span class="s1">&#39;scrollLeft&#39;</span><span class="o">,</span>
+    <span class="nx">SCROLL_TOP</span> <span class="o">=</span> <span class="s1">&#39;scrollTop&#39;</span><span class="o">,</span>
+    <span class="nx">_BACK_COMPAT</span> <span class="o">=</span> <span class="s1">&#39;BackCompat&#39;</span><span class="o">,</span>
+    <span class="nx">MEDIUM</span> <span class="o">=</span> <span class="s1">&#39;medium&#39;</span><span class="o">,</span>
+    <span class="nx">HEIGHT</span> <span class="o">=</span> <span class="s1">&#39;height&#39;</span><span class="o">,</span>
+    <span class="nx">WIDTH</span> <span class="o">=</span> <span class="s1">&#39;width&#39;</span><span class="o">,</span>
+    <span class="nx">BORDER_LEFT_WIDTH</span> <span class="o">=</span> <span class="s1">&#39;borderLeftWidth&#39;</span><span class="o">,</span>
+    <span class="nx">BORDER_TOP_WIDTH</span> <span class="o">=</span> <span class="s1">&#39;borderTopWidth&#39;</span><span class="o">,</span>
+    <span class="nx">GET_BOUNDING_CLIENT_RECT</span> <span class="o">=</span> <span class="s1">&#39;getBoundingClientRect&#39;</span><span class="o">,</span>
+    <span class="nx">GET_COMPUTED_STYLE</span> <span class="o">=</span> <span class="s1">&#39;getComputedStyle&#39;</span><span class="o">,</span>
+    <span class="nx">RE_TABLE</span> <span class="o">=</span> <span class="sr">/^t(?:able|d|h)$/i</span><span class="o">;</span>
+
+<span class="nx">Y</span><span class="o">.</span><span class="nx">mix</span><span class="o">(</span><span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">,</span> <span class="o">{</span>
+    <span class="c">/**</span>
+<span class="c">     * Returns the inner height of the viewport (exludes scrollbar). </span>
+<span class="c">     * @method winHeight</span>
+<span class="c">     * @return {Int} The pixel height of the viewport.</span>
+<span class="c">     */</span>
+    <span class="nx">winHeight</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">node</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">var</span> <span class="nx">h</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">_getWinSize</span><span class="o">(</span><span class="nx">node</span><span class="o">)[</span><span class="nx">HEIGHT</span><span class="o">];</span>
+        <span class="nx">Y</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;winHeight returning &#39;</span> <span class="o">+</span> <span class="nx">h</span><span class="o">,</span> <span class="s1">&#39;info&#39;</span><span class="o">,</span> <span class="s1">&#39;DOM&#39;</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nx">h</span><span class="o">;</span>
+    <span class="o">},</span>
+
+    <span class="c">/**</span>
+<span class="c">     * Returns the inner width of the viewport (exludes scrollbar). </span>
+<span class="c">     * @method winWidth</span>
+<span class="c">     * @return {Int} The pixel width of the viewport.</span>
+<span class="c">     */</span>
+    <span class="nx">winWidth</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">node</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">var</span> <span class="nx">w</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">_getWinSize</span><span class="o">(</span><span class="nx">node</span><span class="o">)[</span><span class="nx">WIDTH</span><span class="o">];</span>
+        <span class="nx">Y</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;winWidth returning &#39;</span> <span class="o">+</span> <span class="nx">w</span><span class="o">,</span> <span class="s1">&#39;info&#39;</span><span class="o">,</span> <span class="s1">&#39;DOM&#39;</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nx">w</span><span class="o">;</span>
+    <span class="o">},</span>
+
+    <span class="c">/**</span>
+<span class="c">     * Document height </span>
+<span class="c">     * @method docHeight</span>
+<span class="c">     * @return {Int} The pixel height of the document.</span>
+<span class="c">     */</span>
+    <span class="nx">docHeight</span><span class="o">:</span>  <span class="k">function</span><span class="o">(</span><span class="nx">node</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">var</span> <span class="nx">h</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">_getDocSize</span><span class="o">(</span><span class="nx">node</span><span class="o">)[</span><span class="nx">HEIGHT</span><span class="o">];</span>
+        <span class="nx">Y</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;docHeight returning &#39;</span> <span class="o">+</span> <span class="nx">h</span><span class="o">,</span> <span class="s1">&#39;info&#39;</span><span class="o">,</span> <span class="s1">&#39;DOM&#39;</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nb">Math</span><span class="o">.</span><span class="nx">max</span><span class="o">(</span><span class="nx">h</span><span class="o">,</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">_getWinSize</span><span class="o">(</span><span class="nx">node</span><span class="o">)[</span><span class="nx">HEIGHT</span><span class="o">]);</span>
+    <span class="o">},</span>
+
+    <span class="c">/**</span>
+<span class="c">     * Document width </span>
+<span class="c">     * @method docWidth</span>
+<span class="c">     * @return {Int} The pixel width of the document.</span>
+<span class="c">     */</span>
+    <span class="nx">docWidth</span><span class="o">:</span>  <span class="k">function</span><span class="o">(</span><span class="nx">node</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">var</span> <span class="nx">w</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">_getDocSize</span><span class="o">(</span><span class="nx">node</span><span class="o">)[</span><span class="nx">WIDTH</span><span class="o">];</span>
+        <span class="nx">Y</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;docWidth returning &#39;</span> <span class="o">+</span> <span class="nx">w</span><span class="o">,</span> <span class="s1">&#39;info&#39;</span><span class="o">,</span> <span class="s1">&#39;DOM&#39;</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nb">Math</span><span class="o">.</span><span class="nx">max</span><span class="o">(</span><span class="nx">w</span><span class="o">,</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">_getWinSize</span><span class="o">(</span><span class="nx">node</span><span class="o">)[</span><span class="nx">WIDTH</span><span class="o">]);</span>
+    <span class="o">},</span>
+
+    <span class="c">/**</span>
+<span class="c">     * Amount page has been scroll vertically </span>
+<span class="c">     * @method docScrollX</span>
+<span class="c">     * @return {Int} The scroll amount in pixels.</span>
+<span class="c">     */</span>
+    <span class="nx">docScrollX</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">node</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">var</span> <span class="nx">doc</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">_getDoc</span><span class="o">();</span>
+        <span class="k">return</span> <span class="nb">Math</span><span class="o">.</span><span class="nx">max</span><span class="o">(</span><span class="nx">doc</span><span class="o">[</span><span class="nx">DOCUMENT_ELEMENT</span><span class="o">][</span><span class="nx">SCROLL_LEFT</span><span class="o">],</span> <span class="nx">doc</span><span class="o">.</span><span class="nx">body</span><span class="o">[</span><span class="nx">SCROLL_LEFT</span><span class="o">]);</span>
+    <span class="o">},</span>
+
+    <span class="c">/**</span>
+<span class="c">     * Amount page has been scroll horizontally </span>
+<span class="c">     * @method docScrollY</span>
+<span class="c">     * @return {Int} The scroll amount in pixels.</span>
+<span class="c">     */</span>
+    <span class="nx">docScrollY</span><span class="o">:</span>  <span class="k">function</span><span class="o">(</span><span class="nx">node</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">var</span> <span class="nx">doc</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">_getDoc</span><span class="o">();</span>
+        <span class="k">return</span> <span class="nb">Math</span><span class="o">.</span><span class="nx">max</span><span class="o">(</span><span class="nx">doc</span><span class="o">[</span><span class="nx">DOCUMENT_ELEMENT</span><span class="o">][</span><span class="nx">SCROLL_TOP</span><span class="o">],</span> <span class="nx">doc</span><span class="o">.</span><span class="nx">body</span><span class="o">[</span><span class="nx">SCROLL_TOP</span><span class="o">]);</span>
+    <span class="o">},</span>
+
+    <span class="c">/**</span>
+<span class="c">     * Gets the current position of an element based on page coordinates. </span>
+<span class="c">     * Element must be part of the DOM tree to have page coordinates</span>
+<span class="c">     * (display:none or elements not appended return false).</span>
+<span class="c">     * @method getXY</span>
+<span class="c">     * @param element The target element</span>
+<span class="c">     * @return {Array} The XY position of the element</span>
+<span class="c"></span>
+<span class="c">     TODO: test inDocument/display</span>
+<span class="c">     */</span>
+    <span class="nx">getXY</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="nb">document</span><span class="o">[</span><span class="nx">DOCUMENT_ELEMENT</span><span class="o">][</span><span class="nx">GET_BOUNDING_CLIENT_RECT</span><span class="o">])</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="k">function</span><span class="o">(</span><span class="nx">node</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(!</span><span class="nx">node</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+                <span class="o">}</span>
+                <span class="k">var</span> <span class="nx">scrollLeft</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">docScrollX</span><span class="o">(</span><span class="nx">node</span><span class="o">),</span>
+                    <span class="nx">scrollTop</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">docScrollY</span><span class="o">(</span><span class="nx">node</span><span class="o">),</span>
+                    <span class="nx">box</span> <span class="o">=</span> <span class="nx">node</span><span class="o">[</span><span class="nx">GET_BOUNDING_CLIENT_RECT</span><span class="o">](),</span>
+                    <span class="nx">doc</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">_getDoc</span><span class="o">(</span><span class="nx">node</span><span class="o">),</span>
+                    <span class="c">//Round the numbers so we get sane data back</span>
+<span class="c"></span>                    <span class="nx">xy</span> <span class="o">=</span> <span class="o">[</span><span class="nb">Math</span><span class="o">.</span><span class="nx">floor</span><span class="o">(</span><span class="nx">box</span><span class="o">[</span><span class="nx">LEFT</span><span class="o">]),</span> <span class="nb">Math</span><span class="o">.</span><span class="nx">floor</span><span class="o">(</span><span class="nx">box</span><span class="o">[</span><span class="nx">TOP</span><span class="o">])];</span>
+
+                    <span class="k">if</span> <span class="o">(</span><span class="nx">Y</span><span class="o">.</span><span class="nx">UA</span><span class="o">.</span><span class="nx">ie</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="k">var</span> <span class="nx">off1</span> <span class="o">=</span> <span class="m">2</span><span class="o">,</span> <span class="nx">off2</span> <span class="o">=</span> <span class="m">2</span><span class="o">,</span>
+                        <span class="nx">mode</span> <span class="o">=</span> <span class="nx">doc</span><span class="o">[</span><span class="nx">COMPAT_MODE</span><span class="o">],</span>
+                        <span class="nx">bLeft</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">[</span><span class="nx">GET_COMPUTED_STYLE</span><span class="o">](</span><span class="nx">doc</span><span class="o">[</span><span class="nx">DOCUMENT_ELEMENT</span><span class="o">],</span> <span class="nx">BORDER_LEFT_WIDTH</span><span class="o">),</span>
+                        <span class="nx">bTop</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">[</span><span class="nx">GET_COMPUTED_STYLE</span><span class="o">](</span><span class="nx">doc</span><span class="o">[</span><span class="nx">DOCUMENT_ELEMENT</span><span class="o">],</span> <span class="nx">BORDER_TOP_WIDTH</span><span class="o">);</span>
+
+                        <span class="k">if</span> <span class="o">(</span><span class="nx">Y</span><span class="o">.</span><span class="nx">UA</span><span class="o">.</span><span class="nx">ie</span> <span class="o">===</span> <span class="m">6</span><span class="o">)</span> <span class="o">{</span>
+                            <span class="k">if</span> <span class="o">(</span><span class="nx">mode</span> <span class="o">!==</span> <span class="nx">_BACK_COMPAT</span><span class="o">)</span> <span class="o">{</span>
+                                <span class="nx">off1</span> <span class="o">=</span> <span class="m">0</span><span class="o">;</span>
+                                <span class="nx">off2</span> <span class="o">=</span> <span class="m">0</span><span class="o">;</span>
+                            <span class="o">}</span>
+                        <span class="o">}</span>
+                        
+                        <span class="k">if</span> <span class="o">((</span><span class="nx">mode</span> <span class="o">==</span> <span class="nx">_BACK_COMPAT</span><span class="o">))</span> <span class="o">{</span>
+                            <span class="k">if</span> <span class="o">(</span><span class="nx">bLeft</span> <span class="o">!==</span> <span class="nx">MEDIUM</span><span class="o">)</span> <span class="o">{</span>
+                                <span class="nx">off1</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="o">(</span><span class="nx">bLeft</span><span class="o">,</span> <span class="m">10</span><span class="o">);</span>
+                            <span class="o">}</span>
+                            <span class="k">if</span> <span class="o">(</span><span class="nx">bTop</span> <span class="o">!==</span> <span class="nx">MEDIUM</span><span class="o">)</span> <span class="o">{</span>
+                                <span class="nx">off2</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="o">(</span><span class="nx">bTop</span><span class="o">,</span> <span class="m">10</span><span class="o">);</span>
+                            <span class="o">}</span>
+                        <span class="o">}</span>
+                        
+                        <span class="nx">xy</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">-=</span> <span class="nx">off1</span><span class="o">;</span>
+                        <span class="nx">xy</span><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">-=</span> <span class="nx">off2</span><span class="o">;</span>
+                    <span class="o">}</span>
+
+                <span class="k">if</span> <span class="o">((</span><span class="nx">scrollTop</span> <span class="o">||</span> <span class="nx">scrollLeft</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="nx">xy</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">+=</span> <span class="nx">scrollLeft</span><span class="o">;</span>
+                    <span class="nx">xy</span><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">+=</span> <span class="nx">scrollTop</span><span class="o">;</span>
+                <span class="o">}</span>
+
+                <span class="c">// gecko may return sub-pixel (non-int) values</span>
+<span class="c"></span>                <span class="nx">xy</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">=</span> <span class="nb">Math</span><span class="o">.</span><span class="nx">floor</span><span class="o">(</span><span class="nx">xy</span><span class="o">[</span><span class="m">0</span><span class="o">]);</span>
+                <span class="nx">xy</span><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">=</span> <span class="nb">Math</span><span class="o">.</span><span class="nx">floor</span><span class="o">(</span><span class="nx">xy</span><span class="o">[</span><span class="m">1</span><span class="o">]);</span>
+
+                <span class="k">return</span> <span class="nx">xy</span><span class="o">;</span>                   
+            <span class="o">};</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="k">function</span><span class="o">(</span><span class="nx">node</span><span class="o">)</span> <span class="o">{</span> <span class="c">// manually calculate by crawling up offsetParents</span>
+<span class="c"></span>                <span class="c">//Calculate the Top and Left border sizes (assumes pixels)</span>
+<span class="c"></span>                <span class="k">var</span> <span class="nx">xy</span> <span class="o">=</span> <span class="o">[</span><span class="nx">node</span><span class="o">[</span><span class="nx">OFFSET_LEFT</span><span class="o">],</span> <span class="nx">node</span><span class="o">[</span><span class="nx">OFFSET_TOP</span><span class="o">]],</span>
+                    <span class="nx">parentNode</span> <span class="o">=</span> <span class="nx">node</span><span class="o">,</span>
+                    <span class="nx">bCheck</span> <span class="o">=</span> <span class="o">((</span><span class="nx">Y</span><span class="o">.</span><span class="nx">UA</span><span class="o">.</span><span class="nx">gecko</span> <span class="o">||</span> <span class="o">(</span><span class="nx">Y</span><span class="o">.</span><span class="nx">UA</span><span class="o">.</span><span class="nx">webkit</span> <span class="o">&gt;</span> <span class="m">519</span><span class="o">))</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="kc">false</span><span class="o">);</span>
+
+                <span class="k">while</span> <span class="o">((</span><span class="nx">parentNode</span> <span class="o">=</span> <span class="nx">parentNode</span><span class="o">[</span><span class="nx">OFFSET_PARENT</span><span class="o">]))</span> <span class="o">{</span>
+                    <span class="nx">xy</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">+=</span> <span class="nx">parentNode</span><span class="o">[</span><span class="nx">OFFSET_LEFT</span><span class="o">];</span>
+                    <span class="nx">xy</span><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">+=</span> <span class="nx">parentNode</span><span class="o">[</span><span class="nx">OFFSET_TOP</span><span class="o">];</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="nx">bCheck</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="nx">xy</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">_calcBorders</span><span class="o">(</span><span class="nx">parentNode</span><span class="o">,</span> <span class="nx">xy</span><span class="o">);</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+
+                <span class="c">// account for any scrolled ancestors</span>
+<span class="c"></span>                <span class="k">if</span> <span class="o">(</span><span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">getStyle</span><span class="o">(</span><span class="nx">node</span><span class="o">,</span> <span class="nx">POSITION</span><span class="o">)</span> <span class="o">!=</span> <span class="nx">FIXED</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="nx">parentNode</span> <span class="o">=</span> <span class="nx">node</span><span class="o">;</span>
+                    <span class="k">var</span> <span class="nx">scrollTop</span><span class="o">,</span> <span class="nx">scrollLeft</span><span class="o">;</span>
+
+                    <span class="k">while</span> <span class="o">((</span><span class="nx">parentNode</span> <span class="o">=</span> <span class="nx">parentNode</span><span class="o">.</span><span class="nx">parentNode</span><span class="o">))</span> <span class="o">{</span>
+                        <span class="nx">scrollTop</span> <span class="o">=</span> <span class="nx">parentNode</span><span class="o">[</span><span class="nx">SCROLL_TOP</span><span class="o">];</span>
+                        <span class="nx">scrollLeft</span> <span class="o">=</span> <span class="nx">parentNode</span><span class="o">[</span><span class="nx">SCROLL_LEFT</span><span class="o">];</span>
+
+                        <span class="c">//Firefox does something funky with borders when overflow is not visible.</span>
+<span class="c"></span>                        <span class="k">if</span> <span class="o">(</span><span class="nx">Y</span><span class="o">.</span><span class="nx">UA</span><span class="o">.</span><span class="nx">gecko</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">getStyle</span><span class="o">(</span><span class="nx">parentNode</span><span class="o">,</span> <span class="s1">&#39;overflow&#39;</span><span class="o">)</span> <span class="o">!==</span> <span class="s1">&#39;visible&#39;</span><span class="o">))</span> <span class="o">{</span>
+                                <span class="nx">xy</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">_calcBorders</span><span class="o">(</span><span class="nx">parentNode</span><span class="o">,</span> <span class="nx">xy</span><span class="o">);</span>
+                        <span class="o">}</span>
+                        
+
+                        <span class="k">if</span> <span class="o">(</span><span class="nx">scrollTop</span> <span class="o">||</span> <span class="nx">scrollLeft</span><span class="o">)</span> <span class="o">{</span>
+                            <span class="nx">xy</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">-=</span> <span class="nx">scrollLeft</span><span class="o">;</span>
+                            <span class="nx">xy</span><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">-=</span> <span class="nx">scrollTop</span><span class="o">;</span>
+                        <span class="o">}</span>
+                    <span class="o">}</span>
+                    <span class="nx">xy</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">+=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">docScrollX</span><span class="o">(</span><span class="nx">node</span><span class="o">);</span>
+                    <span class="nx">xy</span><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">+=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">docScrollY</span><span class="o">(</span><span class="nx">node</span><span class="o">);</span>
+
+                <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                    <span class="c">//Fix FIXED position -- add scrollbars</span>
+<span class="c"></span>                    <span class="k">if</span> <span class="o">(</span><span class="nx">Y</span><span class="o">.</span><span class="nx">UA</span><span class="o">.</span><span class="nx">opera</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="nx">xy</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">-=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">docScrollX</span><span class="o">(</span><span class="nx">node</span><span class="o">);</span>
+                        <span class="nx">xy</span><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">-=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">docScrollY</span><span class="o">(</span><span class="nx">node</span><span class="o">);</span>
+                    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nx">Y</span><span class="o">.</span><span class="nx">UA</span><span class="o">.</span><span class="nx">webkit</span> <span class="o">||</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">UA</span><span class="o">.</span><span class="nx">gecko</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="nx">xy</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">+=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">docScrollX</span><span class="o">(</span><span class="nx">node</span><span class="o">);</span>
+                        <span class="nx">xy</span><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">+=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">docScrollY</span><span class="o">(</span><span class="nx">node</span><span class="o">);</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+                <span class="c">//Round the numbers so we get sane data back</span>
+<span class="c"></span>                <span class="nx">xy</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">=</span> <span class="nb">Math</span><span class="o">.</span><span class="nx">floor</span><span class="o">(</span><span class="nx">xy</span><span class="o">[</span><span class="m">0</span><span class="o">]);</span>
+                <span class="nx">xy</span><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">=</span> <span class="nb">Math</span><span class="o">.</span><span class="nx">floor</span><span class="o">(</span><span class="nx">xy</span><span class="o">[</span><span class="m">1</span><span class="o">]);</span>
+
+                <span class="k">return</span> <span class="nx">xy</span><span class="o">;</span>                
+            <span class="o">};</span>
+        <span class="o">}</span>
+    <span class="o">}(),</span><span class="c">// NOTE: Executing for loadtime branching</span>
+<span class="c"></span>
+    <span class="c">/**</span>
+<span class="c">     * Gets the current X position of an element based on page coordinates. </span>
+<span class="c">     * Element must be part of the DOM tree to have page coordinates</span>
+<span class="c">     * (display:none or elements not appended return false).</span>
+<span class="c">     * @method getX</span>
+<span class="c">     * @param element The target element</span>
+<span class="c">     * @return {Int} The X position of the element</span>
+<span class="c">     */</span>
+
+    <span class="nx">getX</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">node</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">getXY</span><span class="o">(</span><span class="nx">node</span><span class="o">)[</span><span class="m">0</span><span class="o">];</span>
+    <span class="o">},</span>
+
+    <span class="c">/**</span>
+<span class="c">     * Gets the current Y position of an element based on page coordinates. </span>
+<span class="c">     * Element must be part of the DOM tree to have page coordinates</span>
+<span class="c">     * (display:none or elements not appended return false).</span>
+<span class="c">     * @method getY</span>
+<span class="c">     * @param element The target element</span>
+<span class="c">     * @return {Int} The Y position of the element</span>
+<span class="c">     */</span>
+
+    <span class="nx">getY</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">node</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">getXY</span><span class="o">(</span><span class="nx">node</span><span class="o">)[</span><span class="m">1</span><span class="o">];</span>
+    <span class="o">},</span>
+
+    <span class="c">/**</span>
+<span class="c">     * Set the position of an html element in page coordinates.</span>
+<span class="c">     * The element must be part of the DOM tree to have page coordinates (display:none or elements not appended return false).</span>
+<span class="c">     * @method setXY</span>
+<span class="c">     * @param element The target element</span>
+<span class="c">     * @param {Array} xy Contains X &amp; Y values for new position (coordinates are page-based)</span>
+<span class="c">     * @param {Boolean} noRetry By default we try and set the position a second time if the first fails</span>
+<span class="c">     */</span>
+    <span class="nx">setXY</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">node</span><span class="o">,</span> <span class="nx">xy</span><span class="o">,</span> <span class="nx">noRetry</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">getStyle</span><span class="o">(</span><span class="nx">node</span><span class="o">,</span> <span class="nx">POSITION</span><span class="o">),</span>
+            <span class="nx">setStyle</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">setStyle</span><span class="o">,</span>
+            <span class="nx">delta</span> <span class="o">=</span> <span class="o">[</span> <span class="c">// assuming pixels; if not we will have to retry</span>
+<span class="c"></span>                <span class="nb">parseInt</span><span class="o">(</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">[</span><span class="nx">GET_COMPUTED_STYLE</span><span class="o">](</span><span class="nx">node</span><span class="o">,</span> <span class="nx">LEFT</span><span class="o">),</span> <span class="m">10</span> <span class="o">),</span>
+                <span class="nb">parseInt</span><span class="o">(</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">[</span><span class="nx">GET_COMPUTED_STYLE</span><span class="o">](</span><span class="nx">node</span><span class="o">,</span> <span class="nx">TOP</span><span class="o">),</span> <span class="m">10</span> <span class="o">)</span>
+            <span class="o">];</span>
+    
+        <span class="k">if</span> <span class="o">(</span><span class="nx">pos</span> <span class="o">==</span> <span class="s1">&#39;static&#39;</span><span class="o">)</span> <span class="o">{</span> <span class="c">// default to relative</span>
+<span class="c"></span>            <span class="nx">pos</span> <span class="o">=</span> <span class="nx">RELATIVE</span><span class="o">;</span>
+            <span class="nx">setStyle</span><span class="o">(</span><span class="nx">node</span><span class="o">,</span> <span class="nx">POSITION</span><span class="o">,</span> <span class="nx">pos</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="k">var</span> <span class="nx">currentXY</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">getXY</span><span class="o">(</span><span class="nx">node</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="nx">currentXY</span> <span class="o">===</span> <span class="kc">false</span><span class="o">)</span> <span class="o">{</span> <span class="c">// has to be part of doc to have xy</span>
+<span class="c"></span>            <span class="nx">Y</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;xy failed: node not available&#39;</span><span class="o">,</span> <span class="s1">&#39;error&#39;</span><span class="o">,</span> <span class="s1">&#39;Node&#39;</span><span class="o">);</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span> 
+        <span class="o">}</span>
+        
+        <span class="k">if</span> <span class="o">(</span> <span class="nb">isNaN</span><span class="o">(</span><span class="nx">delta</span><span class="o">[</span><span class="m">0</span><span class="o">])</span> <span class="o">)</span> <span class="o">{</span><span class="c">// in case of &#39;auto&#39;</span>
+<span class="c"></span>            <span class="nx">delta</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="nx">pos</span> <span class="o">==</span> <span class="nx">RELATIVE</span><span class="o">)</span> <span class="o">?</span> <span class="m">0</span> <span class="o">:</span> <span class="nx">node</span><span class="o">[</span><span class="nx">OFFSET_LEFT</span><span class="o">];</span>
+        <span class="o">}</span> 
+        <span class="k">if</span> <span class="o">(</span> <span class="nb">isNaN</span><span class="o">(</span><span class="nx">delta</span><span class="o">[</span><span class="m">1</span><span class="o">])</span> <span class="o">)</span> <span class="o">{</span> <span class="c">// in case of &#39;auto&#39;</span>
+<span class="c"></span>            <span class="nx">delta</span><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="nx">pos</span> <span class="o">==</span> <span class="nx">RELATIVE</span><span class="o">)</span> <span class="o">?</span> <span class="m">0</span> <span class="o">:</span> <span class="nx">node</span><span class="o">[</span><span class="nx">OFFSET_TOP</span><span class="o">];</span>
+        <span class="o">}</span> 
+
+        <span class="k">if</span> <span class="o">(</span><span class="nx">xy</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">!==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nx">setStyle</span><span class="o">(</span><span class="nx">node</span><span class="o">,</span> <span class="nx">LEFT</span><span class="o">,</span> <span class="nx">xy</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">-</span> <span class="nx">currentXY</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">+</span> <span class="nx">delta</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="nx">xy</span><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">!==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nx">setStyle</span><span class="o">(</span><span class="nx">node</span><span class="o">,</span> <span class="nx">TOP</span><span class="o">,</span> <span class="nx">xy</span><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">-</span> <span class="nx">currentXY</span><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">+</span> <span class="nx">delta</span><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="o">);</span>
+        <span class="o">}</span>
+      
+        <span class="k">if</span> <span class="o">(!</span><span class="nx">noRetry</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">var</span> <span class="nx">newXY</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">getXY</span><span class="o">(</span><span class="nx">node</span><span class="o">);</span>
+
+            <span class="c">// if retry is true, try one more time if we miss </span>
+<span class="c"></span>           <span class="k">if</span> <span class="o">(</span> <span class="o">(</span><span class="nx">xy</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">!==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="nx">newXY</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">!=</span> <span class="nx">xy</span><span class="o">[</span><span class="m">0</span><span class="o">])</span> <span class="o">||</span> 
+                <span class="o">(</span><span class="nx">xy</span><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">!==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="nx">newXY</span><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">!=</span> <span class="nx">xy</span><span class="o">[</span><span class="m">1</span><span class="o">])</span> <span class="o">)</span> <span class="o">{</span>
+               <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">setXY</span><span class="o">(</span><span class="nx">node</span><span class="o">,</span> <span class="nx">xy</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+           <span class="o">}</span>
+        <span class="o">}</span>        
+
+        <span class="nx">Y</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;setXY setting position to &#39;</span> <span class="o">+</span> <span class="nx">xy</span><span class="o">,</span> <span class="s1">&#39;info&#39;</span><span class="o">,</span> <span class="s1">&#39;Node&#39;</span><span class="o">);</span>
+    <span class="o">},</span>
+
+    <span class="c">/**</span>
+<span class="c">     * Set the X position of an html element in page coordinates, regardless of how the element is positioned.</span>
+<span class="c">     * The element(s) must be part of the DOM tree to have page coordinates (display:none or elements not appended return false).</span>
+<span class="c">     * @method setX</span>
+<span class="c">     * @param element The target element</span>
+<span class="c">     * @param {Int} x The X values for new position (coordinates are page-based)</span>
+<span class="c">     */</span>
+    <span class="nx">setX</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">node</span><span class="o">,</span> <span class="nx">x</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">setXY</span><span class="o">(</span><span class="nx">node</span><span class="o">,</span> <span class="o">[</span><span class="nx">x</span><span class="o">,</span> <span class="kc">null</span><span class="o">]);</span>
+    <span class="o">},</span>
+
+    <span class="c">/**</span>
+<span class="c">     * Set the Y position of an html element in page coordinates, regardless of how the element is positioned.</span>
+<span class="c">     * The element(s) must be part of the DOM tree to have page coordinates (display:none or elements not appended return false).</span>
+<span class="c">     * @method setY</span>
+<span class="c">     * @param element The target element</span>
+<span class="c">     * @param {Int} y The Y values for new position (coordinates are page-based)</span>
+<span class="c">     */</span>
+    <span class="nx">setY</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">node</span><span class="o">,</span> <span class="nx">y</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">setXY</span><span class="o">(</span><span class="nx">node</span><span class="o">,</span> <span class="o">[</span><span class="kc">null</span><span class="o">,</span> <span class="nx">y</span><span class="o">]);</span>
+    <span class="o">},</span>
+
+    <span class="nx">_calcBorders</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">node</span><span class="o">,</span> <span class="nx">xy2</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="o">(</span><span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">[</span><span class="nx">GET_COMPUTED_STYLE</span><span class="o">](</span><span class="nx">node</span><span class="o">,</span> <span class="nx">BORDER_TOP_WIDTH</span><span class="o">),</span> <span class="m">10</span><span class="o">)</span> <span class="o">||</span> <span class="m">0</span><span class="o">,</span>
+            <span class="nx">l</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="o">(</span><span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">[</span><span class="nx">GET_COMPUTED_STYLE</span><span class="o">](</span><span class="nx">node</span><span class="o">,</span> <span class="nx">BORDER_LEFT_WIDTH</span><span class="o">),</span> <span class="m">10</span><span class="o">)</span> <span class="o">||</span> <span class="m">0</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="nx">Y</span><span class="o">.</span><span class="nx">UA</span><span class="o">.</span><span class="nx">gecko</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="nx">RE_TABLE</span><span class="o">.</span><span class="nx">test</span><span class="o">(</span><span class="nx">node</span><span class="o">.</span><span class="nx">tagName</span><span class="o">))</span> <span class="o">{</span>
+                <span class="nx">t</span> <span class="o">=</span> <span class="m">0</span><span class="o">;</span>
+                <span class="nx">l</span> <span class="o">=</span> <span class="m">0</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="nx">xy2</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">+=</span> <span class="nx">l</span><span class="o">;</span>
+        <span class="nx">xy2</span><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">+=</span> <span class="nx">t</span><span class="o">;</span>
+        <span class="k">return</span> <span class="nx">xy2</span><span class="o">;</span>
+    <span class="o">},</span>
+
+    <span class="nx">_getWinSize</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">node</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">var</span> <span class="nx">doc</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">_getDoc</span><span class="o">(),</span>
+            <span class="nx">win</span> <span class="o">=</span> <span class="nx">doc</span><span class="o">.</span><span class="nx">defaultView</span> <span class="o">||</span> <span class="nx">doc</span><span class="o">.</span><span class="nx">parentWindow</span><span class="o">,</span>
+            <span class="nx">mode</span> <span class="o">=</span> <span class="nx">doc</span><span class="o">[</span><span class="nx">COMPAT_MODE</span><span class="o">],</span>
+            <span class="nx">h</span> <span class="o">=</span> <span class="nx">win</span><span class="o">.</span><span class="nx">innerHeight</span><span class="o">,</span>
+            <span class="nx">w</span> <span class="o">=</span> <span class="nx">win</span><span class="o">.</span><span class="nx">innerWidth</span><span class="o">,</span>
+            <span class="nx">root</span> <span class="o">=</span> <span class="nx">doc</span><span class="o">[</span><span class="nx">DOCUMENT_ELEMENT</span><span class="o">];</span>
+
+        <span class="k">if</span> <span class="o">(</span> <span class="nx">mode</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">Y</span><span class="o">.</span><span class="nx">UA</span><span class="o">.</span><span class="nx">opera</span> <span class="o">)</span> <span class="o">{</span> <span class="c">// IE, Gecko</span>
+<span class="c"></span>            <span class="k">if</span> <span class="o">(</span><span class="nx">mode</span> <span class="o">!=</span> <span class="s1">&#39;CSS1Compat&#39;</span><span class="o">)</span> <span class="o">{</span> <span class="c">// Quirks</span>
+<span class="c"></span>                <span class="nx">root</span> <span class="o">=</span> <span class="nx">doc</span><span class="o">.</span><span class="nx">body</span><span class="o">;</span> 
+            <span class="o">}</span>
+            <span class="nx">h</span> <span class="o">=</span> <span class="nx">root</span><span class="o">.</span><span class="nx">clientHeight</span><span class="o">;</span>
+            <span class="nx">w</span> <span class="o">=</span> <span class="nx">root</span><span class="o">.</span><span class="nx">clientWidth</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="o">{</span> <span class="nx">height</span><span class="o">:</span> <span class="nx">h</span><span class="o">,</span> <span class="nx">width</span><span class="o">:</span> <span class="nx">w</span> <span class="o">};</span> 
+    <span class="o">},</span>
+
+    <span class="nx">_getDocSize</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">node</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">var</span> <span class="nx">doc</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">_getDoc</span><span class="o">(),</span>
+            <span class="nx">root</span> <span class="o">=</span> <span class="nx">doc</span><span class="o">[</span><span class="nx">DOCUMENT_ELEMENT</span><span class="o">];</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="nx">doc</span><span class="o">[</span><span class="nx">COMPAT_MODE</span><span class="o">]</span> <span class="o">!=</span> <span class="s1">&#39;CSS1Compat&#39;</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nx">root</span> <span class="o">=</span> <span class="nx">doc</span><span class="o">.</span><span class="nx">body</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="o">{</span> <span class="nx">height</span><span class="o">:</span> <span class="nx">root</span><span class="o">.</span><span class="nx">scrollHeight</span><span class="o">,</span> <span class="nx">width</span><span class="o">:</span> <span class="nx">root</span><span class="o">.</span><span class="nx">scrollWidth</span> <span class="o">};</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+
+<span class="c">/*</span>
+<span class="c"> * Adds position and region management functionality to DOM.</span>
+<span class="c"> * @module dom</span>
+<span class="c"> * @submodule dom-screen</span>
+<span class="c"> * @for DOM</span>
+<span class="c"> */</span>
+
+<span class="k">var</span> <span class="nx">OFFSET_WIDTH</span> <span class="o">=</span> <span class="s1">&#39;offsetWidth&#39;</span><span class="o">,</span>
+    <span class="nx">OFFSET_HEIGHT</span> <span class="o">=</span> <span class="s1">&#39;offsetHeight&#39;</span><span class="o">,</span>
+    <span class="nx">TAG_NAME</span> <span class="o">=</span> <span class="s1">&#39;tagName&#39;</span><span class="o">;</span>
+
+<span class="k">var</span> <span class="nx">getOffsets</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">r1</span><span class="o">,</span> <span class="nx">r2</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="k">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="nb">Math</span><span class="o">.</span><span class="nx">max</span><span class="o">(</span><span class="nx">r1</span><span class="o">.</span><span class="nx">top</span><span class="o">,</span>    <span class="nx">r2</span><span class="o">.</span><span class="nx">top</span>   <span class="o">),</span>
+        <span class="nx">r</span> <span class="o">=</span> <span class="nb">Math</span><span class="o">.</span><span class="nx">min</span><span class="o">(</span><span class="nx">r1</span><span class="o">.</span><span class="nx">right</span><span class="o">,</span>  <span class="nx">r2</span><span class="o">.</span><span class="nx">right</span> <span class="o">),</span>
+        <span class="nx">b</span> <span class="o">=</span> <span class="nb">Math</span><span class="o">.</span><span class="nx">min</span><span class="o">(</span><span class="nx">r1</span><span class="o">.</span><span class="nx">bottom</span><span class="o">,</span> <span class="nx">r2</span><span class="o">.</span><span class="nx">bottom</span><span class="o">),</span>
+        <span class="nx">l</span> <span class="o">=</span> <span class="nb">Math</span><span class="o">.</span><span class="nx">max</span><span class="o">(</span><span class="nx">r1</span><span class="o">.</span><span class="nx">left</span><span class="o">,</span>   <span class="nx">r2</span><span class="o">.</span><span class="nx">left</span>  <span class="o">);</span>
+    
+    <span class="k">return</span> <span class="o">{</span>
+        <span class="nx">top</span><span class="o">:</span> <span class="nx">t</span><span class="o">,</span>
+        <span class="nx">bottom</span><span class="o">:</span> <span class="nx">b</span><span class="o">,</span>
+        <span class="nx">left</span><span class="o">:</span> <span class="nx">l</span><span class="o">,</span>
+        <span class="nx">right</span><span class="o">:</span> <span class="nx">r</span>
+    <span class="o">};</span>
+<span class="o">};</span>
+
+<span class="nx">Y</span><span class="o">.</span><span class="nx">mix</span><span class="o">(</span><span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">,</span> <span class="o">{</span>
+    <span class="c">/**</span>
+<span class="c">     * Returns an Object literal containing the following about this element: (top, right, bottom, left)</span>
+<span class="c">     * @method region</span>
+<span class="c">     * @param {HTMLElement} element The DOM element. </span>
+<span class="c">     @return {Object} Object literal containing the following about this element: (top, right, bottom, left)</span>
+<span class="c">     */</span>
+    <span class="nx">region</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">node</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">getXY</span><span class="o">(</span><span class="nx">node</span><span class="o">),</span>
+            <span class="nx">ret</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        
+        <span class="k">if</span> <span class="o">(</span><span class="nx">x</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nx">ret</span> <span class="o">=</span> <span class="o">{</span>
+                <span class="s1">&#39;0&#39;</span><span class="o">:</span> <span class="nx">x</span><span class="o">[</span><span class="m">0</span><span class="o">],</span>
+                <span class="s1">&#39;1&#39;</span><span class="o">:</span> <span class="nx">x</span><span class="o">[</span><span class="m">1</span><span class="o">],</span>
+                <span class="nx">top</span><span class="o">:</span> <span class="nx">x</span><span class="o">[</span><span class="m">1</span><span class="o">],</span>
+                <span class="nx">right</span><span class="o">:</span> <span class="nx">x</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">+</span> <span class="nx">node</span><span class="o">[</span><span class="nx">OFFSET_WIDTH</span><span class="o">],</span>
+                <span class="nx">bottom</span><span class="o">:</span> <span class="nx">x</span><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">+</span> <span class="nx">node</span><span class="o">[</span><span class="nx">OFFSET_HEIGHT</span><span class="o">],</span>
+                <span class="nx">left</span><span class="o">:</span> <span class="nx">x</span><span class="o">[</span><span class="m">0</span><span class="o">],</span>
+                <span class="nx">height</span><span class="o">:</span> <span class="nx">node</span><span class="o">[</span><span class="nx">OFFSET_HEIGHT</span><span class="o">],</span>
+                <span class="nx">width</span><span class="o">:</span> <span class="nx">node</span><span class="o">[</span><span class="nx">OFFSET_WIDTH</span><span class="o">]</span>
+            <span class="o">};</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="nx">ret</span><span class="o">;</span>
+    <span class="o">},</span>
+
+    <span class="c">/**</span>
+<span class="c">     * Find the intersect information for the passes nodes.</span>
+<span class="c">     * @method intersect</span>
+<span class="c">     * @param {HTMLElement} element The first element </span>
+<span class="c">     * @param {HTMLElement | Object} element2 The element or region to check the interect with</span>
+<span class="c">     * @param {Object} altRegion An object literal containing the region for the first element if we already have the data (for performance i.e. DragDrop)</span>
+<span class="c">     @return {Object} Object literal containing the following intersection data: (top, right, bottom, left, area, yoff, xoff, inRegion)</span>
+<span class="c">     */</span>
+    <span class="nx">intersect</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">node</span><span class="o">,</span> <span class="nx">node2</span><span class="o">,</span> <span class="nx">altRegion</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">altRegion</span> <span class="o">||</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">region</span><span class="o">(</span><span class="nx">node</span><span class="o">),</span> <span class="nx">region</span> <span class="o">=</span> <span class="o">{};</span>
+
+        <span class="k">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">node2</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="nx">n</span><span class="o">[</span><span class="nx">TAG_NAME</span><span class="o">])</span> <span class="o">{</span>
+            <span class="nx">region</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">region</span><span class="o">(</span><span class="nx">n</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nx">Y</span><span class="o">.</span><span class="nx">Lang</span><span class="o">.</span><span class="nx">isObject</span><span class="o">(</span><span class="nx">node2</span><span class="o">))</span> <span class="o">{</span>
+            <span class="nx">region</span> <span class="o">=</span> <span class="nx">node2</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+        
+        <span class="k">var</span> <span class="nx">off</span> <span class="o">=</span> <span class="nx">getOffsets</span><span class="o">(</span><span class="nx">region</span><span class="o">,</span> <span class="nx">r</span><span class="o">);</span>
+        <span class="k">return</span> <span class="o">{</span>
+            <span class="nx">top</span><span class="o">:</span> <span class="nx">off</span><span class="o">.</span><span class="nx">top</span><span class="o">,</span>
+            <span class="nx">right</span><span class="o">:</span> <span class="nx">off</span><span class="o">.</span><span class="nx">right</span><span class="o">,</span>
+            <span class="nx">bottom</span><span class="o">:</span> <span class="nx">off</span><span class="o">.</span><span class="nx">bottom</span><span class="o">,</span>
+            <span class="nx">left</span><span class="o">:</span> <span class="nx">off</span><span class="o">.</span><span class="nx">left</span><span class="o">,</span>
+            <span class="nx">area</span><span class="o">:</span> <span class="o">((</span><span class="nx">off</span><span class="o">.</span><span class="nx">bottom</span> <span class="o">-</span> <span class="nx">off</span><span class="o">.</span><span class="nx">top</span><span class="o">)</span> <span class="o">*</span> <span class="o">(</span><span class="nx">off</span><span class="o">.</span><span class="nx">right</span> <span class="o">-</span> <span class="nx">off</span><span class="o">.</span><span class="nx">left</span><span class="o">)),</span>
+            <span class="nx">yoff</span><span class="o">:</span> <span class="o">((</span><span class="nx">off</span><span class="o">.</span><span class="nx">bottom</span> <span class="o">-</span> <span class="nx">off</span><span class="o">.</span><span class="nx">top</span><span class="o">)),</span>
+            <span class="nx">xoff</span><span class="o">:</span> <span class="o">(</span><span class="nx">off</span><span class="o">.</span><span class="nx">right</span> <span class="o">-</span> <span class="nx">off</span><span class="o">.</span><span class="nx">left</span><span class="o">),</span>
+            <span class="nx">inRegion</span><span class="o">:</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">inRegion</span><span class="o">(</span><span class="nx">node</span><span class="o">,</span> <span class="nx">node2</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="nx">altRegion</span><span class="o">)</span>
+        <span class="o">};</span>
+        
+    <span class="o">},</span>
+    <span class="c">/**</span>
+<span class="c">     * Check if any part of this node is in the passed region</span>
+<span class="c">     * @method inRegion</span>
+<span class="c">     * @param {Object} node2 The node to get the region from or an Object literal of the region</span>
+<span class="c">     * $param {Boolean} all Should all of the node be inside the region</span>
+<span class="c">     * @param {Object} altRegion An object literal containing the region for this node if we already have the data (for performance i.e. DragDrop)</span>
+<span class="c">     * @return {Boolean} True if in region, false if not.</span>
+<span class="c">     */</span>
+    <span class="nx">inRegion</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">node</span><span class="o">,</span> <span class="nx">node2</span><span class="o">,</span> <span class="nx">all</span><span class="o">,</span> <span class="nx">altRegion</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">var</span> <span class="nx">region</span> <span class="o">=</span> <span class="o">{},</span>
+            <span class="nx">r</span> <span class="o">=</span> <span class="nx">altRegion</span> <span class="o">||</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">region</span><span class="o">(</span><span class="nx">node</span><span class="o">);</span>
+
+        <span class="k">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">node2</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="nx">n</span><span class="o">[</span><span class="nx">TAG_NAME</span><span class="o">])</span> <span class="o">{</span>
+            <span class="nx">region</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">region</span><span class="o">(</span><span class="nx">n</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nx">Y</span><span class="o">.</span><span class="nx">Lang</span><span class="o">.</span><span class="nx">isObject</span><span class="o">(</span><span class="nx">node2</span><span class="o">))</span> <span class="o">{</span>
+            <span class="nx">region</span> <span class="o">=</span> <span class="nx">node2</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+            
+        <span class="k">if</span> <span class="o">(</span><span class="nx">all</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="o">(</span> <span class="nx">r</span><span class="o">.</span><span class="nx">left</span>   <span class="o">&gt;=</span> <span class="nx">region</span><span class="o">.</span><span class="nx">left</span>   <span class="o">&amp;&amp;</span>
+                <span class="nx">r</span><span class="o">.</span><span class="nx">right</span>  <span class="o">&lt;=</span> <span class="nx">region</span><span class="o">.</span><span class="nx">right</span>  <span class="o">&amp;&amp;</span> 
+                <span class="nx">r</span><span class="o">.</span><span class="nx">top</span>    <span class="o">&gt;=</span> <span class="nx">region</span><span class="o">.</span><span class="nx">top</span>    <span class="o">&amp;&amp;</span> 
+                <span class="nx">r</span><span class="o">.</span><span class="nx">bottom</span> <span class="o">&lt;=</span> <span class="nx">region</span><span class="o">.</span><span class="nx">bottom</span>    <span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">var</span> <span class="nx">off</span> <span class="o">=</span> <span class="nx">getOffsets</span><span class="o">(</span><span class="nx">region</span><span class="o">,</span> <span class="nx">r</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="nx">off</span><span class="o">.</span><span class="nx">bottom</span> <span class="o">&gt;=</span> <span class="nx">off</span><span class="o">.</span><span class="nx">top</span> <span class="o">&amp;&amp;</span> <span class="nx">off</span><span class="o">.</span><span class="nx">right</span> <span class="o">&gt;=</span> <span class="nx">off</span><span class="o">.</span><span class="nx">left</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="o">}</span>
+            
+        <span class="o">}</span>
+    <span class="o">},</span>
+
+    <span class="c">/**</span>
+<span class="c">     * Check if any part of this element is in the viewport</span>
+<span class="c">     * @method inViewportRegion</span>
+<span class="c">     * @param {HTMLElement} element The DOM element. </span>
+<span class="c">     * @param {Boolean} all Should all of the node be inside the region</span>
+<span class="c">     * @param {Object} altRegion An object literal containing the region for this node if we already have the data (for performance i.e. DragDrop)</span>
+<span class="c">     * @return {Boolean} True if in region, false if not.</span>
+<span class="c">     */</span>
+    <span class="nx">inViewportRegion</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">node</span><span class="o">,</span> <span class="nx">all</span><span class="o">,</span> <span class="nx">altRegion</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">inRegion</span><span class="o">(</span><span class="nx">node</span><span class="o">,</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">viewportRegion</span><span class="o">(</span><span class="nx">node</span><span class="o">),</span> <span class="nx">all</span><span class="o">,</span> <span class="nx">altRegion</span><span class="o">);</span>
+            
+    <span class="o">},</span>
+
+    <span class="c">/**</span>
+<span class="c">     * Returns an Object literal containing the following about the visible region of viewport: (top, right, bottom, left)</span>
+<span class="c">     * @method viewportRegion</span>
+<span class="c">     @return {Object} Object literal containing the following about the visible region of the viewport: (top, right, bottom, left)</span>
+<span class="c">     */</span>
+    <span class="nx">viewportRegion</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">node</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nx">node</span> <span class="o">=</span> <span class="nx">node</span> <span class="o">||</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">config</span><span class="o">.</span><span class="nx">doc</span><span class="o">.</span><span class="nx">documentElement</span><span class="o">;</span>
+        <span class="k">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="o">{</span>
+            <span class="nx">top</span><span class="o">:</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">docScrollY</span><span class="o">(</span><span class="nx">node</span><span class="o">),</span>
+            <span class="nx">right</span><span class="o">:</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">winWidth</span><span class="o">(</span><span class="nx">node</span><span class="o">)</span> <span class="o">+</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">docScrollX</span><span class="o">(</span><span class="nx">node</span><span class="o">),</span>
+            <span class="nx">bottom</span><span class="o">:</span> <span class="o">(</span><span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">docScrollY</span><span class="o">(</span><span class="nx">node</span><span class="o">)</span> <span class="o">+</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">winHeight</span><span class="o">(</span><span class="nx">node</span><span class="o">)),</span>
+            <span class="nx">left</span><span class="o">:</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">DOM</span><span class="o">.</span><span class="nx">docScrollX</span><span class="o">(</span><span class="nx">node</span><span class="o">)</span>
+        <span class="o">};</span>
+
+        <span class="k">return</span> <span class="nx">r</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+
+
+<span class="o">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="o">,{</span><span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="o">,</span> <span class="nx">requires</span><span class="o">:[</span><span class="s1">&#39;dom-base&#39;</span><span class="o">,</span> <span class="s1">&#39;dom-style&#39;</span><span class="o">]});</span>
+</pre></div>
+                    </div>
+			</div>
+		</div>
+		<div class="yui-b">
+            <div class="nav">
+
+                    <div class="module">
+                        <h4>Modules</h4>
+                        <ul class="content">
+
+                                <li class=""><a href="module_anim.html">anim</a></li>
+
+                                <li class=""><a href="module_attribute.html">attribute</a></li>
+
+                                <li class=""><a href="module_base.html">base</a></li>
+
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
+                                <li class=""><a href="module_dd.html">dd</a></li>
+
+                                <li class=""><a href="module_dd-plugin.html">dd-plugin</a></li>
+
+                                <li class="selected"><a href="module_dom.html">dom</a></li>
+
+                                <li class=""><a href="module_dump.html">dump</a></li>
+
+                                <li class=""><a href="module_event.html">event</a></li>
+
+                                <li class=""><a href="module_io.html">io</a></li>
+
+                                <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_node.html">node</a></li>
+
+                                <li class=""><a href="module_oop.html">oop</a></li>
+
+                                <li class=""><a href="module_queue.html">queue</a></li>
+
+                                <li class=""><a href="module_substitute.html">substitute</a></li>
+
+                                <li class=""><a href="module_yui.html">yui</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="module">
+                        <h4>Classes</h4>
+                        <ul class="content">
+                                <li class=""><a href="DOM.html">DOM</a></li>
+                                <li class=""><a href="Selector.html">Selector</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="module">
+                        <h4>Files</h4>
+                        <ul class="content">        
+                                <li class="selected"><a href="dom-screen.js.html">dom-screen.js</a></li>
+                                <li class=""><a href="dom-style.js.html">dom-style.js</a></li>
+                                <li class=""><a href="dom.js.html">dom.js</a></li>
+                                <li class=""><a href="selector.js.html">selector.js</a></li>
+                        </ul>
+                    </div>
+
+
+
+
+
+            </div>
+		</div>
+	</div>
+	<div id="ft">
+        <hr />
+        Copyright &copy; 2008 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+</body>
+</html>

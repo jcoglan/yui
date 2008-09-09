@@ -2,73 +2,181 @@
 Copyright (c) 2008, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.net/yui/license.txt
-version: 2.5.2
+version: 3.0.0pr1
 */
-YAHOO.namespace('lang');
+YUI.add('json-parse', function(Y) {
 
 /**
- * Provides methods to parse JSON strings and convert objects to JSON strings.
+ * The JSON Utility provides methods to serialize JavaScript objects into
+ * JSON strings and parse JavaScript objects from strings containing JSON data.
+ * Three modules are available for inclusion:
+ * <ol>
+ * <li>1. <code>json-parse</code> for parsing JSON strings into native JavaScript data</li>
+ * <li>2. <code>json-stringify</code> for stringification of JavaScript objects into JSON strings</li>
+ * <li>3. <code>json</code> for both parsing and stringification</li>
+ * </ol>
+ * 
+ * Both <code>json-parse</code> and <code>json-stringify</code> create functions in a static JSON class under your YUI instance (e.g. Y.JSON.parse(..)).
  * @module json
- * @requires yahoo
- * @class YAHOO.lang.JSON
+ * @class JSON
  * @static
  */
-YAHOO.lang.JSON = {
-    /**
-     * First step in the validation.  Regex used to replace all escape
-     * sequences (i.e. "\\", etc) with '@' characters (a non-JSON character).
-     * @property _ESCAPES
-     * @type {RegExp}
-     * @static
-     * @private
-     */
-    _ESCAPES : /\\["\\\/bfnrtu]/g,
-    /**
-     * Second step in the validation.  Regex used to replace all simple
-     * values with ']' characters.
-     * @property _VALUES
-     * @type {RegExp}
-     * @static
-     * @private
-     */
-    _VALUES  : /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
-    /**
-     * Third step in the validation.  Regex used to remove all open square
-     * brackets following a colon, comma, or at the beginning of the string.
-     * @property _BRACKETS
-     * @type {RegExp}
-     * @static
-     * @private
-     */
-    _BRACKETS : /(?:^|:|,)(?:\s*\[)+/g,
-    /**
-     * Final step in the validation.  Regex used to test the string left after
-     * all previous replacements for invalid characters.
-     * @property _INVALID
-     * @type {RegExp}
-     * @static
-     * @private
-     */
-    _INVALID  : /^[\],:{}\s]*$/,
 
+/**
+ * Provides Y.JSON.parse method to take JSON strings and return native
+ * JavaScript objects.
+ * @module json
+ * @submodule json-parse
+ * @for JSON
+ * @static
+ */
+Y.JSON = Y.JSON || {};
+
+// All internals kept private for security reasons
+
+/**
+ * Replace certain Unicode characters that JavaScript may handle incorrectly
+ * during eval--either by deleting them or treating them as line endings--with
+ * escae sequences.
+ * IMPORTANT NOTE: This regex will be used to modify the input if a match is
+ * found.
+ * @property _UNICODE_EXCEPTIONS
+ * @type {RegExp}
+ * @private
+ */
+var _UNICODE_EXCEPTIONS = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
+
+
+/**
+ * First step in the validation.  Regex used to replace all escape
+ * sequences (i.e. "\\", etc) with '@' characters (a non-JSON character).
+ * @property _ESCAPES
+ * @type {RegExp}
+ * @private
+ */
+    _ESCAPES = /\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g,
+
+/**
+ * Second step in the validation.  Regex used to replace all simple
+ * values with ']' characters.
+ * @property _VALUES
+ * @type {RegExp}
+ * @private
+ */
+    _VALUES  = /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
+
+/**
+ * Third step in the validation.  Regex used to remove all open square
+ * brackets following a colon, comma, or at the beginning of the string.
+ * @property _BRACKETS
+ * @type {RegExp}
+ * @private
+ */
+
+    _BRACKETS = /(?:^|:|,)(?:\s*\[)+/g,
+
+/**
+ * Final step in the validation.  Regex used to test the string left after
+ * all previous replacements for invalid characters.
+ * @property _INVALID
+ * @type {RegExp}
+ * @private
+ */
+    _INVALID  = /^[\],:{}\s]*$/,
+
+    has = Object.prototype.hasOwnProperty,
+/**
+ * Traverses nested objects, applying a reviver function to each (key,value)
+ * from the scope if the key:value's containing object.  The value returned
+ * from the function will replace the original value in the key:value pair.
+ * If the value returned is undefined, the key will be omitted from the
+ * returned object.
+ * @method _revive
+ * @param data {MIXED} Any JavaScript data
+ * @param reviver {Function} filter or mutation function
+ * @return {MIXED} The results of the filtered data
+ * @private
+ */
+    _revive = function (data, reviver) {
+        var walk = function (o,key) {
+            var k,v,value = o[key];
+            if (value && typeof value === 'object') {
+                for (k in value) {
+                    if (has.call(value,k)) {
+                        v = walk(value, k);
+                        if (v === undefined) {
+                            delete value[k];
+                        } else {
+                            value[k] = v;
+                        }
+                    }
+                }
+            }
+            return reviver.call(o,key,value);
+        };
+
+        return typeof reviver === 'function' ? walk({'':data},'') : data;
+    };
+
+/**
+ * Parse a JSON string, returning the native JavaScript representation.
+ * @param s {string} JSON string data
+ * @param reviver {function} (optional) function(k,v) passed each key value pair of object literals, allowing pruning or altering values
+ * @return {MIXED} the native JavaScript representation of the JSON string
+ * @throws SyntaxError
+ * @method parse
+ * @static
+ * @public
+ */
+Y.JSON.parse = function (s,reviver) {
+    // Ensure valid JSON
+    if (typeof s === 'string') {
+        // Replace certain Unicode characters that are otherwise handled
+        // incorrectly by some browser implementations.
+        // NOTE: This modifies the input if such characters are found!
+        s = s.replace(_UNICODE_EXCEPTIONS, function (c) {
+            return '\\u'+('0000'+(+(c.charCodeAt(0))).toString(16)).slice(-4);
+        });
+        
+        // Test for validity
+        if (_INVALID.test(s.replace(_ESCAPES,'@').
+                            replace(_VALUES,']').
+                            replace(_BRACKETS,''))) {
+
+            // Eval the text into a JavaScript data structure, apply any
+            // reviver function, and return
+            return _revive( eval('(' + s + ')'), reviver );
+        }
+    }
+
+    // The text is not JSON parsable
+    throw new SyntaxError('parseJSON');
+};
+
+
+}, '3.0.0pr1' );
+YUI.add('json-stringify', function(Y) {
+
+/**
+ * Provides Y.JSON.stringify method for converting objects to JSON strings.
+ * @module json
+ * @submodule json-stringify
+ * @for JSON
+ * @static
+ */
+var isA = Y.Lang.isArray;
+
+Y.JSON = Y.JSON || {};
+
+Y.mix(Y.JSON,{
     /**
-     * Regex used to replace special characters in strings for JSON
-     * stringification.
+     * Regex used to capture characters that need escaping before enclosing
+     * their containing string in quotes.
      * @property _SPECIAL_CHARS
      * @type {RegExp}
-     * @static
      * @private
      */
-    _SPECIAL_CHARS : /["\\\x00-\x1f\x7f-\x9f]/g,
-
-    /**
-     * Regex used to reconstitute serialized Dates.
-     * @property _PARSE_DATE
-     * @type {RegExp}
-     * @static
-     * @private
-     */
-    _PARSE_DATE : /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})Z$/,
+    _SPECIAL_CHARS : /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
 
     /**
      * Character substitution map for common escapes and special characters.
@@ -85,64 +193,6 @@ YAHOO.lang.JSON = {
         '\r': '\\r',
         '"' : '\\"',
         '\\': '\\\\'
-    },
-
-    /**
-     * Traverses nested objects, applying a filter or mutation function to
-     * each value.  The value returned from the function will replace the
-     * original value in the key:value pair.  If the value returned is
-     * undefined, the key will be omitted from the returned object.
-     * @method _applyFilter
-     * @param data {MIXED} Any JavaScript data
-     * @param filter {Function} filter or mutation function
-     * @return {MIXED} The results of the filtered data
-     * @static
-     * @private
-     */
-    _applyFilter : function (data, filter) {
-        var walk = function (k,v) {
-            var i, n;
-            if (v && typeof v === 'object') {
-                for (i in v) {
-                    if (YAHOO.lang.hasOwnProperty(v,i)) {
-                        n = walk(i, v[i]);
-                        if (n === undefined) {
-                            delete v[i];
-                        } else {
-                            v[i] = n;
-                        }
-                    }
-                }
-            }
-            return filter(k, v);
-        };
-
-        if (YAHOO.lang.isFunction(filter)) {
-            walk('',data);
-        }
-
-        return data;
-    },
-
-    /**
-     * Four step determination whether a string is valid JSON.  In three steps,
-     * escape sequences, safe values, and properly placed open square brackets
-     * are replaced with placeholders or removed.  Then in the final step, the
-     * result of all these replacements is checked for invalid characters.
-     * @method isValid
-     * @param str {String} JSON string to be tested
-     * @return {boolean} is the string safe for eval?
-     * @static
-     */
-    isValid : function (str) {
-        if (!YAHOO.lang.isString(str)) {
-            return false;
-        }
-
-        return this._INVALID.test(str.
-                replace(this._ESCAPES,'@').
-                replace(this._VALUES,']').
-                replace(this._BRACKETS,''));
     },
 
     /**
@@ -168,47 +218,6 @@ YAHOO.lang.JSON = {
     },
 
     /**
-     * Reconstitute Date instances from the default JSON UTC serialization.
-     * Reference this from a parse filter function to rebuild Dates during the
-     * parse operation.
-     * @method stringToDate
-     * @param str {String} String serialization of a Date
-     * @return {Date}
-     */
-    stringToDate : function (str) {
-        if (this._PARSE_DATE.test(str)) {
-            var d = new Date();
-            d.setUTCFullYear(RegExp.$1, (RegExp.$2|0)-1, RegExp.$3);
-            d.setUTCHours(RegExp.$4, RegExp.$5, RegExp.$6);
-            return d;
-        }
-    },
-
-    /**
-     * Parse a JSON string, returning the native JavaScript representation.
-     * Only minor modifications from http://www.json.org/json.js.
-     * @param s {string} JSON string data
-     * @param filter {function} (optional) function(k,v) passed each key value pair of object literals, allowing pruning or altering values
-     * @return {MIXED} the native JavaScript representation of the JSON string
-     * @throws SyntaxError
-     * @method parse
-     * @static
-     * @public
-     */
-    parse : function (s,filter) {
-        // Ensure valid JSON
-        if (this.isValid(s)) {
-            // Eval the text into a JavaScript data structure, apply any
-            // filter function, and return
-            return this._applyFilter( eval('(' + s + ')'), filter );
-        }
-
-        // The text is not JSON parsable
-        throw new SyntaxError('parseJSON');
-    },
-
-
-    /**
      * Converts an arbitrary value to a JSON string representation.
      * Cyclical object or array references are replaced with null.
      * If a whitelist is provided, only matching object keys will be included.
@@ -216,26 +225,30 @@ YAHOO.lang.JSON = {
      * be stringified as empty.
      * @method stringify
      * @param o {MIXED} any arbitrary object to convert to JSON string
-     * @param w {Array} (optional) whitelist of acceptable object keys to include
-     * @param d {number} (optional) depth limit to recurse objects/arrays (practical minimum 1)
+     * @param w {Array|Function} (optional) whitelist of acceptable object
+     *                  keys to include, or a replacer function to modify the
+     *                  raw value before serialization
+     * @param d {number} (optional) depth limit to recurse objects/arrays
+     *                   (practical minimum 1)
      * @return {string} JSON string representation of the input
      * @static
      * @public
      */
     stringify : function (o,w,d) {
 
-        var l      = YAHOO.lang,
-            J      = l.JSON,
-            m      = J._CHARS,
-            str_re = this._SPECIAL_CHARS,
+        var m      = Y.JSON._CHARS,
+            str_re = Y.JSON._SPECIAL_CHARS,
+            rep    = typeof w === 'function' ? w : null,
             pstack = []; // Processing stack used for cyclical ref protection
+
+        if (rep || typeof w !== 'object') {
+            w = undefined;
+        }
 
         // escape encode special characters
         var _char = function (c) {
             if (!m[c]) {
-                var a = c.charCodeAt();
-                m[c] = '\\u00' + Math.floor(a / 16).toString(16) +
-                                           (a % 16).toString(16);
+                m[c]='\\u'+('0000'+(+(c.charCodeAt(0))).toString(16)).slice(-4);
             }
             return m[c];
         };
@@ -246,15 +259,15 @@ YAHOO.lang.JSON = {
         };
 
         // Use the configured date conversion
-        var _date = J.dateToString;
+        var _date = Y.JSON.dateToString;
     
         // Worker function.  Fork behavior on data type and recurse objects and
         // arrays per the configured depth.
-        var _stringify = function (o,w,d) {
-            var t = typeof o,
+        var _stringify = function (h,key,d) {
+            var o = typeof rep === 'function' ? rep.call(h,key,h[key]) : h[key],
+                t = typeof o,
                 i,len,j, // array iteration
                 k,v,     // object iteration
-                vt,      // typeof v during iteration
                 a;       // composition array for performance over string concat
 
             // String
@@ -277,35 +290,8 @@ YAHOO.lang.JSON = {
                 return _date(o);
             }
 
-            // Array
-            if (l.isArray(o)) {
-                // Check for cyclical references
-                for (i = pstack.length - 1; i >= 0; --i) {
-                    if (pstack[i] === o) {
-                        return 'null';
-                    }
-                }
-
-                // Add the array to the processing stack
-                pstack[pstack.length] = o;
-
-                a = [];
-                // Only recurse if we're above depth config
-                if (d > 0) {
-                    for (i = o.length - 1; i >= 0; --i) {
-                        a[i] = _stringify(o[i],w,d-1) || 'null';
-                    }
-                }
-
-                // remove the array from the stack
-                pstack.pop();
-
-                return '[' + a.join(',') + ']';
-            }
-
-            // Object
+            // Object types
             if (t === 'object') {
-                // Test for null reporting as typeof 'object'
                 if (!o) {
                     return 'null';
                 }
@@ -317,43 +303,39 @@ YAHOO.lang.JSON = {
                     }
                 }
 
-                // Add the object to the  processing stack
+                // Add the object to the processing stack
                 pstack[pstack.length] = o;
 
                 a = [];
+
                 // Only recurse if we're above depth config
                 if (d > 0) {
-
-                    // If whitelist provided, take only those keys
-                    if (w) {
-                        for (i = 0, j = 0, len = w.length; i < len; ++i) {
-                            if (typeof w[i] === 'string') {
-                                v = _stringify(o[w[i]],w,d-1);
-                                if (v) {
-                                    a[j++] = _string(w[i]) + ':' + v;
-                                }
-                            }
+                    // Array
+                    if (isA(o)) {
+                        for (i = o.length - 1; i >= 0; --i) {
+                            a[i] = _stringify(o,i,d-1) || 'null';
                         }
 
-                    // Otherwise, take all valid object properties
-                    // omitting the prototype chain properties
+                    // Object
                     } else {
-                        j = 0;
-                        for (k in o) {
-                            if (typeof k === 'string' && l.hasOwnProperty(o,k)) {
-                                v = _stringify(o[k],w,d-1);
+                        // If whitelist provided, take only those keys
+                        k = isA(w) ? w : Y.Object.keys(w||o);
+
+                        for (i = 0, j = 0, len = k.length; i < len; ++i) {
+                            if (typeof k[i] === 'string') {
+                                v = _stringify(o,k[i],d-1);
                                 if (v) {
-                                    a[j++] = _string(k) + ':' + v;
+                                    a[j++] = _string(k[i]) + ':' + v;
                                 }
                             }
                         }
                     }
                 }
 
-                // Remove the object from processing stack
+                // remove the array from the stack
                 pstack.pop();
 
-                return '{' + a.join(',') + '}';
+                return isA(o) ? '['+a.join(',')+']' : '{'+a.join(',')+'}';
             }
 
             return undefined; // invalid input
@@ -363,7 +345,13 @@ YAHOO.lang.JSON = {
         d = d >= 0 ? d : 1/0;
 
         // process the input
-        return _stringify(o,w,d);
+        return _stringify({'':o},'',d);
     }
-};
-YAHOO.register("json", YAHOO.lang.JSON, {version: "2.5.2", build: "1076"});
+});
+
+
+}, '3.0.0pr1' );
+
+
+YUI.add('json', function(Y){}, '3.0.0pr1' ,{use:['json-parse', 'json-stringify']});
+

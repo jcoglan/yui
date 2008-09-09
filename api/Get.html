@@ -1,0 +1,1291 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>API: yui  Get   (YUI Library)</title>
+	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body id="yahoo-com">
+
+<div id="doc3" class="yui-t2">
+
+	<div id="hd">
+        <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
+        <h3>yui&nbsp; <span class="subtitle">3.0.0pr1</span></h3>
+        <p>
+        <a href="./index.html">Yahoo! UI Library</a> 
+            &gt; <a href="./module_yui.html">yui</a>
+                 &gt; Get 
+                
+            </p>
+
+
+	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> <label for="showprivate">Show Private</label></span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> <label for="showprotected">Show Protected</label></span>
+    <span id="classopts"><input type="checkbox" name="showdeprecated" id="showdeprecated" /> <label for="showdeprecated">Show Deprecated</label></span>
+            </form>
+
+                    <h2>
+                        
+
+                        <code>static</code>
+                        
+                            Class <b>Get</b>
+                        <span class="extends">
+                        </span>
+
+                        <span class="extends">
+                        </span>
+                        
+                        </code>
+                    </h2>
+                    <!-- class tree goes here -->
+                    
+                
+  
+
+                    <div class="summary description">
+                        Fetches and inserts one or more script or link nodes into the document
+                    </div>
+
+
+                        <div class="section field details">
+                            <h3 id="properties">Properties</h3>
+                            <div class="content">
+                                    <div class="private">
+                                    <h4><a name="property_nidx">nidx</a>
+                                        <code>- private int</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            node index used to generate unique node ids
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4><a name="property_PURGE_THRESH">PURGE_THRESH</a>
+                                        <code>- static int</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            The number of request required before an automatic purge.
+property PURGE_THRESH
+                                        </div>
+                                    </div>
+     
+                                        
+                                    <div class="default">
+                                        Default Value: 20
+                                    </div>        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="property_purging">purging</a>
+                                        <code>- private boolean</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            interal property used to prevent multiple simultaneous purge 
+processes
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="property_qidx">qidx</a>
+                                        <code>- private int</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            queue index used to generate transaction ids
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="property_queues">queues</a>
+                                        <code>- private object</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            hash of queues to manage multiple requests
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+
+
+                            </div>
+                        </div>
+
+
+                        <div class="section method details">
+                            <h3 id="methods">Methods</h3>
+                            <div class="content">
+                                    <div class="private">
+                                    <h4>
+                                        <a name="method__autoPurge">_autoPurge</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        void
+                                            <strong>_autoPurge</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Removes processed queues and corresponding nodes
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4>
+                                        <a name="method__finalize">_finalize</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        void
+                                            <strong>_finalize</strong>
+                                           (
+                                                
+                                                        
+                                                         id
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Called by the the helper for detecting script load in Safari
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>id &lt;string&gt;</code>
+                                                              the transaction id
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4>
+                                        <a name="method__finish">_finish</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        void
+                                            <strong>_finish</strong>
+                                           (
+                                                
+                                                        
+                                                         id
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            The request is complete, so executing the requester's callback
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>id &lt;string&gt;</code>
+                                                              the id of the request
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4>
+                                        <a name="method__linkNode">_linkNode</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        HTMLElement
+                                            <strong>_linkNode</strong>
+                                           (
+                                                
+                                                        
+                                                         url
+                                                    
+                                                
+                                                        , 
+                                                         win
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Generates a link node
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>url &lt;string&gt;</code>
+                                                              the url for the css file
+                                                        </dd>
+                                                        <dd>
+                                                            <code>win &lt;Window&gt;</code>
+                                                              optional window to create the node in
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        HTMLElement
+                                                    </code></dt>
+                                                    <dd>the generated node</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4>
+                                        <a name="method__next">_next</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        void
+                                            <strong>_next</strong>
+                                           (
+                                                
+                                                        
+                                                         id
+                                                    
+                                                
+                                                        , 
+                                                         loaded
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Loads the next item for a given request
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>id &lt;string&gt;</code>
+                                                              the id of the request
+                                                        </dd>
+                                                        <dd>
+                                                            <code>loaded &lt;string&gt;</code>
+                                                              the url that was just loaded, if any
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4>
+                                        <a name="method__node">_node</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        HTMLElement
+                                            <strong>_node</strong>
+                                           (
+                                                
+                                                        
+                                                         type
+                                                    
+                                                
+                                                        , 
+                                                         attr
+                                                    
+                                                
+                                                        , 
+                                                         win
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Generates an HTML element, this is not appended to a document
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>type &lt;string&gt;</code>
+                                                              the type of element
+                                                        </dd>
+                                                        <dd>
+                                                            <code>attr &lt;string&gt;</code>
+                                                              the attributes
+                                                        </dd>
+                                                        <dd>
+                                                            <code>win &lt;Window&gt;</code>
+                                                              optional window to create the element in
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        HTMLElement
+                                                    </code></dt>
+                                                    <dd>the generated node</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4>
+                                        <a name="method__purge">_purge</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        void
+                                            <strong>_purge</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Removes the nodes for the specified queue
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4>
+                                        <a name="method__returnData">_returnData</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        void
+                                            <strong>_returnData</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Returns the data payload for callback functions
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4>
+                                        <a name="method__scriptNode">_scriptNode</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        HTMLElement
+                                            <strong>_scriptNode</strong>
+                                           (
+                                                
+                                                        
+                                                         url
+                                                    
+                                                
+                                                        , 
+                                                         win
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Generates a script node
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>url &lt;string&gt;</code>
+                                                              the url for the script file
+                                                        </dd>
+                                                        <dd>
+                                                            <code>win &lt;Window&gt;</code>
+                                                              optional window to create the node in
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        HTMLElement
+                                                    </code></dt>
+                                                    <dd>the generated node</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4>
+                                        <a name="method__timeout">_timeout</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        void
+                                            <strong>_timeout</strong>
+                                           (
+                                                
+                                                        
+                                                         id
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Timeout detected
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>id &lt;string&gt;</code>
+                                                              the id of the request
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4>
+                                        <a name="method__track">_track</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        void
+                                            <strong>_track</strong>
+                                           (
+                                                
+                                                        
+                                                         type
+                                                    
+                                                
+                                                        , 
+                                                         n
+                                                    
+                                                
+                                                        , 
+                                                         id
+                                                    
+                                                
+                                                        , 
+                                                         url
+                                                    
+                                                
+                                                        , 
+                                                         win
+                                                    
+                                                
+                                                        , 
+                                                         qlength
+                                                    
+                                                
+                                                        , 
+                                                         trackfn
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Detects when a node has been loaded.  In the case of
+script nodes, this does not guarantee that contained
+script is ready to use.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>type &lt;string&gt;</code>
+                                                              the type of node to track
+                                                        </dd>
+                                                        <dd>
+                                                            <code>n &lt;HTMLElement&gt;</code>
+                                                              the node to track
+                                                        </dd>
+                                                        <dd>
+                                                            <code>id &lt;string&gt;</code>
+                                                              the id of the request
+                                                        </dd>
+                                                        <dd>
+                                                            <code>url &lt;string&gt;</code>
+                                                              the url that is being loaded
+                                                        </dd>
+                                                        <dd>
+                                                            <code>win &lt;Window&gt;</code>
+                                                              the targeted window
+                                                        </dd>
+                                                        <dd>
+                                                            <code>qlength &lt;object&gt;</code>
+                                                             the number of remaining items in the queue,
+including this one
+                                                        </dd>
+                                                        <dd>
+                                                            <code>trackfn &lt;Function&gt;</code>
+                                                              function to execute when finished
+the default is _next
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_abort">abort</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>abort</strong>
+                                           (
+                                                
+                                                        
+                                                         o
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Abort a transaction
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>o &lt;string|object&gt;</code>
+                                                              Either the tId or the object returned from
+script() or css()
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_css">css</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                         static 
+                                        
+                                        tId: string
+                                            <strong>css</strong>
+                                           (
+                                                
+                                                        
+                                                         url
+                                                    
+                                                
+                                                        , 
+                                                         opts
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fetches and inserts one or more css link nodes into the 
+head of the current document or the document in a specified
+window.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>url &lt;string&gt;</code>
+                                                              the url or urls to the css file(s)
+                                                        </dd>
+                                                        <dd>
+                                                            <code>opts &lt;object&gt;</code>
+                                                             Options: 
+<dl>
+<dt>onSuccess</dt>
+<dd>
+callback to execute when the css file(s) are finished loading
+The callback receives an object back with the following
+data:
+<dl>win</dl>
+<dd>the window the link nodes(s) were inserted into</dd>
+<dt>data</dt>
+<dd>the data object passed in when the request was made</dd>
+<dt>nodes</dt>
+<dd>An array containing references to the nodes that were
+inserted</dd>
+<dt>purge</dt>
+<dd>A function that, when executed, will remove the nodes
+that were inserted</dd>
+<dt>
+</dl>
+</dd>
+<dt>context</dt>
+<dd>the execution context for the callbacks</dd>
+<dt>win</dt>
+<dd>a window other than the one the utility occupies</dd>
+<dt>data</dt>
+<dd>
+data that is supplied to the callbacks when the nodes(s) are
+loaded.
+</dd>
+<dt>insertBefore</dt>
+<dd>node or node id that will become the new node's nextSibling</dd>
+<dt>charset</dt>
+<dd>Node charset, default utf-8</dd>
+</dl>
+<pre>
+Y.Get.css("http://yui.yahooapis.com/2.3.1/build/menu/assets/skins/sam/menu.css");
+</pre>
+<pre>
+&nbsp;&nbsp;Y.Get.css(
+&nbsp;&nbsp;["http://yui.yahooapis.com/2.3.1/build/menu/assets/skins/sam/menu.css",
+&nbsp;&nbsp;&nbsp;"http://yui.yahooapis.com/2.3.1/build/logger/assets/skins/sam/logger.css"], &#123;
+&nbsp;&nbsp;&nbsp;&nbsp;insertBefore: 'custom-styles' // nodes will be inserted before the specified node
+&nbsp;&nbsp;&#125;);
+</pre>
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        tId: string
+                                                    </code></dt>
+                                                    <dd>an object containing info about the transaction</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4>
+                                        <a name="method_queue">queue</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        void
+                                            <strong>queue</strong>
+                                           (
+                                                
+                                                        
+                                                         type
+                                                    
+                                                
+                                                        , 
+                                                         url
+                                                    
+                                                
+                                                        , 
+                                                         opts
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Saves the state for the request and begins loading
+the requested urls
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>type &lt;string&gt;</code>
+                                                              the type of node to insert
+                                                        </dd>
+                                                        <dd>
+                                                            <code>url &lt;string&gt;</code>
+                                                              the url to load
+                                                        </dd>
+                                                        <dd>
+                                                            <code>opts &lt;object&gt;</code>
+                                                             the hash of options for this request
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_script">script</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                         static 
+                                        
+                                        tId: string
+                                            <strong>script</strong>
+                                           (
+                                                
+                                                        
+                                                         url
+                                                    
+                                                
+                                                        , 
+                                                         opts
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fetches and inserts one or more script nodes into the head
+of the current document or the document in a specified window.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>url &lt;string|string[]&gt;</code>
+                                                              the url or urls to the script(s)
+                                                        </dd>
+                                                        <dd>
+                                                            <code>opts &lt;object&gt;</code>
+                                                              Options: 
+<dl>
+<dt>onSuccess</dt>
+<dd>
+callback to execute when the script(s) are finished loading
+The callback receives an object back with the following
+data:
+<dl>
+<dt>win</dt>
+<dd>the window the script(s) were inserted into</dd>
+<dt>data</dt>
+<dd>the data object passed in when the request was made</dd>
+<dt>nodes</dt>
+<dd>An array containing references to the nodes that were
+inserted</dd>
+<dt>purge</dt>
+<dd>A function that, when executed, will remove the nodes
+that were inserted</dd>
+<dt>
+</dl>
+</dd>
+<dt>onTimeout</dt>
+<dd>
+callback to execute when a timeout occurs.
+The callback receives an object back with the following
+data:
+<dl>
+<dt>win</dt>
+<dd>the window the script(s) were inserted into</dd>
+<dt>data</dt>
+<dd>the data object passed in when the request was made</dd>
+<dt>nodes</dt>
+<dd>An array containing references to the nodes that were
+inserted</dd>
+<dt>purge</dt>
+<dd>A function that, when executed, will remove the nodes
+that were inserted</dd>
+<dt>
+</dl>
+</dd>
+<dt>onFailure</dt>
+<dd>
+callback to execute when the script load operation fails
+The callback receives an object back with the following
+data:
+<dl>
+<dt>win</dt>
+<dd>the window the script(s) were inserted into</dd>
+<dt>data</dt>
+<dd>the data object passed in when the request was made</dd>
+<dt>nodes</dt>
+<dd>An array containing references to the nodes that were
+inserted successfully</dd>
+<dt>purge</dt>
+<dd>A function that, when executed, will remove any nodes
+that were inserted</dd>
+<dt>
+</dl>
+</dd>
+<dt>context</dt>
+<dd>the execution context for the callbacks</dd>
+<dt>win</dt>
+<dd>a window other than the one the utility occupies</dd>
+<dt>autopurge</dt>
+<dd>
+setting to true will let the utilities cleanup routine purge 
+the script once loaded
+</dd>
+<dt>data</dt>
+<dd>
+data that is supplied to the callback when the script(s) are
+loaded.
+</dd>
+<dt>insertBefore</dt>
+<dd>node or node id that will become the new node's nextSibling</dd>
+</dl>
+<dt>charset</dt>
+<dd>Node charset, default utf-8</dd>
+<dt>timeout</dt>
+<dd>Number of milliseconds to wait before aborting and firing the timeout event</dd>
+<pre>
+&nbsp;&nbsp;Y.Get.script(
+&nbsp;&nbsp;["http://yui.yahooapis.com/2.5.2/build/yahoo/yahoo-min.js",
+&nbsp;&nbsp;&nbsp;"http://yui.yahooapis.com/2.5.2/build/event/event-min.js"], &#123;
+&nbsp;&nbsp;&nbsp;&nbsp;onSuccess: function(o) &#123;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.log("won't cause error because Y is the context");
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Y.log(o.data); // foo
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Y.log(o.nodes.length === 2) // true
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// o.purge(); // optionally remove the script nodes immediately
+&nbsp;&nbsp;&nbsp;&nbsp;&#125;,
+&nbsp;&nbsp;&nbsp;&nbsp;onFailure: function(o) &#123;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Y.log("transaction failed");
+&nbsp;&nbsp;&nbsp;&nbsp;&#125;,
+&nbsp;&nbsp;&nbsp;&nbsp;onTimeout: function(o) &#123;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Y.log("transaction timed out");
+&nbsp;&nbsp;&nbsp;&nbsp;&#125;,
+&nbsp;&nbsp;&nbsp;&nbsp;data: "foo",
+&nbsp;&nbsp;&nbsp;&nbsp;timeout: 10000, // 10 second timeout
+&nbsp;&nbsp;&nbsp;&nbsp;context: Y, // make the YUI instance
+&nbsp;&nbsp;&nbsp;&nbsp;// win: otherframe // target another window/frame
+&nbsp;&nbsp;&nbsp;&nbsp;autopurge: true // allow the utility to choose when to remove the nodes
+&nbsp;&nbsp;&#125;);
+</pre>
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        tId: string
+                                                    </code></dt>
+                                                    <dd>an object containing info about the transaction</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+			</div>
+		</div>
+		<div class="yui-b">
+            <div class="nav">
+
+                    <div class="module">
+                        <h4>Modules</h4>
+                        <ul class="content">
+
+                                <li class=""><a href="module_anim.html">anim</a></li>
+
+                                <li class=""><a href="module_attribute.html">attribute</a></li>
+
+                                <li class=""><a href="module_base.html">base</a></li>
+
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
+                                <li class=""><a href="module_dd.html">dd</a></li>
+
+                                <li class=""><a href="module_dd-plugin.html">dd-plugin</a></li>
+
+                                <li class=""><a href="module_dom.html">dom</a></li>
+
+                                <li class=""><a href="module_dump.html">dump</a></li>
+
+                                <li class=""><a href="module_event.html">event</a></li>
+
+                                <li class=""><a href="module_io.html">io</a></li>
+
+                                <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_node.html">node</a></li>
+
+                                <li class=""><a href="module_oop.html">oop</a></li>
+
+                                <li class=""><a href="module_queue.html">queue</a></li>
+
+                                <li class=""><a href="module_substitute.html">substitute</a></li>
+
+                                <li class="selected"><a href="module_yui.html">yui</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="module">
+                        <h4>Classes</h4>
+                        <ul class="content">
+                                <li class="selected"><a href="Get.html">Get</a></li>
+                                <li class=""><a href="Lang.html">Lang</a></li>
+                                <li class=""><a href="Loader.html">Loader</a></li>
+                                <li class=""><a href="UA.html">UA</a></li>
+                                <li class=""><a href="YUI.html">YUI</a></li>
+                                <li class=""><a href="YUI~array.html">YUI~array</a></li>
+                                <li class=""><a href="YUI~object.html">YUI~object</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="module">
+                        <h4>Files</h4>
+                        <ul class="content">        
+                                <li class=""><a href="get.js.html">get.js</a></li>
+                                <li class=""><a href="loader.js.html">loader.js</a></li>
+                                <li class=""><a href="yui-array.js.html">yui-array.js</a></li>
+                                <li class=""><a href="yui-core.js.html">yui-core.js</a></li>
+                                <li class=""><a href="yui-dump.js.html">yui-dump.js</a></li>
+                                <li class=""><a href="yui-init.js.html">yui-init.js</a></li>
+                                <li class=""><a href="yui-lang.js.html">yui-lang.js</a></li>
+                                <li class=""><a href="yui-later.js.html">yui-later.js</a></li>
+                                <li class=""><a href="yui-log.js.html">yui-log.js</a></li>
+                                <li class=""><a href="yui-object.js.html">yui-object.js</a></li>
+                                <li class=""><a href="yui-ua.js.html">yui-ua.js</a></li>
+                                <li class=""><a href="yui.js.html">yui.js</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="module">
+                        <h4>Properties</h4>
+                        <ul class="content">        
+                                <li class="private"><a href="#property_nidx">nidx</a>
+                                        <!--<code>&lt;object&gt;</code>-->
+                                </li>
+                                <li class=""><a href="#property_PURGE_THRESH">PURGE_THRESH</a>
+                                        <!--<code>&lt;object&gt;</code>-->
+                                </li>
+                                <li class="private"><a href="#property_purging">purging</a>
+                                        <!--<code>&lt;object&gt;</code>-->
+                                </li>
+                                <li class="private"><a href="#property_qidx">qidx</a>
+                                        <!--<code>&lt;object&gt;</code>-->
+                                </li>
+                                <li class="private"><a href="#property_queues">queues</a>
+                                        <!--<code>&lt;object&gt;</code>-->
+                                </li>
+                        </ul>
+                    </div>
+
+                    <div class="module">
+                        <h4>Methods</h4>
+                        <ul class="content">        
+                                <li class="private"><!--<code>void</code>-->
+                                <a href="#method__autoPurge">_autoPurge</a>
+                                </li>
+                                <li class="private"><!--<code>void</code>-->
+                                <a href="#method__finalize">_finalize</a>
+                                </li>
+                                <li class="private"><!--<code>void</code>-->
+                                <a href="#method__finish">_finish</a>
+                                </li>
+                                <li class="private"><!--<code>HTMLElement</code>-->
+                                <a href="#method__linkNode">_linkNode</a>
+                                </li>
+                                <li class="private"><!--<code>void</code>-->
+                                <a href="#method__next">_next</a>
+                                </li>
+                                <li class="private"><!--<code>HTMLElement</code>-->
+                                <a href="#method__node">_node</a>
+                                </li>
+                                <li class="private"><!--<code>void</code>-->
+                                <a href="#method__purge">_purge</a>
+                                </li>
+                                <li class="private"><!--<code>void</code>-->
+                                <a href="#method__returnData">_returnData</a>
+                                </li>
+                                <li class="private"><!--<code>HTMLElement</code>-->
+                                <a href="#method__scriptNode">_scriptNode</a>
+                                </li>
+                                <li class="private"><!--<code>void</code>-->
+                                <a href="#method__timeout">_timeout</a>
+                                </li>
+                                <li class="private"><!--<code>void</code>-->
+                                <a href="#method__track">_track</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#method_abort">abort</a>
+                                </li>
+                                <li class=""><!--<code>tId: string</code>-->
+                                <a href="#method_css">css</a>
+                                </li>
+                                <li class="private"><!--<code>void</code>-->
+                                <a href="#method_queue">queue</a>
+                                </li>
+                                <li class=""><!--<code>tId: string</code>-->
+                                <a href="#method_script">script</a>
+                                </li>
+                        </ul>
+                    </div>
+
+
+
+            </div>
+		</div>
+	</div>
+	<div id="ft">
+        <hr />
+        Copyright &copy; 2008 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+</body>
+</html>

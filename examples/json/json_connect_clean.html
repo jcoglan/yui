@@ -1,8 +1,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<title>JSON with Connection Manager</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>JSON with Y.io</title>
 
 <style type="text/css">
 /*margin and padding on body element
@@ -16,24 +16,19 @@ body {
 }
 </style>
 
-<link rel="stylesheet" type="text/css" href="../../build/fonts/fonts-min.css" />
-<script type="text/javascript" src="../../build/yahoo-dom-event/yahoo-dom-event.js"></script>
-<script type="text/javascript" src="../../build/json/json-min.js"></script>
-<script type="text/javascript" src="../../build/connection/connection-min.js"></script>
+<link type="text/css" rel="stylesheet" href="../../build/cssfonts/fonts-min.css" />
+<script type="text/javascript" src="../../build/yui/yui-min.js"></script>
 
-
-<!--begin custom header content for this example-->
-
-<!--end custom header content for this example-->
+<!--there is no custom header content for this example-->
 
 </head>
 
 <body class=" yui-skin-sam">
 
-<h1>JSON with Connection Manager</h1>
+<h1>JSON with Y.io</h1>
 
 <div class="exampleIntro">
-	<p>A natural fit for the JSON Utility is working with the <a href="http://developer.yahoo.com/yui/connection/">Connection Manager</a>.  In this example, we'll request JSON data from the server using Connection Manager's <code>asyncRequest</code> and parse the resulting JSON string data for processing.</p>
+	<p>A natural fit for the JSON Utility is working with the <a href="http://developer.yahoo.com/yui/io/">io module</a>.  In this example, we'll request JSON data from the server using the <code>Y.io</code> method and parse the resulting JSON string data for processing.</p>
 <p>Click the Get Messages button to send the request to the server.</p>
 			
 </div>
@@ -46,52 +41,56 @@ body {
     <div id="demo_msg"></div>
 </div>
 <script type="text/javascript">
-YAHOO.util.Event.on('demo_btn','click',function (e) {
-    // Get the div element in which to report messages from the server
-    var msg_section = YAHOO.util.Dom.get('demo_msg');
-    msg_section.innerHTML = '';
+YUI({base:"../../build/", timeout: 10000}).use("node", "io", "dump", "json-parse",function (Y) {
 
-    // Define the callbacks for the asyncRequest
-    var callbacks = {
+    var target = Y.Node.get('#demo_msg');
 
-        success : function (o) {
-            YAHOO.log("RAW JSON DATA: " + o.responseText);
+    var callback = {
 
-            // Process the JSON data returned from the server
-            var messages = [];
-            try {
-                messages = YAHOO.lang.JSON.parse(o.responseText);
-            }
-            catch (x) {
-                alert("JSON Parse failed!");
-                return;
-            }
+        timeout : 3000,
 
-            YAHOO.log("PARSED DATA: " + YAHOO.lang.dump(messages));
+        on : {
+            success : function (x,o) {
+                Y.log("RAW JSON DATA: " + o.responseText);
 
-            // The returned data was parsed into an array of objects.
-            // Add a P element for each received message
-            for (var i = 0, len = messages.length; i < len; ++i) {
-                var m = messages[i];
-                var p = document.createElement('p');
-                var message_text = document.createTextNode(
-                        m.animal + ' says "' + m.message + '"');
-                p.appendChild(message_text);
-                msg_section.appendChild(p);
-            }
-        },
+                // Process the JSON data returned from the server
+                var messages = [],
+                    html = '', i, l;
 
-        failure : function (o) {
-            if (!YAHOO.util.Connect.isCallInProgress(o)) {
+                try {
+                    messages = Y.JSON.parse(o.responseText);
+                }
+                catch (e) {
+                    alert("JSON Parse failed!");
+                    return;
+                }
+
+                Y.log("PARSED DATA: " + Y.Lang.dump(messages));
+
+                // The returned data was parsed into an array of objects.
+                // Add a P element for each received message
+                for (i=0, l=messages.length; i < l; ++i) {
+                    html += '<p>' + messages[i].animal + ' says &quot;' +
+                                    messages[i].message + '&quot;</p>';
+                }
+
+                // Use the Node API to apply the new innerHTML to the target
+                target.set('innerHTML',html);
+            },
+
+            failure : function (x,o) {
                 alert("Async call failed!");
             }
-        },
 
-        timeout : 3000
+        }
     }
 
-    // Make the call to the server for JSON data
-    YAHOO.util.Connect.asyncRequest('GET',"assets/jsonConnect.php", callbacks);
+    // Attach a click event listener to the button #demo_btn to send the request
+    Y.on('click',function (e) {
+        // Make the call to the server for JSON data
+        transaction = Y.io("assets/jsonConnect.php", callback);
+    },'#demo_btn');
+
 });
 </script>
 
@@ -99,3 +98,4 @@ YAHOO.util.Event.on('demo_btn','click',function (e) {
 
 </body>
 </html>
+<!-- delightfuture.corp.yahoo.com uncompressed/chunked Wed Aug 13 16:45:33 PDT 2008 -->

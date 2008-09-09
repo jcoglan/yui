@@ -1,0 +1,2796 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>API: dom  DOM   (YUI Library)</title>
+	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body id="yahoo-com">
+
+<div id="doc3" class="yui-t2">
+
+	<div id="hd">
+        <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
+        <h3>dom&nbsp; <span class="subtitle">3.0.0pr1</span></h3>
+        <p>
+        <a href="./index.html">Yahoo! UI Library</a> 
+            &gt; <a href="./module_dom.html">dom</a>
+                 &gt; DOM 
+                
+            </p>
+
+
+	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> <label for="showprivate">Show Private</label></span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> <label for="showprotected">Show Protected</label></span>
+    <span id="classopts"><input type="checkbox" name="showdeprecated" id="showdeprecated" /> <label for="showdeprecated">Show Deprecated</label></span>
+            </form>
+
+                    <h2>
+                        
+
+                        
+                        
+                            Class <b>DOM</b>
+                        <span class="extends">
+                        </span>
+
+                        <span class="extends">
+                        </span>
+                        
+                        </code>
+                    </h2>
+                    <!-- class tree goes here -->
+                    
+                
+  
+
+                    <div class="summary description">
+                        Provides DOM helper methods.
+                    </div>
+
+
+
+
+                        <div class="section method details">
+                            <h3 id="methods">Methods</h3>
+                            <div class="content">
+                                    <div class="private">
+                                    <h4>
+                                        <a name="method__bruteContains">_bruteContains</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        Boolean
+                                            <strong>_bruteContains</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                                        , 
+                                                         needle
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Brute force version of contains.
+Used for browsers without contains support for non-HTMLElement Nodes (textNodes, etc).
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;HTMLElement&gt;</code>
+                                                             The containing html element.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>needle &lt;HTMLElement&gt;</code>
+                                                             The html element that may be contained.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Boolean
+                                                    </code></dt>
+                                                    <dd>Whether or not the element is or contains the needle.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4>
+                                        <a name="method__getDoc">_getDoc</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        Object
+                                            <strong>_getDoc</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            returns the appropriate document.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;HTMLElement&gt;</code>
+                                                             optional Target element.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Object
+                                                    </code></dt>
+                                                    <dd>The document for the given element or the default document.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4>
+                                        <a name="method__getRegExp">_getRegExp</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        RegExp
+                                            <strong>_getRegExp</strong>
+                                           (
+                                                
+                                                        
+                                                         str
+                                                    
+                                                
+                                                        , 
+                                                         flags
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Memoizes dynamic regular expressions to boost runtime performance.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>str &lt;String&gt;</code>
+                                                             The string to convert to a regular expression.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>flags &lt;String&gt;</code>
+                                                             optional An optinal string of flags.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        RegExp
+                                                    </code></dt>
+                                                    <dd>An instance of RegExp</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4>
+                                        <a name="method__getWin">_getWin</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        Object
+                                            <strong>_getWin</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            returns the appropriate window.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;HTMLElement&gt;</code>
+                                                             optional Target element.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Object
+                                                    </code></dt>
+                                                    <dd>The window for the given element or the default window.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_addClass">addClass</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>addClass</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                                        , 
+                                                         className
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Adds a class name to a given DOM element.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;HTMLElement&gt;</code>
+                                                             The DOM element.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>className &lt;String&gt;</code>
+                                                             the class name to add to the class attribute
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_ancestor">ancestor</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        HTMLElement | null
+                                            <strong>ancestor</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                                        , 
+                                                         fn
+                                                    
+                                                
+                                                        , 
+                                                         all
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Finds the ancestor of the element.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;HTMLElement&gt;</code>
+                                                             The html element.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>fn &lt;Function&gt;</code>
+                                                             optional An optional boolean test to apply.
+The optional function is passed the current DOM node being tested as its only argument.
+If no function is given, the parentNode is returned.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>all &lt;Boolean&gt;</code>
+                                                             optional Whether all node types should be scanned, or just element nodes.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        HTMLElement | null
+                                                    </code></dt>
+                                                    <dd>The matching DOM node or null if none found.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_byId">byId</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        HTMLElement | null
+                                            <strong>byId</strong>
+                                           (
+                                                
+                                                        
+                                                         id
+                                                    
+                                                
+                                                        , 
+                                                         doc
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Returns the HTMLElement with the given ID (Wrapper for document.getElementById).
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>id &lt;String&gt;</code>
+                                                             the id attribute
+                                                        </dd>
+                                                        <dd>
+                                                            <code>doc &lt;Object&gt;</code>
+                                                             optional The document to search. Defaults to current document
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        HTMLElement | null
+                                                    </code></dt>
+                                                    <dd>The HTMLElement with the id, or null if none found.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_byTag">byTag</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Array
+                                            <strong>byTag</strong>
+                                           (
+                                                
+                                                        
+                                                         tag
+                                                    
+                                                
+                                                        , 
+                                                         root
+                                                    
+                                                
+                                                        , 
+                                                         fn
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Finds all elements with the given tag.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>tag &lt;String&gt;</code>
+                                                             The tag being search for.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>root &lt;HTMLElement&gt;</code>
+                                                             optional An optional root element to start from.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>fn &lt;Function&gt;</code>
+                                                             optional An optional boolean test to apply.
+The optional function is passed the current HTMLElement being tested as its only argument.
+If no function is given, all elements with the given tag are returned.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Array
+                                                    </code></dt>
+                                                    <dd>The collection of matching elements.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_children">children</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Array
+                                            <strong>children</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                                        , 
+                                                         fn
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Finds all HTMLElement childNodes.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;HTMLElement&gt;</code>
+                                                             The html element.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>fn &lt;Function&gt;</code>
+                                                             optional An optional boolean test to apply.
+The optional function is passed the current HTMLElement being tested as its only argument.
+If no function is given, all children are collected.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Array
+                                                    </code></dt>
+                                                    <dd>The collection of child elements.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_childrenByTag">childrenByTag</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Array
+                                            <strong>childrenByTag</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                                        , 
+                                                         tag
+                                                    
+                                                
+                                                        , 
+                                                         fn
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Finds all HTMLElement childNodes matching the given tag.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;HTMLElement&gt;</code>
+                                                             The html element.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>tag &lt;String&gt;</code>
+                                                             The tag to search for.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>fn &lt;Function&gt;</code>
+                                                             optional An optional boolean test to apply.
+The optional function is passed the current HTMLElement being tested as its only argument.
+If no function is given, all children with the given tag are collected.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Array
+                                                    </code></dt>
+                                                    <dd>The collection of child elements.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_contains">contains</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Boolean
+                                            <strong>contains</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                                        , 
+                                                         needle
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Determines whether or not one HTMLElement is or contains another HTMLElement.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;HTMLElement&gt;</code>
+                                                             The containing html element.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>needle &lt;HTMLElement&gt;</code>
+                                                             The html element that may be contained.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Boolean
+                                                    </code></dt>
+                                                    <dd>Whether or not the element is or contains the needle.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_create">create</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        HTMLElement
+                                            <strong>create</strong>
+                                           (
+                                                
+                                                        
+                                                         html
+                                                    
+                                                
+                                                        , 
+                                                         document
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Returns an HTMLElement for the given string of HTML.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>html &lt;String&gt;</code>
+                                                             The string of HTML to convert to a DOM element.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>document &lt;Document&gt;</code>
+                                                             An optional document to create the node with.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        HTMLElement
+                                                    </code></dt>
+                                                    <dd>The newly created element.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_docHeight">docHeight</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Int
+                                            <strong>docHeight</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Document height
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Int
+                                                    </code></dt>
+                                                    <dd>The pixel height of the document.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_docScrollX">docScrollX</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Int
+                                            <strong>docScrollX</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Amount page has been scroll vertically
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Int
+                                                    </code></dt>
+                                                    <dd>The scroll amount in pixels.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_docScrollY">docScrollY</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Int
+                                            <strong>docScrollY</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Amount page has been scroll horizontally
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Int
+                                                    </code></dt>
+                                                    <dd>The scroll amount in pixels.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_docWidth">docWidth</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Int
+                                            <strong>docWidth</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Document width
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Int
+                                                    </code></dt>
+                                                    <dd>The pixel width of the document.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_elementByAxis">elementByAxis</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        HTMLElement | null
+                                            <strong>elementByAxis</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                                        , 
+                                                         axis
+                                                    
+                                                
+                                                        , 
+                                                         fn
+                                                    
+                                                
+                                                        , 
+                                                         all
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Searches the element by the given axis for the first matching element.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;HTMLElement&gt;</code>
+                                                             The html element.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>axis &lt;String&gt;</code>
+                                                             The axis to search (parentNode, nextSibling, previousSibling).
+                                                        </dd>
+                                                        <dd>
+                                                            <code>fn &lt;Function&gt;</code>
+                                                             optional An optional boolean test to apply.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>all &lt;Boolean&gt;</code>
+                                                             optional Whether all node types should be returned, or just element nodes.
+The optional function is passed the current DOM node being tested as its only argument.
+If no function is given, the first element is returned.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        HTMLElement | null
+                                                    </code></dt>
+                                                    <dd>The matching element or null if none found.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_filterElementsBy">filterElementsBy</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Array
+                                            <strong>filterElementsBy</strong>
+                                           (
+                                                
+                                                        
+                                                         elements
+                                                    
+                                                
+                                                        , 
+                                                         fn
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Filters a collection of HTMLElements by the given attributes.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>elements &lt;Array&gt;</code>
+                                                             The collection of HTMLElements to filter.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>fn &lt;Function&gt;</code>
+                                                             A boolean test to apply.
+The function is passed the current HTMLElement being tested as its only argument.
+If no function is given, all HTMLElements are kept.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Array
+                                                    </code></dt>
+                                                    <dd>The filtered collection of HTMLElements.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_firstByTag">firstByTag</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        HTMLElement
+                                            <strong>firstByTag</strong>
+                                           (
+                                                
+                                                        
+                                                         tag
+                                                    
+                                                
+                                                        , 
+                                                         root
+                                                    
+                                                
+                                                        , 
+                                                         fn
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Finds the first element with the given tag.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>tag &lt;String&gt;</code>
+                                                             The tag being search for.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>root &lt;HTMLElement&gt;</code>
+                                                             optional An optional root element to start from.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>fn &lt;Function&gt;</code>
+                                                             optional An optional boolean test to apply.
+The optional function is passed the current HTMLElement being tested as its only argument.
+If no function is given, the first match is returned.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        HTMLElement
+                                                    </code></dt>
+                                                    <dd>The matching element.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_firstChild">firstChild</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        HTMLElement | null
+                                            <strong>firstChild</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                                        , 
+                                                         fn
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Finds the firstChild of the given HTMLElement.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;HTMLElement&gt;</code>
+                                                             The html element.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>fn &lt;Function&gt;</code>
+                                                             optional An optional boolean test to apply.
+The optional function is passed the current HTMLElement being tested as its only argument.
+If no function is given, the first found is returned.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        HTMLElement | null
+                                                    </code></dt>
+                                                    <dd>The first matching child html element.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_getComputedStyle">getComputedStyle</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        String
+                                            <strong>getComputedStyle</strong>
+                                           (
+                                                
+                                                        
+                                                         An
+                                                    
+                                                
+                                                        , 
+                                                         att
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Returns the computed style for the given node.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>An &lt;HTMLElement&gt;</code>
+                                                             HTMLElement to get the style from.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>att &lt;String&gt;</code>
+                                                             The style property to get.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        String
+                                                    </code></dt>
+                                                    <dd>The computed value of the style property.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_getStyle">getStyle</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>getStyle</strong>
+                                           (
+                                                
+                                                        
+                                                         An
+                                                    
+                                                
+                                                        , 
+                                                         att
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Returns the current style value for the given property.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>An &lt;HTMLElement&gt;</code>
+                                                             HTMLElement to get the style from.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>att &lt;String&gt;</code>
+                                                             The style property to get.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_getText">getText</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        String
+                                            <strong>getText</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Returns the text content of the HTMLElement.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;HTMLElement&gt;</code>
+                                                             The html element.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        String
+                                                    </code></dt>
+                                                    <dd>The text content of the element (includes text of any descending elements).</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_getX">getX</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Int
+                                            <strong>getX</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Gets the current X position of an element based on page coordinates. 
+Element must be part of the DOM tree to have page coordinates
+(display:none or elements not appended return false).
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;object&gt;</code>
+                                                             The target element
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Int
+                                                    </code></dt>
+                                                    <dd>The X position of the element</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_getXY">getXY</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Array
+                                            <strong>getXY</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Gets the current position of an element based on page coordinates. 
+Element must be part of the DOM tree to have page coordinates
+(display:none or elements not appended return false).
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;object&gt;</code>
+                                                             The target element
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Array
+                                                    </code></dt>
+                                                    <dd>The XY position of the element
+TODO: test inDocument/display</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_getY">getY</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Int
+                                            <strong>getY</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Gets the current Y position of an element based on page coordinates. 
+Element must be part of the DOM tree to have page coordinates
+(display:none or elements not appended return false).
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;object&gt;</code>
+                                                             The target element
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Int
+                                                    </code></dt>
+                                                    <dd>The Y position of the element</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_hasClass">hasClass</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Boolean
+                                            <strong>hasClass</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                                        , 
+                                                         className
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Determines whether a DOM element has the given className.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;HTMLElement&gt;</code>
+                                                             The DOM element.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>className &lt;String&gt;</code>
+                                                             the class name to search for
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Boolean
+                                                    </code></dt>
+                                                    <dd>Whether or not the element has the given class.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_inRegion">inRegion</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Boolean
+                                            <strong>inRegion</strong>
+                                           (
+                                                
+                                                        
+                                                         all
+                                                    
+                                                
+                                                        , 
+                                                         altRegion
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Check if any part of this node is in the passed region
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>all &lt;Object} node2 The node to get the region from or an Object literal of the region
+$param {Boolean&gt;</code>
+                                                             Should all of the node be inside the region
+                                                        </dd>
+                                                        <dd>
+                                                            <code>altRegion &lt;Object&gt;</code>
+                                                             An object literal containing the region for this node if we already have the data (for performance i.e. DragDrop)
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Boolean
+                                                    </code></dt>
+                                                    <dd>True if in region, false if not.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_intersect">intersect</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Object
+                                            <strong>intersect</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                                        , 
+                                                         element2
+                                                    
+                                                
+                                                        , 
+                                                         altRegion
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Find the intersect information for the passes nodes.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;HTMLElement&gt;</code>
+                                                             The first element
+                                                        </dd>
+                                                        <dd>
+                                                            <code>element2 &lt;HTMLElement | Object&gt;</code>
+                                                             The element or region to check the interect with
+                                                        </dd>
+                                                        <dd>
+                                                            <code>altRegion &lt;Object&gt;</code>
+                                                             An object literal containing the region for the first element if we already have the data (for performance i.e. DragDrop)
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Object
+                                                    </code></dt>
+                                                    <dd>Object literal containing the following intersection data: (top, right, bottom, left, area, yoff, xoff, inRegion)</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_inViewportRegion">inViewportRegion</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Boolean
+                                            <strong>inViewportRegion</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                                        , 
+                                                         all
+                                                    
+                                                
+                                                        , 
+                                                         altRegion
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Check if any part of this element is in the viewport
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;HTMLElement&gt;</code>
+                                                             The DOM element.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>all &lt;Boolean&gt;</code>
+                                                             Should all of the node be inside the region
+                                                        </dd>
+                                                        <dd>
+                                                            <code>altRegion &lt;Object&gt;</code>
+                                                             An object literal containing the region for this node if we already have the data (for performance i.e. DragDrop)
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Boolean
+                                                    </code></dt>
+                                                    <dd>True if in region, false if not.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_lastChild">lastChild</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        HTMLElement | null
+                                            <strong>lastChild</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                                        , 
+                                                         fn
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Finds the lastChild of the given HTMLElement.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;HTMLElement&gt;</code>
+                                                             The html element.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>fn &lt;Function&gt;</code>
+                                                             optional An optional boolean test to apply.
+The optional function is passed the current HTMLElement being tested as its only argument.
+If no function is given, the first found is returned.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        HTMLElement | null
+                                                    </code></dt>
+                                                    <dd>The first matching child html element.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_next">next</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        HTMLElement | null
+                                            <strong>next</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                                        , 
+                                                         fn
+                                                    
+                                                
+                                                        , 
+                                                         all
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Finds the next sibling of the element.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;HTMLElement&gt;</code>
+                                                             The html element.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>fn &lt;Function&gt;</code>
+                                                             optional An optional boolean test to apply.
+The optional function is passed the current DOM node being tested as its only argument.
+If no function is given, the first sibling is returned.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>all &lt;Boolean&gt;</code>
+                                                             optional Whether all node types should be scanned, or just element nodes.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        HTMLElement | null
+                                                    </code></dt>
+                                                    <dd>The matching DOM node or null if none found.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_previous">previous</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        HTMLElement | null
+                                            <strong>previous</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                                        , 
+                                                         fn
+                                                    
+                                                
+                                                        , 
+                                                         all
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Finds the previous sibling of the element.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;HTMLElement&gt;</code>
+                                                             The html element.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>fn &lt;Function&gt;</code>
+                                                             optional An optional boolean test to apply.
+The optional function is passed the current DOM node being tested as its only argument.
+If no function is given, the first sibling is returned.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>all &lt;Boolean&gt;</code>
+                                                             optional Whether all node types should be scanned, or just element nodes.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        HTMLElement | null
+                                                    </code></dt>
+                                                    <dd>The matching DOM node or null if none found.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_region">region</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Object
+                                            <strong>region</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Returns an Object literal containing the following about this element: (top, right, bottom, left)
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;HTMLElement&gt;</code>
+                                                             The DOM element.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Object
+                                                    </code></dt>
+                                                    <dd>Object literal containing the following about this element: (top, right, bottom, left)</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_removeClass">removeClass</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>removeClass</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                                        , 
+                                                         className
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Removes a class name from a given element.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;HTMLElement&gt;</code>
+                                                             The DOM element.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>className &lt;String&gt;</code>
+                                                             the class name to remove from the class attribute
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_replaceClass">replaceClass</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>replaceClass</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                                        , 
+                                                         oldClassName
+                                                    
+                                                
+                                                        , 
+                                                         newClassName
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Replace a class with another class for a given element.
+If no oldClassName is present, the newClassName is simply added.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;HTMLElement&gt;</code>
+                                                             The DOM element.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>oldClassName &lt;String&gt;</code>
+                                                             the class name to be replaced
+                                                        </dd>
+                                                        <dd>
+                                                            <code>newClassName &lt;String&gt;</code>
+                                                             the class name that will be replacing the old class name
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_setStyle">setStyle</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>setStyle</strong>
+                                           (
+                                                
+                                                        
+                                                         An
+                                                    
+                                                
+                                                        , 
+                                                         att
+                                                    
+                                                
+                                                        , 
+                                                         val
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Sets a style property for a given element.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>An &lt;HTMLElement&gt;</code>
+                                                             HTMLElement to apply the style to.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>att &lt;String&gt;</code>
+                                                             The style property to set.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>val &lt;String|Number&gt;</code>
+                                                             The value.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_setStyles">setStyles</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>setStyles</strong>
+                                           (
+                                                
+                                                        
+                                                         node
+                                                    
+                                                
+                                                        , 
+                                                         hash
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Sets multiple style properties.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>node &lt;HTMLElement&gt;</code>
+                                                             An HTMLElement to apply the styles to.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>hash &lt;Object&gt;</code>
+                                                             An object literal of property:value pairs.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_setX">setX</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>setX</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                                        , 
+                                                         x
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Set the X position of an html element in page coordinates, regardless of how the element is positioned.
+The element(s) must be part of the DOM tree to have page coordinates (display:none or elements not appended return false).
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;object&gt;</code>
+                                                             The target element
+                                                        </dd>
+                                                        <dd>
+                                                            <code>x &lt;Int&gt;</code>
+                                                             The X values for new position (coordinates are page-based)
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_setXY">setXY</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>setXY</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                                        , 
+                                                         xy
+                                                    
+                                                
+                                                        , 
+                                                         noRetry
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Set the position of an html element in page coordinates.
+The element must be part of the DOM tree to have page coordinates (display:none or elements not appended return false).
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;object&gt;</code>
+                                                             The target element
+                                                        </dd>
+                                                        <dd>
+                                                            <code>xy &lt;Array&gt;</code>
+                                                             Contains X & Y values for new position (coordinates are page-based)
+                                                        </dd>
+                                                        <dd>
+                                                            <code>noRetry &lt;Boolean&gt;</code>
+                                                             By default we try and set the position a second time if the first fails
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_setY">setY</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>setY</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                                        , 
+                                                         y
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Set the Y position of an html element in page coordinates, regardless of how the element is positioned.
+The element(s) must be part of the DOM tree to have page coordinates (display:none or elements not appended return false).
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;object&gt;</code>
+                                                             The target element
+                                                        </dd>
+                                                        <dd>
+                                                            <code>y &lt;Int&gt;</code>
+                                                             The Y values for new position (coordinates are page-based)
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_toggleClass">toggleClass</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>toggleClass</strong>
+                                           (
+                                                
+                                                        
+                                                         element
+                                                    
+                                                
+                                                        , 
+                                                         className
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            If the className exists on the node it is removed, if it doesn't exist it is added.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>element &lt;HTMLElement&gt;</code>
+                                                             The DOM element.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>className &lt;String&gt;</code>
+                                                             the class name to be toggled
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_viewportRegion">viewportRegion</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Object
+                                            <strong>viewportRegion</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Returns an Object literal containing the following about the visible region of viewport: (top, right, bottom, left)
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Object
+                                                    </code></dt>
+                                                    <dd>Object literal containing the following about the visible region of the viewport: (top, right, bottom, left)</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_winHeight">winHeight</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Int
+                                            <strong>winHeight</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Returns the inner height of the viewport (exludes scrollbar).
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Int
+                                                    </code></dt>
+                                                    <dd>The pixel height of the viewport.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="method_winWidth">winWidth</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Int
+                                            <strong>winWidth</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Returns the inner width of the viewport (exludes scrollbar).
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Int
+                                                    </code></dt>
+                                                    <dd>The pixel width of the viewport.</dd>
+                                                </dl>
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+			</div>
+		</div>
+		<div class="yui-b">
+            <div class="nav">
+
+                    <div class="module">
+                        <h4>Modules</h4>
+                        <ul class="content">
+
+                                <li class=""><a href="module_anim.html">anim</a></li>
+
+                                <li class=""><a href="module_attribute.html">attribute</a></li>
+
+                                <li class=""><a href="module_base.html">base</a></li>
+
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
+                                <li class=""><a href="module_dd.html">dd</a></li>
+
+                                <li class=""><a href="module_dd-plugin.html">dd-plugin</a></li>
+
+                                <li class="selected"><a href="module_dom.html">dom</a></li>
+
+                                <li class=""><a href="module_dump.html">dump</a></li>
+
+                                <li class=""><a href="module_event.html">event</a></li>
+
+                                <li class=""><a href="module_io.html">io</a></li>
+
+                                <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_node.html">node</a></li>
+
+                                <li class=""><a href="module_oop.html">oop</a></li>
+
+                                <li class=""><a href="module_queue.html">queue</a></li>
+
+                                <li class=""><a href="module_substitute.html">substitute</a></li>
+
+                                <li class=""><a href="module_yui.html">yui</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="module">
+                        <h4>Classes</h4>
+                        <ul class="content">
+                                <li class="selected"><a href="DOM.html">DOM</a></li>
+                                <li class=""><a href="Selector.html">Selector</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="module">
+                        <h4>Files</h4>
+                        <ul class="content">        
+                                <li class=""><a href="dom-screen.js.html">dom-screen.js</a></li>
+                                <li class=""><a href="dom-style.js.html">dom-style.js</a></li>
+                                <li class=""><a href="dom.js.html">dom.js</a></li>
+                                <li class=""><a href="selector.js.html">selector.js</a></li>
+                        </ul>
+                    </div>
+
+
+                    <div class="module">
+                        <h4>Methods</h4>
+                        <ul class="content">        
+                                <li class="private"><!--<code>Boolean</code>-->
+                                <a href="#method__bruteContains">_bruteContains</a>
+                                </li>
+                                <li class="private"><!--<code>Object</code>-->
+                                <a href="#method__getDoc">_getDoc</a>
+                                </li>
+                                <li class="private"><!--<code>RegExp</code>-->
+                                <a href="#method__getRegExp">_getRegExp</a>
+                                </li>
+                                <li class="private"><!--<code>Object</code>-->
+                                <a href="#method__getWin">_getWin</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#method_addClass">addClass</a>
+                                </li>
+                                <li class=""><!--<code>HTMLElement | null</code>-->
+                                <a href="#method_ancestor">ancestor</a>
+                                </li>
+                                <li class=""><!--<code>HTMLElement | null</code>-->
+                                <a href="#method_byId">byId</a>
+                                </li>
+                                <li class=""><!--<code>Array</code>-->
+                                <a href="#method_byTag">byTag</a>
+                                </li>
+                                <li class=""><!--<code>Array</code>-->
+                                <a href="#method_children">children</a>
+                                </li>
+                                <li class=""><!--<code>Array</code>-->
+                                <a href="#method_childrenByTag">childrenByTag</a>
+                                </li>
+                                <li class=""><!--<code>Boolean</code>-->
+                                <a href="#method_contains">contains</a>
+                                </li>
+                                <li class=""><!--<code>HTMLElement</code>-->
+                                <a href="#method_create">create</a>
+                                </li>
+                                <li class=""><!--<code>Int</code>-->
+                                <a href="#method_docHeight">docHeight</a>
+                                </li>
+                                <li class=""><!--<code>Int</code>-->
+                                <a href="#method_docScrollX">docScrollX</a>
+                                </li>
+                                <li class=""><!--<code>Int</code>-->
+                                <a href="#method_docScrollY">docScrollY</a>
+                                </li>
+                                <li class=""><!--<code>Int</code>-->
+                                <a href="#method_docWidth">docWidth</a>
+                                </li>
+                                <li class=""><!--<code>HTMLElement | null</code>-->
+                                <a href="#method_elementByAxis">elementByAxis</a>
+                                </li>
+                                <li class=""><!--<code>Array</code>-->
+                                <a href="#method_filterElementsBy">filterElementsBy</a>
+                                </li>
+                                <li class=""><!--<code>HTMLElement</code>-->
+                                <a href="#method_firstByTag">firstByTag</a>
+                                </li>
+                                <li class=""><!--<code>HTMLElement | null</code>-->
+                                <a href="#method_firstChild">firstChild</a>
+                                </li>
+                                <li class=""><!--<code>String</code>-->
+                                <a href="#method_getComputedStyle">getComputedStyle</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#method_getStyle">getStyle</a>
+                                </li>
+                                <li class=""><!--<code>String</code>-->
+                                <a href="#method_getText">getText</a>
+                                </li>
+                                <li class=""><!--<code>Int</code>-->
+                                <a href="#method_getX">getX</a>
+                                </li>
+                                <li class=""><!--<code>Array</code>-->
+                                <a href="#method_getXY">getXY</a>
+                                </li>
+                                <li class=""><!--<code>Int</code>-->
+                                <a href="#method_getY">getY</a>
+                                </li>
+                                <li class=""><!--<code>Boolean</code>-->
+                                <a href="#method_hasClass">hasClass</a>
+                                </li>
+                                <li class=""><!--<code>Boolean</code>-->
+                                <a href="#method_inRegion">inRegion</a>
+                                </li>
+                                <li class=""><!--<code>Object</code>-->
+                                <a href="#method_intersect">intersect</a>
+                                </li>
+                                <li class=""><!--<code>Boolean</code>-->
+                                <a href="#method_inViewportRegion">inViewportRegion</a>
+                                </li>
+                                <li class=""><!--<code>HTMLElement | null</code>-->
+                                <a href="#method_lastChild">lastChild</a>
+                                </li>
+                                <li class=""><!--<code>HTMLElement | null</code>-->
+                                <a href="#method_next">next</a>
+                                </li>
+                                <li class=""><!--<code>HTMLElement | null</code>-->
+                                <a href="#method_previous">previous</a>
+                                </li>
+                                <li class=""><!--<code>Object</code>-->
+                                <a href="#method_region">region</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#method_removeClass">removeClass</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#method_replaceClass">replaceClass</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#method_setStyle">setStyle</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#method_setStyles">setStyles</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#method_setX">setX</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#method_setXY">setXY</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#method_setY">setY</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#method_toggleClass">toggleClass</a>
+                                </li>
+                                <li class=""><!--<code>Object</code>-->
+                                <a href="#method_viewportRegion">viewportRegion</a>
+                                </li>
+                                <li class=""><!--<code>Int</code>-->
+                                <a href="#method_winHeight">winHeight</a>
+                                </li>
+                                <li class=""><!--<code>Int</code>-->
+                                <a href="#method_winWidth">winWidth</a>
+                                </li>
+                        </ul>
+                    </div>
+
+
+
+            </div>
+		</div>
+	</div>
+	<div id="ft">
+        <hr />
+        Copyright &copy; 2008 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+</body>
+</html>
