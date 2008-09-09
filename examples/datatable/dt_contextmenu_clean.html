@@ -35,13 +35,15 @@ body {
 <h1>Context Menu Integration</h1>
 
 <div class="exampleIntro">
-	<p>Right-click on a row to see the ContextMenu integration in action.</p>
+	<p>Right-click on a row to see the ContextMenu integration in action. For more
+information on using the ContextMenu class please refer to the
+<a href="http://developer.yahoo.com/yui/menu/">documentation for the Menu control.</a></p>
 			
 </div>
 
 <!--BEGIN SOURCE CODE FOR EXAMPLE =============================== -->
 
-<div id="contextmenu"></div>
+<div id="myContainer"></div>
 
 <script type="text/javascript" src="assets/js/data.js"></script>
 <script type="text/javascript">
@@ -60,7 +62,7 @@ YAHOO.util.Event.addListener(window, "load", function() {
             fields: ["SKU","Quantity","Item","Description"]
         };
 
-        this.myDataTable = new YAHOO.widget.DataTable("contextmenu", myColumnDefs, this.myDataSource);
+        this.myDataTable = new YAHOO.widget.DataTable("myContainer", myColumnDefs, this.myDataSource);
 
         this.onContextMenuClick = function(p_sType, p_aArgs, p_myDataTable) {
             var task = p_aArgs[1];
@@ -85,7 +87,8 @@ YAHOO.util.Event.addListener(window, "load", function() {
         this.myContextMenu = new YAHOO.widget.ContextMenu("mycontextmenu",
                 {trigger:this.myDataTable.getTbodyEl()});
         this.myContextMenu.addItem("Delete Item");
-        this.myContextMenu.render(document.body);
+        // Render the ContextMenu instance to the parent container of the DataTable
+        this.myContextMenu.render("myContainer");
         this.myContextMenu.clickEvent.subscribe(this.onContextMenuClick, this.myDataTable);
     };
 });

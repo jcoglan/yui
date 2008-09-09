@@ -12,8 +12,8 @@
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
-        <h1>Yahoo! UI Library</h1>
-        <h3>AutoComplete Widget&nbsp; <span class="subtitle">2.3.0</span></h3>
+        <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
+        <h3>AutoComplete Widget&nbsp; <span class="subtitle">2.3.1</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_autocomplete.html">autocomplete</a>
@@ -115,18 +115,11 @@
             <span class="c">// For skinning</span>
 <span class="c"></span>            <span class="k">var</span> <span class="nx">elParent</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_oContainer</span><span class="o">.</span><span class="nx">parentNode</span><span class="o">;</span>
             <span class="k">var</span> <span class="nx">elTag</span> <span class="o">=</span> <span class="nx">elParent</span><span class="o">.</span><span class="nx">tagName</span><span class="o">.</span><span class="nx">toLowerCase</span><span class="o">();</span>
-            <span class="k">while</span><span class="o">(</span><span class="nx">elParent</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="nx">elParent</span> <span class="o">!=</span> <span class="s2">&quot;document&quot;</span><span class="o">))</span> <span class="o">{</span>
-                <span class="k">if</span><span class="o">(</span><span class="nx">elTag</span> <span class="o">==</span> <span class="s2">&quot;div&quot;</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">addClass</span><span class="o">(</span><span class="nx">elParent</span><span class="o">,</span> <span class="s2">&quot;yui-ac&quot;</span><span class="o">);</span>
-                    <span class="k">break</span><span class="o">;</span>
-                <span class="o">}</span>
-                <span class="k">else</span> <span class="o">{</span>
-                    <span class="nx">elParent</span> <span class="o">=</span> <span class="nx">elParent</span><span class="o">.</span><span class="nx">parentNode</span><span class="o">;</span>
-                    <span class="nx">elTag</span> <span class="o">=</span> <span class="nx">elParent</span><span class="o">.</span><span class="nx">tagName</span><span class="o">.</span><span class="nx">toLowerCase</span><span class="o">();</span>
-                <span class="o">}</span>
+            <span class="k">if</span><span class="o">(</span><span class="nx">elTag</span> <span class="o">==</span> <span class="s2">&quot;div&quot;</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">addClass</span><span class="o">(</span><span class="nx">elParent</span><span class="o">,</span> <span class="s2">&quot;yui-ac&quot;</span><span class="o">);</span>
             <span class="o">}</span>
-            <span class="k">if</span><span class="o">(</span><span class="nx">elTag</span> <span class="o">!=</span> <span class="s2">&quot;div&quot;</span><span class="o">)</span> <span class="o">{</span>
-                <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;Could not find an appropriate parent container for skinning&quot;</span><span class="o">,</span> <span class="s2">&quot;warn&quot;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">toString</span><span class="o">());</span>
+            <span class="k">else</span> <span class="o">{</span>
+                <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;Could not find the wrapper element for skinning&quot;</span><span class="o">,</span> <span class="s2">&quot;warn&quot;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">toString</span><span class="o">());</span>
             <span class="o">}</span>
         <span class="o">}</span>
         <span class="k">else</span> <span class="o">{</span>
@@ -597,7 +590,7 @@
 
     <span class="c">// Null out objects</span>
 <span class="c"></span>    <span class="k">for</span><span class="o">(</span><span class="k">var</span> <span class="nx">key</span> <span class="k">in</span> <span class="k">this</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">hasOwnProperty</span><span class="o">(</span><span class="nx">key</span><span class="o">))</span> <span class="o">{</span>
+        <span class="k">if</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">hasOwnProperty</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="nx">key</span><span class="o">))</span> <span class="o">{</span>
             <span class="k">this</span><span class="o">[</span><span class="nx">key</span><span class="o">]</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
         <span class="o">}</span>
     <span class="o">}</span>
@@ -726,12 +719,9 @@
 
 <span class="c">/**</span>
 <span class="c"> * Fired when a user selection does not match any of the displayed result items.</span>
-<span class="c"> * Note that this event may not behave as expected when delimiter characters</span>
-<span class="c"> * have been defined. </span>
 <span class="c"> *</span>
 <span class="c"> * @event unmatchedItemSelectEvent</span>
 <span class="c"> * @param oSelf {YAHOO.widget.AutoComplete} The AutoComplete instance.</span>
-<span class="c"> * @param sQuery {String} The user-typed query string.</span>
 <span class="c"> */</span>
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">AutoComplete</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">unmatchedItemSelectEvent</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
 
@@ -983,7 +973,7 @@
         <span class="k">this</span><span class="o">.</span><span class="nx">queryDelay</span> <span class="o">=</span> <span class="m">0</span><span class="o">.</span><span class="m">2</span><span class="o">;</span>
     <span class="o">}</span>
     <span class="k">var</span> <span class="nx">delimChar</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">delimChar</span><span class="o">;</span>
-    <span class="k">if</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isString</span><span class="o">(</span><span class="nx">delimChar</span><span class="o">))</span> <span class="o">{</span>
+    <span class="k">if</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isString</span><span class="o">(</span><span class="nx">delimChar</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="nx">delimChar</span><span class="o">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="m">0</span><span class="o">))</span> <span class="o">{</span>
         <span class="k">this</span><span class="o">.</span><span class="nx">delimChar</span> <span class="o">=</span> <span class="o">[</span><span class="nx">delimChar</span><span class="o">];</span>
     <span class="o">}</span>
     <span class="k">else</span> <span class="k">if</span><span class="o">(!</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isArray</span><span class="o">(</span><span class="nx">delimChar</span><span class="o">))</span> <span class="o">{</span>
@@ -2016,13 +2006,19 @@
         <span class="k">if</span><span class="o">(</span><span class="nx">isMac</span><span class="o">)</span> <span class="o">{</span>
             <span class="nx">switch</span> <span class="o">(</span><span class="nx">nKeyCode</span><span class="o">)</span> <span class="o">{</span>
             <span class="nx">case</span> <span class="m">9</span><span class="o">:</span> <span class="c">// tab</span>
-<span class="c"></span>                <span class="k">if</span><span class="o">(</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">delimChar</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">_nKeyCode</span> <span class="o">!=</span> <span class="nx">nKeyCode</span><span class="o">))</span> <span class="o">{</span>
-                    <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">stopEvent</span><span class="o">(</span><span class="nx">v</span><span class="o">);</span>
+<span class="c"></span>                <span class="k">if</span><span class="o">(</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">_oCurItem</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">if</span><span class="o">(</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">delimChar</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">_nKeyCode</span> <span class="o">!=</span> <span class="nx">nKeyCode</span><span class="o">))</span> <span class="o">{</span>
+                        <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">stopEvent</span><span class="o">(</span><span class="nx">v</span><span class="o">);</span>
+                    <span class="o">}</span>
                 <span class="o">}</span>
                 <span class="k">break</span><span class="o">;</span>
             <span class="nx">case</span> <span class="m">13</span><span class="o">:</span> <span class="c">// enter</span>
-<span class="c"></span>                <span class="k">if</span><span class="o">(</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">_nKeyCode</span> <span class="o">!=</span> <span class="nx">nKeyCode</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">stopEvent</span><span class="o">(</span><span class="nx">v</span><span class="o">);</span>
+<span class="c"></span>                <span class="k">if</span><span class="o">(</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">_oCurItem</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">if</span><span class="o">(</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">_nKeyCode</span> <span class="o">!=</span> <span class="nx">nKeyCode</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="k">if</span><span class="o">(</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">_bContainerOpen</span><span class="o">)</span> <span class="o">{</span>
+                            <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">stopEvent</span><span class="o">(</span><span class="nx">v</span><span class="o">);</span>
+                        <span class="o">}</span>
+                    <span class="o">}</span>
                 <span class="o">}</span>
                 <span class="k">break</span><span class="o">;</span>
             <span class="nx">case</span> <span class="m">38</span><span class="o">:</span> <span class="c">// up</span>
@@ -2115,20 +2111,27 @@
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">AutoComplete</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">_onTextboxBlur</span> <span class="o">=</span> <span class="k">function</span> <span class="o">(</span><span class="nx">v</span><span class="o">,</span><span class="nx">oSelf</span><span class="o">)</span> <span class="o">{</span>
     <span class="c">// Don&#39;t treat as a blur if it was a selection via mouse click</span>
 <span class="c"></span>    <span class="k">if</span><span class="o">(!</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">_bOverContainer</span> <span class="o">||</span> <span class="o">(</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">_nKeyCode</span> <span class="o">==</span> <span class="m">9</span><span class="o">))</span> <span class="o">{</span>
-        <span class="c">// Current query needs to be validated</span>
+        <span class="c">// Current query needs to be validated as a selection</span>
 <span class="c"></span>        <span class="k">if</span><span class="o">(!</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">_bItemSelected</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">var</span> <span class="nx">oMatch</span> <span class="o">=</span> <span class="nx">oSelf</span><span class="o">.</span><span class="nx">_textMatchesOption</span><span class="o">();</span>
-            <span class="k">if</span><span class="o">(!</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">_bContainerOpen</span> <span class="o">||</span> <span class="o">(</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">_bContainerOpen</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="nx">oMatch</span> <span class="o">===</span> <span class="kc">null</span><span class="o">)))</span> <span class="o">{</span>
-                <span class="k">if</span><span class="o">(</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">forceSelection</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c">// Container is closed or current query doesn&#39;t match any result</span>
+<span class="c"></span>            <span class="k">if</span><span class="o">(!</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">_bContainerOpen</span> <span class="o">||</span> <span class="o">(</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">_bContainerOpen</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="nx">oMatch</span> <span class="o">===</span> <span class="kc">null</span><span class="o">)))</span> <span class="o">{</span>
+                <span class="c">// Force selection is enabled so clear the current query</span>
+<span class="c"></span>                <span class="k">if</span><span class="o">(</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">forceSelection</span><span class="o">)</span> <span class="o">{</span>
                     <span class="nx">oSelf</span><span class="o">.</span><span class="nx">_clearSelection</span><span class="o">();</span>
                 <span class="o">}</span>
-                <span class="k">else</span> <span class="o">{</span>
-                    <span class="nx">oSelf</span><span class="o">.</span><span class="nx">unmatchedItemSelectEvent</span><span class="o">.</span><span class="nx">fire</span><span class="o">(</span><span class="nx">oSelf</span><span class="o">,</span> <span class="nx">oSelf</span><span class="o">.</span><span class="nx">_sCurQuery</span><span class="o">);</span>
+                <span class="c">// Treat current query as a valid selection</span>
+<span class="c"></span>                <span class="k">else</span> <span class="o">{</span>
+                    <span class="nx">oSelf</span><span class="o">.</span><span class="nx">unmatchedItemSelectEvent</span><span class="o">.</span><span class="nx">fire</span><span class="o">(</span><span class="nx">oSelf</span><span class="o">);</span>
                     <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;Unmatched item selected&quot;</span><span class="o">,</span> <span class="s2">&quot;info&quot;</span><span class="o">,</span> <span class="nx">oSelf</span><span class="o">.</span><span class="nx">toString</span><span class="o">());</span>
                 <span class="o">}</span>
             <span class="o">}</span>
-            <span class="k">else</span> <span class="o">{</span>
-                <span class="nx">oSelf</span><span class="o">.</span><span class="nx">_selectItem</span><span class="o">(</span><span class="nx">oMatch</span><span class="o">);</span>
+            <span class="c">// Container is open and current query matches a result</span>
+<span class="c"></span>            <span class="k">else</span> <span class="o">{</span>
+                <span class="c">// Force a selection when textbox is blurred with a match</span>
+<span class="c"></span>                <span class="k">if</span><span class="o">(</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">forceSelection</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="nx">oSelf</span><span class="o">.</span><span class="nx">_selectItem</span><span class="o">(</span><span class="nx">oMatch</span><span class="o">);</span>
+                <span class="o">}</span>
             <span class="o">}</span>
         <span class="o">}</span>
 

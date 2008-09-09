@@ -12,8 +12,8 @@
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
-        <h1>Yahoo! UI Library</h1>
-        <h3>colorpicker&nbsp; <span class="subtitle">2.3.0</span></h3>
+        <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
+        <h3>colorpicker&nbsp; <span class="subtitle">2.3.1</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_colorpicker.html">colorpicker</a>
@@ -37,13 +37,29 @@
                         </style>
 <div class="highlight" ><pre><span class="o">(</span><span class="k">function</span><span class="o">()</span> <span class="o">{</span>
 
-    <span class="k">var</span> <span class="nx">pickercount</span> <span class="o">=</span> <span class="m">0</span><span class="o">;</span>
+    <span class="k">var</span> <span class="nx">_pickercount</span> <span class="o">=</span> <span class="m">0</span><span class="o">;</span>
 
     <span class="c">/**</span>
 <span class="c">     * The colorpicker module provides a widget for selecting colors</span>
 <span class="c">     * @module colorpicker</span>
 <span class="c">     * @requires yahoo, dom, event, element, slider</span>
 <span class="c">     */</span>
+
+
+    <span class="c">/**</span>
+<span class="c">     * Creates the host element if it doesn&#39;t exist</span>
+<span class="c">     * @method _createHostElement</span>
+<span class="c">     * @private</span>
+<span class="c">     */</span>
+    <span class="k">var</span> <span class="nx">_createHostElement</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s1">&#39;div&#39;</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">CSS</span><span class="o">.</span><span class="nx">BASE</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nx">el</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">CSS</span><span class="o">.</span><span class="nx">BASE</span><span class="o">;</span>
+        <span class="o">}</span>
+        
+        <span class="k">return</span> <span class="nx">el</span><span class="o">;</span>
+    <span class="o">};</span>
 
     <span class="c">/**</span>
 <span class="c">     * A widget to select colors</span>
@@ -58,7 +74,7 @@
 <span class="c">     * initial attributes.  Ignored if first arg is attributes object.</span>
 <span class="c">     */</span>
     <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">ColorPicker</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="nx">attr</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nx">pickercount</span> <span class="o">=</span> <span class="nx">pickercount</span> <span class="o">+</span> <span class="m">1</span><span class="o">;</span>
+        <span class="nx">_pickercount</span> <span class="o">=</span> <span class="nx">_pickercount</span> <span class="o">+</span> <span class="m">1</span><span class="o">;</span>
         <span class="k">this</span><span class="o">.</span><span class="nx">logger</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">LogWriter</span><span class="o">(</span><span class="s2">&quot;ColorPicker&quot;</span><span class="o">);</span>
         <span class="nx">attr</span> <span class="o">=</span> <span class="nx">attr</span> <span class="o">||</span> <span class="o">{};</span>
         <span class="k">if</span> <span class="o">(</span><span class="nx">arguments</span><span class="o">.</span><span class="nx">length</span> <span class="o">===</span> <span class="m">1</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isString</span><span class="o">(</span><span class="nx">el</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">el</span><span class="o">.</span><span class="nx">nodeName</span><span class="o">)</span> <span class="o">{</span>
@@ -378,6 +394,60 @@
     <span class="o">};</span>
 
     <span class="c">/**</span>
+<span class="c">     * Moves the hue slider into the position dictated by the current state</span>
+<span class="c">     * of the control</span>
+<span class="c">     * @method _updateHueSlider</span>
+<span class="c">     * @private</span>
+<span class="c">     */</span>
+    <span class="k">var</span> <span class="nx">_updateHueSlider</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">var</span> <span class="nx">size</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">PICKER_SIZE</span><span class="o">),</span>
+            <span class="nx">h</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">HUE</span><span class="o">);</span>
+
+        <span class="nx">h</span> <span class="o">=</span> <span class="nx">size</span> <span class="o">-</span> <span class="nb">Math</span><span class="o">.</span><span class="nx">round</span><span class="o">(</span><span class="nx">h</span> <span class="o">/</span> <span class="m">360</span> <span class="o">*</span> <span class="nx">size</span><span class="o">);</span>
+        
+        <span class="c">// 0 is at the top and bottom of the hue slider.  Always go to</span>
+<span class="c"></span>        <span class="c">// the top so we don&#39;t end up sending the thumb to the bottom</span>
+<span class="c"></span>        <span class="c">// when the value didn&#39;t actually change (e.g., a conversion</span>
+<span class="c"></span>        <span class="c">// produced 360 instead of 0 and the value was already 0).</span>
+<span class="c"></span>        <span class="k">if</span> <span class="o">(</span><span class="nx">h</span> <span class="o">===</span> <span class="nx">size</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nx">h</span> <span class="o">=</span> <span class="m">0</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;Hue slider is being set to &quot;</span> <span class="o">+</span> <span class="nx">h</span><span class="o">);</span>
+
+        <span class="k">this</span><span class="o">.</span><span class="nx">hueSlider</span><span class="o">.</span><span class="nx">setValue</span><span class="o">(</span><span class="nx">h</span><span class="o">);</span>
+    <span class="o">};</span>
+
+    <span class="c">/**</span>
+<span class="c">     * Moves the picker slider into the position dictated by the current state</span>
+<span class="c">     * of the control</span>
+<span class="c">     * @method _updatePickerSlider</span>
+<span class="c">     * @private</span>
+<span class="c">     */</span>
+    <span class="k">var</span> <span class="nx">_updatePickerSlider</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">var</span> <span class="nx">size</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">PICKER_SIZE</span><span class="o">),</span>
+            <span class="nx">s</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SATURATION</span><span class="o">),</span>
+            <span class="nx">v</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">VALUE</span><span class="o">);</span>
+
+        <span class="nx">s</span> <span class="o">=</span> <span class="nb">Math</span><span class="o">.</span><span class="nx">round</span><span class="o">(</span><span class="nx">s</span> <span class="o">*</span> <span class="nx">size</span> <span class="o">/</span> <span class="m">100</span><span class="o">);</span>
+        <span class="nx">v</span> <span class="o">=</span> <span class="nb">Math</span><span class="o">.</span><span class="nx">round</span><span class="o">(</span><span class="nx">size</span> <span class="o">-</span> <span class="o">(</span><span class="nx">v</span> <span class="o">*</span> <span class="nx">size</span> <span class="o">/</span> <span class="m">100</span><span class="o">));</span>
+
+        <span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;Setting picker slider to &quot;</span> <span class="o">+</span> <span class="o">[</span><span class="nx">s</span><span class="o">,</span> <span class="nx">v</span><span class="o">]);</span>
+
+        <span class="k">this</span><span class="o">.</span><span class="nx">pickerSlider</span><span class="o">.</span><span class="nx">setRegionValue</span><span class="o">(</span><span class="nx">s</span><span class="o">,</span> <span class="nx">v</span><span class="o">);</span>
+    <span class="o">};</span>
+
+    <span class="c">/**</span>
+<span class="c">     * Moves the sliders into the position dictated by the current state</span>
+<span class="c">     * of the control</span>
+<span class="c">     * @method _updateSliders</span>
+<span class="c">     * @private</span>
+<span class="c">     */</span>
+    <span class="k">var</span> <span class="nx">_updateSliders</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nx">_updateHueSlider</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="nx">_updatePickerSlider</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+    <span class="o">};</span>
+
+    <span class="c">/**</span>
 <span class="c">     * Sets the control to the specified rgb value and</span>
 <span class="c">     * moves the sliders to the proper positions</span>
 <span class="c">     * @method setValue</span>
@@ -478,10 +548,10 @@
         <span class="k">var</span> <span class="nx">h</span><span class="o">=</span><span class="nx">_getH</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">),</span> <span class="nx">s</span><span class="o">=</span><span class="nx">_getS</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">),</span> <span class="nx">v</span><span class="o">=</span><span class="nx">_getV</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
         <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;hsv &quot;</span> <span class="o">+</span> <span class="o">[</span><span class="nx">h</span><span class="o">,</span> <span class="nx">s</span><span class="o">,</span> <span class="nx">v</span><span class="o">]);</span>
 
-        <span class="nx">rgb</span> <span class="o">=</span> <span class="nx">Color</span><span class="o">.</span><span class="nx">hsv2rgb</span><span class="o">(</span><span class="nx">h</span><span class="o">,</span> <span class="nx">s</span><span class="o">,</span> <span class="nx">v</span><span class="o">);</span>
-        <span class="k">var</span> <span class="nx">websafe</span> <span class="o">=</span> <span class="nx">Color</span><span class="o">.</span><span class="nx">websafe</span><span class="o">(</span><span class="nx">rgb</span><span class="o">);</span>
-        <span class="k">var</span> <span class="nx">hex</span> <span class="o">=</span> <span class="nx">Color</span><span class="o">.</span><span class="nx">rgb2hex</span><span class="o">(</span><span class="nx">rgb</span><span class="o">[</span><span class="m">0</span><span class="o">],</span> <span class="nx">rgb</span><span class="o">[</span><span class="m">1</span><span class="o">],</span> <span class="nx">rgb</span><span class="o">[</span><span class="m">2</span><span class="o">]);</span>
-
+        <span class="k">var</span> <span class="nx">rgb</span> <span class="o">=</span> <span class="nx">Color</span><span class="o">.</span><span class="nx">hsv2rgb</span><span class="o">(</span><span class="nx">h</span><span class="o">,</span> <span class="nx">s</span><span class="o">,</span> <span class="nx">v</span><span class="o">);</span>
+        <span class="c">//var websafe = Color.websafe(rgb);</span>
+<span class="c"></span>        <span class="c">//var hex = Color.rgb2hex(rgb[0], rgb[1], rgb[2]);</span>
+<span class="c"></span>
         <span class="k">this</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">RGB</span><span class="o">,</span> <span class="nx">rgb</span><span class="o">);</span>
     <span class="o">};</span>
 
@@ -598,6 +668,26 @@
     <span class="o">};</span>
 
     <span class="c">/**</span>
+<span class="c">     * Use the value of the text field to update the control</span>
+<span class="c">     * @method _hexFieldKeypress</span>
+<span class="c">     * @param e {Event} an event</span>
+<span class="c">     * @param el {HTMLElement} the field</span>
+<span class="c">     * @param prop {string} the key to the linked property</span>
+<span class="c">     * @private</span>
+<span class="c">     */</span>
+    <span class="k">var</span> <span class="nx">_useFieldValue</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">e</span><span class="o">,</span> <span class="nx">el</span><span class="o">,</span> <span class="nx">prop</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">var</span> <span class="nx">val</span> <span class="o">=</span> <span class="nx">el</span><span class="o">.</span><span class="nx">value</span><span class="o">;</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="nx">prop</span> <span class="o">!==</span> <span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">HEX</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nx">val</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="o">(</span><span class="nx">val</span><span class="o">,</span> <span class="m">10</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="nx">val</span> <span class="o">!==</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="nx">prop</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="nx">prop</span><span class="o">,</span> <span class="nx">val</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">};</span>
+
+    <span class="c">/**</span>
 <span class="c">     * Handle keypress on one of the rgb or hsv fields.</span>
 <span class="c">     * @method _rgbFieldKeypress</span>
 <span class="c">     * @param e {Event} the keypress event</span>
@@ -644,38 +734,6 @@
         <span class="o">}</span>
     <span class="o">};</span>
 
-    <span class="c">/**</span>
-<span class="c">     * Use the value of the text field to update the control</span>
-<span class="c">     * @method _hexFieldKeypress</span>
-<span class="c">     * @param e {Event} an event</span>
-<span class="c">     * @param el {HTMLElement} the field</span>
-<span class="c">     * @param prop {string} the key to the linked property</span>
-<span class="c">     * @private</span>
-<span class="c">     */</span>
-    <span class="k">var</span> <span class="nx">_useFieldValue</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">e</span><span class="o">,</span> <span class="nx">el</span><span class="o">,</span> <span class="nx">prop</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">var</span> <span class="nx">val</span> <span class="o">=</span> <span class="nx">el</span><span class="o">.</span><span class="nx">value</span><span class="o">;</span>
-
-        <span class="k">if</span> <span class="o">(</span><span class="nx">prop</span> <span class="o">!==</span> <span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">HEX</span><span class="o">)</span> <span class="o">{</span>
-            <span class="nx">val</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="o">(</span><span class="nx">val</span><span class="o">,</span> <span class="m">10</span><span class="o">);</span>
-        <span class="o">}</span>
-
-        <span class="k">if</span> <span class="o">(</span><span class="nx">val</span> <span class="o">!==</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="nx">prop</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="nx">prop</span><span class="o">,</span> <span class="nx">val</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">};</span>
-
-    <span class="c">/** </span>
-<span class="c">     * Allows numbers and special chars only.  Used for the</span>
-<span class="c">     * rgb and hsv fields keypress handler.</span>
-<span class="c">     * @method _numbersOnly</span>
-<span class="c">     * @param e {Event} the event</span>
-<span class="c">     * @private</span>
-<span class="c">     * @return {boolean} false if we are canceling the event</span>
-<span class="c">     */</span>
-    <span class="k">var</span> <span class="nx">_numbersOnly</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nx">_hexOnly</span><span class="o">(</span><span class="nx">e</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
-    <span class="o">};</span>
-
     <span class="c">/** </span>
 <span class="c">     * Allows numbers and special chars, and by default allows a-f.  </span>
 <span class="c">     * Used for the hex field keypress handler.</span>
@@ -705,6 +763,18 @@
         <span class="o">}</span>
     <span class="o">};</span>
 
+    <span class="c">/** </span>
+<span class="c">     * Allows numbers and special chars only.  Used for the</span>
+<span class="c">     * rgb and hsv fields keypress handler.</span>
+<span class="c">     * @method _numbersOnly</span>
+<span class="c">     * @param e {Event} the event</span>
+<span class="c">     * @private</span>
+<span class="c">     * @return {boolean} false if we are canceling the event</span>
+<span class="c">     */</span>
+    <span class="k">var</span> <span class="nx">_numbersOnly</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nx">_hexOnly</span><span class="o">(</span><span class="nx">e</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+    <span class="o">};</span>
+
     <span class="c">/**</span>
 <span class="c">     * Returns the element reference that is saved.  The id can be either</span>
 <span class="c">     * the element id, or the key for this id in the &quot;id&quot; config attribute.</span>
@@ -717,7 +787,7 @@
         <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">ELEMENTS</span><span class="o">)[</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">IDS</span><span class="o">)[</span><span class="nx">id</span><span class="o">]];</span> 
     <span class="o">};</span>
 
-    <span class="nx">_createElements</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">var</span> <span class="nx">_createElements</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
         <span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;Building markup&quot;</span><span class="o">);</span>
         <span class="k">var</span> <span class="nx">el</span><span class="o">,</span> <span class="nx">child</span><span class="o">,</span> <span class="nx">img</span><span class="o">,</span> <span class="nx">fld</span><span class="o">,</span> <span class="nx">i</span><span class="o">,</span> 
             <span class="nx">ids</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">IDS</span><span class="o">),</span>
@@ -968,6 +1038,16 @@
 
     <span class="o">};</span>
 
+    <span class="k">var</span> <span class="nx">_attachRGBHSV</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">id</span><span class="o">,</span> <span class="nx">config</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nx">Event</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">getElement</span><span class="o">(</span><span class="nx">id</span><span class="o">),</span> <span class="s2">&quot;keydown&quot;</span><span class="o">,</span> <span class="k">function</span><span class="o">(</span><span class="nx">e</span><span class="o">,</span> <span class="nx">me</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nx">_rgbFieldKeypress</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="nx">me</span><span class="o">,</span> <span class="nx">e</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="nx">config</span><span class="o">);</span>
+            <span class="o">},</span> <span class="k">this</span><span class="o">);</span>
+        <span class="nx">Event</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">getElement</span><span class="o">(</span><span class="nx">id</span><span class="o">),</span> <span class="s2">&quot;keypress&quot;</span><span class="o">,</span> <span class="nx">_numbersOnly</span><span class="o">,</span> <span class="k">this</span><span class="o">);</span>
+        <span class="nx">Event</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">getElement</span><span class="o">(</span><span class="nx">id</span><span class="o">),</span> <span class="s2">&quot;blur&quot;</span><span class="o">,</span> <span class="k">function</span><span class="o">(</span><span class="nx">e</span><span class="o">,</span> <span class="nx">me</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nx">_useFieldValue</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="nx">me</span><span class="o">,</span> <span class="nx">e</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="nx">config</span><span class="o">);</span>
+            <span class="o">},</span> <span class="k">this</span><span class="o">);</span>
+    <span class="o">};</span>
+
     <span class="c">/**</span>
 <span class="c">     * Sets the initial state of the sliders</span>
 <span class="c">     * @method initPicker</span>
@@ -1066,365 +1146,7 @@
             <span class="o">},</span> <span class="k">this</span><span class="o">);</span>
     <span class="o">};</span>
 
-    <span class="nx">_attachRGBHSV</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">id</span><span class="o">,</span> <span class="nx">config</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nx">Event</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">getElement</span><span class="o">(</span><span class="nx">id</span><span class="o">),</span> <span class="s2">&quot;keydown&quot;</span><span class="o">,</span> <span class="k">function</span><span class="o">(</span><span class="nx">e</span><span class="o">,</span> <span class="nx">me</span><span class="o">)</span> <span class="o">{</span>
-                <span class="nx">_rgbFieldKeypress</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="nx">me</span><span class="o">,</span> <span class="nx">e</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="nx">config</span><span class="o">);</span>
-            <span class="o">},</span> <span class="k">this</span><span class="o">);</span>
-        <span class="nx">Event</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">getElement</span><span class="o">(</span><span class="nx">id</span><span class="o">),</span> <span class="s2">&quot;keypress&quot;</span><span class="o">,</span> <span class="nx">_numbersOnly</span><span class="o">,</span> <span class="k">this</span><span class="o">);</span>
-        <span class="nx">Event</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">getElement</span><span class="o">(</span><span class="nx">id</span><span class="o">),</span> <span class="s2">&quot;blur&quot;</span><span class="o">,</span> <span class="k">function</span><span class="o">(</span><span class="nx">e</span><span class="o">,</span> <span class="nx">me</span><span class="o">)</span> <span class="o">{</span>
-                <span class="nx">_useFieldValue</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="nx">me</span><span class="o">,</span> <span class="nx">e</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="nx">config</span><span class="o">);</span>
-            <span class="o">},</span> <span class="k">this</span><span class="o">);</span>
-    <span class="o">};</span>
 
-
-    <span class="c">/**</span>
-<span class="c">     * Sets up the config attributes and the change listeners for this</span>
-<span class="c">     * properties</span>
-<span class="c">     * @method initAttributes</span>
-<span class="c">     * @param attr An object containing default attribute values</span>
-<span class="c">     */</span>
-    <span class="nx">proto</span><span class="o">.</span><span class="nx">initAttributes</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">attr</span><span class="o">)</span> <span class="o">{</span>
-
-        <span class="nx">attr</span> <span class="o">=</span> <span class="nx">attr</span> <span class="o">||</span> <span class="o">{};</span>
-        <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">ColorPicker</span><span class="o">.</span><span class="nx">superclass</span><span class="o">.</span><span class="nx">initAttributes</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="nx">attr</span><span class="o">);</span>
-        
-        <span class="c">/**</span>
-<span class="c">         * The size of the picker. Trying to change this is not recommended.</span>
-<span class="c">         * @config pickersize</span>
-<span class="c">         * @default 180</span>
-<span class="c">         * @type int</span>
-<span class="c">         */</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">PICKER_SIZE</span><span class="o">,</span> <span class="o">{</span>
-                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">size</span> <span class="o">||</span> <span class="k">this</span><span class="o">.</span><span class="nx">DEFAULT</span><span class="o">.</span><span class="nx">PICKER_SIZE</span>
-            <span class="o">});</span>
-
-        <span class="c">/**</span>
-<span class="c">         * The current hue value 0-360</span>
-<span class="c">         * @config hue</span>
-<span class="c">         * @type int</span>
-<span class="c">         */</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">HUE</span><span class="o">,</span> <span class="o">{</span>
-                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">hue</span> <span class="o">||</span> <span class="m">0</span><span class="o">,</span>
-                <span class="nx">validator</span><span class="o">:</span> <span class="nx">lang</span><span class="o">.</span><span class="nx">isNumber</span>
-            <span class="o">});</span>
-
-        <span class="c">/**</span>
-<span class="c">         * The current saturation value 0-100</span>
-<span class="c">         * @config saturation</span>
-<span class="c">         * @type int</span>
-<span class="c">         */</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SATURATION</span><span class="o">,</span> <span class="o">{</span>
-                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">saturation</span> <span class="o">||</span> <span class="m">0</span><span class="o">,</span>
-                <span class="nx">validator</span><span class="o">:</span> <span class="nx">lang</span><span class="o">.</span><span class="nx">isNumber</span>
-            <span class="o">});</span>
-
-        <span class="c">/**</span>
-<span class="c">         * The current value/brightness value 0-100</span>
-<span class="c">         * @config value</span>
-<span class="c">         * @type int</span>
-<span class="c">         */</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">VALUE</span><span class="o">,</span> <span class="o">{</span>
-                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">value</span> <span class="o">||</span> <span class="m">100</span><span class="o">,</span>
-                <span class="nx">validator</span><span class="o">:</span> <span class="nx">lang</span><span class="o">.</span><span class="nx">isNumber</span>
-            <span class="o">});</span>
-
-        <span class="c">/**</span>
-<span class="c">         * The current red value 0-255</span>
-<span class="c">         * @config red</span>
-<span class="c">         * @type int</span>
-<span class="c">         */</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">RED</span><span class="o">,</span> <span class="o">{</span>
-                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">red</span> <span class="o">||</span> <span class="m">255</span><span class="o">,</span>
-                <span class="nx">validator</span><span class="o">:</span> <span class="nx">lang</span><span class="o">.</span><span class="nx">isNumber</span>
-            <span class="o">});</span>
-
-        <span class="c">/**</span>
-<span class="c">         * The current green value 0-255</span>
-<span class="c">         * @config green </span>
-<span class="c">         * @type int</span>
-<span class="c">         */</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">GREEN</span><span class="o">,</span> <span class="o">{</span>
-                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">red</span> <span class="o">||</span> <span class="m">255</span><span class="o">,</span>
-                <span class="nx">validator</span><span class="o">:</span> <span class="nx">lang</span><span class="o">.</span><span class="nx">isNumber</span>
-            <span class="o">});</span>
-
-        <span class="c">/**</span>
-<span class="c">         * The current blue value 0-255</span>
-<span class="c">         * @config blue</span>
-<span class="c">         * @type int</span>
-<span class="c">         */</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">BLUE</span><span class="o">,</span> <span class="o">{</span>
-                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">blue</span> <span class="o">||</span> <span class="m">255</span><span class="o">,</span>
-                <span class="nx">validator</span><span class="o">:</span> <span class="nx">lang</span><span class="o">.</span><span class="nx">isNumber</span>
-            <span class="o">});</span>
-
-        <span class="c">/**</span>
-<span class="c">         * The current hex value #000000-#FFFFFF, without the #</span>
-<span class="c">         * @config hex</span>
-<span class="c">         * @type string</span>
-<span class="c">         */</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">HEX</span><span class="o">,</span> <span class="o">{</span>
-                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">hex</span> <span class="o">||</span> <span class="s2">&quot;FFFFFF&quot;</span><span class="o">,</span>
-                <span class="nx">validator</span><span class="o">:</span> <span class="nx">lang</span><span class="o">.</span><span class="nx">isString</span>
-            <span class="o">});</span>
-
-        <span class="c">/**</span>
-<span class="c">         * The current rgb value.  Updates the state of all of the</span>
-<span class="c">         * other value fields.  Read-only: use setValue to set the</span>
-<span class="c">         * controls rgb value.</span>
-<span class="c">         * @config hex</span>
-<span class="c">         * @type [int, int, int]</span>
-<span class="c">         * @readonly</span>
-<span class="c">         */</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">RGB</span><span class="o">,</span> <span class="o">{</span>
-                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">rgb</span> <span class="o">||</span> <span class="o">[</span><span class="m">255</span><span class="o">,</span><span class="m">255</span><span class="o">,</span><span class="m">255</span><span class="o">],</span>
-                <span class="nx">method</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">rgb</span><span class="o">)</span> <span class="o">{</span>
-
-                    <span class="k">this</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">RED</span><span class="o">,</span> <span class="nx">rgb</span><span class="o">[</span><span class="m">0</span><span class="o">],</span> <span class="kc">true</span><span class="o">);</span>
-                    <span class="k">this</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">GREEN</span><span class="o">,</span> <span class="nx">rgb</span><span class="o">[</span><span class="m">1</span><span class="o">],</span> <span class="kc">true</span><span class="o">);</span>
-                    <span class="k">this</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">BLUE</span><span class="o">,</span> <span class="nx">rgb</span><span class="o">[</span><span class="m">2</span><span class="o">],</span> <span class="kc">true</span><span class="o">);</span>
-
-                    <span class="k">var</span> <span class="nx">websafe</span> <span class="o">=</span> <span class="nx">Color</span><span class="o">.</span><span class="nx">websafe</span><span class="o">(</span><span class="nx">rgb</span><span class="o">);</span>
-                    <span class="k">this</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">WEBSAFE</span><span class="o">,</span> <span class="nx">websafe</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
-
-                    <span class="k">var</span> <span class="nx">hex</span> <span class="o">=</span> <span class="nx">Color</span><span class="o">.</span><span class="nx">rgb2hex</span><span class="o">(</span><span class="nx">rgb</span><span class="o">);</span>
-                    <span class="k">this</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">HEX</span><span class="o">,</span> <span class="nx">hex</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
-
-                    <span class="k">var</span> <span class="nx">hsv</span> <span class="o">=</span> <span class="nx">Color</span><span class="o">.</span><span class="nx">rgb2hsv</span><span class="o">(</span><span class="nx">rgb</span><span class="o">);</span>
-
-                    <span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="nx">sub</span><span class="o">(</span><span class="s2">&quot;RGB value set to {rgb} (hsv: {hsv})&quot;</span><span class="o">,</span> <span class="o">{</span>
-                            <span class="s2">&quot;hsv&quot;</span><span class="o">:</span> <span class="nx">hsv</span><span class="o">,</span> <span class="s2">&quot;rgb&quot;</span><span class="o">:</span> <span class="nx">rgb</span>
-                        <span class="o">}));</span>
-
-                    <span class="k">this</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">HUE</span><span class="o">,</span> <span class="nx">hsv</span><span class="o">[</span><span class="m">0</span><span class="o">],</span> <span class="kc">true</span><span class="o">);</span>
-                    <span class="k">this</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SATURATION</span><span class="o">,</span> <span class="nb">Math</span><span class="o">.</span><span class="nx">round</span><span class="o">(</span><span class="nx">hsv</span><span class="o">[</span><span class="m">1</span><span class="o">]*</span><span class="m">100</span><span class="o">),</span> <span class="kc">true</span><span class="o">);</span>
-                    <span class="k">this</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">VALUE</span><span class="o">,</span> <span class="nb">Math</span><span class="o">.</span><span class="nx">round</span><span class="o">(</span><span class="nx">hsv</span><span class="o">[</span><span class="m">2</span><span class="o">]*</span><span class="m">100</span><span class="o">),</span> <span class="kc">true</span><span class="o">);</span>
-                <span class="o">},</span>
-                <span class="nx">readonly</span><span class="o">:</span> <span class="kc">true</span>
-            <span class="o">});</span>
-
-        <span class="c">/**</span>
-<span class="c">         * If the color picker will live inside of a container object,</span>
-<span class="c">         * set, provide a reference to it so the control can use the</span>
-<span class="c">         * container&#39;s events.</span>
-<span class="c">         * @config container</span>
-<span class="c">         * @type YAHOO.widget.Panel</span>
-<span class="c">         */</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">CONTAINER</span><span class="o">,</span> <span class="o">{</span>
-                    <span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="o">,</span>
-                    <span class="nx">method</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">container</span><span class="o">)</span> <span class="o">{</span>
-                        <span class="k">if</span> <span class="o">(</span><span class="nx">container</span><span class="o">)</span> <span class="o">{</span>
-                            <span class="c">// Position can get out of sync when the</span>
-<span class="c"></span>                            <span class="c">// control is manipulated while display is</span>
-<span class="c"></span>                            <span class="c">// none.  Resetting the slider constraints</span>
-<span class="c"></span>                            <span class="c">// when it is visible gets the state back in</span>
-<span class="c"></span>                            <span class="c">// order.</span>
-<span class="c"></span>                            <span class="nx">container</span><span class="o">.</span><span class="nx">showEvent</span><span class="o">.</span><span class="nx">subscribe</span><span class="o">(</span><span class="k">function</span><span class="o">()</span> <span class="o">{</span>
-                                <span class="c">// this.pickerSlider.thumb.resetConstraints();</span>
-<span class="c"></span>                                <span class="c">// this.hueSlider.thumb.resetConstraints();</span>
-<span class="c"></span>                                <span class="k">this</span><span class="o">.</span><span class="nx">pickerSlider</span><span class="o">.</span><span class="nx">focus</span><span class="o">();</span>
-                            <span class="o">},</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
-                        <span class="o">}</span>
-                    <span class="o">}</span>
-                <span class="o">});</span>
-        <span class="c">/**</span>
-<span class="c">         * The closest current websafe value</span>
-<span class="c">         * @config websafe</span>
-<span class="c">         * @type int</span>
-<span class="c">         */</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">WEBSAFE</span><span class="o">,</span> <span class="o">{</span>
-                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">websafe</span> <span class="o">||</span> <span class="o">[</span><span class="m">255</span><span class="o">,</span><span class="m">255</span><span class="o">,</span><span class="m">255</span><span class="o">]</span>
-            <span class="o">});</span>
-
-
-        <span class="nx">ids</span> <span class="o">=</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">ids</span> <span class="o">||</span> <span class="nx">lang</span><span class="o">.</span><span class="nx">merge</span><span class="o">({},</span> <span class="k">this</span><span class="o">.</span><span class="nx">ID</span><span class="o">);</span>
-
-        <span class="k">if</span> <span class="o">(!</span><span class="nx">attr</span><span class="o">.</span><span class="nx">ids</span> <span class="o">&amp;&amp;</span> <span class="nx">pickercount</span> <span class="o">&gt;</span> <span class="m">1</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">for</span> <span class="o">(</span><span class="k">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">ids</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">if</span> <span class="o">(</span><span class="nx">lang</span><span class="o">.</span><span class="nx">hasOwnProperty</span><span class="o">(</span><span class="nx">ids</span><span class="o">,</span> <span class="nx">i</span><span class="o">))</span> <span class="o">{</span>
-                    <span class="nx">ids</span><span class="o">[</span><span class="nx">i</span><span class="o">]</span> <span class="o">=</span> <span class="nx">ids</span><span class="o">[</span><span class="nx">i</span><span class="o">]</span> <span class="o">+</span> <span class="nx">pickercount</span><span class="o">;</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-
-
-        <span class="c">/**</span>
-<span class="c">         * A list of element ids and/or element references used by the </span>
-<span class="c">         * control.  The default is the this.ID list, and can be customized</span>
-<span class="c">         * by passing a list in the contructor</span>
-<span class="c">         * @config ids</span>
-<span class="c">         * @type {referenceid: realid}</span>
-<span class="c">         * @writeonce</span>
-<span class="c">         */</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">IDS</span><span class="o">,</span> <span class="o">{</span>
-                <span class="nx">value</span><span class="o">:</span> <span class="nx">ids</span><span class="o">,</span>
-                <span class="nx">writeonce</span><span class="o">:</span> <span class="kc">true</span>
-            <span class="o">});</span>
-
-        <span class="c">/**</span>
-<span class="c">         * A list of txt strings for internationalization.  Default</span>
-<span class="c">         * is this.TXT</span>
-<span class="c">         * @config txt</span>
-<span class="c">         * @type {key: txt}</span>
-<span class="c">         * @writeonce</span>
-<span class="c">         */</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">TXT</span><span class="o">,</span> <span class="o">{</span>
-                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">txt</span> <span class="o">||</span> <span class="k">this</span><span class="o">.</span><span class="nx">TXT</span><span class="o">,</span>
-                <span class="nx">writeonce</span><span class="o">:</span> <span class="kc">true</span>
-            <span class="o">});</span>
-
-        <span class="c">/**</span>
-<span class="c">         * The img src default list</span>
-<span class="c">         * is this.IMAGES</span>
-<span class="c">         * @config images</span>
-<span class="c">         * @type {key: image}</span>
-<span class="c">         * @writeonce</span>
-<span class="c">         */</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">IMAGES</span><span class="o">,</span> <span class="o">{</span>
-                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">images</span> <span class="o">||</span> <span class="k">this</span><span class="o">.</span><span class="nx">IMAGE</span><span class="o">,</span>
-                <span class="nx">writeonce</span><span class="o">:</span> <span class="kc">true</span>
-            <span class="o">});</span>
-        <span class="c">/**</span>
-<span class="c">         * The element refs used by this control.  Set at initialization</span>
-<span class="c">         * @config elements</span>
-<span class="c">         * @type {id: HTMLElement}</span>
-<span class="c">         * @readonly</span>
-<span class="c">         */</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">ELEMENTS</span><span class="o">,</span> <span class="o">{</span>
-                <span class="nx">value</span><span class="o">:</span> <span class="o">{},</span>
-                <span class="nx">readonly</span><span class="o">:</span> <span class="kc">true</span>
-            <span class="o">});</span>
-
-        <span class="c">/**</span>
-<span class="c">         * Returns the cached element reference.  If the id is not a string, it</span>
-<span class="c">         * is assumed that it is an element and this is returned.</span>
-<span class="c">         * @param id {string|HTMLElement} the element key, id, or ref</span>
-<span class="c">         * @param on {boolean} hide or show.  If true, show</span>
-<span class="c">         * @private */</span>
-        <span class="nx">_hideShowEl</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">id</span><span class="o">,</span> <span class="nx">on</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="o">(</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isString</span><span class="o">(</span><span class="nx">id</span><span class="o">)</span> <span class="o">?</span> <span class="k">this</span><span class="o">.</span><span class="nx">getElement</span><span class="o">(</span><span class="nx">id</span><span class="o">)</span> <span class="o">:</span> <span class="nx">id</span><span class="o">);</span>
-            <span class="c">//Dom.setStyle(id, &quot;visibility&quot;, (on) ? &quot;&quot; : &quot;hidden&quot;);</span>
-<span class="c"></span>            <span class="nx">Dom</span><span class="o">.</span><span class="nx">setStyle</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="s2">&quot;display&quot;</span><span class="o">,</span> <span class="o">(</span><span class="nx">on</span><span class="o">)</span> <span class="o">?</span> <span class="s2">&quot;&quot;</span> <span class="o">:</span> <span class="s2">&quot;none&quot;</span><span class="o">);</span>
-        <span class="o">};</span>
-
-        <span class="c">/**</span>
-<span class="c">         * Hide/show the entire set of controls</span>
-<span class="c">         * @config showcontrols</span>
-<span class="c">         * @type boolean</span>
-<span class="c">         * @default true</span>
-<span class="c">         */</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SHOW_CONTROLS</span><span class="o">,</span> <span class="o">{</span>
-                <span class="nx">value</span><span class="o">:</span> <span class="o">(</span><span class="nx">attr</span><span class="o">.</span><span class="nx">showcontrols</span><span class="o">)</span> <span class="o">||</span> <span class="kc">true</span><span class="o">,</span>
-                <span class="nx">method</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">on</span><span class="o">)</span> <span class="o">{</span>
-
-                    <span class="k">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nx">Dom</span><span class="o">.</span><span class="nx">getElementsByClassName</span><span class="o">(</span><span class="s2">&quot;bd&quot;</span><span class="o">,</span> <span class="s2">&quot;div&quot;</span><span class="o">,</span> 
-                            <span class="k">this</span><span class="o">.</span><span class="nx">getElement</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">ID</span><span class="o">.</span><span class="nx">CONTROLS</span><span class="o">))[</span><span class="m">0</span><span class="o">];</span>
-
-                    <span class="nx">_hideShowEl</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="nx">el</span><span class="o">,</span> <span class="nx">on</span><span class="o">);</span>
-
-                    <span class="k">this</span><span class="o">.</span><span class="nx">getElement</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">ID</span><span class="o">.</span><span class="nx">CONTROLS_LABEL</span><span class="o">).</span><span class="nx">innerHTML</span> <span class="o">=</span> 
-                        <span class="o">(</span><span class="nx">on</span><span class="o">)</span> <span class="o">?</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">TXT</span><span class="o">).</span><span class="nx">HIDE_CONTROLS</span> <span class="o">:</span>
-                               <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">TXT</span><span class="o">).</span><span class="nx">SHOW_CONTROLS</span><span class="o">;</span>
-
-                <span class="o">}</span>
-            <span class="o">});</span>
-
-        <span class="c">/**</span>
-<span class="c">         * Hide/show the rgb controls</span>
-<span class="c">         * @config showrgbcontrols</span>
-<span class="c">         * @type boolean</span>
-<span class="c">         * @default true</span>
-<span class="c">         */</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SHOW_RGB_CONTROLS</span><span class="o">,</span> <span class="o">{</span>
-                <span class="nx">value</span><span class="o">:</span> <span class="o">(</span><span class="nx">attr</span><span class="o">.</span><span class="nx">showrgbcontrols</span><span class="o">)</span> <span class="o">||</span> <span class="kc">true</span><span class="o">,</span>
-                <span class="nx">method</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">on</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="c">//Dom.setStyle(this.getElement(this.ID.RBG_CONTROLS), &quot;visibility&quot;, (on) ? &quot;&quot; : &quot;hidden&quot;);</span>
-<span class="c"></span>                    <span class="nx">_hideShowEl</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">ID</span><span class="o">.</span><span class="nx">RGB_CONTROLS</span><span class="o">,</span> <span class="nx">on</span><span class="o">);</span>
-                <span class="o">}</span>
-            <span class="o">});</span>
-
-        <span class="c">/**</span>
-<span class="c">         * Hide/show the hsv controls</span>
-<span class="c">         * @config showhsvcontrols</span>
-<span class="c">         * @type boolean</span>
-<span class="c">         * @default false</span>
-<span class="c">         */</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SHOW_HSV_CONTROLS</span><span class="o">,</span> <span class="o">{</span>
-                <span class="nx">value</span><span class="o">:</span> <span class="o">(</span><span class="nx">attr</span><span class="o">.</span><span class="nx">showhsvcontrols</span><span class="o">)</span> <span class="o">||</span> <span class="kc">false</span><span class="o">,</span>
-                <span class="nx">method</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">on</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="c">//Dom.setStyle(this.getElement(this.ID.HSV_CONTROLS), &quot;visibility&quot;, (on) ? &quot;&quot; : &quot;hidden&quot;);</span>
-<span class="c"></span>                    <span class="nx">_hideShowEl</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">ID</span><span class="o">.</span><span class="nx">HSV_CONTROLS</span><span class="o">,</span> <span class="nx">on</span><span class="o">);</span>
-
-                    <span class="c">// can&#39;t show both the hsv controls and the rbg hex summary</span>
-<span class="c"></span>                    <span class="k">if</span> <span class="o">(</span><span class="nx">on</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SHOW_HEX_SUMMARY</span><span class="o">))</span> <span class="o">{</span>
-                        <span class="k">this</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SHOW_HEX_SUMMARY</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
-                    <span class="o">}</span>
-                <span class="o">}</span>
-            <span class="o">});</span>
-
-        <span class="c">/**</span>
-<span class="c">         * Hide/show the hex controls</span>
-<span class="c">         * @config showhexcontrols</span>
-<span class="c">         * @type boolean</span>
-<span class="c">         * @default true</span>
-<span class="c">         */</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SHOW_HEX_CONTROLS</span><span class="o">,</span> <span class="o">{</span>
-                <span class="nx">value</span><span class="o">:</span> <span class="o">(</span><span class="nx">attr</span><span class="o">.</span><span class="nx">showhexcontrols</span><span class="o">)</span> <span class="o">||</span> <span class="kc">false</span><span class="o">,</span>
-                <span class="nx">method</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">on</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="nx">_hideShowEl</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">ID</span><span class="o">.</span><span class="nx">HEX_CONTROLS</span><span class="o">,</span> <span class="nx">on</span><span class="o">);</span>
-                <span class="o">}</span>
-            <span class="o">});</span>
-
-        <span class="c">/**</span>
-<span class="c">         * Hide/show the websafe swatch</span>
-<span class="c">         * @config showwebsafe</span>
-<span class="c">         * @type boolean</span>
-<span class="c">         * @default true</span>
-<span class="c">         */</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SHOW_WEBSAFE</span><span class="o">,</span> <span class="o">{</span>
-                <span class="nx">value</span><span class="o">:</span> <span class="o">(</span><span class="nx">attr</span><span class="o">.</span><span class="nx">showwebsafe</span><span class="o">)</span> <span class="o">||</span> <span class="kc">true</span><span class="o">,</span>
-                <span class="nx">method</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">on</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="nx">_hideShowEl</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">ID</span><span class="o">.</span><span class="nx">WEBSAFE_SWATCH</span><span class="o">,</span> <span class="nx">on</span><span class="o">);</span>
-                <span class="o">}</span>
-            <span class="o">});</span>
-
-        <span class="c">/**</span>
-<span class="c">         * Hide/show the hex summary</span>
-<span class="c">         * @config showhexsummary</span>
-<span class="c">         * @type boolean</span>
-<span class="c">         * @default true</span>
-<span class="c">         */</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SHOW_HEX_SUMMARY</span><span class="o">,</span> <span class="o">{</span>
-                <span class="nx">value</span><span class="o">:</span> <span class="o">(</span><span class="nx">attr</span><span class="o">.</span><span class="nx">showhexsummary</span><span class="o">)</span> <span class="o">||</span> <span class="kc">true</span><span class="o">,</span>
-                <span class="nx">method</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">on</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="nx">_hideShowEl</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">ID</span><span class="o">.</span><span class="nx">HEX_SUMMARY</span><span class="o">,</span> <span class="nx">on</span><span class="o">);</span>
-
-                    <span class="c">// can&#39;t show both the hsv controls and the rbg hex summary</span>
-<span class="c"></span>                    <span class="k">if</span> <span class="o">(</span><span class="nx">on</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SHOW_HSV_CONTROLS</span><span class="o">))</span> <span class="o">{</span>
-                        <span class="k">this</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SHOW_HSV_CONTROLS</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
-                    <span class="o">}</span>
-                <span class="o">}</span>
-            <span class="o">});</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">ANIMATE</span><span class="o">,</span> <span class="o">{</span>
-                <span class="nx">value</span><span class="o">:</span> <span class="o">(</span><span class="nx">attr</span><span class="o">.</span><span class="nx">animate</span><span class="o">)</span> <span class="o">||</span> <span class="kc">true</span><span class="o">,</span>
-                <span class="nx">method</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">on</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="k">this</span><span class="o">.</span><span class="nx">pickerSlider</span><span class="o">.</span><span class="nx">animate</span> <span class="o">=</span> <span class="nx">on</span><span class="o">;</span>
-                    <span class="k">this</span><span class="o">.</span><span class="nx">hueSlider</span><span class="o">.</span><span class="nx">animate</span> <span class="o">=</span> <span class="nx">on</span><span class="o">;</span>
-                <span class="o">}</span>
-            <span class="o">});</span>
-
-        <span class="k">this</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">HUE</span> <span class="o">+</span> <span class="s2">&quot;Change&quot;</span><span class="o">,</span> <span class="nx">_updateRGBFromHSV</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SATURATION</span> <span class="o">+</span> <span class="s2">&quot;Change&quot;</span><span class="o">,</span> <span class="nx">_updateRGBFromHSV</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">VALUE</span> <span class="o">+</span> <span class="s2">&quot;Change&quot;</span><span class="o">,</span> <span class="nx">_updatePickerSlider</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
-
-        <span class="k">this</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">RED</span> <span class="o">+</span> <span class="s2">&quot;Change&quot;</span><span class="o">,</span> <span class="nx">_updateRGB</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">GREEN</span> <span class="o">+</span> <span class="s2">&quot;Change&quot;</span><span class="o">,</span> <span class="nx">_updateRGB</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">BLUE</span> <span class="o">+</span> <span class="s2">&quot;Change&quot;</span><span class="o">,</span> <span class="nx">_updateRGB</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
-
-        <span class="k">this</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">HEX</span> <span class="o">+</span> <span class="s2">&quot;Change&quot;</span><span class="o">,</span> <span class="nx">_updateHex</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
-
-        <span class="k">this</span><span class="o">.</span><span class="nx">initPicker</span><span class="o">();</span>
-    <span class="o">};</span>
 
     <span class="c">/**</span>
 <span class="c">     * Updates the rgb attribute with the current state of the r,g,b</span>
@@ -1503,74 +1225,358 @@
 <span class="c"></span>
     <span class="o">};</span>
 
-    <span class="c">/**</span>
-<span class="c">     * Moves the sliders into the position dictated by the current state</span>
-<span class="c">     * of the control</span>
-<span class="c">     * @method _updateSliders</span>
-<span class="c">     * @private</span>
-<span class="c">     */</span>
-    <span class="k">var</span> <span class="nx">_updateSliders</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nx">_updateHueSlider</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-        <span class="nx">_updatePickerSlider</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-    <span class="o">};</span>
+
 
     <span class="c">/**</span>
-<span class="c">     * Moves the hue slider into the position dictated by the current state</span>
-<span class="c">     * of the control</span>
-<span class="c">     * @method _updateHueSlider</span>
-<span class="c">     * @private</span>
+<span class="c">     * Sets up the config attributes and the change listeners for this</span>
+<span class="c">     * properties</span>
+<span class="c">     * @method initAttributes</span>
+<span class="c">     * @param attr An object containing default attribute values</span>
 <span class="c">     */</span>
-    <span class="k">var</span> <span class="nx">_updateHueSlider</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">var</span> <span class="nx">size</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">PICKER_SIZE</span><span class="o">),</span>
-            <span class="nx">h</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">HUE</span><span class="o">);</span>
+    <span class="nx">proto</span><span class="o">.</span><span class="nx">initAttributes</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">attr</span><span class="o">)</span> <span class="o">{</span>
 
-        <span class="nx">h</span> <span class="o">=</span> <span class="nx">size</span> <span class="o">-</span> <span class="nb">Math</span><span class="o">.</span><span class="nx">round</span><span class="o">(</span><span class="nx">h</span> <span class="o">/</span> <span class="m">360</span> <span class="o">*</span> <span class="nx">size</span><span class="o">);</span>
+        <span class="nx">attr</span> <span class="o">=</span> <span class="nx">attr</span> <span class="o">||</span> <span class="o">{};</span>
+        <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">ColorPicker</span><span class="o">.</span><span class="nx">superclass</span><span class="o">.</span><span class="nx">initAttributes</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="nx">attr</span><span class="o">);</span>
         
-        <span class="c">// 0 is at the top and bottom of the hue slider.  Always go to</span>
-<span class="c"></span>        <span class="c">// the top so we don&#39;t end up sending the thumb to the bottom</span>
-<span class="c"></span>        <span class="c">// when the value didn&#39;t actually change (e.g., a conversion</span>
-<span class="c"></span>        <span class="c">// produced 360 instead of 0 and the value was already 0).</span>
-<span class="c"></span>        <span class="k">if</span> <span class="o">(</span><span class="nx">h</span> <span class="o">===</span> <span class="nx">size</span><span class="o">)</span> <span class="o">{</span>
-            <span class="nx">h</span> <span class="o">=</span> <span class="m">0</span><span class="o">;</span>
+        <span class="c">/**</span>
+<span class="c">         * The size of the picker. Trying to change this is not recommended.</span>
+<span class="c">         * @attribute pickersize</span>
+<span class="c">         * @default 180</span>
+<span class="c">         * @type int</span>
+<span class="c">         */</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">PICKER_SIZE</span><span class="o">,</span> <span class="o">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">size</span> <span class="o">||</span> <span class="k">this</span><span class="o">.</span><span class="nx">DEFAULT</span><span class="o">.</span><span class="nx">PICKER_SIZE</span>
+            <span class="o">});</span>
+
+        <span class="c">/**</span>
+<span class="c">         * The current hue value 0-360</span>
+<span class="c">         * @attribute hue</span>
+<span class="c">         * @type int</span>
+<span class="c">         */</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">HUE</span><span class="o">,</span> <span class="o">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">hue</span> <span class="o">||</span> <span class="m">0</span><span class="o">,</span>
+                <span class="nx">validator</span><span class="o">:</span> <span class="nx">lang</span><span class="o">.</span><span class="nx">isNumber</span>
+            <span class="o">});</span>
+
+        <span class="c">/**</span>
+<span class="c">         * The current saturation value 0-100</span>
+<span class="c">         * @attribute saturation</span>
+<span class="c">         * @type int</span>
+<span class="c">         */</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SATURATION</span><span class="o">,</span> <span class="o">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">saturation</span> <span class="o">||</span> <span class="m">0</span><span class="o">,</span>
+                <span class="nx">validator</span><span class="o">:</span> <span class="nx">lang</span><span class="o">.</span><span class="nx">isNumber</span>
+            <span class="o">});</span>
+
+        <span class="c">/**</span>
+<span class="c">         * The current value/brightness value 0-100</span>
+<span class="c">         * @attribute value</span>
+<span class="c">         * @type int</span>
+<span class="c">         */</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">VALUE</span><span class="o">,</span> <span class="o">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">value</span> <span class="o">||</span> <span class="m">100</span><span class="o">,</span>
+                <span class="nx">validator</span><span class="o">:</span> <span class="nx">lang</span><span class="o">.</span><span class="nx">isNumber</span>
+            <span class="o">});</span>
+
+        <span class="c">/**</span>
+<span class="c">         * The current red value 0-255</span>
+<span class="c">         * @attribute red</span>
+<span class="c">         * @type int</span>
+<span class="c">         */</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">RED</span><span class="o">,</span> <span class="o">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">red</span> <span class="o">||</span> <span class="m">255</span><span class="o">,</span>
+                <span class="nx">validator</span><span class="o">:</span> <span class="nx">lang</span><span class="o">.</span><span class="nx">isNumber</span>
+            <span class="o">});</span>
+
+        <span class="c">/**</span>
+<span class="c">         * The current green value 0-255</span>
+<span class="c">         * @attribute green </span>
+<span class="c">         * @type int</span>
+<span class="c">         */</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">GREEN</span><span class="o">,</span> <span class="o">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">red</span> <span class="o">||</span> <span class="m">255</span><span class="o">,</span>
+                <span class="nx">validator</span><span class="o">:</span> <span class="nx">lang</span><span class="o">.</span><span class="nx">isNumber</span>
+            <span class="o">});</span>
+
+        <span class="c">/**</span>
+<span class="c">         * The current blue value 0-255</span>
+<span class="c">         * @attribute blue</span>
+<span class="c">         * @type int</span>
+<span class="c">         */</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">BLUE</span><span class="o">,</span> <span class="o">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">blue</span> <span class="o">||</span> <span class="m">255</span><span class="o">,</span>
+                <span class="nx">validator</span><span class="o">:</span> <span class="nx">lang</span><span class="o">.</span><span class="nx">isNumber</span>
+            <span class="o">});</span>
+
+        <span class="c">/**</span>
+<span class="c">         * The current hex value #000000-#FFFFFF, without the #</span>
+<span class="c">         * @attribute hex</span>
+<span class="c">         * @type string</span>
+<span class="c">         */</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">HEX</span><span class="o">,</span> <span class="o">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">hex</span> <span class="o">||</span> <span class="s2">&quot;FFFFFF&quot;</span><span class="o">,</span>
+                <span class="nx">validator</span><span class="o">:</span> <span class="nx">lang</span><span class="o">.</span><span class="nx">isString</span>
+            <span class="o">});</span>
+
+        <span class="c">/**</span>
+<span class="c">         * The current rgb value.  Updates the state of all of the</span>
+<span class="c">         * other value fields.  Read-only: use setValue to set the</span>
+<span class="c">         * controls rgb value.</span>
+<span class="c">         * @attribute hex</span>
+<span class="c">         * @type [int, int, int]</span>
+<span class="c">         * @readonly</span>
+<span class="c">         */</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">RGB</span><span class="o">,</span> <span class="o">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">rgb</span> <span class="o">||</span> <span class="o">[</span><span class="m">255</span><span class="o">,</span><span class="m">255</span><span class="o">,</span><span class="m">255</span><span class="o">],</span>
+                <span class="nx">method</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">rgb</span><span class="o">)</span> <span class="o">{</span>
+
+                    <span class="k">this</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">RED</span><span class="o">,</span> <span class="nx">rgb</span><span class="o">[</span><span class="m">0</span><span class="o">],</span> <span class="kc">true</span><span class="o">);</span>
+                    <span class="k">this</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">GREEN</span><span class="o">,</span> <span class="nx">rgb</span><span class="o">[</span><span class="m">1</span><span class="o">],</span> <span class="kc">true</span><span class="o">);</span>
+                    <span class="k">this</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">BLUE</span><span class="o">,</span> <span class="nx">rgb</span><span class="o">[</span><span class="m">2</span><span class="o">],</span> <span class="kc">true</span><span class="o">);</span>
+
+                    <span class="k">var</span> <span class="nx">websafe</span> <span class="o">=</span> <span class="nx">Color</span><span class="o">.</span><span class="nx">websafe</span><span class="o">(</span><span class="nx">rgb</span><span class="o">);</span>
+                    <span class="k">this</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">WEBSAFE</span><span class="o">,</span> <span class="nx">websafe</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+
+                    <span class="k">var</span> <span class="nx">hex</span> <span class="o">=</span> <span class="nx">Color</span><span class="o">.</span><span class="nx">rgb2hex</span><span class="o">(</span><span class="nx">rgb</span><span class="o">);</span>
+                    <span class="k">this</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">HEX</span><span class="o">,</span> <span class="nx">hex</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+
+                    <span class="k">var</span> <span class="nx">hsv</span> <span class="o">=</span> <span class="nx">Color</span><span class="o">.</span><span class="nx">rgb2hsv</span><span class="o">(</span><span class="nx">rgb</span><span class="o">);</span>
+
+                    <span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="nx">sub</span><span class="o">(</span><span class="s2">&quot;RGB value set to {rgb} (hsv: {hsv})&quot;</span><span class="o">,</span> <span class="o">{</span>
+                            <span class="s2">&quot;hsv&quot;</span><span class="o">:</span> <span class="nx">hsv</span><span class="o">,</span> <span class="s2">&quot;rgb&quot;</span><span class="o">:</span> <span class="nx">rgb</span>
+                        <span class="o">}));</span>
+
+                    <span class="k">this</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">HUE</span><span class="o">,</span> <span class="nx">hsv</span><span class="o">[</span><span class="m">0</span><span class="o">],</span> <span class="kc">true</span><span class="o">);</span>
+                    <span class="k">this</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SATURATION</span><span class="o">,</span> <span class="nb">Math</span><span class="o">.</span><span class="nx">round</span><span class="o">(</span><span class="nx">hsv</span><span class="o">[</span><span class="m">1</span><span class="o">]*</span><span class="m">100</span><span class="o">),</span> <span class="kc">true</span><span class="o">);</span>
+                    <span class="k">this</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">VALUE</span><span class="o">,</span> <span class="nb">Math</span><span class="o">.</span><span class="nx">round</span><span class="o">(</span><span class="nx">hsv</span><span class="o">[</span><span class="m">2</span><span class="o">]*</span><span class="m">100</span><span class="o">),</span> <span class="kc">true</span><span class="o">);</span>
+                <span class="o">},</span>
+                <span class="nx">readonly</span><span class="o">:</span> <span class="kc">true</span>
+            <span class="o">});</span>
+
+        <span class="c">/**</span>
+<span class="c">         * If the color picker will live inside of a container object,</span>
+<span class="c">         * set, provide a reference to it so the control can use the</span>
+<span class="c">         * container&#39;s events.</span>
+<span class="c">         * @attribute container</span>
+<span class="c">         * @type YAHOO.widget.Panel</span>
+<span class="c">         */</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">CONTAINER</span><span class="o">,</span> <span class="o">{</span>
+                    <span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="o">,</span>
+                    <span class="nx">method</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">container</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="k">if</span> <span class="o">(</span><span class="nx">container</span><span class="o">)</span> <span class="o">{</span>
+                            <span class="c">// Position can get out of sync when the</span>
+<span class="c"></span>                            <span class="c">// control is manipulated while display is</span>
+<span class="c"></span>                            <span class="c">// none.  Resetting the slider constraints</span>
+<span class="c"></span>                            <span class="c">// when it is visible gets the state back in</span>
+<span class="c"></span>                            <span class="c">// order.</span>
+<span class="c"></span>                            <span class="nx">container</span><span class="o">.</span><span class="nx">showEvent</span><span class="o">.</span><span class="nx">subscribe</span><span class="o">(</span><span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+                                <span class="c">// this.pickerSlider.thumb.resetConstraints();</span>
+<span class="c"></span>                                <span class="c">// this.hueSlider.thumb.resetConstraints();</span>
+<span class="c"></span>                                <span class="k">this</span><span class="o">.</span><span class="nx">pickerSlider</span><span class="o">.</span><span class="nx">focus</span><span class="o">();</span>
+                            <span class="o">},</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+                        <span class="o">}</span>
+                    <span class="o">}</span>
+                <span class="o">});</span>
+        <span class="c">/**</span>
+<span class="c">         * The closest current websafe value</span>
+<span class="c">         * @attribute websafe</span>
+<span class="c">         * @type int</span>
+<span class="c">         */</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">WEBSAFE</span><span class="o">,</span> <span class="o">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">websafe</span> <span class="o">||</span> <span class="o">[</span><span class="m">255</span><span class="o">,</span><span class="m">255</span><span class="o">,</span><span class="m">255</span><span class="o">]</span>
+            <span class="o">});</span>
+
+
+        <span class="k">var</span> <span class="nx">ids</span> <span class="o">=</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">ids</span> <span class="o">||</span> <span class="nx">lang</span><span class="o">.</span><span class="nx">merge</span><span class="o">({},</span> <span class="k">this</span><span class="o">.</span><span class="nx">ID</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(!</span><span class="nx">attr</span><span class="o">.</span><span class="nx">ids</span> <span class="o">&amp;&amp;</span> <span class="nx">_pickercount</span> <span class="o">&gt;</span> <span class="m">1</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="k">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">ids</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="nx">lang</span><span class="o">.</span><span class="nx">hasOwnProperty</span><span class="o">(</span><span class="nx">ids</span><span class="o">,</span> <span class="nx">i</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="nx">ids</span><span class="o">[</span><span class="nx">i</span><span class="o">]</span> <span class="o">=</span> <span class="nx">ids</span><span class="o">[</span><span class="nx">i</span><span class="o">]</span> <span class="o">+</span> <span class="nx">_pickercount</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
         <span class="o">}</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;Hue slider is being set to &quot;</span> <span class="o">+</span> <span class="nx">h</span><span class="o">);</span>
 
-        <span class="k">this</span><span class="o">.</span><span class="nx">hueSlider</span><span class="o">.</span><span class="nx">setValue</span><span class="o">(</span><span class="nx">h</span><span class="o">);</span>
+
+        <span class="c">/**</span>
+<span class="c">         * A list of element ids and/or element references used by the </span>
+<span class="c">         * control.  The default is the this.ID list, and can be customized</span>
+<span class="c">         * by passing a list in the contructor</span>
+<span class="c">         * @attribute ids</span>
+<span class="c">         * @type {referenceid: realid}</span>
+<span class="c">         * @writeonce</span>
+<span class="c">         */</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">IDS</span><span class="o">,</span> <span class="o">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="nx">ids</span><span class="o">,</span>
+                <span class="nx">writeonce</span><span class="o">:</span> <span class="kc">true</span>
+            <span class="o">});</span>
+
+        <span class="c">/**</span>
+<span class="c">         * A list of txt strings for internationalization.  Default</span>
+<span class="c">         * is this.TXT</span>
+<span class="c">         * @attribute txt</span>
+<span class="c">         * @type {key: txt}</span>
+<span class="c">         * @writeonce</span>
+<span class="c">         */</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">TXT</span><span class="o">,</span> <span class="o">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">txt</span> <span class="o">||</span> <span class="k">this</span><span class="o">.</span><span class="nx">TXT</span><span class="o">,</span>
+                <span class="nx">writeonce</span><span class="o">:</span> <span class="kc">true</span>
+            <span class="o">});</span>
+
+        <span class="c">/**</span>
+<span class="c">         * The img src default list</span>
+<span class="c">         * is this.IMAGES</span>
+<span class="c">         * @attribute images</span>
+<span class="c">         * @type {key: image}</span>
+<span class="c">         * @writeonce</span>
+<span class="c">         */</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">IMAGES</span><span class="o">,</span> <span class="o">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">images</span> <span class="o">||</span> <span class="k">this</span><span class="o">.</span><span class="nx">IMAGE</span><span class="o">,</span>
+                <span class="nx">writeonce</span><span class="o">:</span> <span class="kc">true</span>
+            <span class="o">});</span>
+        <span class="c">/**</span>
+<span class="c">         * The element refs used by this control.  Set at initialization</span>
+<span class="c">         * @attribute elements</span>
+<span class="c">         * @type {id: HTMLElement}</span>
+<span class="c">         * @readonly</span>
+<span class="c">         */</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">ELEMENTS</span><span class="o">,</span> <span class="o">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="o">{},</span>
+                <span class="nx">readonly</span><span class="o">:</span> <span class="kc">true</span>
+            <span class="o">});</span>
+
+        <span class="c">/**</span>
+<span class="c">         * Returns the cached element reference.  If the id is not a string, it</span>
+<span class="c">         * is assumed that it is an element and this is returned.</span>
+<span class="c">         * @param id {string|HTMLElement} the element key, id, or ref</span>
+<span class="c">         * @param on {boolean} hide or show.  If true, show</span>
+<span class="c">         * @private */</span>
+        <span class="k">var</span> <span class="nx">_hideShowEl</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">id</span><span class="o">,</span> <span class="nx">on</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="o">(</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isString</span><span class="o">(</span><span class="nx">id</span><span class="o">)</span> <span class="o">?</span> <span class="k">this</span><span class="o">.</span><span class="nx">getElement</span><span class="o">(</span><span class="nx">id</span><span class="o">)</span> <span class="o">:</span> <span class="nx">id</span><span class="o">);</span>
+            <span class="c">//Dom.setStyle(id, &quot;visibility&quot;, (on) ? &quot;&quot; : &quot;hidden&quot;);</span>
+<span class="c"></span>            <span class="nx">Dom</span><span class="o">.</span><span class="nx">setStyle</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="s2">&quot;display&quot;</span><span class="o">,</span> <span class="o">(</span><span class="nx">on</span><span class="o">)</span> <span class="o">?</span> <span class="s2">&quot;&quot;</span> <span class="o">:</span> <span class="s2">&quot;none&quot;</span><span class="o">);</span>
+        <span class="o">};</span>
+
+        <span class="c">/**</span>
+<span class="c">         * Hide/show the entire set of controls</span>
+<span class="c">         * @attribute showcontrols</span>
+<span class="c">         * @type boolean</span>
+<span class="c">         * @default true</span>
+<span class="c">         */</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SHOW_CONTROLS</span><span class="o">,</span> <span class="o">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="o">(</span><span class="nx">attr</span><span class="o">.</span><span class="nx">showcontrols</span><span class="o">)</span> <span class="o">||</span> <span class="kc">true</span><span class="o">,</span>
+                <span class="nx">method</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">on</span><span class="o">)</span> <span class="o">{</span>
+
+                    <span class="k">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nx">Dom</span><span class="o">.</span><span class="nx">getElementsByClassName</span><span class="o">(</span><span class="s2">&quot;bd&quot;</span><span class="o">,</span> <span class="s2">&quot;div&quot;</span><span class="o">,</span> 
+                            <span class="k">this</span><span class="o">.</span><span class="nx">getElement</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">ID</span><span class="o">.</span><span class="nx">CONTROLS</span><span class="o">))[</span><span class="m">0</span><span class="o">];</span>
+
+                    <span class="nx">_hideShowEl</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="nx">el</span><span class="o">,</span> <span class="nx">on</span><span class="o">);</span>
+
+                    <span class="k">this</span><span class="o">.</span><span class="nx">getElement</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">ID</span><span class="o">.</span><span class="nx">CONTROLS_LABEL</span><span class="o">).</span><span class="nx">innerHTML</span> <span class="o">=</span> 
+                        <span class="o">(</span><span class="nx">on</span><span class="o">)</span> <span class="o">?</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">TXT</span><span class="o">).</span><span class="nx">HIDE_CONTROLS</span> <span class="o">:</span>
+                               <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">TXT</span><span class="o">).</span><span class="nx">SHOW_CONTROLS</span><span class="o">;</span>
+
+                <span class="o">}</span>
+            <span class="o">});</span>
+
+        <span class="c">/**</span>
+<span class="c">         * Hide/show the rgb controls</span>
+<span class="c">         * @attribute showrgbcontrols</span>
+<span class="c">         * @type boolean</span>
+<span class="c">         * @default true</span>
+<span class="c">         */</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SHOW_RGB_CONTROLS</span><span class="o">,</span> <span class="o">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="o">(</span><span class="nx">attr</span><span class="o">.</span><span class="nx">showrgbcontrols</span><span class="o">)</span> <span class="o">||</span> <span class="kc">true</span><span class="o">,</span>
+                <span class="nx">method</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">on</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="c">//Dom.setStyle(this.getElement(this.ID.RBG_CONTROLS), &quot;visibility&quot;, (on) ? &quot;&quot; : &quot;hidden&quot;);</span>
+<span class="c"></span>                    <span class="nx">_hideShowEl</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">ID</span><span class="o">.</span><span class="nx">RGB_CONTROLS</span><span class="o">,</span> <span class="nx">on</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">});</span>
+
+        <span class="c">/**</span>
+<span class="c">         * Hide/show the hsv controls</span>
+<span class="c">         * @attribute showhsvcontrols</span>
+<span class="c">         * @type boolean</span>
+<span class="c">         * @default false</span>
+<span class="c">         */</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SHOW_HSV_CONTROLS</span><span class="o">,</span> <span class="o">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="o">(</span><span class="nx">attr</span><span class="o">.</span><span class="nx">showhsvcontrols</span><span class="o">)</span> <span class="o">||</span> <span class="kc">false</span><span class="o">,</span>
+                <span class="nx">method</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">on</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="c">//Dom.setStyle(this.getElement(this.ID.HSV_CONTROLS), &quot;visibility&quot;, (on) ? &quot;&quot; : &quot;hidden&quot;);</span>
+<span class="c"></span>                    <span class="nx">_hideShowEl</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">ID</span><span class="o">.</span><span class="nx">HSV_CONTROLS</span><span class="o">,</span> <span class="nx">on</span><span class="o">);</span>
+
+                    <span class="c">// can&#39;t show both the hsv controls and the rbg hex summary</span>
+<span class="c"></span>                    <span class="k">if</span> <span class="o">(</span><span class="nx">on</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SHOW_HEX_SUMMARY</span><span class="o">))</span> <span class="o">{</span>
+                        <span class="k">this</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SHOW_HEX_SUMMARY</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">});</span>
+
+        <span class="c">/**</span>
+<span class="c">         * Hide/show the hex controls</span>
+<span class="c">         * @attribute showhexcontrols</span>
+<span class="c">         * @type boolean</span>
+<span class="c">         * @default true</span>
+<span class="c">         */</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SHOW_HEX_CONTROLS</span><span class="o">,</span> <span class="o">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="o">(</span><span class="nx">attr</span><span class="o">.</span><span class="nx">showhexcontrols</span><span class="o">)</span> <span class="o">||</span> <span class="kc">false</span><span class="o">,</span>
+                <span class="nx">method</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">on</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="nx">_hideShowEl</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">ID</span><span class="o">.</span><span class="nx">HEX_CONTROLS</span><span class="o">,</span> <span class="nx">on</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">});</span>
+
+        <span class="c">/**</span>
+<span class="c">         * Hide/show the websafe swatch</span>
+<span class="c">         * @attribute showwebsafe</span>
+<span class="c">         * @type boolean</span>
+<span class="c">         * @default true</span>
+<span class="c">         */</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SHOW_WEBSAFE</span><span class="o">,</span> <span class="o">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="o">(</span><span class="nx">attr</span><span class="o">.</span><span class="nx">showwebsafe</span><span class="o">)</span> <span class="o">||</span> <span class="kc">true</span><span class="o">,</span>
+                <span class="nx">method</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">on</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="nx">_hideShowEl</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">ID</span><span class="o">.</span><span class="nx">WEBSAFE_SWATCH</span><span class="o">,</span> <span class="nx">on</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">});</span>
+
+        <span class="c">/**</span>
+<span class="c">         * Hide/show the hex summary</span>
+<span class="c">         * @attribute showhexsummary</span>
+<span class="c">         * @type boolean</span>
+<span class="c">         * @default true</span>
+<span class="c">         */</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SHOW_HEX_SUMMARY</span><span class="o">,</span> <span class="o">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="o">(</span><span class="nx">attr</span><span class="o">.</span><span class="nx">showhexsummary</span><span class="o">)</span> <span class="o">||</span> <span class="kc">true</span><span class="o">,</span>
+                <span class="nx">method</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">on</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="nx">_hideShowEl</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">ID</span><span class="o">.</span><span class="nx">HEX_SUMMARY</span><span class="o">,</span> <span class="nx">on</span><span class="o">);</span>
+
+                    <span class="c">// can&#39;t show both the hsv controls and the rbg hex summary</span>
+<span class="c"></span>                    <span class="k">if</span> <span class="o">(</span><span class="nx">on</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SHOW_HSV_CONTROLS</span><span class="o">))</span> <span class="o">{</span>
+                        <span class="k">this</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SHOW_HSV_CONTROLS</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">});</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">ANIMATE</span><span class="o">,</span> <span class="o">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="o">(</span><span class="nx">attr</span><span class="o">.</span><span class="nx">animate</span><span class="o">)</span> <span class="o">||</span> <span class="kc">true</span><span class="o">,</span>
+                <span class="nx">method</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">on</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">this</span><span class="o">.</span><span class="nx">pickerSlider</span><span class="o">.</span><span class="nx">animate</span> <span class="o">=</span> <span class="nx">on</span><span class="o">;</span>
+                    <span class="k">this</span><span class="o">.</span><span class="nx">hueSlider</span><span class="o">.</span><span class="nx">animate</span> <span class="o">=</span> <span class="nx">on</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">});</span>
+
+        <span class="k">this</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">HUE</span> <span class="o">+</span> <span class="s2">&quot;Change&quot;</span><span class="o">,</span> <span class="nx">_updateRGBFromHSV</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SATURATION</span> <span class="o">+</span> <span class="s2">&quot;Change&quot;</span><span class="o">,</span> <span class="nx">_updateRGBFromHSV</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">VALUE</span> <span class="o">+</span> <span class="s2">&quot;Change&quot;</span><span class="o">,</span> <span class="nx">_updatePickerSlider</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+
+        <span class="k">this</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">RED</span> <span class="o">+</span> <span class="s2">&quot;Change&quot;</span><span class="o">,</span> <span class="nx">_updateRGB</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">GREEN</span> <span class="o">+</span> <span class="s2">&quot;Change&quot;</span><span class="o">,</span> <span class="nx">_updateRGB</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">BLUE</span> <span class="o">+</span> <span class="s2">&quot;Change&quot;</span><span class="o">,</span> <span class="nx">_updateRGB</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+
+        <span class="k">this</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">HEX</span> <span class="o">+</span> <span class="s2">&quot;Change&quot;</span><span class="o">,</span> <span class="nx">_updateHex</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+
+        <span class="k">this</span><span class="o">.</span><span class="nx">initPicker</span><span class="o">();</span>
     <span class="o">};</span>
 
-    <span class="c">/**</span>
-<span class="c">     * Moves the picker slider into the position dictated by the current state</span>
-<span class="c">     * of the control</span>
-<span class="c">     * @method _updatePickerSlider</span>
-<span class="c">     * @private</span>
-<span class="c">     */</span>
-    <span class="k">var</span> <span class="nx">_updatePickerSlider</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">var</span> <span class="nx">size</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">PICKER_SIZE</span><span class="o">),</span>
-            <span class="nx">s</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">SATURATION</span><span class="o">),</span>
-            <span class="nx">v</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">OPT</span><span class="o">.</span><span class="nx">VALUE</span><span class="o">);</span>
 
-        <span class="nx">s</span> <span class="o">=</span> <span class="nb">Math</span><span class="o">.</span><span class="nx">round</span><span class="o">(</span><span class="nx">s</span> <span class="o">*</span> <span class="nx">size</span> <span class="o">/</span> <span class="m">100</span><span class="o">);</span>
-        <span class="nx">v</span> <span class="o">=</span> <span class="nb">Math</span><span class="o">.</span><span class="nx">round</span><span class="o">(</span><span class="nx">size</span> <span class="o">-</span> <span class="o">(</span><span class="nx">v</span> <span class="o">*</span> <span class="nx">size</span> <span class="o">/</span> <span class="m">100</span><span class="o">));</span>
-
-        <span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;Setting picker slider to &quot;</span> <span class="o">+</span> <span class="o">[</span><span class="nx">s</span><span class="o">,</span> <span class="nx">v</span><span class="o">]);</span>
-
-        <span class="k">this</span><span class="o">.</span><span class="nx">pickerSlider</span><span class="o">.</span><span class="nx">setRegionValue</span><span class="o">(</span><span class="nx">s</span><span class="o">,</span> <span class="nx">v</span><span class="o">);</span>
-    <span class="o">};</span>
-
-    <span class="c">/**</span>
-<span class="c">     * Creates the host element if it doesn&#39;t exist</span>
-<span class="c">     * @method _createHostElement</span>
-<span class="c">     * @private</span>
-<span class="c">     */</span>
-    <span class="k">var</span> <span class="nx">_createHostElement</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s1">&#39;div&#39;</span><span class="o">);</span>
-
-        <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">CSS</span><span class="o">.</span><span class="nx">BASE</span><span class="o">)</span> <span class="o">{</span>
-            <span class="nx">el</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">CSS</span><span class="o">.</span><span class="nx">BASE</span><span class="o">;</span>
-        <span class="o">}</span>
-        
-        <span class="k">return</span> <span class="nx">el</span><span class="o">;</span>
-    <span class="o">};</span>
 
 
 <span class="o">})();</span>

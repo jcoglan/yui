@@ -95,6 +95,7 @@
                                                       close: false, 
                                                       draggable: false, 
                                                       modal: true,
+						      zindex:4,
                                                       visible: false
                                                     } 
                                                 );
@@ -133,7 +134,8 @@
     YAHOO.util.Event.on("panelbutton", "click", init);
 		
 </script>
-<button id="panelbutton">Show Panel</button>	
+<button id="panelbutton">Show Panel</button>
+	
 	<!--END SOURCE CODE FOR EXAMPLE =============================== -->
 	
 		
@@ -147,7 +149,7 @@
 
 <p>The Panel can be used to display a temporary message is automatically dismissed when a task has completed. In this tutorial, we will build a Panel that will be displayed while content is being loaded from an external data source, and will be dismissed when the content has finished loading.</p>
 
-<p>We will start by instantiating a Panel and configuring it to display an image and some text in its body:</p>
+<p>We will start by instantiating a Panel and configuring it to display an image and some text in its body. We set it's zindex to be higher than other positioned elements on the page:</p>
 
 <textarea name="code" class="JScript" cols="60" rows="1">
 // Initialize the temporary Panel to display while waiting for external content to load
@@ -157,6 +159,7 @@ YAHOO.example.container.wait =
 			  fixedcenter:true, 
 			  close:false, 
 			  draggable:false, 
+			  zindex:4,
 			  modal:true,
 			  visible:false
 			} 
@@ -198,7 +201,8 @@ YAHOO.example.container.wait.show();
 
 // Connect to our data source and load the data
 var conn = YAHOO.util.Connect.asyncRequest("GET", "../assets/somedata.php?r=" + new Date().getTime(), callback);
-</textarea>				</div>
+</textarea>
+				</div>
 				<div class="yui-u">
 						<div id="loggerModule" class="yui-skin-sam">
 						<h3 class="firstContent">YUI Logger Output:</h3>

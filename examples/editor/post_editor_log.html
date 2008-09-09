@@ -80,9 +80,6 @@
     #submitEditor {
         margin: 1em;
     }
-    #editor_container .yui-toolbar-separator-5 {
-        border: none;
-    }   
     #status {
         margin: 2em;
         border: 1px solid black;
@@ -131,7 +128,7 @@ This is some more test text.<br>This is some more test text.<br>This is some mor
 
     var myConfig = {
         height: '300px',
-        width: '522px',
+        width: '530px',
         animate: true,
         dompath: true
     };
@@ -144,9 +141,11 @@ This is some more test text.<br>This is some more test text.<br>This is some mor
         YAHOO.log('Button clicked, initiate transaction', 'info', 'example');
         Event.stopEvent(ev);
         myEditor.saveHTML();
-        var sUrl = "assets/post.php";
-        var data = 'filter=' + ((Dom.get('filter').checked) ? 'yes' : 'no') + '&editor_data=' + encodeURI(myEditor.get('textarea').value);
-        var request = YAHOO.util.Connect.asyncRequest('POST', sUrl, callback, data);
+        window.setTimeout(function() {
+            var sUrl = "assets/post.php";
+            var data = 'filter=' + ((Dom.get('filter').checked) ? 'yes' : 'no') + '&editor_data=' + encodeURI(myEditor.get('textarea').value);
+            var request = YAHOO.util.Connect.asyncRequest('POST', sUrl, callback, data);
+        }, 200);
     });
 
     Event.on(window, 'load', function() {
@@ -192,9 +191,10 @@ This is some more test text.<br>This is some more test text.<br>This is some mor
         //The Editor config
         var myConfig = {
             height: '300px',
-            width: '522px',
+            width: '530px',
             animate: true,
-            dompath: true
+            dompath: true,
+            focusAtStart: true
         };
 
     //Now let's load the Editor..
@@ -235,16 +235,18 @@ var callback = {
 <p>Before making the request, we need to pull the HTML from the editor by calling the <code>myEditor.saveHTML</code> method. This will place the filtered HTML from the Editor back into the textarea.</p>
 
 <p>Once we have that, we contruct our query string, and fire off the request.</p>
+<p><strong>Note:</strong> The request is wrapped in a short <code>setTimeout</code> to allow the browser to finish the cleanup calls that the Editor is making.</p>
 
 <textarea name="code" class="JScript">
     _button.on('click', function(ev) {
         YAHOO.log('Button clicked, initiate transaction', 'info', 'example');
         Event.stopEvent(ev);
         myEditor.saveHTML();
-        var sUrl = "assets/post.php";
-        var data = 'filter=' + ((Dom.get('filter').checked) ? 'yes' : 'no') +
-            '&editor_data=' + encodeURI(myEditor.get('textarea').value);
-        var request = YAHOO.util.Connect.asyncRequest('POST', sUrl, callback, data);
+        window.setTimeout(function() {
+            var sUrl = "assets/post.php";
+            var data = 'filter=' + ((Dom.get('filter').checked) ? 'yes' : 'no') + '&editor_data=' + encodeURI(myEditor.get('textarea').value);
+            var request = YAHOO.util.Connect.asyncRequest('POST', sUrl, callback, data);
+        }, 200);
     });
 </textarea>
 
@@ -318,8 +320,7 @@ echo($json->encode($data));
         var handleSuccess = function(o) {
             YAHOO.log('Post success', 'info', 'example');
             var data = eval('(' + o.responseText + ')');
-            status.innerHTML = 'Status: ' + data.Results.status +
-                '<br>Filter: ' + data.Results.filter + '<br>' + (new Date().toString());
+            status.innerHTML = 'Status: ' + data.Results.status + '<br>Filter: ' + data.Results.filter + '<br>' + (new Date().toString());
             myEditor.setEditorHTML(data.Results.data);
         }
         var handleFailure = function(o) {
@@ -339,7 +340,7 @@ echo($json->encode($data));
 
     var myConfig = {
         height: '300px',
-        width: '522px',
+        width: '530px',
         animate: true,
         dompath: true
     };
@@ -352,10 +353,11 @@ echo($json->encode($data));
         YAHOO.log('Button clicked, initiate transaction', 'info', 'example');
         Event.stopEvent(ev);
         myEditor.saveHTML();
-        var sUrl = "assets/post.php";
-        var data = 'filter=' + ((Dom.get('filter').checked) ? 'yes' : 'no') +
-            '&editor_data=' + encodeURI(myEditor.get('textarea').value);
-        var request = YAHOO.util.Connect.asyncRequest('POST', sUrl, callback, data);
+        window.setTimeout(function() {
+            var sUrl = "assets/post.php";
+            var data = 'filter=' + ((Dom.get('filter').checked) ? 'yes' : 'no') + '&editor_data=' + encodeURI(myEditor.get('textarea').value);
+            var request = YAHOO.util.Connect.asyncRequest('POST', sUrl, callback, data);
+        }, 200);
     });
 
     Event.on(window, 'load', function() {
@@ -381,7 +383,7 @@ echo($json->encode($data));
 	
 						<div id="exampleToc">
 							<ul>
-								<li><a href='../editor/flickr_editor.html'>Flickr Image Search</a></li><li><a href='../editor/cal_editor.html'>Calendar Plugin</a></li><li><a href='../editor/icon_editor.html'>Icon Insertion</a></li><li><a href='../editor/switch_editor.html'>Plain Text Switcher</a></li><li class='selected'><a href='../editor/post_editor.html'>Editor Data Post with Connection Manager</a></li><li><a href='../editor/skinning_editor.html'>Skinning the Editor</a></li>							</ul>
+								<li><a href='../editor/flickr_editor.html'>Flickr Image Search</a></li><li><a href='../editor/cal_editor.html'>Calendar Plugin</a></li><li><a href='../editor/icon_editor.html'>Icon Insertion</a></li><li><a href='../editor/switch_editor.html'>Plain Text Switcher</a></li><li class='selected'><a href='../editor/post_editor.html'>Editor Data Post with Connection Manager</a></li><li><a href='../editor/skinning_editor.html'>Skinning the Editor</a></li><li><a href='../editor/toolbar_editor.html'>Default toolbar config</a></li><li><a href='../editor/tabview_editor.html'>Editor inside a Tabview control</a></li><li><a href='../editor/multi_editor.html'>One editor, multiple edit areas</a></li>							</ul>
 						</div>
 					</div>
 					

@@ -12,8 +12,8 @@
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
-        <h1>Yahoo! UI Library</h1>
-        <h3>YAHOO Global&nbsp; <span class="subtitle">2.3.0</span></h3>
+        <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
+        <h3>YAHOO Global&nbsp; <span class="subtitle">2.3.1</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_yahoo.html">yahoo</a>
@@ -173,7 +173,7 @@
 <span class="c">     */</span>
     <span class="nx">_IEEnumFix</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">r</span><span class="o">,</span> <span class="nx">s</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">ua</span><span class="o">.</span><span class="nx">ie</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">var</span> <span class="nx">add</span><span class="o">=[</span><span class="s2">&quot;toString&quot;</span><span class="o">,</span> <span class="s2">&quot;valueOf&quot;</span><span class="o">];</span>
+            <span class="k">var</span> <span class="nx">add</span><span class="o">=[</span><span class="s2">&quot;toString&quot;</span><span class="o">,</span> <span class="s2">&quot;valueOf&quot;</span><span class="o">],</span> <span class="nx">i</span><span class="o">;</span>
             <span class="k">for</span> <span class="o">(</span><span class="nx">i</span><span class="o">=</span><span class="m">0</span><span class="o">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">add</span><span class="o">.</span><span class="nx">length</span><span class="o">;</span><span class="nx">i</span><span class="o">=</span><span class="nx">i</span><span class="o">+</span><span class="m">1</span><span class="o">)</span> <span class="o">{</span>
                 <span class="k">var</span> <span class="nx">fname</span><span class="o">=</span><span class="nx">add</span><span class="o">[</span><span class="nx">i</span><span class="o">],</span><span class="nx">f</span><span class="o">=</span><span class="nx">s</span><span class="o">[</span><span class="nx">fname</span><span class="o">];</span>
                 <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isFunction</span><span class="o">(</span><span class="nx">f</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="nx">f</span><span class="o">!=</span><span class="nb">Object</span><span class="o">.</span><span class="nx">prototype</span><span class="o">[</span><span class="nx">fname</span><span class="o">])</span> <span class="o">{</span>
@@ -304,12 +304,13 @@
         <span class="k">var</span> <span class="nx">l</span><span class="o">=</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">,</span><span class="nx">i</span><span class="o">,</span><span class="nx">len</span><span class="o">,</span><span class="nx">s</span><span class="o">=[],</span><span class="nx">OBJ</span><span class="o">=</span><span class="s2">&quot;{...}&quot;</span><span class="o">,</span><span class="nx">FUN</span><span class="o">=</span><span class="s2">&quot;f(){...}&quot;</span><span class="o">,</span>
             <span class="nx">COMMA</span><span class="o">=</span><span class="s1">&#39;, &#39;</span><span class="o">,</span> <span class="nx">ARROW</span><span class="o">=</span><span class="s1">&#39; =&gt; &#39;</span><span class="o">;</span>
 
-        <span class="c">// Skip non-objects</span>
+        <span class="c">// Cast non-objects to string</span>
 <span class="c"></span>        <span class="c">// Skip dates because the std toString is what we want</span>
 <span class="c"></span>        <span class="c">// Skip HTMLElement-like objects because trying to dump </span>
 <span class="c"></span>        <span class="c">// an element will cause an unhandled exception in FF 2.x</span>
-<span class="c"></span>        <span class="k">if</span> <span class="o">(!</span><span class="nx">l</span><span class="o">.</span><span class="nx">isObject</span><span class="o">(</span><span class="nx">o</span><span class="o">)</span> <span class="o">||</span> <span class="nx">o</span> <span class="k">instanceof</span> <span class="nb">Date</span> <span class="o">||</span> 
-            <span class="o">(</span><span class="s2">&quot;nodeType&quot;</span> <span class="k">in</span> <span class="nx">o</span> <span class="o">&amp;&amp;</span> <span class="s2">&quot;tagName&quot;</span> <span class="k">in</span> <span class="nx">o</span><span class="o">))</span> <span class="o">{</span>
+<span class="c"></span>        <span class="k">if</span> <span class="o">(!</span><span class="nx">l</span><span class="o">.</span><span class="nx">isObject</span><span class="o">(</span><span class="nx">o</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nx">o</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nx">o</span> <span class="k">instanceof</span> <span class="nb">Date</span> <span class="o">||</span> <span class="o">(</span><span class="s2">&quot;nodeType&quot;</span> <span class="k">in</span> <span class="nx">o</span> <span class="o">&amp;&amp;</span> <span class="s2">&quot;tagName&quot;</span> <span class="k">in</span> <span class="nx">o</span><span class="o">))</span> <span class="o">{</span>
             <span class="k">return</span> <span class="nx">o</span><span class="o">;</span>
         <span class="o">}</span> <span class="k">else</span> <span class="k">if</span>  <span class="o">(</span><span class="nx">l</span><span class="o">.</span><span class="nx">isFunction</span><span class="o">(</span><span class="nx">o</span><span class="o">))</span> <span class="o">{</span>
             <span class="k">return</span> <span class="nx">FUN</span><span class="o">;</span>

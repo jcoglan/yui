@@ -12,8 +12,8 @@
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
-        <h1>Yahoo! UI Library</h1>
-        <h3>DataTable Widget&nbsp; <span class="subtitle">2.3.0</span></h3>
+        <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
+        <h3>DataTable Widget&nbsp; <span class="subtitle">2.3.1</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_datatable.html">datatable</a>
@@ -60,7 +60,7 @@ including nested hierarchies and access to individual Column instances.
                     </div>
 
                         <div class="section constructor details">
-                        <h3><a name="constructor_detail">Constructor</a></h3>
+                        <h3 id="constructor">Constructor</h3>
                         <div class="content">
                             <div class="detail">
                                 <strong>YAHOO.widget.ColumnSet</strong>
@@ -90,7 +90,7 @@ including nested hierarchies and access to individual Column instances.
                     </div>
 
                         <div class="section field details">
-                            <h3><a name="field_detail">Properties</a></h3>
+                            <h3 id="properties">Properties</h3>
                             <div class="content">
                                     <div class="private">
                                     <h4><a name="_sName">_sName</a>
@@ -109,11 +109,11 @@ including nested hierarchies and access to individual Column instances.
                                     </div>
                                     <div class="private">
                                     <h4><a name="ColumnSet._nCount">ColumnSet._nCount</a>
-                                        <code>- private static number</code>
+                                        <code>- private static Number</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Internal class variable to index multiple data table instances.
+                                            Internal class variable to index multiple ColumnSet instances.
                                         </div>
                                     </div>
      
@@ -208,7 +208,7 @@ including nested hierarchies and access to individual Column instances.
                         </div>
 
                         <div class="section method details">
-                            <h3><a name="methodDetails">Methods</a></h3>
+                            <h3 id="methods">Methods</h3>
                             <div class="content">
                                     <div class="">
                                     <h4>
@@ -230,7 +230,7 @@ including nested hierarchies and access to individual Column instances.
                                         </code>
                                         
                                         <div class="description">
-                                            Returns Column instance with given ID number or key.
+                                            Returns Column instance with given key or ColumnSet key index.
                                         </div>
 
                                         <div class="description">
@@ -238,8 +238,54 @@ including nested hierarchies and access to individual Column instances.
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>column &lt;Number | String&gt;</code>
-                                                              ID number or unique key.
+                                                            <code>column &lt;String | Number&gt;</code>
+                                                              Column key or ColumnSet key index.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        YAHOO.widget.Column
+                                                    </code></dt>
+                                                    <dd>Column instance.</dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="getColumnById">getColumnById</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        YAHOO.widget.Column
+                                            <strong>getColumnById</strong>
+                                           (
+                                                
+                                                        
+                                                         column
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Returns Column instance with given ID.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>column &lt;String&gt;</code>
+                                                              Column ID.
                                                         </dd>
                                                 </dl>
 
@@ -417,6 +463,9 @@ including nested hierarchies and access to individual Column instances.
                         <ul class="content">        
                                 <li class=""><!--<code>YAHOO.widget.Column</code>-->
                                 <a href="#getColumn">getColumn</a>
+                                </li>
+                                <li class=""><!--<code>YAHOO.widget.Column</code>-->
+                                <a href="#getColumnById">getColumnById</a>
                                 </li>
                                 <li class=""><!--<code>String</code>-->
                                 <a href="#toString">toString</a>

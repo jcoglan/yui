@@ -12,8 +12,8 @@
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
-        <h1>Yahoo! UI Library</h1>
-        <h3>Slider Widget&nbsp; <span class="subtitle">2.3.0</span></h3>
+        <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
+        <h3>Slider Widget&nbsp; <span class="subtitle">2.3.1</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_slider.html">slider</a>
@@ -64,7 +64,7 @@ clicked.
                     </div>
 
                         <div class="section constructor details">
-                        <h3><a name="constructor_detail">Constructor</a></h3>
+                        <h3 id="constructor">Constructor</h3>
                         <div class="content">
                             <div class="detail">
                                 <strong>YAHOO.widget.Slider</strong>
@@ -121,8 +121,24 @@ clicked.
                     </div>
 
                         <div class="section field details">
-                            <h3><a name="field_detail">Properties</a></h3>
+                            <h3 id="properties">Properties</h3>
                             <div class="content">
+                                    <div class="private">
+                                    <h4><a name="_silent">_silent</a>
+                                        <code>- private boolean</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Indicates whether or not events will be supressed for the current
+slide operation
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
                                     <div class="">
                                     <h4><a name="animate">animate</a>
                                         <code>- boolean</code>
@@ -227,6 +243,22 @@ operation.
                                         <div class="description">
                                             Specifies the number of pixels the arrow keys will move the slider.
 Default is 25.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4><a name="lastOffset">lastOffset</a>
+                                        <code>- [int, int]</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Saved offset used to protect against NaN problems when slider is
+set to display:none
                                         </div>
                                     </div>
      
@@ -387,7 +419,7 @@ when dealing with one source or another.
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            By default, animation is available if the animation library is detected.
+                                            By default, animation is available if the animation utility is detected.
                                         </div>
                                     </div>
      
@@ -450,7 +482,7 @@ when dealing with one source or another.
                         </div>
 
                         <div class="section method details">
-                            <h3><a name="methodDetails">Methods</a></h3>
+                            <h3 id="methods">Methods</h3>
                             <div class="content">
                                     <div class="private">
                                     <h4>
@@ -1139,6 +1171,10 @@ for the animation when tick marks are defined
                                                          skipAnim
                                                     
                                                 
+                                                        , 
+                                                         midMove
+                                                    
+                                                
                                             )
                                         </code>
                                         
@@ -1163,6 +1199,11 @@ cursor and the background during the mouseup event
                                                         <dd>
                                                             <code>skipAnim &lt;boolean&gt;</code>
                                                              don't animate if the move happend onDrag
+                                                        </dd>
+                                                        <dd>
+                                                            <code>midMove &lt;boolean&gt;</code>
+                                                             set to true if this is not terminating
+the slider movement
                                                         </dd>
                                                 </dl>
 
@@ -1443,6 +1484,10 @@ offset, the second the vertical.
                                                          force
                                                     
                                                 
+                                                        , 
+                                                         silent
+                                                    
+                                                
                                             )
                                         </code>
                                         
@@ -1472,6 +1517,10 @@ for this move action (but not others).
                                                         <dd>
                                                             <code>force &lt;boolean&gt;</code>
                                                              ignore the locked setting and set value anyway
+                                                        </dd>
+                                                        <dd>
+                                                            <code>silent &lt;boolean&gt;</code>
+                                                             when true, do not fire events
                                                         </dd>
                                                 </dl>
 
@@ -1581,6 +1630,10 @@ we can position the element correctly when the background is clicked
                                                          force
                                                     
                                                 
+                                                        , 
+                                                         silent
+                                                    
+                                                
                                             )
                                         </code>
                                         
@@ -1605,6 +1658,10 @@ for this move action (but not others).
                                                         <dd>
                                                             <code>force &lt;boolean&gt;</code>
                                                              ignore the locked setting and set value anyway
+                                                        </dd>
+                                                        <dd>
+                                                            <code>silent &lt;boolean&gt;</code>
+                                                             when true, do not fire events
                                                         </dd>
                                                 </dl>
 
@@ -1636,7 +1693,7 @@ for this move action (but not others).
                                         </code>
                                         
                                         <div class="description">
-                                            Handles mouseup event on the slider background
+                                            Handles mouseup event on the thumb
                                         </div>
 
                                         <div class="description">
@@ -2045,7 +2102,7 @@ should move a certain number pixels at a time.
                             </div>
 
                         <div class="section method details">
-                            <h3><a name="eventDetails">Events</a></h3>
+                            <h3 id="events">Events</h3>
                             <div class="content">
                                     <div class="">
                                     <h4>
@@ -2243,6 +2300,9 @@ x offset for region sliders
                     <div class="module">
                         <h4>Properties</h4>
                         <ul class="content">        
+                                <li class="private"><a href="#_silent">_silent</a>
+                                        <!--<code>&lt;boolean&gt;</code>-->
+                                </li>
                                 <li class=""><a href="#animate">animate</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
@@ -2262,6 +2322,9 @@ x offset for region sliders
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#keyIncrement">keyIncrement</a>
+                                        <!--<code>&lt;boolean&gt;</code>-->
+                                </li>
+                                <li class=""><a href="#lastOffset">lastOffset</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#moveComplete">moveComplete</a>

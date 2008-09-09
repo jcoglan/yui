@@ -118,23 +118,23 @@
 <p>JavaScript:</p>
 
 <textarea name="code" class="JScript" cols="60" rows="1">YAHOO.util.Event.addListener(window, "load", function() {
-    YAHOO.example.ServerPagination = new function() {
+    YAHOO.example.ServerSorting = new function() {
         // Column definitions
         var myColumnDefs = [
-            {key:"id", label:"ID"},
-            {key:"name", label:"Name"},
-            {key:"date", label:"Date"},
-            {key:"price", label:"Price"},
-            {key:"number", label:"Number"},
-            {key:"address", label:"Address"},
-            {key:"company", label:"Company"},
-            {key:"desc", label:"Description"},
-            {key:"age", label:"Age"},
-            {key:"title", label:"Title"},
-            {key:"phone", label:"Phone"},
-            {key:"email", label:"Email"},
-            {key:"zip", label:"Zip"},
-            {key:"country", label:"Country"}
+            {key:"id", label:"ID", sortable:true},
+            {key:"name", label:"Name", sortable:true},
+            {key:"date", label:"Date", sortable:true},
+            {key:"price", label:"Price", sortable:true},
+            {key:"number", label:"Number", sortable:true},
+            {key:"address", label:"Address", sortable:true},
+            {key:"company", label:"Company", sortable:true},
+            {key:"desc", label:"Description", sortable:true},
+            {key:"age", label:"Age", sortable:true},
+            {key:"title", label:"Title", sortable:true},
+            {key:"phone", label:"Phone", sortable:true},
+            {key:"email", label:"Email", sortable:true},
+            {key:"zip", label:"Zip", sortable:true},
+            {key:"country", label:"Country", sortable:true}
         ];
 
         // DataSource instance
@@ -147,82 +147,46 @@
 
         // DataTable instance
         var oConfigs = {
-            initialRequest: "startIndex=0&results=25" // Initial values
+            initialRequest: "sort=id&dir=asc&results=100", // Server parameters
+            sortedBy:{key:"id", dir:"asc"} // Set up initial column headers
         };
-        this.myDataTable = new YAHOO.widget.DataTable("serverpagination", myColumnDefs,
+        this.myDataTable = new YAHOO.widget.DataTable("serversorting", myColumnDefs,
                 this.myDataSource, oConfigs);
 
-        // Custom code to parse the raw server data for Paginator values and page links
+        // Custom code to parse the raw server data for sortedby values
         this.myDataSource.doBeforeCallback = function(oRequest, oRawResponse, oParsedResponse) {
-            var oSelf = YAHOO.example.ServerPagination;
+            var oSelf = YAHOO.example.ServerSorting;
             var oDataTable = oSelf.myDataTable;
 
-            // Get Paginator values
+            // Get sortedby values
             var oRawResponse = oRawResponse.parseJSON(); //JSON.parse(oRawResponse); // Parse the JSON data
-            var recordsReturned = oRawResponse.recordsReturned; // How many records this page
-            var startIndex = oRawResponse.startIndex; // Start record index this page
-            var endIndex = startIndex + recordsReturned -1; // End record index this page
-            var totalRecords = oRawResponse.totalRecords; // Total records all pages
+            var sortCol = oRawResponse.sort; // Which column is sorted
+            var sortDir = oRawResponse.dir; // Which sort direction
 
-            // Update the DataTable Paginator with new values
-            var newPag = {
-                recordsReturned: recordsReturned,
-                startRecordIndex: startIndex,
-                endIndex: endIndex,
-                totalResults: totalRecords
+            // Update the config sortedBy with new values
+            var newSortedBy = {
+                key: sortCol,
+                dir: sortDir
             }
-            oDataTable.updatePaginator(newPag);
-
-            // Update the links UI
-            YAHOO.util.Dom.get("prevLink").innerHTML = (startIndex === 0) ? "&lt;" :
-                    "<a href=\"#previous\" alt=\"Show previous items\">&lt;</a>" ;
-            YAHOO.util.Dom.get("nextLink").innerHTML =
-                    (endIndex >= totalRecords) ? "&gt;" :
-                    "<a href=\"#next\" alt=\"Show next items\">&gt;</a>";
-            YAHOO.util.Dom.get("startIndex").innerHTML = startIndex;
-            YAHOO.util.Dom.get("endIndex").innerHTML = endIndex;
-            YAHOO.util.Dom.get("ofTotal").innerHTML = " of " + totalRecords;
+            oDataTable.set("sortedBy", newSortedBy);
 
             // Let the DataSource parse the rest of the response
             return oParsedResponse;
         };
 
-        // Hook up custom pagination
-        this.getPage = function(nStartRecordIndex, nResults) {
-            // If a new value is not passed in
-            // use the old value
-            if(!YAHOO.lang.isValue(nResults)) {
-                nResults = this.myDataTable.get("paginator").totalRecords;
+        // Override function for custom sorting
+        this.myDataTable.sortColumn = function(oColumn) {
+            // Which direction
+            var sDir = "asc";
+            // Already sorted?
+            if(oColumn.key === this.get("sortedBy").key) {
+                sDir = (this.get("sortedBy").dir === "asc") ?
+                        "desc" : "asc";
             }
-            // Invalid value
-            if(!YAHOO.lang.isValue(nStartRecordIndex)) {
-                return;
-            }
-            var newRequest = "startIndex=" + nStartRecordIndex + "&results=" + nResults;
-            this.myDataSource.sendRequest(newRequest, this.myDataTable.onDataReturnInitializeTable, this.myDataTable);
+
+            var newRequest = "sort=" + oColumn.key + "&dir=" + sDir + "&results=100&startIndex=0";
+            this.getDataSource().sendRequest(newRequest, this.onDataReturnInitializeTable, this);
         };
-        this.getPreviousPage = function(e) {
-            YAHOO.util.Event.stopEvent(e);
-            // Already at first page
-            if(this.myDataTable.get("paginator").startRecordIndex === 0) {
-                return;
-            }
-            var newStartRecordIndex = this.myDataTable.get("paginator").startRecordIndex - this.myDataTable.get("paginator").rowsThisPage;
-            this.getPage(newStartRecordIndex);
-        };
-        this.getNextPage = function(e) {
-            YAHOO.util.Event.stopEvent(e);
-            // Already at last page
-            if(this.myDataTable.get("paginator").startRecordIndex +
-                    this.myDataTable.get("paginator").rowsThispage >=
-                    this.myDataTable.get("paginator").totalRecords) {
-                return;
-            }
-            var newStartRecordIndex = (this.myDataTable.get("paginator").startRecordIndex + this.myDataTable.get("paginator").rowsThisPage);
-            this.getPage(newStartRecordIndex);
-        };
-        YAHOO.util.Event.addListener(YAHOO.util.Dom.get("prevLink"), "click", this.getPreviousPage, this, true);
-        YAHOO.util.Event.addListener(YAHOO.util.Dom.get("nextLink"), "click", this.getNextPage, this, true);
     };
 });
 </textarea>
@@ -235,7 +199,7 @@
 	
 						<div id="exampleToc">
 							<ul>
-								<li><a href='../datatable/dt_basic.html'>Basic Example</a></li><li><a href='../datatable/dt_enhanced.html'>Progressive Enhancement</a></li><li><a href='../datatable/dt_formatting.html'>Custom Cell Formatting</a></li><li><a href='../datatable/dt_nestedheaders.html'>Nested headers</a></li><li><a href='../datatable/dt_xhrjson.html'>JSON Data Over XHR</a></li><li><a href='../datatable/dt_xhrpostxml.html'>XML Data Over XHR With POST</a></li><li><a href='../datatable/dt_xhrtext.html'>Textual Data Over XHR</a></li><li><a href='../datatable/dt_xhrlocalxml.html'>Local XML Data</a></li><li><a href='../datatable/dt_clientpagination.html'>Client-side Pagination</a></li><li><a href='../datatable/dt_clientsorting.html'>Client-side Sorting</a></li><li><a href='../datatable/dt_serverpagination.html'>Server-side Pagination</a></li><li class='selected'><a href='../datatable/dt_serversorting.html'>Server-side Sorting</a></li><li><a href='../datatable/dt_server_pag_sort.html'>Server-side Pagination and Sorting, with Browser History Manager</a></li><li><a href='../datatable/dt_fixedscroll.html'>Fixed Scrolling</a></li><li><a href='../datatable/dt_rowselect.html'>Row Selection</a></li><li><a href='../datatable/dt_cellselect.html'>Cell Selection</a></li><li><a href='../datatable/dt_cellediting.html'>Inline Cell Editing</a></li><li><a href='../datatable/dt_contextmenu.html'>Context Menu Integration</a></li><li><a href='../datatable/dt_complex.html'>Complex Example of Multiple Features</a></li><li><a href='../datatable/dt_skinning.html'>Skinning Model</a></li>							</ul>
+								<li><a href='../datatable/dt_basic.html'>Basic Example</a></li><li><a href='../datatable/dt_enhanced.html'>Progressive Enhancement</a></li><li><a href='../datatable/dt_formatting.html'>Custom Cell Formatting</a></li><li><a href='../datatable/dt_nestedheaders.html'>Nested headers</a></li><li><a href='../datatable/dt_xhrjson.html'>JSON Data Over XHR</a></li><li><a href='../datatable/dt_xhrpostxml.html'>XML Data Over XHR With POST</a></li><li><a href='../datatable/dt_xhrtext.html'>Textual Data Over XHR</a></li><li><a href='../datatable/dt_xhrlocalxml.html'>Local XML Data</a></li><li><a href='../datatable/dt_clientpagination.html'>Client-side Pagination</a></li><li><a href='../datatable/dt_clientsorting.html'>Client-side Sorting</a></li><li><a href='../datatable/dt_serverpagination.html'>Server-side Pagination</a></li><li class='selected'><a href='../datatable/dt_serversorting.html'>Server-side Sorting</a></li><li><a href='../datatable/dt_server_pag_sort.html'>Server-side Pagination and Sorting, with Browser History Manager</a></li><li><a href='../datatable/dt_fixedscroll.html'>Fixed Scrolling</a></li><li><a href='../datatable/dt_rowselect.html'>Row Selection</a></li><li><a href='../datatable/dt_cellselect.html'>Cell Selection</a></li><li><a href='../datatable/dt_cellediting.html'>Inline Cell Editing</a></li><li><a href='../datatable/dt_contextmenu.html'>Context Menu Integration</a></li><li><a href='../datatable/dt_complex.html'>Complex Example of Multiple Features</a></li><li><a href='../datatable/dt_autocomplete.html'>Datatable with Autocomplete</a></li><li><a href='../datatable/dt_skinning.html'>Skinning Model</a></li>							</ul>
 						</div>
 					</div>
 					

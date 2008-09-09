@@ -12,8 +12,8 @@
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
-        <h1>Yahoo! UI Library</h1>
-        <h3>Calendar&nbsp; <span class="subtitle">2.3.0</span></h3>
+        <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
+        <h3>Calendar&nbsp; <span class="subtitle">2.3.1</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_calendar.html">calendar</a>
@@ -375,8 +375,6 @@
 	<span class="nx">domEventMap</span> <span class="o">:</span> <span class="kc">null</span>
 <span class="o">};</span>
 
-
-
 <span class="c">/**</span>
 <span class="c">* Initializes the Calendar widget.</span>
 <span class="c">* @method init</span>
@@ -474,32 +472,22 @@
 		<span class="o">}</span>
 	<span class="o">}</span>
 <span class="o">};</span>
-
 <span class="c">/**</span>
 <span class="c">* Default handler for the &quot;title&quot; property</span>
 <span class="c">* @method configTitle</span>
 <span class="c">*/</span>
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">configTitle</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">type</span><span class="o">,</span> <span class="nx">args</span><span class="o">,</span> <span class="nx">obj</span><span class="o">)</span> <span class="o">{</span>
-	<span class="k">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">args</span><span class="o">[</span><span class="m">0</span><span class="o">];</span>
-	<span class="k">var</span> <span class="nx">close</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">_DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">CLOSE</span><span class="o">.</span><span class="nx">key</span><span class="o">);</span>
-	
-	<span class="k">var</span> <span class="nx">titleDiv</span><span class="o">;</span>
+	<span class="k">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">args</span><span class="o">[</span><span class="m">0</span><span class="o">],</span> <span class="nx">tDiv</span><span class="o">;</span>
 
-	<span class="k">if</span> <span class="o">(</span><span class="nx">title</span> <span class="o">&amp;&amp;</span> <span class="nx">title</span> <span class="o">!==</span> <span class="s2">&quot;&quot;</span><span class="o">)</span> <span class="o">{</span>
-		<span class="nx">titleDiv</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getElementsByClassName</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">CalendarGroup</span><span class="o">.</span><span class="nx">CSS_2UPTITLE</span><span class="o">,</span> <span class="s2">&quot;div&quot;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">)[</span><span class="m">0</span><span class="o">]</span> <span class="o">||</span> <span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;div&quot;</span><span class="o">);</span>
-		<span class="nx">titleDiv</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">CalendarGroup</span><span class="o">.</span><span class="nx">CSS_2UPTITLE</span><span class="o">;</span>
-		<span class="nx">titleDiv</span><span class="o">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">title</span><span class="o">;</span>
-		<span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">.</span><span class="nx">insertBefore</span><span class="o">(</span><span class="nx">titleDiv</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">.</span><span class="nx">firstChild</span><span class="o">);</span>
-		<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">addClass</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">,</span> <span class="s2">&quot;withtitle&quot;</span><span class="o">);</span>
+	<span class="c">// &quot;&quot; disables title bar</span>
+<span class="c"></span>	<span class="k">if</span> <span class="o">(</span><span class="nx">title</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="nx">createTitleBar</span><span class="o">(</span><span class="nx">title</span><span class="o">);</span>
 	<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-		<span class="nx">titleDiv</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getElementsByClassName</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">CalendarGroup</span><span class="o">.</span><span class="nx">CSS_2UPTITLE</span><span class="o">,</span> <span class="s2">&quot;div&quot;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">)[</span><span class="m">0</span><span class="o">]</span> <span class="o">||</span> <span class="kc">null</span><span class="o">;</span>
-
-		<span class="k">if</span> <span class="o">(</span><span class="nx">titleDiv</span><span class="o">)</span> <span class="o">{</span>
-			<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">purgeElement</span><span class="o">(</span><span class="nx">titleDiv</span><span class="o">);</span>
-			<span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">.</span><span class="nx">removeChild</span><span class="o">(</span><span class="nx">titleDiv</span><span class="o">);</span>
-		<span class="o">}</span>
-		<span class="k">if</span> <span class="o">(!</span> <span class="nx">close</span><span class="o">)</span> <span class="o">{</span>
-			<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">removeClass</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">,</span> <span class="s2">&quot;withtitle&quot;</span><span class="o">);</span>
+		<span class="k">var</span> <span class="nx">close</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">_DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">CLOSE</span><span class="o">.</span><span class="nx">key</span><span class="o">);</span>
+		<span class="k">if</span> <span class="o">(!</span><span class="nx">close</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">this</span><span class="o">.</span><span class="nx">removeTitleBar</span><span class="o">();</span>
+		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+			<span class="k">this</span><span class="o">.</span><span class="nx">createTitleBar</span><span class="o">(</span><span class="s2">&quot;&amp;#160;&quot;</span><span class="o">);</span>
 		<span class="o">}</span>
 	<span class="o">}</span>
 <span class="o">};</span>
@@ -509,38 +497,18 @@
 <span class="c">* @method configClose</span>
 <span class="c">*/</span>
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">configClose</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">type</span><span class="o">,</span> <span class="nx">args</span><span class="o">,</span> <span class="nx">obj</span><span class="o">)</span> <span class="o">{</span>
-	<span class="k">var</span> <span class="nx">close</span> <span class="o">=</span> <span class="nx">args</span><span class="o">[</span><span class="m">0</span><span class="o">];</span>
-	<span class="k">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">_DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">TITLE</span><span class="o">.</span><span class="nx">key</span><span class="o">);</span>
-	
-	<span class="k">var</span> <span class="nx">DEPR_CLOSE_PATH</span> <span class="o">=</span> <span class="s2">&quot;us/my/bn/x_d.gif&quot;</span><span class="o">;</span>
+	<span class="k">var</span> <span class="nx">close</span> <span class="o">=</span> <span class="nx">args</span><span class="o">[</span><span class="m">0</span><span class="o">],</span>
+		<span class="nx">title</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">_DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">TITLE</span><span class="o">.</span><span class="nx">key</span><span class="o">);</span>
 
-	<span class="k">var</span> <span class="nx">linkClose</span><span class="o">;</span>
-
-	<span class="k">if</span> <span class="o">(</span><span class="nx">close</span> <span class="o">===</span> <span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
-		<span class="nx">linkClose</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getElementsByClassName</span><span class="o">(</span><span class="s2">&quot;link-close&quot;</span><span class="o">,</span> <span class="s2">&quot;a&quot;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">)[</span><span class="m">0</span><span class="o">]</span> <span class="o">||</span> <span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;a&quot;</span><span class="o">);</span>
-		<span class="nx">linkClose</span><span class="o">.</span><span class="nx">href</span> <span class="o">=</span> <span class="s2">&quot;#&quot;</span><span class="o">;</span>
-		<span class="nx">linkClose</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;link-close&quot;</span><span class="o">;</span>
-		<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">addListener</span><span class="o">(</span><span class="nx">linkClose</span><span class="o">,</span> <span class="s2">&quot;click&quot;</span><span class="o">,</span> <span class="k">function</span><span class="o">(</span><span class="nx">e</span><span class="o">,</span> <span class="nx">cal</span><span class="o">)</span> <span class="o">{</span><span class="nx">cal</span><span class="o">.</span><span class="nx">hide</span><span class="o">();</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">preventDefault</span><span class="o">(</span><span class="nx">e</span><span class="o">);</span> <span class="o">},</span> <span class="k">this</span><span class="o">);</span>
-		
-		<span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">IMG_ROOT</span> <span class="o">!==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-			<span class="k">var</span> <span class="nx">imgClose</span> <span class="o">=</span> <span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;img&quot;</span><span class="o">);</span>
-			<span class="nx">imgClose</span><span class="o">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">IMG_ROOT</span> <span class="o">+</span> <span class="nx">DEPR_CLOSE_PATH</span><span class="o">;</span>
-			<span class="nx">imgClose</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">CalendarGroup</span><span class="o">.</span><span class="nx">CSS_2UPCLOSE</span><span class="o">;</span>
-			<span class="nx">linkClose</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nx">imgClose</span><span class="o">);</span>
-		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-			<span class="nx">linkClose</span><span class="o">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">&#39;&lt;span class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">CalendarGroup</span><span class="o">.</span><span class="nx">CSS_2UPCLOSE</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="nx">Style</span><span class="o">.</span><span class="nx">CSS_CLOSE</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;/span&gt;&#39;</span><span class="o">;</span>
+	<span class="k">if</span> <span class="o">(</span><span class="nx">close</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">if</span> <span class="o">(!</span><span class="nx">title</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">this</span><span class="o">.</span><span class="nx">createTitleBar</span><span class="o">(</span><span class="s2">&quot;&amp;#160;&quot;</span><span class="o">);</span>
 		<span class="o">}</span>
-		
-		<span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nx">linkClose</span><span class="o">);</span>
-		<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">addClass</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">,</span> <span class="s2">&quot;withtitle&quot;</span><span class="o">);</span>
+		<span class="k">this</span><span class="o">.</span><span class="nx">createCloseButton</span><span class="o">();</span>
 	<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-		<span class="nx">linkClose</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getElementsByClassName</span><span class="o">(</span><span class="s2">&quot;link-close&quot;</span><span class="o">,</span> <span class="s2">&quot;a&quot;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">)[</span><span class="m">0</span><span class="o">]</span> <span class="o">||</span> <span class="kc">null</span><span class="o">;</span>
-		<span class="k">if</span> <span class="o">(</span><span class="nx">linkClose</span><span class="o">)</span> <span class="o">{</span>
-			<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">purgeElement</span><span class="o">(</span><span class="nx">linkClose</span><span class="o">);</span>
-			<span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">.</span><span class="nx">removeChild</span><span class="o">(</span><span class="nx">linkClose</span><span class="o">);</span>
-		<span class="o">}</span>
-		<span class="k">if</span> <span class="o">(!</span> <span class="nx">title</span> <span class="o">||</span> <span class="nx">title</span> <span class="o">===</span> <span class="s2">&quot;&quot;</span><span class="o">)</span> <span class="o">{</span>
-			<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">removeClass</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">,</span> <span class="s2">&quot;withtitle&quot;</span><span class="o">);</span>
+		<span class="k">this</span><span class="o">.</span><span class="nx">removeCloseButton</span><span class="o">();</span>
+		<span class="k">if</span> <span class="o">(!</span><span class="nx">title</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">this</span><span class="o">.</span><span class="nx">removeTitleBar</span><span class="o">();</span>
 		<span class="o">}</span>
 	<span class="o">}</span>
 <span class="o">};</span>
@@ -1348,6 +1316,89 @@
 <span class="c">*/</span>
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">buildDayLabel</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">workingDate</span><span class="o">)</span> <span class="o">{</span>
 	<span class="k">return</span> <span class="nx">workingDate</span><span class="o">.</span><span class="nx">getDate</span><span class="o">();</span>
+<span class="o">};</span>
+
+<span class="c">/**</span>
+<span class="c"> * Creates the title bar element and adds it to Calendar container DIV</span>
+<span class="c"> * </span>
+<span class="c"> * @method createTitleBar</span>
+<span class="c"> * @param {String} strTitle The title to display in the title bar</span>
+<span class="c"> * @return The title bar element</span>
+<span class="c"> */</span>
+<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">createTitleBar</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">strTitle</span><span class="o">)</span> <span class="o">{</span>
+	<span class="k">var</span> <span class="nx">tDiv</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getElementsByClassName</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">CalendarGroup</span><span class="o">.</span><span class="nx">CSS_2UPTITLE</span><span class="o">,</span> <span class="s2">&quot;div&quot;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">)[</span><span class="m">0</span><span class="o">]</span> <span class="o">||</span> <span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;div&quot;</span><span class="o">);</span>
+	<span class="nx">tDiv</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">CalendarGroup</span><span class="o">.</span><span class="nx">CSS_2UPTITLE</span><span class="o">;</span>
+	<span class="nx">tDiv</span><span class="o">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">strTitle</span><span class="o">;</span>
+	<span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">.</span><span class="nx">insertBefore</span><span class="o">(</span><span class="nx">tDiv</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">.</span><span class="nx">firstChild</span><span class="o">);</span>
+
+	<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">addClass</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">,</span> <span class="s2">&quot;withtitle&quot;</span><span class="o">);</span>
+
+	<span class="k">return</span> <span class="nx">tDiv</span><span class="o">;</span>
+<span class="o">};</span>
+
+<span class="c">/**</span>
+<span class="c"> * Removes the title bar element from the DOM</span>
+<span class="c"> * </span>
+<span class="c"> * @method removeTitleBar</span>
+<span class="c"> */</span>
+<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">removeTitleBar</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+	<span class="k">var</span> <span class="nx">tDiv</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getElementsByClassName</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">CalendarGroup</span><span class="o">.</span><span class="nx">CSS_2UPTITLE</span><span class="o">,</span> <span class="s2">&quot;div&quot;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">)[</span><span class="m">0</span><span class="o">]</span> <span class="o">||</span> <span class="kc">null</span><span class="o">;</span>
+	<span class="k">if</span> <span class="o">(</span><span class="nx">tDiv</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">purgeElement</span><span class="o">(</span><span class="nx">tDiv</span><span class="o">);</span>
+		<span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">.</span><span class="nx">removeChild</span><span class="o">(</span><span class="nx">tDiv</span><span class="o">);</span>
+	<span class="o">}</span>
+	<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">removeClass</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">,</span> <span class="s2">&quot;withtitle&quot;</span><span class="o">);</span>
+<span class="o">};</span>
+
+<span class="c">/**</span>
+<span class="c"> * Creates the close button HTML element and adds it to Calendar container DIV</span>
+<span class="c"> * </span>
+<span class="c"> * @method createCloseButton</span>
+<span class="c"> * @return The close HTML element created</span>
+<span class="c"> */</span>
+<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">createCloseButton</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+	<span class="k">var</span> <span class="nx">Dom</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">,</span>
+		<span class="nx">Event</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">,</span>
+		<span class="nx">cssClose</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">CalendarGroup</span><span class="o">.</span><span class="nx">CSS_2UPCLOSE</span><span class="o">,</span>
+		<span class="nx">DEPR_CLOSE_PATH</span> <span class="o">=</span> <span class="s2">&quot;us/my/bn/x_d.gif&quot;</span><span class="o">;</span>
+
+	<span class="k">var</span> <span class="nx">lnk</span> <span class="o">=</span> <span class="nx">Dom</span><span class="o">.</span><span class="nx">getElementsByClassName</span><span class="o">(</span><span class="s2">&quot;link-close&quot;</span><span class="o">,</span> <span class="s2">&quot;a&quot;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">)[</span><span class="m">0</span><span class="o">];</span>
+
+	<span class="k">if</span> <span class="o">(!</span><span class="nx">lnk</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nx">lnk</span> <span class="o">=</span> <span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;a&quot;</span><span class="o">);</span>  
+		<span class="nx">Event</span><span class="o">.</span><span class="nx">addListener</span><span class="o">(</span><span class="nx">lnk</span><span class="o">,</span> <span class="s2">&quot;click&quot;</span><span class="o">,</span> <span class="k">function</span><span class="o">(</span><span class="nx">e</span><span class="o">,</span> <span class="nx">cal</span><span class="o">)</span> <span class="o">{</span>
+			<span class="nx">cal</span><span class="o">.</span><span class="nx">hide</span><span class="o">();</span> 
+			<span class="nx">Event</span><span class="o">.</span><span class="nx">preventDefault</span><span class="o">(</span><span class="nx">e</span><span class="o">);</span>
+		<span class="o">},</span> <span class="k">this</span><span class="o">);</span>        
+	<span class="o">}</span>
+
+	<span class="nx">lnk</span><span class="o">.</span><span class="nx">href</span> <span class="o">=</span> <span class="s2">&quot;#&quot;</span><span class="o">;</span>
+	<span class="nx">lnk</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;link-close&quot;</span><span class="o">;</span>
+
+	<span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">IMG_ROOT</span> <span class="o">!==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">var</span> <span class="nx">img</span> <span class="o">=</span> <span class="nx">Dom</span><span class="o">.</span><span class="nx">getElementsByClassName</span><span class="o">(</span><span class="nx">cssClose</span><span class="o">,</span> <span class="s2">&quot;img&quot;</span><span class="o">,</span> <span class="nx">lnk</span><span class="o">)[</span><span class="m">0</span><span class="o">]</span> <span class="o">||</span> <span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;img&quot;</span><span class="o">);</span>
+		<span class="nx">img</span><span class="o">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">IMG_ROOT</span> <span class="o">+</span> <span class="nx">DEPR_CLOSE_PATH</span><span class="o">;</span>
+		<span class="nx">img</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="nx">cssClose</span><span class="o">;</span>
+		<span class="nx">lnk</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nx">img</span><span class="o">);</span>
+	<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+		<span class="nx">lnk</span><span class="o">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">&#39;&lt;span class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">cssClose</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="nx">Style</span><span class="o">.</span><span class="nx">CSS_CLOSE</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;/span&gt;&#39;</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nx">lnk</span><span class="o">);</span>
+
+	<span class="k">return</span> <span class="nx">lnk</span><span class="o">;</span>
+<span class="o">};</span>
+
+<span class="c">/**</span>
+<span class="c"> * Removes the close button HTML element from the DOM</span>
+<span class="c"> * </span>
+<span class="c"> * @method removeCloseButton</span>
+<span class="c"> */</span>
+<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">removeCloseButton</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+	<span class="k">var</span> <span class="nx">btn</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getElementsByClassName</span><span class="o">(</span><span class="s2">&quot;link-close&quot;</span><span class="o">,</span> <span class="s2">&quot;a&quot;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">)[</span><span class="m">0</span><span class="o">]</span> <span class="o">||</span> <span class="kc">null</span><span class="o">;</span>
+	<span class="k">if</span> <span class="o">(</span><span class="nx">btn</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">purgeElement</span><span class="o">(</span><span class="nx">btn</span><span class="o">);</span>
+		<span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">.</span><span class="nx">removeChild</span><span class="o">(</span><span class="nx">btn</span><span class="o">);</span>
+	<span class="o">}</span>
 <span class="o">};</span>
 
 <span class="c">/**</span>

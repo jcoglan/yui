@@ -12,8 +12,8 @@
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
-        <h1>Yahoo! UI Library</h1>
-        <h3>Event Utility&nbsp; <span class="subtitle">2.3.0</span></h3>
+        <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
+        <h3>Event Utility&nbsp; <span class="subtitle">2.3.1</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_event.html">event</a>
@@ -58,7 +58,7 @@ registers during the unload event.
 
 
                         <div class="section field details">
-                            <h3><a name="field_detail">Properties</a></h3>
+                            <h3 id="properties">Properties</h3>
                             <div class="content">
                                     <div class="private">
                                     <h4><a name="_interval">_interval</a>
@@ -308,7 +308,8 @@ in Safari
                                     <div class="detail">
                                         <div class="description">
                                             Object passed in by the user that will be returned as a 
-parameter to the callback, int constant
+parameter to the callback, int constant.  Specific to
+unload listeners
                                         </div>
                                     </div>
      
@@ -324,6 +325,21 @@ parameter to the callback, int constant
                                     <div class="detail">
                                         <div class="description">
                                             onAvailable listeners
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4><a name="OVERRIDE">OVERRIDE</a>
+                                        <code>- static final int</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            The original scope parameter passed into addListener
                                         </div>
                                     </div>
      
@@ -469,7 +485,7 @@ are detached
 
 
                         <div class="section method details">
-                            <h3><a name="methodDetails">Methods</a></h3>
+                            <h3 id="methods">Methods</h3>
                             <div class="content">
                                     <div class="private">
                                     <h4>
@@ -1244,6 +1260,10 @@ fires, we can no longer use document.getElementById
                                                          e
                                                     
                                                 
+                                                        , 
+                                                         boundEl
+                                                    
+                                                
                                             )
                                         </code>
                                         
@@ -1262,6 +1282,10 @@ this function at all.
                                                         <dd>
                                                             <code>e &lt;Event&gt;</code>
                                                              the event parameter from the handler
+                                                        </dd>
+                                                        <dd>
+                                                            <code>boundEl &lt;HTMLElement&gt;</code>
+                                                             the element the listener is attached to
                                                         </dd>
                                                 </dl>
 
@@ -1365,7 +1389,8 @@ left out, all listeners will be returned
 &nbsp;&nbsp;type:   (string)   the type of event
 &nbsp;&nbsp;fn:     (function) the callback supplied to addListener
 &nbsp;&nbsp;obj:    (object)   the custom object supplied to addListener
-&nbsp;&nbsp;adjust: (boolean)  whether or not to adjust the default scope
+&nbsp;&nbsp;adjust: (boolean|object)  whether or not to adjust the default scope
+&nbsp;&nbsp;scope: (boolean)  the derived scope based on the adjust parameter
 &nbsp;&nbsp;index:  (int)      its position in the Event util listener cache</dd>
                                                 </dl>
              
@@ -2368,7 +2393,7 @@ Safari browsers with a broken preventDefault
 
 
                         <div class="section method details">
-                            <h3><a name="eventDetails">Events</a></h3>
+                            <h3 id="events">Events</h3>
                             <div class="content">
                                     <div class="">
                                     <h4>
@@ -2540,6 +2565,9 @@ DOM element cache</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
                                 <li class="private"><a href="#onAvailStack">onAvailStack</a>
+                                        <!--<code>&lt;int&gt;</code>-->
+                                </li>
+                                <li class=""><a href="#OVERRIDE">OVERRIDE</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#POLL_INTERVAL">POLL_INTERVAL</a>

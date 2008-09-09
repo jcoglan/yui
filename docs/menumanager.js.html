@@ -12,8 +12,8 @@
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
-        <h1>Yahoo! UI Library</h1>
-        <h3>Menu&nbsp; <span class="subtitle">2.3.0</span></h3>
+        <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
+        <h3>Menu&nbsp; <span class="subtitle">2.3.1</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_menu.html">menu</a>
@@ -301,7 +301,7 @@
                 
                 <span class="k">for</span> <span class="o">(</span><span class="k">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">m_oMenus</span><span class="o">)</span> <span class="o">{</span>
         
-                    <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">hasOwnProperty</span><span class="o">(</span><span class="nx">m_oMenus</span><span class="o">,</span><span class="nx">i</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">hasOwnProperty</span><span class="o">(</span><span class="nx">m_oMenus</span><span class="o">,</span> <span class="nx">i</span><span class="o">))</span> <span class="o">{</span>
         
                         <span class="nx">oMenu</span> <span class="o">=</span> <span class="nx">m_oMenus</span><span class="o">[</span><span class="nx">i</span><span class="o">];</span>
         
@@ -446,22 +446,31 @@
 <span class="c">        */</span>
         <span class="k">function</span> <span class="nx">onItemDestroy</span><span class="o">(</span><span class="nx">p_sType</span><span class="o">,</span> <span class="nx">p_aArgs</span><span class="o">)</span> <span class="o">{</span>
     
-            <span class="k">var</span> <span class="nx">sId</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">id</span><span class="o">;</span>
+            <span class="nx">removeItem</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+    
+        <span class="o">}</span>
+
+    
+        <span class="k">function</span> <span class="nx">removeItem</span><span class="o">(</span><span class="nx">p_oMenuItem</span><span class="o">)</span> <span class="o">{</span>
+
+            <span class="k">var</span> <span class="nx">sId</span> <span class="o">=</span> <span class="nx">p_oMenuItem</span><span class="o">.</span><span class="nx">id</span><span class="o">;</span>
     
             <span class="k">if</span> <span class="o">(</span><span class="nx">sId</span> <span class="o">&amp;&amp;</span> <span class="nx">m_oItems</span><span class="o">[</span><span class="nx">sId</span><span class="o">])</span> <span class="o">{</span>
     
-                <span class="k">if</span> <span class="o">(</span><span class="nx">m_oFocusedMenuItem</span> <span class="o">==</span> <span class="k">this</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="nx">m_oFocusedMenuItem</span> <span class="o">==</span> <span class="nx">p_oMenuItem</span><span class="o">)</span> <span class="o">{</span>
     
                     <span class="nx">m_oFocusedMenuItem</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
     
                 <span class="o">}</span>
     
                 <span class="nx">delete</span> <span class="nx">m_oItems</span><span class="o">[</span><span class="nx">sId</span><span class="o">];</span>
+                
+                <span class="nx">p_oMenuItem</span><span class="o">.</span><span class="nx">destroyEvent</span><span class="o">.</span><span class="nx">unsubscribe</span><span class="o">(</span><span class="nx">onItemDestroy</span><span class="o">);</span>
     
-                <span class="nx">m_oLogger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="k">this</span> <span class="o">+</span> <span class="s2">&quot; successfully unregistered.&quot;</span><span class="o">);</span>
+                <span class="nx">m_oLogger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="nx">p_oMenuItem</span> <span class="o">+</span> <span class="s2">&quot; successfully unregistered.&quot;</span><span class="o">);</span>
     
             <span class="o">}</span>
-    
+
         <span class="o">}</span>
     
     
@@ -513,11 +522,8 @@
     
                 <span class="k">var</span> <span class="nx">oDoc</span><span class="o">;</span>
     
-                <span class="k">if</span> <span class="o">(</span>
-                    <span class="nx">p_oMenu</span> <span class="k">instanceof</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Menu</span> <span class="o">&amp;&amp;</span> 
-                    <span class="nx">p_oMenu</span><span class="o">.</span><span class="nx">id</span> <span class="o">&amp;&amp;</span> 
-                    <span class="o">!</span><span class="nx">m_oMenus</span><span class="o">[</span><span class="nx">p_oMenu</span><span class="o">.</span><span class="nx">id</span><span class="o">]</span>
-                <span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="nx">p_oMenu</span> <span class="k">instanceof</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Menu</span> <span class="o">&amp;&amp;</span> <span class="nx">p_oMenu</span><span class="o">.</span><span class="nx">id</span> <span class="o">&amp;&amp;</span> 
+                    <span class="o">!</span><span class="nx">m_oMenus</span><span class="o">[</span><span class="nx">p_oMenu</span><span class="o">.</span><span class="nx">id</span><span class="o">])</span> <span class="o">{</span>
         
                     <span class="nx">m_oMenus</span><span class="o">[</span><span class="nx">p_oMenu</span><span class="o">.</span><span class="nx">id</span><span class="o">]</span> <span class="o">=</span> <span class="nx">p_oMenu</span><span class="o">;</span>
                 
@@ -542,14 +548,11 @@
             
                     <span class="o">}</span>
             
-                    <span class="nx">p_oMenu</span><span class="o">.</span><span class="nx">destroyEvent</span><span class="o">.</span><span class="nx">subscribe</span><span class="o">(</span>
-                                            <span class="nx">onMenuDestroy</span><span class="o">,</span> 
-                                            <span class="nx">p_oMenu</span><span class="o">,</span> 
-                                            <span class="k">this</span><span class="o">);</span>
-    
-                    <span class="nx">p_oMenu</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">subscribeToConfigEvent</span><span class="o">(</span>
-                        <span class="s2">&quot;visible&quot;</span><span class="o">,</span> 
+                    <span class="nx">p_oMenu</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">subscribeToConfigEvent</span><span class="o">(</span><span class="s2">&quot;visible&quot;</span><span class="o">,</span> 
                         <span class="nx">onMenuVisibleConfigChange</span><span class="o">);</span>
+
+                    <span class="nx">p_oMenu</span><span class="o">.</span><span class="nx">destroyEvent</span><span class="o">.</span><span class="nx">subscribe</span><span class="o">(</span><span class="nx">onMenuDestroy</span><span class="o">,</span> <span class="nx">p_oMenu</span><span class="o">,</span> 
+                                            <span class="k">this</span><span class="o">);</span>
             
                     <span class="nx">p_oMenu</span><span class="o">.</span><span class="nx">itemAddedEvent</span><span class="o">.</span><span class="nx">subscribe</span><span class="o">(</span><span class="nx">onItemAdded</span><span class="o">);</span>
                     <span class="nx">p_oMenu</span><span class="o">.</span><span class="nx">focusEvent</span><span class="o">.</span><span class="nx">subscribe</span><span class="o">(</span><span class="nx">onMenuFocus</span><span class="o">);</span>
@@ -570,30 +573,72 @@
 <span class="c">            */</span>
             <span class="nx">removeMenu</span><span class="o">:</span> <span class="k">function</span> <span class="o">(</span><span class="nx">p_oMenu</span><span class="o">)</span> <span class="o">{</span>
     
-                <span class="k">var</span> <span class="nx">sId</span><span class="o">;</span>
+                <span class="k">var</span> <span class="nx">sId</span><span class="o">,</span>
+                    <span class="nx">aItems</span><span class="o">,</span>
+                    <span class="nx">i</span><span class="o">;</span>
         
                 <span class="k">if</span> <span class="o">(</span><span class="nx">p_oMenu</span><span class="o">)</span> <span class="o">{</span>
     
                     <span class="nx">sId</span> <span class="o">=</span> <span class="nx">p_oMenu</span><span class="o">.</span><span class="nx">id</span><span class="o">;</span>
         
                     <span class="k">if</span> <span class="o">(</span><span class="nx">m_oMenus</span><span class="o">[</span><span class="nx">sId</span><span class="o">]</span> <span class="o">==</span> <span class="nx">p_oMenu</span><span class="o">)</span> <span class="o">{</span>
-            
+
+                        <span class="c">// Unregister each menu item</span>
+<span class="c"></span>
+                        <span class="nx">aItems</span> <span class="o">=</span> <span class="nx">p_oMenu</span><span class="o">.</span><span class="nx">getItems</span><span class="o">();</span>
+
+                        <span class="k">if</span> <span class="o">(</span><span class="nx">aItems</span> <span class="o">&amp;&amp;</span> <span class="nx">aItems</span><span class="o">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="m">0</span><span class="o">)</span> <span class="o">{</span>
+
+                            <span class="nx">i</span> <span class="o">=</span> <span class="nx">aItems</span><span class="o">.</span><span class="nx">length</span> <span class="o">-</span> <span class="m">1</span><span class="o">;</span>
+
+                            <span class="k">do</span> <span class="o">{</span>
+
+                                <span class="nx">removeItem</span><span class="o">(</span><span class="nx">aItems</span><span class="o">[</span><span class="nx">i</span><span class="o">]);</span>
+
+                            <span class="o">}</span>
+                            <span class="k">while</span> <span class="o">(</span><span class="nx">i</span><span class="o">--);</span>
+
+                        <span class="o">}</span>
+
+
+                        <span class="c">// Unregister the menu</span>
+<span class="c"></span>
                         <span class="nx">delete</span> <span class="nx">m_oMenus</span><span class="o">[</span><span class="nx">sId</span><span class="o">];</span>
             
                         <span class="nx">m_oLogger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="nx">p_oMenu</span> <span class="o">+</span> <span class="s2">&quot; successfully unregistered.&quot;</span><span class="o">);</span>
         
-        
+
+                        <span class="c">/*</span>
+<span class="c">                             Unregister the menu from the collection of </span>
+<span class="c">                             visible menus</span>
+<span class="c">                        */</span>
+
                         <span class="k">if</span> <span class="o">(</span><span class="nx">m_oVisibleMenus</span><span class="o">[</span><span class="nx">sId</span><span class="o">]</span> <span class="o">==</span> <span class="nx">p_oMenu</span><span class="o">)</span> <span class="o">{</span>
             
                             <span class="nx">delete</span> <span class="nx">m_oVisibleMenus</span><span class="o">[</span><span class="nx">sId</span><span class="o">];</span>
                             
-                            <span class="nx">m_oLogger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span> 
-                                        <span class="nx">p_oMenu</span> <span class="o">+</span> 
-                                        <span class="s2">&quot; unregistered from the&quot;</span> <span class="o">+</span> 
+                            <span class="nx">m_oLogger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="nx">p_oMenu</span> <span class="o">+</span> <span class="s2">&quot; unregistered from the&quot;</span> <span class="o">+</span> 
                                         <span class="s2">&quot; collection of visible menus.&quot;</span><span class="o">);</span>
-                                
+       
                         <span class="o">}</span>
-            
+
+
+                        <span class="c">// Unsubscribe event listeners</span>
+<span class="c"></span>
+                        <span class="k">if</span> <span class="o">(</span><span class="nx">p_oMenu</span><span class="o">.</span><span class="nx">cfg</span><span class="o">)</span> <span class="o">{</span>
+
+                            <span class="nx">p_oMenu</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">unsubscribeFromConfigEvent</span><span class="o">(</span><span class="s2">&quot;visible&quot;</span><span class="o">,</span> 
+                                <span class="nx">onMenuVisibleConfigChange</span><span class="o">);</span>
+                            
+                        <span class="o">}</span>
+
+                        <span class="nx">p_oMenu</span><span class="o">.</span><span class="nx">destroyEvent</span><span class="o">.</span><span class="nx">unsubscribe</span><span class="o">(</span><span class="nx">onMenuDestroy</span><span class="o">,</span> 
+                            <span class="nx">p_oMenu</span><span class="o">);</span>
+                
+                        <span class="nx">p_oMenu</span><span class="o">.</span><span class="nx">itemAddedEvent</span><span class="o">.</span><span class="nx">unsubscribe</span><span class="o">(</span><span class="nx">onItemAdded</span><span class="o">);</span>
+                        <span class="nx">p_oMenu</span><span class="o">.</span><span class="nx">focusEvent</span><span class="o">.</span><span class="nx">unsubscribe</span><span class="o">(</span><span class="nx">onMenuFocus</span><span class="o">);</span>
+                        <span class="nx">p_oMenu</span><span class="o">.</span><span class="nx">blurEvent</span><span class="o">.</span><span class="nx">unsubscribe</span><span class="o">(</span><span class="nx">onMenuBlur</span><span class="o">);</span>
+
                     <span class="o">}</span>
                 
                 <span class="o">}</span>
@@ -612,7 +657,7 @@
         
                 <span class="k">for</span> <span class="o">(</span><span class="k">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">m_oVisibleMenus</span><span class="o">)</span> <span class="o">{</span>
         
-                    <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">hasOwnProperty</span><span class="o">(</span><span class="nx">m_oVisibleMenus</span><span class="o">,</span><span class="nx">i</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">hasOwnProperty</span><span class="o">(</span><span class="nx">m_oVisibleMenus</span><span class="o">,</span> <span class="nx">i</span><span class="o">))</span> <span class="o">{</span>
         
                         <span class="nx">oMenu</span> <span class="o">=</span> <span class="nx">m_oVisibleMenus</span><span class="o">[</span><span class="nx">i</span><span class="o">];</span>
         

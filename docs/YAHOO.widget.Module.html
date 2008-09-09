@@ -12,8 +12,8 @@
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
-        <h1>Yahoo! UI Library</h1>
-        <h3>Container&nbsp; <span class="subtitle">2.3.0</span></h3>
+        <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
+        <h3>Container&nbsp; <span class="subtitle">2.3.1</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_container.html">container</a>
@@ -47,6 +47,12 @@
                     </h2>
                     <!-- class tree goes here -->
                     
+                        <dl class="subclasses">
+                            <dt>Known Subclasses:</dd>
+                            <dd>
+                                    <a href="YAHOO.widget.Overlay.html">YAHOO.widget.Overlay</a>
+                            </dd>
+                       </dl>
                 
   
 
@@ -60,7 +66,7 @@ Container package.
                     </div>
 
                         <div class="section constructor details">
-                        <h3><a name="constructor_detail">Constructor</a></h3>
+                        <h3 id="constructor">Constructor</h3>
                         <div class="content">
                             <div class="detail">
                                 <strong>YAHOO.widget.Module</strong>
@@ -108,7 +114,7 @@ documentation for more details.
                     </div>
 
                         <div class="section field details">
-                            <h3><a name="field_detail">Properties</a></h3>
+                            <h3 id="properties">Properties</h3>
                             <div class="content">
                                     <div class="">
                                     <h4><a name="body">body</a>
@@ -428,8 +434,69 @@ used to monitor changes to the browser's base font size
 
 
                         <div class="section method details">
-                            <h3><a name="methodDetails">Methods</a></h3>
+                            <h3 id="methods">Methods</h3>
                             <div class="content">
+                                    <div class="protected">
+                                    <h4>
+                                        <a name="_addToParent">_addToParent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         protected 
+                                        
+                                        
+                                        void
+                                            <strong>_addToParent</strong>
+                                           (
+                                                
+                                                        
+                                                         The
+                                                    
+                                                
+
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            This method is a private helper, used when constructing the DOM structure for the module 
+to account for situations which may cause Operation Aborted errors in IE. It should not 
+be used for general DOM construction.
+<p>
+If the parentNode is not document.body, the element is appended as the last element.
+</p>
+<p>
+If the parentNode is document.body the element is added as the first child to help
+prevent Operation Aborted errors in IE.
+</p>
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>The &lt;parentNode&gt;</code>
+                                                             HTML element to which the element will be added
+                                                        </dd>
+                                                        <dd>
+                                                            <code>The &lt;element&gt;</code>
+                                                             HTML element to be added to parentNode's children
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
                                     <div class="">
                                     <h4>
                                         <a name="appendToBody">appendToBody</a></h4>
@@ -1027,10 +1094,20 @@ that can be used to detect text resize.
                                             Renders the Module by inserting the elements that are not already 
 in the main Module into their correct places. Optionally appends 
 the Module to the specified node prior to the render's execution. 
-NOTE: For Modules without existing markup, the appendToNode argument 
+<p>
+For Modules without existing markup, the appendToNode argument 
 is REQUIRED. If this argument is ommitted and the current element is 
 not present in the document, the function will return false, 
 indicating that the render was a failure.
+</p>
+<p>
+NOTE: As of 2.3.1, if the appendToNode is the document's body element
+then the module is rendered as the first child of the body element, 
+and not appended to it, to avoid Operation Aborted errors in IE when 
+rendering the module before window's load event is fired. You can 
+use the appendtodocumentbody configuration property to change this 
+to append to document.body if required.
+</p>
                                         </div>
 
                                         <div class="description">
@@ -1308,7 +1385,7 @@ the visibility change, and showEvent after.
 
 
                         <div class="section method details">
-                            <h3><a name="eventDetails">Events</a></h3>
+                            <h3 id="events">Events</h3>
                             <div class="content">
                                     <div class="">
                                     <h4>
@@ -1820,8 +1897,32 @@ size detection.
 
 
                         <div class="section field details">
-                            <h3><a name="field_detail">Configuration Attributes</a></h3>
+                            <h3 id="configattributes">Configuration Attributes</h3>
                             <div class="content">
+                                    <div class="">
+                                    <h4><a name="appendtodocumentbody">appendtodocumentbody</a>
+                                        <code>- Boolean</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Specifies if the module should be rendered as the first child 
+of document.body or appended as the last child when render is called
+with document.body as the "appendToNode".
+<p>
+Appending to the body while the DOM is still being constructed can 
+lead to Operation Aborted errors in IE hence this flag is set to 
+false by default.
+</p>
+                                        </div>
+                                    </div>
+ 
+     
+                                    <div class="default">
+                                        Default Value: false
+                                    </div>        
+
+                                    <hr />
+                                    </div>        
                                     <div class="">
                                     <h4><a name="effect">effect</a>
                                         <code>- Object</code>
@@ -2038,6 +2139,9 @@ for user font resizing in the document
                     <div class="module">
                         <h4>Methods</h4>
                         <ul class="content">        
+                                <li class="protected"><!--<code>void</code>-->
+                                <a href="#_addToParent">_addToParent</a>
+                                </li>
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#appendToBody">appendToBody</a>
                                 </li>
@@ -2149,6 +2253,9 @@ for user font resizing in the document
                     <div class="module">
                         <h4>Configuration Attributes</h4>
                         <ul class="content">        
+                                <li class="">
+                                <a href="#appendtodocumentbody">appendtodocumentbody</a>
+                                </li>
                                 <li class="">
                                 <a href="#effect">effect</a>
                                 </li>

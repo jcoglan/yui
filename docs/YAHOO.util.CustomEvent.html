@@ -12,8 +12,8 @@
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
-        <h1>Yahoo! UI Library</h1>
-        <h3>Event Utility&nbsp; <span class="subtitle">2.3.0</span></h3>
+        <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
+        <h3>Event Utility&nbsp; <span class="subtitle">2.3.1</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_event.html">event</a>
@@ -56,7 +56,7 @@ that can be subscribed to by one or more independent component.
                     </div>
 
                         <div class="section constructor details">
-                        <h3><a name="constructor_detail">Constructor</a></h3>
+                        <h3 id="constructor">Constructor</h3>
                         <div class="content">
                             <div class="detail">
                                 <strong>YAHOO.util.CustomEvent</strong>
@@ -120,8 +120,25 @@ YAHOO.util.CustomEvent.LIST.
                     </div>
 
                         <div class="section field details">
-                            <h3><a name="field_detail">Properties</a></h3>
+                            <h3 id="properties">Properties</h3>
                             <div class="content">
+                                    <div class="">
+                                    <h4><a name="lastError">lastError</a>
+                                        <code>- Error</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            In order to make it possible to execute the rest of the subscriber
+stack when one thows an exception, the subscribers exceptions are
+caught.  The most recent exception is stored in this property
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
                                     <div class="">
                                     <h4><a name="scope">scope</a>
                                         <code>- object</code>
@@ -257,7 +274,7 @@ the optional custom object
 
 
                         <div class="section method details">
-                            <h3><a name="methodDetails">Methods</a></h3>
+                            <h3 id="methods">Methods</h3>
                             <div class="content">
                                     <div class="private">
                                     <h4>
@@ -547,7 +564,7 @@ that lives on the prototype)
 
 
                         <div class="section method details">
-                            <h3><a name="eventDetails">Events</a></h3>
+                            <h3 id="events">Events</h3>
                             <div class="content">
                                     <div class="">
                                     <h4>
@@ -703,6 +720,9 @@ the execution scope.
                     <div class="module">
                         <h4>Properties</h4>
                         <ul class="content">        
+                                <li class=""><a href="#lastError">lastError</a>
+                                        <!--<code>&lt;int&gt;</code>-->
+                                </li>
                                 <li class=""><a href="#scope">scope</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>

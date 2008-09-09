@@ -62,7 +62,9 @@
 	<h1>DataTable Control (beta): Context Menu Integration</h1>
 	
 	<div class="exampleIntro">
-	<p>Right-click on a row to see the ContextMenu integration in action.</p>
+	<p>Right-click on a row to see the ContextMenu integration in action. For more
+information on using the ContextMenu class please refer to the
+<a href="http://developer.yahoo.com/yui/menu/">documentation for the Menu control.</a></p>
 			
 	</div>	
 					
@@ -74,7 +76,7 @@
 		
 	<!--BEGIN SOURCE CODE FOR EXAMPLE =============================== -->
 	
-	<div id="contextmenu"></div>
+	<div id="myContainer"></div>
 
 <script type="text/javascript" src="assets/js/data.js"></script>
 <script type="text/javascript">
@@ -93,7 +95,7 @@ YAHOO.util.Event.addListener(window, "load", function() {
             fields: ["SKU","Quantity","Item","Description"]
         };
 
-        this.myDataTable = new YAHOO.widget.DataTable("contextmenu", myColumnDefs, this.myDataSource);
+        this.myDataTable = new YAHOO.widget.DataTable("myContainer", myColumnDefs, this.myDataSource);
 
         this.onContextMenuClick = function(p_sType, p_aArgs, p_myDataTable) {
             var task = p_aArgs[1];
@@ -118,7 +120,8 @@ YAHOO.util.Event.addListener(window, "load", function() {
         this.myContextMenu = new YAHOO.widget.ContextMenu("mycontextmenu",
                 {trigger:this.myDataTable.getTbodyEl()});
         this.myContextMenu.addItem("Delete Item");
-        this.myContextMenu.render(document.body);
+        // Render the ContextMenu instance to the parent container of the DataTable
+        this.myContextMenu.render("myContainer");
         this.myContextMenu.clickEvent.subscribe(this.onContextMenuClick, this.myDataTable);
     };
 });
@@ -164,7 +167,7 @@ YAHOO.util.Event.addListener(window, "load", function() {
 
 <p>Markup:</p>
 
-<textarea name="code" class="HTML" cols="60" rows="1">&lt;div id="contextmenu"&lt;&gt;/div&gt;
+<textarea name="code" class="HTML" cols="60" rows="1">&lt;div id="myContainer"&gt;&lt;/div&gt;
 </textarea>
 
 <p>JavaScript:</p>
@@ -184,7 +187,7 @@ YAHOO.util.Event.addListener(window, "load", function() {
             fields: ["SKU","Quantity","Item","Description"]
         };
 
-        this.myDataTable = new YAHOO.widget.DataTable("contextmenu", myColumnDefs, this.myDataSource);
+        this.myDataTable = new YAHOO.widget.DataTable("myContainer", myColumnDefs, this.myDataSource);
 
         this.onContextMenuClick = function(p_sType, p_aArgs, p_myDataTable) {
             var task = p_aArgs[1];
@@ -209,7 +212,8 @@ YAHOO.util.Event.addListener(window, "load", function() {
         this.myContextMenu = new YAHOO.widget.ContextMenu("mycontextmenu",
                 {trigger:this.myDataTable.getTbodyEl()});
         this.myContextMenu.addItem("Delete Item");
-        this.myContextMenu.render(document.body);
+        // Render the ContextMenu instance to the parent container of the DataTable
+        this.myContextMenu.render("myContainer");
         this.myContextMenu.clickEvent.subscribe(this.onContextMenuClick, this.myDataTable);
     };
 });
@@ -232,7 +236,7 @@ YAHOO.util.Event.addListener(window, "load", function() {
 	
 						<div id="exampleToc">
 							<ul>
-								<li><a href='../datatable/dt_basic.html'>Basic Example</a></li><li><a href='../datatable/dt_enhanced.html'>Progressive Enhancement</a></li><li><a href='../datatable/dt_formatting.html'>Custom Cell Formatting</a></li><li><a href='../datatable/dt_nestedheaders.html'>Nested headers</a></li><li><a href='../datatable/dt_xhrjson.html'>JSON Data Over XHR</a></li><li><a href='../datatable/dt_xhrpostxml.html'>XML Data Over XHR With POST</a></li><li><a href='../datatable/dt_xhrtext.html'>Textual Data Over XHR</a></li><li><a href='../datatable/dt_xhrlocalxml.html'>Local XML Data</a></li><li><a href='../datatable/dt_clientpagination.html'>Client-side Pagination</a></li><li><a href='../datatable/dt_clientsorting.html'>Client-side Sorting</a></li><li><a href='../datatable/dt_serverpagination.html'>Server-side Pagination</a></li><li><a href='../datatable/dt_serversorting.html'>Server-side Sorting</a></li><li><a href='../datatable/dt_server_pag_sort.html'>Server-side Pagination and Sorting, with Browser History Manager</a></li><li><a href='../datatable/dt_fixedscroll.html'>Fixed Scrolling</a></li><li><a href='../datatable/dt_rowselect.html'>Row Selection</a></li><li><a href='../datatable/dt_cellselect.html'>Cell Selection</a></li><li><a href='../datatable/dt_cellediting.html'>Inline Cell Editing</a></li><li class='selected'><a href='../datatable/dt_contextmenu.html'>Context Menu Integration</a></li><li><a href='../datatable/dt_complex.html'>Complex Example of Multiple Features</a></li><li><a href='../datatable/dt_skinning.html'>Skinning Model</a></li>							</ul>
+								<li><a href='../datatable/dt_basic.html'>Basic Example</a></li><li><a href='../datatable/dt_enhanced.html'>Progressive Enhancement</a></li><li><a href='../datatable/dt_formatting.html'>Custom Cell Formatting</a></li><li><a href='../datatable/dt_nestedheaders.html'>Nested headers</a></li><li><a href='../datatable/dt_xhrjson.html'>JSON Data Over XHR</a></li><li><a href='../datatable/dt_xhrpostxml.html'>XML Data Over XHR With POST</a></li><li><a href='../datatable/dt_xhrtext.html'>Textual Data Over XHR</a></li><li><a href='../datatable/dt_xhrlocalxml.html'>Local XML Data</a></li><li><a href='../datatable/dt_clientpagination.html'>Client-side Pagination</a></li><li><a href='../datatable/dt_clientsorting.html'>Client-side Sorting</a></li><li><a href='../datatable/dt_serverpagination.html'>Server-side Pagination</a></li><li><a href='../datatable/dt_serversorting.html'>Server-side Sorting</a></li><li><a href='../datatable/dt_server_pag_sort.html'>Server-side Pagination and Sorting, with Browser History Manager</a></li><li><a href='../datatable/dt_fixedscroll.html'>Fixed Scrolling</a></li><li><a href='../datatable/dt_rowselect.html'>Row Selection</a></li><li><a href='../datatable/dt_cellselect.html'>Cell Selection</a></li><li><a href='../datatable/dt_cellediting.html'>Inline Cell Editing</a></li><li class='selected'><a href='../datatable/dt_contextmenu.html'>Context Menu Integration</a></li><li><a href='../datatable/dt_complex.html'>Complex Example of Multiple Features</a></li><li><a href='../datatable/dt_autocomplete.html'>Datatable with Autocomplete</a></li><li><a href='../datatable/dt_skinning.html'>Skinning Model</a></li>							</ul>
 						</div>
 					</div>
 					

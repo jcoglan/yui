@@ -41,7 +41,8 @@ body {
 #example {height:30em;}
 label { display:block;float:left;width:45%;clear:left; }
 .clear { clear:both; }
-#resp { font-family:courier;margin:10px;padding:5px;border:1px solid #ccc;background:#fff;}
+#resp { margin:10px;padding:5px;border:1px solid #ccc;background:#fff;}
+#resp li { font-family:monospace }
 </style>
 
 <script>
@@ -60,7 +61,6 @@ function init() {
 		var response = o.responseText;
 		response = response.split("<!")[0];
 		document.getElementById("resp").innerHTML = response;
-		eval(response);
 	};
 	var handleFailure = function(o) {
 		alert("Submission failed: " + o.status);
@@ -145,6 +145,7 @@ YAHOO.util.Event.onDOMReady(init);
 </div>
 
 <div id="resp">Server response will be displayed in this area</div>	
+
 <!--END SOURCE CODE FOR EXAMPLE =============================== -->
 
 </body>

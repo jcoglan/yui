@@ -85,17 +85,12 @@
     .yui-skin-sam .yui-toolbar-container .yui-toolbar-insertdate span.yui-toolbar-icon {
         background-image: url( assets/calendar_default.gif );
         background-position: 1px 0px;
+        left: 5px;
     }
     .yui-skin-sam .yui-toolbar-container .yui-button-insertdate-selected span.yui-toolbar-icon {
         background-image: url( assets/calendar_active.gif );
         background-position: 1px 0px;
-    }
-    .yui-skin-sam .yui-toolbar-container .yui-toolbar-insertimage { /* Turn off Right border of button before us */
-        border-right: none;
-    }
-
-    #editor_container .yui-toolbar-separator-5 {
-        border: none;
+        left: 5px;
     }
     
     #insertdate {
@@ -105,7 +100,7 @@
 
 <form method="post" action="#" id="form1">
 <textarea id="editor" name="editor" rows="20" cols="75">
-<font face="Times New Roman">This is some more test text. This is some more <b>test <i>text</i></b></font>. This is some more test text. This is some more test text. This is some more test text. This is some more test text. This is some more test text. This is some more test text. This is some more test text. 
+This is some more test text. <font face="Times New Roman">This is some more test text. This is some more <b>test <i>text</i></b></font>. This is some more test text. This is some more test text. This is some more test text. This is some more test text. This is some more test text. This is some more test text. This is some more test text. 
 </textarea>
 </form>
 
@@ -119,9 +114,10 @@
 
         var myConfig = {
             height: '300px',
-            width: '522px',
+            width: '530px',
             animate: true,
-            dompath: true
+            dompath: true,
+            focusAtStart: true
         };
 
     YAHOO.log('Creating Editor', 'info', 'example');
@@ -161,6 +157,7 @@
                 return menu;
             }()
         };
+
         YAHOO.log('Adding new button (insertdate) to toolbar', 'info', 'example');
         myEditor.toolbar.addButtonToGroup(dateConfig, 'insertitem');
 
@@ -174,7 +171,6 @@
                 } else {
                     selectedDate = el.innerHTML;
                 }
-                console.log(selectedDate);
             }
             var _button = this.toolbar.getButtonByValue('insertdate');
             _button._menu.hide();
@@ -185,9 +181,7 @@
             var calDate = ' <span class="date">' + (ev.calDate.getMonth() + 1)
                 + '/' + ev.calDate.getDate()
                 + '/' + ev.calDate.getFullYear() + '</span>&nbsp;';
-            this._focusWindow();
             this.execCommand('inserthtml', calDate);
-            this._focusWindow();
             var _button = this.toolbar.getButtonByValue('insertdate');
             _button._menu.hide();
         }, myEditor, true);
@@ -226,7 +220,8 @@
 <textarea name="code" class="HTML">
 &lt;form method="post" action="#" id="form1"&gt;
 &lt;textarea id="editor" name="editor" rows="20" cols="75"&gt;
-<font face="Times New Roman">This is some more test text. This is some more <b>test <i>text</i></b></font>.
+This is some more test text. <font face="Times New Roman">This is some more test text. 
+This is some more <b>test <i>text</i></b></font>.
 This is some more test text. This is some more test text. This is some more test text.
 This is some more test text. This is some more test text. This is some more test text.
 This is some more test text. 
@@ -249,9 +244,10 @@ This is some more test text.
         //The Editor config
         var myConfig = {
             height: '300px',
-            width: '522px',
+            width: '530px',
             animate: true,
-            dompath: true
+            dompath: true,
+            focusAtStart: true
         };
 
     //Now let's load the Editor..
@@ -326,6 +322,7 @@ From inside that function we will set up a new button config object literal with
     });
     myEditor.render();
 })();
+
 </textarea>
 
 <h2>Handling the Button's State on Node Change</h2>
@@ -368,14 +365,11 @@ From inside that function we will set up a new button config object literal with
         var calDate = ' <span class="date">' + (ev.calDate.getMonth() + 1)
             + '/' + ev.calDate.getDate()
             + '/' + ev.calDate.getFullYear() + '</span> ';
-        this._focusWindow();
         this.execCommand('inserthtml', calDate);
-        this._focusWindow();
         var _button = this.toolbar.getButtonByValue('insertdate');
         _button._menu.hide();
     }, myEditor, true);
-    
-});
+   
 </textarea>
 
 <h2>Rendering the Calendar and Handle Date Selection</h2>
@@ -422,10 +416,6 @@ From inside that function we will set up a new button config object literal with
     background-image: url( assets/calendar_active.gif );
     background-position: 1px 0px;
 }
-/* Turn off Right border of button before us */
-.yui-skin-sam .yui-toolbar-container .yui-toolbar-insertimage {
-    border-right: none;
-}
 </textarea>
 
 <h2>Full Example Javascript Source</h2>
@@ -439,15 +429,17 @@ From inside that function we will set up a new button config object literal with
 
         var myConfig = {
             height: '300px',
-            width: '522px',
+            width: '530px',
             animate: true,
-            dompath: true
+            dompath: true,
+            focusAtStart: true
         };
 
-
+    YAHOO.log('Creating Editor', 'info', 'example');
     var myEditor = new YAHOO.widget.Editor('editor', myConfig);
 
     myEditor.on('toolbarLoaded', function() { 
+        YAHOO.log('Editor Toolbar loaded', 'info', 'example');
        
         var dateConfig = {
             type: 'push', label: 'Insert Date', value: 'insertdate',
@@ -463,7 +455,7 @@ From inside that function we will set up a new button config object literal with
                     menu.cfg.setProperty('context', [
                         myEditor.toolbar.getButtonByValue('insertdate').get('element'),
                         'tl', 'bl'
-                    ]);
+                        ]);
                 });
                 menu.showEvent.subscribe(function() {
                     cal.deselectAll();
@@ -480,11 +472,14 @@ From inside that function we will set up a new button config object literal with
                 return menu;
             }()
         };
+
+        YAHOO.log('Adding new button (insertdate) to toolbar', 'info', 'example');
         myEditor.toolbar.addButtonToGroup(dateConfig, 'insertitem');
 
         myEditor.on('afterNodeChange', function() {
             var el = this._getSelectedElement();
             if (Dom.hasClass(el, 'date') || Dom.hasClass(el.parentNode, 'date')) {
+                YAHOO.log('We found an element with the class of (date) select button', 'info', 'example');
                 this.toolbar.selectButton(this.toolbar.getButtonByValue('insertdate'));
                 if (Dom.hasClass(el.parentNode, 'date')) {
                     selectedDate = el.parentNode.innerHTML;
@@ -497,12 +492,11 @@ From inside that function we will set up a new button config object literal with
         }, myEditor, true);
 
         myEditor.toolbar.on('insertdateClick', function(ev) {
-            var calDate = '<span class="date">' + (ev.calDate.getMonth() + 1)
+            YAHOO.log('insertdateClick: ' + YAHOO.lang.dump(ev), 'info', 'example');
+            var calDate = ' <span class="date">' + (ev.calDate.getMonth() + 1)
                 + '/' + ev.calDate.getDate()
-                + '/' + ev.calDate.getFullYear() + '</span>';
-            this._focusWindow();
+                + '/' + ev.calDate.getFullYear() + '</span>&nbsp;';
             this.execCommand('inserthtml', calDate);
-            this._focusWindow();
             var _button = this.toolbar.getButtonByValue('insertdate');
             _button._menu.hide();
         }, myEditor, true);
@@ -510,15 +504,18 @@ From inside that function we will set up a new button config object literal with
     myEditor.render();
 
     Event.onAvailable('cal1Container', function() {
+        YAHOO.log('Found (#cal1Container) - render the calendar', 'info', 'example');
         cal = new YAHOO.widget.Calendar('cal1', 'cal1Container');
         cal.selectEvent.subscribe(function() {
             var calDate = cal.getSelectedDates()[0];
+            YAHOO.log('Calendar selectEvent: (' + calDate + ')', 'info', 'example');
             this.toolbar.fireEvent('insertdateClick', { type: 'insertdateClick', calDate: calDate });
         }, myEditor, true);
         cal.render();
     });
 
 })();
+
 </textarea>
 				</div>
 				<div class="yui-u">
@@ -538,7 +535,7 @@ From inside that function we will set up a new button config object literal with
 	
 						<div id="exampleToc">
 							<ul>
-								<li><a href='../editor/flickr_editor.html'>Flickr Image Search</a></li><li class='selected'><a href='../editor/cal_editor.html'>Calendar Plugin</a></li><li><a href='../editor/icon_editor.html'>Icon Insertion</a></li><li><a href='../editor/switch_editor.html'>Plain Text Switcher</a></li><li><a href='../editor/post_editor.html'>Editor Data Post with Connection Manager</a></li><li><a href='../editor/skinning_editor.html'>Skinning the Editor</a></li>							</ul>
+								<li><a href='../editor/flickr_editor.html'>Flickr Image Search</a></li><li class='selected'><a href='../editor/cal_editor.html'>Calendar Plugin</a></li><li><a href='../editor/icon_editor.html'>Icon Insertion</a></li><li><a href='../editor/switch_editor.html'>Plain Text Switcher</a></li><li><a href='../editor/post_editor.html'>Editor Data Post with Connection Manager</a></li><li><a href='../editor/skinning_editor.html'>Skinning the Editor</a></li><li><a href='../editor/toolbar_editor.html'>Default toolbar config</a></li><li><a href='../editor/tabview_editor.html'>Editor inside a Tabview control</a></li><li><a href='../editor/multi_editor.html'>One editor, multiple edit areas</a></li>							</ul>
 						</div>
 					</div>
 					

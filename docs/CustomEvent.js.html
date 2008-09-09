@@ -12,8 +12,8 @@
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
-        <h1>Yahoo! UI Library</h1>
-        <h3>Event Utility&nbsp; <span class="subtitle">2.3.0</span></h3>
+        <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
+        <h3>Event Utility&nbsp; <span class="subtitle">2.3.1</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_event.html">event</a>
@@ -140,6 +140,16 @@
                 <span class="k">new</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">CustomEvent</span><span class="o">(</span><span class="nx">onsubscribeType</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
 
     <span class="o">}</span> 
+
+
+    <span class="c">/**</span>
+<span class="c">     * In order to make it possible to execute the rest of the subscriber</span>
+<span class="c">     * stack when one thows an exception, the subscribers exceptions are</span>
+<span class="c">     * caught.  The most recent exception is stored in this property</span>
+<span class="c">     * @property lastError</span>
+<span class="c">     * @type Error</span>
+<span class="c">     */</span>
+    <span class="k">this</span><span class="o">.</span><span class="nx">lastError</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
 <span class="o">};</span>
 
 <span class="c">/**</span>
@@ -272,9 +282,22 @@
                     <span class="k">if</span> <span class="o">(</span><span class="nx">args</span><span class="o">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="m">0</span><span class="o">)</span> <span class="o">{</span>
                         <span class="nx">param</span> <span class="o">=</span> <span class="nx">args</span><span class="o">[</span><span class="m">0</span><span class="o">];</span>
                     <span class="o">}</span>
-                    <span class="nx">ret</span> <span class="o">=</span> <span class="nx">s</span><span class="o">.</span><span class="nx">fn</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="nx">scope</span><span class="o">,</span> <span class="nx">param</span><span class="o">,</span> <span class="nx">s</span><span class="o">.</span><span class="nx">obj</span><span class="o">);</span>
+
+                    <span class="k">try</span> <span class="o">{</span>
+                        <span class="nx">ret</span> <span class="o">=</span> <span class="nx">s</span><span class="o">.</span><span class="nx">fn</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="nx">scope</span><span class="o">,</span> <span class="nx">param</span><span class="o">,</span> <span class="nx">s</span><span class="o">.</span><span class="nx">obj</span><span class="o">);</span>
+                    <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="k">this</span><span class="o">.</span><span class="nx">lastError</span> <span class="o">=</span> <span class="nx">e</span><span class="o">;</span>
+                        <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="k">this</span> <span class="o">+</span> <span class="s2">&quot; subscriber exception: &quot;</span> <span class="o">+</span> <span class="nx">e</span><span class="o">,</span>
+                                  <span class="s2">&quot;error&quot;</span><span class="o">,</span> <span class="s2">&quot;Event&quot;</span><span class="o">);</span>
+                    <span class="o">}</span>
                 <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                    <span class="nx">ret</span> <span class="o">=</span> <span class="nx">s</span><span class="o">.</span><span class="nx">fn</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="nx">scope</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">type</span><span class="o">,</span> <span class="nx">args</span><span class="o">,</span> <span class="nx">s</span><span class="o">.</span><span class="nx">obj</span><span class="o">);</span>
+                    <span class="k">try</span> <span class="o">{</span>
+                        <span class="nx">ret</span> <span class="o">=</span> <span class="nx">s</span><span class="o">.</span><span class="nx">fn</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="nx">scope</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">type</span><span class="o">,</span> <span class="nx">args</span><span class="o">,</span> <span class="nx">s</span><span class="o">.</span><span class="nx">obj</span><span class="o">);</span>
+                    <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="k">this</span><span class="o">.</span><span class="nx">lastError</span> <span class="o">=</span> <span class="nx">e</span><span class="o">;</span>
+                        <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="k">this</span> <span class="o">+</span> <span class="s2">&quot; subscriber exception: &quot;</span> <span class="o">+</span> <span class="nx">e</span><span class="o">,</span>
+                                  <span class="s2">&quot;error&quot;</span><span class="o">,</span> <span class="s2">&quot;Event&quot;</span><span class="o">);</span>
+                    <span class="o">}</span>
                 <span class="o">}</span>
                 <span class="k">if</span> <span class="o">(</span><span class="kc">false</span> <span class="o">===</span> <span class="nx">ret</span><span class="o">)</span> <span class="o">{</span>
                     <span class="k">if</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">silent</span><span class="o">)</span> <span class="o">{</span>
@@ -290,8 +313,7 @@
 
         <span class="k">if</span> <span class="o">(</span><span class="nx">rebuild</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">var</span> <span class="nx">newlist</span><span class="o">=[],</span><span class="nx">subs</span><span class="o">=</span><span class="k">this</span><span class="o">.</span><span class="nx">subscribers</span><span class="o">;</span>
-            <span class="k">for</span> <span class="o">(</span><span class="nx">i</span><span class="o">=</span><span class="m">0</span><span class="o">,</span><span class="nx">len</span><span class="o">=</span><span class="nx">subs</span><span class="o">.</span><span class="nx">length</span><span class="o">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">len</span><span class="o">;</span> <span class="o">++</span><span class="nx">i</span><span class="o">)</span> <span class="o">{</span>
-                <span class="nx">s</span> <span class="o">=</span> <span class="nx">subs</span><span class="o">[</span><span class="nx">i</span><span class="o">];</span>
+            <span class="k">for</span> <span class="o">(</span><span class="nx">i</span><span class="o">=</span><span class="m">0</span><span class="o">,</span><span class="nx">len</span><span class="o">=</span><span class="nx">subs</span><span class="o">.</span><span class="nx">length</span><span class="o">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">len</span><span class="o">;</span> <span class="nx">i</span><span class="o">=</span><span class="nx">i</span><span class="o">+</span><span class="m">1</span><span class="o">)</span> <span class="o">{</span>
                 <span class="nx">newlist</span><span class="o">.</span><span class="nx">push</span><span class="o">(</span><span class="nx">subs</span><span class="o">[</span><span class="nx">i</span><span class="o">]);</span>
             <span class="o">}</span>
 

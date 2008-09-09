@@ -48,17 +48,12 @@ body {
     .yui-skin-sam .yui-toolbar-container .yui-toolbar-inserticon span.yui-toolbar-icon {
         background-image: url( assets/suits_default.gif );
         background-position: 1px 0px;
+        left: 5px;
     }
     .yui-skin-sam .yui-toolbar-container .yui-button-insertdate-selected span.yui-toolbar-icon {
         background-image: url( assets/suits_active.gif );
         background-position: 1px 0px;
-    }
-    .yui-skin-sam .yui-toolbar-container .yui-toolbar-insertimage { /* Turn off Right border of button before us */
-        border-right: none;
-    }
-    
-    #editor_container .yui-toolbar-separator-5 {
-        border: none;
+        left: 5px;
     }
     #inserticon {
         border:1px solid #808080;
@@ -85,13 +80,13 @@ This is some more test text.<br>This is some more test text.<br>This is some mor
 (function() {
     var myConfig = {
         height: '300px',
-        width: '522px',
+        width: '530px',
         animate: true,
         dompath: true,
-        handleSubmit: true
+        focusAtStart: true
     };
     YAHOO.log('Editor created..', 'info', 'example');
-    var myEditor = new YAHOO.widget.Editor('editor', myConfig);
+    myEditor = new YAHOO.widget.Editor('editor', myConfig);
 
     YAHOO.util.Event.onAvailable('iconMenu', function() {
         YAHOO.log('onAvailable: (#iconMenu)', 'info', 'example');

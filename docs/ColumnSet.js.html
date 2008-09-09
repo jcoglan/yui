@@ -12,8 +12,8 @@
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
-        <h1>Yahoo! UI Library</h1>
-        <h3>DataTable Widget&nbsp; <span class="subtitle">2.3.0</span></h3>
+        <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
+        <h3>DataTable Widget&nbsp; <span class="subtitle">2.3.1</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_datatable.html">datatable</a>
@@ -65,7 +65,8 @@
 <span class="c"></span>    <span class="k">var</span> <span class="nx">nodeDepth</span> <span class="o">=</span> <span class="o">-</span><span class="m">1</span><span class="o">;</span>
 
     <span class="c">// Internal recursive function to defined Column instances</span>
-<span class="c"></span>    <span class="k">var</span> <span class="nx">parseColumns</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">nodeList</span><span class="o">,</span> <span class="nx">parent</span><span class="o">)</span> <span class="o">{</span>
+<span class="c"></span>    <span class="k">var</span> <span class="nx">oSelf</span> <span class="o">=</span> <span class="k">this</span><span class="o">;</span>
+    <span class="k">var</span> <span class="nx">parseColumns</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">nodeList</span><span class="o">,</span> <span class="nx">parent</span><span class="o">)</span> <span class="o">{</span>
         <span class="c">// One level down</span>
 <span class="c"></span>        <span class="nx">nodeDepth</span><span class="o">++;</span>
 
@@ -81,6 +82,14 @@
 
             <span class="c">// Instantiate a new Column for each node</span>
 <span class="c"></span>            <span class="k">var</span> <span class="nx">oColumn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Column</span><span class="o">(</span><span class="nx">currentNode</span><span class="o">);</span>
+            <span class="nx">oColumn</span><span class="o">.</span><span class="nx">_sId</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Column</span><span class="o">.</span><span class="nx">_nCount</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">;</span>
+            <span class="nx">oColumn</span><span class="o">.</span><span class="nx">_sName</span> <span class="o">=</span> <span class="s2">&quot;Column instance&quot;</span> <span class="o">+</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Column</span><span class="o">.</span><span class="nx">_nCount</span><span class="o">;</span>
+            <span class="c">// Assign a key if not found</span>
+<span class="c"></span>            <span class="k">if</span><span class="o">(!</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isValue</span><span class="o">(</span><span class="nx">oColumn</span><span class="o">.</span><span class="nx">key</span><span class="o">))</span> <span class="o">{</span>
+                <span class="nx">oColumn</span><span class="o">.</span><span class="nx">key</span> <span class="o">=</span> <span class="s2">&quot;yui-dt-col&quot;</span> <span class="o">+</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Column</span><span class="o">.</span><span class="nx">_nCount</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="c">// Increment counter</span>
+<span class="c"></span>            <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Column</span><span class="o">.</span><span class="nx">_nCount</span><span class="o">++;</span>
 
             <span class="c">// Add the new Column to the flat list</span>
 <span class="c"></span>            <span class="nx">flat</span><span class="o">.</span><span class="nx">push</span><span class="o">(</span><span class="nx">oColumn</span><span class="o">);</span>
@@ -160,7 +169,7 @@
                             <span class="o">(</span><span class="nx">oColumn</span><span class="o">.</span><span class="nx">sortOptions</span><span class="o">.</span><span class="nx">descFunction</span><span class="o">)))</span> <span class="o">{</span>
                         <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;The properties sortOptions.ascFunction and &quot;</span> <span class="o">+</span>
                         <span class="s2">&quot; sortOptions.descFunction have been deprecated in favor &quot;</span> <span class="o">+</span>
-                        <span class="s2">&quot; of sortOptions.sortFunction&quot;</span><span class="o">,</span> <span class="s2">&quot;warn&quot;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">toString</span><span class="o">());</span>
+                        <span class="s2">&quot; of sortOptions.sortFunction&quot;</span><span class="o">,</span> <span class="s2">&quot;warn&quot;</span><span class="o">,</span> <span class="nx">oColumn</span><span class="o">.</span><span class="nx">toString</span><span class="o">());</span>
                     <span class="o">}</span>
                 <span class="o">}</span>
 
@@ -244,7 +253,7 @@
 
     <span class="c">// Store header relationships in an array for HEADERS attribute</span>
 <span class="c"></span>    <span class="k">var</span> <span class="nx">recurseAncestorsForHeaders</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">i</span><span class="o">,</span> <span class="nx">oColumn</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nx">headers</span><span class="o">[</span><span class="nx">i</span><span class="o">].</span><span class="nx">push</span><span class="o">(</span><span class="nx">oColumn</span><span class="o">.</span><span class="nx">_nId</span><span class="o">);</span>
+        <span class="nx">headers</span><span class="o">[</span><span class="nx">i</span><span class="o">].</span><span class="nx">push</span><span class="o">(</span><span class="nx">oColumn</span><span class="o">.</span><span class="nx">_sId</span><span class="o">);</span>
         <span class="k">if</span><span class="o">(</span><span class="nx">oColumn</span><span class="o">.</span><span class="nx">parent</span><span class="o">)</span> <span class="o">{</span>
             <span class="nx">recurseAncestorsForHeaders</span><span class="o">(</span><span class="nx">i</span><span class="o">,</span> <span class="nx">oColumn</span><span class="o">.</span><span class="nx">parent</span><span class="o">);</span>
         <span class="o">}</span>
@@ -253,7 +262,6 @@
         <span class="nx">headers</span><span class="o">[</span><span class="nx">i</span><span class="o">]</span> <span class="o">=</span> <span class="o">[];</span>
         <span class="nx">recurseAncestorsForHeaders</span><span class="o">(</span><span class="nx">i</span><span class="o">,</span> <span class="nx">keys</span><span class="o">[</span><span class="nx">i</span><span class="o">]);</span>
         <span class="nx">headers</span><span class="o">[</span><span class="nx">i</span><span class="o">]</span> <span class="o">=</span> <span class="nx">headers</span><span class="o">[</span><span class="nx">i</span><span class="o">].</span><span class="nx">reverse</span><span class="o">();</span>
-        <span class="nx">headers</span><span class="o">[</span><span class="nx">i</span><span class="o">]</span> <span class="o">=</span> <span class="nx">headers</span><span class="o">[</span><span class="nx">i</span><span class="o">].</span><span class="nx">join</span><span class="o">(</span><span class="s2">&quot; &quot;</span><span class="o">);</span>
     <span class="o">}</span>
 
     <span class="c">// Save to the ColumnSet instance</span>
@@ -273,10 +281,10 @@
 <span class="c">/////////////////////////////////////////////////////////////////////////////</span>
 <span class="c"></span>
 <span class="c">/**</span>
-<span class="c"> * Internal class variable to index multiple data table instances.</span>
+<span class="c"> * Internal class variable to index multiple ColumnSet instances.</span>
 <span class="c"> *</span>
 <span class="c"> * @property ColumnSet._nCount</span>
-<span class="c"> * @type number</span>
+<span class="c"> * @type Number</span>
 <span class="c"> * @private</span>
 <span class="c"> * @static</span>
 <span class="c"> */</span>
@@ -350,27 +358,50 @@
 <span class="o">};</span>
 
 <span class="c">/**</span>
-<span class="c"> * Returns Column instance with given ID number or key.</span>
+<span class="c"> * Returns Column instance with given ID.</span>
 <span class="c"> *</span>
-<span class="c"> * @method getColumn</span>
-<span class="c"> * @param column {Number | String} ID number or unique key.</span>
+<span class="c"> * @method getColumnById</span>
+<span class="c"> * @param column {String} Column ID.</span>
 <span class="c"> * @return {YAHOO.widget.Column} Column instance.</span>
 <span class="c"> */</span>
 
-<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">ColumnSet</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">getColumn</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">column</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">var</span> <span class="nx">allColumns</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">flat</span><span class="o">;</span>
-    <span class="k">if</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isNumber</span><span class="o">(</span><span class="nx">column</span><span class="o">))</span> <span class="o">{</span>
-        <span class="k">for</span><span class="o">(</span><span class="k">var</span> <span class="nx">i</span><span class="o">=</span><span class="m">0</span><span class="o">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">allColumns</span><span class="o">.</span><span class="nx">length</span><span class="o">;</span> <span class="nx">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="k">if</span><span class="o">(</span><span class="nx">allColumns</span><span class="o">[</span><span class="nx">i</span><span class="o">].</span><span class="nx">_nId</span> <span class="o">===</span> <span class="nx">column</span><span class="o">)</span> <span class="o">{</span>
+<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">ColumnSet</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">getColumnById</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">column</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isString</span><span class="o">(</span><span class="nx">column</span><span class="o">))</span> <span class="o">{</span>
+        <span class="k">var</span> <span class="nx">allColumns</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">flat</span><span class="o">;</span>
+        <span class="k">for</span><span class="o">(</span><span class="k">var</span> <span class="nx">i</span><span class="o">=</span><span class="nx">allColumns</span><span class="o">.</span><span class="nx">length</span><span class="o">-</span><span class="m">1</span><span class="o">;</span> <span class="nx">i</span><span class="o">&gt;-</span><span class="m">1</span><span class="o">;</span> <span class="nx">i</span><span class="o">--)</span> <span class="o">{</span>
+            <span class="k">if</span><span class="o">(</span><span class="nx">allColumns</span><span class="o">[</span><span class="nx">i</span><span class="o">].</span><span class="nx">_sId</span> <span class="o">===</span> <span class="nx">column</span><span class="o">)</span> <span class="o">{</span>
                 <span class="k">return</span> <span class="nx">allColumns</span><span class="o">[</span><span class="nx">i</span><span class="o">];</span>
             <span class="o">}</span>
         <span class="o">}</span>
     <span class="o">}</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+<span class="o">};</span>
+
+<span class="c">/**</span>
+<span class="c"> * Returns Column instance with given key or ColumnSet key index.</span>
+<span class="c"> *</span>
+<span class="c"> * @method getColumn</span>
+<span class="c"> * @param column {String | Number} Column key or ColumnSet key index.</span>
+<span class="c"> * @return {YAHOO.widget.Column} Column instance.</span>
+<span class="c"> */</span>
+
+<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">ColumnSet</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">getColumn</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">column</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isNumber</span><span class="o">(</span><span class="nx">column</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">keys</span><span class="o">[</span><span class="nx">column</span><span class="o">])</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="nx">keys</span><span class="o">[</span><span class="nx">column</span><span class="o">];</span>
+    <span class="o">}</span>
     <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isString</span><span class="o">(</span><span class="nx">column</span><span class="o">))</span> <span class="o">{</span>
-        <span class="k">for</span><span class="o">(</span><span class="nx">i</span><span class="o">=</span><span class="m">0</span><span class="o">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">allColumns</span><span class="o">.</span><span class="nx">length</span><span class="o">;</span> <span class="nx">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">var</span> <span class="nx">allColumns</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">flat</span><span class="o">;</span>
+        <span class="k">var</span> <span class="nx">aColumns</span> <span class="o">=</span> <span class="o">[];</span>
+        <span class="k">for</span><span class="o">(</span><span class="k">var</span> <span class="nx">i</span><span class="o">=</span><span class="m">0</span><span class="o">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">allColumns</span><span class="o">.</span><span class="nx">length</span><span class="o">;</span> <span class="nx">i</span><span class="o">++)</span> <span class="o">{</span>
             <span class="k">if</span><span class="o">(</span><span class="nx">allColumns</span><span class="o">[</span><span class="nx">i</span><span class="o">].</span><span class="nx">key</span> <span class="o">===</span> <span class="nx">column</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">return</span> <span class="nx">allColumns</span><span class="o">[</span><span class="nx">i</span><span class="o">];</span>
+                <span class="nx">aColumns</span><span class="o">.</span><span class="nx">push</span><span class="o">(</span><span class="nx">allColumns</span><span class="o">[</span><span class="nx">i</span><span class="o">]);</span>
             <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">if</span><span class="o">(</span><span class="nx">aColumns</span><span class="o">.</span><span class="nx">length</span> <span class="o">===</span> <span class="m">1</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nx">aColumns</span><span class="o">[</span><span class="m">0</span><span class="o">];</span>
+        <span class="o">}</span>
+        <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="nx">aColumns</span><span class="o">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="m">1</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nx">aColumns</span><span class="o">;</span>
         <span class="o">}</span>
     <span class="o">}</span>
     <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
@@ -389,10 +420,6 @@
 <span class="c"> * @param oConfigs {Object} Object literal of configuration values.</span>
 <span class="c"> */</span>
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Column</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">oConfigs</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c">// Internal variables</span>
-<span class="c"></span>    <span class="k">this</span><span class="o">.</span><span class="nx">_nId</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Column</span><span class="o">.</span><span class="nx">_nCount</span><span class="o">;</span>
-    <span class="k">this</span><span class="o">.</span><span class="nx">_sName</span> <span class="o">=</span> <span class="s2">&quot;Column instance&quot;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="nx">_nId</span><span class="o">;</span>
-
     <span class="c">// Object literal defines Column attributes</span>
 <span class="c"></span>    <span class="k">if</span><span class="o">(</span><span class="nx">oConfigs</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="nx">oConfigs</span><span class="o">.</span><span class="nx">constructor</span> <span class="o">==</span> <span class="nb">Object</span><span class="o">))</span> <span class="o">{</span>
         <span class="k">for</span><span class="o">(</span><span class="k">var</span> <span class="nx">sConfig</span> <span class="k">in</span> <span class="nx">oConfigs</span><span class="o">)</span> <span class="o">{</span>
@@ -401,11 +428,6 @@
             <span class="o">}</span>
         <span class="o">}</span>
     <span class="o">}</span>
-
-    <span class="k">if</span><span class="o">(!</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isValue</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">key</span><span class="o">))</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">key</span> <span class="o">=</span> <span class="s2">&quot;yui-dt-column&quot;</span><span class="o">+</span><span class="k">this</span><span class="o">.</span><span class="nx">_nId</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Column</span><span class="o">.</span><span class="nx">_nCount</span><span class="o">++;</span>
 <span class="o">};</span>
 
 <span class="c">/////////////////////////////////////////////////////////////////////////////</span>
@@ -415,13 +437,12 @@
 <span class="c">/////////////////////////////////////////////////////////////////////////////</span>
 <span class="c"></span>
 <span class="c">/**</span>
-<span class="c"> * Internal instance counter.</span>
+<span class="c"> * Internal class variable to index multiple Column instances.</span>
 <span class="c"> *</span>
 <span class="c"> * @property Column._nCount</span>
 <span class="c"> * @type Number</span>
 <span class="c"> * @private</span>
 <span class="c"> * @static</span>
-<span class="c"> * @default 0</span>
 <span class="c"> */</span>
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Column</span><span class="o">.</span><span class="nx">_nCount</span> <span class="o">=</span> <span class="m">0</span><span class="o">;</span>
 
@@ -434,19 +455,17 @@
 <span class="c"> */</span>
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Column</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">_sName</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
 
-
 <span class="c">/**</span>
-<span class="c"> * Unique number assigned at instantiation, indicates original order within</span>
-<span class="c"> * ColumnSet.</span>
+<span class="c"> * Unique String identifier assigned at instantiation.</span>
 <span class="c"> *</span>
-<span class="c"> * @property _nId</span>
-<span class="c"> * @type Number</span>
+<span class="c"> * @property _sId</span>
+<span class="c"> * @type String</span>
 <span class="c"> * @private</span>
 <span class="c"> */</span>
-<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Column</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">_nId</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Column</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">_sId</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
 
 <span class="c">/**</span>
-<span class="c"> * Reference to Column&#39;s index within its ColumnSet&#39;s keys array, or null if not applicable.</span>
+<span class="c"> * Reference to Column&#39;s current position index within its ColumnSet&#39;s keys array, if applicable.</span>
 <span class="c"> *</span>
 <span class="c"> * @property _nKeyIndex</span>
 <span class="c"> * @type Number</span>
@@ -643,22 +662,30 @@
 <span class="o">};</span>
 
 <span class="c">/**</span>
-<span class="c"> * Returns unique number assigned at instantiation, indicates original order</span>
-<span class="c"> * within ColumnSet.</span>
+<span class="c"> * Returns unique ID string.</span>
 <span class="c"> *</span>
 <span class="c"> * @method getId</span>
-<span class="c"> * @return {Number} Column&#39;s unique ID number.</span>
+<span class="c"> * @return {String} Unique ID string.</span>
 <span class="c"> */</span>
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Column</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">getId</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="nx">_nId</span><span class="o">;</span>
+    <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="nx">_sId</span><span class="o">;</span>
 <span class="o">};</span>
 
 <span class="c">/**</span>
-<span class="c"> * Public accessor returns Column&#39;s key index within its ColumnSet&#39;s keys array, or</span>
-<span class="c"> * null if not applicable.</span>
+<span class="c"> * Returns unique Column key.</span>
+<span class="c"> *</span>
+<span class="c"> * @method getKey</span>
+<span class="c"> * @return {String} Column key.</span>
+<span class="c"> */</span>
+<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Column</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">getKey</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="nx">key</span><span class="o">;</span>
+<span class="o">};</span>
+
+<span class="c">/**</span>
+<span class="c"> * Public accessor returns Column&#39;s current position index within its ColumnSet&#39;s keys array, if applicable.</span>
 <span class="c"> *</span>
 <span class="c"> * @method getKeyIndex</span>
-<span class="c"> * @return {Number} Column&#39;s key index within its ColumnSet keys array, if applicable.</span>
+<span class="c"> * @return {Number} Position index, or null.</span>
 <span class="c"> */</span>
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Column</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">getKeyIndex</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="nx">_nKeyIndex</span><span class="o">;</span>
@@ -915,49 +942,53 @@
 <span class="c"> * @param e {string} The drag event</span>
 <span class="c"> */</span>
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">ColumnResizer</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">onDrag</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">var</span> <span class="nx">newPos</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getX</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">getDragEl</span><span class="o">());</span>
-    <span class="c">//YAHOO.log(&quot;newpos:&quot;+newPos,&quot;warn&quot;);//YAHOO.util.Event.getPageX(e);</span>
-<span class="c"></span>    <span class="k">var</span> <span class="nx">offsetX</span> <span class="o">=</span> <span class="nx">newPos</span> <span class="o">-</span> <span class="k">this</span><span class="o">.</span><span class="nx">startPos</span><span class="o">;</span>
-    <span class="c">//YAHOO.log(&quot;offset:&quot;+offsetX,&quot;warn&quot;);</span>
-<span class="c"></span>    <span class="c">//YAHOO.log(&quot;startwidth:&quot;+this.startWidth + &quot; and offset:&quot;+offsetX,&quot;warn&quot;);</span>
-<span class="c"></span>    <span class="k">var</span> <span class="nx">newWidth</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">startWidth</span> <span class="o">+</span> <span class="nx">offsetX</span><span class="o">;</span>
-    <span class="c">//YAHOO.log(&quot;newwidth:&quot;+newWidth,&quot;warn&quot;);</span>
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="k">var</span> <span class="nx">newPos</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getX</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">getDragEl</span><span class="o">());</span>
+        <span class="c">//YAHOO.log(&quot;newpos:&quot;+newPos,&quot;warn&quot;);//YAHOO.util.Event.getPageX(e);</span>
+<span class="c"></span>        <span class="k">var</span> <span class="nx">offsetX</span> <span class="o">=</span> <span class="nx">newPos</span> <span class="o">-</span> <span class="k">this</span><span class="o">.</span><span class="nx">startPos</span><span class="o">;</span>
+        <span class="c">//YAHOO.log(&quot;offset:&quot;+offsetX,&quot;warn&quot;);</span>
+<span class="c"></span>        <span class="c">//YAHOO.log(&quot;startwidth:&quot;+this.startWidth + &quot; and offset:&quot;+offsetX,&quot;warn&quot;);</span>
+<span class="c"></span>        <span class="k">var</span> <span class="nx">newWidth</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">startWidth</span> <span class="o">+</span> <span class="nx">offsetX</span><span class="o">;</span>
+        <span class="c">//YAHOO.log(&quot;newwidth:&quot;+newWidth,&quot;warn&quot;);</span>
 <span class="c"></span>
-    <span class="k">if</span><span class="o">(</span><span class="nx">newWidth</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">.</span><span class="nx">minWidth</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nx">newWidth</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">minWidth</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="c">// Resize the Column</span>
-<span class="c"></span>    <span class="k">var</span> <span class="nx">oDataTable</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">datatable</span><span class="o">;</span>
-    <span class="k">var</span> <span class="nx">elCell</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cell</span><span class="o">;</span>
-
-    <span class="c">//YAHOO.log(&quot;newwidth&quot; + newWidth,&quot;warn&quot;);</span>
-<span class="c"></span>    <span class="c">//YAHOO.log(newWidth + &quot; AND &quot;+ elColumn.offsetWidth + &quot; AND &quot; + elColumn.id,&quot;warn&quot;);</span>
-<span class="c"></span>
-    <span class="c">// Resize the other Columns</span>
-<span class="c"></span>    <span class="k">if</span><span class="o">(</span><span class="nx">oDataTable</span><span class="o">.</span><span class="nx">fixedWidth</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c">// Moving right or left?</span>
-<span class="c"></span>        <span class="k">var</span> <span class="nx">sib</span> <span class="o">=</span> <span class="nx">elCell</span><span class="o">.</span><span class="nx">nextSibling</span><span class="o">;</span>
-        <span class="c">//var sibIndex = elCell.index + 1;</span>
-<span class="c"></span>        <span class="k">var</span> <span class="nx">sibnewwidth</span> <span class="o">=</span> <span class="nx">sib</span><span class="o">.</span><span class="nx">offsetWidth</span> <span class="o">-</span> <span class="nx">offsetX</span><span class="o">;</span>
-        <span class="k">if</span><span class="o">(</span><span class="nx">sibnewwidth</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">.</span><span class="nx">sibMinWidth</span><span class="o">)</span> <span class="o">{</span>
-            <span class="nx">sibnewwidth</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">sibMinWidth</span><span class="o">;</span>
+        <span class="k">if</span><span class="o">(</span><span class="nx">newWidth</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">.</span><span class="nx">minWidth</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nx">newWidth</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">minWidth</span><span class="o">;</span>
         <span class="o">}</span>
 
-        <span class="c">//TODO: how else to cycle through all the Columns without having to use an index property?</span>
-<span class="c"></span>        <span class="k">for</span><span class="o">(</span><span class="k">var</span> <span class="nx">i</span><span class="o">=</span><span class="m">0</span><span class="o">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">oDataTable</span><span class="o">.</span><span class="nx">_oColumnSet</span><span class="o">.</span><span class="nx">length</span><span class="o">;</span> <span class="nx">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="c">//if((i != elCell.index) &amp;&amp;  (i!=sibIndex)) {</span>
-<span class="c"></span>            <span class="c">//    YAHOO.util.Dom.get(oDataTable._oColumnSet.keys[i].id).style.width = oDataTable._oColumnSet.keys[i].width + &quot;px&quot;;</span>
-<span class="c"></span>            <span class="c">//}</span>
-<span class="c"></span>        <span class="o">}</span>
-        <span class="nx">sib</span><span class="o">.</span><span class="nx">style</span><span class="o">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">sibnewwidth</span><span class="o">;</span>
-        <span class="nx">elCell</span><span class="o">.</span><span class="nx">style</span><span class="o">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">newWidth</span> <span class="o">+</span> <span class="s2">&quot;px&quot;</span><span class="o">;</span>
-        <span class="c">//oDataTable._oColumnSet.flat[sibIndex].width = sibnewwidth;</span>
-<span class="c"></span>        <span class="c">//oDataTable._oColumnSet.flat[elCell.index].width = newWidth;</span>
+        <span class="c">// Resize the Column</span>
+<span class="c"></span>        <span class="k">var</span> <span class="nx">oDataTable</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">datatable</span><span class="o">;</span>
+        <span class="k">var</span> <span class="nx">elCell</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cell</span><span class="o">;</span>
+
+        <span class="c">//YAHOO.log(&quot;newwidth&quot; + newWidth,&quot;warn&quot;);</span>
+<span class="c"></span>        <span class="c">//YAHOO.log(newWidth + &quot; AND &quot;+ elColumn.offsetWidth + &quot; AND &quot; + elColumn.id,&quot;warn&quot;);</span>
 <span class="c"></span>
+        <span class="c">// Resize the other Columns</span>
+<span class="c"></span>        <span class="k">if</span><span class="o">(</span><span class="nx">oDataTable</span><span class="o">.</span><span class="nx">fixedWidth</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c">// Moving right or left?</span>
+<span class="c"></span>            <span class="k">var</span> <span class="nx">sib</span> <span class="o">=</span> <span class="nx">elCell</span><span class="o">.</span><span class="nx">nextSibling</span><span class="o">;</span>
+            <span class="c">//var sibIndex = elCell.index + 1;</span>
+<span class="c"></span>            <span class="k">var</span> <span class="nx">sibnewwidth</span> <span class="o">=</span> <span class="nx">sib</span><span class="o">.</span><span class="nx">offsetWidth</span> <span class="o">-</span> <span class="nx">offsetX</span><span class="o">;</span>
+            <span class="k">if</span><span class="o">(</span><span class="nx">sibnewwidth</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">.</span><span class="nx">sibMinWidth</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nx">sibnewwidth</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">sibMinWidth</span><span class="o">;</span>
+            <span class="o">}</span>
+
+            <span class="c">//TODO: how else to cycle through all the Columns without having to use an index property?</span>
+<span class="c"></span>            <span class="k">for</span><span class="o">(</span><span class="k">var</span> <span class="nx">i</span><span class="o">=</span><span class="m">0</span><span class="o">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">oDataTable</span><span class="o">.</span><span class="nx">_oColumnSet</span><span class="o">.</span><span class="nx">length</span><span class="o">;</span> <span class="nx">i</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="c">//if((i != elCell.index) &amp;&amp;  (i!=sibIndex)) {</span>
+<span class="c"></span>                <span class="c">//    YAHOO.util.Dom.get(oDataTable._oColumnSet.keys[i].id).style.width = oDataTable._oColumnSet.keys[i].width + &quot;px&quot;;</span>
+<span class="c"></span>                <span class="c">//}</span>
+<span class="c"></span>            <span class="o">}</span>
+            <span class="nx">sib</span><span class="o">.</span><span class="nx">style</span><span class="o">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">sibnewwidth</span><span class="o">;</span>
+            <span class="nx">elCell</span><span class="o">.</span><span class="nx">style</span><span class="o">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">newWidth</span> <span class="o">+</span> <span class="s2">&quot;px&quot;</span><span class="o">;</span>
+            <span class="c">//oDataTable._oColumnSet.flat[sibIndex].width = sibnewwidth;</span>
+<span class="c"></span>            <span class="c">//oDataTable._oColumnSet.flat[elCell.index].width = newWidth;</span>
+<span class="c"></span>
+        <span class="o">}</span>
+        <span class="k">else</span> <span class="o">{</span>
+            <span class="nx">elCell</span><span class="o">.</span><span class="nx">style</span><span class="o">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">newWidth</span> <span class="o">+</span> <span class="s2">&quot;px&quot;</span><span class="o">;</span>
+        <span class="o">}</span>
     <span class="o">}</span>
-    <span class="k">else</span> <span class="o">{</span>
-        <span class="nx">elCell</span><span class="o">.</span><span class="nx">style</span><span class="o">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">newWidth</span> <span class="o">+</span> <span class="s2">&quot;px&quot;</span><span class="o">;</span>
+    <span class="k">catch</span><span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">{</span>
     <span class="o">}</span>
 <span class="o">};</span>
 </pre></div>

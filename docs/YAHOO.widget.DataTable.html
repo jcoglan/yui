@@ -12,8 +12,8 @@
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
-        <h1>Yahoo! UI Library</h1>
-        <h3>DataTable Widget&nbsp; <span class="subtitle">2.3.0</span></h3>
+        <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
+        <h3>DataTable Widget&nbsp; <span class="subtitle">2.3.1</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_datatable.html">datatable</a>
@@ -59,7 +59,7 @@
                     </div>
 
                         <div class="section constructor details">
-                        <h3><a name="constructor_detail">Constructor</a></h3>
+                        <h3 id="constructor">Constructor</h3>
                         <div class="content">
                             <div class="detail">
                                 <strong>YAHOO.widget.DataTable</strong>
@@ -116,7 +116,7 @@
                     </div>
 
                         <div class="section field details">
-                            <h3><a name="field_detail">Properties</a></h3>
+                            <h3 id="properties">Properties</h3>
                             <div class="content">
                                     <div class="private">
                                     <h4><a name="_aSelections">_aSelections</a>
@@ -124,7 +124,8 @@
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Array of selections: {recordId:nRecordId, cellIndex:nCellIndex}
+                                            Array to track row selections (by sRecordId) and/or cell selections
+(by {recordId:sRecordId, columnId:sColumnId})
                                         </div>
                                     </div>
      
@@ -285,6 +286,37 @@ the TABLE element gets created.
                                     <hr />
                                     </div>
                                     <div class="private">
+                                    <h4><a name="_oAnchorCell">_oAnchorCell</a>
+                                        <code>- private Object</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Object literal representing cell selection anchor:
+{recordId:sRecordId, columnId:sColumnId}.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="_oAnchorRecord">_oAnchorRecord</a>
+                                        <code>- private YAHOO.widget.Record</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Record instance of the row selection anchor.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="_oColumnSet">_oColumnSet</a>
                                         <code>- private YAHOO.widget.ColumnSet</code>
                                     </h4>
@@ -361,7 +393,7 @@ Used for focusing sortable Columns with TAB.
                                     <hr />
                                     </div>
                                     <div class="private">
-                                    <h4><a name="_sLastHighlightedCellId">_sLastHighlightedCellId</a>
+                                    <h4><a name="_sLastHighlightedTdElId">_sLastHighlightedTdElId</a>
                                         <code>- private String</code>
                                     </h4>
                                     <div class="detail">
@@ -376,27 +408,12 @@ Used for focusing sortable Columns with TAB.
                                     <hr />
                                     </div>
                                     <div class="private">
-                                    <h4><a name="_sLastHighlightedRowId">_sLastHighlightedRowId</a>
+                                    <h4><a name="_sLastHighlightedTrElId">_sLastHighlightedTrElId</a>
                                         <code>- private String</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
                                             ID string of last highlighted row element
-                                        </div>
-                                    </div>
-     
-                                        
-
-
-                                    <hr />
-                                    </div>
-                                    <div class="private">
-                                    <h4><a name="_sLastSelectedId">_sLastSelectedId</a>
-                                        <code>- private String</code>
-                                    </h4>
-                                    <div class="detail">
-                                        <div class="description">
-                                            ID string of last selected element
                                         </div>
                                     </div>
      
@@ -427,21 +444,6 @@ Used for focusing sortable Columns with TAB.
                                     <div class="detail">
                                         <div class="description">
                                             Unique name assigned to instance.
-                                        </div>
-                                    </div>
-     
-                                        
-
-
-                                    <hr />
-                                    </div>
-                                    <div class="private">
-                                    <h4><a name="_sSelectionAnchorId">_sSelectionAnchorId</a>
-                                        <code>- private String</code>
-                                    </h4>
-                                    <div class="detail">
-                                        <div class="description">
-                                            ID string of the selection anchor element.
                                         </div>
                                     </div>
      
@@ -507,7 +509,7 @@ Used for focusing sortable Columns with TAB.
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Class name assigned to BUTTON container elements.
+                                            Class name assigned to BUTTON elements and/or container elements.
                                         </div>
                                     </div>
      
@@ -525,7 +527,7 @@ Used for focusing sortable Columns with TAB.
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Class name assigned to INPUT TYPE=CHECKBOX container elements.
+                                            Class name assigned to INPUT TYPE=CHECKBOX elements and/or container elements.
                                         </div>
                                     </div>
      
@@ -597,7 +599,7 @@ Used for focusing sortable Columns with TAB.
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Class name assigned to SELECT container elements.
+                                            Class name assigned to SELECT elements and/or container elements.
                                         </div>
                                     </div>
      
@@ -898,6 +900,24 @@ Used for focusing sortable Columns with TAB.
                                     <hr />
                                     </div>
                                     <div class="">
+                                    <h4><a name="DataTable.CLASS_RADIO">DataTable.CLASS_RADIO</a>
+                                        <code>- static final String</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Class name assigned to INPUT TYPE=RADIO elements and/or container elements.
+                                        </div>
+                                    </div>
+     
+                                        
+                                    <div class="default">
+                                        Default Value: "yui-dt-radio"
+                                    </div>        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="DataTable.CLASS_RESIZER">DataTable.CLASS_RESIZER</a>
                                         <code>- static final String</code>
                                     </h4>
@@ -1076,7 +1096,7 @@ Used for focusing sortable Columns with TAB.
                         </div>
 
                         <div class="section method details">
-                            <h3><a name="methodDetails">Methods</a></h3>
+                            <h3 id="methods">Methods</h3>
                             <div class="content">
                                     <div class="private">
                                     <h4>
@@ -3819,8 +3839,8 @@ formatter.
                                         </code>
                                         
                                         <div class="description">
-                                            Deletes the given row's Record from the RecordSet. If the row is in view, the
-corresponding DOM elements are also deleted.
+                                            Deletes the given row's Record from the RecordSet. If the row is on current page,
+the corresponding DOM elements are also deleted.
                                         </div>
 
                                         <div class="description">
@@ -4048,11 +4068,20 @@ updating DataTable with new Records, false to cancel.</dd>
                                     <div class="detail">
                                         <code>
                                         
-                                        
+                                         static 
                                         
                                         void
                                             <strong>editCheckbox</strong>
                                            (
+                                                
+                                                        
+                                                         oEditor
+                                                    
+                                                
+                                                        , 
+                                                         oSelf
+                                                    
+                                                
                                             )
                                         </code>
                                         
@@ -4062,6 +4091,17 @@ updating DataTable with new Records, false to cancel.</dd>
 
                                         <div class="description">
 
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>oEditor &lt;Object&gt;</code>
+                                                              Object literal representation of Editor values.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>oSelf &lt;YAHOO.widget.DataTable&gt;</code>
+                                                              Reference back to DataTable instance.
+                                                        </dd>
+                                                </dl>
 
                                                 <dl>
                                                     <dt>Returns:
@@ -4082,11 +4122,20 @@ updating DataTable with new Records, false to cancel.</dd>
                                     <div class="detail">
                                         <code>
                                         
-                                        
+                                         static 
                                         
                                         void
                                             <strong>editDate</strong>
                                            (
+                                                
+                                                        
+                                                         oEditor
+                                                    
+                                                
+                                                        , 
+                                                         oSelf
+                                                    
+                                                
                                             )
                                         </code>
                                         
@@ -4096,6 +4145,17 @@ updating DataTable with new Records, false to cancel.</dd>
 
                                         <div class="description">
 
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>oEditor &lt;Object&gt;</code>
+                                                              Object literal representation of Editor values.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>oSelf &lt;YAHOO.widget.DataTable&gt;</code>
+                                                              Reference back to DataTable instance.
+                                                        </dd>
+                                                </dl>
 
                                                 <dl>
                                                     <dt>Returns:
@@ -4116,11 +4176,20 @@ updating DataTable with new Records, false to cancel.</dd>
                                     <div class="detail">
                                         <code>
                                         
-                                        
+                                         static 
                                         
                                         void
                                             <strong>editDropdown</strong>
                                            (
+                                                
+                                                        
+                                                         oEditor
+                                                    
+                                                
+                                                        , 
+                                                         oSelf
+                                                    
+                                                
                                             )
                                         </code>
                                         
@@ -4130,6 +4199,17 @@ updating DataTable with new Records, false to cancel.</dd>
 
                                         <div class="description">
 
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>oEditor &lt;Object&gt;</code>
+                                                              Object literal representation of Editor values.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>oSelf &lt;YAHOO.widget.DataTable&gt;</code>
+                                                              Reference back to DataTable instance.
+                                                        </dd>
+                                                </dl>
 
                                                 <dl>
                                                     <dt>Returns:
@@ -4150,11 +4230,20 @@ updating DataTable with new Records, false to cancel.</dd>
                                     <div class="detail">
                                         <code>
                                         
-                                        
+                                         static 
                                         
                                         void
                                             <strong>editRadio</strong>
                                            (
+                                                
+                                                        
+                                                         oEditor
+                                                    
+                                                
+                                                        , 
+                                                         oSelf
+                                                    
+                                                
                                             )
                                         </code>
                                         
@@ -4164,6 +4253,17 @@ updating DataTable with new Records, false to cancel.</dd>
 
                                         <div class="description">
 
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>oEditor &lt;Object&gt;</code>
+                                                              Object literal representation of Editor values.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>oSelf &lt;YAHOO.widget.DataTable&gt;</code>
+                                                              Reference back to DataTable instance.
+                                                        </dd>
+                                                </dl>
 
                                                 <dl>
                                                     <dt>Returns:
@@ -4184,11 +4284,20 @@ updating DataTable with new Records, false to cancel.</dd>
                                     <div class="detail">
                                         <code>
                                         
-                                        
+                                         static 
                                         
                                         void
                                             <strong>editTextarea</strong>
                                            (
+                                                
+                                                        
+                                                         oEditor
+                                                    
+                                                
+                                                        , 
+                                                         oSelf
+                                                    
+                                                
                                             )
                                         </code>
                                         
@@ -4198,6 +4307,17 @@ updating DataTable with new Records, false to cancel.</dd>
 
                                         <div class="description">
 
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>oEditor &lt;Object&gt;</code>
+                                                              Object literal representation of Editor values.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>oSelf &lt;YAHOO.widget.DataTable&gt;</code>
+                                                              Reference back to DataTable instance.
+                                                        </dd>
+                                                </dl>
 
                                                 <dl>
                                                     <dt>Returns:
@@ -4218,11 +4338,20 @@ updating DataTable with new Records, false to cancel.</dd>
                                     <div class="detail">
                                         <code>
                                         
-                                        
+                                         static 
                                         
                                         void
                                             <strong>editTextbox</strong>
                                            (
+                                                
+                                                        
+                                                         oEditor
+                                                    
+                                                
+                                                        , 
+                                                         oSelf
+                                                    
+                                                
                                             )
                                         </code>
                                         
@@ -4232,6 +4361,17 @@ updating DataTable with new Records, false to cancel.</dd>
 
                                         <div class="description">
 
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>oEditor &lt;Object&gt;</code>
+                                                              Object literal representation of Editor values.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>oSelf &lt;YAHOO.widget.DataTable&gt;</code>
+                                                              Reference back to DataTable instance.
+                                                        </dd>
+                                                </dl>
 
                                                 <dl>
                                                     <dt>Returns:
@@ -4528,17 +4668,28 @@ Sets dropdown elements's "selected" value.
 following properties:
 <dl>
 <dt>cell</dt>
-<dd>Cell element being edited</dd>
+<dd>{HTMLElement} Cell element being edited.</dd>
 <dt>column</dt>
-<dd>Associated Column instance</dd>
+<dd>{YAHOO.widget.Column} Associated Column instance.</dd>
 <dt>container</dt>
-<dd>Reference to editor's container DIV element</dd>
+<dd>{HTMLElement} Reference to editor's container DIV element.</dd>
 <dt>isActive</dt>
-<dd>True if cell is currently being edited</dd>
+<dd>{Boolean} True if cell is currently being edited.</dd>
 <dt>record</dt>
-<dd>Associated Record instance</dd>
+<dd>{YAHOO.widget.Record} Associated Record instance.</dd>
 <dt>validator</dt>
-<dd>Associated validator function</dd>
+<dd>{HTMLFunction} Associated validator function called before new data is stored. Called
+within the scope of the DataTable instance, the function receieves the
+following arguments:
+<dl>
+<dt>oNewData</dt>
+<dd>{Object} New data to validate.</dd>
+<dt>oOldData</dt>
+<dd>{Object} Original data in case of reversion.</dd>
+<dt>oCellEditor</dt>
+<dd>{Object} Object literal representation of Editor values.</dd>
+</dl>
+</dd>
 <dt>value</dt>
 <dd>Current input value</dd>
 </dl>
@@ -4580,7 +4731,8 @@ following properties:
                                         </code>
                                         
                                         <div class="description">
-                                            For the given identifier, returns the associated Column instance.
+                                            For the given identifier, returns the associated Column instance. Note: For
+getting Columns by Column ID string, please use the method getColumnById().
                                         </div>
 
                                         <div class="description">
@@ -4589,8 +4741,55 @@ following properties:
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>column &lt;HTMLElement | String | Number&gt;</code>
-                                                              ColumnSet.keys position index, DOM
-reference or ID string to an element within the DataTable page.
+                                                              DOM reference or ID string to a
+TH/TD element (or child of a TH/TD element), a Column key, or a ColumnSet key index.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        YAHOO.widget.Column
+                                                    </code></dt>
+                                                    <dd>Column instance.</dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="getColumnById">getColumnById</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        YAHOO.widget.Column
+                                            <strong>getColumnById</strong>
+                                           (
+                                                
+                                                        
+                                                         column
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            For the given Column ID, returns the associated Column instance. Note: For
+getting Columns by key, please use the method getColumn().
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>column &lt;String&gt;</code>
+                                                              Column ID string.
                                                         </dd>
                                                 </dl>
 
@@ -4702,6 +4901,75 @@ reference or ID string to an element within the DataTable page.
                                                         HTMLElement
                                                     </code></dt>
                                                     <dd>Reference to TR element.</dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="getLastSelectedCell">getLastSelectedCell</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Object
+                                            <strong>getLastSelectedCell</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Returns last selected cell as an object literal:
+{recordId:sRecordId, columnId:sColumnId}.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Object
+                                                    </code></dt>
+                                                    <dd>Object literal representation of a cell.</dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="getLastSelectedRecord">getLastSelectedRecord</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        String
+                                            <strong>getLastSelectedRecord</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Returns last selected Record ID.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        String
+                                                    </code></dt>
+                                                    <dd>Record ID of last selected row.</dd>
                                                 </dl>
              
                                         </div>
@@ -4841,9 +5109,9 @@ used to display messages.
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>row &lt;HTMLElement | String | Number&gt;</code>
-                                                              RecordSet position index, DOM
-reference or ID string to an element within the DataTable page.
+                                                            <code>row &lt;HTMLElement | Number | String&gt;</code>
+                                                              DOM reference to a TR element (or
+child of a TR element), RecordSet position index, or Record ID.
                                                         </dd>
                                                 </dl>
 
@@ -4949,7 +5217,7 @@ element reference or page row index.
                                         
                                         
                                         
-                                        HTMLElement[]
+                                        Object[]
                                             <strong>getSelectedCells</strong>
                                            (
                                             )
@@ -4957,7 +5225,7 @@ element reference or page row index.
                                         
                                         <div class="description">
                                             Returns selected cells as an array of object literals:
-{recordId:nRecordID, columnId:nColumnId}.
+{recordId:sRecordId, columnId:sColumnId}.
                                         </div>
 
                                         <div class="description">
@@ -4966,9 +5234,9 @@ element reference or page row index.
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
-                                                        HTMLElement[]
+                                                        Object[]
                                                     </code></dt>
-                                                    <dd>Array of selected cells by Record and Column IDs.</dd>
+                                                    <dd>Array of selected cells by Record ID and Column ID.</dd>
                                                 </dl>
              
                                         </div>
@@ -4984,7 +5252,7 @@ element reference or page row index.
                                         
                                         
                                         
-                                        HTMLElement[]
+                                        String[]
                                             <strong>getSelectedRows</strong>
                                            (
                                             )
@@ -5000,7 +5268,7 @@ element reference or page row index.
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
-                                                        HTMLElement[]
+                                                        String[]
                                                     </code></dt>
                                                     <dd>Array of selected rows by Record ID.</dd>
                                                 </dl>
@@ -5166,7 +5434,7 @@ element reference or page row index.
                                         </code>
                                         
                                         <div class="description">
-                                            Returns DOM reference to the given TD element.
+                                            Returns DOM reference to a TD element.
                                         </div>
 
                                         <div class="description">
@@ -5174,8 +5442,9 @@ element reference or page row index.
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>cell &lt;HTMLElement | String&gt;</code>
-                                                              DOM element reference or string ID.
+                                                            <code>cell &lt;HTMLElement | String | Object} DOM element reference or string ID, or
+object literal of syntax {record:oRecord, column:oColumn&gt;</code>
+                                                             .
                                                         </dd>
                                                 </dl>
 
@@ -5246,7 +5515,7 @@ element reference or page row index.
                                         </code>
                                         
                                         <div class="description">
-                                            Returns DOM reference to the TH element at given DataTable page coordinates, or null.
+                                            Returns DOM reference to a TH element.
                                         </div>
 
                                         <div class="description">
@@ -5254,9 +5523,9 @@ element reference or page row index.
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>header &lt;HTMLElement | String | YAHOO.widget.Column&gt;</code>
-                                                              DOM element
-reference or string ID, or Column instance.
+                                                            <code>header &lt;YAHOO.widget.Column | HTMLElement | String&gt;</code>
+                                                              Column instance,
+DOM element reference, or string ID.
                                                         </dd>
                                                 </dl>
 
@@ -5343,8 +5612,8 @@ get: by element reference, ID string, page row index, or Record.
                                         </code>
                                         
                                         <div class="description">
-                                            Returns the page row index of given row. Returns null if the row is not in
-view on the current DataTable page.
+                                            Returns the page row index of given row. Returns null if the row is not on the
+current DataTable page.
                                         </div>
 
                                         <div class="description">
@@ -5364,7 +5633,7 @@ or a Record's RecordSet index.
                                                     <code>
                                                         Number
                                                     </code></dt>
-                                                    <dd>Page row index, or null if row does not exist or is not in view.</dd>
+                                                    <dd>Page row index, or null if row does not exist or is not on current page.</dd>
                                                 </dl>
              
                                         </div>
@@ -5610,14 +5879,14 @@ object literals containing data.
                                            (
                                                 
                                                         
-                                                         el
+                                                         o
                                                     
                                                 
                                             )
                                         </code>
                                         
                                         <div class="description">
-                                            Returns true if given TR or TD element is select, false otherwise.
+                                            Returns true if given item is selected, false otherwise.
                                         </div>
 
                                         <div class="description">
@@ -5625,8 +5894,12 @@ object literals containing data.
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>el &lt;HTMLElement&gt;</code>
-                                                              HTML element reference or ID of a TR or TD.
+                                                            <code>o &lt;String | HTMLElement | YAHOO.widget.Record | Number
+{record:YAHOO.widget.Record, column:YAHOO.widget.Column} &gt;</code>
+                                                              TR or TD element by
+reference or ID string, a Record instance, a RecordSet position index,
+or an object literal representation
+of a cell.
                                                         </dd>
                                                 </dl>
 
@@ -5635,7 +5908,7 @@ object literals containing data.
                                                     <code>
                                                         Boolean
                                                     </code></dt>
-                                                    <dd>True if element is selected.</dd>
+                                                    <dd>True if item is selected.</dd>
                                                 </dl>
              
                                         </div>
@@ -6545,8 +6818,9 @@ to DataTable page element or RecordSet index.
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>row &lt;HTMLElement | String&gt;</code>
-                                                              HTML element reference or ID.
+                                                            <code>row &lt;HTMLElement | String | YAHOO.widget.Record | Number&gt;</code>
+                                                              HTML element
+reference or ID string, Record instance, or RecordSet position index.
                                                         </dd>
                                                 </dl>
 
@@ -7060,52 +7334,6 @@ to DataTable page element or RecordSet index.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="unselectRow">unselectRow</a></h4>
-                                    <div class="detail">
-                                        <code>
-                                        
-                                        
-                                        
-                                        void
-                                            <strong>unselectRow</strong>
-                                           (
-                                                
-                                                        
-                                                         row
-                                                    
-                                                
-                                            )
-                                        </code>
-                                        
-                                        <div class="description">
-                                            Sets given row to the unselected state.
-                                        </div>
-
-                                        <div class="description">
-
-                                                <dl>
-                                                    <dt>Parameters:</dt>
-                                                        <dd>
-                                                            <code>row &lt;HTMLElement | String&gt;</code>
-                                                              HTML TR element reference or ID.
-                                                        </dd>
-                                                </dl>
-
-                                                <dl>
-                                                    <dt>Returns:
-                                                    <code>
-                                                        void
-                                                    </code></dt>
-                                                    <dd></dd>
-                                                </dl>
-             
-                                        </div>
-
-                                    </div>
-                                    <hr />
-                                    </div>
-                                    <div class="">
-                                    <h4>
                                         <a name="updatePaginator">updatePaginator</a></h4>
                                     <div class="detail">
                                         <code>
@@ -7185,7 +7413,7 @@ a subset of Paginator values.
                                         
                                         <div class="description">
                                             For the given row, updates the associated Record with the given data. If the
-row is in view, the corresponding DOM elements are also updated.
+row is on current page, the corresponding DOM elements are also updated.
                                         </div>
 
                                         <div class="description">
@@ -7231,8 +7459,336 @@ of the TR element.
                             </div>
 
                         <div class="section method details">
-                            <h3><a name="eventDetails">Events</a></h3>
+                            <h3 id="events">Events</h3>
                             <div class="content">
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeCaptionChangeEvent">beforeCaptionChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeCaptionChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'caption' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeInitialrequestChangeEvent">beforeInitialrequestChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeInitialrequestChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'initialRequest' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforePaginatedChangeEvent">beforePaginatedChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforePaginatedChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'paginated' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforePaginatorChangeEvent">beforePaginatorChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforePaginatorChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'paginator' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeScrollableChangeEvent">beforeScrollableChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeScrollableChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'scrollable' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeSelectionmodeChangeEvent">beforeSelectionmodeChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeSelectionmodeChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'selectionMode' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeSortedbyChangeEvent">beforeSortedbyChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeSortedbyChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'sortedBy' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeSummaryChangeEvent">beforeSummaryChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeSummaryChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'summary' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
                                     <div class="">
                                     <h4>
                                         <a name="buttonClickEvent">buttonClickEvent</a></h4>
@@ -7273,6 +7829,47 @@ of the TR element.
                                                         <dd>
                                                             <code>oArgs.target &lt;HTMLElement&gt;</code>
                                                               The BUTTON element.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="captionChangeEvent">captionChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>captionChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'caption' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
                                                         </dd>
                                                 </dl>
 
@@ -7401,6 +7998,10 @@ of the TR element.
                                                     
                                                 
                                                         , 
+                                                         oArgs.column
+                                                    
+                                                
+                                                        , 
                                                          oArgs.key
                                                     
                                                 
@@ -7423,11 +8024,15 @@ of the TR element.
                                                         </dd>
                                                         <dd>
                                                             <code>oArgs.record &lt;YAHOO.widget.Record&gt;</code>
-                                                              The formatted Record.
+                                                              The associated Record instance.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>oArgs.column &lt;YAHOO.widget.Column&gt;</code>
+                                                              The associated Column instance.
                                                         </dd>
                                                         <dd>
                                                             <code>oArgs.key &lt;String&gt;</code>
-                                                              The key of the formatted cell.
+                                                              (deprecated) The key of the formatted cell.
                                                         </dd>
                                                 </dl>
 
@@ -7458,6 +8063,10 @@ of the TR element.
                                                     
                                                 
                                                         , 
+                                                         oArgs.column
+                                                    
+                                                
+                                                        , 
                                                          oArgs.key
                                                     
                                                 
@@ -7480,11 +8089,15 @@ of the TR element.
                                                         </dd>
                                                         <dd>
                                                             <code>oArgs.record &lt;YAHOO.widget.Record&gt;</code>
-                                                              The highlighted Record.
+                                                              The associated Record instance.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>oArgs.column &lt;YAHOO.widget.Column&gt;</code>
+                                                              The associated Column instance.
                                                         </dd>
                                                         <dd>
                                                             <code>oArgs.key &lt;String&gt;</code>
-                                                              The key of the highlighted cell.
+                                                              (deprecated) The key of the highlighted cell.
                                                         </dd>
                                                 </dl>
 
@@ -7662,6 +8275,10 @@ of the TR element.
                                                     
                                                 
                                                         , 
+                                                         oArgs.column
+                                                    
+                                                
+                                                        , 
                                                          oArgs.key
                                                     
                                                 
@@ -7684,11 +8301,15 @@ of the TR element.
                                                         </dd>
                                                         <dd>
                                                             <code>oArgs.record &lt;YAHOO.widget.Record&gt;</code>
-                                                              The selected Record.
+                                                              The associated Record instance.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>oArgs.column &lt;YAHOO.widget.Column&gt;</code>
+                                                              The associated Column instance.
                                                         </dd>
                                                         <dd>
                                                             <code>oArgs.key &lt;String&gt;</code>
-                                                              The key of the selected cell.
+                                                              (deprecated) The key of the selected cell.
                                                         </dd>
                                                 </dl>
 
@@ -7719,6 +8340,10 @@ of the TR element.
                                                     
                                                 
                                                         , 
+                                                         oArgs.column
+                                                    
+                                                
+                                                        , 
                                                          oArgs.key
                                                     
                                                 
@@ -7741,11 +8366,15 @@ of the TR element.
                                                         </dd>
                                                         <dd>
                                                             <code>oArgs.record &lt;YAHOO.widget.Record&gt;</code>
-                                                              The unhighlighted Record.
+                                                              The associated Record instance.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>oArgs.column &lt;YAHOO.widget.Column&gt;</code>
+                                                              The associated Column instance.
                                                         </dd>
                                                         <dd>
                                                             <code>oArgs.key &lt;String&gt;</code>
-                                                              The key of the unhighlighted cell.
+                                                              (deprecated) The key of the unhighlighted cell.
                                                         </dd>
                                                 </dl>
 
@@ -7776,6 +8405,10 @@ of the TR element.
                                                     
                                                 
                                                         , 
+                                                         oArgs.column
+                                                    
+                                                
+                                                        , 
                                                          oArgs.key
                                                     
                                                 
@@ -7798,11 +8431,15 @@ of the TR element.
                                                         </dd>
                                                         <dd>
                                                             <code>oArgs.record &lt;YAHOO.widget.Record&gt;</code>
-                                                              The unselected Record.
+                                                              The associated Record.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>oArgs.column &lt;YAHOO.widget.Column&gt;</code>
+                                                              The associated Column instance.
                                                         </dd>
                                                         <dd>
                                                             <code>oArgs.key &lt;String&gt;</code>
-                                                              The key of the unselected cell.
+                                                              (deprecated) The key of the unselected cell.
                                                         </dd>
                                                 </dl>
 
@@ -7984,7 +8621,8 @@ of the TR element.
                                         </code>
                                         
                                         <div class="description">
-                                            Fired when data is returned from DataSource.
+                                            Fired when data is returned from DataSource but before it is consumed by
+DataTable.
                                         </div>
 
                                         <div class="description">
@@ -9060,6 +9698,47 @@ of the TR element.
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="initialRequestChangeEvent">initialRequestChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>initialRequestChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'initialRequest' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="linkClickEvent">linkClickEvent</a></h4>
                                     <div class="detail">
                                         <code>
@@ -9098,6 +9777,88 @@ of the TR element.
                                                         <dd>
                                                             <code>oArgs.target &lt;HTMLElement&gt;</code>
                                                               The A element.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="paginatedChangeEvent">paginatedChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>paginatedChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'paginated' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="paginatorChangeEvent">paginatorChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>paginatorChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'paginator' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
                                                         </dd>
                                                 </dl>
 
@@ -9371,7 +10132,7 @@ of the TR element.
                                                         </dd>
                                                         <dd>
                                                             <code>oArgs.trElIndex &lt;Number&gt;</code>
-                                                              Index of the deleted TR element, if in view.
+                                                              Index of the deleted TR element, if on current page.
                                                         </dd>
                                                 </dl>
 
@@ -9666,6 +10427,170 @@ of the TR element.
                                                         <dd>
                                                             <code>oArgs.oldData &lt;Object&gt;</code>
                                                               Object literal of the old data.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="scrollableChangeEvent">scrollableChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>scrollableChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'scrollable' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="selectionModeChangeEvent">selectionModeChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>selectionModeChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'selectionMode' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="sortedByChangeEvent">sortedByChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>sortedByChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'sortedBy' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="summaryChangeEvent">summaryChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>summaryChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'summary' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
                                                         </dd>
                                                 </dl>
 
@@ -10112,7 +11037,7 @@ or the DataTable's TBODY element (everyone else).
 
 
                         <div class="section field details">
-                            <h3><a name="field_detail">Configuration Attributes</a></h3>
+                            <h3 id="configattributes">Configuration Attributes</h3>
                             <div class="content">
                                     <div class="">
                                     <h4><a name="caption">caption</a>
@@ -10247,9 +11172,9 @@ selections in a range-fashion, like a calendar.</dd>
 data will arrive pre-sorted:
 <dl>
 <dt>sortedBy.key</dt>
-<dd>Key of sorted Column</dd>
+<dd>{String} Key of sorted Column</dd>
 <dt>sortedBy.dir</dt>
-<dd>Initial sort direction, either "asc" or "desc"</dd>
+<dd>{String} Initial sort direction, either "asc" or "desc"</dd>
 </dl>
                                         </div>
                                     </div>
@@ -10394,6 +11319,12 @@ data will arrive pre-sorted:
                                 <li class="private"><a href="#_nTrCount">_nTrCount</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
+                                <li class="private"><a href="#_oAnchorCell">_oAnchorCell</a>
+                                        <!--<code>&lt;String&gt;</code>-->
+                                </li>
+                                <li class="private"><a href="#_oAnchorRecord">_oAnchorRecord</a>
+                                        <!--<code>&lt;String&gt;</code>-->
+                                </li>
                                 <li class="private"><a href="#_oColumnSet">_oColumnSet</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
@@ -10409,22 +11340,16 @@ data will arrive pre-sorted:
                                 <li class="private"><a href="#_sFirstTrId">_sFirstTrId</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li class="private"><a href="#_sLastHighlightedCellId">_sLastHighlightedCellId</a>
+                                <li class="private"><a href="#_sLastHighlightedTdElId">_sLastHighlightedTdElId</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li class="private"><a href="#_sLastHighlightedRowId">_sLastHighlightedRowId</a>
-                                        <!--<code>&lt;String&gt;</code>-->
-                                </li>
-                                <li class="private"><a href="#_sLastSelectedId">_sLastSelectedId</a>
+                                <li class="private"><a href="#_sLastHighlightedTrElId">_sLastHighlightedTrElId</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
                                 <li class="private"><a href="#_sLastTrId">_sLastTrId</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
                                 <li class="private"><a href="#_sName">_sName</a>
-                                        <!--<code>&lt;String&gt;</code>-->
-                                </li>
-                                <li class="private"><a href="#_sSelectionAnchorId">_sSelectionAnchorId</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
                                 <li class="private"><a href="#DataTable._nCount">DataTable._nCount</a>
@@ -10500,6 +11425,9 @@ data will arrive pre-sorted:
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#DataTable.CLASS_PREVIOUS">DataTable.CLASS_PREVIOUS</a>
+                                        <!--<code>&lt;String&gt;</code>-->
+                                </li>
+                                <li class=""><a href="#DataTable.CLASS_RADIO">DataTable.CLASS_RADIO</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#DataTable.CLASS_RESIZER">DataTable.CLASS_RESIZER</a>
@@ -10742,6 +11670,9 @@ data will arrive pre-sorted:
                                 <li class=""><!--<code>YAHOO.widget.Column</code>-->
                                 <a href="#getColumn">getColumn</a>
                                 </li>
+                                <li class=""><!--<code>YAHOO.widget.Column</code>-->
+                                <a href="#getColumnById">getColumnById</a>
+                                </li>
                                 <li class=""><!--<code>YAHOO.widget.ColumnSet</code>-->
                                 <a href="#getColumnSet">getColumnSet</a>
                                 </li>
@@ -10750,6 +11681,12 @@ data will arrive pre-sorted:
                                 </li>
                                 <li class=""><!--<code>HTMLElement</code>-->
                                 <a href="#getFirstTrEl">getFirstTrEl</a>
+                                </li>
+                                <li class=""><!--<code>Object</code>-->
+                                <a href="#getLastSelectedCell">getLastSelectedCell</a>
+                                </li>
+                                <li class=""><!--<code>String</code>-->
+                                <a href="#getLastSelectedRecord">getLastSelectedRecord</a>
                                 </li>
                                 <li class=""><!--<code>HTMLElement</code>-->
                                 <a href="#getLastTrEl">getLastTrEl</a>
@@ -10769,10 +11706,10 @@ data will arrive pre-sorted:
                                 <li class=""><!--<code>YAHOO.widget.RecordSet</code>-->
                                 <a href="#getRecordSet">getRecordSet</a>
                                 </li>
-                                <li class=""><!--<code>HTMLElement[]</code>-->
+                                <li class=""><!--<code>Object[]</code>-->
                                 <a href="#getSelectedCells">getSelectedCells</a>
                                 </li>
-                                <li class=""><!--<code>HTMLElement[]</code>-->
+                                <li class=""><!--<code>String[]</code>-->
                                 <a href="#getSelectedRows">getSelectedRows</a>
                                 </li>
                                 <li class=""><!--<code>HTMLElement[]</code>-->
@@ -10908,9 +11845,6 @@ data will arrive pre-sorted:
                                 <a href="#unselectCell">unselectCell</a>
                                 </li>
                                 <li class=""><!--<code>void</code>-->
-                                <a href="#unselectRow">unselectRow</a>
-                                </li>
-                                <li class=""><!--<code>void</code>-->
                                 <a href="#updatePaginator">updatePaginator</a>
                                 </li>
                                 <li class=""><!--<code>void</code>-->
@@ -10923,7 +11857,34 @@ data will arrive pre-sorted:
                         <h4>Events</h4>
                         <ul class="content">        
                                 <li class="">
+                                <a href="#beforeCaptionChangeEvent">beforeCaptionChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeInitialrequestChangeEvent">beforeInitialrequestChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforePaginatedChangeEvent">beforePaginatedChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforePaginatorChangeEvent">beforePaginatorChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeScrollableChangeEvent">beforeScrollableChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeSelectionmodeChangeEvent">beforeSelectionmodeChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeSortedbyChangeEvent">beforeSortedbyChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeSummaryChangeEvent">beforeSummaryChangeEvent</a>
+                                </li>
+                                <li class="">
                                 <a href="#buttonClickEvent">buttonClickEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#captionChangeEvent">captionChangeEvent</a>
                                 </li>
                                 <li class="">
                                 <a href="#cellClickEvent">cellClickEvent</a>
@@ -11034,7 +11995,16 @@ data will arrive pre-sorted:
                                 <a href="#initEvent">initEvent</a>
                                 </li>
                                 <li class="">
+                                <a href="#initialRequestChangeEvent">initialRequestChangeEvent</a>
+                                </li>
+                                <li class="">
                                 <a href="#linkClickEvent">linkClickEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#paginatedChangeEvent">paginatedChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#paginatorChangeEvent">paginatorChangeEvent</a>
                                 </li>
                                 <li class="">
                                 <a href="#radioClickEvent">radioClickEvent</a>
@@ -11071,6 +12041,18 @@ data will arrive pre-sorted:
                                 </li>
                                 <li class="">
                                 <a href="#rowUpdateEvent">rowUpdateEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#scrollableChangeEvent">scrollableChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#selectionModeChangeEvent">selectionModeChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#sortedByChangeEvent">sortedByChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#summaryChangeEvent">summaryChangeEvent</a>
                                 </li>
                                 <li class="">
                                 <a href="#tableBlurEvent">tableBlurEvent</a>

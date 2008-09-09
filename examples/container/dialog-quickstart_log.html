@@ -75,7 +75,8 @@
 #example {height:30em;}
 label { display:block;float:left;width:45%;clear:left; }
 .clear { clear:both; }
-#resp { font-family:courier;margin:10px;padding:5px;border:1px solid #ccc;background:#fff;}
+#resp { margin:10px;padding:5px;border:1px solid #ccc;background:#fff;}
+#resp li { font-family:monospace }
 </style>
 
 <script>
@@ -94,7 +95,6 @@ function init() {
 		var response = o.responseText;
 		response = response.split("<!")[0];
 		document.getElementById("resp").innerHTML = response;
-		eval(response);
 	};
 	var handleFailure = function(o) {
 		alert("Submission failed: " + o.status);
@@ -178,7 +178,8 @@ YAHOO.util.Event.onDOMReady(init);
 </div>
 </div>
 
-<div id="resp">Server response will be displayed in this area</div>		
+<div id="resp">Server response will be displayed in this area</div>	
+	
 	<!--END SOURCE CODE FOR EXAMPLE =============================== -->
 	
 		
@@ -220,14 +221,13 @@ var handleCancel = function() {
 };
 </textarea>
 
-<p>By default, the Dialog is submitted using the <a href="http://developer.yahoo.com/yui/connection/">Connection Manager</a>. In order to handle the response from the server, we must define callback functions that will execute when the submission has occurred. First, we will define the functions, and then we will set them into our Dialog's <em>callback</em> &mdash; the same callback object that will be passed to  Connection Manager's <em>asyncRequest</em> method:</p>
+<p>By default, the Dialog is submitted using the <a href="http://developer.yahoo.com/yui/connection/">Connection Manager</a>. In order to handle the response from the server, we must define callback functions that will execute when the submission has occurred. First, we will define the functions, and then we will set them into our Dialog's <em>callback</em> &mdash; the same callback object that will be passed to Connection Manager's <em>asyncRequest</em> method. For the purposes of this example, the success handler will simply diplay the server response on the page. The failure handler will alert the response status code, if something goes wrong:</p>
 
 <textarea name="code" class="JScript" cols="60" rows="1">
 var handleSuccess = function(o) {
 	var response = o.responseText;
 	response = response.split("<!")[0];
 	document.getElementById("resp").innerHTML = response;
-	eval(response);
 };
 
 var handleFailure = function(o) {
@@ -292,7 +292,8 @@ YAHOO.example.container.dialog1.validate = function() {
 		</form>
 	</div>
 </div>
-</textarea>				</div>
+</textarea>
+				</div>
 				<div class="yui-u">
 						<div id="loggerModule" class="yui-skin-sam">
 						<h3 class="firstContent">YUI Logger Output:</h3>

@@ -77,9 +77,6 @@
     #toggleEditor {
         margin: 1em;
     }
-    #editor_container .yui-toolbar-separator-5 {
-        border: none;
-    }   
 </style>
 
 <button type="button" id="toggleEditor">Toggle Editor</button><br>
@@ -101,9 +98,10 @@ This is some more test text.<br>This is some more test text.<br>This is some mor
 
     var myConfig = {
         height: '300px',
-        width: '522px',
+        width: '530px',
         animate: true,
-        dompath: true
+        dompath: true,
+        focusAtStart: true
     };
 
     var state = 'on';
@@ -123,19 +121,27 @@ This is some more test text.<br>This is some more test text.<br>This is some mor
             var stripHTML = /<\S[^><]*>/g;
             myEditor.get('textarea').value = myEditor.get('textarea').value.replace(/<br>/gi, '\n').replace(stripHTML, '');
             YAHOO.log('Strip the HTML markup from the string.', 'info', 'example');
-            YAHOO.log('Set Editor container to position: absolute, top: -9999px, left: -9999px. Set textarea to display: block', 'info', 'example');
+            YAHOO.log('Set Editor container to position: absolute, top: -9999px, left: -9999px. Set textarea visible', 'info', 'example');
             Dom.setStyle(myEditor.get('element_cont').get('firstChild'), 'position', 'absolute');
             Dom.setStyle(myEditor.get('element_cont').get('firstChild'), 'top', '-9999px');
             Dom.setStyle(myEditor.get('element_cont').get('firstChild'), 'left', '-9999px');
-            Dom.setStyle(myEditor.get('textarea'), 'display', 'block');
+            myEditor.get('element_cont').removeClass('yui-editor-container');
+            Dom.setStyle(myEditor.get('element'), 'visibility', 'visible');
+            Dom.setStyle(myEditor.get('element'), 'top', '');
+            Dom.setStyle(myEditor.get('element'), 'left', '');
+            Dom.setStyle(myEditor.get('element'), 'position', 'static');
         } else {
             YAHOO.log('state is off, so turn on', 'info', 'example');
             state = 'on';
-            YAHOO.log('Set Editor container to position: static, top: 0, left: 0. Set textarea to display: none', 'info', 'example');
+            YAHOO.log('Set Editor container to position: static, top: 0, left: 0. Set textarea to hidden', 'info', 'example');
             Dom.setStyle(myEditor.get('element_cont').get('firstChild'), 'position', 'static');
             Dom.setStyle(myEditor.get('element_cont').get('firstChild'), 'top', '0');
             Dom.setStyle(myEditor.get('element_cont').get('firstChild'), 'left', '0');
-            Dom.setStyle(myEditor.get('textarea'), 'display', 'none');
+            Dom.setStyle(myEditor.get('element'), 'visibility', 'hidden');
+            Dom.setStyle(myEditor.get('element'), 'top', '-9999px');
+            Dom.setStyle(myEditor.get('element'), 'left', '-9999px');
+            Dom.setStyle(myEditor.get('element'), 'position', 'absolute');
+            myEditor.get('element_cont').addClass('yui-editor-container');
             YAHOO.log('Reset designMode on the Editor', 'info', 'example');
             myEditor._setDesignMode('on');
             YAHOO.log('Inject the HTML from the textarea into the editor', 'info', 'example');
@@ -182,9 +188,10 @@ This is some more test text.<br>This is some more test text.<br>This is some mor
         //The Editor config
         var myConfig = {
             height: '300px',
-            width: '522px',
+            width: '530px',
             animate: true,
-            dompath: true
+            dompath: true,
+            focusAtStart: true
         };
 
     //Now let's load the Editor..
@@ -221,7 +228,7 @@ This is some more test text.<br>This is some more test text.<br>This is some mor
 
 <p>Once it is in the textarea, we will process it to remove all of the HTML and replace the <code>&lt;br&gt;</code>'s with line breaks.</p>
 
-<p>Now using YAHOO.util.Dom we will set <code>top</code>, <code>left</code> and <code>position: absolute</code> (this will keep the Editor from taking up page space) on the Editor elements containers firstChild (which is the container that holds the Rich Text Editor). Then we will set the textarea to <code>display: block</code>.</p>
+<p>Now using YAHOO.util.Dom we will set <code>top</code>, <code>left</code> and <code>position: absolute</code> (this will keep the Editor from taking up page space) on the Editor elements containers firstChild (which is the container that holds the Rich Text Editor). Then we will set the textarea to <code>hidden</code>.</p>
 
 <textarea class="JScript" name="code">
 myEditor.saveHTML();
@@ -230,12 +237,16 @@ myEditor.get('textarea').value = myEditor.get('textarea').value.replace(/<br>/gi
 Dom.setStyle(myEditor.get('element_cont').get('firstChild'), 'position', 'absolute');
 Dom.setStyle(myEditor.get('element_cont').get('firstChild'), 'top', '-9999px');
 Dom.setStyle(myEditor.get('element_cont').get('firstChild'), 'left', '-9999px');
-Dom.setStyle(myEditor.get('textarea'), 'display', 'block');
+myEditor.get('element_cont').removeClass('yui-editor-container');
+Dom.setStyle(myEditor.get('element'), 'visibility', 'visible');
+Dom.setStyle(myEditor.get('element'), 'top', '');
+Dom.setStyle(myEditor.get('element'), 'left', '');
+Dom.setStyle(myEditor.get('element'), 'position', 'static');
 </textarea>
 
 <h2>Going from the textarea to the Editor</h2>
 
-<p>Using YAHOO.util.Dom we will set <code>top: 0</code>, <code>left: 0</code> and <code>position: static</code> (to put the Editor back in the page) on the Editor elements containers firstChild (which is the container that holds the Rich Text Editor). Then we will set the textarea to <code>display: none</code>.</p>
+<p>Using YAHOO.util.Dom we will set <code>top: 0</code>, <code>left: 0</code> and <code>position: static</code> (to put the Editor back in the page) on the Editor elements containers firstChild (which is the container that holds the Rich Text Editor). Then we will set the textarea to <code>visible</code>.</p>
 
 <p>Then we call the Editor method <code>_setDesignMode('on')</code> to re-enable designMode since it may have been lost with the visibility change.</p>
 
@@ -249,6 +260,11 @@ Dom.setStyle(myEditor.get('element_cont').get('firstChild'), 'left', '0');
 Dom.setStyle(myEditor.get('textarea'), 'display', 'none');
 myEditor._setDesignMode('on');
 myEditor.setEditorHTML(myEditor.get('textarea').value.replace(/\n/g, '<br>'));
+Dom.setStyle(myEditor.get('element'), 'visibility', 'hidden');
+Dom.setStyle(myEditor.get('element'), 'top', '-9999px');
+Dom.setStyle(myEditor.get('element'), 'left', '-9999px');
+Dom.setStyle(myEditor.get('element'), 'position', 'absolute');
+myEditor.get('element_cont').addClass('yui-editor-container');
 </textarea>
 
 <h2>Full Example Javascript Source</h2>
@@ -257,39 +273,60 @@ myEditor.setEditorHTML(myEditor.get('textarea').value.replace(/\n/g, '<br>'));
 (function() {
     var Dom = YAHOO.util.Dom,
         Event = YAHOO.util.Event;
-
+    
+    YAHOO.log('Create Button Control (#toggleEditor)', 'info', 'example');
     var _button = new YAHOO.widget.Button('toggleEditor');
     _button.addClass('toggleEditor');
+
     var myConfig = {
         height: '300px',
-        width: '522px',
+        width: '530px',
         animate: true,
-        dompath: true
+        dompath: true,
+        focusAtStart: true
     };
 
     var state = 'on';
+    YAHOO.log('Set state to on..', 'info', 'example');
 
+    YAHOO.log('Create the Editor..', 'info', 'example');
     var myEditor = new YAHOO.widget.Editor('editor', myConfig);
     myEditor.render();
 
     _button.on('click', function(ev) {
         Event.stopEvent(ev);
         if (state == 'on') {
+            YAHOO.log('state is on, so turn off', 'info', 'example');
             state = 'off';
             myEditor.saveHTML();
+            YAHOO.log('Save the Editors HTML', 'info', 'example');
             var stripHTML = /<\S[^><]*>/g;
             myEditor.get('textarea').value = myEditor.get('textarea').value.replace(/<br>/gi, '\n').replace(stripHTML, '');
+            YAHOO.log('Strip the HTML markup from the string.', 'info', 'example');
+            YAHOO.log('Set Editor container to position: absolute, top: -9999px, left: -9999px. Set textarea visible', 'info', 'example');
             Dom.setStyle(myEditor.get('element_cont').get('firstChild'), 'position', 'absolute');
             Dom.setStyle(myEditor.get('element_cont').get('firstChild'), 'top', '-9999px');
             Dom.setStyle(myEditor.get('element_cont').get('firstChild'), 'left', '-9999px');
-            Dom.setStyle(myEditor.get('textarea'), 'display', 'block');
+            myEditor.get('element_cont').removeClass('yui-editor-container');
+            Dom.setStyle(myEditor.get('element'), 'visibility', 'visible');
+            Dom.setStyle(myEditor.get('element'), 'top', '');
+            Dom.setStyle(myEditor.get('element'), 'left', '');
+            Dom.setStyle(myEditor.get('element'), 'position', 'static');
         } else {
+            YAHOO.log('state is off, so turn on', 'info', 'example');
             state = 'on';
+            YAHOO.log('Set Editor container to position: static, top: 0, left: 0. Set textarea to hidden', 'info', 'example');
             Dom.setStyle(myEditor.get('element_cont').get('firstChild'), 'position', 'static');
             Dom.setStyle(myEditor.get('element_cont').get('firstChild'), 'top', '0');
             Dom.setStyle(myEditor.get('element_cont').get('firstChild'), 'left', '0');
-            Dom.setStyle(myEditor.get('textarea'), 'display', 'none');
+            Dom.setStyle(myEditor.get('element'), 'visibility', 'hidden');
+            Dom.setStyle(myEditor.get('element'), 'top', '-9999px');
+            Dom.setStyle(myEditor.get('element'), 'left', '-9999px');
+            Dom.setStyle(myEditor.get('element'), 'position', 'absolute');
+            myEditor.get('element_cont').addClass('yui-editor-container');
+            YAHOO.log('Reset designMode on the Editor', 'info', 'example');
             myEditor._setDesignMode('on');
+            YAHOO.log('Inject the HTML from the textarea into the editor', 'info', 'example');
             myEditor.setEditorHTML(myEditor.get('textarea').value.replace(/\n/g, '<br>'));
         }
     });
@@ -311,7 +348,7 @@ myEditor.setEditorHTML(myEditor.get('textarea').value.replace(/\n/g, '<br>'));
 	
 						<div id="exampleToc">
 							<ul>
-								<li><a href='../editor/flickr_editor.html'>Flickr Image Search</a></li><li><a href='../editor/cal_editor.html'>Calendar Plugin</a></li><li><a href='../editor/icon_editor.html'>Icon Insertion</a></li><li class='selected'><a href='../editor/switch_editor.html'>Plain Text Switcher</a></li><li><a href='../editor/post_editor.html'>Editor Data Post with Connection Manager</a></li><li><a href='../editor/skinning_editor.html'>Skinning the Editor</a></li>							</ul>
+								<li><a href='../editor/flickr_editor.html'>Flickr Image Search</a></li><li><a href='../editor/cal_editor.html'>Calendar Plugin</a></li><li><a href='../editor/icon_editor.html'>Icon Insertion</a></li><li class='selected'><a href='../editor/switch_editor.html'>Plain Text Switcher</a></li><li><a href='../editor/post_editor.html'>Editor Data Post with Connection Manager</a></li><li><a href='../editor/skinning_editor.html'>Skinning the Editor</a></li><li><a href='../editor/toolbar_editor.html'>Default toolbar config</a></li><li><a href='../editor/tabview_editor.html'>Editor inside a Tabview control</a></li><li><a href='../editor/multi_editor.html'>One editor, multiple edit areas</a></li>							</ul>
 						</div>
 					</div>
 					

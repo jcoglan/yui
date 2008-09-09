@@ -80,17 +80,12 @@
     .yui-skin-sam .yui-toolbar-container .yui-toolbar-inserticon span.yui-toolbar-icon {
         background-image: url( assets/suits_default.gif );
         background-position: 1px 0px;
+        left: 5px;
     }
     .yui-skin-sam .yui-toolbar-container .yui-button-insertdate-selected span.yui-toolbar-icon {
         background-image: url( assets/suits_active.gif );
         background-position: 1px 0px;
-    }
-    .yui-skin-sam .yui-toolbar-container .yui-toolbar-insertimage { /* Turn off Right border of button before us */
-        border-right: none;
-    }
-    
-    #editor_container .yui-toolbar-separator-5 {
-        border: none;
+        left: 5px;
     }
     #inserticon {
         border:1px solid #808080;
@@ -117,13 +112,13 @@ This is some more test text.<br>This is some more test text.<br>This is some mor
 (function() {
     var myConfig = {
         height: '300px',
-        width: '522px',
+        width: '530px',
         animate: true,
         dompath: true,
-        handleSubmit: true
+        focusAtStart: true
     };
     YAHOO.log('Editor created..', 'info', 'example');
-    var myEditor = new YAHOO.widget.Editor('editor', myConfig);
+    myEditor = new YAHOO.widget.Editor('editor', myConfig);
 
     YAHOO.util.Event.onAvailable('iconMenu', function() {
         YAHOO.log('onAvailable: (#iconMenu)', 'info', 'example');
@@ -219,9 +214,10 @@ This is some more test text.
         //The Editor config
         var myConfig = {
             height: '300px',
-            width: '522px',
+            width: '530px',
             animate: true,
-            dompath: true
+            dompath: true,
+            focusAtStart: true
         };
 
     //Now let's load the Editor..
@@ -321,10 +317,6 @@ From inside that function we will setup a new button config object literal with 
     background-image: url( assets/suits_active.gif );
     background-position: 1px 0px;
 }
-/* Turn off Right border of button before us */
-.yui-skin-sam .yui-toolbar-container .yui-toolbar-insertimage {
-    border-right: none;
-}
 </textarea>
 
 <h2>Full Example Javascript Source</h2>
@@ -333,10 +325,10 @@ From inside that function we will setup a new button config object literal with 
 (function() {
     var myConfig = {
         height: '300px',
-        width: '522px',
+        width: '530px',
         animate: true,
         dompath: true,
-        handleSubmit: true
+        focusAtStart: true
     };
 
     myEditor = new YAHOO.widget.Editor('editor', myConfig);
@@ -415,7 +407,7 @@ From inside that function we will setup a new button config object literal with 
 	
 						<div id="exampleToc">
 							<ul>
-								<li><a href='../editor/flickr_editor.html'>Flickr Image Search</a></li><li><a href='../editor/cal_editor.html'>Calendar Plugin</a></li><li class='selected'><a href='../editor/icon_editor.html'>Icon Insertion</a></li><li><a href='../editor/switch_editor.html'>Plain Text Switcher</a></li><li><a href='../editor/post_editor.html'>Editor Data Post with Connection Manager</a></li><li><a href='../editor/skinning_editor.html'>Skinning the Editor</a></li>							</ul>
+								<li><a href='../editor/flickr_editor.html'>Flickr Image Search</a></li><li><a href='../editor/cal_editor.html'>Calendar Plugin</a></li><li class='selected'><a href='../editor/icon_editor.html'>Icon Insertion</a></li><li><a href='../editor/switch_editor.html'>Plain Text Switcher</a></li><li><a href='../editor/post_editor.html'>Editor Data Post with Connection Manager</a></li><li><a href='../editor/skinning_editor.html'>Skinning the Editor</a></li><li><a href='../editor/toolbar_editor.html'>Default toolbar config</a></li><li><a href='../editor/tabview_editor.html'>Editor inside a Tabview control</a></li><li><a href='../editor/multi_editor.html'>One editor, multiple edit areas</a></li>							</ul>
 						</div>
 					</div>
 					

@@ -52,17 +52,12 @@ body {
     .yui-skin-sam .yui-toolbar-container .yui-toolbar-insertdate span.yui-toolbar-icon {
         background-image: url( assets/calendar_default.gif );
         background-position: 1px 0px;
+        left: 5px;
     }
     .yui-skin-sam .yui-toolbar-container .yui-button-insertdate-selected span.yui-toolbar-icon {
         background-image: url( assets/calendar_active.gif );
         background-position: 1px 0px;
-    }
-    .yui-skin-sam .yui-toolbar-container .yui-toolbar-insertimage { /* Turn off Right border of button before us */
-        border-right: none;
-    }
-
-    #editor_container .yui-toolbar-separator-5 {
-        border: none;
+        left: 5px;
     }
     
     #insertdate {
@@ -72,7 +67,7 @@ body {
 
 <form method="post" action="#" id="form1">
 <textarea id="editor" name="editor" rows="20" cols="75">
-<font face="Times New Roman">This is some more test text. This is some more <b>test <i>text</i></b></font>. This is some more test text. This is some more test text. This is some more test text. This is some more test text. This is some more test text. This is some more test text. This is some more test text. 
+This is some more test text. <font face="Times New Roman">This is some more test text. This is some more <b>test <i>text</i></b></font>. This is some more test text. This is some more test text. This is some more test text. This is some more test text. This is some more test text. This is some more test text. This is some more test text. 
 </textarea>
 </form>
 
@@ -86,9 +81,10 @@ body {
 
         var myConfig = {
             height: '300px',
-            width: '522px',
+            width: '530px',
             animate: true,
-            dompath: true
+            dompath: true,
+            focusAtStart: true
         };
 
     YAHOO.log('Creating Editor', 'info', 'example');
@@ -128,6 +124,7 @@ body {
                 return menu;
             }()
         };
+
         YAHOO.log('Adding new button (insertdate) to toolbar', 'info', 'example');
         myEditor.toolbar.addButtonToGroup(dateConfig, 'insertitem');
 
@@ -141,7 +138,6 @@ body {
                 } else {
                     selectedDate = el.innerHTML;
                 }
-                console.log(selectedDate);
             }
             var _button = this.toolbar.getButtonByValue('insertdate');
             _button._menu.hide();
@@ -152,9 +148,7 @@ body {
             var calDate = ' <span class="date">' + (ev.calDate.getMonth() + 1)
                 + '/' + ev.calDate.getDate()
                 + '/' + ev.calDate.getFullYear() + '</span>&nbsp;';
-            this._focusWindow();
             this.execCommand('inserthtml', calDate);
-            this._focusWindow();
             var _button = this.toolbar.getButtonByValue('insertdate');
             _button._menu.hide();
         }, myEditor, true);

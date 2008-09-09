@@ -12,8 +12,8 @@
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
-        <h1>Yahoo! UI Library</h1>
-        <h3>Menu&nbsp; <span class="subtitle">2.3.0</span></h3>
+        <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
+        <h3>Menu&nbsp; <span class="subtitle">2.3.1</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_menu.html">menu</a>
@@ -640,6 +640,8 @@
                     <span class="k">this</span><span class="o">.</span><span class="nx">_createRootNodeStructure</span><span class="o">();</span>
 
                     <span class="nx">oConfig</span><span class="o">.</span><span class="nx">queueProperty</span><span class="o">(</span><span class="s2">&quot;text&quot;</span><span class="o">,</span> <span class="nx">p_oObject</span><span class="o">.</span><span class="nx">text</span><span class="o">);</span>
+                    
+                    <span class="k">this</span><span class="o">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">p_oObject</span><span class="o">.</span><span class="nx">value</span><span class="o">;</span>
 
                     <span class="k">this</span><span class="o">.</span><span class="nx">srcElement</span> <span class="o">=</span> <span class="nx">p_oObject</span><span class="o">;</span>
 
@@ -669,6 +671,14 @@
                     <span class="k">if</span><span class="o">(</span><span class="nx">oAnchor</span><span class="o">)</span> <span class="o">{</span>
 
                         <span class="nx">sURL</span> <span class="o">=</span> <span class="nx">oAnchor</span><span class="o">.</span><span class="nx">getAttribute</span><span class="o">(</span><span class="s2">&quot;href&quot;</span><span class="o">);</span>
+
+                        <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">ua</span><span class="o">.</span><span class="nx">ie</span><span class="o">)</span> <span class="o">{</span>
+            
+                            <span class="nx">sURL</span> <span class="o">=</span> <span class="nx">sURL</span><span class="o">.</span><span class="nx">substring</span><span class="o">(</span>
+                                <span class="nb">document</span><span class="o">.</span><span class="nx">location</span><span class="o">.</span><span class="nx">href</span><span class="o">.</span><span class="nx">length</span><span class="o">,</span> <span class="nx">sURL</span><span class="o">.</span><span class="nx">length</span><span class="o">);</span>
+            
+                        <span class="o">}</span>
+
                         <span class="nx">sTarget</span> <span class="o">=</span> <span class="nx">oAnchor</span><span class="o">.</span><span class="nx">getAttribute</span><span class="o">(</span><span class="s2">&quot;target&quot;</span><span class="o">);</span>
                         <span class="nx">sText</span> <span class="o">=</span> <span class="nx">oAnchor</span><span class="o">.</span><span class="nx">innerHTML</span><span class="o">;</span>
 
@@ -781,7 +791,7 @@
         <span class="k">if</span><span class="o">(!</span><span class="nx">m_oMenuItemTemplate</span><span class="o">)</span> <span class="o">{</span>
 
             <span class="nx">m_oMenuItemTemplate</span> <span class="o">=</span> <span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;li&quot;</span><span class="o">);</span>
-            <span class="nx">m_oMenuItemTemplate</span><span class="o">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">&quot;&lt;a href=\&quot;#\&quot;&gt;&lt;/a&gt;&quot;</span><span class="o">;</span>
+            <span class="nx">m_oMenuItemTemplate</span><span class="o">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">&quot;&lt;a&gt;&lt;/a&gt;&quot;</span><span class="o">;</span>
 
         <span class="o">}</span>
 
@@ -1201,6 +1211,11 @@
             <span class="nx">bSelected</span> <span class="o">=</span> <span class="nx">p_aArgs</span><span class="o">[</span><span class="m">0</span><span class="o">];</span>
             <span class="nx">oAnchor</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_oAnchor</span><span class="o">;</span>
 
+            <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">ua</span><span class="o">.</span><span class="nx">opera</span><span class="o">)</span> <span class="o">{</span>
+
+                <span class="nx">oAnchor</span><span class="o">.</span><span class="nx">blur</span><span class="o">();</span>
+            
+            <span class="o">}</span>
 
             <span class="k">if</span><span class="o">(</span><span class="nx">bSelected</span><span class="o">)</span> <span class="o">{</span>
     
@@ -1212,6 +1227,85 @@
                 <span class="nx">Dom</span><span class="o">.</span><span class="nx">removeClass</span><span class="o">(</span><span class="nx">oAnchor</span><span class="o">,</span> <span class="s2">&quot;selected&quot;</span><span class="o">);</span>
     
             <span class="o">}</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">hasFocus</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">ua</span><span class="o">.</span><span class="nx">opera</span><span class="o">)</span> <span class="o">{</span>
+            
+                <span class="nx">oAnchor</span><span class="o">.</span><span class="nx">focus</span><span class="o">();</span>
+            
+            <span class="o">}</span>
+
+        <span class="o">}</span>
+
+    <span class="o">},</span>
+
+
+    <span class="c">/**</span>
+<span class="c">    * @method _onSubmenuShow</span>
+<span class="c">    * @description &quot;show&quot; event handler for a submenu.</span>
+<span class="c">    * @private</span>
+<span class="c">    * @param {String} p_sType String representing the name of the event that </span>
+<span class="c">    * was fired.</span>
+<span class="c">    * @param {Array} p_aArgs Array of arguments sent when the event was fired.</span>
+<span class="c">    */</span>
+    <span class="nx">_onSubmenuShow</span><span class="o">:</span> <span class="k">function</span> <span class="o">(</span><span class="nx">p_sType</span><span class="o">,</span> <span class="nx">p_aArgs</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="k">var</span> <span class="nx">oTextNode</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">submenuIndicator</span><span class="o">.</span><span class="nx">firstChild</span><span class="o">;</span>
+        
+        <span class="k">if</span> <span class="o">(</span><span class="nx">oTextNode</span><span class="o">)</span> <span class="o">{</span>
+
+            <span class="nx">oTextNode</span><span class="o">.</span><span class="nx">nodeValue</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">EXPANDED_SUBMENU_INDICATOR_TEXT</span><span class="o">;</span>
+
+        <span class="o">}</span>
+
+    <span class="o">},</span>
+
+
+    <span class="c">/**</span>
+<span class="c">    * @method _onSubmenuBeforeHide</span>
+<span class="c">    * @description &quot;beforehide&quot; Custom Event handler for a submenu.</span>
+<span class="c">    * @private</span>
+<span class="c">    * @param {String} p_sType String representing the name of the event that </span>
+<span class="c">    * was fired.</span>
+<span class="c">    * @param {Array} p_aArgs Array of arguments sent when the event was fired.</span>
+<span class="c">    */</span>
+    <span class="nx">_onSubmenuBeforeHide</span><span class="o">:</span> <span class="k">function</span> <span class="o">(</span><span class="nx">p_sType</span><span class="o">,</span> <span class="nx">p_aArgs</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="k">var</span> <span class="nx">oItem</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">parent</span><span class="o">,</span>
+            <span class="nx">oMenu</span><span class="o">;</span>
+
+        <span class="k">function</span> <span class="nx">onHide</span><span class="o">()</span> <span class="o">{</span>
+
+            <span class="nx">oItem</span><span class="o">.</span><span class="nx">_oAnchor</span><span class="o">.</span><span class="nx">blur</span><span class="o">();</span>
+            <span class="nx">oMenu</span><span class="o">.</span><span class="nx">beforeHideEvent</span><span class="o">.</span><span class="nx">unsubscribe</span><span class="o">(</span><span class="nx">onHide</span><span class="o">);</span>
+        
+        <span class="o">}</span>
+    
+        <span class="k">if</span> <span class="o">(</span><span class="nx">oItem</span><span class="o">.</span><span class="nx">hasFocus</span><span class="o">())</span> <span class="o">{</span>
+
+            <span class="nx">oMenu</span> <span class="o">=</span> <span class="nx">oItem</span><span class="o">.</span><span class="nx">parent</span><span class="o">;</span>
+
+            <span class="nx">oMenu</span><span class="o">.</span><span class="nx">beforeHideEvent</span><span class="o">.</span><span class="nx">subscribe</span><span class="o">(</span><span class="nx">onHide</span><span class="o">);</span>
+        
+        <span class="o">}</span>
+    
+    <span class="o">},</span>
+    
+
+    <span class="c">/**</span>
+<span class="c">    * @method _onSubmenuHide</span>
+<span class="c">    * @description &quot;hide&quot; Custom Event handler for a submenu.</span>
+<span class="c">    * @private</span>
+<span class="c">    * @param {String} p_sType String representing the name of the event that </span>
+<span class="c">    * was fired.</span>
+<span class="c">    * @param {Array} p_aArgs Array of arguments sent when the event was fired.</span>
+<span class="c">    */</span>
+    <span class="nx">_onSubmenuHide</span><span class="o">:</span> <span class="k">function</span> <span class="o">(</span><span class="nx">p_sType</span><span class="o">,</span> <span class="nx">p_aArgs</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="k">var</span> <span class="nx">oTextNode</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">submenuIndicator</span><span class="o">.</span><span class="nx">firstChild</span><span class="o">;</span>
+        
+        <span class="k">if</span> <span class="o">(</span><span class="nx">oTextNode</span><span class="o">)</span> <span class="o">{</span>
+
+            <span class="nx">oTextNode</span><span class="o">.</span><span class="nx">nodeValue</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">COLLAPSED_SUBMENU_INDICATOR_TEXT</span><span class="o">;</span>
 
         <span class="o">}</span>
 
@@ -1284,6 +1378,15 @@
                 <span class="nx">Dom</span><span class="o">.</span><span class="nx">addClass</span><span class="o">(</span><span class="nx">oAnchor</span><span class="o">,</span> <span class="s2">&quot;hassubmenu&quot;</span><span class="o">);</span>
 
                 <span class="k">this</span><span class="o">.</span><span class="nx">_oSubmenu</span> <span class="o">=</span> <span class="nx">oMenu</span><span class="o">;</span>
+                
+                <span class="nx">oMenu</span><span class="o">.</span><span class="nx">showEvent</span><span class="o">.</span><span class="nx">subscribe</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_onSubmenuShow</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="k">this</span><span class="o">);</span>
+                <span class="nx">oMenu</span><span class="o">.</span><span class="nx">hideEvent</span><span class="o">.</span><span class="nx">subscribe</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_onSubmenuHide</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="k">this</span><span class="o">);</span>
+            
+                <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">ua</span><span class="o">.</span><span class="nx">opera</span><span class="o">)</span> <span class="o">{</span>
+                
+                    <span class="nx">oMenu</span><span class="o">.</span><span class="nx">beforeHideEvent</span><span class="o">.</span><span class="nx">subscribe</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_onSubmenuBeforeHide</span><span class="o">);</span>               
+                
+                <span class="o">}</span>
             
             <span class="o">}</span>
 
@@ -1832,7 +1935,14 @@
         <span class="k">if</span><span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="s2">&quot;disabled&quot;</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="nx">oParent</span> <span class="o">&amp;&amp;</span> 
             <span class="nx">oParent</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="s2">&quot;visible&quot;</span><span class="o">))</span> <span class="o">{</span>
 
-            <span class="k">this</span><span class="o">.</span><span class="nx">_oAnchor</span><span class="o">.</span><span class="nx">blur</span><span class="o">();</span>
+            <span class="k">try</span> <span class="o">{</span>
+
+                <span class="k">this</span><span class="o">.</span><span class="nx">_oAnchor</span><span class="o">.</span><span class="nx">blur</span><span class="o">();</span>
+            
+            <span class="o">}</span>
+            <span class="k">catch</span> <span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">{</span>
+            
+            <span class="o">}</span>
 
             <span class="k">this</span><span class="o">.</span><span class="nx">blurEvent</span><span class="o">.</span><span class="nx">fire</span><span class="o">();</span>
 

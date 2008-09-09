@@ -46,9 +46,6 @@ body {
     #submitEditor {
         margin: 1em;
     }
-    #editor_container .yui-toolbar-separator-5 {
-        border: none;
-    }   
     #status {
         margin: 2em;
         border: 1px solid black;
@@ -97,7 +94,7 @@ This is some more test text.<br>This is some more test text.<br>This is some mor
 
     var myConfig = {
         height: '300px',
-        width: '522px',
+        width: '530px',
         animate: true,
         dompath: true
     };
@@ -110,9 +107,11 @@ This is some more test text.<br>This is some more test text.<br>This is some mor
         YAHOO.log('Button clicked, initiate transaction', 'info', 'example');
         Event.stopEvent(ev);
         myEditor.saveHTML();
-        var sUrl = "assets/post.php";
-        var data = 'filter=' + ((Dom.get('filter').checked) ? 'yes' : 'no') + '&editor_data=' + encodeURI(myEditor.get('textarea').value);
-        var request = YAHOO.util.Connect.asyncRequest('POST', sUrl, callback, data);
+        window.setTimeout(function() {
+            var sUrl = "assets/post.php";
+            var data = 'filter=' + ((Dom.get('filter').checked) ? 'yes' : 'no') + '&editor_data=' + encodeURI(myEditor.get('textarea').value);
+            var request = YAHOO.util.Connect.asyncRequest('POST', sUrl, callback, data);
+        }, 200);
     });
 
     Event.on(window, 'load', function() {

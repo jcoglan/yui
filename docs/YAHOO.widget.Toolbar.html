@@ -12,8 +12,8 @@
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
-        <h1>Yahoo! UI Library</h1>
-        <h3>editor&nbsp; <span class="subtitle">2.3.0</span></h3>
+        <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
+        <h3>editor&nbsp; <span class="subtitle">2.3.1</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_editor.html">editor</a>
@@ -55,7 +55,7 @@
                     </div>
 
                         <div class="section constructor details">
-                        <h3><a name="constructor_detail">Constructor</a></h3>
+                        <h3 id="constructor">Constructor</h3>
                         <div class="content">
                             <div class="detail">
                                 <strong>YAHOO.widget.Toolbar</strong>
@@ -94,7 +94,7 @@
                     </div>
 
                         <div class="section field details">
-                            <h3><a name="field_detail">Properties</a></h3>
+                            <h3 id="properties">Properties</h3>
                             <div class="content">
                                     <div class="protected">
                                     <h4><a name="_buttonGroupList">_buttonGroupList</a>
@@ -433,7 +433,7 @@
 
 
                         <div class="section method details">
-                            <h3><a name="methodDetails">Methods</a></h3>
+                            <h3 id="methods">Methods</h3>
                             <div class="content">
                                     <div class="private">
                                     <h4>
@@ -951,6 +951,52 @@ push, split, menu, select, color, spin
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="collapse">collapse</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>collapse</strong>
+                                           (
+                                                
+                                                        
+                                                         collapse
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Programatically collapse the toolbar.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>collapse &lt;Boolean&gt;</code>
+                                                             True to collapse, false to expand.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="deselectAllButtons">deselectAllButtons</a></h4>
                                     <div class="detail">
                                         <code>
@@ -996,7 +1042,7 @@ push, split, menu, select, color, spin
                                            (
                                                 
                                                         
-                                                         button
+                                                         id
                                                     
                                                 
                                             )
@@ -1011,8 +1057,8 @@ push, split, menu, select, color, spin
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>button &lt;String/Number&gt;</code>
-                                                             Deselect a button by it's id or index.
+                                                            <code>id &lt;String/Number&gt;</code>
+                                                             Deselect a button by it's id, index or value.
                                                         </dd>
                                                 </dl>
 
@@ -1076,7 +1122,7 @@ push, split, menu, select, color, spin
                                            (
                                                 
                                                         
-                                                         button
+                                                         id
                                                     
                                                 
                                             )
@@ -1091,10 +1137,44 @@ push, split, menu, select, color, spin
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>button &lt;String/Number&gt;</code>
+                                                            <code>id &lt;String/Number&gt;</code>
                                                              Destroy a button by it's id or index.
                                                         </dd>
                                                 </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Boolean
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="disableAllButtons">disableAllButtons</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Boolean
+                                            <strong>disableAllButtons</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Disables all buttons in the toolbar.
+                                        </div>
+
+                                        <div class="description">
+
 
                                                 <dl>
                                                     <dt>Returns:
@@ -1122,7 +1202,7 @@ push, split, menu, select, color, spin
                                            (
                                                 
                                                         
-                                                         button
+                                                         id
                                                     
                                                 
                                             )
@@ -1137,10 +1217,44 @@ push, split, menu, select, color, spin
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>button &lt;String/Number&gt;</code>
-                                                             Disable a button by it's id or index.
+                                                            <code>id &lt;String/Number&gt;</code>
+                                                             Disable a button by it's id, index or value.
                                                         </dd>
                                                 </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Boolean
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="enableAllButtons">enableAllButtons</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Boolean
+                                            <strong>enableAllButtons</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Enables all buttons in the toolbar.
+                                        </div>
+
+                                        <div class="description">
+
 
                                                 <dl>
                                                     <dt>Returns:
@@ -1168,7 +1282,7 @@ push, split, menu, select, color, spin
                                            (
                                                 
                                                         
-                                                         button
+                                                         id
                                                     
                                                 
                                             )
@@ -1183,8 +1297,8 @@ push, split, menu, select, color, spin
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>button &lt;String/Number&gt;</code>
-                                                             Enable a button by it's id or index.
+                                                            <code>id &lt;String/Number&gt;</code>
+                                                             Enable a button by it's id, index or value.
                                                         </dd>
                                                 </dl>
 
@@ -1457,6 +1571,52 @@ configuration attributes used to create the toolbar.
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="resetAllButtons">resetAllButtons</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Boolean
+                                            <strong>resetAllButtons</strong>
+                                           (
+                                                
+                                                        
+                                                         _ex
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Resets all buttons to their initial state.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>_ex &lt;Object&gt;</code>
+                                                             Except these buttons
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Boolean
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="selectButton">selectButton</a></h4>
                                     <div class="detail">
                                         <code>
@@ -1468,7 +1628,7 @@ configuration attributes used to create the toolbar.
                                            (
                                                 
                                                         
-                                                         button
+                                                         id
                                                     
                                                 
                                             )
@@ -1483,8 +1643,8 @@ configuration attributes used to create the toolbar.
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>button &lt;String/Number&gt;</code>
-                                                             select a button by it's id or index.
+                                                            <code>id &lt;String/Number&gt;</code>
+                                                             Select a button by it's id, index or value.
                                                         </dd>
                                                 </dl>
 
@@ -1540,8 +1700,295 @@ configuration attributes used to create the toolbar.
 
 
                         <div class="section method details">
-                            <h3><a name="eventDetails">Events</a></h3>
+                            <h3 id="events">Events</h3>
                             <div class="content">
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeButtonsChangeEvent">beforeButtonsChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeButtonsChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'buttons' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeCollapseChangeEvent">beforeCollapseChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeCollapseChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'collapse' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeContChangeEvent">beforeContChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeContChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'cont' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeDisabledChangeEvent">beforeDisabledChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeDisabledChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'disabled' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeDraggableChangeEvent">beforeDraggableChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeDraggableChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'draggable' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeGrouplabelsChangeEvent">beforeGrouplabelsChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeGrouplabelsChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'grouplabels' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeTitlebarChangeEvent">beforeTitlebarChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeTitlebarChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'titlebar' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
                                     <div class="">
                                     <h4>
                                         <a name="buttonClick">buttonClick</a></h4>
@@ -1574,6 +2021,293 @@ configuration attributes used to create the toolbar.
                                                         <dd>
                                                             <code>o &lt;Object&gt;</code>
                                                              The object passed to this handler is the button config used to create the button.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="buttonsChangeEvent">buttonsChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>buttonsChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'buttons' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="collapseChangeEvent">collapseChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>collapseChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'collapse' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="contChangeEvent">contChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>contChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'cont' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="disabledChangeEvent">disabledChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>disabledChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'disabled' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="draggableChangeEvent">draggableChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>draggableChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'draggable' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="grouplabelsChangeEvent">grouplabelsChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>grouplabelsChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'grouplabels' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="titlebarChangeEvent">titlebarChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>titlebarChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'titlebar' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
                                                         </dd>
                                                 </dl>
 
@@ -1697,11 +2431,11 @@ tbar.in('testButtonClick', function() { alert('test button clicked'); })
 
 
                         <div class="section field details">
-                            <h3><a name="field_detail">Configuration Attributes</a></h3>
+                            <h3 id="configattributes">Configuration Attributes</h3>
                             <div class="content">
                                     <div class="">
                                     <h4><a name="buttons">buttons</a>
-                                        <code>- Object</code>
+                                        <code>- Array</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
@@ -1747,18 +2481,15 @@ The collapse button will not remove the toolbar, it will minimize it to the titl
                                     </div>        
                                     <div class="">
                                     <h4><a name="cont">cont</a>
-                                        <code>- Boolean</code>
+                                        <code>- HTMLElement</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Boolean indicating if the toolbar should show the group label's text string.
+                                            The container for the toolbar.
                                         </div>
                                     </div>
  
      
-                                    <div class="default">
-                                        Default Value: true
-                                    </div>        
 
                                     <hr />
                                     </div>        
@@ -2018,6 +2749,9 @@ passed a string, it will use that as the titlebar text
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#addSeparator">addSeparator</a>
                                 </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#collapse">collapse</a>
+                                </li>
                                 <li class=""><!--<code>Boolean</code>-->
                                 <a href="#deselectAllButtons">deselectAllButtons</a>
                                 </li>
@@ -2031,7 +2765,13 @@ passed a string, it will use that as the titlebar text
                                 <a href="#destroyButton">destroyButton</a>
                                 </li>
                                 <li class=""><!--<code>Boolean</code>-->
+                                <a href="#disableAllButtons">disableAllButtons</a>
+                                </li>
+                                <li class=""><!--<code>Boolean</code>-->
                                 <a href="#disableButton">disableButton</a>
+                                </li>
+                                <li class=""><!--<code>Boolean</code>-->
+                                <a href="#enableAllButtons">enableAllButtons</a>
                                 </li>
                                 <li class=""><!--<code>Boolean</code>-->
                                 <a href="#enableButton">enableButton</a>
@@ -2055,6 +2795,9 @@ passed a string, it will use that as the titlebar text
                                 <a href="#initAttributes">initAttributes</a>
                                 </li>
                                 <li class=""><!--<code>Boolean</code>-->
+                                <a href="#resetAllButtons">resetAllButtons</a>
+                                </li>
+                                <li class=""><!--<code>Boolean</code>-->
                                 <a href="#selectButton">selectButton</a>
                                 </li>
                                 <li class=""><!--<code>String</code>-->
@@ -2067,7 +2810,49 @@ passed a string, it will use that as the titlebar text
                         <h4>Events</h4>
                         <ul class="content">        
                                 <li class="">
+                                <a href="#beforeButtonsChangeEvent">beforeButtonsChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeCollapseChangeEvent">beforeCollapseChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeContChangeEvent">beforeContChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeDisabledChangeEvent">beforeDisabledChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeDraggableChangeEvent">beforeDraggableChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeGrouplabelsChangeEvent">beforeGrouplabelsChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeTitlebarChangeEvent">beforeTitlebarChangeEvent</a>
+                                </li>
+                                <li class="">
                                 <a href="#buttonClick">buttonClick</a>
+                                </li>
+                                <li class="">
+                                <a href="#buttonsChangeEvent">buttonsChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#collapseChangeEvent">collapseChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#contChangeEvent">contChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#disabledChangeEvent">disabledChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#draggableChangeEvent">draggableChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#grouplabelsChangeEvent">grouplabelsChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#titlebarChangeEvent">titlebarChangeEvent</a>
                                 </li>
                                 <li class="">
                                 <a href="#toolbarCollapsed">toolbarCollapsed</a>

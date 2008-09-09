@@ -12,8 +12,8 @@
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
-        <h1>Yahoo! UI Library</h1>
-        <h3>Container&nbsp; <span class="subtitle">2.3.0</span></h3>
+        <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
+        <h3>Container&nbsp; <span class="subtitle">2.3.1</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_container.html">container</a>
@@ -38,7 +38,7 @@
                         
                             Class <b>YAHOO.widget.Overlay</b>
                         <span class="extends">
-                           - extends <a href="Module.html">Module</a>
+                           - extends <a href="YAHOO.widget.Module.html">YAHOO.widget.Module</a>
                         </span>
 
                         <span class="extends">
@@ -51,6 +51,7 @@
                         <dl class="subclasses">
                             <dt>Known Subclasses:</dd>
                             <dd>
+                                    <a href="YAHOO.widget.Panel.html">YAHOO.widget.Panel</a>
                                     <a href="YAHOO.widget.Menu.html">YAHOO.widget.Menu</a>
                                     <a href="YAHOO.widget.Tooltip.html">YAHOO.widget.Tooltip</a>
                             </dd>
@@ -68,7 +69,7 @@ properly rendered above SELECT elements.
                     </div>
 
                         <div class="section constructor details">
-                        <h3><a name="constructor_detail">Constructor</a></h3>
+                        <h3 id="constructor">Constructor</h3>
                         <div class="content">
                             <div class="detail">
                                 <strong>YAHOO.widget.Overlay</strong>
@@ -116,7 +117,7 @@ documentation for more details.
                     </div>
 
                         <div class="section field details">
-                            <h3><a name="field_detail">Properties</a></h3>
+                            <h3 id="properties">Properties</h3>
                             <div class="content">
                                     <div class="private">
                                     <h4><a name="DEFAULT_CONFIG">DEFAULT_CONFIG</a>
@@ -266,9 +267,30 @@ configuring the context element alignment
                             </div>
                         </div>
 
+                        <div class="section field inheritance">
+                            <h4>Properties inherited from <a href="YAHOO.widget.Module.html">YAHOO.widget.Module</a>:</h4>
+                            <div class="content">
+                                <code>
+                                    
+                                        <a class="" href="YAHOO.widget.Module.html#body">body</a><span class="">,</span>
+                                        <a class="" href="YAHOO.widget.Module.html#browser">browser</a><span class="">,</span>
+                                        <a class="" href="YAHOO.widget.Module.html#cfg">cfg</a><span class="">,</span>
+                                        <a class="" href="YAHOO.widget.Module.html#contructor">contructor</a><span class="">,</span>
+                                        <a class="private" href="YAHOO.widget.Module.html#DEFAULT_CONFIG">DEFAULT_CONFIG</a><span class="private">,</span>
+                                        <a class="" href="YAHOO.widget.Module.html#element">element</a><span class="">,</span>
+                                        <a class="private" href="YAHOO.widget.Module.html#EVENT_TYPES">EVENT_TYPES</a><span class="private">,</span>
+                                        <a class="" href="YAHOO.widget.Module.html#footer">footer</a><span class="">,</span>
+                                        <a class="" href="YAHOO.widget.Module.html#header">header</a><span class="">,</span>
+                                        <a class="" href="YAHOO.widget.Module.html#id">id</a><span class="">,</span>
+                                        <a class="" href="YAHOO.widget.Module.html#imageRoot">imageRoot</a><span class="">,</span>
+                                        <a class="" href="YAHOO.widget.Module.html#isSecure">isSecure</a><span class="">,</span>
+                                        <a class="" href="YAHOO.widget.Module.html#platform">platform</a>
+                                </code>
+                            </div>
+                        </div>
 
                         <div class="section method details">
-                            <h3><a name="methodDetails">Methods</a></h3>
+                            <h3 id="methods">Methods</h3>
                             <div class="content">
                                     <div class="">
                                     <h4>
@@ -1628,6 +1650,48 @@ identical to calling this.cfg.setProperty("xy", [x,y]);
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="stackIframe">stackIframe</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>stackIframe</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Sets the zindex of the iframe shim, if it exists, based on the zindex of
+the Overlay element. The zindex of the iframe is set to be one less 
+than the Overlay element's zindex.
+<p>NOTE: This method will not bump up the zindex of the Overlay element
+to ensure that the iframe shim has a non-negative zindex.
+If you require the iframe zindex to be 0 or higher, the zindex of 
+the Overlay element should be set to a value greater than 0, before 
+this method is called.
+</p>
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="syncIframe">syncIframe</a></h4>
                                     <div class="detail">
                                         <code>
@@ -1826,9 +1890,17 @@ position information during drag & drop.
                             </div>
                         </div>
 
+                            <div class="section field inheritance">
+                                <h4>Methods inherited from <a href="YAHOO.widget.Module.html">YAHOO.widget.Module</a>:</h4>
+                                <div class="content">
+                                    <code>
+                                            <a class="protected" href="YAHOO.widget.Module.html#_addToParent">_addToParent</a><span class="protected">,</span>                                            <a class="" href="YAHOO.widget.Module.html#appendToBody">appendToBody</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#appendToFooter">appendToFooter</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#appendToHeader">appendToHeader</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#configMonitorResize">configMonitorResize</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#configVisible">configVisible</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#destroy">destroy</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#hide">hide</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#init">init</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#initDefaultConfig">initDefaultConfig</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#initEvents">initEvents</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#initResizeMonitor">initResizeMonitor</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#onDomResize">onDomResize</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#render">render</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#setBody">setBody</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#setFooter">setFooter</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#setHeader">setHeader</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#show">show</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#toString">toString</a>
+                                    </code>
+                                </div>
+                            </div>
 
                         <div class="section method details">
-                            <h3><a name="eventDetails">Events</a></h3>
+                            <h3 id="events">Events</h3>
                             <div class="content">
                                     <div class="">
                                     <h4>
@@ -1992,9 +2064,17 @@ window scroll
                         </div>
 
 
+                        <div class="section field inheritance">
+                            <h4>Events inherited from <a href="YAHOO.widget.Module.html">YAHOO.widget.Module</a>:</h4>
+                            <div class="content">
+                                <code>
+                                        <a class="" href="YAHOO.widget.Module.html#appendEvent">appendEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#beforeHideEvent">beforeHideEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#beforeInitEvent">beforeInitEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#beforeRenderEvent">beforeRenderEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#beforeShowEvent">beforeShowEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#changeBodyEvent">changeBodyEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#changeContentEvent">changeContentEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#changeFooterEvent">changeFooterEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#changeHeaderEvent">changeHeaderEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#destroyEvent">destroyEvent</a>                                        <a class="" href="YAHOO.widget.Module.html#hideEvent">hideEvent</a>                                        <a class="" href="YAHOO.widget.Module.html#initEvent">initEvent</a>                                        <a class="" href="YAHOO.widget.Module.html#renderEvent">renderEvent</a>                                        <a class="" href="YAHOO.widget.Module.html#showEvent">showEvent</a>                                        <a class="" href="YAHOO.widget.Module.html#YAHOO.widget.Module.textResizeEvent">YAHOO.widget.Module.textResizeEvent</a>
+                                </code>
+                            </div>
+                        </div>
 
                         <div class="section field details">
-                            <h3><a name="field_detail">Configuration Attributes</a></h3>
+                            <h3 id="configattributes">Configuration Attributes</h3>
                             <div class="content">
                                     <div class="">
                                     <h4><a name="constraintoviewport">constraintoviewport</a>
@@ -2077,7 +2157,7 @@ the viewport.
                                     <div class="detail">
                                         <div class="description">
                                             Boolean indicating whether or not the Overlay should 
-have an IFRAME shim; used to prevent <SELECT> elements from 
+have an IFRAME shim; used to prevent SELECT elements from 
 poking through an Overlay instance in IE6.  When set to "true", 
 the iframe shim is created when the Overlay instance is intially
 made visible.
@@ -2180,6 +2260,14 @@ made visible.
                             </div>
                         </div>
 
+                        <div class="section field inheritance">
+                            <h4>Configuration attributes inherited from <a href="YAHOO.widget.Module.html">YAHOO.widget.Module</a>:</h4>
+                            <div class="content">
+                                <code>
+                                        <a class="" href="YAHOO.widget.Module.html#appendtodocumentbody">appendtodocumentbody</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#effect">effect</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#monitorresize">monitorresize</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#visible">visible</a><span class="">,</span>
+                                </code>
+                            </div>
+                        </div>
 
 			</div>
 		</div>
@@ -2383,6 +2471,9 @@ made visible.
                                 </li>
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#showMacGeckoScrollbars">showMacGeckoScrollbars</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#stackIframe">stackIframe</a>
                                 </li>
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#syncIframe">syncIframe</a>

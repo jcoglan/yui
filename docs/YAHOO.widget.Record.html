@@ -12,8 +12,8 @@
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
-        <h1>Yahoo! UI Library</h1>
-        <h3>DataTable Widget&nbsp; <span class="subtitle">2.3.0</span></h3>
+        <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
+        <h3>DataTable Widget&nbsp; <span class="subtitle">2.3.1</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_datatable.html">datatable</a>
@@ -55,7 +55,7 @@
                     </div>
 
                         <div class="section constructor details">
-                        <h3><a name="constructor_detail">Constructor</a></h3>
+                        <h3 id="constructor">Constructor</h3>
                         <div class="content">
                             <div class="detail">
                                 <strong>YAHOO.widget.Record</strong>
@@ -85,24 +85,8 @@
                     </div>
 
                         <div class="section field details">
-                            <h3><a name="field_detail">Properties</a></h3>
+                            <h3 id="properties">Properties</h3>
                             <div class="content">
-                                    <div class="private">
-                                    <h4><a name="_nId">_nId</a>
-                                        <code>- private Number</code>
-                                    </h4>
-                                    <div class="detail">
-                                        <div class="description">
-                                            Unique number assigned at instantiation, indicates original order within
-RecordSet.
-                                        </div>
-                                    </div>
-     
-                                        
-
-
-                                    <hr />
-                                    </div>
                                     <div class="private">
                                     <h4><a name="_oData">_oData</a>
                                         <code>- private Object</code>
@@ -118,6 +102,37 @@ RecordSet.
 
                                     <hr />
                                     </div>
+                                    <div class="private">
+                                    <h4><a name="_sId">_sId</a>
+                                        <code>- private String</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Immutable unique ID assigned at instantiation. Remains constant while a
+Record's position index can change from sorting.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="Record._nCount">Record._nCount</a>
+                                        <code>- private Number</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Internal class variable to give unique IDs to Record instances.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
 
 
                             </div>
@@ -125,7 +140,7 @@ RecordSet.
 
 
                         <div class="section method details">
-                            <h3><a name="methodDetails">Methods</a></h3>
+                            <h3 id="methods">Methods</h3>
                             <div class="content">
                                     <div class="">
                                     <h4>
@@ -189,8 +204,7 @@ literal otherwise.
                                         </code>
                                         
                                         <div class="description">
-                                            Returns unique number assigned at instantiation, indicates original order
-within RecordSet.
+                                            Returns unique ID assigned at instantiation.
                                         </div>
 
                                         <div class="description">
@@ -201,7 +215,7 @@ within RecordSet.
                                                     <code>
                                                         void
                                                     </code></dt>
-                                                    <dd>Number</dd>
+                                                    <dd>String</dd>
                                                 </dl>
              
                                         </div>
@@ -302,11 +316,14 @@ within RecordSet.
                     <div class="module">
                         <h4>Properties</h4>
                         <ul class="content">        
-                                <li class="private"><a href="#_nId">_nId</a>
-                                        <!--<code>&lt;Object&gt;</code>-->
-                                </li>
                                 <li class="private"><a href="#_oData">_oData</a>
-                                        <!--<code>&lt;Object&gt;</code>-->
+                                        <!--<code>&lt;Number&gt;</code>-->
+                                </li>
+                                <li class="private"><a href="#_sId">_sId</a>
+                                        <!--<code>&lt;Number&gt;</code>-->
+                                </li>
+                                <li class="private"><a href="#Record._nCount">Record._nCount</a>
+                                        <!--<code>&lt;Number&gt;</code>-->
                                 </li>
                         </ul>
                     </div>

@@ -12,8 +12,8 @@
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
-        <h1>Yahoo! UI Library</h1>
-        <h3>editor&nbsp; <span class="subtitle">2.3.0</span></h3>
+        <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
+        <h3>editor&nbsp; <span class="subtitle">2.3.1</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_editor.html">editor</a>
@@ -56,11 +56,26 @@
 
 
                         <div class="section field details">
-                            <h3><a name="field_detail">Properties</a></h3>
+                            <h3 id="properties">Properties</h3>
                             <div class="content">
                                     <div class="private">
+                                    <h4><a name="_instances">_instances</a>
+                                        <code>- private Object</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            A reference to all editors on the page.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="panel">panel</a>
-                                        <code>- private Object <a href="YAHOO.widget.Panel.html">YAHOO.widget.Panel</a></code>
+                                        <code>- private Object <a href="YAHOO.widget.Overlay.html">YAHOO.widget.Overlay</a></code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
@@ -94,6 +109,91 @@
                         </div>
 
 
+                        <div class="section method details">
+                            <h3 id="methods">Methods</h3>
+                            <div class="content">
+                                    <div class="">
+                                    <h4>
+                                        <a name="getEditorById">getEditorById</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>getEditorById</strong>
+                                           (
+                                                
+                                                        
+                                                         id
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Returns a reference to the Editor object associated with the given textarea
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>id &lt;String/HTMLElement&gt;</code>
+                                                             The id or reference of the textarea to return the Editor instance of
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="toString">toString</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        String
+                                            <strong>toString</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Returns a string representing the EditorInfo.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        String
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                            </div>
+                        </div>
 
 
 
@@ -181,6 +281,9 @@
                     <div class="module">
                         <h4>Properties</h4>
                         <ul class="content">        
+                                <li class="private"><a href="#_instances">_instances</a>
+                                        <!--<code>&lt;Object <a href="YAHOO.widget.EditorWindow.html">YAHOO.widget.EditorWindow</a>&gt;</code>-->
+                                </li>
                                 <li class="private"><a href="#panel">panel</a>
                                         <!--<code>&lt;Object <a href="YAHOO.widget.EditorWindow.html">YAHOO.widget.EditorWindow</a>&gt;</code>-->
                                 </li>
@@ -190,6 +293,17 @@
                         </ul>
                     </div>
 
+                    <div class="module">
+                        <h4>Methods</h4>
+                        <ul class="content">        
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#getEditorById">getEditorById</a>
+                                </li>
+                                <li class=""><!--<code>String</code>-->
+                                <a href="#toString">toString</a>
+                                </li>
+                        </ul>
+                    </div>
 
 
 

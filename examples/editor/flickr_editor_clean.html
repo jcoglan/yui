@@ -50,17 +50,12 @@ body {
     .yui-skin-sam .yui-toolbar-container .yui-toolbar-flickr span.yui-toolbar-icon {
         background-image: url( assets/flickr_default.gif );
         background-position: 1px 0px;
+        left: 5px;
     }
     .yui-skin-sam .yui-toolbar-container .yui-toolbar-flickr-selected span.yui-toolbar-icon {
         background-image: url( assets/flickr_active.gif );
         background-position: 1px 0px;
-    }
-    .yui-skin-sam .yui-toolbar-container .yui-toolbar-insertimage {
-        border-right: none;
-    }
-
-    #editor_container .yui-toolbar-separator-5 {
-        border: none;
+        left: 5px;
     }
 
         #gutter1 {
@@ -149,7 +144,7 @@ body {
 
 <form method="post" action="#" id="form1">
 <textarea id="editor" name="editor" rows="20" cols="75">
-<font face="Times New Roman">This is some more test text. This is some more <b>test <i>text</i></b></font>. This is some more test text. This is some more test text. This is some more test text. This is some more test text. This is some more test text. This is some more test text. This is some more test text. 
+This is some more test text. <font face="Times New Roman">This is some more test text. This is some more <b>test <i>text</i></b></font>. This is some more test text. This is some more test text. This is some more test text. This is some more test text. This is some more test text. This is some more test text. 
 </textarea>
 </form>
 
@@ -174,7 +169,7 @@ body {
                     visible: false
                 });
                 this.gutter.hideEvent.subscribe(function() {
-                    myEditor.toolbar.deselectButton(myEditor.toolbar.getButtonByValue('flickr'));
+                    myEditor.toolbar.deselectButton('flickr');
                     Dom.setStyle('gutter1', 'visibility', 'visible');                
                     var anim = new YAHOO.util.Anim('gutter1', {
                         width: {
@@ -192,7 +187,7 @@ body {
                     anim.animate();
                 }, this, true);
                 this.gutter.showEvent.subscribe(function() {
-                    myEditor.toolbar.selectButton(myEditor.toolbar.getButtonByValue('flickr'));
+                    myEditor.toolbar.selectButton('flickr');
                     this.gutter.cfg.setProperty('context', [myEditor.get('element_cont').get('element'), 'tl', 'tr']);
                     Dom.setStyle(this.gutter.element, 'width', '0px');
                     var anim = new YAHOO.util.Anim('gutter1', {
@@ -211,7 +206,7 @@ body {
                 if (myEditor.browser.webkit || myEditor.browser.opera) {
                     warn = myEditor.STR_IMAGE_COPY;
                 }
-                this.gutter.setBody('<h2>Flickr Image Search</h2><label for="flikr_search">Tag:</label><input type="text" value="" id="flickr_search"><div id="flickr_results"><p>Enter flickr tags into the box above, seperated by commas. Be patient, this example my take a few seconds to get the images..</p></div>' + warn);
+                this.gutter.setBody('<h2>Flickr Image Search</h2><label for="flikr_search">Tag:</label><input type="text" value="" id="flickr_search"><div id="flickr_results"><p>Enter flickr tags into the box above, separated by commas. Be patient, this example my take a few seconds to get the images..</p></div>' + warn);
                 this.gutter.render(document.body);
             },
             open: function() {
@@ -246,8 +241,11 @@ YAHOO.util.Event.onAvailable('flickr_search', function() {
         if (tar.tagName.toLowerCase() == 'img') {
             if (tar.getAttribute('fullimage', 2)) {
                 YAHOO.log('Found an image, insert it..', 'info', 'example');
-                var img = tar.getAttribute('fullimage', 2);
-                this.toolbar.fireEvent('flickrClick', { type: 'flickrClick', img: img });
+                var img = tar.getAttribute('fullimage', 2),
+                    title = tar.getAttribute('fulltitle'),
+                    owner = tar.getAttribute('fullowner'),
+                    url = tar.getAttribute('fullurl');
+                this.toolbar.fireEvent('flickrClick', { type: 'flickrClick', img: img, title: title, owner: owner, url: url });
             }
         }
     }, myEditor, true);
@@ -273,7 +271,8 @@ YAHOO.util.Event.onAvailable('flickr_search', function() {
         var urlPart = 'http:/'+'/static.flickr.com/' + sServer + '/' + sId + '_' + sSecret;
         var sUrl = urlPart + '_s.jpg';
         var lUrl = urlPart + '_m.jpg';
-        var sMarkup = '<img src="' + sUrl + '" fullimage="' + lUrl + '" class="yui-ac-flickrImg" title="Click to add this image to the editor"><br>';
+        var fUrl = 'http:/'+'/www.flickr.com/photos/' + sOwner + '/' + sId;
+        var sMarkup = '<img src="' + sUrl + '" fullimage="' + lUrl + '" fulltitle="' + sTitle + '" fullid="' + sOwner + '" fullurl="' + fUrl + '" class="yui-ac-flickrImg" title="Click to add this image to the editor"><br>';
         return (sMarkup);
     };
 });
@@ -282,9 +281,10 @@ var gutter = null;
 
 var myConfig = {
     height: '300px',
-    width: '522px',
+    width: '530px',
     animate: true,
-    dompath: true
+    dompath: true,
+    focusAtStart: true
 };
 
 YAHOO.log('Editor loaded..', 'info', 'example');
@@ -307,7 +307,9 @@ myEditor.on('toolbarLoaded', function() {
         this._focusWindow();
         if (ev && ev.img) {
             YAHOO.log('We have an image, insert it', 'info', 'example');
-            this.execCommand('insertimage', ev.img);
+            //To abide by the Flickr TOS, we need to link back to the image that we just inserted
+            var html = '<a href="' + ev.url + '"><img src="' + ev.img + '" title="' + ev.title + '"></a>';
+            this.execCommand('inserthtml', html);
         }
         gutter.toggle();
     }, myEditor, true);

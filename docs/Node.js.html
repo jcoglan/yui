@@ -12,8 +12,8 @@
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
-        <h1>Yahoo! UI Library</h1>
-        <h3>TreeView Widget&nbsp; <span class="subtitle">2.3.0</span></h3>
+        <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
+        <h3>TreeView Widget&nbsp; <span class="subtitle">2.3.1</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_treeview.html">treeview</a>
@@ -612,19 +612,26 @@
 <span class="c">     * toggle style, and collapses its siblings if multiExpand is not set.</span>
 <span class="c">     * @method expand</span>
 <span class="c">     */</span>
-    <span class="nx">expand</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nx">expand</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">lazySource</span><span class="o">)</span> <span class="o">{</span>
         <span class="c">// Only expand if currently collapsed.</span>
 <span class="c"></span>        <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">expanded</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span><span class="o">;</span> <span class="o">}</span>
 
-        <span class="c">// fire the expand event handler</span>
-<span class="c"></span>        <span class="k">var</span> <span class="nx">ret</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">tree</span><span class="o">.</span><span class="nx">onExpand</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="k">var</span> <span class="nx">ret</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
 
-        <span class="k">if</span> <span class="o">(</span><span class="kc">false</span> <span class="o">===</span> <span class="nx">ret</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;Expand was stopped by the abstract onExpand&quot;</span><span class="o">);</span>
-            <span class="k">return</span><span class="o">;</span>
+        <span class="c">// When returning from the lazy load handler, expand is called again</span>
+<span class="c"></span>        <span class="c">// in order to render the new children.  The &quot;expand&quot; event already</span>
+<span class="c"></span>        <span class="c">// fired before fething the new data, so we need to skip it now.</span>
+<span class="c"></span>        <span class="k">if</span> <span class="o">(!</span><span class="nx">lazySource</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c">// fire the expand event handler</span>
+<span class="c"></span>            <span class="nx">ret</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">tree</span><span class="o">.</span><span class="nx">onExpand</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="kc">false</span> <span class="o">===</span> <span class="nx">ret</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;Expand was stopped by the abstract onExpand&quot;</span><span class="o">);</span>
+                <span class="k">return</span><span class="o">;</span>
+            <span class="o">}</span>
+            
+            <span class="nx">ret</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">tree</span><span class="o">.</span><span class="nx">fireEvent</span><span class="o">(</span><span class="s2">&quot;expand&quot;</span><span class="o">,</span> <span class="k">this</span><span class="o">);</span>
         <span class="o">}</span>
-        
-        <span class="nx">ret</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">tree</span><span class="o">.</span><span class="nx">fireEvent</span><span class="o">(</span><span class="s2">&quot;expand&quot;</span><span class="o">,</span> <span class="k">this</span><span class="o">);</span>
 
         <span class="k">if</span> <span class="o">(</span><span class="kc">false</span> <span class="o">===</span> <span class="nx">ret</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;Expand was stopped by the custom event handler&quot;</span><span class="o">);</span>
@@ -967,7 +974,7 @@
         <span class="k">this</span><span class="o">.</span><span class="nx">getChildrenEl</span><span class="o">().</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">completeRender</span><span class="o">();</span>
         <span class="k">this</span><span class="o">.</span><span class="nx">dynamicLoadComplete</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
         <span class="k">this</span><span class="o">.</span><span class="nx">isLoading</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">expand</span><span class="o">();</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">expand</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
         <span class="k">this</span><span class="o">.</span><span class="nx">tree</span><span class="o">.</span><span class="nx">locked</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
     <span class="o">},</span>
 

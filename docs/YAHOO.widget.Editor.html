@@ -12,8 +12,8 @@
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
-        <h1>Yahoo! UI Library</h1>
-        <h3>editor&nbsp; <span class="subtitle">2.3.0</span></h3>
+        <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
+        <h3>editor&nbsp; <span class="subtitle">2.3.1</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_editor.html">editor</a>
@@ -56,7 +56,7 @@
                     </div>
 
                         <div class="section constructor details">
-                        <h3><a name="constructor_detail">Constructor</a></h3>
+                        <h3 id="constructor">Constructor</h3>
                         <div class="content">
                             <div class="detail">
                                 <strong>YAHOO.widget.Editor</strong>
@@ -95,7 +95,7 @@
                     </div>
 
                         <div class="section field details">
-                            <h3><a name="field_detail">Properties</a></h3>
+                            <h3 id="properties">Properties</h3>
                             <div class="content">
                                     <div class="private">
                                     <h4><a name="_alwaysDisabled">_alwaysDisabled</a>
@@ -119,6 +119,36 @@
                                     <div class="detail">
                                         <div class="description">
                                             The Toolbar items that should ALWAYS be enabled event if there isn't a selection present in the editor.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="_baseHREF">_baseHREF</a>
+                                        <code>- private String</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            The base location of the editable page (this page) so that relative paths for image work.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="_blankImageLoaded">_blankImageLoaded</a>
+                                        <code>- private Date</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Don't load the blank image more than once..
                                         </div>
                                     </div>
      
@@ -173,12 +203,117 @@
                                     <hr />
                                     </div>
                                     <div class="private">
+                                    <h4><a name="_fixNodesTimer">_fixNodesTimer</a>
+                                        <code>- private Date</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Holder for the fixNodes timer
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="_lastButton">_lastButton</a>
+                                        <code>- private Object</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            The last button pressed, so we don't disable it.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="_lastImage">_lastImage</a>
+                                        <code>- private HTMLElement</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Safari reference for the last image selected (for styling as selected).
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="_lastNodeChange">_lastNodeChange</a>
+                                        <code>- private Date</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Flag to determine when the last node change was fired
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="_lastNodeChangeEvent">_lastNodeChangeEvent</a>
+                                        <code>- private Event</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Flag to determine the last event that fired a node change
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="_mask">_mask</a>
                                         <code>- private Object</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
                                             DOM Element holder for the editor Mask when disabled
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="_nodeChangeTimer">_nodeChangeTimer</a>
+                                        <code>- private Number</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Holds a reference to the nodeChange setTimeout call
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="_rendered">_rendered</a>
+                                        <code>- private Boolean</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Flag to determine if editor has been rendered or not
                                         </div>
                                     </div>
      
@@ -973,7 +1108,7 @@ inside of the iframe, so we have to place the newly inserted data in the best pl
                         </div>
 
                         <div class="section method details">
-                            <h3><a name="methodDetails">Methods</a></h3>
+                            <h3 id="methods">Methods</h3>
                             <div class="content">
                                     <div class="private">
                                     <h4>
@@ -1080,8 +1215,8 @@ inside of the iframe, so we have to place the newly inserted data in the best pl
                                         
                                         <div class="description">
                                             This is a work around for the various browser issues with execCommand. This method will run <code>execCommand('fontname', false, 'yui-tmp')</code> on the given selection.
-It will then search the document for a span with the font-family set to <strong>yui-tmp</strong> and replace that with another span that has other information in it, then assign the new span to
-<code>this.currentElement</code>, so we now have an element reference to the element that was just modified. At this point we can use standard DOM manipulation to change it as we see fit.
+It will then search the document for an element with the font-family set to <strong>yui-tmp</strong> and replace that with another span that has other information in it, then assign the new span to the 
+<code>this.currentElement</code> array, so we now have element references to the elements that were just modified. At this point we can use standard DOM manipulation to change them as we see fit.
                                         </div>
 
                                         <div class="description">
@@ -1095,6 +1230,52 @@ It will then search the document for a span with the font-family set to <strong>
                                                         <dd>
                                                             <code>tagStyle &lt;Object&gt;</code>
                                                              (optional) Object literal containing styles to apply to the new element.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4>
+                                        <a name="_createIframe">_createIframe</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        void
+                                            <strong>_createIframe</strong>
+                                           (
+                                                
+                                                        
+                                                         id
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            _createIframe
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>id &lt;String&gt;</code>
+                                                             The string ID to prefix the iframe with
                                                         </dd>
                                                 </dl>
 
@@ -2175,6 +2356,106 @@ It will then search the document for a span with the font-family set to <strong>
                                     </div>
                                     <div class="private">
                                     <h4>
+                                        <a name="_isElement">_isElement</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        void
+                                            <strong>_isElement</strong>
+                                           (
+                                                
+                                                        
+                                                         el
+                                                    
+                                                
+                                                        , 
+                                                         tag
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            _isElement
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>el &lt;HTMLElement&gt;</code>
+                                                             The element to check
+                                                        </dd>
+                                                        <dd>
+                                                            <code>tag &lt;String&gt;</code>
+                                                             The tag that the element needs to be
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4>
+                                        <a name="_isLocalFile">_isLocalFile</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        void
+                                            <strong>_isLocalFile</strong>
+                                           (
+                                                
+                                                        
+                                                         url
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Checks to see if a string (href or img src) is possibly a local file reference..
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>url &lt;String&gt;</code>
+                                                             THe url/string to check
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4>
                                         <a name="_renderPanel">_renderPanel</a></h4>
                                     <div class="detail">
                                         <code>
@@ -2193,6 +2474,52 @@ It will then search the document for a span with the font-family set to <strong>
 
                                         <div class="description">
 
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4>
+                                        <a name="_selectNode">_selectNode</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        void
+                                            <strong>_selectNode</strong>
+                                           (
+                                                
+                                                        
+                                                         node
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Places the highlight around a given node
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>node &lt;HTMLElement&gt;</code>
+                                                             The node to select
+                                                        </dd>
+                                                </dl>
 
                                                 <dl>
                                                     <dt>Returns:
@@ -2479,6 +2806,68 @@ It will then search the document for a span with the font-family set to <strong>
 
                                         <div class="description">
 
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4>
+                                        <a name="_swapEl">_swapEl</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        void
+                                            <strong>_swapEl</strong>
+                                           (
+                                                
+                                                        
+                                                         el
+                                                    
+                                                
+                                                        , 
+                                                         tagName
+                                                    
+                                                
+                                                        , 
+                                                         callback
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            This function will create a new element in the DOM and populate it with the contents of another element. Then it will assume it's place.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>el &lt;HTMLElement&gt;</code>
+                                                             The element to swap with
+                                                        </dd>
+                                                        <dd>
+                                                            <code>tagName &lt;String&gt;</code>
+                                                             The tagname of the element that you wish to create
+                                                        </dd>
+                                                        <dd>
+                                                            <code>callback &lt;Function&gt;</code>
+                                                             (optional) A function to run on the element after it is created, but before it is replaced. An element reference is passed to this function.
+                                                        </dd>
+                                                </dl>
 
                                                 <dl>
                                                     <dt>Returns:
@@ -2861,6 +3250,40 @@ It will then search the document for a span with the font-family set to <strong>
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="hide">hide</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>hide</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            This method needs to be called if the Editor is to be hidden (like in a TabView or Panel). It should be called to clear timeouts and close open editor windows.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="init">init</a></h4>
                                     <div class="detail">
                                         <code>
@@ -2998,6 +3421,11 @@ configuration attributes used to create the editor.
                                         void
                                             <strong>nodeChange</strong>
                                            (
+                                                
+                                                        
+                                                         force
+                                                    
+                                                
                                             )
                                         </code>
                                         
@@ -3007,6 +3435,13 @@ configuration attributes used to create the editor.
 
                                         <div class="description">
 
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>force &lt;Boolean&gt;</code>
+                                                             Optional paramenter to skip the threshold counter
+                                                        </dd>
+                                                </dl>
 
                                                 <dl>
                                                     <dt>Returns:
@@ -3183,6 +3618,40 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="show">show</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>show</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            This method needs to be called if the Editor was hidden (like in a TabView or Panel). It is used to reset the editor after being in a container that was set to display none.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="toString">toString</a></h4>
                                     <div class="detail">
                                         <code>
@@ -3244,7 +3713,7 @@ configuration attributes used to create the editor.
                             </div>
 
                         <div class="section method details">
-                            <h3><a name="eventDetails">Events</a></h3>
+                            <h3 id="events">Events</h3>
                             <div class="content">
                                     <div class="">
                                     <h4>
@@ -3384,6 +3853,334 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="animateChangeEvent">animateChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>animateChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'animate' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeAnimateChangeEvent">beforeAnimateChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeAnimateChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'animate' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeBlankimageChangeEvent">beforeBlankimageChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeBlankimageChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'blankimage' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeCssChangeEvent">beforeCssChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeCssChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'css' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeDisabledChangeEvent">beforeDisabledChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeDisabledChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'disabled' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeDompathChangeEvent">beforeDompathChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeDompathChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'dompath' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeEditor_wrapperChangeEvent">beforeEditor_wrapperChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeEditor_wrapperChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'editor_wrapper' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeElement_contChangeEvent">beforeElement_contChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeElement_contChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'element_cont' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="beforeExecCommand">beforeExecCommand</a></h4>
                                     <div class="detail">
                                         <code>
@@ -3413,6 +4210,334 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="beforeFocusatstartChangeEvent">beforeFocusatstartChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeFocusatstartChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'focusAtStart' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeHandlesubmitChangeEvent">beforeHandlesubmitChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeHandlesubmitChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'handleSubmit' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeHeightChangeEvent">beforeHeightChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeHeightChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'height' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeHiddencssChangeEvent">beforeHiddencssChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeHiddencssChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'hiddencss' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeHtmlChangeEvent">beforeHtmlChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeHtmlChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'html' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeIframeChangeEvent">beforeIframeChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeIframeChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'iframe' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeLocalfilewarningChangeEvent">beforeLocalfilewarningChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeLocalfilewarningChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'localFileWarning' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeMarkupChangeEvent">beforeMarkupChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeMarkupChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'markup' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="beforeNodeChange">beforeNodeChange</a></h4>
                                     <div class="detail">
                                         <code>
@@ -3433,6 +4558,47 @@ configuration attributes used to create the editor.
                                         <div class="description">
 
 
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeNodechangethresholdChangeEvent">beforeNodechangethresholdChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeNodechangethresholdChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'nodeChangeThreshold' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
 
 
                                         </div>
@@ -3491,6 +4657,293 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="beforePanelChangeEvent">beforePanelChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforePanelChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'panel' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeRemovelinebreaksChangeEvent">beforeRemovelinebreaksChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeRemovelinebreaksChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'removeLineBreaks' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeTextareaChangeEvent">beforeTextareaChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeTextareaChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'textarea' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeToolbar_contChangeEvent">beforeToolbar_contChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeToolbar_contChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'toolbar_cont' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeToolbarChangeEvent">beforeToolbarChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeToolbarChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'toolbar' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeWidthChangeEvent">beforeWidthChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeWidthChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'width' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="blankimageChangeEvent">blankimageChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>blankimageChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'blankimage' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="closeWindow">closeWindow</a></h4>
                                     <div class="detail">
                                         <code>
@@ -3521,6 +4974,170 @@ configuration attributes used to create the editor.
                                                         <dd>
                                                             <code>win &lt;<a href="YAHOO.widget.EditorWindow.html">EditorWindow</a>&gt;</code>
                                                              The EditorWindow object
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="cssChangeEvent">cssChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>cssChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'css' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="disabledChangeEvent">disabledChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>disabledChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'disabled' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="dompathChangeEvent">dompathChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>dompathChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'dompath' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="editor_wrapperChangeEvent">editor_wrapperChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>editor_wrapperChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'editor_wrapper' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
                                                         </dd>
                                                 </dl>
 
@@ -3807,6 +5424,621 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="element_contChangeEvent">element_contChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>element_contChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'element_cont' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="focusAtStartChangeEvent">focusAtStartChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>focusAtStartChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'focusAtStart' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="handleSubmitChangeEvent">handleSubmitChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>handleSubmitChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'handleSubmit' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="heightChangeEvent">heightChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>heightChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'height' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="hiddencssChangeEvent">hiddencssChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>hiddencssChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'hiddencss' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="htmlChangeEvent">htmlChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>htmlChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'html' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="iframeChangeEvent">iframeChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>iframeChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'iframe' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="localFileWarningChangeEvent">localFileWarningChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>localFileWarningChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'localFileWarning' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="markupChangeEvent">markupChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>markupChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'markup' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="nodeChangeThresholdChangeEvent">nodeChangeThresholdChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>nodeChangeThresholdChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'nodeChangeThreshold' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="panelChangeEvent">panelChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>panelChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'panel' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="removeLineBreaksChangeEvent">removeLineBreaksChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>removeLineBreaksChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'removeLineBreaks' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="textareaChangeEvent">textareaChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>textareaChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'textarea' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="toolbar_contChangeEvent">toolbar_contChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>toolbar_contChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'toolbar_cont' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="toolbarChangeEvent">toolbarChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>toolbarChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'toolbar' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="toolbarLoaded">toolbarLoaded</a></h4>
                                     <div class="detail">
                                         <code>
@@ -3827,6 +6059,47 @@ configuration attributes used to create the editor.
                                         <div class="description">
 
 
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="widthChangeEvent">widthChangeEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>widthChangeEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'width' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
 
 
                                         </div>
@@ -3946,7 +6219,7 @@ configuration attributes used to create the editor.
                         </div>
 
                         <div class="section field details">
-                            <h3><a name="field_detail">Configuration Attributes</a></h3>
+                            <h3 id="configattributes">Configuration Attributes</h3>
                             <div class="content">
                                     <div class="">
                                     <h4><a name="animate">animate</a>
@@ -3994,21 +6267,32 @@ configuration attributes used to create the editor.
  
      
                                     <div class="default">
-                                        Default Value: <code><pre>body {
+                                        Default Value: <code><pre>html {
+height: 95%;
+}
+body {
+height: 100%;
 padding: 7px; background-color: #fff; font:13px/1.22 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;
 }
-span.yui-tag-a {
-color: blue; text-decoration: underline;
-}
-span.yui-tag-blockquote {
-margin: 1em; display: block;
-}
-span.yui-tag-indent {
-margin-left: 1em; display: block;
+a {
+color: blue;
+text-decoration: underline;
+cursor: pointer;
 }
 .warning-localfile {
 border-bottom: 1px dashed red !important;
-}</pre></code>
+}
+.yui-busy {
+cursor: wait !important;
+}
+img.selected { //Safari image selection
+border: 2px dotted #808080;
+}
+img {
+cursor: pointer !important;
+border: none;
+}
+</pre></code>
                                     </div>        
 
                                     <hr />
@@ -4048,13 +6332,47 @@ All Toolbar buttons are also disabled so they cannot be used.
 
                                     <hr />
                                     </div>        
+                                    <div class="private">
+                                    <h4><a name="editor_wrapper">editor_wrapper</a>
+                                        <code>- private HTMLElement</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            The outter wrapper for the entire editor.
+                                        </div>
+                                    </div>
+ 
+     
+                                    <div class="default">
+                                        Default Value: null
+                                    </div>        
+
+                                    <hr />
+                                    </div>        
                                     <div class="">
                                     <h4><a name="element_cont">element_cont</a>
-                                        <code>- Boolean</code>
+                                        <code>- HTMLElement</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
                                             Internal config for the editors container
+                                        </div>
+                                    </div>
+ 
+     
+                                    <div class="default">
+                                        Default Value: false
+                                    </div>        
+
+                                    <hr />
+                                    </div>        
+                                    <div class="">
+                                    <h4><a name="focusAtStart">focusAtStart</a>
+                                        <code>- Boolean</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Should we focus the window when the content is ready?
                                         </div>
                                     </div>
  
@@ -4114,7 +6432,7 @@ Then it will trigger the editors save handler and place the new content back int
      
                                     <div class="default">
                                         Default Value: <code><pre>
-.hidden div, .hidden p, .hidden span, .hidden img {
+.hidden font, .hidden strong, .hidden b, .hidden em, .hidden i, .hidden u, .hidden div, .hidden p, .hidden span, .hidden img, .hidden ul, .hidden ol, .hidden li, .hidden table {
 border: 1px dotted #ccc;
 }
 .hidden .yui-non {
@@ -4168,7 +6486,7 @@ padding: 2px;
                                     </div>        
                                     <div class="private">
                                     <h4><a name="iframe">iframe</a>
-                                        <code>- private Boolean</code>
+                                        <code>- private HTMLElement</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
@@ -4202,17 +6520,34 @@ padding: 2px;
                                     </div>        
                                     <div class="">
                                     <h4><a name="markup">markup</a>
-                                        <code>- Boolean</code>
+                                        <code>- String</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Should we try to adjust the markup for the following types: semantic, css or default
+                                            Should we try to adjust the markup for the following types: semantic, css, default or xhtml
                                         </div>
                                     </div>
  
      
                                     <div class="default">
                                         Default Value: "semantic"
+                                    </div>        
+
+                                    <hr />
+                                    </div>        
+                                    <div class="">
+                                    <h4><a name="nodeChangeThreshold">nodeChangeThreshold</a>
+                                        <code>- Number</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            The number of seconds that need to be in between nodeChange processing
+                                        </div>
+                                    </div>
+ 
+     
+                                    <div class="default">
+                                        Default Value: 3
                                     </div>        
 
                                     <hr />
@@ -4234,13 +6569,30 @@ padding: 2px;
 
                                     <hr />
                                     </div>        
-                                    <div class="private">
-                                    <h4><a name="textarea">textarea</a>
-                                        <code>- private Boolean</code>
+                                    <div class="">
+                                    <h4><a name="removeLineBreaks">removeLineBreaks</a>
+                                        <code>- Boolean</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            A reference to the textarea element that we are replacing
+                                            Should we remove linebreaks and extra spaces on cleanup
+                                        </div>
+                                    </div>
+ 
+     
+                                    <div class="default">
+                                        Default Value: false
+                                    </div>        
+
+                                    <hr />
+                                    </div>        
+                                    <div class="private">
+                                    <h4><a name="textarea">textarea</a>
+                                        <code>- private HTMLElement</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Internal config for holding the textarea element (replaced with element).
                                         </div>
                                     </div>
  
@@ -4401,6 +6753,12 @@ padding: 2px;
                                 <li class="private"><a href="#_alwaysEnabled">_alwaysEnabled</a>
                                         <!--<code>&lt;<a href="YAHOO.widget.Toolbar.html">YAHOO.widget.Toolbar</a>&gt;</code>-->
                                 </li>
+                                <li class="private"><a href="#_baseHREF">_baseHREF</a>
+                                        <!--<code>&lt;<a href="YAHOO.widget.Toolbar.html">YAHOO.widget.Toolbar</a>&gt;</code>-->
+                                </li>
+                                <li class="private"><a href="#_blankImageLoaded">_blankImageLoaded</a>
+                                        <!--<code>&lt;<a href="YAHOO.widget.Toolbar.html">YAHOO.widget.Toolbar</a>&gt;</code>-->
+                                </li>
                                 <li class="private"><a href="#_contentTimer">_contentTimer</a>
                                         <!--<code>&lt;<a href="YAHOO.widget.Toolbar.html">YAHOO.widget.Toolbar</a>&gt;</code>-->
                                 </li>
@@ -4410,7 +6768,28 @@ padding: 2px;
                                 <li class="private"><a href="#_disabled">_disabled</a>
                                         <!--<code>&lt;<a href="YAHOO.widget.Toolbar.html">YAHOO.widget.Toolbar</a>&gt;</code>-->
                                 </li>
+                                <li class="private"><a href="#_fixNodesTimer">_fixNodesTimer</a>
+                                        <!--<code>&lt;<a href="YAHOO.widget.Toolbar.html">YAHOO.widget.Toolbar</a>&gt;</code>-->
+                                </li>
+                                <li class="private"><a href="#_lastButton">_lastButton</a>
+                                        <!--<code>&lt;<a href="YAHOO.widget.Toolbar.html">YAHOO.widget.Toolbar</a>&gt;</code>-->
+                                </li>
+                                <li class="private"><a href="#_lastImage">_lastImage</a>
+                                        <!--<code>&lt;<a href="YAHOO.widget.Toolbar.html">YAHOO.widget.Toolbar</a>&gt;</code>-->
+                                </li>
+                                <li class="private"><a href="#_lastNodeChange">_lastNodeChange</a>
+                                        <!--<code>&lt;<a href="YAHOO.widget.Toolbar.html">YAHOO.widget.Toolbar</a>&gt;</code>-->
+                                </li>
+                                <li class="private"><a href="#_lastNodeChangeEvent">_lastNodeChangeEvent</a>
+                                        <!--<code>&lt;<a href="YAHOO.widget.Toolbar.html">YAHOO.widget.Toolbar</a>&gt;</code>-->
+                                </li>
                                 <li class="private"><a href="#_mask">_mask</a>
+                                        <!--<code>&lt;<a href="YAHOO.widget.Toolbar.html">YAHOO.widget.Toolbar</a>&gt;</code>-->
+                                </li>
+                                <li class="private"><a href="#_nodeChangeTimer">_nodeChangeTimer</a>
+                                        <!--<code>&lt;<a href="YAHOO.widget.Toolbar.html">YAHOO.widget.Toolbar</a>&gt;</code>-->
+                                </li>
+                                <li class="private"><a href="#_rendered">_rendered</a>
                                         <!--<code>&lt;<a href="YAHOO.widget.Toolbar.html">YAHOO.widget.Toolbar</a>&gt;</code>-->
                                 </li>
                                 <li class="private"><a href="#_selection">_selection</a>
@@ -4579,6 +6958,9 @@ padding: 2px;
                                 <a href="#_createCurrentElement">_createCurrentElement</a>
                                 </li>
                                 <li class="private"><!--<code>void</code>-->
+                                <a href="#_createIframe">_createIframe</a>
+                                </li>
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_fixNodes">_fixNodes</a>
                                 </li>
                                 <li class="private"><!--<code>void</code>-->
@@ -4660,7 +7042,16 @@ padding: 2px;
                                 <a href="#_initEditor">_initEditor</a>
                                 </li>
                                 <li class="private"><!--<code>void</code>-->
+                                <a href="#_isElement">_isElement</a>
+                                </li>
+                                <li class="private"><!--<code>void</code>-->
+                                <a href="#_isLocalFile">_isLocalFile</a>
+                                </li>
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_renderPanel">_renderPanel</a>
+                                </li>
+                                <li class="private"><!--<code>void</code>-->
+                                <a href="#_selectNode">_selectNode</a>
                                 </li>
                                 <li class="private"><!--<code>void</code>-->
                                 <a href="#_setCurrentEvent">_setCurrentEvent</a>
@@ -4682,6 +7073,9 @@ padding: 2px;
                                 </li>
                                 <li class="private"><!--<code>void</code>-->
                                 <a href="#_showHidden">_showHidden</a>
+                                </li>
+                                <li class="private"><!--<code>void</code>-->
+                                <a href="#_swapEl">_swapEl</a>
                                 </li>
                                 <li class="private"><!--<code>void</code>-->
                                 <a href="#_toggleDesignMode">_toggleDesignMode</a>
@@ -4711,6 +7105,9 @@ padding: 2px;
                                 <a href="#getEditorHTML">getEditorHTML</a>
                                 </li>
                                 <li class=""><!--<code>void</code>-->
+                                <a href="#hide">hide</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#init">init</a>
                                 </li>
                                 <li class=""><!--<code>void</code>-->
@@ -4734,6 +7131,9 @@ padding: 2px;
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#setEditorHTML">setEditorHTML</a>
                                 </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#show">show</a>
+                                </li>
                                 <li class=""><!--<code>String</code>-->
                                 <a href="#toString">toString</a>
                                 </li>
@@ -4756,16 +7156,100 @@ padding: 2px;
                                 <a href="#afterRender">afterRender</a>
                                 </li>
                                 <li class="">
+                                <a href="#animateChangeEvent">animateChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeAnimateChangeEvent">beforeAnimateChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeBlankimageChangeEvent">beforeBlankimageChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeCssChangeEvent">beforeCssChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeDisabledChangeEvent">beforeDisabledChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeDompathChangeEvent">beforeDompathChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeEditor_wrapperChangeEvent">beforeEditor_wrapperChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeElement_contChangeEvent">beforeElement_contChangeEvent</a>
+                                </li>
+                                <li class="">
                                 <a href="#beforeExecCommand">beforeExecCommand</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeFocusatstartChangeEvent">beforeFocusatstartChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeHandlesubmitChangeEvent">beforeHandlesubmitChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeHeightChangeEvent">beforeHeightChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeHiddencssChangeEvent">beforeHiddencssChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeHtmlChangeEvent">beforeHtmlChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeIframeChangeEvent">beforeIframeChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeLocalfilewarningChangeEvent">beforeLocalfilewarningChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeMarkupChangeEvent">beforeMarkupChangeEvent</a>
                                 </li>
                                 <li class="">
                                 <a href="#beforeNodeChange">beforeNodeChange</a>
                                 </li>
                                 <li class="">
+                                <a href="#beforeNodechangethresholdChangeEvent">beforeNodechangethresholdChangeEvent</a>
+                                </li>
+                                <li class="">
                                 <a href="#beforeOpenWindow">beforeOpenWindow</a>
                                 </li>
                                 <li class="">
+                                <a href="#beforePanelChangeEvent">beforePanelChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeRemovelinebreaksChangeEvent">beforeRemovelinebreaksChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeTextareaChangeEvent">beforeTextareaChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeToolbar_contChangeEvent">beforeToolbar_contChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeToolbarChangeEvent">beforeToolbarChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeWidthChangeEvent">beforeWidthChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#blankimageChangeEvent">blankimageChangeEvent</a>
+                                </li>
+                                <li class="">
                                 <a href="#closeWindow">closeWindow</a>
+                                </li>
+                                <li class="">
+                                <a href="#cssChangeEvent">cssChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#disabledChangeEvent">disabledChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#dompathChangeEvent">dompathChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#editor_wrapperChangeEvent">editor_wrapperChangeEvent</a>
                                 </li>
                                 <li class="">
                                 <a href="#editorContentLoaded">editorContentLoaded</a>
@@ -4789,7 +7273,55 @@ padding: 2px;
                                 <a href="#editorMouseUp">editorMouseUp</a>
                                 </li>
                                 <li class="">
+                                <a href="#element_contChangeEvent">element_contChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#focusAtStartChangeEvent">focusAtStartChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#handleSubmitChangeEvent">handleSubmitChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#heightChangeEvent">heightChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#hiddencssChangeEvent">hiddencssChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#htmlChangeEvent">htmlChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#iframeChangeEvent">iframeChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#localFileWarningChangeEvent">localFileWarningChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#markupChangeEvent">markupChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#nodeChangeThresholdChangeEvent">nodeChangeThresholdChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#panelChangeEvent">panelChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#removeLineBreaksChangeEvent">removeLineBreaksChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#textareaChangeEvent">textareaChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#toolbar_contChangeEvent">toolbar_contChangeEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#toolbarChangeEvent">toolbarChangeEvent</a>
+                                </li>
+                                <li class="">
                                 <a href="#toolbarLoaded">toolbarLoaded</a>
+                                </li>
+                                <li class="">
+                                <a href="#widthChangeEvent">widthChangeEvent</a>
                                 </li>
                                 <li class="">
                                 <a href="#windowCMDClose">windowCMDClose</a>
@@ -4818,8 +7350,14 @@ padding: 2px;
                                 <li class="">
                                 <a href="#dompath">dompath</a>
                                 </li>
+                                <li class="private">
+                                <a href="#editor_wrapper">editor_wrapper</a>
+                                </li>
                                 <li class="">
                                 <a href="#element_cont">element_cont</a>
+                                </li>
+                                <li class="">
+                                <a href="#focusAtStart">focusAtStart</a>
                                 </li>
                                 <li class="">
                                 <a href="#handleSubmit">handleSubmit</a>
@@ -4843,7 +7381,13 @@ padding: 2px;
                                 <a href="#markup">markup</a>
                                 </li>
                                 <li class="">
+                                <a href="#nodeChangeThreshold">nodeChangeThreshold</a>
+                                </li>
+                                <li class="">
                                 <a href="#panel">panel</a>
+                                </li>
+                                <li class="">
+                                <a href="#removeLineBreaks">removeLineBreaks</a>
                                 </li>
                                 <li class="private">
                                 <a href="#textarea">textarea</a>
