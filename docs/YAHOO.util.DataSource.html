@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>DataSource Utility&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>DataSource Utility&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_datasource.html">datasource</a>
@@ -203,8 +203,7 @@ sent via POST, otherwise data will be sent via GET.
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Alias to YUI Connection Manager. Allows implementers to specify their own
-subclasses of the YUI Connection Manager utility.
+                                            Alias to YUI Connection Manager, to allow implementers to customize the utility.
                                         </div>
                                     </div>
      
@@ -398,6 +397,7 @@ not an issue.
                                             Response schema object literal takes a combination of the following properties:
 <dl>
 <dt>resultsList</dt> <dd>Pointer to array of tabular data</dd>
+<dt>totalRecords</dt> <dd>Pointer to number of records (JSON over XHR only)</dd>
 <dt>resultNode</dt> <dd>Pointer to node name of row data (XML data only)</dd>
 <dt>recordDelim</dt> <dd>Record delimiter (text data only)</dd>
 <dt>fieldDelim</dt> <dd>Field delimiter (text data only)</dd>
@@ -977,7 +977,7 @@ The special values null and undefined will return null.
                                                     
                                                 
                                                         , 
-                                                         oRawResponse
+                                                         oFullResponse
                                                     
                                                 
                                                         , 
@@ -988,7 +988,7 @@ The special values null and undefined will return null.
                                         </code>
                                         
                                         <div class="description">
-                                            Overridable method gives implementers access to the original raw response and
+                                            Overridable method gives implementers access to the original full response and
 the parsed response (parsed against the given schema) before the data
 is added to the cache (if applicable) and then sent back to callback function.
 This is your chance to access the raw response and/or populate the parsed
@@ -1004,8 +1004,8 @@ response with any custom data.
                                                               Request object.
                                                         </dd>
                                                         <dd>
-                                                            <code>oRawResponse &lt;Object&gt;</code>
-                                                              The raw response from the live database.
+                                                            <code>oFullResponse &lt;Object&gt;</code>
+                                                              The full response from the live database.
                                                         </dd>
                                                         <dd>
                                                             <code>oParsedResponse &lt;Object&gt;</code>
@@ -1043,16 +1043,16 @@ response with any custom data.
                                                     
                                                 
                                                         , 
-                                                         oRawResponse
+                                                         oFullResponse
                                                     
                                                 
                                             )
                                         </code>
                                         
                                         <div class="description">
-                                            Overridable method gives implementers access to the original raw response
+                                            Overridable method gives implementers access to the original full response
 before the data gets parsed. Implementers should take care not to return an
-unparsable or otherwise invalid raw response.
+unparsable or otherwise invalid response.
                                         </div>
 
                                         <div class="description">
@@ -1064,8 +1064,8 @@ unparsable or otherwise invalid raw response.
                                                               Request object.
                                                         </dd>
                                                         <dd>
-                                                            <code>oRawResponse &lt;Object&gt;</code>
-                                                              The raw response from the live database.
+                                                            <code>oFullResponse &lt;Object&gt;</code>
+                                                              The full response from the live database.
                                                         </dd>
                                                 </dl>
 
@@ -1074,7 +1074,54 @@ unparsable or otherwise invalid raw response.
                                                     <code>
                                                         Object
                                                     </code></dt>
-                                                    <dd>Raw response for parsing.</dd>
+                                                    <dd>Full response for parsing.</dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4>
+                                        <a name="executeJSONParser">executeJSONParser</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        Object
+                                            <strong>executeJSONParser</strong>
+                                           (
+                                                
+                                                        
+                                                         oFullResponse
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Executes a function created on the fly to parse the response JSON according to 
+the defined schema.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>oFullResponse &lt;Object&gt;</code>
+                                                              The raw JSON-typed data from the server.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Object
+                                                    </code></dt>
+                                                    <dd></dd>
                                                 </dl>
              
                                         </div>
@@ -1216,15 +1263,17 @@ no cache hit.
                                         </code>
                                         
                                         <div class="description">
-                                            Handles raw data response from live data source. Sends a parsed response object
-to the callback function in this format:
-fnCallback(oRequest, oParsedResponse)
-where the oParsedResponse object literal with the following properties:
-<ul>
-<li>tId {Number} Unique transaction ID</li>
-<li>results {Array} Array of parsed data results</li>
-<li>error {Boolean} True if there was an error</li>
-</ul>
+                                            Receives raw data response and type converts to XML, JSON, etc as necessary.
+Forwards oFullResponse to appropriate parsing function to get turned into
+oParsedResponse. Calls doBeforeCallback() and adds oParsedResponse to 
+the cache when appropriate before calling issueCallback().
+The oParsedResponse object literal has the following properties:
+<dl>
+<dd><dt>tId {Number}</dt> Unique transaction ID</dd>
+<dd><dt>results {Array}</dt> Array of parsed data results</dd>
+<dd><dt>error {Boolean}</dt> True if there was an error</dd>
+<dd><dt>totalRecords {Number}</dt> Total number of records (if available)</dd> 
+</dl>
                                         </div>
 
                                         <div class="description">
@@ -1240,12 +1289,12 @@ where the oParsedResponse object literal with the following properties:
                                                               The raw response from the live database.
                                                         </dd>
                                                         <dd>
-                                                            <code>oCallback &lt;Function&gt;</code>
-                                                              Handler function to receive the response.
+                                                            <code>oCallback &lt;Object&gt;</code>
+                                                              Callback object literal.
                                                         </dd>
                                                         <dd>
                                                             <code>oCaller &lt;Object&gt;</code>
-                                                              The calling object that is making the request.
+                                                              (deprecated) Use oCallback.scope.
                                                         </dd>
                                                         <dd>
                                                             <code>tId &lt;Number&gt;</code>
@@ -1324,6 +1373,78 @@ override this method to customize the cache-matching algorithm.
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="issueCallback">issueCallback</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>issueCallback</strong>
+                                           (
+                                                
+                                                        
+                                                         callback
+                                                    
+                                                
+                                                        , 
+                                                         params
+                                                    
+                                                
+                                                        , 
+                                                         error
+                                                    
+                                                
+                                                        , 
+                                                         scope
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Executes a configured callback.  For object literal callbacks, the third
+param determines whether to execute the success handler or failure handler.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>callback &lt;Function|Object&gt;</code>
+                                                              the callback to execute
+                                                        </dd>
+                                                        <dd>
+                                                            <code>params &lt;Array&gt;</code>
+                                                              params to be passed to the callback method
+                                                        </dd>
+                                                        <dd>
+                                                            <code>error &lt;Boolean&gt;</code>
+                                                              whether an error occurred
+                                                        </dd>
+                                                        <dd>
+                                                            <code>scope &lt;Object&gt;</code>
+                                                              the scope from which to execute the callback
+(deprecated - use an object literal callback)
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="makeConnection">makeConnection</a></h4>
                                     <div class="detail">
                                         <code>
@@ -1365,12 +1486,12 @@ to achieve more complex implementations.
                                                               Request object.
                                                         </dd>
                                                         <dd>
-                                                            <code>oCallback &lt;Function&gt;</code>
-                                                              Handler function to receive the response.
+                                                            <code>oCallback &lt;Object&gt;</code>
+                                                              Callback object literal.
                                                         </dd>
                                                         <dd>
                                                             <code>oCaller &lt;Object&gt;</code>
-                                                              The Calling object that is making the request.
+                                                              (deprecated) Use oCallback.scope.
                                                         </dd>
                                                 </dl>
 
@@ -1404,14 +1525,14 @@ to achieve more complex implementations.
                                                     
                                                 
                                                         , 
-                                                         oRawResponse
+                                                         oFullResponse
                                                     
                                                 
                                             )
                                         </code>
                                         
                                         <div class="description">
-                                            Overridable method parses raw array data into a response object.
+                                            Overridable method parses Array data into a response object.
                                         </div>
 
                                         <div class="description">
@@ -1423,8 +1544,8 @@ to achieve more complex implementations.
                                                               Request object.
                                                         </dd>
                                                         <dd>
-                                                            <code>oRawResponse &lt;Object&gt;</code>
-                                                              The raw response from the live database.
+                                                            <code>oFullResponse &lt;Object&gt;</code>
+                                                              The full Array from the live database.
                                                         </dd>
                                                 </dl>
 
@@ -1433,7 +1554,10 @@ to achieve more complex implementations.
                                                     <code>
                                                         Object
                                                     </code></dt>
-                                                    <dd>Parsed response object.</dd>
+                                                    <dd>Parsed response object with the following properties:<br>
+- results (Array) Array of parsed data results<br>
+- error (Boolean) True if there was an error<br>
+- totalRecords (Number) Total number of records (if available)</dd>
                                                 </dl>
              
                                         </div>
@@ -1458,14 +1582,14 @@ to achieve more complex implementations.
                                                     
                                                 
                                                         , 
-                                                         oRawResponse
+                                                         oFullResponse
                                                     
                                                 
                                             )
                                         </code>
                                         
                                         <div class="description">
-                                            Overridable method parses raw HTML TABLE element data into a response object.
+                                            Overridable method parses an HTML TABLE element reference into a response object.
                                         </div>
 
                                         <div class="description">
@@ -1477,8 +1601,8 @@ to achieve more complex implementations.
                                                               Request object.
                                                         </dd>
                                                         <dd>
-                                                            <code>oRawResponse &lt;Object&gt;</code>
-                                                              The raw response from the live database.
+                                                            <code>oFullResponse &lt;Object&gt;</code>
+                                                              The full HTML element reference from the live database.
                                                         </dd>
                                                 </dl>
 
@@ -1487,7 +1611,10 @@ to achieve more complex implementations.
                                                     <code>
                                                         Object
                                                     </code></dt>
-                                                    <dd>Parsed response object.</dd>
+                                                    <dd>Parsed response object with the following properties<br>
+- results (Array) Array of parsed data results<br>
+- error (Boolean) True if there was an error<br>
+- totalRecords (Number) Total number of records (if available)</dd>
                                                 </dl>
              
                                         </div>
@@ -1512,14 +1639,14 @@ to achieve more complex implementations.
                                                     
                                                 
                                                         , 
-                                                         oRawResponse
+                                                         oFullResponse
                                                     
                                                 
                                             )
                                         </code>
                                         
                                         <div class="description">
-                                            Overridable method parses raw JSON data into a response object.
+                                            Overridable method parses JSON data into a response object.
                                         </div>
 
                                         <div class="description">
@@ -1531,8 +1658,8 @@ to achieve more complex implementations.
                                                               Request object.
                                                         </dd>
                                                         <dd>
-                                                            <code>oRawResponse &lt;Object&gt;</code>
-                                                              The raw response from the live database.
+                                                            <code>oFullResponse &lt;Object&gt;</code>
+                                                              The full JSON from the live database.
                                                         </dd>
                                                 </dl>
 
@@ -1541,7 +1668,10 @@ to achieve more complex implementations.
                                                     <code>
                                                         Object
                                                     </code></dt>
-                                                    <dd>Parsed response object.</dd>
+                                                    <dd>Parsed response object with the following properties<br>
+- results (Array) Array of parsed data results<br>
+- error (Boolean) True if there was an error<br>
+- totalRecords (Number) Total number of records (if available)</dd>
                                                 </dl>
              
                                         </div>
@@ -1566,14 +1696,14 @@ to achieve more complex implementations.
                                                     
                                                 
                                                         , 
-                                                         oRawResponse
+                                                         oFullResponse
                                                     
                                                 
                                             )
                                         </code>
                                         
                                         <div class="description">
-                                            Overridable method parses raw plain text data into a response object.
+                                            Overridable method parses plain text data into a response object.
                                         </div>
 
                                         <div class="description">
@@ -1585,8 +1715,8 @@ to achieve more complex implementations.
                                                               Request object.
                                                         </dd>
                                                         <dd>
-                                                            <code>oRawResponse &lt;Object&gt;</code>
-                                                              The raw response from the live database.
+                                                            <code>oFullResponse &lt;Object&gt;</code>
+                                                              The full text response from the live database.
                                                         </dd>
                                                 </dl>
 
@@ -1595,7 +1725,10 @@ to achieve more complex implementations.
                                                     <code>
                                                         Object
                                                     </code></dt>
-                                                    <dd>Parsed response object.</dd>
+                                                    <dd>Parsed response object with the following properties:<br>
+- results (Array) Array of parsed data results<br>
+- error (Boolean) True if there was an error<br>
+- totalRecords (Number) Total number of records (if available)</dd>
                                                 </dl>
              
                                         </div>
@@ -1620,14 +1753,14 @@ to achieve more complex implementations.
                                                     
                                                 
                                                         , 
-                                                         oRawResponse
+                                                         oFullResponse
                                                     
                                                 
                                             )
                                         </code>
                                         
                                         <div class="description">
-                                            Overridable method parses raw XML data into a response object.
+                                            Overridable method parses XML data into a response object.
                                         </div>
 
                                         <div class="description">
@@ -1639,8 +1772,8 @@ to achieve more complex implementations.
                                                               Request object.
                                                         </dd>
                                                         <dd>
-                                                            <code>oRawResponse &lt;Object&gt;</code>
-                                                              The raw response from the live database.
+                                                            <code>oFullResponse &lt;Object&gt;</code>
+                                                              The full XML response from the live database.
                                                         </dd>
                                                 </dl>
 
@@ -1649,7 +1782,10 @@ to achieve more complex implementations.
                                                     <code>
                                                         Object
                                                     </code></dt>
-                                                    <dd>Parsed response object.</dd>
+                                                    <dd>Parsed response object with the following properties<br>
+- results (Array) Array of parsed data results<br>
+- error (Boolean) True if there was an error<br>
+- totalRecords (Number) Total number of records (if available)</dd>
                                                 </dl>
              
                                         </div>
@@ -1697,12 +1833,22 @@ to achieve more complex implementations.
                                                               Request object.
                                                         </dd>
                                                         <dd>
-                                                            <code>oCallback &lt;Function&gt;</code>
-                                                              Handler function to receive the response.
+                                                            <code>oCallback &lt;Object&gt;</code>
+                                                              An object literal with the following properties:
+<dl>
+<dt><code>success</code></dt>
+<dd>The function to call when the data is ready.</dd>
+<dt><code>failure</code></dt>
+<dd>The function to call upon a response failure condition.</dd>
+<dt><code>scope</code></dt>
+<dd>The object to serve as the scope for the success and failure handlers.</dd>
+<dt><code>argument</code></dt>
+<dd>Arbitrary data that will be passed back to the success and failure handlers.</dd>
+</dl>
                                                         </dd>
                                                         <dd>
                                                             <code>oCaller &lt;Object&gt;</code>
-                                                              The Calling object that is making the request.
+                                                              (deprecated) Use oCallback.scope.
                                                         </dd>
                                                 </dl>
 
@@ -1773,7 +1919,7 @@ responses to given callback.
                                                         </dd>
                                                         <dd>
                                                             <code>oCaller &lt;Object&gt;</code>
-                                                              The Calling object that is making the request.
+                                                              (deprecated) Use oCallback.scope.
                                                         </dd>
                                                 </dl>
 
@@ -1915,7 +2061,80 @@ responses to given callback.
                                                         </dd>
                                                         <dd>
                                                             <code>oArgs.caller &lt;Object&gt;</code>
-                                                              The parent object of the callback function.
+                                                              (deprecated) Use callback.scope.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="cacheResponseEvent">cacheResponseEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>cacheResponseEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         oArgs.request
+                                                    
+                                                
+                                                        , 
+                                                         oArgs.response
+                                                    
+                                                
+                                                        , 
+                                                         oArgs.callback
+                                                    
+                                                
+                                                        , 
+                                                         oArgs.caller
+                                                    
+                                                
+                                                        , 
+                                                         oArgs.tId
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fired when data is retrieved from the local cache.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>oArgs.request &lt;Object&gt;</code>
+                                                              The request object.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>oArgs.response &lt;Object&gt;</code>
+                                                              The response object.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>oArgs.callback &lt;Function&gt;</code>
+                                                              The callback function.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>oArgs.caller &lt;Object&gt;</code>
+                                                              (deprecated) Use callback.scope.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>oArgs.tId &lt;Number&gt;</code>
+                                                              Transaction ID.
                                                         </dd>
                                                 </dl>
 
@@ -1976,84 +2195,11 @@ responses to given callback.
                                                         </dd>
                                                         <dd>
                                                             <code>oArgs.caller &lt;Object&gt;</code>
-                                                              The parent object of the callback function.
+                                                              (deprecated) Use callback.scope.
                                                         </dd>
                                                         <dd>
                                                             <code>oArgs.message &lt;String&gt;</code>
                                                               The error message.
-                                                        </dd>
-                                                </dl>
-
-
-                                        </div>
-
-                                    </div>
-                                    <hr />
-                                    </div>
-                                    <div class="">
-                                    <h4>
-                                        <a name="getCachedResponseEvent">getCachedResponseEvent</a></h4>
-                                    <div class="detail">
-                                        <code>
-                                        
-                                        
-                                        
-                                            <strong>getCachedResponseEvent</strong>
-
-                                            (
-                                                
-                                                        
-                                                         oArgs.request
-                                                    
-                                                
-                                                        , 
-                                                         oArgs.response
-                                                    
-                                                
-                                                        , 
-                                                         oArgs.callback
-                                                    
-                                                
-                                                        , 
-                                                         oArgs.caller
-                                                    
-                                                
-                                                        , 
-                                                         oArgs.tId
-                                                    
-                                                
-                                            )
-
-                                        </code>
-                                        
-                                        <div class="description">
-                                            Fired when data is retrieved from the local cache.
-                                        </div>
-
-                                        <div class="description">
-
-
-                                                <dl>
-                                                    <dt>Parameters:</dt>
-                                                        <dd>
-                                                            <code>oArgs.request &lt;Object&gt;</code>
-                                                              The request object.
-                                                        </dd>
-                                                        <dd>
-                                                            <code>oArgs.response &lt;Object&gt;</code>
-                                                              The response object.
-                                                        </dd>
-                                                        <dd>
-                                                            <code>oArgs.callback &lt;Function&gt;</code>
-                                                              The callback function.
-                                                        </dd>
-                                                        <dd>
-                                                            <code>oArgs.caller &lt;Object&gt;</code>
-                                                              The parent object of the callback function.
-                                                        </dd>
-                                                        <dd>
-                                                            <code>oArgs.tId &lt;Number&gt;</code>
-                                                              Transaction ID.
                                                         </dd>
                                                 </dl>
 
@@ -2110,7 +2256,7 @@ responses to given callback.
                                                         </dd>
                                                         <dd>
                                                             <code>oArgs.caller &lt;Object&gt;</code>
-                                                              The parent object of the callback function.
+                                                              (deprecated) Use callback.scope.
                                                         </dd>
                                                 </dl>
 
@@ -2175,7 +2321,7 @@ responses to given callback.
                                                         </dd>
                                                         <dd>
                                                             <code>oArgs.caller &lt;Object&gt;</code>
-                                                              The parent object of the callback function.
+                                                              (deprecated) Use callback.scope.
                                                         </dd>
                                                 </dl>
 
@@ -2240,7 +2386,7 @@ responses to given callback.
                                                         </dd>
                                                         <dd>
                                                             <code>oArgs.caller &lt;Object&gt;</code>
-                                                              The parent object of the callback function.
+                                                              (deprecated) Use callback.scope.
                                                         </dd>
                                                 </dl>
 
@@ -2305,7 +2451,7 @@ responses to given callback.
                                                         </dd>
                                                         <dd>
                                                             <code>oArgs.caller &lt;Object&gt;</code>
-                                                              The parent object of the callback function.
+                                                              (deprecated) Use callback.scope.
                                                         </dd>
                                                 </dl>
 
@@ -2347,11 +2493,11 @@ responses to given callback.
 
                                 <li class=""><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class="selected"><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -2367,17 +2513,23 @@ responses to given callback.
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -2386,6 +2538,8 @@ responses to given callback.
                                 <li class=""><a href="module_tabview.html">tabview</a></li>
 
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
 
@@ -2399,6 +2553,8 @@ responses to given callback.
                         <h4>Classes</h4>
                         <ul class="content">
                                 <li class="selected"><a href="YAHOO.util.DataSource.html">YAHOO.util.DataSource</a></li>
+                                <li class=""><a href="YAHOO.util.Date.html">YAHOO.util.Date</a></li>
+                                <li class=""><a href="YAHOO.util.Number.html">YAHOO.util.Number</a></li>
                         </ul>
                     </div>
 
@@ -2526,6 +2682,9 @@ responses to given callback.
                                 <li class=""><!--<code>Object</code>-->
                                 <a href="#doBeforeParseData">doBeforeParseData</a>
                                 </li>
+                                <li class="private"><!--<code>Object</code>-->
+                                <a href="#executeJSONParser">executeJSONParser</a>
+                                </li>
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#flushCache">flushCache</a>
                                 </li>
@@ -2537,6 +2696,9 @@ responses to given callback.
                                 </li>
                                 <li class=""><!--<code>Boolean</code>-->
                                 <a href="#isCacheHit">isCacheHit</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#issueCallback">issueCallback</a>
                                 </li>
                                 <li class=""><!--<code>Number</code>-->
                                 <a href="#makeConnection">makeConnection</a>
@@ -2578,10 +2740,10 @@ responses to given callback.
                                 <a href="#cacheRequestEvent">cacheRequestEvent</a>
                                 </li>
                                 <li class="">
-                                <a href="#dataErrorEvent">dataErrorEvent</a>
+                                <a href="#cacheResponseEvent">cacheResponseEvent</a>
                                 </li>
                                 <li class="">
-                                <a href="#getCachedResponseEvent">getCachedResponseEvent</a>
+                                <a href="#dataErrorEvent">dataErrorEvent</a>
                                 </li>
                                 <li class="">
                                 <a href="#requestEvent">requestEvent</a>

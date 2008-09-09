@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>AutoComplete Widget&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>AutoComplete Widget&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_autocomplete.html">autocomplete</a>
@@ -218,6 +218,126 @@ from being text input field blur events.
                                     <hr />
                                     </div>
                                     <div class="private">
+                                    <h4><a name="_elBody">_elBody</a>
+                                        <code>- private HTMLElement</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Reference to body element within content element.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="_elContainer">_elContainer</a>
+                                        <code>- private HTMLElement</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Container DOM element.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="_elContent">_elContent</a>
+                                        <code>- private HTMLElement</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Reference to content element within container element.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="_elFooter">_elFooter</a>
+                                        <code>- private HTMLElement</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Reference to footer element within content element.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="_elHeader">_elHeader</a>
+                                        <code>- private HTMLElement</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Reference to header element within content element.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="_elIFrame">_elIFrame</a>
+                                        <code>- private HTMLElement</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Reference to iframe element within container element.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="_elShadow">_elShadow</a>
+                                        <code>- private HTMLElement</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Reference to shadow element within container element.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="_elTextbox">_elTextbox</a>
+                                        <code>- private HTMLElement</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Text input field DOM element.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="_iFrameSrc">_iFrameSrc</a>
                                         <code>- private String</code>
                                     </h4>
@@ -327,42 +447,12 @@ as well.
                                     <hr />
                                     </div>
                                     <div class="private">
-                                    <h4><a name="_oContainer">_oContainer</a>
-                                        <code>- private HTMLElement</code>
-                                    </h4>
-                                    <div class="detail">
-                                        <div class="description">
-                                            Container DOM element.
-                                        </div>
-                                    </div>
-     
-                                        
-
-
-                                    <hr />
-                                    </div>
-                                    <div class="private">
                                     <h4><a name="_oCurItem">_oCurItem</a>
                                         <code>- private HTMLElement</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
                                             Pointer to the currently highlighted &lt;li&gt; element in the container.
-                                        </div>
-                                    </div>
-     
-                                        
-
-
-                                    <hr />
-                                    </div>
-                                    <div class="private">
-                                    <h4><a name="_oTextbox">_oTextbox</a>
-                                        <code>- private HTMLElement</code>
-                                    </h4>
-                                    <div class="detail">
-                                        <div class="description">
-                                            Text input field DOM element.
                                         </div>
                                     </div>
      
@@ -2082,7 +2172,7 @@ AutoComplete instance.
                                            (
                                                 
                                                         
-                                                         oTextbox
+                                                         elTextbox
                                                     
                                                 
                                                         , 
@@ -2105,7 +2195,7 @@ AutoComplete instance.
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>oTextbox &lt;HTMLElement&gt;</code>
+                                                            <code>elTextbox &lt;HTMLElement&gt;</code>
                                                               Text input box element in which to select text.
                                                         </dd>
                                                         <dd>
@@ -2566,11 +2656,11 @@ implementer, as in myDataTable = null. Use with caution!
                                            (
                                                 
                                                         
-                                                         oTextbox
+                                                         elTextbox
                                                     
                                                 
                                                         , 
-                                                         oContainer
+                                                         elContainer
                                                     
                                                 
                                                         , 
@@ -2594,11 +2684,11 @@ and DOM elements.
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>oTextbox &lt;HTMLElement&gt;</code>
+                                                            <code>elTextbox &lt;HTMLElement&gt;</code>
                                                               The text input box.
                                                         </dd>
                                                         <dd>
-                                                            <code>oContainer &lt;HTMLElement&gt;</code>
+                                                            <code>elContainer &lt;HTMLElement&gt;</code>
                                                               The container element.
                                                         </dd>
                                                         <dd>
@@ -3886,11 +3976,11 @@ feature.
 
                                 <li class=""><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -3906,17 +3996,23 @@ feature.
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -3925,6 +4021,8 @@ feature.
                                 <li class=""><a href="module_tabview.html">tabview</a></li>
 
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
 
@@ -3972,6 +4070,30 @@ feature.
                                 <li class="private"><a href="#_bOverContainer">_bOverContainer</a>
                                         <!--<code>&lt;Boolean&gt;</code>-->
                                 </li>
+                                <li class="private"><a href="#_elBody">_elBody</a>
+                                        <!--<code>&lt;Boolean&gt;</code>-->
+                                </li>
+                                <li class="private"><a href="#_elContainer">_elContainer</a>
+                                        <!--<code>&lt;Boolean&gt;</code>-->
+                                </li>
+                                <li class="private"><a href="#_elContent">_elContent</a>
+                                        <!--<code>&lt;Boolean&gt;</code>-->
+                                </li>
+                                <li class="private"><a href="#_elFooter">_elFooter</a>
+                                        <!--<code>&lt;Boolean&gt;</code>-->
+                                </li>
+                                <li class="private"><a href="#_elHeader">_elHeader</a>
+                                        <!--<code>&lt;Boolean&gt;</code>-->
+                                </li>
+                                <li class="private"><a href="#_elIFrame">_elIFrame</a>
+                                        <!--<code>&lt;Boolean&gt;</code>-->
+                                </li>
+                                <li class="private"><a href="#_elShadow">_elShadow</a>
+                                        <!--<code>&lt;Boolean&gt;</code>-->
+                                </li>
+                                <li class="private"><a href="#_elTextbox">_elTextbox</a>
+                                        <!--<code>&lt;Boolean&gt;</code>-->
+                                </li>
                                 <li class="private"><a href="#_iFrameSrc">_iFrameSrc</a>
                                         <!--<code>&lt;Boolean&gt;</code>-->
                                 </li>
@@ -3993,13 +4115,7 @@ feature.
                                 <li class="private"><a href="#_oAnim">_oAnim</a>
                                         <!--<code>&lt;Boolean&gt;</code>-->
                                 </li>
-                                <li class="private"><a href="#_oContainer">_oContainer</a>
-                                        <!--<code>&lt;Boolean&gt;</code>-->
-                                </li>
                                 <li class="private"><a href="#_oCurItem">_oCurItem</a>
-                                        <!--<code>&lt;Boolean&gt;</code>-->
-                                </li>
-                                <li class="private"><a href="#_oTextbox">_oTextbox</a>
                                         <!--<code>&lt;Boolean&gt;</code>-->
                                 </li>
                                 <li class="private"><a href="#_queryInterval">_queryInterval</a>

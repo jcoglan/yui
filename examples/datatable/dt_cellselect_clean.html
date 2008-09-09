@@ -78,6 +78,7 @@ YAHOO.util.Event.addListener(window, "load", function() {
         this.cellBlockSelectDataTable.subscribe("cellMouseoverEvent", this.cellBlockSelectDataTable.onEventHighlightCell);
         this.cellBlockSelectDataTable.subscribe("cellMouseoutEvent", this.cellBlockSelectDataTable.onEventUnhighlightCell);
         this.cellBlockSelectDataTable.subscribe("cellClickEvent", this.cellBlockSelectDataTable.onEventSelectCell);
+        this.cellBlockSelectDataTable.subscribe("cellSelectEvent", this.cellBlockSelectDataTable.clearTextSelection);
 
         this.cellRangeSelectDataTable = new YAHOO.widget.DataTable("cellrange",
                 myColumnDefs, this.myDataSource, {
@@ -89,6 +90,7 @@ YAHOO.util.Event.addListener(window, "load", function() {
         this.cellRangeSelectDataTable.subscribe("cellMouseoverEvent", this.cellRangeSelectDataTable.onEventHighlightCell);
         this.cellRangeSelectDataTable.subscribe("cellMouseoutEvent", this.cellRangeSelectDataTable.onEventUnhighlightCell);
         this.cellRangeSelectDataTable.subscribe("cellClickEvent", this.cellRangeSelectDataTable.onEventSelectCell);
+        this.cellRangeSelectDataTable.subscribe("cellSelectEvent", this.cellRangeSelectDataTable.clearTextSelection);
 
         this.singleCellSelectDataTable = new YAHOO.widget.DataTable("singlecell",
                 myColumnDefs, this.myDataSource, {
@@ -100,7 +102,7 @@ YAHOO.util.Event.addListener(window, "load", function() {
         this.singleCellSelectDataTable.subscribe("cellMouseoverEvent", this.singleCellSelectDataTable.onEventHighlightCell);
         this.singleCellSelectDataTable.subscribe("cellMouseoutEvent", this.singleCellSelectDataTable.onEventUnhighlightCell);
         this.singleCellSelectDataTable.subscribe("cellClickEvent", this.singleCellSelectDataTable.onEventSelectCell);
-
+        this.singleCellSelectDataTable.subscribe("cellSelectEvent", this.singleCellSelectDataTable.clearTextSelection);
     };
 });
 </script>

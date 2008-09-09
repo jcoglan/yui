@@ -15,7 +15,7 @@ YAHOO.example.Data = {
         {number:12, date:new Date(2001, 10, 1), string:"110"}
     ],
 
-    formatting: {
+    multitypes: {
         items: [
             {field1: "001", field2:new Date(2007, 1, 1), field3:111, field4:"23.4", field5:"bob", field6:"http://www.yahoo.com"},
             {field1: undefined, field2:new Date(2006, 1, 1), field3:12.3, field4:"35.12", field5:"ann", field6:"http://www.yahoo.com"},

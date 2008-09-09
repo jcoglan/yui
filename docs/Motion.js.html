@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>animation&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>animation&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_animation.html">animation</a>
@@ -50,7 +50,7 @@
 <span class="c"> * @requires YAHOO.util.Event</span>
 <span class="c"> * @requires YAHOO.util.CustomEvent </span>
 <span class="c"> * @constructor</span>
-<span class="c"> * @extends YAHOO.util.Anim</span>
+<span class="c"> * @extends YAHOO.util.ColorAnim</span>
 <span class="c"> * @param {String | HTMLElement} el Reference to the element that will be animated</span>
 <span class="c"> * @param {Object} attributes The attribute(s) to be animated.  </span>
 <span class="c"> * Each attribute is an object with at minimum a &quot;to&quot; or &quot;by&quot; member defined.  </span>
@@ -59,25 +59,22 @@
 <span class="c"> * @param {Number} duration (optional, defaults to 1 second) Length of animation (frames or seconds), defaults to time-based</span>
 <span class="c"> * @param {Function} method (optional, defaults to YAHOO.util.Easing.easeNone) Computes the values that are applied to the attributes per frame (generally a YAHOO.util.Easing method)</span>
 <span class="c"> */</span>
-    <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Motion</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="nx">attributes</span><span class="o">,</span> <span class="nx">duration</span><span class="o">,</span>  <span class="nx">method</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">var</span> <span class="nx">Motion</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="nx">attributes</span><span class="o">,</span> <span class="nx">duration</span><span class="o">,</span>  <span class="nx">method</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="nx">el</span><span class="o">)</span> <span class="o">{</span> <span class="c">// dont break existing subclasses not using YAHOO.extend</span>
-<span class="c"></span>            <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Motion</span><span class="o">.</span><span class="nx">superclass</span><span class="o">.</span><span class="nx">constructor</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="nx">el</span><span class="o">,</span> <span class="nx">attributes</span><span class="o">,</span> <span class="nx">duration</span><span class="o">,</span> <span class="nx">method</span><span class="o">);</span>
+<span class="c"></span>            <span class="nx">Motion</span><span class="o">.</span><span class="nx">superclass</span><span class="o">.</span><span class="nx">constructor</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="nx">el</span><span class="o">,</span> <span class="nx">attributes</span><span class="o">,</span> <span class="nx">duration</span><span class="o">,</span> <span class="nx">method</span><span class="o">);</span>
         <span class="o">}</span>
     <span class="o">};</span>
 
-    <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">extend</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Motion</span><span class="o">,</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">ColorAnim</span><span class="o">);</span>
-    
+
+    <span class="nx">Motion</span><span class="o">.</span><span class="nx">NAME</span> <span class="o">=</span> <span class="s1">&#39;Motion&#39;</span><span class="o">;</span>
+
     <span class="c">// shorthand</span>
 <span class="c"></span>    <span class="k">var</span> <span class="nx">Y</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">;</span>
-    <span class="k">var</span> <span class="nx">superclass</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">Motion</span><span class="o">.</span><span class="nx">superclass</span><span class="o">;</span>
-    <span class="k">var</span> <span class="nx">proto</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">Motion</span><span class="o">.</span><span class="nx">prototype</span><span class="o">;</span>
-
-    <span class="nx">proto</span><span class="o">.</span><span class="nx">toString</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">getEl</span><span class="o">();</span>
-        <span class="k">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">el</span><span class="o">.</span><span class="nx">id</span> <span class="o">||</span> <span class="nx">el</span><span class="o">.</span><span class="nx">tagName</span><span class="o">;</span>
-        <span class="k">return</span> <span class="o">(</span><span class="s2">&quot;Motion &quot;</span> <span class="o">+</span> <span class="nx">id</span><span class="o">);</span>
-    <span class="o">};</span>
+    <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">extend</span><span class="o">(</span><span class="nx">Motion</span><span class="o">,</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">ColorAnim</span><span class="o">);</span>
     
+    <span class="k">var</span> <span class="nx">superclass</span> <span class="o">=</span> <span class="nx">Motion</span><span class="o">.</span><span class="nx">superclass</span><span class="o">;</span>
+    <span class="k">var</span> <span class="nx">proto</span> <span class="o">=</span> <span class="nx">Motion</span><span class="o">.</span><span class="nx">prototype</span><span class="o">;</span>
+
     <span class="nx">proto</span><span class="o">.</span><span class="nx">patterns</span><span class="o">.</span><span class="nx">points</span> <span class="o">=</span> <span class="sr">/^points$/i</span><span class="o">;</span>
     
     <span class="nx">proto</span><span class="o">.</span><span class="nx">setAttribute</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">attr</span><span class="o">,</span> <span class="nx">val</span><span class="o">,</span> <span class="nx">unit</span><span class="o">)</span> <span class="o">{</span>
@@ -186,6 +183,8 @@
     <span class="k">var</span> <span class="nx">isset</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">prop</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">return</span> <span class="o">(</span><span class="k">typeof</span> <span class="nx">prop</span> <span class="o">!==</span> <span class="s1">&#39;undefined&#39;</span><span class="o">);</span>
     <span class="o">};</span>
+
+    <span class="nx">Y</span><span class="o">.</span><span class="nx">Motion</span> <span class="o">=</span> <span class="nx">Motion</span><span class="o">;</span>
 <span class="o">})();</span>
 </pre></div>
                     </div>
@@ -214,11 +213,11 @@
 
                                 <li class=""><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -234,17 +233,23 @@
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -253,6 +258,8 @@
                                 <li class=""><a href="module_tabview.html">tabview</a></li>
 
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
 

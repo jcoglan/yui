@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Calendar&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>Calendar&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_calendar.html">calendar</a>
@@ -102,7 +102,6 @@
 				<span class="k">var</span> <span class="nx">newMonth</span> <span class="o">=</span> <span class="nx">date</span><span class="o">.</span><span class="nx">getMonth</span><span class="o">()</span> <span class="o">+</span> <span class="nx">amount</span><span class="o">;</span>
 				<span class="k">var</span> <span class="nx">years</span> <span class="o">=</span> <span class="m">0</span><span class="o">;</span>
 
-
 				<span class="k">if</span> <span class="o">(</span><span class="nx">newMonth</span> <span class="o">&lt;</span> <span class="m">0</span><span class="o">)</span> <span class="o">{</span>
 					<span class="k">while</span> <span class="o">(</span><span class="nx">newMonth</span> <span class="o">&lt;</span> <span class="m">0</span><span class="o">)</span> <span class="o">{</span>
 						<span class="nx">newMonth</span> <span class="o">+=</span> <span class="m">12</span><span class="o">;</span>
@@ -114,21 +113,53 @@
 						<span class="nx">years</span> <span class="o">+=</span> <span class="m">1</span><span class="o">;</span>
 					<span class="o">}</span>
 				<span class="o">}</span>
-				
+
 				<span class="nx">d</span><span class="o">.</span><span class="nx">setMonth</span><span class="o">(</span><span class="nx">newMonth</span><span class="o">);</span>
 				<span class="nx">d</span><span class="o">.</span><span class="nx">setFullYear</span><span class="o">(</span><span class="nx">date</span><span class="o">.</span><span class="nx">getFullYear</span><span class="o">()</span> <span class="o">+</span> <span class="nx">years</span><span class="o">);</span>
 				<span class="k">break</span><span class="o">;</span>
 			<span class="nx">case</span> <span class="k">this</span><span class="o">.</span><span class="nx">DAY</span><span class="o">:</span>
-				<span class="nx">d</span><span class="o">.</span><span class="nx">setDate</span><span class="o">(</span><span class="nx">date</span><span class="o">.</span><span class="nx">getDate</span><span class="o">()</span> <span class="o">+</span> <span class="nx">amount</span><span class="o">);</span>
-				<span class="k">break</span><span class="o">;</span>
+				<span class="k">this</span><span class="o">.</span><span class="nx">_addDays</span><span class="o">(</span><span class="nx">d</span><span class="o">,</span> <span class="nx">amount</span><span class="o">);</span>
+				<span class="c">// d.setDate(date.getDate() + amount);</span>
+<span class="c"></span>				<span class="k">break</span><span class="o">;</span>
 			<span class="nx">case</span> <span class="k">this</span><span class="o">.</span><span class="nx">YEAR</span><span class="o">:</span>
 				<span class="nx">d</span><span class="o">.</span><span class="nx">setFullYear</span><span class="o">(</span><span class="nx">date</span><span class="o">.</span><span class="nx">getFullYear</span><span class="o">()</span> <span class="o">+</span> <span class="nx">amount</span><span class="o">);</span>
 				<span class="k">break</span><span class="o">;</span>
 			<span class="nx">case</span> <span class="k">this</span><span class="o">.</span><span class="nx">WEEK</span><span class="o">:</span>
-				<span class="nx">d</span><span class="o">.</span><span class="nx">setDate</span><span class="o">(</span><span class="nx">date</span><span class="o">.</span><span class="nx">getDate</span><span class="o">()</span> <span class="o">+</span> <span class="o">(</span><span class="nx">amount</span> <span class="o">*</span> <span class="m">7</span><span class="o">));</span>
-				<span class="k">break</span><span class="o">;</span>
+				<span class="k">this</span><span class="o">.</span><span class="nx">_addDays</span><span class="o">(</span><span class="nx">d</span><span class="o">,</span> <span class="o">(</span><span class="nx">amount</span> <span class="o">*</span> <span class="m">7</span><span class="o">));</span>
+				<span class="c">// d.setDate(date.getDate() + (amount * 7));</span>
+<span class="c"></span>				<span class="k">break</span><span class="o">;</span>
 		<span class="o">}</span>
 		<span class="k">return</span> <span class="nx">d</span><span class="o">;</span>
+	<span class="o">},</span>
+
+	<span class="c">/**</span>
+<span class="c">	 * Private helper method to account for bug in Safari 2 (webkit &lt; 420)</span>
+<span class="c">	 * when Date.setDate(n) is called with n less than -128 or greater than 127.</span>
+<span class="c">	 * &lt;p&gt;</span>
+<span class="c">	 * Fix approach and original findings are available here:</span>
+<span class="c">	 * http://brianary.blogspot.com/2006/03/safari-date-bug.html</span>
+<span class="c">	 * &lt;/p&gt;</span>
+<span class="c">	 * @method _addDays</span>
+<span class="c">	 * @param {Date} d JavaScript date object</span>
+<span class="c">	 * @param {Number} nDays The number of days to add to the date object (can be negative)</span>
+<span class="c">	 * @private</span>
+<span class="c">	 */</span>
+	<span class="nx">_addDays</span> <span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">d</span><span class="o">,</span> <span class="nx">nDays</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">ua</span><span class="o">.</span><span class="nx">webkit</span> <span class="o">&amp;&amp;</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">ua</span><span class="o">.</span><span class="nx">webkit</span> <span class="o">&lt;</span> <span class="m">420</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">if</span> <span class="o">(</span><span class="nx">nDays</span> <span class="o">&lt;</span> <span class="m">0</span><span class="o">)</span> <span class="o">{</span>
+				<span class="c">// Ensure we don&#39;t go below -128 (getDate() is always 1 to 31, so we won&#39;t go above 127)</span>
+<span class="c"></span>				<span class="k">for</span><span class="o">(</span><span class="k">var</span> <span class="nx">min</span> <span class="o">=</span> <span class="o">-</span><span class="m">128</span><span class="o">;</span> <span class="nx">nDays</span> <span class="o">&lt;</span> <span class="nx">min</span><span class="o">;</span> <span class="nx">nDays</span> <span class="o">-=</span> <span class="nx">min</span><span class="o">)</span> <span class="o">{</span>
+					<span class="nx">d</span><span class="o">.</span><span class="nx">setDate</span><span class="o">(</span><span class="nx">d</span><span class="o">.</span><span class="nx">getDate</span><span class="o">()</span> <span class="o">+</span> <span class="nx">min</span><span class="o">);</span>
+				<span class="o">}</span>
+			<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+				<span class="c">// Ensure we don&#39;t go above 96 + 31 = 127</span>
+<span class="c"></span>				<span class="k">for</span><span class="o">(</span><span class="k">var</span> <span class="nx">max</span> <span class="o">=</span> <span class="m">96</span><span class="o">;</span> <span class="nx">nDays</span> <span class="o">&gt;</span> <span class="nx">max</span><span class="o">;</span> <span class="nx">nDays</span> <span class="o">-=</span> <span class="nx">max</span><span class="o">)</span> <span class="o">{</span>
+					<span class="nx">d</span><span class="o">.</span><span class="nx">setDate</span><span class="o">(</span><span class="nx">d</span><span class="o">.</span><span class="nx">getDate</span><span class="o">()</span> <span class="o">+</span> <span class="nx">max</span><span class="o">);</span>
+				<span class="o">}</span>
+			<span class="o">}</span>
+			<span class="c">// nDays should be remainder between -128 and 96</span>
+<span class="c"></span>		<span class="o">}</span>
+		<span class="nx">d</span><span class="o">.</span><span class="nx">setDate</span><span class="o">(</span><span class="nx">d</span><span class="o">.</span><span class="nx">getDate</span><span class="o">()</span> <span class="o">+</span> <span class="nx">nDays</span><span class="o">);</span>
 	<span class="o">},</span>
 
 	<span class="c">/**</span>
@@ -364,11 +395,11 @@
 
                                 <li class=""><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -384,17 +415,23 @@
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -403,6 +440,8 @@
                                 <li class=""><a href="module_tabview.html">tabview</a></li>
 
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
 

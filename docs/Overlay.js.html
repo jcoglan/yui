@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Container&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>Container&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_container.html">container</a>
@@ -132,12 +132,12 @@
                 <span class="nx">key</span><span class="o">:</span> <span class="s2">&quot;height&quot;</span><span class="o">,</span> 
                 <span class="nx">suppressEvent</span><span class="o">:</span> <span class="kc">true</span><span class="o">,</span> 
                 <span class="nx">supercedes</span><span class="o">:</span> <span class="o">[</span><span class="s2">&quot;context&quot;</span><span class="o">,</span> <span class="s2">&quot;fixedcenter&quot;</span><span class="o">,</span> <span class="s2">&quot;iframe&quot;</span><span class="o">]</span> 
-            <span class="o">},</span> 
+            <span class="o">},</span>
 
             <span class="s2">&quot;ZINDEX&quot;</span><span class="o">:</span> <span class="o">{</span> 
                 <span class="nx">key</span><span class="o">:</span> <span class="s2">&quot;zindex&quot;</span><span class="o">,</span> 
                 <span class="nx">value</span><span class="o">:</span> <span class="kc">null</span> 
-            <span class="o">},</span> 
+            <span class="o">},</span>
 
             <span class="s2">&quot;CONSTRAIN_TO_VIEWPORT&quot;</span><span class="o">:</span> <span class="o">{</span> 
                 <span class="nx">key</span><span class="o">:</span> <span class="s2">&quot;constraintoviewport&quot;</span><span class="o">,</span> 
@@ -422,7 +422,7 @@
                 <span class="nx">supercedes</span><span class="o">:</span> <span class="nx">DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">X</span><span class="o">.</span><span class="nx">supercedes</span>
     
             <span class="o">});</span>
-    
+
             <span class="c">/**</span>
 <span class="c">            * The absolute y-coordinate position of the Overlay</span>
 <span class="c">            * @config y</span>
@@ -430,12 +430,12 @@
 <span class="c">            * @default null</span>
 <span class="c">            */</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">addProperty</span><span class="o">(</span><span class="nx">DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">Y</span><span class="o">.</span><span class="nx">key</span><span class="o">,</span> <span class="o">{</span>
-    
+
                 <span class="nx">handler</span><span class="o">:</span> <span class="k">this</span><span class="o">.</span><span class="nx">configY</span><span class="o">,</span> 
                 <span class="nx">validator</span><span class="o">:</span> <span class="nx">DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">Y</span><span class="o">.</span><span class="nx">validator</span><span class="o">,</span> 
                 <span class="nx">suppressEvent</span><span class="o">:</span> <span class="nx">DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">Y</span><span class="o">.</span><span class="nx">suppressEvent</span><span class="o">,</span> 
                 <span class="nx">supercedes</span><span class="o">:</span> <span class="nx">DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">Y</span><span class="o">.</span><span class="nx">supercedes</span>
-    
+
             <span class="o">});</span>
     
             <span class="c">/**</span>
@@ -513,7 +513,7 @@
                 <span class="nx">supercedes</span><span class="o">:</span> <span class="nx">DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">HEIGHT</span><span class="o">.</span><span class="nx">supercedes</span>
             
             <span class="o">});</span>
-
+            
             <span class="c">/**</span>
 <span class="c">            * CSS z-index of the Overlay.</span>
 <span class="c">            * @config zIndex</span>
@@ -526,7 +526,7 @@
                 <span class="nx">value</span><span class="o">:</span> <span class="nx">DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">ZINDEX</span><span class="o">.</span><span class="nx">value</span>
 
             <span class="o">});</span>
-            
+
             <span class="c">/**</span>
 <span class="c">            * True if the Overlay should be prevented from being positioned </span>
 <span class="c">            * out of the viewport.</span>
@@ -542,7 +542,7 @@
                 <span class="nx">supercedes</span><span class="o">:</span> <span class="nx">DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">CONSTRAIN_TO_VIEWPORT</span><span class="o">.</span><span class="nx">supercedes</span>
 
             <span class="o">});</span>
-            
+
             <span class="c">/**</span>
 <span class="c">            * @config iframe</span>
 <span class="c">            * @description Boolean indicating whether or not the Overlay should </span>
@@ -804,7 +804,7 @@
 <span class="c">        * this will usually equal the owner.</span>
 <span class="c">        */</span>
         <span class="nx">configHeight</span><span class="o">:</span> <span class="k">function</span> <span class="o">(</span><span class="nx">type</span><span class="o">,</span> <span class="nx">args</span><span class="o">,</span> <span class="nx">obj</span><span class="o">)</span> <span class="o">{</span>
-    
+
             <span class="k">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="nx">args</span><span class="o">[</span><span class="m">0</span><span class="o">],</span>
                 <span class="nx">el</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">element</span><span class="o">;</span>
 
@@ -917,9 +917,9 @@
             <span class="nx">y</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="s2">&quot;y&quot;</span><span class="o">);</span>
             
             <span class="nx">Dom</span><span class="o">.</span><span class="nx">setX</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">element</span><span class="o">,</span> <span class="nx">x</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
-            
+
             <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">setProperty</span><span class="o">(</span><span class="s2">&quot;xy&quot;</span><span class="o">,</span> <span class="o">[</span><span class="nx">x</span><span class="o">,</span> <span class="nx">y</span><span class="o">],</span> <span class="kc">true</span><span class="o">);</span>
-           
+
             <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">refireEvent</span><span class="o">(</span><span class="s2">&quot;iframe&quot;</span><span class="o">);</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">moveEvent</span><span class="o">.</span><span class="nx">fire</span><span class="o">([</span><span class="nx">x</span><span class="o">,</span> <span class="nx">y</span><span class="o">]);</span>
         <span class="o">},</span>
@@ -1151,6 +1151,26 @@
             <span class="o">}</span>
         <span class="o">},</span>
 
+       <span class="c">/**</span>
+<span class="c">         * Set&#39;s the container&#39;s XY value from DOM if not already set.</span>
+<span class="c">         * </span>
+<span class="c">         * Differs from syncPosition, in that the XY value is only sync&#39;d with DOM if </span>
+<span class="c">         * not already set. The method also refire&#39;s the XY config property event, so any</span>
+<span class="c">         * beforeMove, Move event listeners are invoked.</span>
+<span class="c">         * </span>
+<span class="c">         * @method _primeXYFromDOM</span>
+<span class="c">         * @protected</span>
+<span class="c">         */</span>
+        <span class="nx">_primeXYFromDOM</span> <span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isUndefined</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="s2">&quot;xy&quot;</span><span class="o">)))</span> <span class="o">{</span>
+                <span class="c">// Set CFG XY based on DOM XY</span>
+<span class="c"></span>                <span class="k">this</span><span class="o">.</span><span class="nx">syncPosition</span><span class="o">();</span>
+                <span class="c">// Account for XY being set silently in syncPosition (no moveTo fired/called)</span>
+<span class="c"></span>                <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">refireEvent</span><span class="o">(</span><span class="s2">&quot;xy&quot;</span><span class="o">);</span>
+                <span class="k">this</span><span class="o">.</span><span class="nx">beforeShowEvent</span><span class="o">.</span><span class="nx">unsubscribe</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_primeXYFromDOM</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">},</span>
+
         <span class="c">/**</span>
 <span class="c">        * The default event handler fired when the &quot;constraintoviewport&quot; </span>
 <span class="c">        * property is changed.</span>
@@ -1163,39 +1183,22 @@
 <span class="c">        * this will usually equal the owner.</span>
 <span class="c">        */</span>
         <span class="nx">configConstrainToViewport</span><span class="o">:</span> <span class="k">function</span> <span class="o">(</span><span class="nx">type</span><span class="o">,</span> <span class="nx">args</span><span class="o">,</span> <span class="nx">obj</span><span class="o">)</span> <span class="o">{</span>
-
-            <span class="k">function</span> <span class="nx">constrainBeforeShow</span><span class="o">()</span> <span class="o">{</span>
-                <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isUndefined</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="s2">&quot;xy&quot;</span><span class="o">)))</span> <span class="o">{</span>
-                    <span class="c">// Set CFG XY based on DOM XY</span>
-<span class="c"></span>                    <span class="k">this</span><span class="o">.</span><span class="nx">syncPosition</span><span class="o">();</span>
-                <span class="o">}</span>
-                <span class="k">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="s2">&quot;x&quot;</span><span class="o">);</span>
-                <span class="k">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="s2">&quot;y&quot;</span><span class="o">);</span>
-
-                <span class="c">// Account for XY being set silently (no moveTo fired/called)</span>
-<span class="c"></span>                <span class="k">var</span> <span class="nx">cXY</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">getConstrainedXY</span><span class="o">(</span><span class="nx">x</span><span class="o">,</span> <span class="nx">y</span><span class="o">);</span>
-                <span class="k">if</span> <span class="o">(</span><span class="nx">cXY</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">!==</span> <span class="nx">x</span> <span class="o">||</span> <span class="nx">cXY</span><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">!==</span> <span class="nx">y</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="k">this</span><span class="o">.</span><span class="nx">moveTo</span><span class="o">(</span><span class="nx">cXY</span><span class="o">[</span><span class="m">0</span><span class="o">],</span> <span class="nx">cXY</span><span class="o">[</span><span class="m">1</span><span class="o">]);</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-
             <span class="k">var</span> <span class="nx">val</span> <span class="o">=</span> <span class="nx">args</span><span class="o">[</span><span class="m">0</span><span class="o">];</span>
 
             <span class="k">if</span> <span class="o">(</span><span class="nx">val</span><span class="o">)</span> <span class="o">{</span>
                 <span class="k">if</span> <span class="o">(!</span> <span class="nx">Config</span><span class="o">.</span><span class="nx">alreadySubscribed</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">beforeMoveEvent</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">enforceConstraints</span><span class="o">,</span> <span class="k">this</span><span class="o">))</span> <span class="o">{</span>
                     <span class="k">this</span><span class="o">.</span><span class="nx">beforeMoveEvent</span><span class="o">.</span><span class="nx">subscribe</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">enforceConstraints</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
                 <span class="o">}</span>
-
-                <span class="k">if</span> <span class="o">(!</span> <span class="nx">Config</span><span class="o">.</span><span class="nx">alreadySubscribed</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">beforeShowEvent</span><span class="o">,</span> <span class="nx">constrainBeforeShow</span><span class="o">))</span> <span class="o">{</span>
-                    <span class="k">this</span><span class="o">.</span><span class="nx">beforeShowEvent</span><span class="o">.</span><span class="nx">subscribe</span><span class="o">(</span><span class="nx">constrainBeforeShow</span><span class="o">);</span>
+                <span class="k">if</span> <span class="o">(!</span> <span class="nx">Config</span><span class="o">.</span><span class="nx">alreadySubscribed</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">beforeShowEvent</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">_primeXYFromDOM</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="k">this</span><span class="o">.</span><span class="nx">beforeShowEvent</span><span class="o">.</span><span class="nx">subscribe</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_primeXYFromDOM</span><span class="o">);</span>
                 <span class="o">}</span>
             <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                <span class="k">this</span><span class="o">.</span><span class="nx">beforeShowEvent</span><span class="o">.</span><span class="nx">unsubscribe</span><span class="o">(</span><span class="nx">constrainBeforeShow</span><span class="o">);</span>
+                <span class="k">this</span><span class="o">.</span><span class="nx">beforeShowEvent</span><span class="o">.</span><span class="nx">unsubscribe</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_primeXYFromDOM</span><span class="o">);</span>
                 <span class="k">this</span><span class="o">.</span><span class="nx">beforeMoveEvent</span><span class="o">.</span><span class="nx">unsubscribe</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">enforceConstraints</span><span class="o">,</span> <span class="k">this</span><span class="o">);</span>
             <span class="o">}</span>
         <span class="o">},</span>
 
-        <span class="c">/**</span>
+         <span class="c">/**</span>
 <span class="c">        * The default event handler fired when the &quot;context&quot; property </span>
 <span class="c">        * is changed.</span>
 <span class="c">        * @method configContext</span>
@@ -1211,39 +1214,29 @@
                 <span class="nx">contextEl</span><span class="o">,</span>
                 <span class="nx">elementMagnetCorner</span><span class="o">,</span>
                 <span class="nx">contextMagnetCorner</span><span class="o">;</span>
-            
+
             <span class="k">if</span> <span class="o">(</span><span class="nx">contextArgs</span><span class="o">)</span> <span class="o">{</span>
-            
                 <span class="nx">contextEl</span> <span class="o">=</span> <span class="nx">contextArgs</span><span class="o">[</span><span class="m">0</span><span class="o">];</span>
                 <span class="nx">elementMagnetCorner</span> <span class="o">=</span> <span class="nx">contextArgs</span><span class="o">[</span><span class="m">1</span><span class="o">];</span>
                 <span class="nx">contextMagnetCorner</span> <span class="o">=</span> <span class="nx">contextArgs</span><span class="o">[</span><span class="m">2</span><span class="o">];</span>
                 
                 <span class="k">if</span> <span class="o">(</span><span class="nx">contextEl</span><span class="o">)</span> <span class="o">{</span>
-    
                     <span class="k">if</span> <span class="o">(</span><span class="k">typeof</span> <span class="nx">contextEl</span> <span class="o">==</span> <span class="s2">&quot;string&quot;</span><span class="o">)</span> <span class="o">{</span>
-
                         <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">setProperty</span><span class="o">(</span><span class="s2">&quot;context&quot;</span><span class="o">,</span> 
                             <span class="o">[</span><span class="nb">document</span><span class="o">.</span><span class="nx">getElementById</span><span class="o">(</span><span class="nx">contextEl</span><span class="o">),</span> 
                                 <span class="nx">elementMagnetCorner</span><span class="o">,</span> <span class="nx">contextMagnetCorner</span><span class="o">],</span> 
                                 <span class="kc">true</span><span class="o">);</span>
-
                     <span class="o">}</span>
                     
                     <span class="k">if</span> <span class="o">(</span><span class="nx">elementMagnetCorner</span> <span class="o">&amp;&amp;</span> <span class="nx">contextMagnetCorner</span><span class="o">)</span> <span class="o">{</span>
-
                         <span class="k">this</span><span class="o">.</span><span class="nx">align</span><span class="o">(</span><span class="nx">elementMagnetCorner</span><span class="o">,</span> <span class="nx">contextMagnetCorner</span><span class="o">);</span>
-
                     <span class="o">}</span>
-
                 <span class="o">}</span>
-
             <span class="o">}</span>
-
         <span class="o">},</span>
 
         <span class="c">// END BUILT-IN PROPERTY EVENT HANDLERS //</span>
-<span class="c"></span>
-        <span class="c">/**</span>
+<span class="c"></span>        <span class="c">/**</span>
 <span class="c">        * Aligns the Overlay to its context element using the specified corner </span>
 <span class="c">        * points (represented by the constants TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, </span>
 <span class="c">        * and BOTTOM_RIGHT.</span>
@@ -1594,11 +1587,11 @@
 
                                 <li class="selected"><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -1614,17 +1607,23 @@
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -1633,6 +1632,8 @@
                                 <li class=""><a href="module_tabview.html">tabview</a></li>
 
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
 

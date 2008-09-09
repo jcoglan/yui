@@ -82,9 +82,10 @@ YAHOO.util.Event.addListener(window, "load", function() {
                 if(elRow) {
                     switch(task.index) {
                         case 0:     // Delete row upon confirmation
+                            var oRecord = p_myDataTable.getRecord(elRow);
                             if(confirm("Are you sure you want to delete SKU " +
-                                    elRow.cells[0].innerHTML + " (" +
-                                    elRow.cells[2].innerHTML + ")?")) {
+                                    oRecord.getData("SKU") + " (" +
+                                    oRecord.getData("Description") + ")?")) {
                                 p_myDataTable.deleteRow(elRow);
                             }
                     }

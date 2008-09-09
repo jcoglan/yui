@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Event Utility&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>Event Utility&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_event.html">event</a>
@@ -164,7 +164,7 @@
             <span class="c">/**</span>
 <span class="c">             * The number of times we should look for elements that are not</span>
 <span class="c">             * in the DOM at the time the event is requested after the document</span>
-<span class="c">             * has been loaded.  The default is 4000@amp;10 ms, so it will poll</span>
+<span class="c">             * has been loaded.  The default is 2000@amp;20 ms, so it will poll</span>
 <span class="c">             * for 40 seconds or until all outstanding handlers are bound</span>
 <span class="c">             * (whichever comes first).</span>
 <span class="c">             * @property POLL_RETRYS</span>
@@ -172,7 +172,7 @@
 <span class="c">             * @static</span>
 <span class="c">             * @final</span>
 <span class="c">             */</span>
-            <span class="nx">POLL_RETRYS</span><span class="o">:</span> <span class="m">4000</span><span class="o">,</span>
+            <span class="nx">POLL_RETRYS</span><span class="o">:</span> <span class="m">2000</span><span class="o">,</span>
 
             <span class="c">/**</span>
 <span class="c">             * The poll interval in milliseconds</span>
@@ -181,7 +181,7 @@
 <span class="c">             * @static</span>
 <span class="c">             * @final</span>
 <span class="c">             */</span>
-            <span class="nx">POLL_INTERVAL</span><span class="o">:</span> <span class="m">10</span><span class="o">,</span>
+            <span class="nx">POLL_INTERVAL</span><span class="o">:</span> <span class="m">20</span><span class="o">,</span>
 
             <span class="c">/**</span>
 <span class="c">             * Element to bind, int constant</span>
@@ -803,12 +803,14 @@
 <span class="c">             * @return {HTMLElement} the normized node</span>
 <span class="c">             * @static</span>
 <span class="c">             */</span>
-            <span class="nx">resolveTextNode</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">node</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">if</span> <span class="o">(</span><span class="nx">node</span> <span class="o">&amp;&amp;</span> <span class="m">3</span> <span class="o">==</span> <span class="nx">node</span><span class="o">.</span><span class="nx">nodeType</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="k">return</span> <span class="nx">node</span><span class="o">.</span><span class="nx">parentNode</span><span class="o">;</span>
-                <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                    <span class="k">return</span> <span class="nx">node</span><span class="o">;</span>
-                <span class="o">}</span>
+            <span class="nx">resolveTextNode</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">n</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="nx">n</span> <span class="o">&amp;&amp;</span> <span class="m">3</span> <span class="o">==</span> <span class="nx">n</span><span class="o">.</span><span class="nx">nodeType</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="k">return</span> <span class="nx">n</span><span class="o">.</span><span class="nx">parentNode</span><span class="o">;</span>
+                    <span class="o">}</span>
+                <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">{</span> <span class="o">}</span>
+
+                <span class="k">return</span> <span class="nx">n</span><span class="o">;</span>
             <span class="o">},</span>
 
             <span class="c">/**</span>
@@ -970,32 +972,6 @@
                     <span class="o">}</span>
                 <span class="o">}</span>
 
-                <span class="c">// IE events that target non-browser objects (e.g., VML</span>
-<span class="c"></span>                <span class="c">// canvas) will sometimes throw errors when you try to</span>
-<span class="c"></span>                <span class="c">// inspect the properties of the event target.  We try to</span>
-<span class="c"></span>                <span class="c">// detect this condition, and provide a dummy target (the bound</span>
-<span class="c"></span>                <span class="c">// element) to eliminate spurious errors.  </span>
-<span class="c"></span>
-                <span class="c">// the implementation caused unexpected results in some </span>
-<span class="c"></span>                <span class="c">// implementations, so this has been rolled back for now</span>
-<span class="c"></span>                <span class="c">/* </span>
-<span class="c">                if (ev &amp;&amp; this.isIE) {</span>
-<span class="c"></span>
-<span class="c">                    try {</span>
-<span class="c"></span>
-<span class="c">                        var el = ev.srcElement;</span>
-<span class="c"></span>
-<span class="c">                    } catch(ex) {</span>
-<span class="c"></span>
-<span class="c">                        YAHOO.log(&quot;Inspecting the target caused an error, &quot; +</span>
-<span class="c">                            &quot;setting the target to the bound element.&quot;, &quot;warn&quot;);</span>
-<span class="c">                         </span>
-<span class="c">                        ev.target = boundEl;</span>
-<span class="c">                    }</span>
-<span class="c"></span>
-<span class="c">                }</span>
-<span class="c">                */</span>
-
                 <span class="k">return</span> <span class="nx">ev</span><span class="o">;</span>
             <span class="o">},</span>
 
@@ -1009,7 +985,7 @@
             <span class="nx">getCharCode</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">ev</span><span class="o">)</span> <span class="o">{</span>
                 <span class="k">var</span> <span class="nx">code</span> <span class="o">=</span> <span class="nx">ev</span><span class="o">.</span><span class="nx">keyCode</span> <span class="o">||</span> <span class="nx">ev</span><span class="o">.</span><span class="nx">charCode</span> <span class="o">||</span> <span class="m">0</span><span class="o">;</span>
 
-                <span class="c">// webkit normalization</span>
+                <span class="c">// webkit key normalization</span>
 <span class="c"></span>                <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">ua</span><span class="o">.</span><span class="nx">webkit</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="nx">code</span> <span class="k">in</span> <span class="nx">webkitKeymap</span><span class="o">))</span> <span class="o">{</span>
                     <span class="nx">code</span> <span class="o">=</span> <span class="nx">webkitKeymap</span><span class="o">[</span><span class="nx">code</span><span class="o">];</span>
                 <span class="o">}</span>
@@ -1144,12 +1120,7 @@
 <span class="c"></span>                    <span class="c">// before the window load notification</span>
 <span class="c"></span>                    <span class="nx">EU</span><span class="o">.</span><span class="nx">_tryPreloadAttach</span><span class="o">();</span>
 
-                    <span class="c">// Remove the listener to assist with the IE memory issue, but not</span>
-<span class="c"></span>                    <span class="c">// for other browsers because FF 1.0x does not like it.</span>
-<span class="c"></span>                    <span class="c">//if (this.isIE) {</span>
-<span class="c"></span>                        <span class="c">//EU._simpleRemove(window, &quot;load&quot;, EU._load);</span>
-<span class="c"></span>                    <span class="c">//}</span>
-<span class="c"></span>                <span class="o">}</span>
+                <span class="o">}</span>
             <span class="o">},</span>
 
             <span class="c">/**</span>
@@ -1190,7 +1161,6 @@
                     <span class="c">// Hold off if DOMReady has not fired and check current</span>
 <span class="c"></span>                    <span class="c">// readyState to protect against the IE operation aborted</span>
 <span class="c"></span>                    <span class="c">// issue.</span>
-<span class="c"></span>                    <span class="c">//if (!this.DOMReady || &quot;complete&quot; !== document.readyState) {</span>
 <span class="c"></span>                    <span class="k">if</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">DOMReady</span><span class="o">)</span> <span class="o">{</span>
                         <span class="k">this</span><span class="o">.</span><span class="nx">startInterval</span><span class="o">();</span>
                         <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
@@ -1294,10 +1264,8 @@
                 <span class="k">if</span> <span class="o">(</span><span class="nx">elListeners</span><span class="o">)</span> <span class="o">{</span>
                     <span class="k">for</span> <span class="o">(</span><span class="nx">i</span><span class="o">=</span><span class="m">0</span><span class="o">,</span><span class="nx">len</span><span class="o">=</span><span class="nx">elListeners</span><span class="o">.</span><span class="nx">length</span><span class="o">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">len</span> <span class="o">;</span> <span class="o">++</span><span class="nx">i</span><span class="o">)</span> <span class="o">{</span>
                         <span class="k">var</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">elListeners</span><span class="o">[</span><span class="nx">i</span><span class="o">];</span>
-                        <span class="c">// can&#39;t use the index on the changing collection</span>
-<span class="c"></span>                        <span class="k">this</span><span class="o">.</span><span class="nx">removeListener</span><span class="o">(</span><span class="nx">oEl</span><span class="o">,</span> <span class="nx">l</span><span class="o">.</span><span class="nx">type</span><span class="o">,</span> <span class="nx">l</span><span class="o">.</span><span class="nx">fn</span><span class="o">,</span> <span class="nx">l</span><span class="o">.</span><span class="nx">index</span><span class="o">);</span>
-                        <span class="c">//this.removeListener(oEl, l.type, l.fn);</span>
-<span class="c"></span>                    <span class="o">}</span>
+                        <span class="k">this</span><span class="o">.</span><span class="nx">removeListener</span><span class="o">(</span><span class="nx">oEl</span><span class="o">,</span> <span class="nx">l</span><span class="o">.</span><span class="nx">type</span><span class="o">,</span> <span class="nx">l</span><span class="o">.</span><span class="nx">fn</span><span class="o">,</span> <span class="nx">l</span><span class="o">.</span><span class="nx">index</span><span class="o">);</span>
+                    <span class="o">}</span>
                 <span class="o">}</span>
 
                 <span class="k">if</span> <span class="o">(</span><span class="nx">recurse</span> <span class="o">&amp;&amp;</span> <span class="nx">oEl</span> <span class="o">&amp;&amp;</span> <span class="nx">oEl</span><span class="o">.</span><span class="nx">childNodes</span><span class="o">)</span> <span class="o">{</span>
@@ -1390,53 +1358,25 @@
 
                 <span class="nx">unloadListeners</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
 
-                <span class="c">// call clearAttributes or remove listeners to handle IE memory leaks</span>
-<span class="c"></span>                <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">ua</span><span class="o">.</span><span class="nx">ie</span> <span class="o">&amp;&amp;</span> <span class="nx">listeners</span> <span class="o">&amp;&amp;</span> <span class="nx">listeners</span><span class="o">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="m">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c">// Remove listeners to handle IE memory leaks</span>
+<span class="c"></span>                <span class="c">//if (YAHOO.env.ua.ie &amp;&amp; listeners &amp;&amp; listeners.length &gt; 0) {</span>
+<span class="c"></span>                
+                <span class="c">// 2.5.0 listeners are removed for all browsers again.  FireFox preserves</span>
+<span class="c"></span>                <span class="c">// at least some listeners between page refreshes, potentially causing</span>
+<span class="c"></span>                <span class="c">// errors during page load (mouseover listeners firing before they</span>
+<span class="c"></span>                <span class="c">// should if the user moves the mouse at the correct moment).</span>
+<span class="c"></span>                <span class="k">if</span> <span class="o">(</span><span class="nx">listeners</span> <span class="o">&amp;&amp;</span> <span class="nx">listeners</span><span class="o">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="m">0</span><span class="o">)</span> <span class="o">{</span>
                     <span class="nx">j</span> <span class="o">=</span> <span class="nx">listeners</span><span class="o">.</span><span class="nx">length</span><span class="o">;</span>
                     <span class="k">while</span> <span class="o">(</span><span class="nx">j</span><span class="o">)</span> <span class="o">{</span>
                         <span class="nx">index</span> <span class="o">=</span> <span class="nx">j</span><span class="o">-</span><span class="m">1</span><span class="o">;</span>
                         <span class="nx">l</span> <span class="o">=</span> <span class="nx">listeners</span><span class="o">[</span><span class="nx">index</span><span class="o">];</span>
                         <span class="k">if</span> <span class="o">(</span><span class="nx">l</span><span class="o">)</span> <span class="o">{</span>
-                            <span class="c">//try {</span>
-<span class="c"></span>                                <span class="c">//l[EU.EL].clearAttributes(); // errors on window objects</span>
-<span class="c"></span>                            <span class="c">//} catch(ex) {</span>
-<span class="c"></span>                            <span class="nx">EU</span><span class="o">.</span><span class="nx">removeListener</span><span class="o">(</span><span class="nx">l</span><span class="o">[</span><span class="nx">EU</span><span class="o">.</span><span class="nx">EL</span><span class="o">],</span> <span class="nx">l</span><span class="o">[</span><span class="nx">EU</span><span class="o">.</span><span class="nx">TYPE</span><span class="o">],</span> <span class="nx">l</span><span class="o">[</span><span class="nx">EU</span><span class="o">.</span><span class="nx">FN</span><span class="o">],</span> <span class="nx">index</span><span class="o">);</span>
-                            <span class="c">//}</span>
-<span class="c"></span>                        <span class="o">}</span> 
+                            <span class="nx">EU</span><span class="o">.</span><span class="nx">removeListener</span><span class="o">(</span><span class="nx">l</span><span class="o">[</span><span class="nx">EU</span><span class="o">.</span><span class="nx">EL</span><span class="o">],</span> <span class="nx">l</span><span class="o">[</span><span class="nx">EU</span><span class="o">.</span><span class="nx">TYPE</span><span class="o">],</span> <span class="nx">l</span><span class="o">[</span><span class="nx">EU</span><span class="o">.</span><span class="nx">FN</span><span class="o">],</span> <span class="nx">index</span><span class="o">);</span>
+                        <span class="o">}</span> 
                         <span class="nx">j</span><span class="o">--;</span>
                     <span class="o">}</span>
                     <span class="nx">l</span><span class="o">=</span><span class="kc">null</span><span class="o">;</span>
                 <span class="o">}</span>
-
-                <span class="c">/*</span>
-<span class="c">                // remove all listeners</span>
-<span class="c">                if (listeners &amp;&amp; listeners.length &gt; 0) {</span>
-<span class="c">                    j = listeners.length;</span>
-<span class="c">                    while (j) {</span>
-<span class="c">                        index = j-1;</span>
-<span class="c">                        l = listeners[index];</span>
-<span class="c">                        if (l) {</span>
-<span class="c">                            EU.removeListener(l[EU.EL], l[EU.TYPE], l[EU.FN], index);</span>
-<span class="c">                        } </span>
-<span class="c">                        j = j - 1;</span>
-<span class="c">                    }</span>
-<span class="c">                    l=null;</span>
-<span class="c">                }</span>
-<span class="c">                */</span>
-
-                <span class="c">/*</span>
-<span class="c">                // kill legacy events</span>
-<span class="c">                for (i=0,len=legacyEvents.length; i&lt;len; ++i) {</span>
-<span class="c">                    // dereference the element</span>
-<span class="c">                    //delete legacyEvents[i][0];</span>
-<span class="c">                    legacyEvents[i][0] = null;</span>
-<span class="c"></span>
-<span class="c">                    // delete the array item</span>
-<span class="c">                    //delete legacyEvents[i];</span>
-<span class="c">                    legacyEvents[i] = null;</span>
-<span class="c">                }</span>
-<span class="c"></span>
-<span class="c">                */</span>
 
                 <span class="nx">legacyEvents</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
 
@@ -1493,22 +1433,6 @@
             <span class="nx">regCE</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
                 <span class="c">// does nothing</span>
 <span class="c"></span>            <span class="o">},</span>
-
-<span class="c">/*</span>
-<span class="c">            testIEReady: function (){</span>
-<span class="c">                var n = document.createElement(&#39;p&#39;), ready = false;</span>
-<span class="c">                try {</span>
-<span class="c">                    // throws an error until the doc is ready</span>
-<span class="c">                    n.doScroll(&#39;left&#39;); </span>
-<span class="c">                    ready = true;</span>
-<span class="c">                } catch(ex){ </span>
-<span class="c">                    // document is not ready</span>
-<span class="c">                }</span>
-<span class="c"></span>
-<span class="c">                n = null;</span>
-<span class="c">                return ready;</span>
-<span class="c">            },</span>
-<span class="c">*/</span>
 
             <span class="c">/**</span>
 <span class="c">             * Adds a DOM event directly without the caching, cleanup, scope adj, etc</span>
@@ -1574,10 +1498,8 @@
 <span class="c">         */</span>
         <span class="nx">EU</span><span class="o">.</span><span class="nx">on</span> <span class="o">=</span> <span class="nx">EU</span><span class="o">.</span><span class="nx">addListener</span><span class="o">;</span>
 
-        <span class="c">/////////////////////////////////////////////////////////////</span>
-<span class="c"></span>        <span class="c">// DOMReady</span>
-<span class="c"></span>        <span class="c">// based on work by: Dean Edwards/John Resig/Matthias Miller </span>
-<span class="c"></span>
+<span class="c">/*! DOMReady: based on work by: Dean Edwards/John Resig/Matthias Miller */</span>
+
         <span class="c">// Internet Explorer: use the readyState of a defered script.</span>
 <span class="c"></span>        <span class="c">// This isolates what appears to be a safe moment to manipulate</span>
 <span class="c"></span>        <span class="c">// the DOM prior to when the document&#39;s readyState suggests</span>
@@ -1589,62 +1511,6 @@
 <span class="c"></span>            <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">onDOMReady</span><span class="o">(</span>
                     <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">_tryPreloadAttach</span><span class="o">,</span>
                     <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
-
-            <span class="c">/*</span>
-<span class="c"></span>
-<span class="c">            //YAHOO.log(&quot;-&quot; + document.readyState + &quot;-&quot;);</span>
-<span class="c"></span>
-<span class="c">            var el, d=document, b=d.body;</span>
-<span class="c"></span>
-<span class="c">            // If the library is being injected after window.onload, it</span>
-<span class="c">            // is not safe to document.write the script tag.  Detecting</span>
-<span class="c">            // this state doesn&#39;t appear possible, so we expect a flag</span>
-<span class="c">            // in YAHOO_config to be set if the library is being injected.</span>
-<span class="c">            if ((&quot;undefined&quot; !== typeof YAHOO_config) &amp;&amp; YAHOO_config.injecting) {</span>
-<span class="c"></span>
-<span class="c">                el = document.createElement(&quot;script&quot;);</span>
-<span class="c">                var p=d.getElementsByTagName(&quot;head&quot;)[0] || b;</span>
-<span class="c">                p.insertBefore(el, p.firstChild);</span>
-<span class="c"></span>
-<span class="c">            } else {</span>
-<span class="c">                //YAHOO.log(&quot;-dw-&quot;);</span>
-<span class="c">    d.write(&#39;&lt;scr&#39;+&#39;ipt id=&quot;_yui_eu_dr&quot; defer=&quot;true&quot; src=&quot;//:&quot;&gt;&lt;&#39;+&#39;/script&gt;&#39;);</span>
-<span class="c">                el=document.getElementById(&quot;_yui_eu_dr&quot;);</span>
-<span class="c">            }</span>
-<span class="c">            </span>
-<span class="c"></span>
-<span class="c">            if (el) {</span>
-<span class="c">                el.onreadystatechange = function() {</span>
-<span class="c">                    //YAHOO.log(&quot;;comp-&quot; + this.readyState + &quot;;&quot;);</span>
-<span class="c">                    if (&quot;complete&quot; === this.readyState) {</span>
-<span class="c">                        this.parentNode.removeChild(this);</span>
-<span class="c">                        YAHOO.util.Event._ready();</span>
-<span class="c">                    }</span>
-<span class="c">                };</span>
-<span class="c">            } else {</span>
-<span class="c">                // The library was likely injected into the page</span>
-<span class="c">                // rendering onDOMReady unreliable</span>
-<span class="c">                // YAHOO.util.Event._ready();</span>
-<span class="c">            }</span>
-<span class="c"></span>
-<span class="c">            el=null;</span>
-<span class="c"></span>
-<span class="c">            */</span>
-
-<span class="c">/*</span>
-<span class="c">            (function (){</span>
-<span class="c">                var n = document.createElement(&#39;p&#39;);  </span>
-<span class="c">                try {</span>
-<span class="c">                    // throws an error if doc is not ready</span>
-<span class="c">                    n.doScroll(&#39;left&#39;);</span>
-<span class="c">                    n = null;</span>
-<span class="c">                    YAHOO.util.Event._ready();</span>
-<span class="c">                } catch (ex){</span>
-<span class="c">                    n = null;</span>
-<span class="c">setTimeout(arguments.callee, YAHOO.util.Event.POLL_INTERVAL);</span>
-<span class="c">                }</span>
-<span class="c">            })();</span>
-<span class="c">*/</span>
 
             <span class="nx">EU</span><span class="o">.</span><span class="nx">_dri</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="o">(</span><span class="k">function</span><span class="o">()</span> <span class="o">{</span>
                 <span class="k">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s1">&#39;p&#39;</span><span class="o">);</span>  
@@ -1661,10 +1527,9 @@
             <span class="o">},</span> <span class="nx">EU</span><span class="o">.</span><span class="nx">POLL_INTERVAL</span><span class="o">);</span> 
 
         
-        <span class="c">// Safari: The document&#39;s readyState in Safari currently will</span>
+        <span class="c">// The document&#39;s readyState in Safari currently will</span>
 <span class="c"></span>        <span class="c">// change to loaded/complete before images are loaded.</span>
-<span class="c"></span>        <span class="c">//} else if (EU.webkit) {</span>
-<span class="c"></span>        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nx">EU</span><span class="o">.</span><span class="nx">webkit</span><span class="o">)</span> <span class="o">{</span>
+<span class="c"></span>        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nx">EU</span><span class="o">.</span><span class="nx">webkit</span> <span class="o">&amp;&amp;</span> <span class="nx">EU</span><span class="o">.</span><span class="nx">webkit</span> <span class="o">&lt;</span> <span class="m">525</span><span class="o">)</span> <span class="o">{</span>
 
             <span class="nx">EU</span><span class="o">.</span><span class="nx">_dri</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="o">(</span><span class="k">function</span><span class="o">()</span> <span class="o">{</span>
                 <span class="k">var</span> <span class="nx">rs</span><span class="o">=</span><span class="nb">document</span><span class="o">.</span><span class="nx">readyState</span><span class="o">;</span>
@@ -1676,11 +1541,9 @@
             <span class="o">},</span> <span class="nx">EU</span><span class="o">.</span><span class="nx">POLL_INTERVAL</span><span class="o">);</span> 
 
         <span class="c">// FireFox and Opera: These browsers provide a event for this</span>
-<span class="c"></span>        <span class="c">// moment.</span>
+<span class="c"></span>        <span class="c">// moment.  The latest WebKit releases now support this event.</span>
 <span class="c"></span>        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
 
-            <span class="c">// @todo will this fire when the library is injected?</span>
-<span class="c"></span>
             <span class="nx">EU</span><span class="o">.</span><span class="nx">_simpleAdd</span><span class="o">(</span><span class="nb">document</span><span class="o">,</span> <span class="s2">&quot;DOMContentLoaded&quot;</span><span class="o">,</span> <span class="nx">EU</span><span class="o">.</span><span class="nx">_ready</span><span class="o">);</span>
 
         <span class="o">}</span>
@@ -1720,11 +1583,11 @@
 
                                 <li class=""><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -1740,17 +1603,23 @@
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -1759,6 +1628,8 @@
                                 <li class=""><a href="module_tabview.html">tabview</a></li>
 
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
 

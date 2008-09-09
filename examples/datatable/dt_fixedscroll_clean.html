@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<title>Fixed Scrolling</title>
+<title>XY-scrolling, Y-scrolling, and X-scrolling</title>
 
 <style type="text/css">
 /*margin and padding on body element
@@ -23,77 +23,87 @@ body {
 <script type="text/javascript" src="../../build/datasource/datasource-beta.js"></script>
 <script type="text/javascript" src="../../build/datatable/datatable-beta.js"></script>
 
-
-<!--begin custom header content for this example-->
-<style type="text/css">
-#fixedscrolling {
-    height:35em;
-}
-
-/* customized css for scrolling */
-.yui-dt-scrollable  {
-    width:30em; /* SET OVERALL WIDTH HERE for ie (make sure columns add up to this total) */
-    height:30em; /* SET HEIGHT HERE for ie */
-}
-.yui-dt-scrollbody {
-    height:30em; /* SET HEIGHT HERE for non-ie */
-    *height:auto; /* for ie */
-}
-.yui-dt-scrollable  thead {
-    background:#696969; /*dark gray*/ /* ie needs a background color */
-    color:#fff;
-}
-
-/* SET WIDTHS FOR EACH TH TO HELP ALIGN COLUMNS */
-/* IF ALL COLS CAN BE SAME WIDTH USE THIS:
-.yui-dt-scrollable th, .yui-dt-scrollbody td {
-    width:20em;
-}*/
-/* OTHERWISE SET EACH COL WIDTH EXPLICITLY:*/
-.yui-dt-col-areacode {
-    width:10em;
-}
-.yui-dt-col-state {
-    width:20em;
-}
-</style>
-
-<!--end custom header content for this example-->
+<!--there is no custom header content for this example-->
 
 </head>
 
 <body class=" yui-skin-sam">
 
-<h1>Fixed Scrolling</h1>
+<h1>XY-scrolling, Y-scrolling, and X-scrolling</h1>
 
 <div class="exampleIntro">
-	<p>Enabling fixed scrolling on a DataTable keeps the Column headers fixed as the
-body of the table scrolls. Please note that this feature is not currently
-compatible with Column sorting or resizeable Columns.</p>
+	<p>Scrolling can be enabled on a DataTable along the x, y, or xy-axes. Set the
+DataTable's "scrollable" value to "true", and set a width and/and or height string
+values.</p>
 			
 </div>
 
 <!--BEGIN SOURCE CODE FOR EXAMPLE =============================== -->
 
-<div id="fixedscrolling"></div>
+<h2 class="first">XY Scrolling</h2>
+<div id="xyscrolling"></div>
+
+<h2>Y Scrolling</h2>
+<div id="yscrolling"></div>
+
+<h2>X Scrolling</h2>
+<div id="xscrolling"></div>
 
 <script type="text/javascript" src="assets/js/data.js"></script>
 <script type="text/javascript">
 YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.Scrolling = new function() {
         var myColumnDefs = [
-            {key:"areacode"},
-            {key:"state"}
-        ];
+                {key:"field1"},
+                {key:"field2"},
+                {key:"field3"},
+                {key:"field4"},
+                {key:"field5"},
+                {key:"field6", width:150}
+            ];
+            
+        var myColumnDefsY = [
+                {key:"field2"},
+                {key:"field3"},
+                {key:"field4"},
+                {key:"field5"},
+                {key:"field6"}
+            ];
 
-        this.myDataSource = new YAHOO.util.DataSource(YAHOO.example.Data.areacodes);
-        this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_JSARRAY;
+        var myColumnDefsX = [
+                {key:"field1", width:300},
+                {key:"field2", width:300},
+                {key:"field3", width:300},
+                {key:"field4", width:300},
+                {key:"field5", width:300},
+                {key:"field6", width:300}
+            ];
+
+        this.myDataSource = new YAHOO.util.DataSource(YAHOO.example.Data.multitypes);
+        this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_JSON;
         this.myDataSource.responseSchema = {
-            fields: ["areacode","state"]
+            resultsList: "items",
+            fields: [
+                {key:"field1"},
+                {key:"field2"},
+                {key:"field3"},
+                {key:"field4"},
+                {key:"field5"},
+                {key:"field6"}
+            ]
         };
 
-        this.myDataTable = new YAHOO.widget.DataTable("fixedscrolling", myColumnDefs,
-                this.myDataSource, {scrollable:true});
+        // Set "scrollable:true" and set width and height string values
+        this.myDataTableXY = new YAHOO.widget.DataTable("xyscrolling", myColumnDefs,
+                this.myDataSource, {scrollable:true, width:"40em", height:"20em"});
+
+        // Set "scrollable:true" and set only height string value
+        this.myDataTableY = new YAHOO.widget.DataTable("yscrolling", myColumnDefsY,
+                this.myDataSource, {scrollable:true, height:"10em"});
+
+        // Set "scrollable:true" and set only width string value
+        this.myDataTableX = new YAHOO.widget.DataTable("xscrolling", myColumnDefsX,
+                this.myDataSource, {scrollable:true, width:"30em"});
     };
 });
 </script>

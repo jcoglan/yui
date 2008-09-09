@@ -9,7 +9,8 @@
 <script type="text/javascript" src="../build/dom/dom.js"></script>
 <script type="text/javascript" src="../build/event/event.js"></script>
 <script type="text/javascript" src="../build/logger/logger.js"></script>
-<script type="text/javascript" src="../build/yuitest/yuitest-beta.js"></script>
+<script type="text/javascript" src="../build/json/json-beta.js"></script>
+<script type="text/javascript" src="../build/yuitest/yuitest.js"></script>
 
 <style>
     #out {
@@ -40,6 +41,7 @@
             "animation.html", 
             "autocomplete.html", 
             // "calendar.html",
+            "cookie.html",
             "config.html",
             "datasource.html",
             "datemath.html",
@@ -60,13 +62,33 @@
         ]);
 
         TM.subscribe(TM.TEST_MANAGER_COMPLETE_EVENT, function(o) {
-            log("# of pages passed: " + o.pages_passed);
-            log("# of pages failed: " + o.pages_failed + ": " + o.failed.join(", "));
-            log("# of tests passed: " + o.tests_passed);
-            log("# of tests failed: " + o.tests_failed);
+            log("# of pages passed: " + o.passedPages.length);
+            log("# of pages failed: " + o.failedPages.length + ": " + o.failedPages.join(", "));
+            log("# of tests passed: " + o.passed);
+            log("# of tests failed: " + o.failed);
 
             // log("Passed: " + o.passed.join(", "));
             // log("Failed: " + o.failed.join(", "));
+            //figure out if you want to report the results
+            if (location.search.length > 0){
+                var params = location.search.substring(1).split("&");
+                var url = null;
+                var format = YAHOO.tool.TestFormat.XML;
+                
+                for (var i=0; i < params.length; i++){
+                    if (params[i].indexOf("report=") == 0){
+                        url = decodeURIComponent(params[i].substring(params[i].indexOf("=") + 1));
+                    } else if (params[i] == "format=json"){
+                        format = YAHOO.tool.TestFormat.JSON;
+                    }
+                }
+                
+                if (url !== null){
+                    var reporter = new YAHOO.tool.TestReporter(url, format);
+                    reporter.report(o);
+                }
+            }
+            
         });
 
         TM.start();
@@ -77,7 +99,6 @@
 </script>
 
 <div id="out"></div>
-
 
 </body>
 </html>

@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>editor&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>editor&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_editor.html">editor</a>
@@ -150,7 +150,7 @@
                                     </div>
                                     <div class="private">
                                     <h4><a name="_blankImageLoaded">_blankImageLoaded</a>
-                                        <code>- private Date</code>
+                                        <code>- private Boolean</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
@@ -1626,6 +1626,40 @@ It will then search the document for an element with the font-family set to <str
                                     </div>
                                     <div class="private">
                                     <h4>
+                                        <a name="_handleAutoHeight">_handleAutoHeight</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        void
+                                            <strong>_handleAutoHeight</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Handles resizing the editor's height based on the content
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4>
                                         <a name="_handleClick">_handleClick</a></h4>
                                     <div class="detail">
                                         <code>
@@ -1860,6 +1894,52 @@ It will then search the document for an element with the font-family set to <str
                                                         <dd>
                                                             <code>o &lt;Object&gt;</code>
                                                              Object returned from Toolbar's buttonClick Event
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4>
+                                        <a name="_handleFormSubmit">_handleFormSubmit</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        void
+                                            <strong>_handleFormSubmit</strong>
+                                           (
+                                                
+                                                        
+                                                         ev
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Handles the form submission.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>ev &lt;Object&gt;</code>
+                                                             The Form Submit Event
                                                         </dd>
                                                 </dl>
 
@@ -2522,6 +2602,40 @@ disable and enable the Editor's toolbar based on the noedit state.
                                                              The event we are working on.
                                                         </dd>
                                                 </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4>
+                                        <a name="_render">_render</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        void
+                                            <strong>_render</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Causes the toolbar and the editor to render and replace the textarea.
+                                        </div>
+
+                                        <div class="description">
+
 
                                                 <dl>
                                                     <dt>Returns:
@@ -3898,7 +4012,7 @@ disable and enable the Editor's toolbar based on the noedit state.
                                                     <code>
                                                         void
                                                     </code></dt>
-                                                    <dd>String</dd>
+                                                    <dd></dd>
                                                 </dl>
              
                                         </div>
@@ -4381,7 +4495,7 @@ configuration attributes used to create the editor.
                                         </code>
                                         
                                         <div class="description">
-                                            Causes the toolbar and the editor to render and replace the textarea.
+                                            Calls the private method _render in a setTimeout to allow for other things on the page to continue to load.
                                         </div>
 
                                         <div class="description">
@@ -4426,7 +4540,7 @@ configuration attributes used to create the editor.
                                                     <code>
                                                         void
                                                     </code></dt>
-                                                    <dd></dd>
+                                                    <dd>String</dd>
                                                 </dl>
              
                                         </div>
@@ -4668,13 +4782,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="animateChangeEvent">animateChangeEvent</a></h4>
+                                        <a name="animateChange">animateChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>animateChangeEvent</strong>
+                                            <strong>animateChange</strong>
 
                                             (
                                                 
@@ -4709,13 +4823,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="beforeAnimateChangeEvent">beforeAnimateChangeEvent</a></h4>
+                                        <a name="beforeAnimateChange">beforeAnimateChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>beforeAnimateChangeEvent</strong>
+                                            <strong>beforeAnimateChange</strong>
 
                                             (
                                                 
@@ -4750,13 +4864,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="beforeBlankimageChangeEvent">beforeBlankimageChangeEvent</a></h4>
+                                        <a name="beforeBlankimageChange">beforeBlankimageChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>beforeBlankimageChangeEvent</strong>
+                                            <strong>beforeBlankimageChange</strong>
 
                                             (
                                                 
@@ -4791,13 +4905,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="beforeCssChangeEvent">beforeCssChangeEvent</a></h4>
+                                        <a name="beforeCssChange">beforeCssChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>beforeCssChangeEvent</strong>
+                                            <strong>beforeCssChange</strong>
 
                                             (
                                                 
@@ -4832,13 +4946,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="beforeDisabledChangeEvent">beforeDisabledChangeEvent</a></h4>
+                                        <a name="beforeDisabledChange">beforeDisabledChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>beforeDisabledChangeEvent</strong>
+                                            <strong>beforeDisabledChange</strong>
 
                                             (
                                                 
@@ -4873,13 +4987,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="beforeDompathChangeEvent">beforeDompathChangeEvent</a></h4>
+                                        <a name="beforeDompathChange">beforeDompathChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>beforeDompathChangeEvent</strong>
+                                            <strong>beforeDompathChange</strong>
 
                                             (
                                                 
@@ -4943,13 +5057,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="beforeExtracssChangeEvent">beforeExtracssChangeEvent</a></h4>
+                                        <a name="beforeExtracssChange">beforeExtracssChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>beforeExtracssChangeEvent</strong>
+                                            <strong>beforeExtracssChange</strong>
 
                                             (
                                                 
@@ -4984,13 +5098,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="beforeFocusatstartChangeEvent">beforeFocusatstartChangeEvent</a></h4>
+                                        <a name="beforeFocusatstartChange">beforeFocusatstartChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>beforeFocusatstartChangeEvent</strong>
+                                            <strong>beforeFocusatstartChange</strong>
 
                                             (
                                                 
@@ -5025,13 +5139,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="beforeHandlesubmitChangeEvent">beforeHandlesubmitChangeEvent</a></h4>
+                                        <a name="beforeHandlesubmitChange">beforeHandlesubmitChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>beforeHandlesubmitChangeEvent</strong>
+                                            <strong>beforeHandlesubmitChange</strong>
 
                                             (
                                                 
@@ -5066,13 +5180,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="beforeHeightChangeEvent">beforeHeightChangeEvent</a></h4>
+                                        <a name="beforeHeightChange">beforeHeightChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>beforeHeightChangeEvent</strong>
+                                            <strong>beforeHeightChange</strong>
 
                                             (
                                                 
@@ -5107,13 +5221,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="beforeHtmlChangeEvent">beforeHtmlChangeEvent</a></h4>
+                                        <a name="beforeHtmlChange">beforeHtmlChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>beforeHtmlChangeEvent</strong>
+                                            <strong>beforeHtmlChange</strong>
 
                                             (
                                                 
@@ -5148,13 +5262,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="beforeMarkupChangeEvent">beforeMarkupChangeEvent</a></h4>
+                                        <a name="beforeMarkupChange">beforeMarkupChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>beforeMarkupChangeEvent</strong>
+                                            <strong>beforeMarkupChange</strong>
 
                                             (
                                                 
@@ -5218,13 +5332,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="beforeRemovelinebreaksChangeEvent">beforeRemovelinebreaksChangeEvent</a></h4>
+                                        <a name="beforeRemovelinebreaksChange">beforeRemovelinebreaksChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>beforeRemovelinebreaksChangeEvent</strong>
+                                            <strong>beforeRemovelinebreaksChange</strong>
 
                                             (
                                                 
@@ -5259,13 +5373,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="beforeToolbarChangeEvent">beforeToolbarChangeEvent</a></h4>
+                                        <a name="beforeToolbarChange">beforeToolbarChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>beforeToolbarChangeEvent</strong>
+                                            <strong>beforeToolbarChange</strong>
 
                                             (
                                                 
@@ -5300,13 +5414,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="beforeWidthChangeEvent">beforeWidthChangeEvent</a></h4>
+                                        <a name="beforeWidthChange">beforeWidthChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>beforeWidthChangeEvent</strong>
+                                            <strong>beforeWidthChange</strong>
 
                                             (
                                                 
@@ -5341,13 +5455,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="blankimageChangeEvent">blankimageChangeEvent</a></h4>
+                                        <a name="blankimageChange">blankimageChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>blankimageChangeEvent</strong>
+                                            <strong>blankimageChange</strong>
 
                                             (
                                                 
@@ -5411,13 +5525,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="cssChangeEvent">cssChangeEvent</a></h4>
+                                        <a name="cssChange">cssChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>cssChangeEvent</strong>
+                                            <strong>cssChange</strong>
 
                                             (
                                                 
@@ -5452,13 +5566,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="disabledChangeEvent">disabledChangeEvent</a></h4>
+                                        <a name="disabledChange">disabledChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>disabledChangeEvent</strong>
+                                            <strong>disabledChange</strong>
 
                                             (
                                                 
@@ -5493,13 +5607,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="dompathChangeEvent">dompathChangeEvent</a></h4>
+                                        <a name="dompathChange">dompathChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>dompathChangeEvent</strong>
+                                            <strong>dompathChange</strong>
 
                                             (
                                                 
@@ -5809,13 +5923,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="extracssChangeEvent">extracssChangeEvent</a></h4>
+                                        <a name="extracssChange">extracssChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>extracssChangeEvent</strong>
+                                            <strong>extracssChange</strong>
 
                                             (
                                                 
@@ -5850,13 +5964,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="focusAtStartChangeEvent">focusAtStartChangeEvent</a></h4>
+                                        <a name="focusAtStartChange">focusAtStartChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>focusAtStartChangeEvent</strong>
+                                            <strong>focusAtStartChange</strong>
 
                                             (
                                                 
@@ -5891,13 +6005,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="handleSubmitChangeEvent">handleSubmitChangeEvent</a></h4>
+                                        <a name="handleSubmitChange">handleSubmitChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>handleSubmitChangeEvent</strong>
+                                            <strong>handleSubmitChange</strong>
 
                                             (
                                                 
@@ -5932,13 +6046,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="heightChangeEvent">heightChangeEvent</a></h4>
+                                        <a name="heightChange">heightChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>heightChangeEvent</strong>
+                                            <strong>heightChange</strong>
 
                                             (
                                                 
@@ -5973,13 +6087,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="htmlChangeEvent">htmlChangeEvent</a></h4>
+                                        <a name="htmlChange">htmlChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>htmlChangeEvent</strong>
+                                            <strong>htmlChange</strong>
 
                                             (
                                                 
@@ -6014,13 +6128,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="markupChangeEvent">markupChangeEvent</a></h4>
+                                        <a name="markupChange">markupChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>markupChangeEvent</strong>
+                                            <strong>markupChange</strong>
 
                                             (
                                                 
@@ -6055,13 +6169,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="removeLineBreaksChangeEvent">removeLineBreaksChangeEvent</a></h4>
+                                        <a name="removeLineBreaksChange">removeLineBreaksChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>removeLineBreaksChangeEvent</strong>
+                                            <strong>removeLineBreaksChange</strong>
 
                                             (
                                                 
@@ -6096,13 +6210,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="toolbarChangeEvent">toolbarChangeEvent</a></h4>
+                                        <a name="toolbarChange">toolbarChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>toolbarChangeEvent</strong>
+                                            <strong>toolbarChange</strong>
 
                                             (
                                                 
@@ -6166,13 +6280,13 @@ configuration attributes used to create the editor.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="widthChangeEvent">widthChangeEvent</a></h4>
+                                        <a name="widthChange">widthChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>widthChangeEvent</strong>
+                                            <strong>widthChange</strong>
 
                                             (
                                                 
@@ -6213,7 +6327,7 @@ configuration attributes used to create the editor.
                             <h4>Events inherited from <a href="YAHOO.util.Element.html">YAHOO.util.Element</a>:</h4>
                             <div class="content">
                                 <code>
-                                        <a class="" href="YAHOO.util.Element.html#available">available</a><span class="">,</span>                                        <a class="" href="YAHOO.util.Element.html#contentReady">contentReady</a><span class="">,</span>
+                                        <a class="" href="YAHOO.util.Element.html#appendTo">appendTo</a><span class="">,</span>                                        <a class="" href="YAHOO.util.Element.html#available">available</a><span class="">,</span>                                        <a class="" href="YAHOO.util.Element.html#beforeAppendTo">beforeAppendTo</a><span class="">,</span>                                        <a class="" href="YAHOO.util.Element.html#beforeElementChange">beforeElementChange</a><span class="">,</span>                                        <a class="" href="YAHOO.util.Element.html#contentReady">contentReady</a><span class="">,</span>                                        <a class="" href="YAHOO.util.Element.html#elementChange">elementChange</a><span class="">,</span>
                                 </code>
                             </div>
                         </div>
@@ -6257,6 +6371,23 @@ Such as highlighting an element below and above the content and hitting a toolba
                                     <hr />
                                     </div>        
                                     <div class="">
+                                    <h4><a name="autoHeight">autoHeight</a>
+                                        <code>- Boolean || Number</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Remove the scrollbars from the edit area and resize it to fit the content. It will not go any lower than the current config height.
+                                        </div>
+                                    </div>
+ 
+     
+                                    <div class="default">
+                                        Default Value: false
+                                    </div>        
+
+                                    <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="blankimage">blankimage</a>
                                         <code>- String</code>
                                     </h4>
@@ -6269,6 +6400,24 @@ Such as highlighting an element below and above the content and hitting a toolba
      
                                     <div class="default">
                                         Default Value: The yahooapis.com address for the current release + 'assets/blankimage.png'
+                                    </div>        
+
+                                    <hr />
+                                    </div>        
+                                    <div class="private">
+                                    <h4><a name="container">container</a>
+                                        <code>- private HTMLElement</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Used when dynamically creating the Editor from Javascript with no default textarea.
+We will create one and place it in this container. If no container is passed we will append to document.body.
+                                        </div>
+                                    </div>
+ 
+     
+                                    <div class="default">
+                                        Default Value: false
                                     </div>        
 
                                     <hr />
@@ -6581,6 +6730,23 @@ Then it will trigger the editors save handler and place the new content back int
                                     <hr />
                                     </div>        
                                     <div class="">
+                                    <h4><a name="plainText">plainText</a>
+                                        <code>- Boolean</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Process the inital textarea data as if it was plain text. Accounting for spaces, tabs and line feeds.
+                                        </div>
+                                    </div>
+ 
+     
+                                    <div class="default">
+                                        Default Value: false
+                                    </div>        
+
+                                    <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="removeLineBreaks">removeLineBreaks</a>
                                         <code>- Boolean</code>
                                     </h4>
@@ -6700,11 +6866,11 @@ Then it will trigger the editors save handler and place the new content back int
 
                                 <li class=""><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -6720,17 +6886,23 @@ Then it will trigger the editors save handler and place the new content back int
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -6739,6 +6911,8 @@ Then it will trigger the editors save handler and place the new content back int
                                 <li class=""><a href="module_tabview.html">tabview</a></li>
 
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
 
@@ -6988,6 +7162,9 @@ Then it will trigger the editors save handler and place the new content back int
                                 <a href="#_handleAlign">_handleAlign</a>
                                 </li>
                                 <li class="private"><!--<code>void</code>-->
+                                <a href="#_handleAutoHeight">_handleAutoHeight</a>
+                                </li>
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_handleClick">_handleClick</a>
                                 </li>
                                 <li class="private"><!--<code>void</code>-->
@@ -7004,6 +7181,9 @@ Then it will trigger the editors save handler and place the new content back int
                                 </li>
                                 <li class="private"><!--<code>void</code>-->
                                 <a href="#_handleFontSize">_handleFontSize</a>
+                                </li>
+                                <li class="private"><!--<code>void</code>-->
+                                <a href="#_handleFormSubmit">_handleFormSubmit</a>
                                 </li>
                                 <li class="private"><!--<code>void</code>-->
                                 <a href="#_handleInsertImageClick">_handleInsertImageClick</a>
@@ -7049,6 +7229,9 @@ Then it will trigger the editors save handler and place the new content back int
                                 </li>
                                 <li class="private"><!--<code>void</code>-->
                                 <a href="#_listFix">_listFix</a>
+                                </li>
+                                <li class="private"><!--<code>void</code>-->
+                                <a href="#_render">_render</a>
                                 </li>
                                 <li class="private"><!--<code>void</code>-->
                                 <a href="#_renderPanel">_renderPanel</a>
@@ -7207,70 +7390,70 @@ Then it will trigger the editors save handler and place the new content back int
                                 <a href="#afterRender">afterRender</a>
                                 </li>
                                 <li class="">
-                                <a href="#animateChangeEvent">animateChangeEvent</a>
+                                <a href="#animateChange">animateChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#beforeAnimateChangeEvent">beforeAnimateChangeEvent</a>
+                                <a href="#beforeAnimateChange">beforeAnimateChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#beforeBlankimageChangeEvent">beforeBlankimageChangeEvent</a>
+                                <a href="#beforeBlankimageChange">beforeBlankimageChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#beforeCssChangeEvent">beforeCssChangeEvent</a>
+                                <a href="#beforeCssChange">beforeCssChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#beforeDisabledChangeEvent">beforeDisabledChangeEvent</a>
+                                <a href="#beforeDisabledChange">beforeDisabledChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#beforeDompathChangeEvent">beforeDompathChangeEvent</a>
+                                <a href="#beforeDompathChange">beforeDompathChange</a>
                                 </li>
                                 <li class="">
                                 <a href="#beforeExecCommand">beforeExecCommand</a>
                                 </li>
                                 <li class="">
-                                <a href="#beforeExtracssChangeEvent">beforeExtracssChangeEvent</a>
+                                <a href="#beforeExtracssChange">beforeExtracssChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#beforeFocusatstartChangeEvent">beforeFocusatstartChangeEvent</a>
+                                <a href="#beforeFocusatstartChange">beforeFocusatstartChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#beforeHandlesubmitChangeEvent">beforeHandlesubmitChangeEvent</a>
+                                <a href="#beforeHandlesubmitChange">beforeHandlesubmitChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#beforeHeightChangeEvent">beforeHeightChangeEvent</a>
+                                <a href="#beforeHeightChange">beforeHeightChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#beforeHtmlChangeEvent">beforeHtmlChangeEvent</a>
+                                <a href="#beforeHtmlChange">beforeHtmlChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#beforeMarkupChangeEvent">beforeMarkupChangeEvent</a>
+                                <a href="#beforeMarkupChange">beforeMarkupChange</a>
                                 </li>
                                 <li class="">
                                 <a href="#beforeNodeChange">beforeNodeChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#beforeRemovelinebreaksChangeEvent">beforeRemovelinebreaksChangeEvent</a>
+                                <a href="#beforeRemovelinebreaksChange">beforeRemovelinebreaksChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#beforeToolbarChangeEvent">beforeToolbarChangeEvent</a>
+                                <a href="#beforeToolbarChange">beforeToolbarChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#beforeWidthChangeEvent">beforeWidthChangeEvent</a>
+                                <a href="#beforeWidthChange">beforeWidthChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#blankimageChangeEvent">blankimageChangeEvent</a>
+                                <a href="#blankimageChange">blankimageChange</a>
                                 </li>
                                 <li class="">
                                 <a href="#cleanHTML">cleanHTML</a>
                                 </li>
                                 <li class="">
-                                <a href="#cssChangeEvent">cssChangeEvent</a>
+                                <a href="#cssChange">cssChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#disabledChangeEvent">disabledChangeEvent</a>
+                                <a href="#disabledChange">disabledChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#dompathChangeEvent">dompathChangeEvent</a>
+                                <a href="#dompathChange">dompathChange</a>
                                 </li>
                                 <li class="">
                                 <a href="#editorContentLoaded">editorContentLoaded</a>
@@ -7294,34 +7477,34 @@ Then it will trigger the editors save handler and place the new content back int
                                 <a href="#editorMouseUp">editorMouseUp</a>
                                 </li>
                                 <li class="">
-                                <a href="#extracssChangeEvent">extracssChangeEvent</a>
+                                <a href="#extracssChange">extracssChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#focusAtStartChangeEvent">focusAtStartChangeEvent</a>
+                                <a href="#focusAtStartChange">focusAtStartChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#handleSubmitChangeEvent">handleSubmitChangeEvent</a>
+                                <a href="#handleSubmitChange">handleSubmitChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#heightChangeEvent">heightChangeEvent</a>
+                                <a href="#heightChange">heightChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#htmlChangeEvent">htmlChangeEvent</a>
+                                <a href="#htmlChange">htmlChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#markupChangeEvent">markupChangeEvent</a>
+                                <a href="#markupChange">markupChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#removeLineBreaksChangeEvent">removeLineBreaksChangeEvent</a>
+                                <a href="#removeLineBreaksChange">removeLineBreaksChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#toolbarChangeEvent">toolbarChangeEvent</a>
+                                <a href="#toolbarChange">toolbarChange</a>
                                 </li>
                                 <li class="">
                                 <a href="#toolbarLoaded">toolbarLoaded</a>
                                 </li>
                                 <li class="">
-                                <a href="#widthChangeEvent">widthChangeEvent</a>
+                                <a href="#widthChange">widthChange</a>
                                 </li>
                         </ul>
                     </div>
@@ -7336,7 +7519,13 @@ Then it will trigger the editors save handler and place the new content back int
                                 <a href="#animate">animate</a>
                                 </li>
                                 <li class="">
+                                <a href="#autoHeight">autoHeight</a>
+                                </li>
+                                <li class="">
                                 <a href="#blankimage">blankimage</a>
+                                </li>
+                                <li class="private">
+                                <a href="#container">container</a>
                                 </li>
                                 <li class="">
                                 <a href="#css">css</a>
@@ -7382,6 +7571,9 @@ Then it will trigger the editors save handler and place the new content back int
                                 </li>
                                 <li class="">
                                 <a href="#panel">panel</a>
+                                </li>
+                                <li class="">
+                                <a href="#plainText">plainText</a>
                                 </li>
                                 <li class="">
                                 <a href="#removeLineBreaks">removeLineBreaks</a>

@@ -20,7 +20,7 @@ body {
 <link rel="stylesheet" type="text/css" href="../../build/autocomplete/assets/skins/sam/autocomplete.css" />
 <script type="text/javascript" src="../../build/yahoo-dom-event/yahoo-dom-event.js"></script>
 <script type="text/javascript" src="../../build/animation/animation.js"></script>
-<script type="text/javascript" src="../../build/get/get-beta.js"></script>
+<script type="text/javascript" src="../../build/get/get.js"></script>
 <script type="text/javascript" src="../../build/autocomplete/autocomplete.js"></script>
 
 
@@ -46,7 +46,9 @@ body {
 <div class="exampleIntro">
 	<p>This AutoComplete instance uses a Script Node type of DataSource in order to
 retrieve data from a cross-domain server, Yahoo!'s Audio Search API, without
-the need for a proxy. The DataSource schema is defined to parse the return data
+the need for a proxy. The webservice must support a "callback" parameter, which
+the AutoComplete widget will use to pass in its internal callback function.
+The DataSource schema is defined to parse the return data
 for fields named "Name" and "Thumbnail" (in order to display a thumbnail image to
 the user).</p>
 			

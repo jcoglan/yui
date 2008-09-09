@@ -64,7 +64,7 @@ YAHOO.util.Event.addListener(window, "load", function() {
         this.myDataSource = new YAHOO.util.DataSource(YAHOO.example.Data.emails);
         this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_JSON;
         this.myDataSource.responseSchema = {
-            resultsList: ["messages"],
+            resultsList: "messages",
             fields: ["Date","To","From","Subject","XID","Date","Attachment"]
         };
 
@@ -72,31 +72,30 @@ YAHOO.util.Event.addListener(window, "load", function() {
                 myColumnDefs, this.myDataSource, {
                     caption:"Standard Row Selection with Support for Modifier Keys"
                 });
-
+                
         // Subscribe to events for row selection
         this.standardSelectDataTable.subscribe("rowMouseoverEvent", this.standardSelectDataTable.onEventHighlightRow);
         this.standardSelectDataTable.subscribe("rowMouseoutEvent", this.standardSelectDataTable.onEventUnhighlightRow);
         this.standardSelectDataTable.subscribe("rowClickEvent", this.standardSelectDataTable.onEventSelectRow);
 
-        // Programmatically select the first row immediately
+        // Programmatically select the first row
         this.standardSelectDataTable.selectRow(this.standardSelectDataTable.getTrEl(0));
-        
         // Programmatically bring focus to the instance so arrow selection works immediately
         this.standardSelectDataTable.focus();
-
+        
         this.singleSelectDataTable = new YAHOO.widget.DataTable("single",
                 myColumnDefs, this.myDataSource, {
                     caption:"Single-Row Selection with Modifier Keys Disabled",
                     selectionMode:"single"
                 });
-
+                
         // Subscribe to events for row selection
         this.singleSelectDataTable.subscribe("rowMouseoverEvent", this.singleSelectDataTable.onEventHighlightRow);
         this.singleSelectDataTable.subscribe("rowMouseoutEvent", this.singleSelectDataTable.onEventUnhighlightRow);
         this.singleSelectDataTable.subscribe("rowClickEvent", this.singleSelectDataTable.onEventSelectRow);
-
-        // Programmatically select the first row immediately
-        this.singleSelectDataTable.selectRow(this.standardSelectDataTable.getTrEl(0));
+        
+        // Programmatically select the first row
+        this.singleSelectDataTable.selectRow(this.singleSelectDataTable.getTrEl(0));
     };
 });
 </script>

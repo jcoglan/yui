@@ -65,7 +65,7 @@ YAHOO.util.Event.addListener(window, "load", function() {
 
         ];
 
-        this.myDataSource = new YAHOO.util.DataSource("assets/php/text_proxy.txt");
+        this.myDataSource = new YAHOO.util.DataSource("assets/php/text_proxy.txt?");
         this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_TEXT;
         this.myDataSource.responseSchema = {
             recordDelim: "\n",
@@ -85,14 +85,16 @@ YAHOO.util.Event.addListener(window, "load", function() {
             {key:"Stars", formatter:YAHOO.widget.DataTable.formatNumber, sortable:true}
         ];
 
-        this.anotherDataSource = new YAHOO.util.DataSource("assets/php/text_with_headers_proxy.txt");
+        this.anotherDataSource = new YAHOO.util.DataSource("assets/php/text_with_headers_proxy.txt?");
         this.anotherDataSource.responseType = YAHOO.util.DataSource.TYPE_TEXT;
         this.anotherDataSource.responseSchema = {
             recordDelim: "\n",
             fieldDelim: "|",
             fields: ["Restaurant","Location","Town","Telephone",{key:"Stars",parser:YAHOO.util.DataSource.parseNumber},"Website"]
         };
-        this.anotherDataSource.doBeforeCallback = function(oRequest, oRawResponse, oParsedResponse) {
+        // Upgrade note: As of 2.5.0, the second argument is the full type-converted
+        // response from the live data, and not the unconverted raw response
+        this.anotherDataSource.doBeforeCallback = function(oRequest, oFullResponse, oParsedResponse) {
             // Remove the first result (i.e., the headers);
             oParsedResponse.results.shift();
             return oParsedResponse;

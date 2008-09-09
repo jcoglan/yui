@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>TreeView Widget&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>TreeView Widget&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_treeview.html">treeview</a>
@@ -89,7 +89,15 @@ used for this node's display.
                                                     &lt;object&gt; 
                                                     </code>
                                                       a string or object containing the data that will
-be used to render this node
+be used to render this node.  
+Valid configuration properties: 
+<dl>
+<dt>html</dt>
+<dd>The html content for the node</dd>
+</dl>
+All other attributes are made available in noderef.data, which
+can be used to store custom attributes.  TreeView.getNode(s)ByProperty
+can be used to retreive a node by one of the attributes.
                                                 </dd>
                                                 <dd>
                                                     <code>oParent
@@ -108,7 +116,10 @@ be used to render this node
                                                     &lt;boolean&gt; 
                                                     </code>
                                                       specifies whether or not leaf nodes should
-have an icon
+be rendered with or without a horizontal line line icon. If the icon
+is not displayed, the content fills the space it would have occupied.
+This option operates independently of the leaf node presentation logic
+for dynamic nodes.
                                                 </dd>
                                         </dl>
                                     
@@ -121,21 +132,6 @@ have an icon
                         <div class="section field details">
                             <h3 id="properties">Properties</h3>
                             <div class="content">
-                                    <div class="">
-                                    <h4><a name="content">content</a>
-                                        <code>- string</code>
-                                    </h4>
-                                    <div class="detail">
-                                        <div class="description">
-                                            The HTML content to use for this node's display
-                                        </div>
-                                    </div>
-     
-                                        
-
-
-                                    <hr />
-                                    </div>
                                     <div class="">
                                     <h4><a name="contentElId">contentElId</a>
                                         <code>- string</code>
@@ -159,6 +155,21 @@ have an icon
                                         <div class="description">
                                             The CSS class for the html content container.  Defaults to ygtvhtml, but 
 can be overridden to provide a custom presentation for a specific node.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4><a name="html">html</a>
+                                        <code>- string</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            The HTML content to use for this node's display
                                         </div>
                                     </div>
      
@@ -220,6 +231,7 @@ can be overridden to provide a custom presentation for a specific node.
                                         <a class="" href="YAHOO.widget.Node.html#href">href</a><span class="">,</span>
                                         <a class="" href="YAHOO.widget.Node.html#iconMode">iconMode</a><span class="">,</span>
                                         <a class="" href="YAHOO.widget.Node.html#index">index</a><span class="">,</span>
+                                        <a class="" href="YAHOO.widget.Node.html#isLeaf">isLeaf</a><span class="">,</span>
                                         <a class="" href="YAHOO.widget.Node.html#isLoading">isLoading</a><span class="">,</span>
                                         <a class="" href="YAHOO.widget.Node.html#multiExpand">multiExpand</a><span class="">,</span>
                                         <a class="" href="YAHOO.widget.Node.html#nextSibling">nextSibling</a><span class="">,</span>
@@ -340,11 +352,11 @@ toggle style.</a><span class="">,</span>                                        
 
                                 <li class=""><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -360,17 +372,23 @@ toggle style.</a><span class="">,</span>                                        
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -379,6 +397,8 @@ toggle style.</a><span class="">,</span>                                        
                                 <li class=""><a href="module_tabview.html">tabview</a></li>
 
                                 <li class="selected"><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
 
@@ -421,13 +441,13 @@ toggle style.</a><span class="">,</span>                                        
                     <div class="module">
                         <h4>Properties</h4>
                         <ul class="content">        
-                                <li class=""><a href="#content">content</a>
-                                        <!--<code>&lt;object&gt;</code>-->
-                                </li>
                                 <li class=""><a href="#contentElId">contentElId</a>
                                         <!--<code>&lt;object&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#contentStyle">contentStyle</a>
+                                        <!--<code>&lt;object&gt;</code>-->
+                                </li>
+                                <li class=""><a href="#html">html</a>
                                         <!--<code>&lt;object&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#initContent">initContent</a>

@@ -1,4 +1,8 @@
-<?php header('Content-type: application/json'); ?>
+<?php
+	/* yadl_spaceid - Skip Stamping */ 
+	
+	header('Content-type: application/json');
+?>
 {"Results":
 [
 	{"Name":"A","Value":"<?php echo rand(0, 99); ?>"},

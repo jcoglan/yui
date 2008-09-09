@@ -9,7 +9,7 @@
 <script type="text/javascript" src="../build/dom/dom-min.js"></script>
 <script type="text/javascript" src="../build/event/event-min.js"></script>
 <script type="text/javascript" src="../build/logger/logger-min.js"></script>
-<script type="text/javascript" src="../build/yuitest/yuitest-beta.js"></script>
+<script type="text/javascript" src="../build/yuitest/yuitest.js"></script>
 <script type="text/javascript" src="../build/autocomplete/autocomplete.js"></script>
 
 </head>
@@ -99,8 +99,8 @@
             var ac = this.createInstance();
             ac.destroy();
             Assert.isNull(ac.dataSource, "Expected datasource to be null");
-            Assert.isNull(ac._oContainer, "Expected container to be null");
-            Assert.isNull(ac._oTextbox, "Expected textbox to be null");
+            Assert.isNull(ac._elContainer, "Expected container to be null");
+            Assert.isNull(ac._elTextbox, "Expected textbox to be null");
             ac = null;
         },
 

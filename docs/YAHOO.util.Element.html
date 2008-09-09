@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>element&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>element&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_element.html">element</a>
@@ -54,10 +54,16 @@
                         <dl class="subclasses">
                             <dt>Known Subclasses:</dd>
                             <dd>
+                                    <a href="YAHOO.widget.Toolbar.html">YAHOO.widget.Toolbar</a>
+                                    <a href="YAHOO.util.Resize.html">YAHOO.util.Resize</a>
+                                    <a href="YAHOO.widget.Layout.html">YAHOO.widget.Layout</a>
+                                    <a href="YAHOO.widget.ImageCropper.html">YAHOO.widget.ImageCropper</a>
                                     <a href="YAHOO.widget.SimpleEditor.html">YAHOO.widget.SimpleEditor</a>
+                                    <a href="YAHOO.widget.LayoutUnit.html">YAHOO.widget.LayoutUnit</a>
                                     <a href="YAHOO.widget.ColorPicker.html">YAHOO.widget.ColorPicker</a>
                                     <a href="YAHOO.widget.ToolbarButton.html">YAHOO.widget.ToolbarButton</a>
                                     <a href="YAHOO.widget.ButtonGroup.html">YAHOO.widget.ButtonGroup</a>
+                                    <a href="YAHOO.widget.ProfilerViewer.html">YAHOO.widget.ProfilerViewer</a>
                                     <a href="YAHOO.widget.Button.html">YAHOO.widget.Button</a>
                                     <a href="YAHOO.widget.Tab.html">YAHOO.widget.Tab</a>
                                     <a href="YAHOO.widget.TabView.html">YAHOO.widget.TabView</a>
@@ -1273,6 +1279,43 @@ the element before.
                             <div class="content">
                                     <div class="">
                                     <h4>
+                                        <a name="appendTo">appendTo</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>appendTo</strong>
+
+                                            (
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires after the Element is appended to another Element.
+<p>See: <a href="#addListener">Element.addListener</a></p>
+<p><strong>Event fields:</strong><br>
+<code>&lt;String&gt; type</code> appendTo<br>
+<code>&lt;HTMLElement/Element&gt;
+target</code> the HTMLElement/Element being appended to 
+<p><strong>Usage:</strong><br>
+<code>var handler = function(e) {var target = e.target};<br>
+myTabs.addListener('appendTo', handler);</code></p>
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="available">available</a></h4>
                                     <div class="detail">
                                         <code>
@@ -1310,6 +1353,84 @@ myTabs.addListener('available', handler);</code></p>
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="beforeAppendTo">beforeAppendTo</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeAppendTo</strong>
+
+                                            (
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the Element is appended to another Element.
+<p>See: <a href="#addListener">Element.addListener</a></p>
+<p><strong>Event fields:</strong><br>
+<code>&lt;String&gt; type</code> beforeAppendTo<br>
+<code>&lt;HTMLElement/Element&gt;
+target</code> the HTMLElement/Element being appended to 
+<p><strong>Usage:</strong><br>
+<code>var handler = function(e) {var target = e.target};<br>
+myTabs.addListener('beforeAppendTo', handler);</code></p>
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeElementChange">beforeElementChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeElementChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'element' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="contentReady">contentReady</a></h4>
                                     <div class="detail">
                                         <code>
@@ -1338,6 +1459,47 @@ myTabs.addListener('contentReady', handler);</code></p>
                                         <div class="description">
 
 
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="elementChange">elementChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>elementChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'element' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
 
 
                                         </div>
@@ -1397,11 +1559,11 @@ myTabs.addListener('contentReady', handler);</code></p>
 
                                 <li class=""><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -1417,17 +1579,23 @@ myTabs.addListener('contentReady', handler);</code></p>
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -1436,6 +1604,8 @@ myTabs.addListener('contentReady', handler);</code></p>
                                 <li class=""><a href="module_tabview.html">tabview</a></li>
 
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
 
@@ -1545,10 +1715,22 @@ myTabs.addListener('contentReady', handler);</code></p>
                         <h4>Events</h4>
                         <ul class="content">        
                                 <li class="">
+                                <a href="#appendTo">appendTo</a>
+                                </li>
+                                <li class="">
                                 <a href="#available">available</a>
                                 </li>
                                 <li class="">
+                                <a href="#beforeAppendTo">beforeAppendTo</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeElementChange">beforeElementChange</a>
+                                </li>
+                                <li class="">
                                 <a href="#contentReady">contentReady</a>
+                                </li>
+                                <li class="">
+                                <a href="#elementChange">elementChange</a>
                                 </li>
                         </ul>
                     </div>

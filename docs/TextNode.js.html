@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>TreeView Widget&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>TreeView Widget&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_treeview.html">treeview</a>
@@ -47,7 +47,26 @@
 <span class="c"> * @extends YAHOO.widget.Node</span>
 <span class="c"> * @constructor</span>
 <span class="c"> * @param oData {object} a string or object containing the data that will</span>
-<span class="c"> * be used to render this node</span>
+<span class="c"> * be used to render this node.</span>
+<span class="c"> * Valid properties: </span>
+<span class="c"> * &lt;dl&gt;</span>
+<span class="c"> *   &lt;dt&gt;label&lt;/dt&gt;</span>
+<span class="c"> *   &lt;dd&gt;The text for the node&#39;s label&lt;/dd&gt;</span>
+<span class="c"> *   &lt;dt&gt;title&lt;/dt&gt;</span>
+<span class="c"> *   &lt;dd&gt;The title attribute for the label anchor&lt;/dd&gt;</span>
+<span class="c"> *   &lt;dt&gt;title&lt;/dt&gt;</span>
+<span class="c"> *   &lt;dd&gt;The title attribute for the label anchor&lt;/dd&gt;</span>
+<span class="c"> *   &lt;dt&gt;href&lt;/dt&gt;</span>
+<span class="c"> *   &lt;dd&gt;The href for the node&#39;s label.  By default it is set to</span>
+<span class="c"> *   expand/collapse the node.&lt;/dd&gt;</span>
+<span class="c"> *   &lt;dt&gt;target&lt;/dt&gt;</span>
+<span class="c"> *   &lt;dd&gt;The target attribute for the label anchor&lt;/dd&gt;</span>
+<span class="c"> *   &lt;dt&gt;style&lt;/dt&gt;</span>
+<span class="c"> *   &lt;dd&gt;A CSS class to apply to the label anchor&lt;/dd&gt;</span>
+<span class="c"> * &lt;/dl&gt;</span>
+<span class="c"> * All other attributes are made available in noderef.data, which</span>
+<span class="c"> * can be used to store custom attributes.  TreeView.getNode(s)ByProperty</span>
+<span class="c"> * can be used to retreive a node by one of the attributes.</span>
 <span class="c"> * @param oParent {YAHOO.widget.Node} this node&#39;s parent node</span>
 <span class="c"> * @param expanded {boolean} the initial expanded/collapsed state</span>
 <span class="c"> */</span>
@@ -275,11 +294,11 @@
 
                                 <li class=""><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -295,17 +314,23 @@
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -314,6 +339,8 @@
                                 <li class=""><a href="module_tabview.html">tabview</a></li>
 
                                 <li class="selected"><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
 

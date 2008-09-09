@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Container&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>Container&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_container.html">container</a>
@@ -144,7 +144,7 @@ documentation for more details.
                                         
 
                                     <div class="deprecated">
-                                        <strong>Deprecated: </strong>Use YAHOO.env.ua
+                                        <strong>Deprecated:</strong> Use YAHOO.env.ua
                                     </div>        
 
                                     <hr />
@@ -284,7 +284,7 @@ a Module instance.
                                         
 
                                     <div class="deprecated">
-                                        <strong>Deprecated: </strong>It is recommend that any images for a Module be applied
+                                        <strong>Deprecated:</strong> It is recommend that any images for a Module be applied
 via CSS using the "background-image" property.
                                     </div>        
 
@@ -483,6 +483,75 @@ prevent Operation Aborted errors in IE.
                                                              HTML element to be added to parentNode's children
                                                         </dd>
                                                 </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="protected">
+                                    <h4>
+                                        <a name="_initResizeMonitor">_initResizeMonitor</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         protected 
+                                        
+                                        
+                                        void
+                                            <strong>_initResizeMonitor</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Create and initialize the text resize monitoring iframe.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4>
+                                        <a name="_supportsCWResize">_supportsCWResize</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        void
+                                            <strong>_supportsCWResize</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Text resize monitor helper method.
+Determines if the browser supports resize events on iframe content windows.
+                                        </div>
+
+                                        <div class="description">
+
 
                                                 <dl>
                                                     <dt>Returns:
@@ -991,7 +1060,7 @@ automatically at appropriate times by the Module class.
                                         </code>
                                         
                                         <div class="description">
-                                            Initialized an empty IFRAME that is placed out of the visible area 
+                                            Initialize an empty IFRAME that is placed out of the visible area 
 that can be used to detect text resize.
                                         </div>
 
@@ -1168,7 +1237,8 @@ represents the actual Standard Module container.
                                         <div class="description">
                                             Sets the Module's body content to the HTML specified, or appends the
 passed element to the body. If no body is present, one will be 
-automatically created.
+automatically created. An empty string can be passed to the method
+to clear the contents of the body.
                                         </div>
 
                                         <div class="description">
@@ -1177,7 +1247,11 @@ automatically created.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>bodyContent &lt;String&gt;</code>
-                                                             The HTML used to set the body <em>OR</em>
+                                                             The HTML used to set the body. 
+As a convenience, non HTMLElement objects can also be passed into 
+the method, and will be treated as strings, with the body innerHTML
+set to their default toString implementations.
+<em>OR</em>
                                                         </dd>
                                                         <dd>
                                                             <code>bodyContent &lt;HTMLElement&gt;</code>
@@ -1222,7 +1296,8 @@ automatically created.
                                         <div class="description">
                                             Sets the Module's footer content to the HTML specified, or appends 
 the passed element to the footer. If no footer is present, one will 
-be automatically created.
+be automatically created. An empty string can be passed to the method
+to clear the contents of the footer.
                                         </div>
 
                                         <div class="description">
@@ -1232,6 +1307,9 @@ be automatically created.
                                                         <dd>
                                                             <code>footerContent &lt;String&gt;</code>
                                                              The HTML used to set the footer 
+As a convenience, non HTMLElement objects can also be passed into 
+the method, and will be treated as strings, with the footer innerHTML
+set to their default toString implementations.
 <em>OR</em>
                                                         </dd>
                                                         <dd>
@@ -1276,9 +1354,10 @@ the footer
                                         </code>
                                         
                                         <div class="description">
-                                            Sets the Module's header content to the HTML specified, or appends 
+                                            Sets the Module's header content to the string specified, or appends 
 the passed element to the header. If no header is present, one will 
-be automatically created.
+be automatically created. An empty string can be passed to the method
+to clear the contents of the header.
                                         </div>
 
                                         <div class="description">
@@ -1287,7 +1366,10 @@ be automatically created.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>headerContent &lt;String&gt;</code>
-                                                             The HTML used to set the header 
+                                                             The string used to set the header.
+As a convenience, non HTMLElement objects can also be passed into 
+the method, and will be treated as strings, with the header innerHTML
+set to their default toString implementations.
 <em>OR</em>
                                                         </dd>
                                                         <dd>
@@ -2006,11 +2088,11 @@ for user font resizing in the document
 
                                 <li class="selected"><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -2026,17 +2108,23 @@ for user font resizing in the document
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -2045,6 +2133,8 @@ for user font resizing in the document
                                 <li class=""><a href="module_tabview.html">tabview</a></li>
 
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
 
@@ -2155,6 +2245,12 @@ for user font resizing in the document
                         <ul class="content">        
                                 <li class="protected"><!--<code>void</code>-->
                                 <a href="#_addToParent">_addToParent</a>
+                                </li>
+                                <li class="protected"><!--<code>void</code>-->
+                                <a href="#_initResizeMonitor">_initResizeMonitor</a>
+                                </li>
+                                <li class="private"><!--<code>void</code>-->
+                                <a href="#_supportsCWResize">_supportsCWResize</a>
                                 </li>
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#appendToBody">appendToBody</a>

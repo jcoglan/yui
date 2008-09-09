@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>editor&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>editor&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_editor.html">editor</a>
@@ -60,16 +60,35 @@
     
     <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">SimpleEditor</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="nx">attrs</span><span class="o">)</span> <span class="o">{</span>
         <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;SimpleEditor Initalizing&#39;</span><span class="o">,</span> <span class="s1">&#39;info&#39;</span><span class="o">,</span> <span class="s1">&#39;SimpleEditor&#39;</span><span class="o">);</span>
+        
+        <span class="k">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="o">{};</span>
+        <span class="k">if</span> <span class="o">(</span><span class="nx">Lang</span><span class="o">.</span><span class="nx">isObject</span><span class="o">(</span><span class="nx">el</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(!</span><span class="nx">el</span><span class="o">.</span><span class="nx">tagName</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">attrs</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nx">Lang</span><span class="o">.</span><span class="nx">augmentObject</span><span class="o">(</span><span class="nx">o</span><span class="o">,</span> <span class="nx">el</span><span class="o">);</span> <span class="c">//Break the config reference</span>
+<span class="c"></span>            <span class="nx">el</span> <span class="o">=</span> <span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s1">&#39;textarea&#39;</span><span class="o">);</span>
+            <span class="k">this</span><span class="o">.</span><span class="nx">DOMReady</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+            <span class="k">if</span> <span class="o">(</span><span class="nx">o</span><span class="o">.</span><span class="nx">container</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">Dom</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="nx">o</span><span class="o">.</span><span class="nx">container</span><span class="o">);</span>
+                <span class="nx">c</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nx">el</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="nb">document</span><span class="o">.</span><span class="nx">body</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nx">el</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nx">Lang</span><span class="o">.</span><span class="nx">augmentObject</span><span class="o">(</span><span class="nx">o</span><span class="o">,</span> <span class="nx">attrs</span><span class="o">);</span> <span class="c">//Break the config reference</span>
+<span class="c"></span>        <span class="o">}</span>
 
         <span class="k">var</span> <span class="nx">oConfig</span> <span class="o">=</span> <span class="o">{</span>
             <span class="nx">element</span><span class="o">:</span> <span class="kc">null</span><span class="o">,</span>
-            <span class="nx">attributes</span><span class="o">:</span> <span class="o">(</span><span class="nx">attrs</span> <span class="o">||</span> <span class="o">{})</span>
+            <span class="nx">attributes</span><span class="o">:</span> <span class="nx">o</span>
         <span class="o">},</span> <span class="nx">id</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
 
         <span class="k">if</span> <span class="o">(</span><span class="nx">Lang</span><span class="o">.</span><span class="nx">isString</span><span class="o">(</span><span class="nx">el</span><span class="o">))</span> <span class="o">{</span>
             <span class="nx">id</span> <span class="o">=</span> <span class="nx">el</span><span class="o">;</span>
         <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="nx">id</span> <span class="o">=</span> <span class="nx">el</span><span class="o">.</span><span class="nx">id</span><span class="o">;</span>
+            <span class="k">if</span> <span class="o">(</span><span class="nx">oConfig</span><span class="o">.</span><span class="nx">attributes</span><span class="o">.</span><span class="nx">id</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nx">id</span> <span class="o">=</span> <span class="nx">oConfig</span><span class="o">.</span><span class="nx">attributes</span><span class="o">.</span><span class="nx">id</span><span class="o">;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="nx">id</span> <span class="o">=</span> <span class="nx">Dom</span><span class="o">.</span><span class="nx">generateId</span><span class="o">(</span><span class="nx">el</span><span class="o">);</span>
+            <span class="o">}</span>
         <span class="o">}</span>
         <span class="nx">oConfig</span><span class="o">.</span><span class="nx">element</span> <span class="o">=</span> <span class="nx">el</span><span class="o">;</span>
 
@@ -117,70 +136,20 @@
 <span class="c">        * @description This flag will be set when certain things in the Editor happen. It is to be used by the developer to check to see if content has changed.</span>
 <span class="c">        * @type Boolean</span>
 <span class="c">        */</span>
-        <span class="nx">editorDirty</span><span class="o">:</span> <span class="kc">false</span><span class="o">,</span>
+        <span class="nx">editorDirty</span><span class="o">:</span> <span class="kc">null</span><span class="o">,</span>
         <span class="c">/**</span>
 <span class="c">        * @property _defaultCSS</span>
 <span class="c">        * @description The default CSS used in the config for &#39;css&#39;. This way you can add to the config like this: { css: YAHOO.widget.SimpleEditor.prototype._defaultCSS + &#39;ADD MYY CSS HERE&#39; }</span>
 <span class="c">        * @type String</span>
 <span class="c">        */</span>
-        <span class="nx">_defaultCSS</span><span class="o">:</span> <span class="s1">&#39;html { height: 95%; } body { height: 100%; padding: 7px; background-color: #fff; font:13px/1.22 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small; } a { color: blue; text-decoration: underline; cursor: pointer; } .warning-localfile { border-bottom: 1px dashed red !important; } .yui-busy { cursor: wait !important; } img.selected { border: 2px dotted #808080; } img { cursor: pointer !important; border: none; }&#39;</span><span class="o">,</span>
+        <span class="nx">_defaultCSS</span><span class="o">:</span> <span class="s1">&#39;html { height: 95%; } body { padding: 7px; background-color: #fff; font:13px/1.22 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small; } a { color: blue; text-decoration: underline; cursor: pointer; } .warning-localfile { border-bottom: 1px dashed red !important; } .yui-busy { cursor: wait !important; } img.selected { border: 2px dotted #808080; } img { cursor: pointer !important; border: none; }&#39;</span><span class="o">,</span>
         <span class="c">/**</span>
 <span class="c">        * @property _defaultToolbar</span>
 <span class="c">        * @private</span>
 <span class="c">        * @description Default toolbar config.</span>
 <span class="c">        * @type Object</span>
 <span class="c">        */</span>
-        <span class="nx">_defaultToolbar</span><span class="o">:</span> <span class="o">{</span>
-            <span class="nx">collapse</span><span class="o">:</span> <span class="kc">true</span><span class="o">,</span>
-            <span class="nx">titlebar</span><span class="o">:</span> <span class="s1">&#39;Text Editing Tools&#39;</span><span class="o">,</span>
-            <span class="nx">draggable</span><span class="o">:</span> <span class="kc">false</span><span class="o">,</span>
-            <span class="nx">buttons</span><span class="o">:</span> <span class="o">[</span>
-                <span class="o">{</span> <span class="nx">group</span><span class="o">:</span> <span class="s1">&#39;fontstyle&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Font Name and Size&#39;</span><span class="o">,</span>
-                    <span class="nx">buttons</span><span class="o">:</span> <span class="o">[</span>
-                        <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;select&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Arial&#39;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;fontname&#39;</span><span class="o">,</span> <span class="nx">disabled</span><span class="o">:</span> <span class="kc">true</span><span class="o">,</span>
-                            <span class="nx">menu</span><span class="o">:</span> <span class="o">[</span>
-                                <span class="o">{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;Arial&#39;</span><span class="o">,</span> <span class="nx">checked</span><span class="o">:</span> <span class="kc">true</span> <span class="o">},</span>
-                                <span class="o">{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;Arial Black&#39;</span> <span class="o">},</span>
-                                <span class="o">{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;Comic Sans MS&#39;</span> <span class="o">},</span>
-                                <span class="o">{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;Courier New&#39;</span> <span class="o">},</span>
-                                <span class="o">{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;Lucida Console&#39;</span> <span class="o">},</span>
-                                <span class="o">{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;Tahoma&#39;</span> <span class="o">},</span>
-                                <span class="o">{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;Times New Roman&#39;</span> <span class="o">},</span>
-                                <span class="o">{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;Trebuchet MS&#39;</span> <span class="o">},</span>
-                                <span class="o">{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;Verdana&#39;</span> <span class="o">}</span>
-                            <span class="o">]</span>
-                        <span class="o">},</span>
-                        <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;spin&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;13&#39;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;fontsize&#39;</span><span class="o">,</span> <span class="nx">range</span><span class="o">:</span> <span class="o">[</span> <span class="m">9</span><span class="o">,</span> <span class="m">75</span> <span class="o">],</span> <span class="nx">disabled</span><span class="o">:</span> <span class="kc">true</span> <span class="o">}</span>
-                    <span class="o">]</span>
-                <span class="o">},</span>
-                <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;separator&#39;</span> <span class="o">},</span>
-                <span class="o">{</span> <span class="nx">group</span><span class="o">:</span> <span class="s1">&#39;textstyle&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Font Style&#39;</span><span class="o">,</span>
-                    <span class="nx">buttons</span><span class="o">:</span> <span class="o">[</span>
-                        <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;push&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Bold CTRL + SHIFT + B&#39;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;bold&#39;</span> <span class="o">},</span>
-                        <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;push&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Italic CTRL + SHIFT + I&#39;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;italic&#39;</span> <span class="o">},</span>
-                        <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;push&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Underline CTRL + SHIFT + U&#39;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;underline&#39;</span> <span class="o">},</span>
-                        <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;separator&#39;</span> <span class="o">},</span>
-                        <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;color&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Font Color&#39;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;forecolor&#39;</span><span class="o">,</span> <span class="nx">disabled</span><span class="o">:</span> <span class="kc">true</span> <span class="o">},</span>
-                        <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;color&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Background Color&#39;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;backcolor&#39;</span><span class="o">,</span> <span class="nx">disabled</span><span class="o">:</span> <span class="kc">true</span> <span class="o">}</span>
-                        
-                    <span class="o">]</span>
-                <span class="o">},</span>
-                <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;separator&#39;</span> <span class="o">},</span>
-                <span class="o">{</span> <span class="nx">group</span><span class="o">:</span> <span class="s1">&#39;indentlist&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Lists&#39;</span><span class="o">,</span>
-                    <span class="nx">buttons</span><span class="o">:</span> <span class="o">[</span>
-                        <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;push&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Create an Unordered List&#39;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;insertunorderedlist&#39;</span> <span class="o">},</span>
-                        <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;push&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Create an Ordered List&#39;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;insertorderedlist&#39;</span> <span class="o">}</span>
-                    <span class="o">]</span>
-                <span class="o">},</span>
-                <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;separator&#39;</span> <span class="o">},</span>
-                <span class="o">{</span> <span class="nx">group</span><span class="o">:</span> <span class="s1">&#39;insertitem&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Insert Item&#39;</span><span class="o">,</span>
-                    <span class="nx">buttons</span><span class="o">:</span> <span class="o">[</span>
-                        <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;push&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;HTML Link CTRL + SHIFT + L&#39;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;createlink&#39;</span><span class="o">,</span> <span class="nx">disabled</span><span class="o">:</span> <span class="kc">true</span> <span class="o">},</span>
-                        <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;push&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Insert Image&#39;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;insertimage&#39;</span> <span class="o">}</span>
-                    <span class="o">]</span>
-                <span class="o">}</span>
-            <span class="o">]</span>
-        <span class="o">},</span>
+        <span class="nx">_defaultToolbar</span><span class="o">:</span> <span class="kc">null</span><span class="o">,</span>
         <span class="c">/**</span>
 <span class="c">        * @property _lastButton</span>
 <span class="c">        * @private</span>
@@ -213,9 +182,9 @@
 <span class="c">        * @property _blankImageLoaded</span>
 <span class="c">        * @private</span>
 <span class="c">        * @description Don&#39;t load the blank image more than once..</span>
-<span class="c">        * @type Date</span>
+<span class="c">        * @type Boolean</span>
 <span class="c">        */</span>
-        <span class="nx">_blankImageLoaded</span><span class="o">:</span> <span class="kc">false</span><span class="o">,</span>
+        <span class="nx">_blankImageLoaded</span><span class="o">:</span> <span class="kc">null</span><span class="o">,</span>
         <span class="c">/**</span>
 <span class="c">        * @property _fixNodesTimer</span>
 <span class="c">        * @private</span>
@@ -250,7 +219,7 @@
 <span class="c">        * @description Flag to determine if editor has been rendered or not</span>
 <span class="c">        * @type Boolean</span>
 <span class="c">        */</span>
-        <span class="nx">_rendered</span><span class="o">:</span> <span class="kc">false</span><span class="o">,</span>
+        <span class="nx">_rendered</span><span class="o">:</span> <span class="kc">null</span><span class="o">,</span>
         <span class="c">/**</span>
 <span class="c">        * @property DOMReady</span>
 <span class="c">        * @private</span>
@@ -309,7 +278,7 @@
 <span class="c">        * @description A reference to the current working element in the editor</span>
 <span class="c">        * @type Array</span>
 <span class="c">        */</span>
-        <span class="nx">currentElement</span><span class="o">:</span> <span class="o">[],</span>
+        <span class="nx">currentElement</span><span class="o">:</span> <span class="kc">null</span><span class="o">,</span>
         <span class="c">/**</span>
 <span class="c">        * @property dompath</span>
 <span class="c">        * @description A reference to the dompath container for writing the current working dom path to.</span>
@@ -341,6 +310,7 @@
             <span class="nx">link</span><span class="o">:</span> <span class="kc">true</span><span class="o">,</span>
             <span class="nx">html</span><span class="o">:</span> <span class="kc">true</span><span class="o">,</span>
             <span class="nx">body</span><span class="o">:</span> <span class="kc">true</span><span class="o">,</span>
+            <span class="nx">iframe</span><span class="o">:</span> <span class="kc">true</span><span class="o">,</span>
             <span class="nx">script</span><span class="o">:</span> <span class="kc">true</span><span class="o">,</span>
             <span class="nx">style</span><span class="o">:</span> <span class="kc">true</span><span class="o">,</span>
             <span class="nx">textarea</span><span class="o">:</span> <span class="kc">true</span>
@@ -431,6 +401,9 @@
                 <span class="nx">allowTransparency</span><span class="o">:</span> <span class="s1">&#39;true&#39;</span><span class="o">,</span>
                 <span class="nx">width</span><span class="o">:</span> <span class="s1">&#39;100%&#39;</span>
             <span class="o">};</span>
+            <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;autoHeight&#39;</span><span class="o">))</span> <span class="o">{</span>
+                <span class="nx">config</span><span class="o">.</span><span class="nx">scrolling</span> <span class="o">=</span> <span class="s1">&#39;no&#39;</span><span class="o">;</span>
+            <span class="o">}</span>
             <span class="k">for</span> <span class="o">(</span><span class="k">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">config</span><span class="o">)</span> <span class="o">{</span>
                 <span class="k">if</span> <span class="o">(</span><span class="nx">Lang</span><span class="o">.</span><span class="nx">hasOwnProperty</span><span class="o">(</span><span class="nx">config</span><span class="o">,</span> <span class="nx">i</span><span class="o">))</span> <span class="o">{</span>
                     <span class="nx">ifrmDom</span><span class="o">.</span><span class="nx">setAttribute</span><span class="o">(</span><span class="nx">i</span><span class="o">,</span> <span class="nx">config</span><span class="o">[</span><span class="nx">i</span><span class="o">]);</span>
@@ -438,9 +411,7 @@
             <span class="o">}</span>
             <span class="k">var</span> <span class="nx">isrc</span> <span class="o">=</span> <span class="s1">&#39;javascript:;&#39;</span><span class="o">;</span>
             <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">browser</span><span class="o">.</span><span class="nx">ie</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">if</span> <span class="o">(</span><span class="nb">window</span><span class="o">.</span><span class="nx">location</span><span class="o">.</span><span class="nx">href</span><span class="o">.</span><span class="nx">toLowerCase</span><span class="o">().</span><span class="nx">indexOf</span><span class="o">(</span><span class="s2">&quot;https&quot;</span><span class="o">)</span> <span class="o">!==</span> <span class="m">0</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="nx">isrc</span> <span class="o">=</span> <span class="s1">&#39;about:blank&#39;</span><span class="o">;</span>
-                <span class="o">}</span>
+                <span class="nx">isrc</span> <span class="o">=</span> <span class="s1">&#39;about:blank&#39;</span><span class="o">;</span>
             <span class="o">}</span>
             <span class="nx">ifrmDom</span><span class="o">.</span><span class="nx">setAttribute</span><span class="o">(</span><span class="s1">&#39;src&#39;</span><span class="o">,</span> <span class="nx">isrc</span><span class="o">);</span>
             <span class="k">var</span> <span class="nx">ifrm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Element</span><span class="o">(</span><span class="nx">ifrmDom</span><span class="o">);</span>
@@ -567,6 +538,10 @@
             <span class="k">var</span> <span class="nx">range</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_getRange</span><span class="o">();</span>
             <span class="k">var</span> <span class="nx">hasSel</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
 
+            <span class="k">if</span> <span class="o">(!</span><span class="nx">sel</span> <span class="o">||</span> <span class="o">!</span><span class="nx">range</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="nx">hasSel</span><span class="o">;</span>
+            <span class="o">}</span>
+
             <span class="c">//Internet Explorer</span>
 <span class="c"></span>            <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">browser</span><span class="o">.</span><span class="nx">ie</span> <span class="o">||</span> <span class="k">this</span><span class="o">.</span><span class="nx">browser</span><span class="o">.</span><span class="nx">opera</span><span class="o">)</span> <span class="o">{</span>
                 <span class="k">if</span> <span class="o">(</span><span class="nx">range</span><span class="o">.</span><span class="nx">text</span><span class="o">)</span> <span class="o">{</span>
@@ -684,7 +659,11 @@
             <span class="o">}</span>
 
             <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">browser</span><span class="o">.</span><span class="nx">ie</span> <span class="o">||</span> <span class="k">this</span><span class="o">.</span><span class="nx">browser</span><span class="o">.</span><span class="nx">opera</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">return</span> <span class="nx">sel</span><span class="o">.</span><span class="nx">createRange</span><span class="o">();</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="nx">sel</span><span class="o">.</span><span class="nx">createRange</span><span class="o">();</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+                <span class="o">}</span>
             <span class="o">}</span>
 
             <span class="k">if</span> <span class="o">(</span><span class="nx">sel</span><span class="o">.</span><span class="nx">rangeCount</span> <span class="o">&gt;</span> <span class="m">0</span><span class="o">)</span> <span class="o">{</span>
@@ -700,7 +679,14 @@
 <span class="c">        */</span>
         <span class="nx">_setDesignMode</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">state</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">try</span> <span class="o">{</span>
-                <span class="k">this</span><span class="o">.</span><span class="nx">_getDoc</span><span class="o">().</span><span class="nx">designMode</span> <span class="o">=</span> <span class="nx">state</span><span class="o">;</span>
+                <span class="k">var</span> <span class="nx">set</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="c">//SourceForge Bug #1807057</span>
+<span class="c"></span>                <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">browser</span><span class="o">.</span><span class="nx">ie</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="nx">state</span><span class="o">.</span><span class="nx">toLowerCase</span><span class="o">()</span> <span class="o">==</span> <span class="s1">&#39;off&#39;</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="nx">set</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+                <span class="o">}</span>
+                <span class="k">if</span> <span class="o">(</span><span class="nx">set</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">this</span><span class="o">.</span><span class="nx">_getDoc</span><span class="o">().</span><span class="nx">designMode</span> <span class="o">=</span> <span class="nx">state</span><span class="o">;</span>
+                <span class="o">}</span>
             <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">{</span> <span class="o">}</span>
         <span class="o">},</span>
         <span class="c">/**</span>
@@ -724,14 +710,23 @@
 <span class="c">        * @description This method is fired from _checkLoaded when the document is ready. It turns on designMode and set&#39;s up the listeners.</span>
 <span class="c">        */</span>
         <span class="nx">_initEditor</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
-            <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;editorLoaded&#39;</span><span class="o">,</span> <span class="s1">&#39;info&#39;</span><span class="o">,</span> <span class="s1">&#39;SimpleEditor&#39;</span><span class="o">);</span>
             <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">browser</span><span class="o">.</span><span class="nx">ie</span><span class="o">)</span> <span class="o">{</span>
                 <span class="k">this</span><span class="o">.</span><span class="nx">_getDoc</span><span class="o">().</span><span class="nx">body</span><span class="o">.</span><span class="nx">style</span><span class="o">.</span><span class="nx">margin</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span><span class="o">;</span>
             <span class="o">}</span>
             <span class="k">if</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;disabled&#39;</span><span class="o">))</span> <span class="o">{</span>
-                <span class="k">this</span><span class="o">.</span><span class="nx">_setDesignMode</span><span class="o">(</span><span class="s1">&#39;on&#39;</span><span class="o">);</span>
+                <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_getDoc</span><span class="o">().</span><span class="nx">designMode</span><span class="o">.</span><span class="nx">toLowerCase</span><span class="o">()</span> <span class="o">!=</span> <span class="s1">&#39;on&#39;</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">this</span><span class="o">.</span><span class="nx">_setDesignMode</span><span class="o">(</span><span class="s1">&#39;on&#39;</span><span class="o">);</span>
+                    <span class="k">this</span><span class="o">.</span><span class="nx">_contentTimerCounter</span> <span class="o">=</span> <span class="m">0</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+            <span class="k">if</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">_getDoc</span><span class="o">().</span><span class="nx">body</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;Body is null, check again&#39;</span><span class="o">,</span> <span class="s1">&#39;error&#39;</span><span class="o">,</span> <span class="s1">&#39;SimpleEditor&#39;</span><span class="o">);</span>
+                <span class="k">this</span><span class="o">.</span><span class="nx">_contentTimerCounter</span> <span class="o">=</span> <span class="m">0</span><span class="o">;</span>
+                <span class="k">this</span><span class="o">.</span><span class="nx">_checkLoaded</span><span class="o">();</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
             <span class="o">}</span>
             
+            <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;editorLoaded&#39;</span><span class="o">,</span> <span class="s1">&#39;info&#39;</span><span class="o">,</span> <span class="s1">&#39;SimpleEditor&#39;</span><span class="o">);</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">toolbar</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="s1">&#39;buttonClick&#39;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">_handleToolbarClick</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
             <span class="c">//Setup Listeners on iFrame</span>
 <span class="c"></span>            <span class="nx">Event</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_getDoc</span><span class="o">(),</span> <span class="s1">&#39;mouseup&#39;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">_handleMouseUp</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
@@ -765,14 +760,22 @@
             <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_contentTimer</span><span class="o">)</span> <span class="o">{</span>
                 <span class="nx">clearTimeout</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_contentTimer</span><span class="o">);</span>
             <span class="o">}</span>
-            <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_contentTimerCounter</span> <span class="o">&gt;</span> <span class="m">250</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_contentTimerCounter</span> <span class="o">&gt;</span> <span class="m">500</span><span class="o">)</span> <span class="o">{</span>
                 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;ERROR: Body Did Not load&#39;</span><span class="o">,</span> <span class="s1">&#39;error&#39;</span><span class="o">,</span> <span class="s1">&#39;SimpleEditor&#39;</span><span class="o">);</span>
                 <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
             <span class="o">}</span>
             <span class="k">var</span> <span class="nx">init</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
             <span class="k">try</span> <span class="o">{</span>
-                <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_getDoc</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">_getDoc</span><span class="o">().</span><span class="nx">body</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_getDoc</span><span class="o">().</span><span class="nx">body</span><span class="o">.</span><span class="nx">_rteLoaded</span> <span class="o">===</span> <span class="kc">true</span><span class="o">))</span> <span class="o">{</span>
-                    <span class="nx">init</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_getDoc</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">_getDoc</span><span class="o">().</span><span class="nx">body</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">browser</span><span class="o">.</span><span class="nx">ie</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_getDoc</span><span class="o">().</span><span class="nx">body</span><span class="o">.</span><span class="nx">readyState</span> <span class="o">==</span> <span class="s1">&#39;complete&#39;</span><span class="o">)</span> <span class="o">{</span>
+                            <span class="nx">init</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                        <span class="o">}</span>
+                    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                        <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_getDoc</span><span class="o">().</span><span class="nx">body</span><span class="o">.</span><span class="nx">_rteLoaded</span> <span class="o">===</span> <span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+                            <span class="nx">init</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                        <span class="o">}</span>
+                    <span class="o">}</span>
                 <span class="o">}</span>
             <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">{</span>
                 <span class="nx">init</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
@@ -936,7 +939,7 @@
                 <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">{</span>
                     <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;Firefox 1.5 errors here: &#39;</span> <span class="o">+</span> <span class="nx">e</span><span class="o">,</span> <span class="s1">&#39;error&#39;</span><span class="o">,</span> <span class="s1">&#39;SimpleEditor&#39;</span><span class="o">);</span>
                 <span class="o">}</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">currentElement</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">currentElement</span><span class="o">[</span><span class="m">0</span><span class="o">])</span> <span class="o">{</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">((</span><span class="k">this</span><span class="o">.</span><span class="nx">currentElement</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">currentElement</span><span class="o">[</span><span class="m">0</span><span class="o">])</span> <span class="o">&amp;&amp;</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">browser</span><span class="o">.</span><span class="nx">ie</span><span class="o">))</span> <span class="o">{</span>
                 <span class="nx">elm</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">currentElement</span><span class="o">[</span><span class="m">0</span><span class="o">];</span>
             <span class="o">}</span>
             <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">browser</span><span class="o">.</span><span class="nx">opera</span> <span class="o">||</span> <span class="k">this</span><span class="o">.</span><span class="nx">browser</span><span class="o">.</span><span class="nx">webkit</span><span class="o">)</span> <span class="o">{</span>
@@ -1812,6 +1815,13 @@
 <span class="c">        * @description Creates the accessibility h2 header and places it after the iframe in the Dom for navigation.</span>
 <span class="c">        */</span>
         <span class="nx">_setupAfterElement</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">beforeElement</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">this</span><span class="o">.</span><span class="nx">beforeElement</span> <span class="o">=</span> <span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s1">&#39;h2&#39;</span><span class="o">);</span>
+                <span class="k">this</span><span class="o">.</span><span class="nx">beforeElement</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s1">&#39;yui-editor-skipheader&#39;</span><span class="o">;</span>
+                <span class="k">this</span><span class="o">.</span><span class="nx">beforeElement</span><span class="o">.</span><span class="nx">tabIndex</span> <span class="o">=</span> <span class="s1">&#39;-1&#39;</span><span class="o">;</span>
+                <span class="k">this</span><span class="o">.</span><span class="nx">beforeElement</span><span class="o">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">STR_BEFORE_EDITOR</span><span class="o">;</span>
+                <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;element_cont&#39;</span><span class="o">).</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;firstChild&#39;</span><span class="o">).</span><span class="nx">insertBefore</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">beforeElement</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">toolbar</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;nextSibling&#39;</span><span class="o">));</span>
+            <span class="o">}</span>
             <span class="k">if</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">afterElement</span><span class="o">)</span> <span class="o">{</span>
                 <span class="k">this</span><span class="o">.</span><span class="nx">afterElement</span> <span class="o">=</span> <span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s1">&#39;h2&#39;</span><span class="o">);</span>
                 <span class="k">this</span><span class="o">.</span><span class="nx">afterElement</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s1">&#39;yui-editor-skipheader&#39;</span><span class="o">;</span>
@@ -1829,7 +1839,9 @@
         <span class="nx">_disableEditor</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">disabled</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">if</span> <span class="o">(</span><span class="nx">disabled</span><span class="o">)</span> <span class="o">{</span>
                 <span class="k">if</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">_mask</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="k">this</span><span class="o">.</span><span class="nx">_setDesignMode</span><span class="o">(</span><span class="s1">&#39;off&#39;</span><span class="o">);</span>
+                    <span class="k">if</span> <span class="o">(!!</span><span class="k">this</span><span class="o">.</span><span class="nx">browser</span><span class="o">.</span><span class="nx">ie</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="k">this</span><span class="o">.</span><span class="nx">_setDesignMode</span><span class="o">(</span><span class="s1">&#39;off&#39;</span><span class="o">);</span>
+                    <span class="o">}</span>
                     <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">toolbar</span><span class="o">)</span> <span class="o">{</span>
                         <span class="k">this</span><span class="o">.</span><span class="nx">toolbar</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="s1">&#39;disabled&#39;</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
                     <span class="o">}</span>
@@ -1971,9 +1983,66 @@
 <span class="c">        */</span>
         <span class="nx">init</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">p_oElement</span><span class="o">,</span> <span class="nx">p_oAttributes</span><span class="o">)</span> <span class="o">{</span>
             <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;init&#39;</span><span class="o">,</span> <span class="s1">&#39;info&#39;</span><span class="o">,</span> <span class="s1">&#39;SimpleEditor&#39;</span><span class="o">);</span>
+
+            <span class="k">if</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">_defaultToolbar</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">this</span><span class="o">.</span><span class="nx">_defaultToolbar</span> <span class="o">=</span> <span class="o">{</span>
+                    <span class="nx">collapse</span><span class="o">:</span> <span class="kc">true</span><span class="o">,</span>
+                    <span class="nx">titlebar</span><span class="o">:</span> <span class="s1">&#39;Text Editing Tools&#39;</span><span class="o">,</span>
+                    <span class="nx">draggable</span><span class="o">:</span> <span class="kc">false</span><span class="o">,</span>
+                    <span class="nx">buttons</span><span class="o">:</span> <span class="o">[</span>
+                        <span class="o">{</span> <span class="nx">group</span><span class="o">:</span> <span class="s1">&#39;fontstyle&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Font Name and Size&#39;</span><span class="o">,</span>
+                            <span class="nx">buttons</span><span class="o">:</span> <span class="o">[</span>
+                                <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;select&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Arial&#39;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;fontname&#39;</span><span class="o">,</span> <span class="nx">disabled</span><span class="o">:</span> <span class="kc">true</span><span class="o">,</span>
+                                    <span class="nx">menu</span><span class="o">:</span> <span class="o">[</span>
+                                        <span class="o">{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;Arial&#39;</span><span class="o">,</span> <span class="nx">checked</span><span class="o">:</span> <span class="kc">true</span> <span class="o">},</span>
+                                        <span class="o">{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;Arial Black&#39;</span> <span class="o">},</span>
+                                        <span class="o">{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;Comic Sans MS&#39;</span> <span class="o">},</span>
+                                        <span class="o">{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;Courier New&#39;</span> <span class="o">},</span>
+                                        <span class="o">{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;Lucida Console&#39;</span> <span class="o">},</span>
+                                        <span class="o">{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;Tahoma&#39;</span> <span class="o">},</span>
+                                        <span class="o">{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;Times New Roman&#39;</span> <span class="o">},</span>
+                                        <span class="o">{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;Trebuchet MS&#39;</span> <span class="o">},</span>
+                                        <span class="o">{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;Verdana&#39;</span> <span class="o">}</span>
+                                    <span class="o">]</span>
+                                <span class="o">},</span>
+                                <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;spin&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;13&#39;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;fontsize&#39;</span><span class="o">,</span> <span class="nx">range</span><span class="o">:</span> <span class="o">[</span> <span class="m">9</span><span class="o">,</span> <span class="m">75</span> <span class="o">],</span> <span class="nx">disabled</span><span class="o">:</span> <span class="kc">true</span> <span class="o">}</span>
+                            <span class="o">]</span>
+                        <span class="o">},</span>
+                        <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;separator&#39;</span> <span class="o">},</span>
+                        <span class="o">{</span> <span class="nx">group</span><span class="o">:</span> <span class="s1">&#39;textstyle&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Font Style&#39;</span><span class="o">,</span>
+                            <span class="nx">buttons</span><span class="o">:</span> <span class="o">[</span>
+                                <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;push&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Bold CTRL + SHIFT + B&#39;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;bold&#39;</span> <span class="o">},</span>
+                                <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;push&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Italic CTRL + SHIFT + I&#39;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;italic&#39;</span> <span class="o">},</span>
+                                <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;push&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Underline CTRL + SHIFT + U&#39;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;underline&#39;</span> <span class="o">},</span>
+                                <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;separator&#39;</span> <span class="o">},</span>
+                                <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;color&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Font Color&#39;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;forecolor&#39;</span><span class="o">,</span> <span class="nx">disabled</span><span class="o">:</span> <span class="kc">true</span> <span class="o">},</span>
+                                <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;color&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Background Color&#39;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;backcolor&#39;</span><span class="o">,</span> <span class="nx">disabled</span><span class="o">:</span> <span class="kc">true</span> <span class="o">}</span>
+                                
+                            <span class="o">]</span>
+                        <span class="o">},</span>
+                        <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;separator&#39;</span> <span class="o">},</span>
+                        <span class="o">{</span> <span class="nx">group</span><span class="o">:</span> <span class="s1">&#39;indentlist&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Lists&#39;</span><span class="o">,</span>
+                            <span class="nx">buttons</span><span class="o">:</span> <span class="o">[</span>
+                                <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;push&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Create an Unordered List&#39;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;insertunorderedlist&#39;</span> <span class="o">},</span>
+                                <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;push&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Create an Ordered List&#39;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;insertorderedlist&#39;</span> <span class="o">}</span>
+                            <span class="o">]</span>
+                        <span class="o">},</span>
+                        <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;separator&#39;</span> <span class="o">},</span>
+                        <span class="o">{</span> <span class="nx">group</span><span class="o">:</span> <span class="s1">&#39;insertitem&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Insert Item&#39;</span><span class="o">,</span>
+                            <span class="nx">buttons</span><span class="o">:</span> <span class="o">[</span>
+                                <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;push&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;HTML Link CTRL + SHIFT + L&#39;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;createlink&#39;</span><span class="o">,</span> <span class="nx">disabled</span><span class="o">:</span> <span class="kc">true</span> <span class="o">},</span>
+                                <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;push&#39;</span><span class="o">,</span> <span class="k">label</span><span class="o">:</span> <span class="s1">&#39;Insert Image&#39;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;insertimage&#39;</span> <span class="o">}</span>
+                            <span class="o">]</span>
+                        <span class="o">}</span>
+                    <span class="o">]</span>
+                <span class="o">};</span>
+            <span class="o">}</span>
+
             <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">SimpleEditor</span><span class="o">.</span><span class="nx">superclass</span><span class="o">.</span><span class="nx">init</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="nx">p_oElement</span><span class="o">,</span> <span class="nx">p_oAttributes</span><span class="o">);</span>
             <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">EditorInfo</span><span class="o">.</span><span class="nx">_instances</span><span class="o">[</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;id&#39;</span><span class="o">)]</span> <span class="o">=</span> <span class="k">this</span><span class="o">;</span>
 
+
+            <span class="k">this</span><span class="o">.</span><span class="nx">currentElement</span> <span class="o">=</span> <span class="o">[];</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="s1">&#39;contentReady&#39;</span><span class="o">,</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
                 <span class="k">this</span><span class="o">.</span><span class="nx">DOMReady</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
                 <span class="k">this</span><span class="o">.</span><span class="nx">fireQueue</span><span class="o">();</span>
@@ -1991,6 +2060,27 @@
             <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">SimpleEditor</span><span class="o">.</span><span class="nx">superclass</span><span class="o">.</span><span class="nx">initAttributes</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="nx">attr</span><span class="o">);</span>
             <span class="k">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="o">;</span>
 
+            <span class="c">/**</span>
+<span class="c">            * @config container</span>
+<span class="c">            * @description Used when dynamically creating the Editor from Javascript with no default textarea.</span>
+<span class="c">            * We will create one and place it in this container. If no container is passed we will append to document.body.</span>
+<span class="c">            * @default false</span>
+<span class="c">            * @type HTMLElement</span>
+<span class="c">            */</span>
+            <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="s1">&#39;container&#39;</span><span class="o">,</span> <span class="o">{</span>
+                <span class="nx">writeOnce</span><span class="o">:</span> <span class="kc">true</span><span class="o">,</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">container</span> <span class="o">||</span> <span class="kc">false</span>
+            <span class="o">});</span>
+            <span class="c">/**</span>
+<span class="c">            * @config plainText</span>
+<span class="c">            * @description Process the inital textarea data as if it was plain text. Accounting for spaces, tabs and line feeds.</span>
+<span class="c">            * @default false</span>
+<span class="c">            * @type Boolean</span>
+<span class="c">            */</span>
+            <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="s1">&#39;plainText&#39;</span><span class="o">,</span> <span class="o">{</span>
+                <span class="nx">writeOnce</span><span class="o">:</span> <span class="kc">true</span><span class="o">,</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">plainText</span> <span class="o">||</span> <span class="kc">false</span>
+            <span class="o">});</span>
             <span class="c">/**</span>
 <span class="c">            * @private</span>
 <span class="c">            * @config iframe</span>
@@ -2012,6 +2102,17 @@
             <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="s1">&#39;textarea&#39;</span><span class="o">,</span> <span class="o">{</span>
                 <span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="o">,</span>
                 <span class="nx">writeOnce</span><span class="o">:</span> <span class="kc">true</span>
+            <span class="o">});</span>
+            <span class="c">/**</span>
+<span class="c">            * @private</span>
+<span class="c">            * @config container</span>
+<span class="c">            * @description Internal config for holding a reference to the container to append a dynamic editor to.</span>
+<span class="c">            * @default null</span>
+<span class="c">            * @type HTMLElement</span>
+<span class="c">            */</span>
+            <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="s1">&#39;container&#39;</span><span class="o">,</span> <span class="o">{</span>
+                <span class="nx">readOnly</span><span class="o">:</span> <span class="kc">true</span><span class="o">,</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
             <span class="o">});</span>
             <span class="c">/**</span>
 <span class="c">            * @config nodeChangeThreshold</span>
@@ -2085,6 +2186,32 @@
                         <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
                             <span class="nx">Dom</span><span class="o">.</span><span class="nx">setStyle</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;iframe&#39;</span><span class="o">).</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;parentNode&#39;</span><span class="o">),</span> <span class="s1">&#39;height&#39;</span><span class="o">,</span> <span class="nx">height</span><span class="o">);</span>
                         <span class="o">}</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">});</span>
+            <span class="c">/**</span>
+<span class="c">            * @config autoHeight</span>
+<span class="c">            * @description Remove the scrollbars from the edit area and resize it to fit the content. It will not go any lower than the current config height.</span>
+<span class="c">            * @default false</span>
+<span class="c">            * @type Boolean || Number</span>
+<span class="c">            */</span>
+            <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="s1">&#39;autoHeight&#39;</span><span class="o">,</span> <span class="o">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">autoHeight</span> <span class="o">||</span> <span class="kc">false</span><span class="o">,</span>
+                <span class="nx">method</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">a</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="nx">a</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;iframe&#39;</span><span class="o">))</span> <span class="o">{</span>
+                            <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;iframe&#39;</span><span class="o">).</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;element&#39;</span><span class="o">).</span><span class="nx">setAttribute</span><span class="o">(</span><span class="s1">&#39;scrolling&#39;</span><span class="o">,</span> <span class="s1">&#39;no&#39;</span><span class="o">);</span>
+                        <span class="o">}</span>
+                        <span class="k">this</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="s1">&#39;afterNodeChange&#39;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">_handleAutoHeight</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+                        <span class="k">this</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="s1">&#39;editorKeyDown&#39;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">_handleAutoHeight</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+                        <span class="k">this</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="s1">&#39;editorKeyPress&#39;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">_handleAutoHeight</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+                    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                        <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;iframe&#39;</span><span class="o">))</span> <span class="o">{</span>
+                            <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;iframe&#39;</span><span class="o">).</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;element&#39;</span><span class="o">).</span><span class="nx">setAttribute</span><span class="o">(</span><span class="s1">&#39;scrolling&#39;</span><span class="o">,</span> <span class="s1">&#39;auto&#39;</span><span class="o">);</span>
+                        <span class="o">}</span>
+                        <span class="k">this</span><span class="o">.</span><span class="nx">unsubscribe</span><span class="o">(</span><span class="s1">&#39;afterNodeChange&#39;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">_handleAutoHeight</span><span class="o">);</span>
+                        <span class="k">this</span><span class="o">.</span><span class="nx">unsubscribe</span><span class="o">(</span><span class="s1">&#39;editorKeyDown&#39;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">_handleAutoHeight</span><span class="o">);</span>
+                        <span class="k">this</span><span class="o">.</span><span class="nx">unsubscribe</span><span class="o">(</span><span class="s1">&#39;editorKeyPress&#39;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">_handleAutoHeight</span><span class="o">);</span>
                     <span class="o">}</span>
                 <span class="o">}</span>
             <span class="o">});</span>
@@ -2212,21 +2339,27 @@
 <span class="c">            * @type Boolean</span>
 <span class="c">            */</span>            
             <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="s1">&#39;handleSubmit&#39;</span><span class="o">,</span> <span class="o">{</span>
-                <span class="nx">value</span><span class="o">:</span> <span class="kc">false</span><span class="o">,</span>
-                <span class="nx">writeOnce</span><span class="o">:</span> <span class="kc">true</span><span class="o">,</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">handleSubmit</span> <span class="o">||</span> <span class="kc">false</span><span class="o">,</span>
                 <span class="nx">method</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">exec</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="k">if</span> <span class="o">(</span><span class="nx">exec</span><span class="o">)</span> <span class="o">{</span>
-                        <span class="k">var</span> <span class="nx">ta</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;element&#39;</span><span class="o">);</span>
-                        <span class="k">if</span> <span class="o">(</span><span class="nx">ta</span><span class="o">.</span><span class="nx">form</span><span class="o">)</span> <span class="o">{</span>
-                            <span class="k">var</span> <span class="nx">submitForm</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">ev</span><span class="o">)</span> <span class="o">{</span>
-                                <span class="nx">Event</span><span class="o">.</span><span class="nx">stopEvent</span><span class="o">(</span><span class="nx">ev</span><span class="o">);</span>
-                                <span class="k">this</span><span class="o">.</span><span class="nx">saveHTML</span><span class="o">();</span>
-                                <span class="nb">window</span><span class="o">.</span><span class="nx">setTimeout</span><span class="o">(</span><span class="k">function</span><span class="o">()</span> <span class="o">{</span>
-                                    <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">removeListener</span><span class="o">(</span><span class="nx">ta</span><span class="o">.</span><span class="nx">form</span><span class="o">,</span> <span class="s1">&#39;submit&#39;</span><span class="o">,</span> <span class="nx">submitForm</span><span class="o">);</span>
-                                    <span class="nx">ta</span><span class="o">.</span><span class="nx">form</span><span class="o">.</span><span class="nx">submit</span><span class="o">();</span>
-                                <span class="o">},</span> <span class="m">200</span><span class="o">);</span>
-                            <span class="o">};</span>
-                            <span class="nx">Event</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="nx">ta</span><span class="o">.</span><span class="nx">form</span><span class="o">,</span> <span class="s1">&#39;submit&#39;</span><span class="o">,</span> <span class="nx">submitForm</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;element&#39;</span><span class="o">).</span><span class="nx">form</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="k">if</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">_formButtons</span><span class="o">)</span> <span class="o">{</span>
+                            <span class="k">this</span><span class="o">.</span><span class="nx">_formButtons</span> <span class="o">=</span> <span class="o">[];</span>
+                        <span class="o">}</span>
+                        <span class="k">if</span> <span class="o">(</span><span class="nx">exec</span><span class="o">)</span> <span class="o">{</span>
+                            <span class="nx">Event</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;element&#39;</span><span class="o">).</span><span class="nx">form</span><span class="o">,</span> <span class="s1">&#39;submit&#39;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">_handleFormSubmit</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+                            <span class="k">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;element&#39;</span><span class="o">).</span><span class="nx">form</span><span class="o">.</span><span class="nx">getElementsByTagName</span><span class="o">(</span><span class="s1">&#39;input&#39;</span><span class="o">);</span>
+                            <span class="k">for</span> <span class="o">(</span><span class="k">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="m">0</span><span class="o">;</span> <span class="nx">s</span> <span class="o">&lt;</span> <span class="nx">i</span><span class="o">.</span><span class="nx">length</span><span class="o">;</span> <span class="nx">s</span><span class="o">++)</span> <span class="o">{</span>
+                                <span class="k">var</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">i</span><span class="o">[</span><span class="nx">s</span><span class="o">].</span><span class="nx">getAttribute</span><span class="o">(</span><span class="s1">&#39;type&#39;</span><span class="o">);</span>
+                                <span class="k">if</span> <span class="o">(</span><span class="nx">type</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="nx">type</span><span class="o">.</span><span class="nx">toLowerCase</span><span class="o">()</span> <span class="o">==</span> <span class="s1">&#39;submit&#39;</span><span class="o">))</span> <span class="o">{</span>
+                                    <span class="nx">Event</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="nx">i</span><span class="o">[</span><span class="nx">s</span><span class="o">],</span> <span class="s1">&#39;click&#39;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">_handleFormButtonClick</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+                                    <span class="k">this</span><span class="o">.</span><span class="nx">_formButtons</span><span class="o">[</span><span class="k">this</span><span class="o">.</span><span class="nx">_formButtons</span><span class="o">.</span><span class="nx">length</span><span class="o">]</span> <span class="o">=</span> <span class="nx">i</span><span class="o">[</span><span class="nx">s</span><span class="o">];</span>
+                                <span class="o">}</span>
+                            <span class="o">}</span>
+                        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                            <span class="nx">Event</span><span class="o">.</span><span class="nx">unsubscribe</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;element&#39;</span><span class="o">).</span><span class="nx">form</span><span class="o">,</span> <span class="s1">&#39;submit&#39;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">_handleFormSubmit</span><span class="o">);</span>
+                            <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_formButtons</span><span class="o">)</span> <span class="o">{</span>
+                                <span class="nx">Event</span><span class="o">.</span><span class="nx">unsubscribe</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_formButtons</span><span class="o">,</span> <span class="s1">&#39;click&#39;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">_handleFormButtonClick</span><span class="o">);</span>
+                            <span class="o">}</span>
                         <span class="o">}</span>
                     <span class="o">}</span>
                 <span class="o">}</span>
@@ -2286,7 +2419,7 @@
                         <span class="nx">ret</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
                     <span class="o">}</span>
                     <span class="k">return</span> <span class="nx">ret</span><span class="o">;</span>
-                <span class="o">}</span>               
+                <span class="o">}</span>
             <span class="o">});</span>
             <span class="c">/**</span>
 <span class="c">            * @config panel</span>
@@ -2345,7 +2478,6 @@
                         <span class="k">this</span><span class="o">.</span><span class="nx">dompath</span><span class="o">.</span><span class="nx">parentNode</span><span class="o">.</span><span class="nx">removeChild</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">dompath</span><span class="o">);</span>
                         <span class="k">this</span><span class="o">.</span><span class="nx">dompath</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
                     <span class="o">}</span>
-                    <span class="k">this</span><span class="o">.</span><span class="nx">_setupAfterElement</span><span class="o">();</span>
                 <span class="o">}</span>
             <span class="o">});</span>
             <span class="c">/**</span>
@@ -2410,6 +2542,95 @@
                 <span class="nx">img</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;blankimage&#39;</span><span class="o">);</span>
             <span class="o">}</span>
             <span class="k">return</span> <span class="nx">img</span><span class="o">;</span>
+        <span class="o">},</span>
+        <span class="c">/**</span>
+<span class="c">        * @private</span>
+<span class="c">        * @method _handleAutoHeight</span>
+<span class="c">        * @description Handles resizing the editor&#39;s height based on the content</span>
+<span class="c">        */</span>
+        <span class="nx">_handleAutoHeight</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">var</span> <span class="nx">doc</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_getDoc</span><span class="o">(),</span>
+                <span class="nx">body</span> <span class="o">=</span> <span class="nx">doc</span><span class="o">.</span><span class="nx">body</span><span class="o">,</span>
+                <span class="nx">docEl</span> <span class="o">=</span> <span class="nx">doc</span><span class="o">.</span><span class="nx">documentElement</span><span class="o">;</span>
+
+            <span class="k">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="o">(</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getStyle</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;editor_wrapper&#39;</span><span class="o">),</span> <span class="s1">&#39;height&#39;</span><span class="o">),</span> <span class="m">10</span><span class="o">);</span>
+            <span class="k">var</span> <span class="nx">newHeight</span> <span class="o">=</span> <span class="nx">body</span><span class="o">.</span><span class="nx">scrollHeight</span><span class="o">;</span>
+            <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">browser</span><span class="o">.</span><span class="nx">webkit</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nx">newHeight</span> <span class="o">=</span> <span class="nx">docEl</span><span class="o">.</span><span class="nx">scrollHeight</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="k">if</span> <span class="o">(</span><span class="nx">newHeight</span> <span class="o">&lt;</span> <span class="nb">parseInt</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;height&#39;</span><span class="o">),</span> <span class="m">10</span><span class="o">))</span> <span class="o">{</span>
+                <span class="nx">newHeight</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;height&#39;</span><span class="o">),</span> <span class="m">10</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="k">if</span> <span class="o">((</span><span class="nx">height</span> <span class="o">!=</span> <span class="nx">newHeight</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="nx">newHeight</span> <span class="o">&gt;=</span> <span class="nb">parseInt</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;height&#39;</span><span class="o">),</span> <span class="m">10</span><span class="o">)))</span> <span class="o">{</span>   
+                <span class="nx">Dom</span><span class="o">.</span><span class="nx">setStyle</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;editor_wrapper&#39;</span><span class="o">),</span> <span class="s1">&#39;height&#39;</span><span class="o">,</span> <span class="nx">newHeight</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="o">);</span>
+                <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">browser</span><span class="o">.</span><span class="nx">ie</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="c">//Internet Explorer needs this</span>
+<span class="c"></span>                    <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;iframe&#39;</span><span class="o">).</span><span class="nx">setStyle</span><span class="o">(</span><span class="s1">&#39;height&#39;</span><span class="o">,</span> <span class="s1">&#39;99%&#39;</span><span class="o">);</span>
+                    <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;iframe&#39;</span><span class="o">).</span><span class="nx">setStyle</span><span class="o">(</span><span class="s1">&#39;zoom&#39;</span><span class="o">,</span> <span class="s1">&#39;1&#39;</span><span class="o">);</span>
+                    <span class="k">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="o">;</span>
+                    <span class="nb">window</span><span class="o">.</span><span class="nx">setTimeout</span><span class="o">(</span><span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+                        <span class="nx">self</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;iframe&#39;</span><span class="o">).</span><span class="nx">setStyle</span><span class="o">(</span><span class="s1">&#39;height&#39;</span><span class="o">,</span> <span class="s1">&#39;100%&#39;</span><span class="o">);</span>
+                    <span class="o">},</span> <span class="m">1</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">},</span>
+        <span class="nx">_formButtons</span><span class="o">:</span> <span class="kc">null</span><span class="o">,</span>
+        <span class="nx">_formButtonClicked</span><span class="o">:</span> <span class="kc">null</span><span class="o">,</span>
+        <span class="nx">_handleFormButtonClick</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">ev</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">var</span> <span class="nx">tar</span> <span class="o">=</span> <span class="nx">Event</span><span class="o">.</span><span class="nx">getTarget</span><span class="o">(</span><span class="nx">ev</span><span class="o">);</span>
+            <span class="k">this</span><span class="o">.</span><span class="nx">_formButtonClicked</span> <span class="o">=</span> <span class="nx">tar</span><span class="o">;</span>
+        <span class="o">},</span>
+        <span class="c">/**</span>
+<span class="c">        * @private</span>
+<span class="c">        * @method _handleFormSubmit</span>
+<span class="c">        * @description Handles the form submission.</span>
+<span class="c">        * @param {Object} ev The Form Submit Event</span>
+<span class="c">        */</span>
+        <span class="nx">_handleFormSubmit</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">ev</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nx">Event</span><span class="o">.</span><span class="nx">stopEvent</span><span class="o">(</span><span class="nx">ev</span><span class="o">);</span>
+            <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;Button: &#39;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="nx">_formButtonClicked</span><span class="o">.</span><span class="nx">id</span><span class="o">,</span> <span class="s1">&#39;info&#39;</span><span class="o">,</span> <span class="s1">&#39;SimpleEditor&#39;</span><span class="o">);</span>
+            
+            <span class="k">this</span><span class="o">.</span><span class="nx">saveHTML</span><span class="o">();</span>
+            <span class="k">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;element&#39;</span><span class="o">).</span><span class="nx">form</span><span class="o">;</span>
+            <span class="k">var</span> <span class="nx">tar</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_formButtonClicked</span> <span class="o">||</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="k">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="o">;</span>
+
+            <span class="nb">window</span><span class="o">.</span><span class="nx">setTimeout</span><span class="o">(</span><span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+                <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">removeListener</span><span class="o">(</span><span class="nx">form</span><span class="o">,</span> <span class="s1">&#39;submit&#39;</span><span class="o">,</span> <span class="nx">self</span><span class="o">.</span><span class="nx">_handleFormSubmit</span><span class="o">);</span>
+                <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">ua</span><span class="o">.</span><span class="nx">ie</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="nx">form</span><span class="o">.</span><span class="nx">fireEvent</span><span class="o">(</span><span class="s2">&quot;onsubmit&quot;</span><span class="o">);</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="nx">tar</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="nx">tar</span><span class="o">.</span><span class="nx">click</span><span class="o">();</span>
+                    <span class="o">}</span>
+                <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>  <span class="c">// Gecko, Opera, and Safari</span>
+<span class="c"></span>                    <span class="k">if</span> <span class="o">(</span><span class="nx">tar</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="nx">tar</span><span class="o">.</span><span class="nx">click</span><span class="o">();</span>
+                    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                        <span class="k">var</span> <span class="nx">oEvent</span> <span class="o">=</span> <span class="nb">document</span><span class="o">.</span><span class="nx">createEvent</span><span class="o">(</span><span class="s2">&quot;HTMLEvents&quot;</span><span class="o">);</span>
+                        <span class="nx">oEvent</span><span class="o">.</span><span class="nx">initEvent</span><span class="o">(</span><span class="s2">&quot;submit&quot;</span><span class="o">,</span> <span class="kc">true</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+                        <span class="nx">form</span><span class="o">.</span><span class="nx">dispatchEvent</span><span class="o">(</span><span class="nx">oEvent</span><span class="o">);</span>
+                        <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">ua</span><span class="o">.</span><span class="nx">webkit</span><span class="o">)</span> <span class="o">{</span>
+                            <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isFunction</span><span class="o">(</span><span class="nx">form</span><span class="o">.</span><span class="nx">submit</span><span class="o">))</span> <span class="o">{</span>
+                                <span class="nx">form</span><span class="o">.</span><span class="nx">submit</span><span class="o">();</span>
+                            <span class="o">}</span>
+                        <span class="o">}</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+                <span class="c">/*</span>
+<span class="c">                if (YAHOO.env.ua.ie || YAHOO.env.ua.webkit) {</span>
+<span class="c">                    if (YAHOO.lang.isFunction(form.submit)) {</span>
+<span class="c">                        form.submit();</span>
+<span class="c">                    } else {</span>
+<span class="c">                        if (YAHOO.lang.isObject(form.submit)) {</span>
+<span class="c">                            form.submit.click();</span>
+<span class="c">                        } else {</span>
+<span class="c">                            YAHOO.log(&#39;Form submit failed because form.submit was not a function. Please change the submit buttons name and id.&#39;, &#39;error&#39;, &#39;SimpleEditor&#39;);</span>
+<span class="c">                        }</span>
+<span class="c">                    }</span>
+<span class="c">                }</span>
+<span class="c">                */</span>
+            <span class="o">},</span> <span class="m">200</span><span class="o">);</span>
+            
         <span class="o">},</span>
         <span class="c">/**</span>
 <span class="c">        * @private</span>
@@ -2536,21 +2757,22 @@
                 <span class="k">this</span><span class="o">.</span><span class="nx">toolbar</span><span class="o">.</span><span class="nx">disableButton</span><span class="o">(</span><span class="s1">&#39;indent&#39;</span><span class="o">);</span>
                 <span class="k">this</span><span class="o">.</span><span class="nx">toolbar</span><span class="o">.</span><span class="nx">enableButton</span><span class="o">(</span><span class="s1">&#39;outdent&#39;</span><span class="o">);</span>
             <span class="o">}</span>
-            <span class="c">//if (this._isElement(elm, &#39;ol&#39;) || this._isElement(elm, &#39;ul&#39;) || this._isElement(elm, &#39;li&#39;)) {</span>
-<span class="c"></span>            <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_hasParent</span><span class="o">(</span><span class="nx">elm</span><span class="o">,</span> <span class="s1">&#39;ol&#39;</span><span class="o">)</span> <span class="o">||</span> <span class="k">this</span><span class="o">.</span><span class="nx">_hasParent</span><span class="o">(</span><span class="nx">elm</span><span class="o">,</span> <span class="s1">&#39;ul&#39;</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_hasParent</span><span class="o">(</span><span class="nx">elm</span><span class="o">,</span> <span class="s1">&#39;ol&#39;</span><span class="o">)</span> <span class="o">||</span> <span class="k">this</span><span class="o">.</span><span class="nx">_hasParent</span><span class="o">(</span><span class="nx">elm</span><span class="o">,</span> <span class="s1">&#39;ul&#39;</span><span class="o">))</span> <span class="o">{</span>
                 <span class="k">this</span><span class="o">.</span><span class="nx">toolbar</span><span class="o">.</span><span class="nx">disableButton</span><span class="o">(</span><span class="s1">&#39;indent&#39;</span><span class="o">);</span>
             <span class="o">}</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">_lastButton</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
             
         <span class="o">},</span>
         <span class="nx">_setBusy</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">off</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="nx">off</span><span class="o">)</span> <span class="o">{</span>
-                <span class="nx">Dom</span><span class="o">.</span><span class="nx">removeClass</span><span class="o">(</span><span class="nb">document</span><span class="o">.</span><span class="nx">body</span><span class="o">,</span> <span class="s1">&#39;yui-busy&#39;</span><span class="o">);</span>
-                <span class="nx">Dom</span><span class="o">.</span><span class="nx">removeClass</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_getDoc</span><span class="o">().</span><span class="nx">body</span><span class="o">,</span> <span class="s1">&#39;yui-busy&#39;</span><span class="o">);</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                <span class="nx">Dom</span><span class="o">.</span><span class="nx">addClass</span><span class="o">(</span><span class="nb">document</span><span class="o">.</span><span class="nx">body</span><span class="o">,</span> <span class="s1">&#39;yui-busy&#39;</span><span class="o">);</span>
-                <span class="nx">Dom</span><span class="o">.</span><span class="nx">addClass</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_getDoc</span><span class="o">().</span><span class="nx">body</span><span class="o">,</span> <span class="s1">&#39;yui-busy&#39;</span><span class="o">);</span>
-            <span class="o">}</span>
+            <span class="c">/*</span>
+<span class="c">            if (off) {</span>
+<span class="c">                Dom.removeClass(document.body, &#39;yui-busy&#39;);</span>
+<span class="c">                Dom.removeClass(this._getDoc().body, &#39;yui-busy&#39;);</span>
+<span class="c">            } else {</span>
+<span class="c">                Dom.addClass(document.body, &#39;yui-busy&#39;);</span>
+<span class="c">                Dom.addClass(this._getDoc().body, &#39;yui-busy&#39;);</span>
+<span class="c">            }</span>
+<span class="c">            */</span>
         <span class="o">},</span>
         <span class="c">/**</span>
 <span class="c">        * @private</span>
@@ -2583,9 +2805,10 @@
                 <span class="k">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="nx">prompt</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">STR_LINK_URL</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span><span class="o">,</span> <span class="nx">src</span><span class="o">);</span>
                 <span class="k">if</span> <span class="o">((</span><span class="nx">str</span> <span class="o">!==</span> <span class="s1">&#39;&#39;</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="nx">str</span> <span class="o">!==</span> <span class="kc">null</span><span class="o">))</span> <span class="o">{</span>
                     <span class="nx">el</span><span class="o">.</span><span class="nx">setAttribute</span><span class="o">(</span><span class="s1">&#39;src&#39;</span><span class="o">,</span> <span class="nx">str</span><span class="o">);</span>
-                <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nx">str</span> <span class="o">!==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nx">str</span> <span class="o">===</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
                     <span class="nx">el</span><span class="o">.</span><span class="nx">parentNode</span><span class="o">.</span><span class="nx">removeChild</span><span class="o">(</span><span class="nx">el</span><span class="o">);</span>
                     <span class="k">this</span><span class="o">.</span><span class="nx">currentElement</span> <span class="o">=</span> <span class="o">[];</span>
+                    <span class="k">this</span><span class="o">.</span><span class="nx">nodeChange</span><span class="o">();</span>
                 <span class="o">}</span>
                 <span class="k">this</span><span class="o">.</span><span class="nx">closeWindow</span><span class="o">();</span>
                 <span class="k">this</span><span class="o">.</span><span class="nx">toolbar</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="s1">&#39;disabled&#39;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
@@ -2670,7 +2893,7 @@
         <span class="o">},</span>
         <span class="c">/**</span>
 <span class="c">        * @method render</span>
-<span class="c">        * @description Causes the toolbar and the editor to render and replace the textarea.</span>
+<span class="c">        * @description Calls the private method _render in a setTimeout to allow for other things on the page to continue to load.</span>
 <span class="c">        */</span>
         <span class="nx">render</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
             <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_rendered</span><span class="o">)</span> <span class="o">{</span>
@@ -2681,10 +2904,20 @@
                 <span class="k">this</span><span class="o">.</span><span class="nx">_queue</span><span class="o">[</span><span class="k">this</span><span class="o">.</span><span class="nx">_queue</span><span class="o">.</span><span class="nx">length</span><span class="o">]</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;render&#39;</span><span class="o">,</span> <span class="nx">arguments</span><span class="o">];</span>
                 <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
             <span class="o">}</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_setBusy</span><span class="o">();</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">_rendered</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
             <span class="k">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="o">;</span>
-
+            <span class="nb">window</span><span class="o">.</span><span class="nx">setTimeout</span><span class="o">(</span><span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+                <span class="nx">self</span><span class="o">.</span><span class="nx">_render</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="nx">self</span><span class="o">);</span>
+            <span class="o">},</span> <span class="m">4</span><span class="o">);</span>
+        <span class="o">},</span>
+        <span class="c">/**</span>
+<span class="c">        * @private</span>
+<span class="c">        * @method _render</span>
+<span class="c">        * @description Causes the toolbar and the editor to render and replace the textarea.</span>
+<span class="c">        */</span>
+        <span class="nx">_render</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="nx">_setBusy</span><span class="o">();</span>
+            <span class="k">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="o">;</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="s1">&#39;textarea&#39;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;element&#39;</span><span class="o">));</span>
 
             <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;element_cont&#39;</span><span class="o">).</span><span class="nx">setStyle</span><span class="o">(</span><span class="s1">&#39;display&#39;</span><span class="o">,</span> <span class="s1">&#39;none&#39;</span><span class="o">);</span>
@@ -2733,7 +2966,8 @@
             
             <span class="k">this</span><span class="o">.</span><span class="nx">toolbar</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="s1">&#39;colorPickerClicked&#39;</span><span class="o">,</span> <span class="k">function</span><span class="o">(</span><span class="nx">o</span><span class="o">)</span> <span class="o">{</span>
                 <span class="k">this</span><span class="o">.</span><span class="nx">_handleColorPicker</span><span class="o">(</span><span class="nx">o</span><span class="o">);</span>
-            <span class="o">},</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span> <span class="c">//Stop the buttonClick event</span>
+<span class="c"></span>            <span class="o">},</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
 
             <span class="k">this</span><span class="o">.</span><span class="nx">toolbar</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="s1">&#39;alignClick&#39;</span><span class="o">,</span> <span class="k">function</span><span class="o">(</span><span class="nx">o</span><span class="o">)</span> <span class="o">{</span>
                 <span class="k">this</span><span class="o">.</span><span class="nx">_handleAlign</span><span class="o">(</span><span class="nx">o</span><span class="o">);</span>
@@ -2756,18 +2990,9 @@
             
 
             <span class="c">//Replace Textarea with editable area</span>
-<span class="c"></span>            
-            <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;parentNode&#39;</span><span class="o">).</span><span class="nx">replaceChild</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;element_cont&#39;</span><span class="o">).</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;element&#39;</span><span class="o">),</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;element&#39;</span><span class="o">));</span>
+<span class="c"></span>            <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;parentNode&#39;</span><span class="o">).</span><span class="nx">replaceChild</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;element_cont&#39;</span><span class="o">).</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;element&#39;</span><span class="o">),</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;element&#39;</span><span class="o">));</span>
 
             
-            <span class="k">if</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">beforeElement</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">this</span><span class="o">.</span><span class="nx">beforeElement</span> <span class="o">=</span> <span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s1">&#39;h2&#39;</span><span class="o">);</span>
-                <span class="k">this</span><span class="o">.</span><span class="nx">beforeElement</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s1">&#39;yui-editor-skipheader&#39;</span><span class="o">;</span>
-                <span class="k">this</span><span class="o">.</span><span class="nx">beforeElement</span><span class="o">.</span><span class="nx">tabIndex</span> <span class="o">=</span> <span class="s1">&#39;-1&#39;</span><span class="o">;</span>
-                <span class="k">this</span><span class="o">.</span><span class="nx">beforeElement</span><span class="o">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">STR_BEFORE_EDITOR</span><span class="o">;</span>
-                <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;element_cont&#39;</span><span class="o">).</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;firstChild&#39;</span><span class="o">).</span><span class="nx">insertBefore</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">beforeElement</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">toolbar</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;nextSibling&#39;</span><span class="o">));</span>
-            <span class="o">}</span>
-
             <span class="k">this</span><span class="o">.</span><span class="nx">setStyle</span><span class="o">(</span><span class="s1">&#39;visibility&#39;</span><span class="o">,</span> <span class="s1">&#39;hidden&#39;</span><span class="o">);</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">setStyle</span><span class="o">(</span><span class="s1">&#39;position&#39;</span><span class="o">,</span> <span class="s1">&#39;absolute&#39;</span><span class="o">);</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">setStyle</span><span class="o">(</span><span class="s1">&#39;top&#39;</span><span class="o">,</span> <span class="s1">&#39;-9999px&#39;</span><span class="o">);</span>
@@ -2786,9 +3011,9 @@
             <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;iframe&#39;</span><span class="o">).</span><span class="nx">setStyle</span><span class="o">(</span><span class="s1">&#39;width&#39;</span><span class="o">,</span> <span class="s1">&#39;100%&#39;</span><span class="o">);</span> <span class="c">//WIDTH</span>
 <span class="c"></span>            <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;iframe&#39;</span><span class="o">).</span><span class="nx">setStyle</span><span class="o">(</span><span class="s1">&#39;height&#39;</span><span class="o">,</span> <span class="s1">&#39;100%&#39;</span><span class="o">);</span>
 
-            <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">browser</span><span class="o">.</span><span class="nx">ie</span> <span class="o">==</span> <span class="m">7</span><span class="o">)</span> <span class="o">{</span>
-            <span class="o">}</span>
-
+            <span class="nb">window</span><span class="o">.</span><span class="nx">setTimeout</span><span class="o">(</span><span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+                <span class="nx">self</span><span class="o">.</span><span class="nx">_setupAfterElement</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="nx">self</span><span class="o">);</span>
+            <span class="o">},</span> <span class="m">0</span><span class="o">);</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">fireEvent</span><span class="o">(</span><span class="s1">&#39;afterRender&#39;</span><span class="o">,</span> <span class="o">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;afterRender&#39;</span><span class="o">,</span> <span class="nx">target</span><span class="o">:</span> <span class="k">this</span> <span class="o">});</span>
         <span class="o">},</span>
         <span class="c">/**</span>
@@ -3083,9 +3308,13 @@
                 <span class="nx">exec</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
             <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
                 <span class="nx">el</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_getSelectedElement</span><span class="o">();</span>
-                <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_isElement</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="s1">&#39;li&#39;</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">_isElement</span><span class="o">(</span><span class="nx">el</span><span class="o">.</span><span class="nx">parentNode</span><span class="o">,</span> <span class="nx">tag</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">browser</span><span class="o">.</span><span class="nx">ie</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">_isElement</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_getRange</span><span class="o">().</span><span class="nx">parentElement</span><span class="o">,</span> <span class="s1">&#39;li&#39;</span><span class="o">)))</span> <span class="o">{</span> <span class="c">//we are in a list..</span>
+                <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="nx">el</span><span class="o">.</span><span class="nx">tagName</span><span class="o">);</span>
+                <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_isElement</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="s1">&#39;li&#39;</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">_isElement</span><span class="o">(</span><span class="nx">el</span><span class="o">.</span><span class="nx">parentNode</span><span class="o">,</span> <span class="nx">tag</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">browser</span><span class="o">.</span><span class="nx">ie</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">_isElement</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_getRange</span><span class="o">().</span><span class="nx">parentElement</span><span class="o">,</span> <span class="s1">&#39;li&#39;</span><span class="o">))</span> <span class="o">||</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">browser</span><span class="o">.</span><span class="nx">ie</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">_isElement</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="s1">&#39;ul&#39;</span><span class="o">))</span> <span class="o">||</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">browser</span><span class="o">.</span><span class="nx">ie</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">_isElement</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="s1">&#39;ol&#39;</span><span class="o">)))</span> <span class="o">{</span> <span class="c">//we are in a list..</span>
 <span class="c"></span>                    <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;We already have a list, undo it&#39;</span><span class="o">,</span> <span class="s1">&#39;info&#39;</span><span class="o">,</span> <span class="s1">&#39;SimpleEditor&#39;</span><span class="o">);</span>
                     <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">browser</span><span class="o">.</span><span class="nx">ie</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="k">if</span> <span class="o">((</span><span class="k">this</span><span class="o">.</span><span class="nx">browser</span><span class="o">.</span><span class="nx">ie</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">_isElement</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="s1">&#39;ul&#39;</span><span class="o">))</span> <span class="o">||</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">browser</span><span class="o">.</span><span class="nx">ie</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">_isElement</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="s1">&#39;ol&#39;</span><span class="o">)))</span> <span class="o">{</span>
+                            <span class="nx">el</span> <span class="o">=</span> <span class="nx">el</span><span class="o">.</span><span class="nx">getElementsByTagName</span><span class="o">(</span><span class="s1">&#39;li&#39;</span><span class="o">)[</span><span class="m">0</span><span class="o">];</span>
+                        <span class="o">}</span>
                         <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;Undo IE&#39;</span><span class="o">,</span> <span class="s1">&#39;info&#39;</span><span class="o">,</span> <span class="s1">&#39;SimpleEditor&#39;</span><span class="o">);</span>
                         <span class="nx">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">;</span>
                         <span class="k">var</span> <span class="nx">lis2</span> <span class="o">=</span> <span class="nx">el</span><span class="o">.</span><span class="nx">parentNode</span><span class="o">.</span><span class="nx">getElementsByTagName</span><span class="o">(</span><span class="s1">&#39;li&#39;</span><span class="o">);</span>
@@ -3118,7 +3347,15 @@
                     <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_getRange</span><span class="o">().</span><span class="nx">html</span><span class="o">)</span> <span class="o">{</span>
                         <span class="nx">html</span> <span class="o">=</span> <span class="s1">&#39;&lt;li&gt;&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="nx">_getRange</span><span class="o">().</span><span class="nx">html</span><span class="o">+</span> <span class="s1">&#39;&lt;/li&gt;&#39;</span><span class="o">;</span>
                     <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                        <span class="nx">html</span> <span class="o">=</span> <span class="s1">&#39;&lt;li&gt;&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="nx">_getRange</span><span class="o">().</span><span class="nx">text</span> <span class="o">+</span> <span class="s1">&#39;&lt;/li&gt;&#39;</span><span class="o">;</span>
+                        <span class="k">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_getRange</span><span class="o">().</span><span class="nx">text</span><span class="o">.</span><span class="nx">split</span><span class="o">(</span><span class="s1">&#39;\n&#39;</span><span class="o">);</span>
+                        <span class="k">if</span> <span class="o">(</span><span class="nx">t</span><span class="o">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="m">1</span><span class="o">)</span> <span class="o">{</span>
+                            <span class="nx">html</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">;</span>
+                            <span class="k">for</span> <span class="o">(</span><span class="k">var</span> <span class="nx">ie</span> <span class="o">=</span> <span class="m">0</span><span class="o">;</span> <span class="nx">ie</span> <span class="o">&lt;</span> <span class="nx">t</span><span class="o">.</span><span class="nx">length</span><span class="o">;</span> <span class="nx">ie</span><span class="o">++)</span> <span class="o">{</span>
+                                <span class="nx">html</span> <span class="o">+=</span> <span class="s1">&#39;&lt;li&gt;&#39;</span> <span class="o">+</span> <span class="nx">t</span><span class="o">[</span><span class="nx">ie</span><span class="o">]</span> <span class="o">+</span> <span class="s1">&#39;&lt;/li&gt;&#39;</span><span class="o">;</span>
+                            <span class="o">}</span>
+                        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                            <span class="nx">html</span> <span class="o">=</span> <span class="s1">&#39;&lt;li&gt;&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="nx">_getRange</span><span class="o">().</span><span class="nx">text</span> <span class="o">+</span> <span class="s1">&#39;&lt;/li&gt;&#39;</span><span class="o">;</span>
+                        <span class="o">}</span>
                     <span class="o">}</span>
 
                     <span class="k">this</span><span class="o">.</span><span class="nx">_getRange</span><span class="o">().</span><span class="nx">pasteHTML</span><span class="o">(</span><span class="s1">&#39;&lt;&#39;</span> <span class="o">+</span> <span class="nx">tag</span> <span class="o">+</span> <span class="s1">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="nx">html</span> <span class="o">+</span> <span class="s1">&#39;&lt;/&#39;</span> <span class="o">+</span> <span class="nx">tag</span> <span class="o">+</span> <span class="s1">&#39;&gt;&#39;</span><span class="o">);</span>
@@ -3165,7 +3402,7 @@
 <span class="c">        * @description This is an execCommand override method. It is called from execCommand when the execCommand(&#39;fontsize&#39;) is used.</span>
 <span class="c">        */</span>
         <span class="nx">cmd_fontsize</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">value</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">((</span><span class="k">this</span><span class="o">.</span><span class="nx">currentElement</span><span class="o">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="m">0</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">_hasSelection</span><span class="o">()))</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">currentElement</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">currentElement</span><span class="o">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="m">0</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">_hasSelection</span><span class="o">()))</span> <span class="o">{</span>
                 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">setStyle</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">currentElement</span><span class="o">,</span> <span class="s1">&#39;fontSize&#39;</span><span class="o">,</span> <span class="nx">value</span><span class="o">);</span>
             <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">_isElement</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_getSelectedElement</span><span class="o">(),</span> <span class="s1">&#39;body&#39;</span><span class="o">))</span> <span class="o">{</span>
                 <span class="k">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_getSelectedElement</span><span class="o">();</span>
@@ -3382,6 +3619,7 @@
         <span class="c">/**</span>
 <span class="c">        * @method saveHTML</span>
 <span class="c">        * @description Cleans the HTML with the cleanHTML method then places that string back into the textarea.</span>
+<span class="c">        * @return String</span>
 <span class="c">        */</span>
         <span class="nx">saveHTML</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
             <span class="k">var</span> <span class="nx">html</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cleanHTML</span><span class="o">();</span>
@@ -3403,6 +3641,11 @@
 <span class="c">        * @description Gets the unprocessed/unfiltered HTML from the editor</span>
 <span class="c">        */</span>
         <span class="nx">getEditorHTML</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_getDoc</span><span class="o">().</span><span class="nx">body</span><span class="o">;</span>
+            <span class="k">if</span> <span class="o">(</span><span class="nx">b</span> <span class="o">===</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;Body is null, returning null.&#39;</span><span class="o">,</span> <span class="s1">&#39;error&#39;</span><span class="o">,</span> <span class="s1">&#39;SimpleEditor&#39;</span><span class="o">);</span>
+                <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+            <span class="o">}</span>
             <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="nx">_getDoc</span><span class="o">().</span><span class="nx">body</span><span class="o">.</span><span class="nx">innerHTML</span><span class="o">;</span>
         <span class="o">},</span>
         <span class="c">/**</span>
@@ -3459,8 +3702,34 @@
         <span class="nx">_cleanIncomingHTML</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">html</span><span class="o">)</span> <span class="o">{</span>
             <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;strong([^&gt;]*)&gt;/gi</span><span class="o">,</span> <span class="s1">&#39;&lt;b$1&gt;&#39;</span><span class="o">);</span>
             <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;\/strong&gt;/gi</span><span class="o">,</span> <span class="s1">&#39;&lt;/b&gt;&#39;</span><span class="o">);</span>   
+
+            <span class="c">//replace embed before em check</span>
+<span class="c"></span>            <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;embed([^&gt;]*)&gt;/gi</span><span class="o">,</span> <span class="s1">&#39;&lt;YUI_EMBED$1&gt;&#39;</span><span class="o">);</span>
+            <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;\/embed&gt;/gi</span><span class="o">,</span> <span class="s1">&#39;&lt;/YUI_EMBED&gt;&#39;</span><span class="o">);</span>
+
             <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;em([^&gt;]*)&gt;/gi</span><span class="o">,</span> <span class="s1">&#39;&lt;i$1&gt;&#39;</span><span class="o">);</span>
             <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;\/em&gt;/gi</span><span class="o">,</span> <span class="s1">&#39;&lt;/i&gt;&#39;</span><span class="o">);</span>
+            
+            <span class="c">//Put embed tags back in..</span>
+<span class="c"></span>            <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;YUI_EMBED([^&gt;]*)&gt;/gi</span><span class="o">,</span> <span class="s1">&#39;&lt;embed$1&gt;&#39;</span><span class="o">);</span>
+            <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;\/YUI_EMBED&gt;/gi</span><span class="o">,</span> <span class="s1">&#39;&lt;/embed&gt;&#39;</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;plainText&#39;</span><span class="o">))</span> <span class="o">{</span>
+                <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;Filtering as plain text&#39;</span><span class="o">,</span> <span class="s1">&#39;info&#39;</span><span class="o">,</span> <span class="s1">&#39;SimpleEditor&#39;</span><span class="o">);</span>
+                <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/\n/g</span><span class="o">,</span> <span class="s1">&#39;&lt;br&gt;&#39;</span><span class="o">).</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/\r/g</span><span class="o">,</span> <span class="s1">&#39;&lt;br&gt;&#39;</span><span class="o">);</span>
+                <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/  /gi</span><span class="o">,</span> <span class="s1">&#39;&amp;nbsp;&amp;nbsp;&#39;</span><span class="o">);</span> <span class="c">//Replace all double spaces</span>
+<span class="c"></span>                <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/\t/gi</span><span class="o">,</span> <span class="s1">&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&#39;</span><span class="o">);</span> <span class="c">//Replace all tabs</span>
+<span class="c"></span>            <span class="o">}</span>
+            <span class="c">//Removing Script Tags from the Editor</span>
+<span class="c"></span>            <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;script([^&gt;]*)&gt;/gi</span><span class="o">,</span> <span class="s1">&#39;&lt;bad&gt;&#39;</span><span class="o">);</span>
+            <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;\/script([^&gt;]*)&gt;/gi</span><span class="o">,</span> <span class="s1">&#39;&lt;/bad&gt;&#39;</span><span class="o">);</span>
+            <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&amp;lt;script([^&gt;]*)&amp;gt;/gi</span><span class="o">,</span> <span class="s1">&#39;&lt;bad&gt;&#39;</span><span class="o">);</span>
+            <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&amp;lt;\/script([^&gt;]*)&amp;gt;/gi</span><span class="o">,</span> <span class="s1">&#39;&lt;/bad&gt;&#39;</span><span class="o">);</span>
+            <span class="c">//Replace the line feeds</span>
+<span class="c"></span>            <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/\n/g</span><span class="o">,</span> <span class="s1">&#39;&lt;YUI_LF&gt;&#39;</span><span class="o">).</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/\r/g</span><span class="o">,</span> <span class="s1">&#39;&lt;YUI_LF&gt;&#39;</span><span class="o">);</span>
+            <span class="c">//Remove Bad HTML elements (used to be script nodes)</span>
+<span class="c"></span>            <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="k">new</span> <span class="nb">RegExp</span><span class="o">(</span><span class="s1">&#39;&lt;bad([^&gt;]*)&gt;(.*?)&lt;\/bad&gt;&#39;</span><span class="o">,</span> <span class="s1">&#39;gi&#39;</span><span class="o">),</span> <span class="s1">&#39;&#39;</span><span class="o">);</span>
+            <span class="c">//Replace the lines feeds</span>
+<span class="c"></span>            <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;YUI_LF&gt;/g</span><span class="o">,</span> <span class="s1">&#39;\n&#39;</span><span class="o">);</span>
             <span class="k">return</span> <span class="nx">html</span><span class="o">;</span>
         <span class="o">},</span>
         <span class="c">/**</span>
@@ -3490,9 +3759,12 @@
 		    <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;blockquote([^&gt;]*)&gt;/gi</span><span class="o">,</span> <span class="s1">&#39;&lt;YUI_BQ$1&gt;&#39;</span><span class="o">);</span>
 		    <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;\/blockquote&gt;/gi</span><span class="o">,</span> <span class="s1">&#39;&lt;\/YUI_BQ&gt;&#39;</span><span class="o">);</span>
 
+		    <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;embed([^&gt;]*)&gt;/gi</span><span class="o">,</span> <span class="s1">&#39;&lt;YUI_EMBED$1&gt;&#39;</span><span class="o">);</span>
+		    <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;\/embed&gt;/gi</span><span class="o">,</span> <span class="s1">&#39;&lt;\/YUI_EMBED&gt;&#39;</span><span class="o">);</span>
+
             <span class="c">//Convert b and i tags to strong and em tags</span>
 <span class="c"></span>            <span class="k">if</span> <span class="o">((</span><span class="nx">markup</span> <span class="o">==</span> <span class="s1">&#39;semantic&#39;</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="nx">markup</span> <span class="o">==</span> <span class="s1">&#39;xhtml&#39;</span><span class="o">))</span> <span class="o">{</span>
-                <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;i([^&gt;]*)&gt;/gi</span><span class="o">,</span> <span class="s1">&#39;&lt;em$1&gt;&#39;</span><span class="o">);</span>
+                <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;i(\s+[^&gt;]*)?&gt;/gi</span><span class="o">,</span> <span class="s1">&#39;&lt;em$1&gt;&#39;</span><span class="o">);</span>
                 <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;\/i&gt;/gi</span><span class="o">,</span> <span class="s1">&#39;&lt;/em&gt;&#39;</span><span class="o">);</span>
                 <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;b([^&gt;]*)&gt;/gi</span><span class="o">,</span> <span class="s1">&#39;&lt;strong$1&gt;&#39;</span><span class="o">);</span>
                 <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;\/b&gt;/gi</span><span class="o">,</span> <span class="s1">&#39;&lt;/strong&gt;&#39;</span><span class="o">);</span>
@@ -3536,8 +3808,8 @@
 <span class="c"></span>            <span class="nx">html</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">post_filter_linebreaks</span><span class="o">(</span><span class="nx">html</span><span class="o">,</span> <span class="nx">markup</span><span class="o">);</span>
 
             <span class="k">if</span> <span class="o">(</span><span class="nx">markup</span> <span class="o">==</span> <span class="s1">&#39;xhtml&#39;</span><span class="o">)</span> <span class="o">{</span>
-		        <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;YUI_IMG([^&gt;]*)&gt;/g</span><span class="o">,</span> <span class="s1">&#39;&lt;img $1/&gt;&#39;</span><span class="o">);</span>
-		        <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;YUI_INPUT([^&gt;]*)&gt;/g</span><span class="o">,</span> <span class="s1">&#39;&lt;input $1/&gt;&#39;</span><span class="o">);</span>
+		        <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;YUI_IMG([^&gt;]*)&gt;/g</span><span class="o">,</span> <span class="s1">&#39;&lt;img $1 /&gt;&#39;</span><span class="o">);</span>
+		        <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;YUI_INPUT([^&gt;]*)&gt;/g</span><span class="o">,</span> <span class="s1">&#39;&lt;input $1 /&gt;&#39;</span><span class="o">);</span>
             <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
 		        <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;YUI_IMG([^&gt;]*)&gt;/g</span><span class="o">,</span> <span class="s1">&#39;&lt;img $1&gt;&#39;</span><span class="o">);</span>
 		        <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;YUI_INPUT([^&gt;]*)&gt;/g</span><span class="o">,</span> <span class="s1">&#39;&lt;input $1&gt;&#39;</span><span class="o">);</span>
@@ -3550,6 +3822,9 @@
 		    <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;YUI_BQ([^&gt;]*)&gt;/g</span><span class="o">,</span> <span class="s1">&#39;&lt;blockquote$1&gt;&#39;</span><span class="o">);</span>
 		    <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;\/YUI_BQ&gt;/g</span><span class="o">,</span> <span class="s1">&#39;&lt;\/blockquote&gt;&#39;</span><span class="o">);</span>
 
+		    <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;YUI_EMBED([^&gt;]*)&gt;/g</span><span class="o">,</span> <span class="s1">&#39;&lt;embed$1&gt;&#39;</span><span class="o">);</span>
+		    <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;\/YUI_EMBED&gt;/g</span><span class="o">,</span> <span class="s1">&#39;&lt;\/embed&gt;&#39;</span><span class="o">);</span>
+
             <span class="c">//Trim the output, removing whitespace from the beginning and end</span>
 <span class="c"></span>            <span class="nx">html</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">trim</span><span class="o">(</span><span class="nx">html</span><span class="o">);</span>
 
@@ -3561,12 +3836,11 @@
             <span class="c">//First empty span</span>
 <span class="c"></span>            <span class="k">if</span> <span class="o">(</span><span class="nx">html</span><span class="o">.</span><span class="nx">substring</span><span class="o">(</span><span class="m">0</span><span class="o">,</span> <span class="m">6</span><span class="o">).</span><span class="nx">toLowerCase</span><span class="o">()</span> <span class="o">==</span> <span class="s1">&#39;&lt;span&gt;&#39;</span><span class="o">)</span>  <span class="o">{</span>
                 <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">substring</span><span class="o">(</span><span class="m">6</span><span class="o">);</span>
+                <span class="c">//Last empty span</span>
+<span class="c"></span>                <span class="k">if</span> <span class="o">(</span><span class="nx">html</span><span class="o">.</span><span class="nx">substring</span><span class="o">(</span><span class="nx">html</span><span class="o">.</span><span class="nx">length</span> <span class="o">-</span> <span class="m">7</span><span class="o">,</span> <span class="nx">html</span><span class="o">.</span><span class="nx">length</span><span class="o">).</span><span class="nx">toLowerCase</span><span class="o">()</span> <span class="o">==</span> <span class="s1">&#39;&lt;/span&gt;&#39;</span><span class="o">)</span>  <span class="o">{</span>
+                    <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">substring</span><span class="o">(</span><span class="m">0</span><span class="o">,</span> <span class="nx">html</span><span class="o">.</span><span class="nx">length</span> <span class="o">-</span> <span class="m">7</span><span class="o">);</span>
+                <span class="o">}</span>
             <span class="o">}</span>
-            <span class="c">//Last empty span</span>
-<span class="c"></span>            <span class="k">if</span> <span class="o">(</span><span class="nx">html</span><span class="o">.</span><span class="nx">substring</span><span class="o">(</span><span class="nx">html</span><span class="o">.</span><span class="nx">length</span> <span class="o">-</span> <span class="m">7</span><span class="o">,</span> <span class="nx">html</span><span class="o">.</span><span class="nx">length</span><span class="o">).</span><span class="nx">toLowerCase</span><span class="o">()</span> <span class="o">==</span> <span class="s1">&#39;&lt;/span&gt;&#39;</span><span class="o">)</span>  <span class="o">{</span>
-                <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">substring</span><span class="o">(</span><span class="m">0</span><span class="o">,</span> <span class="nx">html</span><span class="o">.</span><span class="nx">length</span> <span class="o">-</span> <span class="m">7</span><span class="o">);</span>
-            <span class="o">}</span>
-
 
             <span class="k">for</span> <span class="o">(</span><span class="k">var</span> <span class="nx">v</span> <span class="k">in</span> <span class="k">this</span><span class="o">.</span><span class="nx">invalidHTML</span><span class="o">)</span> <span class="o">{</span>
                 <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">hasOwnProperty</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">invalidHTML</span><span class="o">,</span> <span class="nx">v</span><span class="o">))</span> <span class="o">{</span>
@@ -3586,7 +3860,6 @@
 <span class="c">        * @method filter_invalid_lists</span>
 <span class="c">        * @param String html The HTML string to filter</span>
 <span class="c">        * @description Filters invalid ol and ul list markup, converts this: &lt;li&gt;&lt;/li&gt;&lt;ol&gt;..&lt;/ol&gt; to this: &lt;li&gt;&lt;/li&gt;&lt;li&gt;&lt;ol&gt;..&lt;/ol&gt;&lt;/li&gt;</span>
-<span class="c">        * @return String</span>
 <span class="c">        */</span>
         <span class="nx">filter_invalid_lists</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">html</span><span class="o">)</span> <span class="o">{</span>
             <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;\/li&gt;\n/gi</span><span class="o">,</span> <span class="s1">&#39;&lt;/li&gt;&#39;</span><span class="o">);</span>
@@ -3737,7 +4010,7 @@
 <span class="c">        */</span>
         <span class="nx">post_filter_linebreaks</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">html</span><span class="o">,</span> <span class="nx">markup</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">if</span> <span class="o">(</span><span class="nx">markup</span> <span class="o">==</span> <span class="s1">&#39;xhtml&#39;</span><span class="o">)</span> <span class="o">{</span>
-		        <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;YUI_BR&gt;/g</span><span class="o">,</span> <span class="s1">&#39;&lt;br/&gt;&#39;</span><span class="o">);</span>
+		        <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;YUI_BR&gt;/g</span><span class="o">,</span> <span class="s1">&#39;&lt;br /&gt;&#39;</span><span class="o">);</span>
             <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
 		        <span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="o">.</span><span class="nx">replace</span><span class="o">(</span><span class="sr">/&lt;YUI_BR&gt;/g</span><span class="o">,</span> <span class="s1">&#39;&lt;br&gt;&#39;</span><span class="o">);</span>
             <span class="o">}</span>
@@ -3800,7 +4073,8 @@
             <span class="k">var</span> <span class="nx">textArea</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;element&#39;</span><span class="o">);</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;element_cont&#39;</span><span class="o">).</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;parentNode&#39;</span><span class="o">).</span><span class="nx">replaceChild</span><span class="o">(</span><span class="nx">textArea</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;element_cont&#39;</span><span class="o">).</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;element&#39;</span><span class="o">));</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;element_cont&#39;</span><span class="o">).</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;element&#39;</span><span class="o">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">;</span>
-            <span class="c">//Brutal Object Destroy</span>
+            <span class="k">this</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="s1">&#39;handleSubmit&#39;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span> <span class="c">//Remove the submit handler</span>
+<span class="c"></span>            <span class="c">//Brutal Object Destroy</span>
 <span class="c"></span>            <span class="k">for</span> <span class="o">(</span><span class="k">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="k">this</span><span class="o">)</span> <span class="o">{</span>
                 <span class="k">if</span> <span class="o">(</span><span class="nx">Lang</span><span class="o">.</span><span class="nx">hasOwnProperty</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="nx">i</span><span class="o">))</span> <span class="o">{</span>
                     <span class="k">this</span><span class="o">[</span><span class="nx">i</span><span class="o">]</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
@@ -3987,11 +4261,11 @@
 
                                 <li class=""><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -4007,17 +4281,23 @@
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -4026,6 +4306,8 @@
                                 <li class=""><a href="module_tabview.html">tabview</a></li>
 
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
 

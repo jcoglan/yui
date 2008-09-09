@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>YAHOO Global&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>YAHOO Global&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_yahoo.html">yahoo</a>
@@ -426,7 +426,7 @@ if present.
                                         
                                         
                                         
-                                        void
+                                        boolean
                                             <strong>hasOwnProperty</strong>
                                            (
                                                 
@@ -468,9 +468,9 @@ alert(YAHOO.lang.hasOwnProperty(a, 'foo')); // false when using fallback
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
-                                                        void
+                                                        boolean
                                                     </code></dt>
-                                                    <dd>Boolean</dd>
+                                                    <dd>the result</dd>
                                                 </dl>
              
                                         </div>
@@ -486,7 +486,7 @@ alert(YAHOO.lang.hasOwnProperty(a, 'foo')); // false when using fallback
                                         
                                         
                                         
-                                        void
+                                        boolean
                                             <strong>isArray</strong>
                                            (
                                                 
@@ -519,9 +519,9 @@ properties.
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
-                                                        void
+                                                        boolean
                                                     </code></dt>
-                                                    <dd>Boolean</dd>
+                                                    <dd>the result</dd>
                                                 </dl>
              
                                         </div>
@@ -537,7 +537,7 @@ properties.
                                         
                                         
                                         
-                                        void
+                                        boolean
                                             <strong>isBoolean</strong>
                                            (
                                                 
@@ -565,9 +565,9 @@ properties.
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
-                                                        void
+                                                        boolean
                                                     </code></dt>
-                                                    <dd>Boolean</dd>
+                                                    <dd>the result</dd>
                                                 </dl>
              
                                         </div>
@@ -583,7 +583,7 @@ properties.
                                         
                                         
                                         
-                                        void
+                                        boolean
                                             <strong>isFunction</strong>
                                            (
                                                 
@@ -611,9 +611,9 @@ properties.
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
-                                                        void
+                                                        boolean
                                                     </code></dt>
-                                                    <dd>Boolean</dd>
+                                                    <dd>the result</dd>
                                                 </dl>
              
                                         </div>
@@ -629,7 +629,7 @@ properties.
                                         
                                         
                                         
-                                        void
+                                        boolean
                                             <strong>isNull</strong>
                                            (
                                                 
@@ -657,9 +657,9 @@ properties.
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
-                                                        void
+                                                        boolean
                                                     </code></dt>
-                                                    <dd>Boolean</dd>
+                                                    <dd>the result</dd>
                                                 </dl>
              
                                         </div>
@@ -675,7 +675,7 @@ properties.
                                         
                                         
                                         
-                                        void
+                                        boolean
                                             <strong>isNumber</strong>
                                            (
                                                 
@@ -703,9 +703,9 @@ properties.
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
-                                                        void
+                                                        boolean
                                                     </code></dt>
-                                                    <dd>Boolean</dd>
+                                                    <dd>the result</dd>
                                                 </dl>
              
                                         </div>
@@ -721,7 +721,7 @@ properties.
                                         
                                         
                                         
-                                        void
+                                        boolean
                                             <strong>isObject</strong>
                                            (
                                                 
@@ -750,9 +750,9 @@ or function
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
-                                                        void
+                                                        boolean
                                                     </code></dt>
-                                                    <dd>Boolean</dd>
+                                                    <dd>the result</dd>
                                                 </dl>
              
                                         </div>
@@ -768,7 +768,7 @@ or function
                                         
                                         
                                         
-                                        void
+                                        boolean
                                             <strong>isString</strong>
                                            (
                                                 
@@ -796,9 +796,9 @@ or function
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
-                                                        void
+                                                        boolean
                                                     </code></dt>
-                                                    <dd>Boolean</dd>
+                                                    <dd>the result</dd>
                                                 </dl>
              
                                         </div>
@@ -814,7 +814,7 @@ or function
                                         
                                         
                                         
-                                        void
+                                        boolean
                                             <strong>isUndefined</strong>
                                            (
                                                 
@@ -842,9 +842,9 @@ or function
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
-                                                        void
+                                                        boolean
                                                     </code></dt>
-                                                    <dd>Boolean</dd>
+                                                    <dd>the result</dd>
                                                 </dl>
              
                                         </div>
@@ -936,7 +936,7 @@ including 0/false/''
                                         </code>
                                         
                                         <div class="description">
-                                            Executes the supplied function in the scope of the supplied 
+                                            Executes the supplied function in the context of the supplied 
 object 'when' milliseconds later.  Executes the function a 
 single time unless periodic is set to true.
                                         </div>
@@ -952,7 +952,7 @@ is executed
                                                         </dd>
                                                         <dd>
                                                             <code>o &lt;object&gt;</code>
-                                                             the scope object
+                                                             the context object
                                                         </dd>
                                                         <dd>
                                                             <code>fn &lt;Function|String&gt;</code>
@@ -1193,11 +1193,11 @@ the input is not a string, the input will be returned untouched.
 
                                 <li class=""><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -1213,17 +1213,23 @@ the input is not a string, the input will be returned untouched.
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -1232,6 +1238,8 @@ the input is not a string, the input will be returned untouched.
                                 <li class=""><a href="module_tabview.html">tabview</a></li>
 
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class="selected"><a href="module_yahoo.html">yahoo</a></li>
 
@@ -1288,31 +1296,31 @@ the input is not a string, the input will be returned untouched.
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#extend">extend</a>
                                 </li>
-                                <li class=""><!--<code>void</code>-->
+                                <li class=""><!--<code>boolean</code>-->
                                 <a href="#hasOwnProperty">hasOwnProperty</a>
                                 </li>
-                                <li class=""><!--<code>void</code>-->
+                                <li class=""><!--<code>boolean</code>-->
                                 <a href="#isArray">isArray</a>
                                 </li>
-                                <li class=""><!--<code>void</code>-->
+                                <li class=""><!--<code>boolean</code>-->
                                 <a href="#isBoolean">isBoolean</a>
                                 </li>
-                                <li class=""><!--<code>void</code>-->
+                                <li class=""><!--<code>boolean</code>-->
                                 <a href="#isFunction">isFunction</a>
                                 </li>
-                                <li class=""><!--<code>void</code>-->
+                                <li class=""><!--<code>boolean</code>-->
                                 <a href="#isNull">isNull</a>
                                 </li>
-                                <li class=""><!--<code>void</code>-->
+                                <li class=""><!--<code>boolean</code>-->
                                 <a href="#isNumber">isNumber</a>
                                 </li>
-                                <li class=""><!--<code>void</code>-->
+                                <li class=""><!--<code>boolean</code>-->
                                 <a href="#isObject">isObject</a>
                                 </li>
-                                <li class=""><!--<code>void</code>-->
+                                <li class=""><!--<code>boolean</code>-->
                                 <a href="#isString">isString</a>
                                 </li>
-                                <li class=""><!--<code>void</code>-->
+                                <li class=""><!--<code>boolean</code>-->
                                 <a href="#isUndefined">isUndefined</a>
                                 </li>
                                 <li class=""><!--<code>boolean</code>-->

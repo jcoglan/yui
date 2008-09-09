@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Container&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>Container&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_container.html">container</a>
@@ -311,6 +311,43 @@ positioned relative to the boundaries of the browser's viewport, in pixels.
                         <div class="section method details">
                             <h3 id="methods">Methods</h3>
                             <div class="content">
+                                    <div class="protected">
+                                    <h4>
+                                        <a name="_primeXYFromDOM">_primeXYFromDOM</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         protected 
+                                        
+                                        
+                                        void
+                                            <strong>_primeXYFromDOM</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Set's the container's XY value from DOM if not already set.
+Differs from syncPosition, in that the XY value is only sync'd with DOM if 
+not already set. The method also refire's the XY config property event, so any
+beforeMove, Move event listeners are invoked.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
                                     <div class="">
                                     <h4>
                                         <a name="align">align</a></h4>
@@ -1969,7 +2006,7 @@ position information during drag & drop.
                                 <h4>Methods inherited from <a href="YAHOO.widget.Module.html">YAHOO.widget.Module</a>:</h4>
                                 <div class="content">
                                     <code>
-                                            <a class="protected" href="YAHOO.widget.Module.html#_addToParent">_addToParent</a><span class="protected">,</span>                                            <a class="" href="YAHOO.widget.Module.html#appendToBody">appendToBody</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#appendToFooter">appendToFooter</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#appendToHeader">appendToHeader</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#configMonitorResize">configMonitorResize</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#configVisible">configVisible</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#destroy">destroy</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#hide">hide</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#init">init</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#initDefaultConfig">initDefaultConfig</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#initEvents">initEvents</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#initResizeMonitor">initResizeMonitor</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#onDomResize">onDomResize</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#render">render</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#setBody">setBody</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#setFooter">setFooter</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#setHeader">setHeader</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#show">show</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#toString">toString</a>
+                                            <a class="protected" href="YAHOO.widget.Module.html#_addToParent">_addToParent</a><span class="protected">,</span>                                            <a class="protected" href="YAHOO.widget.Module.html#_initResizeMonitor">_initResizeMonitor</a><span class="protected">,</span>                                            <a class="private" href="YAHOO.widget.Module.html#_supportsCWResize">_supportsCWResize</a><span class="private">,</span>                                            <a class="" href="YAHOO.widget.Module.html#appendToBody">appendToBody</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#appendToFooter">appendToFooter</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#appendToHeader">appendToHeader</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#configMonitorResize">configMonitorResize</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#configVisible">configVisible</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#destroy">destroy</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#hide">hide</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#init">init</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#initDefaultConfig">initDefaultConfig</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#initEvents">initEvents</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#initResizeMonitor">initResizeMonitor</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#onDomResize">onDomResize</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#render">render</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#setBody">setBody</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#setFooter">setFooter</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#setHeader">setHeader</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#show">show</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#toString">toString</a>
                                     </code>
                                 </div>
                             </div>
@@ -2143,7 +2180,7 @@ window scroll
                             <h4>Events inherited from <a href="YAHOO.widget.Module.html">YAHOO.widget.Module</a>:</h4>
                             <div class="content">
                                 <code>
-                                        <a class="" href="YAHOO.widget.Module.html#appendEvent">appendEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#beforeHideEvent">beforeHideEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#beforeInitEvent">beforeInitEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#beforeRenderEvent">beforeRenderEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#beforeShowEvent">beforeShowEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#changeBodyEvent">changeBodyEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#changeContentEvent">changeContentEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#changeFooterEvent">changeFooterEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#changeHeaderEvent">changeHeaderEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#destroyEvent">destroyEvent</a>                                        <a class="" href="YAHOO.widget.Module.html#hideEvent">hideEvent</a>                                        <a class="" href="YAHOO.widget.Module.html#initEvent">initEvent</a>                                        <a class="" href="YAHOO.widget.Module.html#renderEvent">renderEvent</a>                                        <a class="" href="YAHOO.widget.Module.html#showEvent">showEvent</a>                                        <a class="" href="YAHOO.widget.Module.html#YAHOO.widget.Module.textResizeEvent">YAHOO.widget.Module.textResizeEvent</a>
+                                        <a class="" href="YAHOO.widget.Module.html#appendEvent">appendEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#beforeHideEvent">beforeHideEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#beforeInitEvent">beforeInitEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#beforeRenderEvent">beforeRenderEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#beforeShowEvent">beforeShowEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#changeBodyEvent">changeBodyEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#changeContentEvent">changeContentEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#changeFooterEvent">changeFooterEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#changeHeaderEvent">changeHeaderEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#destroyEvent">destroyEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#hideEvent">hideEvent</a>                                        <a class="" href="YAHOO.widget.Module.html#initEvent">initEvent</a>                                        <a class="" href="YAHOO.widget.Module.html#renderEvent">renderEvent</a>                                        <a class="" href="YAHOO.widget.Module.html#showEvent">showEvent</a>                                        <a class="" href="YAHOO.widget.Module.html#YAHOO.widget.Module.textResizeEvent">YAHOO.widget.Module.textResizeEvent</a>
                                 </code>
                             </div>
                         </div>
@@ -2369,11 +2406,11 @@ made visible.
 
                                 <li class="selected"><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -2389,17 +2426,23 @@ made visible.
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -2408,6 +2451,8 @@ made visible.
                                 <li class=""><a href="module_tabview.html">tabview</a></li>
 
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
 
@@ -2486,6 +2531,9 @@ made visible.
                     <div class="module">
                         <h4>Methods</h4>
                         <ul class="content">        
+                                <li class="protected"><!--<code>void</code>-->
+                                <a href="#_primeXYFromDOM">_primeXYFromDOM</a>
+                                </li>
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#align">align</a>
                                 </li>

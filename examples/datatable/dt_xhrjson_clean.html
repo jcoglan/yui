@@ -19,6 +19,7 @@ body {
 <link rel="stylesheet" type="text/css" href="../../build/fonts/fonts-min.css" />
 <link rel="stylesheet" type="text/css" href="../../build/datatable/assets/skins/sam/datatable.css" />
 <script type="text/javascript" src="../../build/utilities/utilities.js"></script>
+<script type="text/javascript" src="../../build/json/json.js"></script>
 <script type="text/javascript" src="../../build/datasource/datasource-beta.js"></script>
 <script type="text/javascript" src="../../build/datatable/datatable-beta.js"></script>
 
@@ -66,10 +67,21 @@ YAHOO.util.Event.addListener(window, "load", function() {
         this.myDataTable = new YAHOO.widget.DataTable("json", myColumnDefs,
                 this.myDataSource, {initialRequest:"query=pizza&zip=94089&results=10&output=json"});
 
+        var callback1 = {
+            success : this.myDataTable.onDataReturnAppendRows,
+            failure : this.myDataTable.onDataReturnAppendRows,
+            scope : this.myDataTable
+        };
         this.myDataSource.sendRequest("query=mexican&zip=94089&results=10&output=json",
-                this.myDataTable.onDataReturnAppendRows, this.myDataTable);
+                callback1);
+
+        var callback2 = {
+            success : this.myDataTable.onDataReturnInsertRows,
+            failure : this.myDataTable.onDataReturnInsertRows,
+            scope : this.myDataTable
+        };
         this.myDataSource.sendRequest("query=chinese&zip=94089&results=10&output=json",
-                this.myDataTable.onDataReturnInsertRows, this.myDataTable);
+                callback2);
     };
 });
 </script>

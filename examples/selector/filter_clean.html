@@ -43,7 +43,7 @@ body {
 <h1>Using filter</h1>
 
 <div class="exampleIntro">
-	<p>Clicking the button will filter the collection of LIs, leaving only those that have the class of "selected" applied.</p>
+	<p>Clicking the button will alert the number of items with the class of "selected" applied.</p>
 
 			
 </div>
@@ -80,7 +80,6 @@ body {
 </div>
 <script type="text/javascript">
 (function() {
-    var nodes = document.getElementById('selector-demo').getElementsByTagName('li');
     var nodes = document.getElementById('selector-demo').getElementsByTagName('li');
     var handleClick = function(e) {
         nodes = YAHOO.util.Selector.filter(nodes, '.selected');

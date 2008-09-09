@@ -86,6 +86,7 @@ function returnData($results, $startIndex, $sort, $dir, $sort_dir) {
     }
 
     // Iterate through records and return from start index
+    $data = array();
     $lastIndex = $startIndex+$results;
     if($lastIndex > count($allRecords)) {
         $lastIndex = count($allRecords);

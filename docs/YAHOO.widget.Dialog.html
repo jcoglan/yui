@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Container&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>Container&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_container.html">container</a>
@@ -58,12 +58,22 @@
   
 
                     <div class="summary description">
-                        Dialog is an implementation of Panel that can be used to submit form 
-data. Built-in functionality for buttons with event handlers is included, 
-and button sets can be build dynamically, or the preincluded ones for 
-Submit/Cancel and OK/Cancel can be utilized. Forms can be processed in 3
-ways -- via an asynchronous Connection utility call, a simple form 
-POST or GET, or manually.
+                        <p>
+Dialog is an implementation of Panel that can be used to submit form 
+data.
+</p>
+<p>
+Built-in functionality for buttons with event handlers is included. 
+If the optional YUI Button dependancy is included on the page, the buttons
+created will be instances of YAHOO.widget.Button, otherwise regular HTML buttons
+will be created.
+</p>
+<p>
+Forms can be processed in 3 ways -- via an asynchronous Connection utility call, 
+a simple form POST or GET, or manually. The YUI Connection utility should be
+included if you're using the default "async" postmethod, but is not required if
+you're using any of the other postmethod values.
+</p>
                     </div>
 
                         <div class="section constructor details">
@@ -124,7 +134,10 @@ documentation for more details.
                                     <div class="detail">
                                         <div class="description">
                                             The internally maintained callback object for use with the 
-Connection utility
+Connection utility. The format of the callback object is 
+similar to Connection Manager's callback object and is 
+simply passed through to Connection Manager when the async 
+request is made.
                                         </div>
                                     </div>
      
@@ -172,7 +185,37 @@ Connection submission
                                     <div class="detail">
                                         <div class="description">
                                             The function to execute upon success of the 
-Connection submission
+Connection submission (when the form does not
+contain a file input element).
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4><a name="callback.upload">callback.upload</a>
+                                        <code>- Function</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            <p>
+The function to execute upon success of the 
+Connection submission, when the form contains
+a file input element.
+</p>
+<p>
+<em>NOTE:</em> Connection manager will not
+invoke the success or failure handlers for the file
+upload use case. This will be the only callback
+handler invoked.
+</p>
+<p>
+For more information, see the <a href="http://developer.yahoo.com/yui/connection/#file">
+Connection Manager documenation on file uploads</a>.
+</p>
                                         </div>
                                     </div>
      
@@ -834,7 +877,7 @@ configuration property.
                                         
                                         <div class="description">
                                             Returns an array containing each of the Dialog's 
-buttons, by default an array of HTML <code>&#60;BUTTON&#60;</code> 
+buttons, by default an array of HTML <code>&#60;BUTTON&#62;</code> 
 elements.  If the Dialog's buttons were created using the 
 YAHOO.widget.Button class (via the inclusion of the optional Button 
 dependancy on the page), an array of YAHOO.widget.Button instances 
@@ -1078,8 +1121,11 @@ not currently present.
                                         </code>
                                         
                                         <div class="description">
-                                            Executes a submit of the Dialog followed by a hide, if validation 
-is successful.
+                                            Executes a submit of the Dialog if validation 
+is successful. By default the Dialog is hidden
+after submission, but you can set the "hideaftersubmit"
+configuration property to false, to prevent the Dialog
+from being hidden.
                                         </div>
 
                                         <div class="description">
@@ -1184,7 +1230,7 @@ overridden if validation is necessary.
                                 <h4>Methods inherited from <a href="YAHOO.widget.Module.html">YAHOO.widget.Module</a>:</h4>
                                 <div class="content">
                                     <code>
-                                            <a class="protected" href="YAHOO.widget.Module.html#_addToParent">_addToParent</a><span class="protected">,</span>                                            <a class="" href="YAHOO.widget.Module.html#appendToBody">appendToBody</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#appendToFooter">appendToFooter</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#appendToHeader">appendToHeader</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#configMonitorResize">configMonitorResize</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#configVisible">configVisible</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#destroy">destroy</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#hide">hide</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#init">init</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#initDefaultConfig">initDefaultConfig</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#initEvents">initEvents</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#initResizeMonitor">initResizeMonitor</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#onDomResize">onDomResize</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#render">render</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#setBody">setBody</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#setFooter">setFooter</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#setHeader">setHeader</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#show">show</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#toString">toString</a>
+                                            <a class="protected" href="YAHOO.widget.Module.html#_addToParent">_addToParent</a><span class="protected">,</span>                                            <a class="protected" href="YAHOO.widget.Module.html#_initResizeMonitor">_initResizeMonitor</a><span class="protected">,</span>                                            <a class="private" href="YAHOO.widget.Module.html#_supportsCWResize">_supportsCWResize</a><span class="private">,</span>                                            <a class="" href="YAHOO.widget.Module.html#appendToBody">appendToBody</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#appendToFooter">appendToFooter</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#appendToHeader">appendToHeader</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#configMonitorResize">configMonitorResize</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#configVisible">configVisible</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#destroy">destroy</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#hide">hide</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#init">init</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#initDefaultConfig">initDefaultConfig</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#initEvents">initEvents</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#initResizeMonitor">initResizeMonitor</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#onDomResize">onDomResize</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#render">render</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#setBody">setBody</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#setFooter">setFooter</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#setHeader">setHeader</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#show">show</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Module.html#toString">toString</a>
                                     </code>
                                 </div>
                             </div>
@@ -1192,7 +1238,7 @@ overridden if validation is necessary.
                                 <h4>Methods inherited from <a href="YAHOO.widget.Overlay.html">YAHOO.widget.Overlay</a>:</h4>
                                 <div class="content">
                                     <code>
-                                            <a class="" href="YAHOO.widget.Overlay.html#align">align</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#bringToTop">bringToTop</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#center">center</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#configConstrainToViewport">configConstrainToViewport</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#configContext">configContext</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#configFixedCenter">configFixedCenter</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#configHeight">configHeight</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#configIframe">configIframe</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#configVisible">configVisible</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#configWidth">configWidth</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#configX">configX</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#configXY">configXY</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#configY">configY</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#configzIndex">configzIndex</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#destroy">destroy</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#doCenterOnDOMEvent">doCenterOnDOMEvent</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#enforceConstraints">enforceConstraints</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#getConstrainedXY">getConstrainedXY</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#hideIframe">hideIframe</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#hideMacGeckoScrollbars">hideMacGeckoScrollbars</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#init">init</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#initDefaultConfig">initDefaultConfig</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#initEvents">initEvents</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#moveTo">moveTo</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#onDomResize">onDomResize</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#showIframe">showIframe</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#showMacGeckoScrollbars">showMacGeckoScrollbars</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#stackIframe">stackIframe</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#syncIframe">syncIframe</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#syncPosition">syncPosition</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#toString">toString</a>
+                                            <a class="protected" href="YAHOO.widget.Overlay.html#_primeXYFromDOM">_primeXYFromDOM</a><span class="protected">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#align">align</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#bringToTop">bringToTop</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#center">center</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#configConstrainToViewport">configConstrainToViewport</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#configContext">configContext</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#configFixedCenter">configFixedCenter</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#configHeight">configHeight</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#configIframe">configIframe</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#configVisible">configVisible</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#configWidth">configWidth</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#configX">configX</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#configXY">configXY</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#configY">configY</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#configzIndex">configzIndex</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#destroy">destroy</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#doCenterOnDOMEvent">doCenterOnDOMEvent</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#enforceConstraints">enforceConstraints</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#getConstrainedXY">getConstrainedXY</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#hideIframe">hideIframe</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#hideMacGeckoScrollbars">hideMacGeckoScrollbars</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#init">init</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#initDefaultConfig">initDefaultConfig</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#initEvents">initEvents</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#moveTo">moveTo</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#onDomResize">onDomResize</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#showIframe">showIframe</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#showMacGeckoScrollbars">showMacGeckoScrollbars</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#stackIframe">stackIframe</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#syncIframe">syncIframe</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#syncPosition">syncPosition</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Overlay.html#toString">toString</a>
                                     </code>
                                 </div>
                             </div>
@@ -1390,7 +1436,7 @@ overridden if validation is necessary.
                             <h4>Events inherited from <a href="YAHOO.widget.Module.html">YAHOO.widget.Module</a>:</h4>
                             <div class="content">
                                 <code>
-                                        <a class="" href="YAHOO.widget.Module.html#appendEvent">appendEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#beforeHideEvent">beforeHideEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#beforeInitEvent">beforeInitEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#beforeRenderEvent">beforeRenderEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#beforeShowEvent">beforeShowEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#changeBodyEvent">changeBodyEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#changeContentEvent">changeContentEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#changeFooterEvent">changeFooterEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#changeHeaderEvent">changeHeaderEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#destroyEvent">destroyEvent</a>                                        <a class="" href="YAHOO.widget.Module.html#hideEvent">hideEvent</a>                                        <a class="" href="YAHOO.widget.Module.html#initEvent">initEvent</a>                                        <a class="" href="YAHOO.widget.Module.html#renderEvent">renderEvent</a>                                        <a class="" href="YAHOO.widget.Module.html#showEvent">showEvent</a>                                        <a class="" href="YAHOO.widget.Module.html#YAHOO.widget.Module.textResizeEvent">YAHOO.widget.Module.textResizeEvent</a>
+                                        <a class="" href="YAHOO.widget.Module.html#appendEvent">appendEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#beforeHideEvent">beforeHideEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#beforeInitEvent">beforeInitEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#beforeRenderEvent">beforeRenderEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#beforeShowEvent">beforeShowEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#changeBodyEvent">changeBodyEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#changeContentEvent">changeContentEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#changeFooterEvent">changeFooterEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#changeHeaderEvent">changeHeaderEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#destroyEvent">destroyEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Module.html#hideEvent">hideEvent</a>                                        <a class="" href="YAHOO.widget.Module.html#initEvent">initEvent</a>                                        <a class="" href="YAHOO.widget.Module.html#renderEvent">renderEvent</a>                                        <a class="" href="YAHOO.widget.Module.html#showEvent">showEvent</a>                                        <a class="" href="YAHOO.widget.Module.html#YAHOO.widget.Module.textResizeEvent">YAHOO.widget.Module.textResizeEvent</a>
                                 </code>
                             </div>
                         </div>
@@ -1416,9 +1462,9 @@ overridden if validation is necessary.
 defining a button to be appended into the Dialog's footer.
 Each button object in the buttons array can have three properties:
 <dt>text:</dt>
-<dd>The text that will display on the face of the button.  <em>
-Please note:</em> As of version 2.3, the text can include 
-HTML.</dd>
+<dd>The text that will display on the face of the button. The text can 
+include HTML, as long as it is compliant with HTML Button specifications.
+</dd>
 <dt>handler:</dt>
 <dd>Can be either:
 <ol>
@@ -1426,24 +1472,45 @@ HTML.</dd>
 button is clicked.  (In this case scope of this function is 
 always its Dialog instance.)</li>
 <li>An object literal representing the code to be 
-executed when the button is clicked.  Format:<br> <code> {<br>  
+executed when the button is clicked.  Format:<br> <code> {<br>
 <strong>fn:</strong> Function,   &#47;&#47; The handler to call 
-when  the event fires.<br> <strong>obj:</strong> Object, 
+when  the event fires.<br> <strong>obj:</strong> Object,
 &#47;&#47; An  object to pass back to the handler.<br> <strong>
 scope:</strong>  Object &#47;&#47; The object to use for the 
-scope of the handler. <br> } </code> <br><em>Please note: this 
-functionality was added in version 2.3.</em></li>
+scope of the handler. <br> } </code> <br></li>
 </ol>
 </dd>
 <dt>isDefault:</dt>
 <dd>An optional boolean value that specifies that a button 
 should be highlighted and focused by default.</dd>
+<em>NOTE:</em>If the YUI Button Widget is included on the page, 
+the buttons created will be instances of YAHOO.widget.Button. 
+Otherwise, HTML Buttons (<code>&#60;BUTTON&#62;</code>) will be 
+created.
                                         </div>
                                     </div>
  
      
                                     <div class="default">
                                         Default Value: "none"
+                                    </div>        
+
+                                    <hr />
+                                    </div>        
+                                    <div class="">
+                                    <h4><a name="hideaftersubmit">hideaftersubmit</a>
+                                        <code>- Boolean</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            This property is used to configure whether or not the 
+dialog should be automatically hidden after submit.
+                                        </div>
+                                    </div>
+ 
+     
+                                    <div class="default">
+                                        Default Value: true
                                     </div>        
 
                                     <hr />
@@ -1520,11 +1587,11 @@ are "async", "form", and "manual".
 
                                 <li class="selected"><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -1540,17 +1607,23 @@ are "async", "form", and "manual".
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -1559,6 +1632,8 @@ are "async", "form", and "manual".
                                 <li class=""><a href="module_tabview.html">tabview</a></li>
 
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
 
@@ -1611,6 +1686,9 @@ are "async", "form", and "manual".
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#callback.success">callback.success</a>
+                                        <!--<code>&lt;String&gt;</code>-->
+                                </li>
+                                <li class=""><a href="#callback.upload">callback.upload</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
                                 <li class="private"><a href="#DEFAULT_CONFIG">DEFAULT_CONFIG</a>
@@ -1726,6 +1804,9 @@ are "async", "form", and "manual".
                         <ul class="content">        
                                 <li class="">
                                 <a href="#buttons">buttons</a>
+                                </li>
+                                <li class="">
+                                <a href="#hideaftersubmit">hideaftersubmit</a>
                                 </li>
                                 <li class="">
                                 <a href="#postmethod">postmethod</a>

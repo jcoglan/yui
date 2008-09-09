@@ -45,7 +45,7 @@ YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.Basic = new function() {
         var myColumnDefs = [
             {key:"id", sortable:true, resizeable:true},
-            {key:"date", formatter:YAHOO.widget.DataTable.formatDate, sortable:true, resizeable:true},
+            {key:"date", formatter:YAHOO.widget.DataTable.formatDate, sortable:true, sortOptions:{defaultDir:YAHOO.widget.DataTable.CLASS_DESC},resizeable:true},
             {key:"quantity", formatter:YAHOO.widget.DataTable.formatNumber, sortable:true, resizeable:true},
             {key:"amount", formatter:YAHOO.widget.DataTable.formatCurrency, sortable:true, resizeable:true},
             {key:"title", sortable:true, resizeable:true}

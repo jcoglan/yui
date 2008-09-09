@@ -18,8 +18,7 @@ body {
 
 <link rel="stylesheet" type="text/css" href="../../build/fonts/fonts-min.css" />
 <link rel="stylesheet" type="text/css" href="../../build/datatable/assets/skins/sam/datatable.css" />
-<script type="text/javascript" src="../../build/yahoo-dom-event/yahoo-dom-event.js"></script>
-<script type="text/javascript" src="../../build/element/element-beta.js"></script>
+<script type="text/javascript" src="../../build/utilities/utilities.js"></script>
 <script type="text/javascript" src="../../build/datasource/datasource-beta.js"></script>
 <script type="text/javascript" src="../../build/datatable/datatable-beta.js"></script>
 
@@ -32,7 +31,9 @@ body {
 <h1>Complex Example of Multiple Features</h1>
 
 <div class="exampleIntro">
-	<p>A demonstration of several DataTable features combined in one instance.</p>
+	<p>A demonstration of several DataTable features combined in one instance. The
+features implemented in this example require the Drag and Drop and Animation
+utilities.</p>
 			
 </div>
 
@@ -64,10 +65,10 @@ YAHOO.util.Event.addListener(window, "load", function() {
         };
 
         var myColumnDefs = [
-            {key:"areacode",label:"Area Codes",width:"14em",sortable:true},
-            {key:"state",label:"States",width:"16em",sortable:true,
+            {key:"areacode",label:"Area Codes",width:100,resizeable:true,sortable:true},
+            {key:"state",label:"States",width:250,resizeable:true,sortable:true,
                     sortOptions:{sortFunction:this.sortStates}},
-            {key:"notes",label:"Notes (editable)",editor:"textbox"}
+            {key:"notes",label:"Notes (editable)",editor:"textbox",resizeable:true,sortable:true}
         ];
 
         this.myDataSource = new YAHOO.util.DataSource(YAHOO.example.Data.areacodes);
@@ -78,40 +79,42 @@ YAHOO.util.Event.addListener(window, "load", function() {
 
         var myConfigs = {
             sortedBy:{key:"areacode",dir:"asc"},
-            paginated:true,
-            paginator: {
+            paginator: new YAHOO.widget.Paginator({
                 rowsPerPage: 25,
                 dropdownOptions: [10,25,50,100],
                 pageLinks: 5
-            }
+            }),
+            scrollable:true,
+            height:"25em"
         }
 
         this.myDataTable = new YAHOO.widget.DataTable("complex", myColumnDefs, this.myDataSource, myConfigs);
         this.myDataTable.subscribe("rowClickEvent",this.myDataTable.onEventSelectRow);
         this.myDataTable.subscribe("cellDblclickEvent",this.myDataTable.onEventShowCellEditor);
+        this.myDataTable.subscribe("editorBlurEvent", this.myDataTable.onEventSaveCellEditor);
 
         // When cell is edited, pulse the color of the row yellow
         this.onCellEdit = function(oArgs) {
-            var elCell = oArgs.target;
+            var elCell = oArgs.editor.cell;
             var oOldData = oArgs.oldData;
             var oNewData = oArgs.newData;
 
             // Grab the row el and the 2 colors
             var elRow = this.getTrEl(elCell);
-            var origColor = YAHOO.util.Dom.getStyle(elRow, "backgroundColor");
+            var origColor = YAHOO.util.Dom.getStyle(elRow.cells[0], "backgroundColor");
             var pulseColor = "#ff0";
 
             // Create a temp anim instance that nulls out when anim is complete
-            var rowColorAnim = new YAHOO.util.ColorAnim(elRow, {
+            var rowColorAnim = new YAHOO.util.ColorAnim(elRow.cells, {
                     backgroundColor:{to:origColor, from:pulseColor}, duration:2});
             var onComplete = function() {
                 rowColorAnim = null;
+                YAHOO.util.Dom.setStyle(elRow.cells, "backgroundColor", "");
             }
             rowColorAnim.onComplete.subscribe(onComplete);
-            //rowColorAnim.animate();
+            rowColorAnim.animate();
         }
-        this.myDataTable.subscribe("cellEditEvent", this.onCellEdit);
-        this.myDataTable.subscribe("editorBlurEvent", this.myDataTable.onEventSaveCellEditor);
+        this.myDataTable.subscribe("editorSaveEvent", this.onCellEdit);
     };
 });
 </script>

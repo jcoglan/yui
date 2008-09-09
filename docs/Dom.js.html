@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>dom&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>dom&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_dom.html">dom</a>
@@ -45,10 +45,12 @@
     <span class="k">var</span> <span class="nx">Y</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">,</span>     <span class="c">// internal shorthand</span>
 <span class="c"></span>        <span class="nx">getStyle</span><span class="o">,</span>           <span class="c">// for load time browser branching</span>
 <span class="c"></span>        <span class="nx">setStyle</span><span class="o">,</span>           <span class="c">// ditto</span>
-<span class="c"></span>        <span class="nx">id_counter</span> <span class="o">=</span> <span class="m">0</span><span class="o">,</span>     <span class="c">// for use with generateId</span>
 <span class="c"></span>        <span class="nx">propertyCache</span> <span class="o">=</span> <span class="o">{},</span> <span class="c">// for faster hyphen converts</span>
-<span class="c"></span>        <span class="nx">reClassNameCache</span> <span class="o">=</span> <span class="o">{};</span> <span class="c">// cache regexes for className</span>
+<span class="c"></span>        <span class="nx">reClassNameCache</span> <span class="o">=</span> <span class="o">{},</span>          <span class="c">// cache regexes for className</span>
+<span class="c"></span>        <span class="nb">document</span> <span class="o">=</span> <span class="nb">window</span><span class="o">.</span><span class="nb">document</span><span class="o">;</span>     <span class="c">// cache for faster lookups</span>
 <span class="c"></span>    
+    <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">_id_counter</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">_id_counter</span> <span class="o">||</span> <span class="m">0</span><span class="o">;</span>     <span class="c">// for use with generateId (global to save state if Dom is overwritten)</span>
+<span class="c"></span>
     <span class="c">// brower detection</span>
 <span class="c"></span>    <span class="k">var</span> <span class="nx">isOpera</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">ua</span><span class="o">.</span><span class="nx">opera</span><span class="o">,</span>
         <span class="nx">isSafari</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">ua</span><span class="o">.</span><span class="nx">webkit</span><span class="o">,</span> 
@@ -162,7 +164,7 @@
             <span class="nx">el</span><span class="o">.</span><span class="nx">style</span><span class="o">[</span><span class="nx">property</span><span class="o">]</span> <span class="o">=</span> <span class="nx">val</span><span class="o">;</span>
         <span class="o">};</span>
     <span class="o">}</span>
-    
+
     <span class="k">var</span> <span class="nx">testElement</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">node</span><span class="o">,</span> <span class="nx">method</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">return</span> <span class="nx">node</span> <span class="o">&amp;&amp;</span> <span class="nx">node</span><span class="o">.</span><span class="nx">nodeType</span> <span class="o">==</span> <span class="m">1</span> <span class="o">&amp;&amp;</span> <span class="o">(</span> <span class="o">!</span><span class="nx">method</span> <span class="o">||</span> <span class="nx">method</span><span class="o">(</span><span class="nx">node</span><span class="o">)</span> <span class="o">);</span>
     <span class="o">};</span>
@@ -180,11 +182,11 @@
 <span class="c">         * @return {HTMLElement | Array} A DOM reference to an HTML element or an array of HTMLElements.</span>
 <span class="c">         */</span>
         <span class="nx">get</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">el</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="nx">el</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="nx">el</span><span class="o">.</span><span class="nx">tagName</span> <span class="o">||</span> <span class="nx">el</span><span class="o">.</span><span class="nx">item</span><span class="o">))</span> <span class="o">{</span> <span class="c">// HTMLElement, or HTMLCollection</span>
+            <span class="k">if</span> <span class="o">(</span><span class="nx">el</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="nx">el</span><span class="o">.</span><span class="nx">nodeType</span> <span class="o">||</span> <span class="nx">el</span><span class="o">.</span><span class="nx">item</span><span class="o">))</span> <span class="o">{</span> <span class="c">// Node, or NodeList</span>
 <span class="c"></span>                <span class="k">return</span> <span class="nx">el</span><span class="o">;</span>
             <span class="o">}</span>
 
-            <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isString</span><span class="o">(</span><span class="nx">el</span><span class="o">)</span> <span class="o">||</span> <span class="o">!</span><span class="nx">el</span><span class="o">)</span> <span class="o">{</span> <span class="c">// HTMLElement or null</span>
+            <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isString</span><span class="o">(</span><span class="nx">el</span><span class="o">)</span> <span class="o">||</span> <span class="o">!</span><span class="nx">el</span><span class="o">)</span> <span class="o">{</span> <span class="c">// id or null</span>
 <span class="c"></span>                <span class="k">return</span> <span class="nb">document</span><span class="o">.</span><span class="nx">getElementById</span><span class="o">(</span><span class="nx">el</span><span class="o">);</span>
             <span class="o">}</span>
             
@@ -244,65 +246,15 @@
 <span class="c">         */</span>
         <span class="nx">getXY</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">el</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">var</span> <span class="nx">f</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">el</span><span class="o">)</span> <span class="o">{</span>
-    
-            <span class="c">// has to be part of document to have pageXY</span>
+                <span class="c">// has to be part of document to have pageXY</span>
 <span class="c"></span>                <span class="k">if</span> <span class="o">(</span> <span class="o">(</span><span class="nx">el</span><span class="o">.</span><span class="nx">parentNode</span> <span class="o">===</span> <span class="kc">null</span> <span class="o">||</span> <span class="nx">el</span><span class="o">.</span><span class="nx">offsetParent</span> <span class="o">===</span> <span class="kc">null</span> <span class="o">||</span>
-                        <span class="k">this</span><span class="o">.</span><span class="nx">getStyle</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="s1">&#39;display&#39;</span><span class="o">)</span> <span class="o">==</span> <span class="s1">&#39;none&#39;</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="nx">el</span> <span class="o">!=</span> <span class="nb">document</span><span class="o">.</span><span class="nx">body</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="k">this</span><span class="o">.</span><span class="nx">getStyle</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="s1">&#39;display&#39;</span><span class="o">)</span> <span class="o">==</span> <span class="s1">&#39;none&#39;</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="nx">el</span> <span class="o">!=</span> <span class="nx">el</span><span class="o">.</span><span class="nx">ownerDocument</span><span class="o">.</span><span class="nx">body</span><span class="o">)</span> <span class="o">{</span>
                     <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;getXY failed: element not available&#39;</span><span class="o">,</span> <span class="s1">&#39;error&#39;</span><span class="o">,</span> <span class="s1">&#39;Dom&#39;</span><span class="o">);</span>
                     <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
                 <span class="o">}</span>
                 
-                <span class="k">var</span> <span class="nx">parentNode</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-                <span class="k">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="o">[];</span>
-                <span class="k">var</span> <span class="nx">box</span><span class="o">;</span>
-                <span class="k">var</span> <span class="nx">doc</span> <span class="o">=</span> <span class="nx">el</span><span class="o">.</span><span class="nx">ownerDocument</span><span class="o">;</span> 
-
-                <span class="k">if</span> <span class="o">(</span><span class="nx">el</span><span class="o">.</span><span class="nx">getBoundingClientRect</span><span class="o">)</span> <span class="o">{</span> <span class="c">// IE</span>
-<span class="c"></span>                    <span class="nx">box</span> <span class="o">=</span> <span class="nx">el</span><span class="o">.</span><span class="nx">getBoundingClientRect</span><span class="o">();</span>
-                    <span class="k">return</span> <span class="o">[</span><span class="nx">box</span><span class="o">.</span><span class="nx">left</span> <span class="o">+</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getDocumentScrollLeft</span><span class="o">(</span><span class="nx">el</span><span class="o">.</span><span class="nx">ownerDocument</span><span class="o">),</span> <span class="nx">box</span><span class="o">.</span><span class="nx">top</span> <span class="o">+</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getDocumentScrollTop</span><span class="o">(</span><span class="nx">el</span><span class="o">.</span><span class="nx">ownerDocument</span><span class="o">)];</span>
-                <span class="o">}</span>
-                <span class="k">else</span> <span class="o">{</span> <span class="c">// safari, opera, &amp; gecko</span>
-<span class="c"></span>                    <span class="nx">pos</span> <span class="o">=</span> <span class="o">[</span><span class="nx">el</span><span class="o">.</span><span class="nx">offsetLeft</span><span class="o">,</span> <span class="nx">el</span><span class="o">.</span><span class="nx">offsetTop</span><span class="o">];</span>
-                    <span class="nx">parentNode</span> <span class="o">=</span> <span class="nx">el</span><span class="o">.</span><span class="nx">offsetParent</span><span class="o">;</span>
-
-                    <span class="c">// safari: if el is abs or any parent is abs, subtract body offsets</span>
-<span class="c"></span>                    <span class="k">var</span> <span class="nx">hasAbs</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">getStyle</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="s1">&#39;position&#39;</span><span class="o">)</span> <span class="o">==</span> <span class="s1">&#39;absolute&#39;</span><span class="o">;</span>
-
-                    <span class="k">if</span> <span class="o">(</span><span class="nx">parentNode</span> <span class="o">!=</span> <span class="nx">el</span><span class="o">)</span> <span class="o">{</span>
-                        <span class="k">while</span> <span class="o">(</span><span class="nx">parentNode</span><span class="o">)</span> <span class="o">{</span>
-                            <span class="nx">pos</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">+=</span> <span class="nx">parentNode</span><span class="o">.</span><span class="nx">offsetLeft</span><span class="o">;</span>
-                            <span class="nx">pos</span><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">+=</span> <span class="nx">parentNode</span><span class="o">.</span><span class="nx">offsetTop</span><span class="o">;</span>
-                            <span class="k">if</span> <span class="o">(</span><span class="nx">isSafari</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">hasAbs</span> <span class="o">&amp;&amp;</span> 
-                                    <span class="k">this</span><span class="o">.</span><span class="nx">getStyle</span><span class="o">(</span><span class="nx">parentNode</span><span class="o">,</span><span class="s1">&#39;position&#39;</span><span class="o">)</span> <span class="o">==</span> <span class="s1">&#39;absolute&#39;</span> <span class="o">)</span> <span class="o">{</span>
-                                <span class="nx">hasAbs</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span> <span class="c">// we need to offset if any parent is absolutely positioned</span>
-<span class="c"></span>                            <span class="o">}</span>
-                            <span class="nx">parentNode</span> <span class="o">=</span> <span class="nx">parentNode</span><span class="o">.</span><span class="nx">offsetParent</span><span class="o">;</span>
-                        <span class="o">}</span>
-                    <span class="o">}</span>
-
-                    <span class="k">if</span> <span class="o">(</span><span class="nx">isSafari</span> <span class="o">&amp;&amp;</span> <span class="nx">hasAbs</span><span class="o">)</span> <span class="o">{</span> <span class="c">//safari doubles in this case</span>
-<span class="c"></span>                        <span class="nx">pos</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">-=</span> <span class="nx">el</span><span class="o">.</span><span class="nx">ownerDocument</span><span class="o">.</span><span class="nx">body</span><span class="o">.</span><span class="nx">offsetLeft</span><span class="o">;</span>
-                        <span class="nx">pos</span><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">-=</span> <span class="nx">el</span><span class="o">.</span><span class="nx">ownerDocument</span><span class="o">.</span><span class="nx">body</span><span class="o">.</span><span class="nx">offsetTop</span><span class="o">;</span>
-                    <span class="o">}</span> 
-                <span class="o">}</span>
-                
-                <span class="nx">parentNode</span> <span class="o">=</span> <span class="nx">el</span><span class="o">.</span><span class="nx">parentNode</span><span class="o">;</span>
-
-                <span class="c">// account for any scrolled ancestors</span>
-<span class="c"></span>                <span class="k">while</span> <span class="o">(</span> <span class="nx">parentNode</span><span class="o">.</span><span class="nx">tagName</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">patterns</span><span class="o">.</span><span class="nx">ROOT_TAG</span><span class="o">.</span><span class="nx">test</span><span class="o">(</span><span class="nx">parentNode</span><span class="o">.</span><span class="nx">tagName</span><span class="o">)</span> <span class="o">)</span> 
-                <span class="o">{</span>
-                   <span class="c">// work around opera inline/table scrollLeft/Top bug</span>
-<span class="c"></span>                   <span class="k">if</span> <span class="o">(</span><span class="nx">Y</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getStyle</span><span class="o">(</span><span class="nx">parentNode</span><span class="o">,</span> <span class="s1">&#39;display&#39;</span><span class="o">).</span><span class="nx">search</span><span class="o">(</span><span class="sr">/^inline|table-row.*$/i</span><span class="o">))</span> <span class="o">{</span> 
-                        <span class="nx">pos</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">-=</span> <span class="nx">parentNode</span><span class="o">.</span><span class="nx">scrollLeft</span><span class="o">;</span>
-                        <span class="nx">pos</span><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">-=</span> <span class="nx">parentNode</span><span class="o">.</span><span class="nx">scrollTop</span><span class="o">;</span>
-                    <span class="o">}</span>
-                    
-                    <span class="nx">parentNode</span> <span class="o">=</span> <span class="nx">parentNode</span><span class="o">.</span><span class="nx">parentNode</span><span class="o">;</span> 
-                <span class="o">}</span>
-       
-                <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;getXY returning &#39;</span> <span class="o">+</span> <span class="nx">pos</span><span class="o">,</span> <span class="s1">&#39;info&#39;</span><span class="o">,</span> <span class="s1">&#39;Dom&#39;</span><span class="o">);</span>
-                
-                <span class="k">return</span> <span class="nx">pos</span><span class="o">;</span>
+                <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;getXY returning &#39;</span> <span class="o">+</span> <span class="nx">getXY</span><span class="o">(</span><span class="nx">el</span><span class="o">),</span> <span class="s1">&#39;info&#39;</span><span class="o">,</span> <span class="s1">&#39;Dom&#39;</span><span class="o">);</span>
+                <span class="k">return</span> <span class="nx">getXY</span><span class="o">(</span><span class="nx">el</span><span class="o">);</span>
             <span class="o">};</span>
             
             <span class="k">return</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">batch</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="nx">f</span><span class="o">,</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">Dom</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
@@ -538,7 +490,7 @@
             <span class="k">var</span> <span class="nx">re</span> <span class="o">=</span> <span class="nx">getClassRegEx</span><span class="o">(</span><span class="nx">className</span><span class="o">);</span>
             
             <span class="k">var</span> <span class="nx">f</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">el</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">if</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">hasClass</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="nx">className</span><span class="o">))</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(!</span><span class="nx">className</span> <span class="o">||</span> <span class="o">!</span><span class="k">this</span><span class="o">.</span><span class="nx">hasClass</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="nx">className</span><span class="o">))</span> <span class="o">{</span>
                     <span class="k">return</span> <span class="kc">false</span><span class="o">;</span> <span class="c">// not present</span>
 <span class="c"></span>                <span class="o">}</span>                 
 
@@ -610,7 +562,7 @@
                     <span class="k">return</span> <span class="nx">el</span><span class="o">.</span><span class="nx">id</span><span class="o">;</span>
                 <span class="o">}</span> 
 
-                <span class="k">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">prefix</span> <span class="o">+</span> <span class="nx">id_counter</span><span class="o">++;</span>
+                <span class="k">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">prefix</span> <span class="o">+</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">_id_counter</span><span class="o">++;</span>
                 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;generateId generating &#39;</span> <span class="o">+</span> <span class="nx">id</span><span class="o">,</span> <span class="s1">&#39;info&#39;</span><span class="o">,</span> <span class="s1">&#39;Dom&#39;</span><span class="o">);</span>
 
                 <span class="k">if</span> <span class="o">(</span><span class="nx">el</span><span class="o">)</span> <span class="o">{</span>
@@ -633,27 +585,27 @@
 <span class="c">         */</span>
         <span class="nx">isAncestor</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">haystack</span><span class="o">,</span> <span class="nx">needle</span><span class="o">)</span> <span class="o">{</span>
             <span class="nx">haystack</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="nx">haystack</span><span class="o">);</span>
-            <span class="k">if</span> <span class="o">(!</span><span class="nx">haystack</span> <span class="o">||</span> <span class="o">!</span><span class="nx">needle</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span> <span class="o">}</span>
+            <span class="nx">needle</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="nx">needle</span><span class="o">);</span>
             
-            <span class="k">var</span> <span class="nx">f</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">node</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">if</span> <span class="o">(</span><span class="nx">haystack</span><span class="o">.</span><span class="nx">contains</span> <span class="o">&amp;&amp;</span> <span class="nx">node</span><span class="o">.</span><span class="nx">nodeType</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">isSafari</span><span class="o">)</span> <span class="o">{</span> <span class="c">// safari contains is broken</span>
-<span class="c"></span>                    <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;isAncestor returning &#39;</span> <span class="o">+</span> <span class="nx">haystack</span><span class="o">.</span><span class="nx">contains</span><span class="o">(</span><span class="nx">node</span><span class="o">),</span> <span class="s1">&#39;info&#39;</span><span class="o">,</span> <span class="s1">&#39;Dom&#39;</span><span class="o">);</span>
-                    <span class="k">return</span> <span class="nx">haystack</span><span class="o">.</span><span class="nx">contains</span><span class="o">(</span><span class="nx">node</span><span class="o">);</span>
-                <span class="o">}</span>
-                <span class="k">else</span> <span class="k">if</span> <span class="o">(</span> <span class="nx">haystack</span><span class="o">.</span><span class="nx">compareDocumentPosition</span> <span class="o">&amp;&amp;</span> <span class="nx">node</span><span class="o">.</span><span class="nx">nodeType</span> <span class="o">)</span> <span class="o">{</span>
-                    <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;isAncestor returning &#39;</span> <span class="o">+</span> <span class="o">!!(</span><span class="nx">haystack</span><span class="o">.</span><span class="nx">compareDocumentPosition</span><span class="o">(</span><span class="nx">node</span><span class="o">)</span> <span class="o">&amp;</span> <span class="m">16</span><span class="o">),</span> <span class="s1">&#39;info&#39;</span><span class="o">,</span> <span class="s1">&#39;Dom&#39;</span><span class="o">);</span>
-                    <span class="k">return</span> <span class="o">!!(</span><span class="nx">haystack</span><span class="o">.</span><span class="nx">compareDocumentPosition</span><span class="o">(</span><span class="nx">node</span><span class="o">)</span> <span class="o">&amp;</span> <span class="m">16</span><span class="o">);</span>
-                <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nx">node</span><span class="o">.</span><span class="nx">nodeType</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="c">// fallback to crawling up (safari)</span>
-<span class="c"></span>                    <span class="k">return</span> <span class="o">!!</span><span class="k">this</span><span class="o">.</span><span class="nx">getAncestorBy</span><span class="o">(</span><span class="nx">node</span><span class="o">,</span> <span class="k">function</span><span class="o">(</span><span class="nx">el</span><span class="o">)</span> <span class="o">{</span>
-                        <span class="k">return</span> <span class="nx">el</span> <span class="o">==</span> <span class="nx">haystack</span><span class="o">;</span> 
-                    <span class="o">});</span> 
-                <span class="o">}</span>
-                <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;isAncestor failed; most likely needle is not an HTMLElement&#39;</span><span class="o">,</span> <span class="s1">&#39;error&#39;</span><span class="o">,</span> <span class="s1">&#39;Dom&#39;</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(!</span><span class="nx">haystack</span> <span class="o">||</span> <span class="o">!</span><span class="nx">needle</span><span class="o">)</span> <span class="o">{</span>
                 <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-            <span class="o">};</span>
-            
-            <span class="k">return</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">batch</span><span class="o">(</span><span class="nx">needle</span><span class="o">,</span> <span class="nx">f</span><span class="o">,</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">Dom</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>      
+            <span class="o">}</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="nx">haystack</span><span class="o">.</span><span class="nx">contains</span> <span class="o">&amp;&amp;</span> <span class="nx">needle</span><span class="o">.</span><span class="nx">nodeType</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">isSafari</span><span class="o">)</span> <span class="o">{</span> <span class="c">// safari contains is broken</span>
+<span class="c"></span>                <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;isAncestor returning &#39;</span> <span class="o">+</span> <span class="nx">haystack</span><span class="o">.</span><span class="nx">contains</span><span class="o">(</span><span class="nx">needle</span><span class="o">),</span> <span class="s1">&#39;info&#39;</span><span class="o">,</span> <span class="s1">&#39;Dom&#39;</span><span class="o">);</span>
+                <span class="k">return</span> <span class="nx">haystack</span><span class="o">.</span><span class="nx">contains</span><span class="o">(</span><span class="nx">needle</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="o">(</span> <span class="nx">haystack</span><span class="o">.</span><span class="nx">compareDocumentPosition</span> <span class="o">&amp;&amp;</span> <span class="nx">needle</span><span class="o">.</span><span class="nx">nodeType</span> <span class="o">)</span> <span class="o">{</span>
+                <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;isAncestor returning &#39;</span> <span class="o">+</span> <span class="o">!!(</span><span class="nx">haystack</span><span class="o">.</span><span class="nx">compareDocumentPosition</span><span class="o">(</span><span class="nx">needle</span><span class="o">)</span> <span class="o">&amp;</span> <span class="m">16</span><span class="o">),</span> <span class="s1">&#39;info&#39;</span><span class="o">,</span> <span class="s1">&#39;Dom&#39;</span><span class="o">);</span>
+                <span class="k">return</span> <span class="o">!!(</span><span class="nx">haystack</span><span class="o">.</span><span class="nx">compareDocumentPosition</span><span class="o">(</span><span class="nx">needle</span><span class="o">)</span> <span class="o">&amp;</span> <span class="m">16</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nx">needle</span><span class="o">.</span><span class="nx">nodeType</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c">// fallback to crawling up (safari)</span>
+<span class="c"></span>                <span class="k">return</span> <span class="o">!!</span><span class="k">this</span><span class="o">.</span><span class="nx">getAncestorBy</span><span class="o">(</span><span class="nx">needle</span><span class="o">,</span> <span class="k">function</span><span class="o">(</span><span class="nx">el</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="nx">el</span> <span class="o">==</span> <span class="nx">haystack</span><span class="o">;</span> 
+                <span class="o">});</span> 
+            <span class="o">}</span>
+            <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;isAncestor failed; most likely needle is not an HTMLElement&#39;</span><span class="o">,</span> <span class="s1">&#39;error&#39;</span><span class="o">,</span> <span class="s1">&#39;Dom&#39;</span><span class="o">);</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
         <span class="o">},</span>
         
         <span class="c">/**</span>
@@ -663,19 +615,7 @@
 <span class="c">         * @return {Boolean} Whether or not the element is present in the current document</span>
 <span class="c">         */</span>
         <span class="nx">inDocument</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">el</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">var</span> <span class="nx">f</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">el</span><span class="o">)</span> <span class="o">{</span> <span class="c">// safari contains fails for body so crawl up</span>
-<span class="c"></span>                <span class="k">if</span> <span class="o">(</span><span class="nx">isSafari</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="k">while</span> <span class="o">(</span><span class="nx">el</span> <span class="o">=</span> <span class="nx">el</span><span class="o">.</span><span class="nx">parentNode</span><span class="o">)</span> <span class="o">{</span> <span class="c">// note assignment</span>
-<span class="c"></span>                        <span class="k">if</span> <span class="o">(</span><span class="nx">el</span> <span class="o">==</span> <span class="nb">document</span><span class="o">.</span><span class="nx">documentElement</span><span class="o">)</span> <span class="o">{</span>
-                            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-                        <span class="o">}</span>
-                    <span class="o">}</span>
-                    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-                <span class="o">}</span>
-                <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="nx">isAncestor</span><span class="o">(</span><span class="nb">document</span><span class="o">.</span><span class="nx">documentElement</span><span class="o">,</span> <span class="nx">el</span><span class="o">);</span>
-            <span class="o">};</span>
-            
-            <span class="k">return</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">batch</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="nx">f</span><span class="o">,</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">Dom</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+            <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="nx">isAncestor</span><span class="o">(</span><span class="nb">document</span><span class="o">.</span><span class="nx">documentElement</span><span class="o">,</span> <span class="nx">el</span><span class="o">);</span>
         <span class="o">},</span>
         
         <span class="c">/**</span>
@@ -1092,9 +1032,77 @@
             <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
                 <span class="k">return</span> <span class="nx">referenceNode</span><span class="o">.</span><span class="nx">parentNode</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nx">newNode</span><span class="o">);</span>
             <span class="o">}</span>
+        <span class="o">},</span>
+
+        <span class="c">/**</span>
+<span class="c">         * Creates a Region based on the viewport relative to the document. </span>
+<span class="c">         * @method getClientRegion</span>
+<span class="c">         * @return {Region} A Region object representing the viewport which accounts for document scroll</span>
+<span class="c">         */</span>
+        <span class="nx">getClientRegion</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getDocumentScrollTop</span><span class="o">(),</span>
+                <span class="nx">l</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getDocumentScrollLeft</span><span class="o">(),</span>
+                <span class="nx">r</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getViewportWidth</span><span class="o">()</span> <span class="o">+</span> <span class="nx">l</span><span class="o">,</span>
+                <span class="nx">b</span> <span class="o">=</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getViewportHeight</span><span class="o">()</span> <span class="o">+</span> <span class="nx">t</span><span class="o">;</span>
+
+            <span class="k">return</span> <span class="k">new</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">Region</span><span class="o">(</span><span class="nx">t</span><span class="o">,</span> <span class="nx">r</span><span class="o">,</span> <span class="nx">b</span><span class="o">,</span> <span class="nx">l</span><span class="o">);</span>
         <span class="o">}</span>
     <span class="o">};</span>
-<span class="o">})();</span>
+    
+    <span class="k">var</span> <span class="nx">getXY</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="nb">document</span><span class="o">.</span><span class="nx">documentElement</span><span class="o">.</span><span class="nx">getBoundingClientRect</span><span class="o">)</span> <span class="o">{</span> <span class="c">// IE</span>
+<span class="c"></span>            <span class="k">return</span> <span class="k">function</span><span class="o">(</span><span class="nx">el</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">var</span> <span class="nx">box</span> <span class="o">=</span> <span class="nx">el</span><span class="o">.</span><span class="nx">getBoundingClientRect</span><span class="o">();</span>
+
+                <span class="k">var</span> <span class="nx">rootNode</span> <span class="o">=</span> <span class="nx">el</span><span class="o">.</span><span class="nx">ownerDocument</span><span class="o">;</span>
+                <span class="k">return</span> <span class="o">[</span><span class="nx">box</span><span class="o">.</span><span class="nx">left</span> <span class="o">+</span> <span class="nx">Y</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getDocumentScrollLeft</span><span class="o">(</span><span class="nx">rootNode</span><span class="o">),</span> <span class="nx">box</span><span class="o">.</span><span class="nx">top</span> <span class="o">+</span>
+                        <span class="nx">Y</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getDocumentScrollTop</span><span class="o">(</span><span class="nx">rootNode</span><span class="o">)];</span>
+            <span class="o">};</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="k">function</span><span class="o">(</span><span class="nx">el</span><span class="o">)</span> <span class="o">{</span> <span class="c">// manually calculate by crawling up offsetParents</span>
+<span class="c"></span>                <span class="k">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="o">[</span><span class="nx">el</span><span class="o">.</span><span class="nx">offsetLeft</span><span class="o">,</span> <span class="nx">el</span><span class="o">.</span><span class="nx">offsetTop</span><span class="o">];</span>
+                <span class="k">var</span> <span class="nx">parentNode</span> <span class="o">=</span> <span class="nx">el</span><span class="o">.</span><span class="nx">offsetParent</span><span class="o">;</span>
+
+                <span class="c">// safari: subtract body offsets if el is abs (or any offsetParent), unless body is offsetParent</span>
+<span class="c"></span>                <span class="k">var</span> <span class="nx">accountForBody</span> <span class="o">=</span> <span class="o">(</span><span class="nx">isSafari</span> <span class="o">&amp;&amp;</span>
+                        <span class="nx">Y</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getStyle</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="s1">&#39;position&#39;</span><span class="o">)</span> <span class="o">==</span> <span class="s1">&#39;absolute&#39;</span> <span class="o">&amp;&amp;</span>
+                        <span class="nx">el</span><span class="o">.</span><span class="nx">offsetParent</span> <span class="o">==</span> <span class="nx">el</span><span class="o">.</span><span class="nx">ownerDocument</span><span class="o">.</span><span class="nx">body</span><span class="o">);</span>
+
+                <span class="k">if</span> <span class="o">(</span><span class="nx">parentNode</span> <span class="o">!=</span> <span class="nx">el</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">while</span> <span class="o">(</span><span class="nx">parentNode</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="nx">pos</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">+=</span> <span class="nx">parentNode</span><span class="o">.</span><span class="nx">offsetLeft</span><span class="o">;</span>
+                        <span class="nx">pos</span><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">+=</span> <span class="nx">parentNode</span><span class="o">.</span><span class="nx">offsetTop</span><span class="o">;</span>
+                        <span class="k">if</span> <span class="o">(!</span><span class="nx">accountForBody</span> <span class="o">&amp;&amp;</span> <span class="nx">isSafari</span> <span class="o">&amp;&amp;</span> 
+                                <span class="nx">Y</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getStyle</span><span class="o">(</span><span class="nx">parentNode</span><span class="o">,</span><span class="s1">&#39;position&#39;</span><span class="o">)</span> <span class="o">==</span> <span class="s1">&#39;absolute&#39;</span> <span class="o">)</span> <span class="o">{</span> 
+                            <span class="nx">accountForBody</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                        <span class="o">}</span>
+                        <span class="nx">parentNode</span> <span class="o">=</span> <span class="nx">parentNode</span><span class="o">.</span><span class="nx">offsetParent</span><span class="o">;</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+
+                <span class="k">if</span> <span class="o">(</span><span class="nx">accountForBody</span><span class="o">)</span> <span class="o">{</span> <span class="c">//safari doubles in this case</span>
+<span class="c"></span>                    <span class="nx">pos</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">-=</span> <span class="nx">el</span><span class="o">.</span><span class="nx">ownerDocument</span><span class="o">.</span><span class="nx">body</span><span class="o">.</span><span class="nx">offsetLeft</span><span class="o">;</span>
+                    <span class="nx">pos</span><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">-=</span> <span class="nx">el</span><span class="o">.</span><span class="nx">ownerDocument</span><span class="o">.</span><span class="nx">body</span><span class="o">.</span><span class="nx">offsetTop</span><span class="o">;</span>
+                <span class="o">}</span> 
+                <span class="nx">parentNode</span> <span class="o">=</span> <span class="nx">el</span><span class="o">.</span><span class="nx">parentNode</span><span class="o">;</span>
+
+                <span class="c">// account for any scrolled ancestors</span>
+<span class="c"></span>                <span class="k">while</span> <span class="o">(</span> <span class="nx">parentNode</span><span class="o">.</span><span class="nx">tagName</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">patterns</span><span class="o">.</span><span class="nx">ROOT_TAG</span><span class="o">.</span><span class="nx">test</span><span class="o">(</span><span class="nx">parentNode</span><span class="o">.</span><span class="nx">tagName</span><span class="o">)</span> <span class="o">)</span> 
+                <span class="o">{</span>
+                   <span class="c">// work around opera inline/table scrollLeft/Top bug</span>
+<span class="c"></span>                   <span class="k">if</span> <span class="o">(</span><span class="nx">Y</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getStyle</span><span class="o">(</span><span class="nx">parentNode</span><span class="o">,</span> <span class="s1">&#39;display&#39;</span><span class="o">).</span><span class="nx">search</span><span class="o">(</span><span class="sr">/^inline|table-row.*$/i</span><span class="o">))</span> <span class="o">{</span> 
+                        <span class="nx">pos</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">-=</span> <span class="nx">parentNode</span><span class="o">.</span><span class="nx">scrollLeft</span><span class="o">;</span>
+                        <span class="nx">pos</span><span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">-=</span> <span class="nx">parentNode</span><span class="o">.</span><span class="nx">scrollTop</span><span class="o">;</span>
+                    <span class="o">}</span>
+                    
+                    <span class="nx">parentNode</span> <span class="o">=</span> <span class="nx">parentNode</span><span class="o">.</span><span class="nx">parentNode</span><span class="o">;</span> 
+                <span class="o">}</span>
+
+                <span class="k">return</span> <span class="nx">pos</span><span class="o">;</span>
+            <span class="o">};</span>
+        <span class="o">}</span>
+    <span class="o">}()</span> <span class="c">// NOTE: Executing for loadtime branching</span>
+<span class="c"></span><span class="o">})();</span>
 </pre></div>
                     </div>
 			</div>
@@ -1122,11 +1130,11 @@
 
                                 <li class=""><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class="selected"><a href="module_dom.html">dom</a></li>
 
@@ -1142,17 +1150,23 @@
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -1161,6 +1175,8 @@
                                 <li class=""><a href="module_tabview.html">tabview</a></li>
 
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
 

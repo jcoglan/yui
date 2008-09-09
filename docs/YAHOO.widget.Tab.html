@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>tabview&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>tabview&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_tabview.html">tabview</a>
@@ -111,6 +111,24 @@ represents the TabView. An element will be created if none provided.
                                         
                                     <div class="default">
                                         Default Value: "selected"
+                                    </div>        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4><a name="ACTIVE_TITLE">ACTIVE_TITLE</a>
+                                        <code>- String</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            The title applied to active tabs.
+                                        </div>
+                                    </div>
+     
+                                        
+                                    <div class="default">
+                                        Default Value: "active"
                                     </div>        
 
 
@@ -351,6 +369,47 @@ loaded dynamically.
                             <div class="content">
                                     <div class="">
                                     <h4>
+                                        <a name="activationEventChange">activationEventChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>activationEventChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'activationEvent' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="activeChange">activeChange</a></h4>
                                     <div class="detail">
                                         <code>
@@ -360,27 +419,70 @@ loaded dynamically.
                                             <strong>activeChange</strong>
 
                                             (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
                                             )
 
                                         </code>
                                         
                                         <div class="description">
-                                            Fires after the active state is changed.
-<p>See: <a href="YAHOO.util.Element.html#addListener">Element.addListener</a></p>
-<p><strong>Event fields:</strong><br>
-<code>&lt;String&gt; type</code> activeChange<br>
-<code>&lt;Boolean&gt;
-prevValue</code> the previous value<br>
-<code>&lt;Boolean&gt;
-newValue</code> the updated value</p>
-<p><strong>Usage:</strong><br>
-<code>var handler = function(e) {var previous = e.prevValue};<br>
-myTabs.addListener('activeChange', handler);</code></p>
+                                            Fires when the value for the configuration attribute 'active' changes.
                                         </div>
 
                                         <div class="description">
 
 
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeActivationeventChange">beforeActivationeventChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeActivationeventChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'activationEvent' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
 
 
                                         </div>
@@ -399,29 +501,70 @@ myTabs.addListener('activeChange', handler);</code></p>
                                             <strong>beforeActiveChange</strong>
 
                                             (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
                                             )
 
                                         </code>
                                         
                                         <div class="description">
-                                            Fires before the active state is changed.
-<p>See: <a href="YAHOO.util.Element.html#addListener">Element.addListener</a></p>
-<p>If handler returns false, the change will be cancelled, and the value will not
-be set.</p>
-<p><strong>Event fields:</strong><br>
-<code>&lt;String&gt; type</code> beforeActiveChange<br>
-<code>&lt;Boolean&gt;
-prevValue</code> the current value<br>
-<code>&lt;Boolean&gt;
-newValue</code> the new value</p>
-<p><strong>Usage:</strong><br>
-<code>var handler = function(e) {var previous = e.prevValue};<br>
-myTabs.addListener('beforeActiveChange', handler);</code></p>
+                                            Fires before the value for the configuration attribute 'active' changes. Return false to cancel the attribute change.
                                         </div>
 
                                         <div class="description">
 
 
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeCachedataChange">beforeCachedataChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeCachedataChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'cacheData' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
 
 
                                         </div>
@@ -440,29 +583,316 @@ myTabs.addListener('beforeActiveChange', handler);</code></p>
                                             <strong>beforeContentChange</strong>
 
                                             (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
                                             )
 
                                         </code>
                                         
                                         <div class="description">
-                                            Fires before the tab content is changed.
-<p>See: <a href="YAHOO.util.Element.html#addListener">Element.addListener</a></p>
-<p>If handler returns false, the change will be cancelled, and the value will not
-be set.</p>
-<p><strong>Event fields:</strong><br>
-<code>&lt;String&gt; type</code> beforeContentChange<br>
-<code>&lt;String&gt;
-prevValue</code> the current value<br>
-<code>&lt;String&gt;
-newValue</code> the new value</p>
-<p><strong>Usage:</strong><br>
-<code>var handler = function(e) {var previous = e.prevValue};<br>
-myTabs.addListener('beforeContentChange', handler);</code></p>
+                                            Fires before the value for the configuration attribute 'content' changes. Return false to cancel the attribute change.
                                         </div>
 
                                         <div class="description">
 
 
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeContentelChange">beforeContentelChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeContentelChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'contentEl' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeContentvisibleChange">beforeContentvisibleChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeContentvisibleChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'contentVisible' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeDataloadedChange">beforeDataloadedChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeDataloadedChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'dataLoaded' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeDatasrcChange">beforeDatasrcChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeDatasrcChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'dataSrc' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeDatatimeoutChange">beforeDatatimeoutChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeDatatimeoutChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'dataTimeout' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeDisabledChange">beforeDisabledChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeDisabledChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'disabled' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeHrefChange">beforeHrefChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeHrefChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'href' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
 
 
                                         </div>
@@ -481,29 +911,152 @@ myTabs.addListener('beforeContentChange', handler);</code></p>
                                             <strong>beforeLabelChange</strong>
 
                                             (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
                                             )
 
                                         </code>
                                         
                                         <div class="description">
-                                            Fires before the tab label is changed.
-<p>See: <a href="YAHOO.util.Element.html#addListener">Element.addListener</a></p>
-<p>If handler returns false, the change will be cancelled, and the value will not
-be set.</p>
-<p><strong>Event fields:</strong><br>
-<code>&lt;String&gt; type</code> beforeLabelChange<br>
-<code>&lt;String&gt;
-prevValue</code> the current value<br>
-<code>&lt;String&gt;
-newValue</code> the new value</p>
-<p><strong>Usage:</strong><br>
-<code>var handler = function(e) {var previous = e.prevValue};<br>
-myTabs.addListener('beforeLabelChange', handler);</code></p>
+                                            Fires before the value for the configuration attribute 'label' changes. Return false to cancel the attribute change.
                                         </div>
 
                                         <div class="description">
 
 
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeLabelelChange">beforeLabelelChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeLabelelChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'labelEl' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeLoadmethodChange">beforeLoadmethodChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeLoadmethodChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'loadMethod' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="cacheDataChange">cacheDataChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>cacheDataChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'cacheData' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
 
 
                                         </div>
@@ -522,27 +1075,316 @@ myTabs.addListener('beforeLabelChange', handler);</code></p>
                                             <strong>contentChange</strong>
 
                                             (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
                                             )
 
                                         </code>
                                         
                                         <div class="description">
-                                            Fires after the tab content is changed.
-<p>See: <a href="YAHOO.util.Element.html#addListener">Element.addListener</a></p>
-<p><strong>Event fields:</strong><br>
-<code>&lt;String&gt; type</code> contentChange<br>
-<code>&lt;String&gt;
-prevValue</code> the previous value<br>
-<code>&lt;Boolean&gt;
-newValue</code> the updated value</p>
-<p><strong>Usage:</strong><br>
-<code>var handler = function(e) {var previous = e.prevValue};<br>
-myTabs.addListener('contentChange', handler);</code></p>
+                                            Fires when the value for the configuration attribute 'content' changes.
                                         </div>
 
                                         <div class="description">
 
 
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="contentElChange">contentElChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>contentElChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'contentEl' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="contentVisibleChange">contentVisibleChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>contentVisibleChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'contentVisible' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="dataLoadedChange">dataLoadedChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>dataLoadedChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'dataLoaded' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="dataSrcChange">dataSrcChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>dataSrcChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'dataSrc' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="dataTimeoutChange">dataTimeoutChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>dataTimeoutChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'dataTimeout' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="disabledChange">disabledChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>disabledChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'disabled' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="hrefChange">hrefChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>hrefChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'href' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
 
 
                                         </div>
@@ -561,27 +1403,111 @@ myTabs.addListener('contentChange', handler);</code></p>
                                             <strong>labelChange</strong>
 
                                             (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
                                             )
 
                                         </code>
                                         
                                         <div class="description">
-                                            Fires after the tab label is changed.
-<p>See: <a href="YAHOO.util.Element.html#addListener">Element.addListener</a></p>
-<p><strong>Event fields:</strong><br>
-<code>&lt;String&gt; type</code> labelChange<br>
-<code>&lt;String&gt;
-prevValue</code> the previous value<br>
-<code>&lt;String&gt;
-newValue</code> the updated value</p>
-<p><strong>Usage:</strong><br>
-<code>var handler = function(e) {var previous = e.prevValue};<br>
-myTabs.addListener('labelChange', handler);</code></p>
+                                            Fires when the value for the configuration attribute 'label' changes.
                                         </div>
 
                                         <div class="description">
 
 
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="labelElChange">labelElChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>labelElChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'labelEl' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="loadMethodChange">loadMethodChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>loadMethodChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'loadMethod' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
 
 
                                         </div>
@@ -597,7 +1523,7 @@ myTabs.addListener('labelChange', handler);</code></p>
                             <h4>Events inherited from <a href="YAHOO.util.Element.html">YAHOO.util.Element</a>:</h4>
                             <div class="content">
                                 <code>
-                                        <a class="" href="YAHOO.util.Element.html#available">available</a><span class="">,</span>                                        <a class="" href="YAHOO.util.Element.html#contentReady">contentReady</a><span class="">,</span>
+                                        <a class="" href="YAHOO.util.Element.html#appendTo">appendTo</a><span class="">,</span>                                        <a class="" href="YAHOO.util.Element.html#available">available</a><span class="">,</span>                                        <a class="" href="YAHOO.util.Element.html#beforeAppendTo">beforeAppendTo</a><span class="">,</span>                                        <a class="" href="YAHOO.util.Element.html#beforeElementChange">beforeElementChange</a><span class="">,</span>                                        <a class="" href="YAHOO.util.Element.html#contentReady">contentReady</a><span class="">,</span>                                        <a class="" href="YAHOO.util.Element.html#elementChange">elementChange</a><span class="">,</span>
                                 </code>
                             </div>
                         </div>
@@ -856,11 +1782,11 @@ the given source.
 
                                 <li class=""><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -876,17 +1802,23 @@ the given source.
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -895,6 +1827,8 @@ the given source.
                                 <li class="selected"><a href="module_tabview.html">tabview</a></li>
 
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
 
@@ -924,6 +1858,9 @@ the given source.
                         <h4>Properties</h4>
                         <ul class="content">        
                                 <li class=""><a href="#ACTIVE_CLASSNAME">ACTIVE_CLASSNAME</a>
+                                        <!--<code>&lt;String&gt;</code>-->
+                                </li>
+                                <li class=""><a href="#ACTIVE_TITLE">ACTIVE_TITLE</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#dataConnection">dataConnection</a>
@@ -960,22 +1897,88 @@ the given source.
                         <h4>Events</h4>
                         <ul class="content">        
                                 <li class="">
+                                <a href="#activationEventChange">activationEventChange</a>
+                                </li>
+                                <li class="">
                                 <a href="#activeChange">activeChange</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeActivationeventChange">beforeActivationeventChange</a>
                                 </li>
                                 <li class="">
                                 <a href="#beforeActiveChange">beforeActiveChange</a>
                                 </li>
                                 <li class="">
+                                <a href="#beforeCachedataChange">beforeCachedataChange</a>
+                                </li>
+                                <li class="">
                                 <a href="#beforeContentChange">beforeContentChange</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeContentelChange">beforeContentelChange</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeContentvisibleChange">beforeContentvisibleChange</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeDataloadedChange">beforeDataloadedChange</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeDatasrcChange">beforeDatasrcChange</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeDatatimeoutChange">beforeDatatimeoutChange</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeDisabledChange">beforeDisabledChange</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeHrefChange">beforeHrefChange</a>
                                 </li>
                                 <li class="">
                                 <a href="#beforeLabelChange">beforeLabelChange</a>
                                 </li>
                                 <li class="">
+                                <a href="#beforeLabelelChange">beforeLabelelChange</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeLoadmethodChange">beforeLoadmethodChange</a>
+                                </li>
+                                <li class="">
+                                <a href="#cacheDataChange">cacheDataChange</a>
+                                </li>
+                                <li class="">
                                 <a href="#contentChange">contentChange</a>
                                 </li>
                                 <li class="">
+                                <a href="#contentElChange">contentElChange</a>
+                                </li>
+                                <li class="">
+                                <a href="#contentVisibleChange">contentVisibleChange</a>
+                                </li>
+                                <li class="">
+                                <a href="#dataLoadedChange">dataLoadedChange</a>
+                                </li>
+                                <li class="">
+                                <a href="#dataSrcChange">dataSrcChange</a>
+                                </li>
+                                <li class="">
+                                <a href="#dataTimeoutChange">dataTimeoutChange</a>
+                                </li>
+                                <li class="">
+                                <a href="#disabledChange">disabledChange</a>
+                                </li>
+                                <li class="">
+                                <a href="#hrefChange">hrefChange</a>
+                                </li>
+                                <li class="">
                                 <a href="#labelChange">labelChange</a>
+                                </li>
+                                <li class="">
+                                <a href="#labelElChange">labelElChange</a>
+                                </li>
+                                <li class="">
+                                <a href="#loadMethodChange">loadMethodChange</a>
                                 </li>
                         </ul>
                     </div>

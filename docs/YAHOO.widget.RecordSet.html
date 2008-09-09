@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>DataTable Widget&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>DataTable Widget&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_datatable.html">datatable</a>
@@ -99,16 +99,19 @@
      
                                         
 
+                                    <div class="deprecated">
+                                        <strong>Deprecated:</strong> No longer used
+                                    </div>        
 
                                     <hr />
                                     </div>
                                     <div class="private">
-                                    <h4><a name="_sName">_sName</a>
+                                    <h4><a name="_sId">_sId</a>
                                         <code>- private String</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Unique instance name.
+                                            Unique String identifier assigned at instantiation.
                                         </div>
                                     </div>
      
@@ -251,6 +254,62 @@ then only one Record is deleted.
                                     </div>
                                     <hr />
                                     </div>
+                                    <div class="private">
+                                    <h4>
+                                        <a name="_setRecord">_setRecord</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        YAHOO.widget.Record
+                                            <strong>_setRecord</strong>
+                                           (
+                                                
+                                                        
+                                                         oData
+                                                    
+                                                
+                                                        , 
+                                                         index
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Sets/replaces one Record to the RecordSet at the given index.  Existing
+Records with higher indexes are not shifted.  If no index specified, the
+Record is added to the end of the RecordSet.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>oData &lt;Object&gt;</code>
+                                                              An object literal of data.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>index &lt;Number&gt;</code>
+                                                              (optional) Position index.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        YAHOO.widget.Record
+                                                    </code></dt>
+                                                    <dd>A Record instance.</dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
                                     <div class="">
                                     <h4>
                                         <a name="addRecord">addRecord</a></h4>
@@ -331,8 +390,8 @@ then adds the Record to the end of the RecordSet.
                                         
                                         <div class="description">
                                             Adds multiple Records at once to the RecordSet at the given index with the
-given data. If index is null, then the new Records are added to the end of
-the RecordSet.
+given object literal data. If index is null, then the new Records are
+added to the end of the RecordSet.
                                         </div>
 
                                         <div class="description">
@@ -341,7 +400,7 @@ the RecordSet.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>aData &lt;Object[]&gt;</code>
-                                                              An array of object literal data.
+                                                              An object literal data or an array of data object literals.
                                                         </dd>
                                                         <dd>
                                                             <code>index &lt;Number&gt;</code>
@@ -467,6 +526,40 @@ of RecordSet is correspondingly shortened.
                                                         void
                                                     </code></dt>
                                                     <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="getId">getId</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        String
+                                            <strong>getId</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Returns unique name of the RecordSet instance.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        String
+                                                    </code></dt>
+                                                    <dd>Unique name of the RecordSet instance.</dd>
                                                 </dl>
              
                                         </div>
@@ -659,6 +752,62 @@ length equal to given range. If index is not given, all Records are returned.</d
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="hasRecords">hasRecords</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Boolean
+                                            <strong>hasRecords</strong>
+                                           (
+                                                
+                                                        
+                                                         index
+                                                    
+                                                
+                                                        , 
+                                                         range
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Returns a boolean indicating whether Records exist in the RecordSet at the
+specified index range.  Returns true if and only if a Record exists at each
+index in the range.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>index &lt;object&gt;</code>
+                                                            
+                                                        </dd>
+                                                        <dd>
+                                                            <code>range &lt;object&gt;</code>
+                                                            
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Boolean
+                                                    </code></dt>
+                                                    <dd>true if all indices are populated in the RecordSet</dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="replaceRecords">replaceRecords</a></h4>
                                     <div class="detail">
                                         <code>
@@ -677,7 +826,7 @@ length equal to given range. If index is not given, all Records are returned.</d
                                         </code>
                                         
                                         <div class="description">
-                                            Replaces all Records in RecordSet with new data.
+                                            Replaces all Records in RecordSet with new object literal data.
                                         </div>
 
                                         <div class="description">
@@ -687,7 +836,7 @@ length equal to given range. If index is not given, all Records are returned.</d
                                                         <dd>
                                                             <code>data &lt;Object || Object[]&gt;</code>
                                                               An object literal of data or an array of
-object literal data.
+data object literals.
                                                         </dd>
                                                 </dl>
 
@@ -732,6 +881,152 @@ an array of Records.</dd>
                                                         void
                                                     </code></dt>
                                                     <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="reverseRecords">reverseRecords</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        YAHOO.widget.Record[]
+                                            <strong>reverseRecords</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Reverses all Records, so ["one", "two", "three"] becomes ["three", "two", "one"].
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        YAHOO.widget.Record[]
+                                                    </code></dt>
+                                                    <dd>Reverse-sorted array of Records.</dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="setRecord">setRecord</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        YAHOO.widget.Record
+                                            <strong>setRecord</strong>
+                                           (
+                                                
+                                                        
+                                                         oData
+                                                    
+                                                
+                                                        , 
+                                                         index
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Sets or replaces one Record to the RecordSet at the given index. Unlike
+addRecord, an existing Record at that index is not shifted to preserve it.
+If no index is specified, it adds the Record to the end of the RecordSet.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>oData &lt;Object&gt;</code>
+                                                              An object literal of data.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>index &lt;Number&gt;</code>
+                                                              (optional) Position index.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        YAHOO.widget.Record
+                                                    </code></dt>
+                                                    <dd>A Record instance.</dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="setRecords">setRecords</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        YAHOO.widget.Record[]
+                                            <strong>setRecords</strong>
+                                           (
+                                                
+                                                        
+                                                         aData
+                                                    
+                                                
+                                                        , 
+                                                         index
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Sets or replaces multiple Records at once to the RecordSet with the given
+data, starting at the given index. If index is not specified, then the new
+Records are added to the end of the RecordSet.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>aData &lt;Object[]&gt;</code>
+                                                              An array of object literal data.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>index &lt;Number&gt;</code>
+                                                              (optional) Position index.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        YAHOO.widget.Record[]
+                                                    </code></dt>
+                                                    <dd>An array of Record instances.</dd>
                                                 </dl>
              
                                         </div>
@@ -840,44 +1135,15 @@ direction is ascending.
                                         void
                                             <strong>updateKey</strong>
                                            (
-                                                
-                                                        
-                                                         record
-                                                    
-                                                
-                                                        , 
-                                                         sKey
-                                                    
-                                                
-                                                        , 
-                                                         oData
-                                                    
-                                                
                                             )
                                         </code>
                                         
                                         <div class="description">
-                                            Updates given Record at given key with given data.
+                                            
                                         </div>
 
                                         <div class="description">
 
-                                                <dl>
-                                                    <dt>Parameters:</dt>
-                                                        <dd>
-                                                            <code>record &lt;YAHOO.widget.Record | Number | String&gt;</code>
-                                                              A Record instance,
-a RecordSet position index, or a Record ID.
-                                                        </dd>
-                                                        <dd>
-                                                            <code>sKey &lt;String&gt;</code>
-                                                              Key name.
-                                                        </dd>
-                                                        <dd>
-                                                            <code>oData &lt;object&gt;</code>
-                                                             {Object) New data.
-                                                        </dd>
-                                                </dl>
 
                                                 <dl>
                                                     <dt>Returns:
@@ -887,6 +1153,9 @@ a RecordSet position index, or a Record ID.
                                                     <dd></dd>
                                                 </dl>
              
+                                            <div class="deprecated">
+                                                <strong>Deprecated</strong> Use updateRecordValue
+                                            </div>        
                                         </div>
 
                                     </div>
@@ -929,8 +1198,8 @@ a RecordSet position index, or a Record ID.
 a RecordSet position index, or a Record ID.
                                                         </dd>
                                                         <dd>
-                                                            <code>oData &lt;object&gt;</code>
-                                                             {Object) Object literal of new data.
+                                                            <code>oData &lt;Object&gt;</code>
+                                                              Object literal of new data.
                                                         </dd>
                                                 </dl>
 
@@ -940,6 +1209,69 @@ a RecordSet position index, or a Record ID.
                                                         YAHOO.widget.Record
                                                     </code></dt>
                                                     <dd>Updated Record, or null.</dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="updateRecordValue">updateRecordValue</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>updateRecordValue</strong>
+                                           (
+                                                
+                                                        
+                                                         record
+                                                    
+                                                
+                                                        , 
+                                                         sKey
+                                                    
+                                                
+                                                        , 
+                                                         oData
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Sets given Record at given key to given data.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>record &lt;YAHOO.widget.Record | Number | String&gt;</code>
+                                                              A Record instance,
+a RecordSet position index, or a Record ID.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>sKey &lt;String&gt;</code>
+                                                              Key name.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>oData &lt;Object&gt;</code>
+                                                              New data.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
                                                 </dl>
              
                                         </div>
@@ -965,55 +1297,22 @@ a RecordSet position index, or a Record ID.
                                             <strong>keyUpdateEvent</strong>
 
                                             (
-                                                
-                                                        
-                                                         oArgs.record
-                                                    
-                                                
-                                                        , 
-                                                         oArgs.key
-                                                    
-                                                
-                                                        , 
-                                                         oArgs.newData
-                                                    
-                                                
-                                                        , 
-                                                         oArgs.oldData
-                                                    
-                                                
                                             )
 
                                         </code>
                                         
                                         <div class="description">
-                                            Fired when a Record Key is updated with new data.
+                                            
                                         </div>
 
                                         <div class="description">
 
 
-                                                <dl>
-                                                    <dt>Parameters:</dt>
-                                                        <dd>
-                                                            <code>oArgs.record &lt;YAHOO.widget.Record&gt;</code>
-                                                              The Record instance.
-                                                        </dd>
-                                                        <dd>
-                                                            <code>oArgs.key &lt;String&gt;</code>
-                                                              The updated key.
-                                                        </dd>
-                                                        <dd>
-                                                            <code>oArgs.newData &lt;Object&gt;</code>
-                                                              New data.
-                                                        </dd>
-                                                        <dd>
-                                                            <code>oArgs.oldData &lt;Object&gt;</code>
-                                                              Old data.
-                                                        </dd>
-                                                </dl>
 
 
+                                            <div class="deprecated">
+                                                <strong>Deprecated</strong> Use recordValueUpdateEvent
+                                            </div>        
                                         </div>
 
                                     </div>
@@ -1219,6 +1518,104 @@ from the Records.
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="recordSetEvent">recordSetEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>recordSetEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         oArgs.record
+                                                    
+                                                
+                                                        , 
+                                                         oArgs.data
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fired when a Record is set in the RecordSet.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>oArgs.record &lt;YAHOO.widget.Record&gt;</code>
+                                                              The Record instance.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>oArgs.data &lt;Object&gt;</code>
+                                                              Data added.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="recordsSetEvent">recordsSetEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>recordsSetEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         oArgs.records
+                                                    
+                                                
+                                                        , 
+                                                         oArgs.data
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fired when multiple Records are set in the RecordSet at once.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>oArgs.records &lt;YAHOO.widget.Record[]&gt;</code>
+                                                              An array of Record instances.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>oArgs.data &lt;Object[]&gt;</code>
+                                                              Data added.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="recordUpdateEvent">recordUpdateEvent</a></h4>
                                     <div class="detail">
                                         <code>
@@ -1257,6 +1654,71 @@ from the Records.
                                                         <dd>
                                                             <code>oArgs.record &lt;YAHOO.widget.Record&gt;</code>
                                                               The Record instance.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>oArgs.newData &lt;Object&gt;</code>
+                                                              New data.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>oArgs.oldData &lt;Object&gt;</code>
+                                                              Old data.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="recordValueUpdateEvent">recordValueUpdateEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>recordValueUpdateEvent</strong>
+
+                                            (
+                                                
+                                                        
+                                                         oArgs.record
+                                                    
+                                                
+                                                        , 
+                                                         oArgs.key
+                                                    
+                                                
+                                                        , 
+                                                         oArgs.newData
+                                                    
+                                                
+                                                        , 
+                                                         oArgs.oldData
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fired when a Record value is updated with new data.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>oArgs.record &lt;YAHOO.widget.Record&gt;</code>
+                                                              The Record instance.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>oArgs.key &lt;String&gt;</code>
+                                                              The updated key.
                                                         </dd>
                                                         <dd>
                                                             <code>oArgs.newData &lt;Object&gt;</code>
@@ -1335,11 +1797,11 @@ from the Records.
 
                                 <li class=""><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class="selected"><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -1355,17 +1817,23 @@ from the Records.
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -1374,6 +1842,8 @@ from the Records.
                                 <li class=""><a href="module_tabview.html">tabview</a></li>
 
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
 
@@ -1386,11 +1856,21 @@ from the Records.
                     <div class="module">
                         <h4>Classes</h4>
                         <ul class="content">
+                                <li class=""><a href="YAHOO.util.Chain.html">YAHOO.util.Chain</a></li>
+                                <li class=""><a href="YAHOO.util.ColumnDD.html">YAHOO.util.ColumnDD</a></li>
                                 <li class=""><a href="YAHOO.util.ColumnResizer.html">YAHOO.util.ColumnResizer</a></li>
                                 <li class=""><a href="YAHOO.util.Sort.html">YAHOO.util.Sort</a></li>
                                 <li class=""><a href="YAHOO.widget.Column.html">YAHOO.widget.Column</a></li>
                                 <li class=""><a href="YAHOO.widget.ColumnSet.html">YAHOO.widget.ColumnSet</a></li>
                                 <li class=""><a href="YAHOO.widget.DataTable.html">YAHOO.widget.DataTable</a></li>
+                                <li class=""><a href="YAHOO.widget.Paginator.html">YAHOO.widget.Paginator</a></li>
+                                <li class=""><a href="YAHOO.widget.Paginator.ui.CurrentPageReport.html">YAHOO.widget.Paginator.ui.CurrentPageReport</a></li>
+                                <li class=""><a href="YAHOO.widget.Paginator.ui.FirstPageLink.html">YAHOO.widget.Paginator.ui.FirstPageLink</a></li>
+                                <li class=""><a href="YAHOO.widget.Paginator.ui.LastPageLink.html">YAHOO.widget.Paginator.ui.LastPageLink</a></li>
+                                <li class=""><a href="YAHOO.widget.Paginator.ui.NextPageLink.html">YAHOO.widget.Paginator.ui.NextPageLink</a></li>
+                                <li class=""><a href="YAHOO.widget.Paginator.ui.PageLinks.html">YAHOO.widget.Paginator.ui.PageLinks</a></li>
+                                <li class=""><a href="YAHOO.widget.Paginator.ui.PreviousPageLink.html">YAHOO.widget.Paginator.ui.PreviousPageLink</a></li>
+                                <li class=""><a href="YAHOO.widget.Paginator.ui.RowsPerPageDropdown.html">YAHOO.widget.Paginator.ui.RowsPerPageDropdown</a></li>
                                 <li class=""><a href="YAHOO.widget.Record.html">YAHOO.widget.Record</a></li>
                                 <li class="selected"><a href="YAHOO.widget.RecordSet.html">YAHOO.widget.RecordSet</a></li>
                         </ul>
@@ -1399,8 +1879,10 @@ from the Records.
                     <div class="module">
                         <h4>Files</h4>
                         <ul class="content">        
+                                <li class=""><a href="Chain.js.html">Chain.js</a></li>
                                 <li class=""><a href="ColumnSet.js.html">ColumnSet.js</a></li>
                                 <li class=""><a href="DataTable.js.html">DataTable.js</a></li>
+                                <li class=""><a href="Paginator.js.html">Paginator.js</a></li>
                                 <li class=""><a href="RecordSet.js.html">RecordSet.js</a></li>
                         </ul>
                     </div>
@@ -1411,7 +1893,7 @@ from the Records.
                                 <li class="private"><a href="#_length">_length</a>
                                         <!--<code>&lt;Number&gt;</code>-->
                                 </li>
-                                <li class="private"><a href="#_sName">_sName</a>
+                                <li class="private"><a href="#_sId">_sId</a>
                                         <!--<code>&lt;Number&gt;</code>-->
                                 </li>
                                 <li class="private"><a href="#RecordSet._nCount">RecordSet._nCount</a>
@@ -1429,6 +1911,9 @@ from the Records.
                                 <li class="private"><!--<code>void</code>-->
                                 <a href="#_deleteRecord">_deleteRecord</a>
                                 </li>
+                                <li class="private"><!--<code>YAHOO.widget.Record</code>-->
+                                <a href="#_setRecord">_setRecord</a>
+                                </li>
                                 <li class=""><!--<code>YAHOO.widget.Record</code>-->
                                 <a href="#addRecord">addRecord</a>
                                 </li>
@@ -1440,6 +1925,9 @@ from the Records.
                                 </li>
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#deleteRecords">deleteRecords</a>
+                                </li>
+                                <li class=""><!--<code>String</code>-->
+                                <a href="#getId">getId</a>
                                 </li>
                                 <li class=""><!--<code>Number</code>-->
                                 <a href="#getLength">getLength</a>
@@ -1453,11 +1941,23 @@ from the Records.
                                 <li class=""><!--<code>YAHOO.widget.Record[]</code>-->
                                 <a href="#getRecords">getRecords</a>
                                 </li>
+                                <li class=""><!--<code>Boolean</code>-->
+                                <a href="#hasRecords">hasRecords</a>
+                                </li>
                                 <li class=""><!--<code>YAHOO.widget.Record || YAHOO.widget.Record[]</code>-->
                                 <a href="#replaceRecords">replaceRecords</a>
                                 </li>
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#reset">reset</a>
+                                </li>
+                                <li class=""><!--<code>YAHOO.widget.Record[]</code>-->
+                                <a href="#reverseRecords">reverseRecords</a>
+                                </li>
+                                <li class=""><!--<code>YAHOO.widget.Record</code>-->
+                                <a href="#setRecord">setRecord</a>
+                                </li>
+                                <li class=""><!--<code>YAHOO.widget.Record[]</code>-->
+                                <a href="#setRecords">setRecords</a>
                                 </li>
                                 <li class=""><!--<code>YAHOO.widget.Record[]</code>-->
                                 <a href="#sortRecords">sortRecords</a>
@@ -1470,6 +1970,9 @@ from the Records.
                                 </li>
                                 <li class=""><!--<code>YAHOO.widget.Record</code>-->
                                 <a href="#updateRecord">updateRecord</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#updateRecordValue">updateRecordValue</a>
                                 </li>
                         </ul>
                     </div>
@@ -1493,7 +1996,16 @@ from the Records.
                                 <a href="#recordsDeleteEvent">recordsDeleteEvent</a>
                                 </li>
                                 <li class="">
+                                <a href="#recordSetEvent">recordSetEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#recordsSetEvent">recordsSetEvent</a>
+                                </li>
+                                <li class="">
                                 <a href="#recordUpdateEvent">recordUpdateEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#recordValueUpdateEvent">recordValueUpdateEvent</a>
                                 </li>
                                 <li class="">
                                 <a href="#resetEvent">resetEvent</a>

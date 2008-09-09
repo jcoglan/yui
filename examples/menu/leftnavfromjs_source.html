@@ -55,6 +55,26 @@
                 
             }
 
+
+			/*
+				For IE 6: trigger "haslayout" for the anchor elements in the root Menu by 
+				setting the "zoom" property to 1.  This ensures that the selected state of 
+				MenuItems doesn't get dropped when the user mouses off of the text node of 
+				the anchor element that represents a MenuItem's text label.
+			*/
+
+			#productsandservices .yuimenuitemlabel {
+			
+				_zoom: 1;
+			
+			}
+
+			#productsandservices .yuimenu .yuimenuitemlabel {
+
+				_zoom: normal;
+
+			}
+
         </style>
 
 

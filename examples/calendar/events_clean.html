@@ -21,7 +21,37 @@ body {
 <script type="text/javascript" src="../../build/yahoo-dom-event/yahoo-dom-event.js"></script>
 <script type="text/javascript" src="../../build/calendar/calendar.js"></script>
 
-<!--there is no custom header content for this example-->
+
+<!--begin custom header content for this example-->
+<style type="text/css">
+	#cal1Container {
+	   margin:1em;
+	}
+
+	#caleventlog {
+		float:left;
+		width:35em;
+		margin:1em;
+		background-color:#eee;
+		border:1px solid #000;
+	}
+	#caleventlog .bd {
+		overflow:auto;
+		height:20em;
+		padding:5px;
+	}
+	#caleventlog .hd {
+		background-color:#aaa;
+		border-bottom:1px solid #000;
+		font-weight:bold;
+		padding:2px;
+	}
+	#caleventlog .entry {
+		margin:0;	
+	}
+</style>
+
+<!--end custom header content for this example-->
 
 </head>
 
@@ -36,23 +66,41 @@ body {
 
 <!--BEGIN SOURCE CODE FOR EXAMPLE =============================== -->
 
-<div id="cal1Container"></div>
-
 <script type="text/javascript">
 	YAHOO.namespace("example.calendar");
 
 	YAHOO.example.calendar.init = function() {
-		YAHOO.example.calendar.cal1 = new YAHOO.widget.Calendar("cal1","cal1Container");
+		var eLog = YAHOO.util.Dom.get("evtentries");
+		var eCount = 1;
 
-		var mySelectHandler = function(type,args,obj) {
+		function logEvent(msg) {
+			eLog.innerHTML = '<pre class="entry"><strong>' + eCount + ').</strong> ' + msg + '</pre>' + eLog.innerHTML;
+			eCount++;
+		}
+
+		function dateToLocaleString(dt, cal) {
+                	var wStr = cal.cfg.getProperty("WEEKDAYS_LONG")[dt.getDay()];
+                	var dStr = dt.getDate();
+                	var mStr = cal.cfg.getProperty("MONTHS_LONG")[dt.getMonth()];
+               	 	var yStr = dt.getFullYear();
+                	return (wStr + ", " + dStr + " " + mStr + " " + yStr);
+		}
+
+		function mySelectHandler(type,args,obj) {
 			var selected = args[0];
-			alert("Selected: " + this._toDate(selected[0]));
+			var selDate = this.toDate(selected[0]);
+			 
+			logEvent("SELECTED: " + dateToLocaleString(selDate, this));
 		};
 
-		var myDeselectHandler = function(type,args,obj) {
+		function myDeselectHandler(type, args, obj) {
 			var deselected = args[0];
-			alert("Deselected: " + this._toDate(deselected[0]));
+			var deselDate = this.toDate(deselected[0]);
+
+			logEvent("DESELECTED: " + dateToLocaleString(deselDate, this));
 		};
+
+		YAHOO.example.calendar.cal1 = new YAHOO.widget.Calendar("cal1","cal1Container");
 
 		YAHOO.example.calendar.cal1.selectEvent.subscribe(mySelectHandler, YAHOO.example.calendar.cal1, true);
 		YAHOO.example.calendar.cal1.deselectEvent.subscribe(myDeselectHandler, YAHOO.example.calendar.cal1, true);
@@ -63,7 +111,12 @@ body {
 	YAHOO.util.Event.onDOMReady(YAHOO.example.calendar.init);
 </script>
 
-<div style="clear:both" ></div>
+<div id="cal1Container"></div>
+<div id="caleventlog" class="eventlog">
+	<div class="hd">Select/Deselect Events</div>
+	<div id="evtentries" class="bd"></div>
+</div>
+<div style="clear:both"></div>
 
 <!--END SOURCE CODE FOR EXAMPLE =============================== -->
 

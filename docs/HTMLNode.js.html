@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>TreeView Widget&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>TreeView Widget&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_treeview.html">treeview</a>
@@ -46,11 +46,22 @@
 <span class="c"> * @extends YAHOO.widget.Node</span>
 <span class="c"> * @constructor</span>
 <span class="c"> * @param oData {object} a string or object containing the data that will</span>
-<span class="c"> * be used to render this node</span>
+<span class="c"> * be used to render this node.  </span>
+<span class="c"> * Valid configuration properties: </span>
+<span class="c"> * &lt;dl&gt;</span>
+<span class="c"> *   &lt;dt&gt;html&lt;/dt&gt;</span>
+<span class="c"> *   &lt;dd&gt;The html content for the node&lt;/dd&gt;</span>
+<span class="c"> * &lt;/dl&gt;</span>
+<span class="c"> * All other attributes are made available in noderef.data, which</span>
+<span class="c"> * can be used to store custom attributes.  TreeView.getNode(s)ByProperty</span>
+<span class="c"> * can be used to retreive a node by one of the attributes.</span>
 <span class="c"> * @param oParent {YAHOO.widget.Node} this node&#39;s parent node</span>
 <span class="c"> * @param expanded {boolean} the initial expanded/collapsed state</span>
 <span class="c"> * @param hasIcon {boolean} specifies whether or not leaf nodes should</span>
-<span class="c"> * have an icon</span>
+<span class="c"> * be rendered with or without a horizontal line line icon. If the icon</span>
+<span class="c"> * is not displayed, the content fills the space it would have occupied.</span>
+<span class="c"> * This option operates independently of the leaf node presentation logic</span>
+<span class="c"> * for dynamic nodes.</span>
 <span class="c"> */</span>
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">HTMLNode</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">oData</span><span class="o">,</span> <span class="nx">oParent</span><span class="o">,</span> <span class="nx">expanded</span><span class="o">,</span> <span class="nx">hasIcon</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">if</span> <span class="o">(</span><span class="nx">oData</span><span class="o">)</span> <span class="o">{</span> 
@@ -78,10 +89,10 @@
 
     <span class="c">/**</span>
 <span class="c">     * The HTML content to use for this node&#39;s display</span>
-<span class="c">     * @property content</span>
+<span class="c">     * @property html</span>
 <span class="c">     * @type string</span>
 <span class="c">     */</span>
-    <span class="nx">content</span><span class="o">:</span> <span class="kc">null</span><span class="o">,</span>
+    <span class="nx">html</span><span class="o">:</span> <span class="kc">null</span><span class="o">,</span>
 
     <span class="c">/**</span>
 <span class="c">     * Sets up the node label</span>
@@ -199,11 +210,11 @@
 
                                 <li class=""><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -219,17 +230,23 @@
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -238,6 +255,8 @@
                                 <li class=""><a href="module_tabview.html">tabview</a></li>
 
                                 <li class="selected"><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
 

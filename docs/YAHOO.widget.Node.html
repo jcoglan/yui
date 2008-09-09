@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>TreeView Widget&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>TreeView Widget&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_treeview.html">treeview</a>
@@ -94,7 +94,8 @@ response to mouse events is handled in Node subclasses.
                                                     &lt;object&gt; 
                                                     </code>
                                                       a string or object containing the data that will
-be used to render this node
+be used to render this node, and any custom attributes that should be
+stored with the node (which is available in noderef.data).
                                                 </dd>
                                                 <dd>
                                                     <code>oParent
@@ -320,6 +321,27 @@ iconMode to have it display like a leaf node instead.
                                     </div>
      
                                         
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4><a name="isLeaf">isLeaf</a>
+                                        <code>- boolean</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            If true, the node will alway be rendered as a leaf node.  This can be
+used to override the presentation when dynamically loading the entire
+tree.  Setting this to true also disables the dynamic load call for the
+node.
+                                        </div>
+                                    </div>
+     
+                                        
+                                    <div class="default">
+                                        Default Value: false
+                                    </div>        
 
 
                                     <hr />
@@ -1151,7 +1173,8 @@ does not have a next sibling
                                         
                                         <div class="description">
                                             Returns the current icon mode.  This refers to the way childless dynamic
-load nodes appear.
+load nodes appear (this comes into play only after the initial dynamic
+load request produced no children).
                                         </div>
 
                                         <div class="description">
@@ -2079,11 +2102,11 @@ one tree to another.
 
                                 <li class=""><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -2099,17 +2122,23 @@ one tree to another.
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -2118,6 +2147,8 @@ one tree to another.
                                 <li class=""><a href="module_tabview.html">tabview</a></li>
 
                                 <li class="selected"><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
 
@@ -2197,6 +2228,9 @@ one tree to another.
                                         <!--<code>&lt;TreeView&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#index">index</a>
+                                        <!--<code>&lt;TreeView&gt;</code>-->
+                                </li>
+                                <li class=""><a href="#isLeaf">isLeaf</a>
                                         <!--<code>&lt;TreeView&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#isLoading">isLoading</a>

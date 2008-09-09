@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>yuitest&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>yuitest&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_yuitest.html">yuitest</a>
@@ -111,8 +111,18 @@
         <span class="k">this</span><span class="o">.</span><span class="nx">results</span> <span class="c">/*:Object*/</span> <span class="o">=</span> <span class="o">{</span>
             <span class="nx">passed</span> <span class="o">:</span> <span class="m">0</span><span class="o">,</span>
             <span class="nx">failed</span> <span class="o">:</span> <span class="m">0</span><span class="o">,</span>
-            <span class="nx">total</span> <span class="o">:</span> <span class="m">0</span>
+            <span class="nx">total</span> <span class="o">:</span> <span class="m">0</span><span class="o">,</span>
+            <span class="nx">ignored</span> <span class="o">:</span> <span class="m">0</span>
         <span class="o">};</span>
+        
+        <span class="c">//initialize results</span>
+<span class="c"></span>        <span class="k">if</span> <span class="o">(</span><span class="nx">testObject</span> <span class="k">instanceof</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">tool</span><span class="o">.</span><span class="nx">TestSuite</span><span class="o">){</span>
+            <span class="k">this</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s2">&quot;testsuite&quot;</span><span class="o">;</span>
+            <span class="k">this</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">testObject</span><span class="o">.</span><span class="nx">name</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nx">testObject</span> <span class="k">instanceof</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">tool</span><span class="o">.</span><span class="nx">TestCase</span><span class="o">){</span>
+            <span class="k">this</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s2">&quot;testcase&quot;</span><span class="o">;</span>
+            <span class="k">this</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">testObject</span><span class="o">.</span><span class="nx">name</span><span class="o">;</span>
+        <span class="o">}</span>
        
     <span class="o">}</span>
     
@@ -148,7 +158,7 @@
 <span class="c">         * @property masterSuite</span>
 <span class="c">         * @private</span>
 <span class="c">         */</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">masterSuite</span> <span class="c">/*:YAHOO.tool.TestSuite*/</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">tool</span><span class="o">.</span><span class="nx">TestSuite</span><span class="o">(</span><span class="s2">&quot;MasterSuite&quot;</span><span class="o">);</span>        
+        <span class="k">this</span><span class="o">.</span><span class="nx">masterSuite</span> <span class="c">/*:YAHOO.tool.TestSuite*/</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">tool</span><span class="o">.</span><span class="nx">TestSuite</span><span class="o">(</span><span class="s2">&quot;YUI Test Results&quot;</span><span class="o">);</span>        
 
         <span class="c">/**</span>
 <span class="c">         * Pointer to the current node in the test tree.</span>
@@ -326,11 +336,21 @@
         <span class="c">//-------------------------------------------------------------------------</span>
 <span class="c"></span>        <span class="c">// Private Methods</span>
 <span class="c"></span>        <span class="c">//-------------------------------------------------------------------------</span>
-<span class="c"></span>        <span class="nx">_handleTestObjectComplete</span> <span class="o">:</span> <span class="k">function</span> <span class="o">(</span><span class="nx">node</span> <span class="c">/*:TestNode*/</span><span class="o">)</span> <span class="c">/*:Void*/</span> <span class="o">{</span>
+<span class="c"></span>        
+        <span class="c">/**</span>
+<span class="c">         * Handles the completion of a test object&#39;s tests. Tallies test results </span>
+<span class="c">         * from one level up to the next.</span>
+<span class="c">         * @param {TestNode} node The TestNode representing the test object.</span>
+<span class="c">         * @return {Void}</span>
+<span class="c">         * @method _handleTestObjectComplete</span>
+<span class="c">         * @private</span>
+<span class="c">         */</span>
+        <span class="nx">_handleTestObjectComplete</span> <span class="o">:</span> <span class="k">function</span> <span class="o">(</span><span class="nx">node</span> <span class="c">/*:TestNode*/</span><span class="o">)</span> <span class="c">/*:Void*/</span> <span class="o">{</span>
             <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isObject</span><span class="o">(</span><span class="nx">node</span><span class="o">.</span><span class="nx">testObject</span><span class="o">)){</span>
                 <span class="nx">node</span><span class="o">.</span><span class="nx">parent</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">passed</span> <span class="o">+=</span> <span class="nx">node</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">passed</span><span class="o">;</span>
                 <span class="nx">node</span><span class="o">.</span><span class="nx">parent</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">failed</span> <span class="o">+=</span> <span class="nx">node</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">failed</span><span class="o">;</span>
                 <span class="nx">node</span><span class="o">.</span><span class="nx">parent</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">total</span> <span class="o">+=</span> <span class="nx">node</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">total</span><span class="o">;</span>                
+                <span class="nx">node</span><span class="o">.</span><span class="nx">parent</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">ignored</span> <span class="o">+=</span> <span class="nx">node</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">ignored</span><span class="o">;</span>                
                 <span class="nx">node</span><span class="o">.</span><span class="nx">parent</span><span class="o">.</span><span class="nx">results</span><span class="o">[</span><span class="nx">node</span><span class="o">.</span><span class="nx">testObject</span><span class="o">.</span><span class="nx">name</span><span class="o">]</span> <span class="o">=</span> <span class="nx">node</span><span class="o">.</span><span class="nx">results</span><span class="o">;</span>
             
                 <span class="k">if</span> <span class="o">(</span><span class="nx">node</span><span class="o">.</span><span class="nx">testObject</span> <span class="k">instanceof</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">tool</span><span class="o">.</span><span class="nx">TestSuite</span><span class="o">){</span>
@@ -340,8 +360,7 @@
                     <span class="k">this</span><span class="o">.</span><span class="nx">fireEvent</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">TEST_CASE_COMPLETE_EVENT</span><span class="o">,</span> <span class="o">{</span> <span class="nx">testCase</span><span class="o">:</span> <span class="nx">node</span><span class="o">.</span><span class="nx">testObject</span><span class="o">,</span> <span class="nx">results</span><span class="o">:</span> <span class="nx">node</span><span class="o">.</span><span class="nx">results</span><span class="o">});</span>
                 <span class="o">}</span>      
             <span class="o">}</span> 
-        <span class="o">},</span>        
-        
+        <span class="o">},</span>                
         
         <span class="c">//-------------------------------------------------------------------------</span>
 <span class="c"></span>        <span class="c">// Navigation Methods</span>
@@ -367,7 +386,10 @@
                 <span class="o">}</span>
                 
                 <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_cur</span> <span class="o">==</span> <span class="k">this</span><span class="o">.</span><span class="nx">_root</span><span class="o">){</span>
+                    <span class="k">this</span><span class="o">.</span><span class="nx">_cur</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s2">&quot;report&quot;</span><span class="o">;</span>
+                    <span class="k">this</span><span class="o">.</span><span class="nx">_cur</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">timestamp</span> <span class="o">=</span> <span class="o">(</span><span class="k">new</span> <span class="nb">Date</span><span class="o">()).</span><span class="nx">toLocaleString</span><span class="o">();</span>
                     <span class="k">this</span><span class="o">.</span><span class="nx">fireEvent</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">COMPLETE_EVENT</span><span class="o">,</span> <span class="o">{</span> <span class="nx">results</span><span class="o">:</span> <span class="k">this</span><span class="o">.</span><span class="nx">_cur</span><span class="o">.</span><span class="nx">results</span><span class="o">});</span>
+                    <span class="k">this</span><span class="o">.</span><span class="nx">results</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_cur</span><span class="o">.</span><span class="nx">results</span><span class="o">;</span>
                     <span class="k">this</span><span class="o">.</span><span class="nx">_cur</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
                 <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
                     <span class="k">this</span><span class="o">.</span><span class="nx">_handleTestObjectComplete</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_cur</span><span class="o">);</span>               
@@ -410,7 +432,7 @@
 <span class="c"></span>                    <span class="k">if</span> <span class="o">(</span><span class="k">typeof</span> <span class="nx">setTimeout</span> <span class="o">!=</span> <span class="s2">&quot;undefined&quot;</span><span class="o">){</span>                    
                         <span class="nx">setTimeout</span><span class="o">(</span><span class="k">function</span><span class="o">(){</span>
                             <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">tool</span><span class="o">.</span><span class="nx">TestRunner</span><span class="o">.</span><span class="nx">_run</span><span class="o">();</span>
-                        <span class="o">},</span> <span class="m">0</span><span class="o">);</span>              
+                        <span class="o">},</span> <span class="m">0</span><span class="o">);</span>
                     <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
                         <span class="k">this</span><span class="o">.</span><span class="nx">_run</span><span class="o">();</span>
                     <span class="o">}</span>
@@ -489,6 +511,14 @@
                                 <span class="nx">error</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">UnexpectedError</span><span class="o">(</span><span class="nx">thrown</span><span class="o">);</span>
                                 <span class="nx">failed</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>                                    
                             <span class="o">}</span>
+                        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isFunction</span><span class="o">(</span><span class="nx">shouldError</span><span class="o">)){</span>
+                        
+                            <span class="c">//if it&#39;s a function, see if the error is an instance of it</span>
+<span class="c"></span>                            <span class="k">if</span> <span class="o">(!(</span><span class="nx">thrown</span> <span class="k">instanceof</span> <span class="nx">shouldError</span><span class="o">)){</span>
+                                <span class="nx">error</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">UnexpectedError</span><span class="o">(</span><span class="nx">thrown</span><span class="o">);</span>
+                                <span class="nx">failed</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                            <span class="o">}</span>
+                        
                         <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isObject</span><span class="o">(</span><span class="nx">shouldError</span><span class="o">)){</span>
                         
                             <span class="c">//if it&#39;s an object, check the instance and message</span>
@@ -518,7 +548,9 @@
             <span class="c">//update results</span>
 <span class="c"></span>            <span class="nx">node</span><span class="o">.</span><span class="nx">parent</span><span class="o">.</span><span class="nx">results</span><span class="o">[</span><span class="nx">testName</span><span class="o">]</span> <span class="o">=</span> <span class="o">{</span> 
                 <span class="nx">result</span><span class="o">:</span> <span class="nx">failed</span> <span class="o">?</span> <span class="s2">&quot;fail&quot;</span> <span class="o">:</span> <span class="s2">&quot;pass&quot;</span><span class="o">,</span>
-                <span class="nx">message</span> <span class="o">:</span> <span class="nx">error</span> <span class="o">?</span> <span class="nx">error</span><span class="o">.</span><span class="nx">getMessage</span><span class="o">()</span> <span class="o">:</span> <span class="s2">&quot;Test passed&quot;</span>
+                <span class="nx">message</span><span class="o">:</span> <span class="nx">error</span> <span class="o">?</span> <span class="nx">error</span><span class="o">.</span><span class="nx">getMessage</span><span class="o">()</span> <span class="o">:</span> <span class="s2">&quot;Test passed&quot;</span><span class="o">,</span>
+                <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;test&quot;</span><span class="o">,</span>
+                <span class="nx">name</span><span class="o">:</span> <span class="nx">testName</span>
             <span class="o">};</span>
             
             <span class="k">if</span> <span class="o">(</span><span class="nx">failed</span><span class="o">){</span>
@@ -526,7 +558,7 @@
             <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
                 <span class="nx">node</span><span class="o">.</span><span class="nx">parent</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">passed</span><span class="o">++;</span>
             <span class="o">}</span>
-            <span class="nx">node</span><span class="o">.</span><span class="nx">parent</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">total</span><span class="o">++;</span>    
+            <span class="nx">node</span><span class="o">.</span><span class="nx">parent</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">total</span><span class="o">++;</span>
 
             <span class="c">//set timeout not supported in all environments</span>
 <span class="c"></span>            <span class="k">if</span> <span class="o">(</span><span class="k">typeof</span> <span class="nx">setTimeout</span> <span class="o">!=</span> <span class="s2">&quot;undefined&quot;</span><span class="o">){</span>
@@ -559,6 +591,18 @@
             
             <span class="c">//figure out if the test should be ignored or not</span>
 <span class="c"></span>            <span class="k">if</span> <span class="o">(</span><span class="nx">shouldIgnore</span><span class="o">){</span>
+            
+                <span class="c">//update results</span>
+<span class="c"></span>                <span class="nx">node</span><span class="o">.</span><span class="nx">parent</span><span class="o">.</span><span class="nx">results</span><span class="o">[</span><span class="nx">testName</span><span class="o">]</span> <span class="o">=</span> <span class="o">{</span> 
+                    <span class="nx">result</span><span class="o">:</span> <span class="s2">&quot;ignore&quot;</span><span class="o">,</span>
+                    <span class="nx">message</span><span class="o">:</span> <span class="s2">&quot;Test ignored&quot;</span><span class="o">,</span>
+                    <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;test&quot;</span><span class="o">,</span>
+                    <span class="nx">name</span><span class="o">:</span> <span class="nx">testName</span>
+                <span class="o">};</span>
+                
+                <span class="nx">node</span><span class="o">.</span><span class="nx">parent</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">ignored</span><span class="o">++;</span>
+                <span class="nx">node</span><span class="o">.</span><span class="nx">parent</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">total</span><span class="o">++;</span>
+            
                 <span class="k">this</span><span class="o">.</span><span class="nx">fireEvent</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">TEST_IGNORE_EVENT</span><span class="o">,</span> <span class="o">{</span> <span class="nx">testCase</span><span class="o">:</span> <span class="nx">testCase</span><span class="o">,</span> <span class="nx">testName</span><span class="o">:</span> <span class="nx">testName</span> <span class="o">});</span>
                 
                 <span class="c">//some environments don&#39;t support setTimeout</span>
@@ -690,11 +734,11 @@
 
                                 <li class=""><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -710,17 +754,23 @@
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -729,6 +779,8 @@
                                 <li class=""><a href="module_tabview.html">tabview</a></li>
 
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
 
@@ -746,6 +798,7 @@
                                 <li class=""><a href="YAHOO.tool.TestLogger.html">YAHOO.tool.TestLogger</a></li>
                                 <li class=""><a href="YAHOO.tool.TestManager.html">YAHOO.tool.TestManager</a></li>
                                 <li class=""><a href="YAHOO.tool.TestNode.html">YAHOO.tool.TestNode</a></li>
+                                <li class=""><a href="YAHOO.tool.TestReporter.html">YAHOO.tool.TestReporter</a></li>
                                 <li class=""><a href="YAHOO.tool.TestRunner.html">YAHOO.tool.TestRunner</a></li>
                                 <li class=""><a href="YAHOO.tool.TestSuite.html">YAHOO.tool.TestSuite</a></li>
                                 <li class=""><a href="YAHOO.util.ArrayAssert.html">YAHOO.util.ArrayAssert</a></li>
@@ -770,8 +823,10 @@
                                 <li class=""><a href="DateAssert.js.html">DateAssert.js</a></li>
                                 <li class=""><a href="ObjectAssert.js.html">ObjectAssert.js</a></li>
                                 <li class=""><a href="TestCase.js.html">TestCase.js</a></li>
+                                <li class=""><a href="TestFormat.js.html">TestFormat.js</a></li>
                                 <li class=""><a href="TestLogger.js.html">TestLogger.js</a></li>
                                 <li class=""><a href="TestManager.js.html">TestManager.js</a></li>
+                                <li class=""><a href="TestReporter.js.html">TestReporter.js</a></li>
                                 <li class="selected"><a href="TestRunner.js.html">TestRunner.js</a></li>
                                 <li class=""><a href="TestSuite.js.html">TestSuite.js</a></li>
                                 <li class=""><a href="UserAction.js.html">UserAction.js</a></li>

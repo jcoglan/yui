@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>imageloader&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>imageloader&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_imageloader.html">imageloader</a>
@@ -113,6 +113,22 @@
                                         <div class="description">
                                             HTML elements having the class name that is associated with this group
 Elements are stored during the _foldCheck function and reused later during the fetch function. Gives a slight performance improvement when className and foldConditional are both used
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="_customTriggers">_customTriggers</a>
+                                        <code>- private Array</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Collection of custom-event triggers for this group.
+Keeps track of each trigger's event object and event-listener-callback "fetch" function
                                         </div>
                                     </div>
      
@@ -376,6 +392,52 @@ Initiates time limit for group; executes the fold check for the images
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="addCustomTrigger">addCustomTrigger</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>addCustomTrigger</strong>
+                                           (
+                                                
+                                                        
+                                                         event
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Adds a custom event trigger to the group.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>event &lt;Object&gt;</code>
+                                                             A YAHOO.util.CustomEvent object
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="addTrigger">addTrigger</a></h4>
                                     <div class="detail">
                                         <code>
@@ -536,6 +598,10 @@ Initiates time limit for group; executes the fold check for the images
                                                          url
                                                     
                                                 
+                                                        , 
+                                                         ailProps
+                                                    
+                                                
                                             )
                                         </code>
                                         
@@ -554,6 +620,11 @@ Initiates time limit for group; executes the fold check for the images
                                                         <dd>
                                                             <code>url &lt;String&gt;</code>
                                                             	URL for the image
+                                                        </dd>
+                                                        <dd>
+                                                            <code>ailProps &lt;Object&gt;</code>
+                                                             The AlphaImageLoader properties to be set for the image
+Valid properties are 'sizingMethod' and 'enabled'
                                                         </dd>
                                                 </dl>
 
@@ -674,11 +745,11 @@ Initiates time limit for group; executes the fold check for the images
 
                                 <li class=""><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -694,17 +765,23 @@ Initiates time limit for group; executes the fold check for the images
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class="selected"><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -713,6 +790,8 @@ Initiates time limit for group; executes the fold check for the images
                                 <li class=""><a href="module_tabview.html">tabview</a></li>
 
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
 
@@ -744,6 +823,9 @@ Initiates time limit for group; executes the fold check for the images
                         <h4>Properties</h4>
                         <ul class="content">        
                                 <li class="private"><a href="#_classImageEls">_classImageEls</a>
+                                        <!--<code>&lt;Number&gt;</code>-->
+                                </li>
+                                <li class="private"><a href="#_customTriggers">_customTriggers</a>
                                         <!--<code>&lt;Number&gt;</code>-->
                                 </li>
                                 <li class="private"><a href="#_imgObjs">_imgObjs</a>
@@ -784,6 +866,9 @@ Initiates time limit for group; executes the fold check for the images
                                 </li>
                                 <li class="private"><!--<code>void</code>-->
                                 <a href="#_onloadTasks">_onloadTasks</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#addCustomTrigger">addCustomTrigger</a>
                                 </li>
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#addTrigger">addTrigger</a>

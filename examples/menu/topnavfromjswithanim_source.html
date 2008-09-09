@@ -173,7 +173,7 @@
                 ];
 
 
-                var Dom = YAHOO.util.Dom,
+                var ua = YAHOO.env.ua,
                     oAnim;  // Animation instance
 
 
@@ -186,11 +186,14 @@
                 function onSubmenuBeforeShow(p_sType, p_sArgs) {
 
                     var oBody,
+                        oElement,
                         oShadow,
                         oUL;
                 
 
                     if (this.parent) {
+
+                        oElement = this.element;
 
                         /*
                              Get a reference to the Menu's shadow element and 
@@ -198,7 +201,7 @@
                              it with the height of the Menu instance.
                         */
 
-                        oShadow = this.element.lastChild;
+                        oShadow = oElement.lastChild;
                         oShadow.style.height = "0px";
 
                         
@@ -224,27 +227,46 @@
                         oBody = this.body;
 
 
-                        /*
-                            There is a bug in gecko-based browsers where 
-                            an element whose "position" property is set to 
-                            "absolute" and "overflow" property is set to 
-                            "hidden" will not render at the correct width when
-                            its offsetParent's "position" property is also 
-                            set to "absolute."  It is possible to work around 
-                            this bug by specifying a value for the width 
-                            property in addition to overflow.
-                        */
+                        //  Check if the menu is a submenu of a submenu.
 
                         if (this.parent && 
-                            !(this.parent instanceof YAHOO.widget.MenuBarItem) && 
-                            YAHOO.env.ua.gecko) {
+                            !(this.parent instanceof YAHOO.widget.MenuBarItem)) {
+                        
 
-                            Dom.setStyle(oBody, "width", (oBody.clientWidth + "px"));
+                            /*
+                                There is a bug in gecko-based browsers where 
+                                an element whose "position" property is set to 
+                                "absolute" and "overflow" property is set to 
+                                "hidden" will not render at the correct width when
+                                its offsetParent's "position" property is also 
+                                set to "absolute."  It is possible to work around 
+                                this bug by specifying a value for the width 
+                                property in addition to overflow.
+                            */
+
+                            if (ua.gecko) {
+                            
+                                oBody.style.width = oBody.clientWidth + "px";
+                            
+                            }
+                            
+                            
+                            /*
+                                Set a width on the submenu to prevent its 
+                                width from growing when the animation 
+                                is complete.
+                            */
+                            
+                            if (ua.ie == 7) {
+
+                                oElement.style.width = oElement.clientWidth + "px";
+
+                            }
                         
                         }
 
     
-                        Dom.setStyle(oBody, "overflow", "hidden");
+                        oBody.style.overflow = "hidden";
 
 
                         /*
@@ -255,7 +277,7 @@
 
                         oUL = oBody.getElementsByTagName("ul")[0];
 
-                        Dom.setStyle(oUL, "marginTop", ("-" + oUL.offsetHeight + "px"));
+                        oUL.style.marginTop = ("-" + oUL.offsetHeight + "px");
                     
                     }
 
@@ -303,15 +325,30 @@
                     
                     }
 
-                    Dom.setStyle(oUL, "marginTop", "");
-                    Dom.setStyle(oBody, "overflow", "");
+
+                    oUL.style.marginTop = "";
+                    oBody.style.overflow = "";
                     
 
+                    //  Check if the menu is a submenu of a submenu.
+
                     if (this.parent && 
-                        !(this.parent instanceof YAHOO.widget.MenuBarItem) && 
-                        YAHOO.env.ua.gecko) {
-                    
-                        Dom.setStyle(oBody, "width", "");
+                        !(this.parent instanceof YAHOO.widget.MenuBarItem)) {
+
+
+                        // Clear widths set by the "beforeshow" event handler
+
+                        if (ua.gecko) {
+                        
+                            oBody.style.width = "";
+                        
+                        }
+                        
+                        if (ua.ie == 7) {
+
+                            this.element.style.width = "";
+
+                        }
                     
                     }
                     

@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>tabview&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>tabview&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_tabview.html">tabview</a>
@@ -649,36 +649,38 @@ If no index is specified, the tab is added to the end of the tab list.
                             <div class="content">
                                     <div class="">
                                     <h4>
-                                        <a name="activeTabChange">activeTabChange</a></h4>
+                                        <a name="activeIndexChange">activeIndexChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>activeTabChange</strong>
+                                            <strong>activeIndexChange</strong>
 
                                             (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
                                             )
 
                                         </code>
                                         
                                         <div class="description">
-                                            Fires after the activeTab is changed.
-<p>See: <a href="YAHOO.util.Element.html#addListener">Element.addListener</a></p>
-<p><strong>Event fields:</strong><br>
-<code>&lt;String&gt; type</code> activeTabChange<br>
-<code>&lt;<a href="YAHOO.widget.Tab.html">YAHOO.widget.Tab</a>&gt;
-prevValue</code> the formerly active tab<br>
-<code>&lt;<a href="YAHOO.widget.Tab.html">YAHOO.widget.Tab</a>&gt;
-newValue</code> the new active tab</p>
-<p><strong>Usage:</strong><br>
-<code>var handler = function(e) {var previous = e.prevValue};<br>
-myTabs.addListener('activeTabChange', handler);</code></p>
+                                            Fires when the value for the configuration attribute 'activeIndex' changes.
                                         </div>
 
                                         <div class="description">
 
 
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
 
 
                                         </div>
@@ -688,38 +690,120 @@ myTabs.addListener('activeTabChange', handler);</code></p>
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="beforeActiveTabChange">beforeActiveTabChange</a></h4>
+                                        <a name="activeTabChange">activeTabChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>beforeActiveTabChange</strong>
+                                            <strong>activeTabChange</strong>
 
                                             (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
                                             )
 
                                         </code>
                                         
                                         <div class="description">
-                                            Fires before the activeTab is changed.
-<p>See: <a href="YAHOO.util.Element.html#addListener">Element.addListener</a></p>
-<p>If handler returns false, the change will be cancelled, and the value will not
-be set.</p>
-<p><strong>Event fields:</strong><br>
-<code>&lt;String&gt; type</code> beforeActiveTabChange<br>
-<code>&lt;<a href="YAHOO.widget.Tab.html">YAHOO.widget.Tab</a>&gt;
-prevValue</code> the currently active tab<br>
-<code>&lt;<a href="YAHOO.widget.Tab.html">YAHOO.widget.Tab</a>&gt;
-newValue</code> the tab to be made active</p>
-<p><strong>Usage:</strong><br>
-<code>var handler = function(e) {var previous = e.prevValue};<br>
-myTabs.addListener('beforeActiveTabChange', handler);</code></p>
+                                            Fires when the value for the configuration attribute 'activeTab' changes.
                                         </div>
 
                                         <div class="description">
 
 
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeActiveindexChange">beforeActiveindexChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeActiveindexChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'activeIndex' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeActivetabChange">beforeActivetabChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeActivetabChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'activeTab' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
 
 
                                         </div>
@@ -738,29 +822,70 @@ myTabs.addListener('beforeActiveTabChange', handler);</code></p>
                                             <strong>beforeOrientationChange</strong>
 
                                             (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
                                             )
 
                                         </code>
                                         
                                         <div class="description">
-                                            Fires before the orientation is changed.
-<p>See: <a href="YAHOO.util.Element.html#addListener">Element.addListener</a></p>
-<p>If handler returns false, the change will be cancelled, and the value will not
-be set.</p>
-<p><strong>Event fields:</strong><br>
-<code>&lt;String&gt; type</code> beforeOrientationChange<br>
-<code>&lt;String&gt;
-prevValue</code> the current orientation<br>
-<code>&lt;String&gt;
-newValue</code> the new orientation to be applied</p>
-<p><strong>Usage:</strong><br>
-<code>var handler = function(e) {var previous = e.prevValue};<br>
-myTabs.addListener('beforeOrientationChange', handler);</code></p>
+                                            Fires before the value for the configuration attribute 'orientation' changes. Return false to cancel the attribute change.
                                         </div>
 
                                         <div class="description">
 
 
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeTabsChange">beforeTabsChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeTabsChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires before the value for the configuration attribute 'tabs' changes. Return false to cancel the attribute change.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the current attribute value and the new value.
+                                                        </dd>
+                                                </dl>
 
 
                                         </div>
@@ -779,27 +904,70 @@ myTabs.addListener('beforeOrientationChange', handler);</code></p>
                                             <strong>orientationChange</strong>
 
                                             (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
                                             )
 
                                         </code>
                                         
                                         <div class="description">
-                                            Fires after the orientation is changed.
-<p>See: <a href="YAHOO.util.Element.html#addListener">Element.addListener</a></p>
-<p><strong>Event fields:</strong><br>
-<code>&lt;String&gt; type</code> orientationChange<br>
-<code>&lt;String&gt;
-prevValue</code> the former orientation<br>
-<code>&lt;String&gt;
-newValue</code> the new orientation</p>
-<p><strong>Usage:</strong><br>
-<code>var handler = function(e) {var previous = e.prevValue};<br>
-myTabs.addListener('orientationChange', handler);</code></p>
+                                            Fires when the value for the configuration attribute 'orientation' changes.
                                         </div>
 
                                         <div class="description">
 
 
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="tabsChange">tabsChange</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>tabsChange</strong>
+
+                                            (
+                                                
+                                                        
+                                                         eventInfo
+                                                    
+                                                
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fires when the value for the configuration attribute 'tabs' changes.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>eventInfo &lt;{oldValue: any, newValue: any}&gt;</code>
+                                                            An object containing the previous attribute value and the new value.
+                                                        </dd>
+                                                </dl>
 
 
                                         </div>
@@ -815,7 +983,7 @@ myTabs.addListener('orientationChange', handler);</code></p>
                             <h4>Events inherited from <a href="YAHOO.util.Element.html">YAHOO.util.Element</a>:</h4>
                             <div class="content">
                                 <code>
-                                        <a class="" href="YAHOO.util.Element.html#available">available</a><span class="">,</span>                                        <a class="" href="YAHOO.util.Element.html#contentReady">contentReady</a><span class="">,</span>
+                                        <a class="" href="YAHOO.util.Element.html#appendTo">appendTo</a><span class="">,</span>                                        <a class="" href="YAHOO.util.Element.html#available">available</a><span class="">,</span>                                        <a class="" href="YAHOO.util.Element.html#beforeAppendTo">beforeAppendTo</a><span class="">,</span>                                        <a class="" href="YAHOO.util.Element.html#beforeElementChange">beforeElementChange</a><span class="">,</span>                                        <a class="" href="YAHOO.util.Element.html#contentReady">contentReady</a><span class="">,</span>                                        <a class="" href="YAHOO.util.Element.html#elementChange">elementChange</a><span class="">,</span>
                                 </code>
                             </div>
                         </div>
@@ -920,11 +1088,11 @@ myTabs.addListener('orientationChange', handler);</code></p>
 
                                 <li class=""><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -940,17 +1108,23 @@ myTabs.addListener('orientationChange', handler);</code></p>
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -959,6 +1133,8 @@ myTabs.addListener('orientationChange', handler);</code></p>
                                 <li class="selected"><a href="module_tabview.html">tabview</a></li>
 
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
 
@@ -1042,16 +1218,28 @@ myTabs.addListener('orientationChange', handler);</code></p>
                         <h4>Events</h4>
                         <ul class="content">        
                                 <li class="">
+                                <a href="#activeIndexChange">activeIndexChange</a>
+                                </li>
+                                <li class="">
                                 <a href="#activeTabChange">activeTabChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#beforeActiveTabChange">beforeActiveTabChange</a>
+                                <a href="#beforeActiveindexChange">beforeActiveindexChange</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeActivetabChange">beforeActivetabChange</a>
                                 </li>
                                 <li class="">
                                 <a href="#beforeOrientationChange">beforeOrientationChange</a>
                                 </li>
                                 <li class="">
+                                <a href="#beforeTabsChange">beforeTabsChange</a>
+                                </li>
+                                <li class="">
                                 <a href="#orientationChange">orientationChange</a>
+                                </li>
+                                <li class="">
+                                <a href="#tabsChange">tabsChange</a>
                                 </li>
                         </ul>
                     </div>

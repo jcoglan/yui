@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<title>Nested headers</title>
+<title>Nested Headers</title>
 
 <style type="text/css">
 /*margin and padding on body element
@@ -18,8 +18,7 @@ body {
 
 <link rel="stylesheet" type="text/css" href="../../build/fonts/fonts-min.css" />
 <link rel="stylesheet" type="text/css" href="../../build/datatable/assets/skins/sam/datatable.css" />
-<script type="text/javascript" src="../../build/yahoo-dom-event/yahoo-dom-event.js"></script>
-<script type="text/javascript" src="../../build/element/element-beta.js"></script>
+<script type="text/javascript" src="../../build/utilities/utilities.js"></script>
 <script type="text/javascript" src="../../build/datasource/datasource-beta.js"></script>
 <script type="text/javascript" src="../../build/datatable/datatable-beta.js"></script>
 
@@ -29,7 +28,7 @@ body {
 
 <body class=" yui-skin-sam">
 
-<h1>Nested headers</h1>
+<h1>Nested Headers</h1>
 
 <div class="exampleIntro">
 	<p></p>
@@ -45,18 +44,18 @@ body {
 YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.NestedHeaders = new function() {
         var myColumnDefs = [
-            {key:"page", label:"Page", sortable:true},
+            {key:"page", label:"Page", sortable:true, resizeable:true},
             {label:"Statistics", formatter:YAHOO.widget.DataTable.formatNumber, children:[
                 {label:"Visits",
                     children: [
-                        {key:"visitsmonth", label:"This Month",sortable:true},
-                        {key:"visitsytd", label:"YTD", abbr:"Year to Date",sortable:true}
+                        {key:"visitsmonth", label:"This Month",sortable:true, resizeable:true},
+                        {key:"visitsytd", label:"YTD", abbr:"Year to Date",sortable:true, resizeable:true}
                     ]
                 },
                 {label:"Views",
                     children: [
-                        {key:"viewsmonth", label:"This Month",sortable:true},
-                        {key:"viewsytd", label:"YTD", abbr:"Year to Date",sortable:true}
+                        {key:"viewsmonth", label:"This Month",sortable:true, resizeable:true},
+                        {key:"viewsytd", label:"YTD", abbr:"Year to Date",sortable:true, resizeable:true}
                     ]
 
                 }

@@ -22,7 +22,7 @@ body {
 <link rel="stylesheet" type="text/css" href="../../build/button/assets/skins/sam/button.css" />
 <script type="text/javascript" src="../../build/utilities/utilities.js"></script>
 <script type="text/javascript" src="../../build/slider/slider.js"></script>
-<script type="text/javascript" src="../../build/colorpicker/colorpicker-beta.js"></script>
+<script type="text/javascript" src="../../build/colorpicker/colorpicker.js"></script>
 <script type="text/javascript" src="../../build/container/container_core.js"></script>
 <script type="text/javascript" src="../../build/menu/menu.js"></script>
 <script type="text/javascript" src="../../build/button/button.js"></script>
@@ -48,6 +48,12 @@ body {
         padding: .5em;
     
     }
+
+	#color-picker-button {
+
+		vertical-align: baseline;
+	
+	}
 
     #color-picker-button button {
     
@@ -103,6 +109,35 @@ body {
     
     }
 
+	#photo {
+	
+		background: #fff url(../button/assets/ggbridge.png) top left no-repeat;
+		
+		/*
+			Hide the alpha PNG from IE 6 and make the background image transparent via the use of 
+			the AlphaImageLoader that is applied by the filter property.
+		*/
+
+		_background-image: none;
+		_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../button/assets/ggbridge.png', sizingMethod='image');;
+
+		border: solid 1px #000;
+		width: 400px;
+		height: 300px;
+		
+		_width: 398px;	/* For IE 6 */
+		_height: 298px;	/* For IE 6 */
+	
+	}
+
+	#button-container {
+	
+        border-top: solid 1px #000;
+        padding: .5em .25em;
+        margin-top: .5em;
+	
+	}
+
 </style>
 <!--end custom header content for this example-->
 
@@ -113,7 +148,11 @@ body {
 <h1>Color Picker Button</h1>
 
 <div class="exampleIntro">
-	<p>This example demonstrates how to render a Color Picker into the Menu of a Split Button.</p>			
+	<p>
+This example demonstrates how to render a Color Picker into the Menu of a Split Button.
+Use the Color Picker Button below to create a duotone by selecting the background color 
+that should be applied to the image.
+</p>			
 </div>
 
 <!--BEGIN SOURCE CODE FOR EXAMPLE =============================== -->
@@ -134,9 +173,12 @@ body {
             oColorPickerMenu.body.id = "color-picker-container";
 
 
+
             // Render the Menu into the Button instance's parent element
 
             oColorPickerMenu.render(this.get("container"));
+
+
 
 
             /*
@@ -157,6 +199,9 @@ body {
 
             oColorPickerMenu.align();
 
+  
+
+
 
             /*
                 Add a listener for the ColorPicker instance's "rgbChange" event
@@ -167,6 +212,8 @@ body {
             oColorPicker.on("rgbChange", function (p_oEvent) {
 
                 var sColor = "#" + this.get("hex");
+                
+                oButton.set("value", sColor);
 
                 YAHOO.util.Dom.setStyle("current-color", "backgroundColor", sColor);
                 YAHOO.util.Dom.get("current-color").innerHTML = "Current color is " + sColor;
@@ -177,6 +224,8 @@ body {
             // Remove this event listener so that this code runs only once
 
             this.unsubscribe("option", onButtonOption);
+            
+
         
         }
 
@@ -204,12 +253,25 @@ body {
         */
         
         oButton.on("option", onButtonOption);
+        
+
+		/*
+			Add a listener for the "click" event.  This listener will be used to apply the 
+			the background color to the photo.
+		*/
+
+        oButton.on("click", function () {
+        
+        	YAHOO.util.Dom.setStyle("photo", "backgroundColor", this.get("value"));
+        
+        });
     
     });
 
 </script>
 
-<div id="button-container"><label for="color-picker-button">Color: </label></div>
+<div id="photo"></div>
+<div id="button-container"><label for="color-picker-button">Background Color: </label></div>
 <!--END SOURCE CODE FOR EXAMPLE =============================== -->
 
 </body>

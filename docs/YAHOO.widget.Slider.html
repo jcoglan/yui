@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Slider Widget&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>Slider Widget&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_slider.html">slider</a>
@@ -206,6 +206,24 @@ operation.
                                     <hr />
                                     </div>
                                     <div class="">
+                                    <h4><a name="dragOnly">dragOnly</a>
+                                        <code>- boolean</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Override the default setting of dragOnly to true.
+                                        </div>
+                                    </div>
+     
+                                        
+                                    <div class="default">
+                                        Default Value: true
+                                    </div>        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="enableKeys">enableKeys</a>
                                         <code>- boolean</code>
                                     </h4>
@@ -242,7 +260,7 @@ operation.
                                     <div class="detail">
                                         <div class="description">
                                             Specifies the number of pixels the arrow keys will move the slider.
-Default is 25.
+Default is 20.
                                         </div>
                                     </div>
      
@@ -288,7 +306,7 @@ never see it.
                                         
 
                                     <div class="deprecated">
-                                        <strong>Deprecated: </strong>use the slideEnd event instead
+                                        <strong>Deprecated:</strong> use the slideEnd event instead
                                     </div>        
 
                                     <hr />
@@ -449,6 +467,7 @@ when dealing with one source or another.
                                         <a class="private" href="YAHOO.util.DragDrop.html#deltaY">deltaY</a><span class="private">,</span>
                                         <a class="private" href="YAHOO.util.DragDrop.html#dragElId">dragElId</a><span class="private">,</span>
                                         <a class="" href="YAHOO.util.DragDrop.html#dragOnly">dragOnly</a><span class="">,</span>
+                                        <a class="" href="YAHOO.util.DragDrop.html#events">events</a><span class="">,</span>
                                         <a class="" href="YAHOO.util.DragDrop.html#groups">groups</a><span class="">,</span>
                                         <a class="private" href="YAHOO.util.DragDrop.html#handleElId">handleElId</a><span class="private">,</span>
                                         <a class="" href="YAHOO.util.DragDrop.html#hasOuterHandles">hasOuterHandles</a><span class="">,</span>
@@ -1832,6 +1851,93 @@ baseline position, the constraints for the thumb are reset
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="YAHOO.widget.Slider.getHorizDualSlider">YAHOO.widget.Slider.getHorizDualSlider</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                         static 
+                                        
+                                        DualSlider
+                                            <strong>YAHOO.widget.Slider.getHorizDualSlider</strong>
+                                           (
+                                                
+                                                        
+                                                         bg
+                                                    
+                                                
+                                                        , 
+                                                         minthumb
+                                                    
+                                                
+                                                        , 
+                                                         maxthumb
+                                                    
+                                                
+                                                        , 
+                                                         range
+                                                    
+                                                
+                                                        , 
+                                                         iTickSize
+                                                    
+                                                
+                                                        , 
+                                                         initVals
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Factory method for creating a horizontal dual-thumb slider
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>bg &lt;String&gt;</code>
+                                                             the id of the slider's background element
+                                                        </dd>
+                                                        <dd>
+                                                            <code>minthumb &lt;String&gt;</code>
+                                                             the id of the min thumb
+                                                        </dd>
+                                                        <dd>
+                                                            <code>maxthumb &lt;String&gt;</code>
+                                                             the id of the thumb thumb
+                                                        </dd>
+                                                        <dd>
+                                                            <code>range &lt;int&gt;</code>
+                                                             the number of pixels the thumbs can move within
+                                                        </dd>
+                                                        <dd>
+                                                            <code>iTickSize &lt;int&gt;</code>
+                                                             (optional) the element should move this many pixels
+at a time
+                                                        </dd>
+                                                        <dd>
+                                                            <code>initVals &lt;Array&gt;</code>
+                                                             (optional) [min,max] Initial thumb placement
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        DualSlider
+                                                    </code></dt>
+                                                    <dd>a horizontal dual-thumb slider control</dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="YAHOO.widget.Slider.getHorizSlider">YAHOO.widget.Slider.getHorizSlider</a></h4>
                                     <div class="detail">
                                         <code>
@@ -2007,6 +2113,93 @@ should move a certain number pixels at a time.
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="YAHOO.widget.Slider.getVertDualSlider">YAHOO.widget.Slider.getVertDualSlider</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                         static 
+                                        
+                                        DualSlider
+                                            <strong>YAHOO.widget.Slider.getVertDualSlider</strong>
+                                           (
+                                                
+                                                        
+                                                         bg
+                                                    
+                                                
+                                                        , 
+                                                         minthumb
+                                                    
+                                                
+                                                        , 
+                                                         maxthumb
+                                                    
+                                                
+                                                        , 
+                                                         range
+                                                    
+                                                
+                                                        , 
+                                                         iTickSize
+                                                    
+                                                
+                                                        , 
+                                                         initVals
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Factory method for creating a vertical dual-thumb slider.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>bg &lt;String&gt;</code>
+                                                             the id of the slider's background element
+                                                        </dd>
+                                                        <dd>
+                                                            <code>minthumb &lt;String&gt;</code>
+                                                             the id of the min thumb
+                                                        </dd>
+                                                        <dd>
+                                                            <code>maxthumb &lt;String&gt;</code>
+                                                             the id of the thumb thumb
+                                                        </dd>
+                                                        <dd>
+                                                            <code>range &lt;int&gt;</code>
+                                                             the number of pixels the thumbs can move within
+                                                        </dd>
+                                                        <dd>
+                                                            <code>iTickSize &lt;int&gt;</code>
+                                                             (optional) the element should move this many pixels
+at a time
+                                                        </dd>
+                                                        <dd>
+                                                            <code>initVals &lt;Array&gt;</code>
+                                                             (optional) [min,max] Initial thumb placement
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        DualSlider
+                                                    </code></dt>
+                                                    <dd>a vertical dual-thumb slider control</dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="YAHOO.widget.Slider.getVertSlider">YAHOO.widget.Slider.getVertSlider</a></h4>
                                     <div class="detail">
                                         <code>
@@ -2091,7 +2284,7 @@ should move a certain number pixels at a time.
                                 <h4>Methods inherited from <a href="YAHOO.util.DragDrop.html">YAHOO.util.DragDrop</a>:</h4>
                                 <div class="content">
                                     <code>
-                                            <a class="" href="YAHOO.util.DragDrop.html#addInvalidHandleClass">addInvalidHandleClass</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#addInvalidHandleId">addInvalidHandleId</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#addInvalidHandleType">addInvalidHandleType</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#addToGroup">addToGroup</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#applyConfig">applyConfig</a><span class="">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#b4Drag">b4Drag</a><span class="private">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#b4DragDrop">b4DragDrop</a><span class="private">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#b4DragOut">b4DragOut</a><span class="private">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#b4DragOver">b4DragOver</a><span class="private">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#b4EndDrag">b4EndDrag</a><span class="private">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#b4MouseDown">b4MouseDown</a><span class="private">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#b4StartDrag">b4StartDrag</a><span class="private">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#clearConstraints">clearConstraints</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#clearTicks">clearTicks</a><span class="">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#clickValidator">clickValidator</a><span class="private">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#endDrag">endDrag</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#getDragEl">getDragEl</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#getEl">getEl</a><span class="">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#getTargetCoord">getTargetCoord</a><span class="private">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#getTick">getTick</a><span class="private">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#handleMouseDown">handleMouseDown</a><span class="private">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#handleOnAvailable">handleOnAvailable</a><span class="private">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#init">init</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#initTarget">initTarget</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#isLocked">isLocked</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#isValidHandleChild">isValidHandleChild</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#lock">lock</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#onAvailable">onAvailable</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#onDrag">onDrag</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#onDragDrop">onDragDrop</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#onDragEnter">onDragEnter</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#onDragOut">onDragOut</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#onDragOver">onDragOver</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#onInvalidDrop">onInvalidDrop</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#onMouseDown">onMouseDown</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#onMouseUp">onMouseUp</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#removeFromGroup">removeFromGroup</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#removeInvalidHandleClass">removeInvalidHandleClass</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#removeInvalidHandleId">removeInvalidHandleId</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#removeInvalidHandleType">removeInvalidHandleType</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#resetConstraints">resetConstraints</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#setDragElId">setDragElId</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#setHandleElId">setHandleElId</a><span class="">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#setInitialPosition">setInitialPosition</a><span class="private">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#setOuterHandleElId">setOuterHandleElId</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#setPadding">setPadding</a><span class="">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#setStartPosition">setStartPosition</a><span class="private">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#setXConstraint">setXConstraint</a><span class="">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#setXTicks">setXTicks</a><span class="private">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#setYConstraint">setYConstraint</a><span class="">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#setYTicks">setYTicks</a><span class="private">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#startDrag">startDrag</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#toString">toString</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#unlock">unlock</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#unreg">unreg</a>
+                                            <a class="" href="YAHOO.util.DragDrop.html#addInvalidHandleClass">addInvalidHandleClass</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#addInvalidHandleId">addInvalidHandleId</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#addInvalidHandleType">addInvalidHandleType</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#addToGroup">addToGroup</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#applyConfig">applyConfig</a><span class="">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#b4Drag">b4Drag</a><span class="private">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#b4DragDrop">b4DragDrop</a><span class="private">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#b4DragOut">b4DragOut</a><span class="private">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#b4DragOver">b4DragOver</a><span class="private">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#b4EndDrag">b4EndDrag</a><span class="private">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#b4MouseDown">b4MouseDown</a><span class="private">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#b4StartDrag">b4StartDrag</a><span class="private">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#clearConstraints">clearConstraints</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#clearTicks">clearTicks</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#clickValidator">clickValidator</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#endDrag">endDrag</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#getDragEl">getDragEl</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#getEl">getEl</a><span class="">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#getTargetCoord">getTargetCoord</a><span class="private">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#getTick">getTick</a><span class="private">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#handleMouseDown">handleMouseDown</a><span class="private">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#handleOnAvailable">handleOnAvailable</a><span class="private">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#init">init</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#initTarget">initTarget</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#isLocked">isLocked</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#isValidHandleChild">isValidHandleChild</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#lock">lock</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#on">on</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#onAvailable">onAvailable</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#onDrag">onDrag</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#onDragDrop">onDragDrop</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#onDragEnter">onDragEnter</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#onDragOut">onDragOut</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#onDragOver">onDragOver</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#onInvalidDrop">onInvalidDrop</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#onMouseDown">onMouseDown</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#onMouseUp">onMouseUp</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#removeFromGroup">removeFromGroup</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#removeInvalidHandleClass">removeInvalidHandleClass</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#removeInvalidHandleId">removeInvalidHandleId</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#removeInvalidHandleType">removeInvalidHandleType</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#resetConstraints">resetConstraints</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#setDragElId">setDragElId</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#setHandleElId">setHandleElId</a><span class="">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#setInitialPosition">setInitialPosition</a><span class="private">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#setOuterHandleElId">setOuterHandleElId</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#setPadding">setPadding</a><span class="">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#setStartPosition">setStartPosition</a><span class="private">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#setXConstraint">setXConstraint</a><span class="">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#setXTicks">setXTicks</a><span class="private">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#setYConstraint">setYConstraint</a><span class="">,</span>                                            <a class="private" href="YAHOO.util.DragDrop.html#setYTicks">setYTicks</a><span class="private">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#startDrag">startDrag</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#toString">toString</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#unlock">unlock</a><span class="">,</span>                                            <a class="" href="YAHOO.util.DragDrop.html#unreg">unreg</a>
                                     </code>
                                 </div>
                             </div>
@@ -2222,6 +2415,14 @@ x offset for region sliders
                         </div>
 
 
+                        <div class="section field inheritance">
+                            <h4>Events inherited from <a href="YAHOO.util.DragDrop.html">YAHOO.util.DragDrop</a>:</h4>
+                            <div class="content">
+                                <code>
+                                        <a class="" href="YAHOO.util.DragDrop.html#b4DragDropEvent">b4DragDropEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.util.DragDrop.html#b4DragEvent">b4DragEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.util.DragDrop.html#b4DragOutEvent">b4DragOutEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.util.DragDrop.html#b4DragOverEvent">b4DragOverEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.util.DragDrop.html#b4EndDragEvent">b4EndDragEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.util.DragDrop.html#b4MouseDownEvent">b4MouseDownEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.util.DragDrop.html#b4StartDragEvent">b4StartDragEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.util.DragDrop.html#dragDropEvent">dragDropEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.util.DragDrop.html#dragEnterEvent">dragEnterEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.util.DragDrop.html#dragEvent">dragEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.util.DragDrop.html#dragOutEvent">dragOutEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.util.DragDrop.html#dragOverEvent">dragOverEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.util.DragDrop.html#endDragEvent">endDragEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.util.DragDrop.html#invalidDropEvent">invalidDropEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.util.DragDrop.html#mouseDownEvent">mouseDownEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.util.DragDrop.html#mouseUpEvent">mouseUpEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.util.DragDrop.html#startDragEvent">startDragEvent</a><span class="">,</span>
+                                </code>
+                            </div>
+                        </div>
 
 
 
@@ -2250,11 +2451,11 @@ x offset for region sliders
 
                                 <li class=""><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -2270,17 +2471,23 @@ x offset for region sliders
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -2289,6 +2496,8 @@ x offset for region sliders
                                 <li class=""><a href="module_tabview.html">tabview</a></li>
 
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
 
@@ -2301,6 +2510,7 @@ x offset for region sliders
                     <div class="module">
                         <h4>Classes</h4>
                         <ul class="content">
+                                <li class=""><a href="YAHOO.widget.DualSlider.html">YAHOO.widget.DualSlider</a></li>
                                 <li class="selected"><a href="YAHOO.widget.Slider.html">YAHOO.widget.Slider</a></li>
                                 <li class=""><a href="YAHOO.widget.SliderThumb.html">YAHOO.widget.SliderThumb</a></li>
                         </ul>
@@ -2309,6 +2519,7 @@ x offset for region sliders
                     <div class="module">
                         <h4>Files</h4>
                         <ul class="content">        
+                                <li class=""><a href="DualSlider.js.html">DualSlider.js</a></li>
                                 <li class=""><a href="Slider.js.html">Slider.js</a></li>
                                 <li class=""><a href="SliderThumb.js.html">SliderThumb.js</a></li>
                         </ul>
@@ -2330,6 +2541,9 @@ x offset for region sliders
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#baselinePos">baselinePos</a>
+                                        <!--<code>&lt;boolean&gt;</code>-->
+                                </li>
+                                <li class=""><a href="#dragOnly">dragOnly</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#enableKeys">enableKeys</a>
@@ -2473,11 +2687,17 @@ x offset for region sliders
                                 <li class=""><!--<code>boolean</code>-->
                                 <a href="#verifyOffset">verifyOffset</a>
                                 </li>
+                                <li class=""><!--<code>DualSlider</code>-->
+                                <a href="#YAHOO.widget.Slider.getHorizDualSlider">YAHOO.widget.Slider.getHorizDualSlider</a>
+                                </li>
                                 <li class=""><!--<code>Slider</code>-->
                                 <a href="#YAHOO.widget.Slider.getHorizSlider">YAHOO.widget.Slider.getHorizSlider</a>
                                 </li>
                                 <li class=""><!--<code>Slider</code>-->
                                 <a href="#YAHOO.widget.Slider.getSliderRegion">YAHOO.widget.Slider.getSliderRegion</a>
+                                </li>
+                                <li class=""><!--<code>DualSlider</code>-->
+                                <a href="#YAHOO.widget.Slider.getVertDualSlider">YAHOO.widget.Slider.getVertDualSlider</a>
                                 </li>
                                 <li class=""><!--<code>Slider</code>-->
                                 <a href="#YAHOO.widget.Slider.getVertSlider">YAHOO.widget.Slider.getVertSlider</a>

@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>editor&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>editor&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_editor.html">editor</a>
@@ -38,6 +38,7 @@
                         
                             Class <b>YAHOO.widget.Toolbar</b>
                         <span class="extends">
+                           - extends <a href="YAHOO.util.Element.html">YAHOO.util.Element</a>
                         </span>
 
                         <span class="extends">
@@ -51,7 +52,7 @@
   
 
                     <div class="summary description">
-                        <p>Creates a rich Toolbar widget based on Button. Primarily used with the Rich Text Editor</p>
+                        Provides a rich toolbar widget based on the button and menu widgets
                     </div>
 
                         <div class="section constructor details">
@@ -336,21 +337,6 @@
 
                                     <hr />
                                     </div>
-                                    <div class="private">
-                                    <h4><a name="Dom">Dom</a>
-                                        <code>- private object</code>
-                                    </h4>
-                                    <div class="detail">
-                                        <div class="description">
-                                            
-                                        </div>
-                                    </div>
-     
-                                        
-
-
-                                    <hr />
-                                    </div>
                                     <div class="protected">
                                     <h4><a name="draghandle">draghandle</a>
                                         <code>- protected HTMLElement</code>
@@ -431,6 +417,34 @@
                             </div>
                         </div>
 
+                        <div class="section field inheritance">
+                            <h4>Properties inherited from <a href="YAHOO.util.Element.html">YAHOO.util.Element</a>:</h4>
+                            <div class="content">
+                                <code>
+                                    
+                                        <a class="" href="YAHOO.util.Element.html#DOM_EVENTS">DOM_EVENTS</a>
+                                </code>
+                            </div>
+                        </div>
+                        <div class="section field inheritance">
+                            <h4>Properties inherited from <a href="YAHOO.util.AttributeProvider.html">YAHOO.util.AttributeProvider</a>:</h4>
+                            <div class="content">
+                                <code>
+                                    
+                                        <a class="private" href="YAHOO.util.AttributeProvider.html#_configs">_configs</a>
+                                </code>
+                            </div>
+                        </div>
+                        <div class="section field inheritance">
+                            <h4>Properties inherited from <a href="YAHOO.util.EventProvider.html">YAHOO.util.EventProvider</a>:</h4>
+                            <div class="content">
+                                <code>
+                                    
+                                        <a class="private" href="YAHOO.util.EventProvider.html#__yui_events">__yui_events</a><span class="private">,</span>
+                                        <a class="private" href="YAHOO.util.EventProvider.html#__yui_subscribers">__yui_subscribers</a>
+                                </code>
+                            </div>
+                        </div>
 
                         <div class="section method details">
                             <h3 id="methods">Methods</h3>
@@ -1698,19 +1712,43 @@ configuration attributes used to create the toolbar.
                             </div>
                         </div>
 
+                            <div class="section field inheritance">
+                                <h4>Methods inherited from <a href="YAHOO.util.Element.html">YAHOO.util.Element</a>:</h4>
+                                <div class="content">
+                                    <code>
+                                            <a class="private" href="YAHOO.util.Element.html#_registerHTMLAttr">_registerHTMLAttr</a><span class="private">,</span>                                            <a class="" href="YAHOO.util.Element.html#addClass">addClass</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#addListener">addListener</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#appendChild">appendChild</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#appendTo">appendTo</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#fireQueue">fireQueue</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#getElementsByClassName">getElementsByClassName</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#getElementsByTagName">getElementsByTagName</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#getStyle">getStyle</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#hasChildNodes">hasChildNodes</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#hasClass">hasClass</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#initAttributes">initAttributes</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#insertBefore">insertBefore</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#on">on</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#removeChild">removeChild</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#removeClass">removeClass</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#removeListener">removeListener</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#replaceChild">replaceChild</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#replaceClass">replaceClass</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#setStyle">setStyle</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#subscribe">subscribe</a>
+                                    </code>
+                                </div>
+                            </div>
+                            <div class="section field inheritance">
+                                <h4>Methods inherited from <a href="YAHOO.util.AttributeProvider.html">YAHOO.util.AttributeProvider</a>:</h4>
+                                <div class="content">
+                                    <code>
+                                            <a class="" href="YAHOO.util.AttributeProvider.html#configureAttribute">configureAttribute</a><span class="">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#fireBeforeChangeEvent">fireBeforeChangeEvent</a><span class="">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#fireChangeEvent">fireChangeEvent</a><span class="">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#get">get</a><span class="">,</span>                                            <a class="private" href="YAHOO.util.AttributeProvider.html#getAttributeConfig">getAttributeConfig</a><span class="private">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#getAttributeKeys">getAttributeKeys</a><span class="">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#refresh">refresh</a><span class="">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#register">register</a><span class="">,</span>                                            <a class="private" href="YAHOO.util.AttributeProvider.html#resetAttributeConfig">resetAttributeConfig</a><span class="private">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#resetValue">resetValue</a><span class="">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#set">set</a><span class="">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#setAttributeConfig">setAttributeConfig</a><span class="">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#setAttributes">setAttributes</a>
+                                    </code>
+                                </div>
+                            </div>
+                            <div class="section field inheritance">
+                                <h4>Methods inherited from <a href="YAHOO.util.EventProvider.html">YAHOO.util.EventProvider</a>:</h4>
+                                <div class="content">
+                                    <code>
+                                            <a class="" href="YAHOO.util.EventProvider.html#createEvent">createEvent</a><span class="">,</span>                                            <a class="" href="YAHOO.util.EventProvider.html#fireEvent">fireEvent</a><span class="">,</span>                                            <a class="" href="YAHOO.util.EventProvider.html#hasEvent">hasEvent</a><span class="">,</span>                                            <a class="" href="YAHOO.util.EventProvider.html#subscribe">subscribe</a><span class="">,</span>                                            <a class="" href="YAHOO.util.EventProvider.html#unsubscribe">unsubscribe</a><span class="">,</span>                                            <a class="" href="YAHOO.util.EventProvider.html#unsubscribeAll">unsubscribeAll</a>
+                                    </code>
+                                </div>
+                            </div>
 
                         <div class="section method details">
                             <h3 id="events">Events</h3>
                             <div class="content">
                                     <div class="">
                                     <h4>
-                                        <a name="beforeButtonsChangeEvent">beforeButtonsChangeEvent</a></h4>
+                                        <a name="beforeButtonsChange">beforeButtonsChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>beforeButtonsChangeEvent</strong>
+                                            <strong>beforeButtonsChange</strong>
 
                                             (
                                                 
@@ -1745,13 +1783,13 @@ configuration attributes used to create the toolbar.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="beforeButtontypeChangeEvent">beforeButtontypeChangeEvent</a></h4>
+                                        <a name="beforeButtontypeChange">beforeButtontypeChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>beforeButtontypeChangeEvent</strong>
+                                            <strong>beforeButtontypeChange</strong>
 
                                             (
                                                 
@@ -1786,13 +1824,13 @@ configuration attributes used to create the toolbar.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="beforeCollapseChangeEvent">beforeCollapseChangeEvent</a></h4>
+                                        <a name="beforeCollapseChange">beforeCollapseChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>beforeCollapseChangeEvent</strong>
+                                            <strong>beforeCollapseChange</strong>
 
                                             (
                                                 
@@ -1827,13 +1865,13 @@ configuration attributes used to create the toolbar.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="beforeDisabledChangeEvent">beforeDisabledChangeEvent</a></h4>
+                                        <a name="beforeDisabledChange">beforeDisabledChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>beforeDisabledChangeEvent</strong>
+                                            <strong>beforeDisabledChange</strong>
 
                                             (
                                                 
@@ -1868,13 +1906,13 @@ configuration attributes used to create the toolbar.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="beforeDraggableChangeEvent">beforeDraggableChangeEvent</a></h4>
+                                        <a name="beforeDraggableChange">beforeDraggableChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>beforeDraggableChangeEvent</strong>
+                                            <strong>beforeDraggableChange</strong>
 
                                             (
                                                 
@@ -1909,13 +1947,13 @@ configuration attributes used to create the toolbar.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="beforeGrouplabelsChangeEvent">beforeGrouplabelsChangeEvent</a></h4>
+                                        <a name="beforeGrouplabelsChange">beforeGrouplabelsChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>beforeGrouplabelsChangeEvent</strong>
+                                            <strong>beforeGrouplabelsChange</strong>
 
                                             (
                                                 
@@ -1950,13 +1988,13 @@ configuration attributes used to create the toolbar.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="beforeTitlebarChangeEvent">beforeTitlebarChangeEvent</a></h4>
+                                        <a name="beforeTitlebarChange">beforeTitlebarChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>beforeTitlebarChangeEvent</strong>
+                                            <strong>beforeTitlebarChange</strong>
 
                                             (
                                                 
@@ -2032,13 +2070,13 @@ configuration attributes used to create the toolbar.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="buttonsChangeEvent">buttonsChangeEvent</a></h4>
+                                        <a name="buttonsChange">buttonsChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>buttonsChangeEvent</strong>
+                                            <strong>buttonsChange</strong>
 
                                             (
                                                 
@@ -2073,13 +2111,13 @@ configuration attributes used to create the toolbar.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="buttonTypeChangeEvent">buttonTypeChangeEvent</a></h4>
+                                        <a name="buttonTypeChange">buttonTypeChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>buttonTypeChangeEvent</strong>
+                                            <strong>buttonTypeChange</strong>
 
                                             (
                                                 
@@ -2114,13 +2152,13 @@ configuration attributes used to create the toolbar.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="collapseChangeEvent">collapseChangeEvent</a></h4>
+                                        <a name="collapseChange">collapseChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>collapseChangeEvent</strong>
+                                            <strong>collapseChange</strong>
 
                                             (
                                                 
@@ -2155,13 +2193,13 @@ configuration attributes used to create the toolbar.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="disabledChangeEvent">disabledChangeEvent</a></h4>
+                                        <a name="disabledChange">disabledChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>disabledChangeEvent</strong>
+                                            <strong>disabledChange</strong>
 
                                             (
                                                 
@@ -2196,13 +2234,13 @@ configuration attributes used to create the toolbar.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="draggableChangeEvent">draggableChangeEvent</a></h4>
+                                        <a name="draggableChange">draggableChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>draggableChangeEvent</strong>
+                                            <strong>draggableChange</strong>
 
                                             (
                                                 
@@ -2237,13 +2275,13 @@ configuration attributes used to create the toolbar.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="grouplabelsChangeEvent">grouplabelsChangeEvent</a></h4>
+                                        <a name="grouplabelsChange">grouplabelsChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>grouplabelsChangeEvent</strong>
+                                            <strong>grouplabelsChange</strong>
 
                                             (
                                                 
@@ -2278,13 +2316,13 @@ configuration attributes used to create the toolbar.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="titlebarChangeEvent">titlebarChangeEvent</a></h4>
+                                        <a name="titlebarChange">titlebarChange</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>titlebarChangeEvent</strong>
+                                            <strong>titlebarChange</strong>
 
                                             (
                                                 
@@ -2429,6 +2467,14 @@ tbar.in('testButtonClick', function() { alert('test button clicked'); })
                         </div>
 
 
+                        <div class="section field inheritance">
+                            <h4>Events inherited from <a href="YAHOO.util.Element.html">YAHOO.util.Element</a>:</h4>
+                            <div class="content">
+                                <code>
+                                        <a class="" href="YAHOO.util.Element.html#appendTo">appendTo</a><span class="">,</span>                                        <a class="" href="YAHOO.util.Element.html#available">available</a><span class="">,</span>                                        <a class="" href="YAHOO.util.Element.html#beforeAppendTo">beforeAppendTo</a><span class="">,</span>                                        <a class="" href="YAHOO.util.Element.html#beforeElementChange">beforeElementChange</a><span class="">,</span>                                        <a class="" href="YAHOO.util.Element.html#contentReady">contentReady</a><span class="">,</span>                                        <a class="" href="YAHOO.util.Element.html#elementChange">elementChange</a><span class="">,</span>
+                                </code>
+                            </div>
+                        </div>
 
                         <div class="section field details">
                             <h3 id="configattributes">Configuration Attributes</h3>
@@ -2580,6 +2626,14 @@ passed a string, it will use that as the titlebar text
                             </div>
                         </div>
 
+                        <div class="section field inheritance">
+                            <h4>Configuration attributes inherited from <a href="YAHOO.util.Element.html">YAHOO.util.Element</a>:</h4>
+                            <div class="content">
+                                <code>
+                                        <a class="" href="YAHOO.util.Element.html#element">element</a><span class="">,</span>
+                                </code>
+                            </div>
+                        </div>
 
 			</div>
 		</div>
@@ -2606,11 +2660,11 @@ passed a string, it will use that as the titlebar text
 
                                 <li class=""><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -2626,17 +2680,23 @@ passed a string, it will use that as the titlebar text
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -2645,6 +2705,8 @@ passed a string, it will use that as the titlebar text
                                 <li class=""><a href="module_tabview.html">tabview</a></li>
 
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
 
@@ -2726,9 +2788,6 @@ passed a string, it will use that as the titlebar text
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#dd">dd</a>
-                                        <!--<code>&lt;String&gt;</code>-->
-                                </li>
-                                <li class="private"><a href="#Dom">Dom</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
                                 <li class="protected"><a href="#draghandle">draghandle</a>
@@ -2843,49 +2902,49 @@ passed a string, it will use that as the titlebar text
                         <h4>Events</h4>
                         <ul class="content">        
                                 <li class="">
-                                <a href="#beforeButtonsChangeEvent">beforeButtonsChangeEvent</a>
+                                <a href="#beforeButtonsChange">beforeButtonsChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#beforeButtontypeChangeEvent">beforeButtontypeChangeEvent</a>
+                                <a href="#beforeButtontypeChange">beforeButtontypeChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#beforeCollapseChangeEvent">beforeCollapseChangeEvent</a>
+                                <a href="#beforeCollapseChange">beforeCollapseChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#beforeDisabledChangeEvent">beforeDisabledChangeEvent</a>
+                                <a href="#beforeDisabledChange">beforeDisabledChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#beforeDraggableChangeEvent">beforeDraggableChangeEvent</a>
+                                <a href="#beforeDraggableChange">beforeDraggableChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#beforeGrouplabelsChangeEvent">beforeGrouplabelsChangeEvent</a>
+                                <a href="#beforeGrouplabelsChange">beforeGrouplabelsChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#beforeTitlebarChangeEvent">beforeTitlebarChangeEvent</a>
+                                <a href="#beforeTitlebarChange">beforeTitlebarChange</a>
                                 </li>
                                 <li class="">
                                 <a href="#buttonClick">buttonClick</a>
                                 </li>
                                 <li class="">
-                                <a href="#buttonsChangeEvent">buttonsChangeEvent</a>
+                                <a href="#buttonsChange">buttonsChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#buttonTypeChangeEvent">buttonTypeChangeEvent</a>
+                                <a href="#buttonTypeChange">buttonTypeChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#collapseChangeEvent">collapseChangeEvent</a>
+                                <a href="#collapseChange">collapseChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#disabledChangeEvent">disabledChangeEvent</a>
+                                <a href="#disabledChange">disabledChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#draggableChangeEvent">draggableChangeEvent</a>
+                                <a href="#draggableChange">draggableChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#grouplabelsChangeEvent">grouplabelsChangeEvent</a>
+                                <a href="#grouplabelsChange">grouplabelsChange</a>
                                 </li>
                                 <li class="">
-                                <a href="#titlebarChangeEvent">titlebarChangeEvent</a>
+                                <a href="#titlebarChange">titlebarChange</a>
                                 </li>
                                 <li class="">
                                 <a href="#toolbarCollapsed">toolbarCollapsed</a>

@@ -24,10 +24,8 @@ body {
 
 <!--begin custom header content for this example-->
 <style>
-#container {min-height:15em;}
-#container li {margin-left:2em;}
+#container {margin-left:2em;}
 </style>
-
 <!--end custom header content for this example-->
 
 </head>
@@ -56,7 +54,7 @@ var div = document.getElementById('container');
 var transactionObject = {
 	start:function(type, args){
 		YAHOO.log("Custom Event *start* fired for transaction" + args[0].tId + ".", "info", "example");
-		div.innerHTML += "<li>Transaction " + args[0].tId + " " + type + " event fired.</li>";
+		div.innerHTML = "<li>Transaction " + args[0].tId + " " + type + " event fired.</li>";
 	},
 
 	complete:function(type, args){

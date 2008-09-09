@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>TreeView Widget&nbsp; <span class="subtitle">2.4.1</span></h3>
+        <h3>TreeView Widget&nbsp; <span class="subtitle">2.5.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_treeview.html">treeview</a>
@@ -42,7 +42,8 @@
 <span class="c"> * @class Node</span>
 <span class="c"> * @uses YAHOO.util.EventProvider</span>
 <span class="c"> * @param oData {object} a string or object containing the data that will</span>
-<span class="c"> * be used to render this node</span>
+<span class="c"> * be used to render this node, and any custom attributes that should be</span>
+<span class="c"> * stored with the node (which is available in noderef.data).</span>
 <span class="c"> * @param oParent {Node} this node&#39;s parent node</span>
 <span class="c"> * @param expanded {boolean} the initial expanded/collapsed state</span>
 <span class="c"> * @constructor</span>
@@ -215,6 +216,17 @@
 <span class="c">     * @default false</span>
 <span class="c">     */</span>
     <span class="nx">nowrap</span><span class="o">:</span> <span class="kc">false</span><span class="o">,</span>
+
+    <span class="c">/**</span>
+<span class="c">     * If true, the node will alway be rendered as a leaf node.  This can be</span>
+<span class="c">     * used to override the presentation when dynamically loading the entire</span>
+<span class="c">     * tree.  Setting this to true also disables the dynamic load call for the</span>
+<span class="c">     * node.</span>
+<span class="c">     * @property isLeaf</span>
+<span class="c">     * @type boolean</span>
+<span class="c">     * @default false</span>
+<span class="c">     */</span>
+    <span class="nx">isLeaf</span><span class="o">:</span> <span class="kc">false</span><span class="o">,</span>
 
     <span class="c">/**</span>
 <span class="c">     * The node type</span>
@@ -803,14 +815,19 @@
 <span class="c">     * @return {boolean} true if this node&#39;s children are to be loaded dynamically</span>
 <span class="c">     */</span>
     <span class="nx">isDynamic</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span> 
-        <span class="k">var</span> <span class="nx">lazy</span> <span class="o">=</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">isRoot</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_dynLoad</span> <span class="o">||</span> <span class="k">this</span><span class="o">.</span><span class="nx">tree</span><span class="o">.</span><span class="nx">root</span><span class="o">.</span><span class="nx">_dynLoad</span><span class="o">));</span>
-        <span class="c">// this.logger.log(&quot;isDynamic: &quot; + lazy);</span>
-<span class="c"></span>        <span class="k">return</span> <span class="nx">lazy</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">isLeaf</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">isRoot</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_dynLoad</span> <span class="o">||</span> <span class="k">this</span><span class="o">.</span><span class="nx">tree</span><span class="o">.</span><span class="nx">root</span><span class="o">.</span><span class="nx">_dynLoad</span><span class="o">));</span>
+            <span class="c">// this.logger.log(&quot;isDynamic: &quot; + lazy);</span>
+<span class="c"></span>            <span class="c">// return lazy;</span>
+<span class="c"></span>        <span class="o">}</span>
     <span class="o">},</span>
 
     <span class="c">/**</span>
 <span class="c">     * Returns the current icon mode.  This refers to the way childless dynamic</span>
-<span class="c">     * load nodes appear.</span>
+<span class="c">     * load nodes appear (this comes into play only after the initial dynamic</span>
+<span class="c">     * load request produced no children).</span>
 <span class="c">     * @method getIconMode</span>
 <span class="c">     * @return {int} 0 for collapse style, 1 for leaf node style</span>
 <span class="c">     */</span>
@@ -831,8 +848,12 @@
 <span class="c">     * checking for this condition.</span>
 <span class="c">     */</span>
     <span class="nx">hasChildren</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">checkForLazyLoad</span><span class="o">)</span> <span class="o">{</span> 
-        <span class="k">return</span> <span class="o">(</span> <span class="k">this</span><span class="o">.</span><span class="nx">children</span><span class="o">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="m">0</span> <span class="o">||</span> 
-                <span class="o">(</span><span class="nx">checkForLazyLoad</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">isDynamic</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="o">.</span><span class="nx">dynamicLoadComplete</span><span class="o">)</span> <span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">isLeaf</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="o">(</span> <span class="k">this</span><span class="o">.</span><span class="nx">children</span><span class="o">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="m">0</span> <span class="o">||</span> 
+<span class="o">(</span><span class="nx">checkForLazyLoad</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">isDynamic</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="o">.</span><span class="nx">dynamicLoadComplete</span><span class="o">)</span> <span class="o">);</span>
+        <span class="o">}</span>
     <span class="o">},</span>
 
     <span class="c">/**</span>
@@ -1088,11 +1109,11 @@
 
                                 <li class=""><a href="module_container.html">container</a></li>
 
+                                <li class=""><a href="module_cookie.html">cookie</a></li>
+
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
-
-                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -1108,17 +1129,23 @@
 
                                 <li class=""><a href="module_history.html">history</a></li>
 
+                                <li class=""><a href="module_imagecropper.html">imagecropper</a></li>
+
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_json.html">json</a></li>
+
+                                <li class=""><a href="module_layout.html">layout</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
 
-                                <li class=""><a href="module_number.html">number</a></li>
-
                                 <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_profilerviewer.html">profilerviewer</a></li>
+
+                                <li class=""><a href="module_resize.html">resize</a></li>
 
                                 <li class=""><a href="module_selector.html">selector</a></li>
 
@@ -1127,6 +1154,8 @@
                                 <li class=""><a href="module_tabview.html">tabview</a></li>
 
                                 <li class="selected"><a href="module_treeview.html">treeview</a></li>
+
+                                <li class=""><a href="module_uploader.html">uploader</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
 
