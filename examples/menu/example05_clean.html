@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Grouped Menu Items With Titles From Markup</title>
+
+<style type="text/css">
+/*margin and padding on body element
+  can introduce errors in determining
+  element position and are not recommended;
+  we turn them off as a foundation for YUI
+  CSS treatments. */
+body {
+	margin:0;
+	padding:0;
+}
+</style>
+
+<link rel="stylesheet" type="text/css" href="../../build/fonts/fonts-min.css" />
+<link rel="stylesheet" type="text/css" href="../../build/menu/assets/skins/sam/menu.css" />
+<!-- The following modules were requested but are not defined: container-core -->
+<script type="text/javascript" src="../../build/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="../../build/container/container_core.js"></script>
+<script type="text/javascript" src="../../build/menu/menu.js"></script>
+<!-- The following modules were requested but are not defined: container-core -->
+
+
+<!--begin custom header content for this example-->
+<style type="text/css">
+
+    /*
+        Position and hide the menu to prevent a flash of unstyled content 
+        when the page is loading.
+    */
+
+    div.yuimenu {
+    
+        position: absolute;
+        visibility: hidden;
+    
+    }
+
+</style>
+<!--end custom header content for this example-->
+
+</head>
+
+<body class=" yui-skin-sam">
+
+<h1>Grouped Menu Items With Titles From Markup</h1>
+
+<div class="exampleIntro">
+	<p>This example demonstrates how to title groups of MenuItem instances.</p>
+<p id="clicknote"><em>Note:</em> By default clicking outside of a menu will hide it.  Additionally, menu items without a submenu or a URL to navigate will hide their parent menu when clicked.  Click the "Show Menu" button below to make the menu visible if it is hidden.</p>			
+</div>
+
+<!--BEGIN SOURCE CODE FOR EXAMPLE =============================== -->
+
+<script type="text/javascript">
+
+    // Instantiate and render the menu when it is available in the DOM
+
+    YAHOO.util.Event.onContentReady("menuwithgroups", function () {
+
+        /*
+             Instantiate the menu.  The first argument passed to the 
+             constructor is the id of the element in the DOM that represents 
+             the menu; the second is an object literal representing a set of 
+             configuration properties for the menu.
+        */
+
+        var oMenu = new YAHOO.widget.Menu("menuwithgroups", { fixedcenter: true });
+
+        oMenu.showEvent.subscribe(function () {
+
+            this.focus();
+        
+        });
+
+        /*
+             Call the "render" method with no arguments since the markup for 
+             this menu already exists in the DOM.
+        */
+
+        oMenu.render();
+
+        YAHOO.util.Event.addListener("menutoggle", "click", oMenu.show, null, oMenu);    
+    
+    });
+    
+</script>
+
+<button id="menutoggle" type="button">Show Menu</button>
+
+<div id="menuwithgroups" class="yuimenu">
+    <div class="bd">
+        <h6 class="first-of-type">Yahoo! PIM</h6>
+        <ul class="first-of-type">
+            <li class="yuimenuitem"><a class="yuimenuitemlabel" href="http://mail.yahoo.com">Yahoo! Mail</a></li>
+            <li class="yuimenuitem"><a class="yuimenuitemlabel" href="http://addressbook.yahoo.com">Yahoo! Address Book</a></li>
+            <li class="yuimenuitem"><a class="yuimenuitemlabel" href="http://calendar.yahoo.com">Yahoo! Calendar</a></li>
+            <li class="yuimenuitem"><a class="yuimenuitemlabel" href="http://notepad.yahoo.com">Yahoo! Notepad</a></li>
+        </ul>
+        <h6>Yahoo! Search</h6>
+        <ul>
+            <li class="yuimenuitem"><a class="yuimenuitemlabel" href="http://local.yahoo.com">Yahoo! Local</a></li>
+            <li class="yuimenuitem"><a class="yuimenuitemlabel" href="http://maps.yahoo.com">Yahoo! Maps</a></li>
+            <li class="yuimenuitem"><a class="yuimenuitemlabel" href="http://travel.yahoo.com">Yahoo! Travel</a></li>
+            <li class="yuimenuitem"><a class="yuimenuitemlabel" href="http://shopping.yahoo.com">Yahoo! Shopping</a></li>
+        </ul>
+        <h6>Yahoo! Communications</h6>
+        <ul>
+            <li class="yuimenuitem"><a class="yuimenuitemlabel" href="http://messenger.yahoo.com">Yahoo! Messenger</a></li>
+            <li class="yuimenuitem"><a class="yuimenuitemlabel" href="http://360.yahoo.com">Yahoo! 360</a></li>
+            <li class="yuimenuitem"><a class="yuimenuitemlabel" href="http://groups.yahoo.com">Yahoo! Groups</a></li>
+            <li class="yuimenuitem"><a class="yuimenuitemlabel" href="http://photos.yahoo.com">Yahoo! Photos</a></li>
+        </ul>
+    </div>
+</div>        
+<!--END SOURCE CODE FOR EXAMPLE =============================== -->
+
+</body>
+</html>

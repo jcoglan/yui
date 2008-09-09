@@ -3,26 +3,33 @@
 <head>
 	<title>API: container  YAHOO.widget.Dialog   (YUI Library)</title>
 	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
 </head>
 
 <body id="yahoo-com">
+
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
         <h1>Yahoo! UI Library</h1>
-        <h3>Container&nbsp; <span class="subtitle">2.2.2</span></h3>
+        <h3>Container&nbsp; <span class="subtitle">2.3.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_container.html">container</a>
                  &gt; YAHOO.widget.Dialog 
                 
             </p>
+
 	</div>
 
 	<div id="bd">
 		<div id="yui-main">
 			<div class="yui-b">
-
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> Show Private</span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> Show Protected</span>
+            </form>
 
                     <h2>
                         
@@ -51,7 +58,12 @@
   
 
                     <div class="summary description">
-                        Dialog is an implementation of Panel that can be used to submit form data. Built-in functionality for buttons with event handlers is included, and button sets can be build dynamically, or the preincluded ones for Submit/Cancel and OK/Cancel can be utilized. Forms can be processed in 3 ways -- via an asynchronous Connection utility call, a simple form POST or GET, or manually.
+                        Dialog is an implementation of Panel that can be used to submit form 
+data. Built-in functionality for buttons with event handlers is included, 
+and button sets can be build dynamically, or the preincluded ones for 
+Submit/Cancel and OK/Cancel can be utilized. Forms can be processed in 3
+ways -- via an asynchronous Connection utility call, a simple form 
+POST or GET, or manually.
                     </div>
 
                         <div class="section constructor details">
@@ -78,19 +90,21 @@
                                                     <code>el
                                                     &lt;String&gt; 
                                                     </code>
-                                                    	The element ID representing the Dialog <em>OR</em>
+                                                     The element ID representing the Dialog <em>OR</em>
                                                 </dd>
                                                 <dd>
                                                     <code>el
                                                     &lt;HTMLElement&gt; 
                                                     </code>
-                                                    	The element representing the Dialog
+                                                     The element representing the Dialog
                                                 </dd>
                                                 <dd>
                                                     <code>userConfig
                                                     &lt;Object&gt; 
                                                     </code>
-                                                    	The configuration object literal containing the configuration that should be set for this Dialog. See configuration documentation for more details.
+                                                     The configuration object literal containing 
+the configuration that should be set for this Dialog. See configuration 
+documentation for more details.
                                                 </dd>
                                         </dl>
                                     
@@ -103,12 +117,14 @@
                         <div class="section field details">
                             <h3><a name="field_detail">Properties</a></h3>
                             <div class="content">
+                                    <div class="">
                                     <h4><a name="callback">callback</a>
                                         <code>- Object</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            The internally maintained callback object for use with the Connection utility
+                                            The internally maintained callback object for use with the 
+Connection utility
                                         </div>
                                     </div>
      
@@ -116,12 +132,15 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="callback.argument">callback.argument</a>
                                         <code>- Object</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            The arbitraty argument or arguments to pass to the Connection callback functions
+                                            The arbitraty argument or arguments to pass to the Connection 
+callback functions
                                         </div>
                                     </div>
      
@@ -129,12 +148,15 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="callback.failure">callback.failure</a>
                                         <code>- Function</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            The function to execute upon failure of the Connection submission
+                                            The function to execute upon failure of the 
+Connection submission
                                         </div>
                                     </div>
      
@@ -142,12 +164,15 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="callback.success">callback.success</a>
                                         <code>- Function</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            The function to execute upon success of the Connection submission
+                                            The function to execute upon success of the 
+Connection submission
                                         </div>
                                     </div>
      
@@ -155,7 +180,9 @@
 
 
                                     <hr />
-                                    <h4><a name="YAHOO.widget.Dialog._DEFAULT_CONFIG">YAHOO.widget.Dialog._DEFAULT_CONFIG</a>
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="DEFAULT_CONFIG">DEFAULT_CONFIG</a>
                                         <code>- private final Object</code>
                                     </h4>
                                     <div class="detail">
@@ -168,7 +195,9 @@
 
 
                                     <hr />
-                                    <h4><a name="YAHOO.widget.Dialog._EVENT_TYPES">YAHOO.widget.Dialog._EVENT_TYPES</a>
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="EVENT_TYPES">EVENT_TYPES</a>
                                         <code>- private final Object</code>
                                     </h4>
                                     <div class="detail">
@@ -181,6 +210,28 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4><a name="form">form</a>
+                                        <code>- <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/
+level-one-html.html#ID-40002357">HTMLFormElement</a></code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Object reference to the Dialog's 
+<code>&#60;form&#62;</code> element.
+                                        </div>
+                                    </div>
+     
+                                        
+                                    <div class="default">
+                                        Default Value: null
+                                    </div>        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Dialog.CSS_DIALOG">YAHOO.widget.Dialog.CSS_DIALOG</a>
                                         <code>- static final String</code>
                                     </h4>
@@ -194,6 +245,7 @@
 
 
                                     <hr />
+                                    </div>
 
 
                             </div>
@@ -204,40 +256,8 @@
                             <div class="content">
                                 <code>
                                     
-                                        <a href="YAHOO.widget.Panel.html#YAHOO.widget.Panel._DEFAULT_CONFIG">YAHOO.widget.Panel._DEFAULT_CONFIG</a>,
-                                        <a href="YAHOO.widget.Panel.html#YAHOO.widget.Panel._EVENT_TYPES">YAHOO.widget.Panel._EVENT_TYPES</a>
-                                </code>
-                            </div>
-                        </div>
-                        <div class="section field inheritance">
-                            <h4>Properties inherited from <a href="YAHOO.widget.Module.html">YAHOO.widget.Module</a>:</h4>
-                            <div class="content">
-                                <code>
-                                    
-                                        <a href="YAHOO.widget.Module.html#body">body</a>,
-                                        <a href="YAHOO.widget.Module.html#browser">browser</a>,
-                                        <a href="YAHOO.widget.Module.html#cfg">cfg</a>,
-                                        <a href="YAHOO.widget.Module.html#contructor">contructor</a>,
-                                        <a href="YAHOO.widget.Module.html#element">element</a>,
-                                        <a href="YAHOO.widget.Module.html#footer">footer</a>,
-                                        <a href="YAHOO.widget.Module.html#header">header</a>,
-                                        <a href="YAHOO.widget.Module.html#id">id</a>,
-                                        <a href="YAHOO.widget.Module.html#imageRoot">imageRoot</a>,
-                                        <a href="YAHOO.widget.Module.html#isSecure">isSecure</a>,
-                                        <a href="YAHOO.widget.Module.html#platform">platform</a>,
-                                        <a href="YAHOO.widget.Module.html#YAHOO.widget.Module._DEFAULT_CONFIG">YAHOO.widget.Module._DEFAULT_CONFIG</a>,
-                                        <a href="YAHOO.widget.Module.html#YAHOO.widget.Module._EVENT_TYPES">YAHOO.widget.Module._EVENT_TYPES</a>
-                                </code>
-                            </div>
-                        </div>
-                        <div class="section field inheritance">
-                            <h4>Properties inherited from <a href="YAHOO.widget.Overlay.html">YAHOO.widget.Overlay</a>:</h4>
-                            <div class="content">
-                                <code>
-                                    
-                                        <a href="YAHOO.widget.Overlay.html#YAHOO.widget.Overlay._DEFAULT_CONFIG">YAHOO.widget.Overlay._DEFAULT_CONFIG</a>,
-                                        <a href="YAHOO.widget.Overlay.html#YAHOO.widget.Overlay._EVENT_TYPES">YAHOO.widget.Overlay._EVENT_TYPES</a>,
-                                        <a href="YAHOO.widget.Overlay.html#YAHOO.widget.Overlay._initialized">YAHOO.widget.Overlay._initialized</a>
+                                        <a class="private" href="YAHOO.widget.Panel.html#DEFAULT_CONFIG">DEFAULT_CONFIG</a><span class="private">,</span>
+                                        <a class="private" href="YAHOO.widget.Panel.html#EVENT_TYPES">EVENT_TYPES</a>
                                 </code>
                             </div>
                         </div>
@@ -245,51 +265,7 @@
                         <div class="section method details">
                             <h3><a name="methodDetails">Methods</a></h3>
                             <div class="content">
-                                    <h4>
-                                        <a name="_onFormKeyDown">_onFormKeyDown</a></h4>
-                                    <div class="detail">
-                                        <code>
-                                         protected 
-                                        
-                                        
-                                        void
-                                            <strong>_onFormKeyDown</strong>
-                                           (
-                                                
-                                                        
-                                                         p_oEvent
-                                                    
-                                                
-                                            )
-                                        </code>
-                                        
-                                        <div class="description">
-                                            "keydown" event handler for the dialog's form.
-                                        </div>
-
-                                        <div class="description">
-
-                                                <dl>
-                                                    <dt>Parameters:</dt>
-                                                        <dd>
-                                                            <code>p_oEvent &lt;Event&gt;</code>
-                                                             Object representing the DOM event object passed 
-back by the event utility (YAHOO.util.Event).
-                                                        </dd>
-                                                </dl>
-
-                                                <dl>
-                                                    <dt>Returns:
-                                                    <code>
-                                                        void
-                                                    </code></dt>
-                                                    <dd></dd>
-                                                </dl>
-             
-                                        </div>
-
-                                    </div>
-                                    <hr />
+                                    <div class="">
                                     <h4>
                                         <a name="blurButtons">blurButtons</a></h4>
                                     <div class="detail">
@@ -304,7 +280,8 @@ back by the event utility (YAHOO.util.Event).
                                         </code>
                                         
                                         <div class="description">
-                                            Blurs all the html buttons
+                                            Blurs all the buttons defined via the "buttons" 
+configuration property.
                                         </div>
 
                                         <div class="description">
@@ -322,6 +299,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="cancel">cancel</a></h4>
                                     <div class="detail">
@@ -354,6 +333,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configButtons">configButtons</a></h4>
                                     <div class="detail">
@@ -390,15 +371,17 @@ back by the event utility (YAHOO.util.Event).
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>type &lt;String&gt;</code>
-                                                            	The CustomEvent type (usually the property name)
+                                                             The CustomEvent type (usually the property name)
                                                         </dd>
                                                         <dd>
                                                             <code>args &lt;Object[]&gt;</code>
-                                                            	The CustomEvent arguments. For configuration handlers, args[0] will equal the newly applied value for the property.
+                                                             The CustomEvent arguments. For configuration 
+handlers, args[0] will equal the newly applied value for the property.
                                                         </dd>
                                                         <dd>
                                                             <code>obj &lt;Object&gt;</code>
-                                                            	The scope object. For configuration handlers, this will usually equal the owner.
+                                                             The scope object. For configuration handlers, 
+this will usually equal the owner.
                                                         </dd>
                                                 </dl>
 
@@ -414,6 +397,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configClose">configClose</a></h4>
                                     <div class="detail">
@@ -441,7 +426,9 @@ back by the event utility (YAHOO.util.Event).
                                         </code>
                                         
                                         <div class="description">
-                                            The default event handler fired when the "close" property is changed. The method controls the appending or hiding of the close icon at the top right of the Dialog.
+                                            The default event handler fired when the "close" property is 
+changed. The method controls the appending or hiding of the close
+icon at the top right of the Dialog.
                                         </div>
 
                                         <div class="description">
@@ -450,15 +437,18 @@ back by the event utility (YAHOO.util.Event).
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>type &lt;String&gt;</code>
-                                                            	The CustomEvent type (usually the property name)
+                                                             The CustomEvent type (usually the property name)
                                                         </dd>
                                                         <dd>
                                                             <code>args &lt;Object[]&gt;</code>
-                                                            	The CustomEvent arguments. For configuration handlers, args[0] will equal the newly applied value for the property.
+                                                             The CustomEvent arguments. For 
+configuration handlers, args[0] will equal the newly applied value 
+for the property.
                                                         </dd>
                                                         <dd>
                                                             <code>obj &lt;Object&gt;</code>
-                                                            	The scope object. For configuration handlers, this will usually equal the owner.
+                                                             The scope object. For configuration handlers, 
+this will usually equal the owner.
                                                         </dd>
                                                 </dl>
 
@@ -474,6 +464,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configPostMethod">configPostMethod</a></h4>
                                     <div class="detail">
@@ -510,15 +502,18 @@ back by the event utility (YAHOO.util.Event).
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>type &lt;String&gt;</code>
-                                                            	The CustomEvent type (usually the property name)
+                                                             The CustomEvent type (usually the property name)
                                                         </dd>
                                                         <dd>
                                                             <code>args &lt;Object[]&gt;</code>
-                                                            	The CustomEvent arguments. For configuration handlers, args[0] will equal the newly applied value for the property.
+                                                             The CustomEvent arguments. For 
+configuration handlers, args[0] will equal the newly applied value 
+for the property.
                                                         </dd>
                                                         <dd>
                                                             <code>obj &lt;Object&gt;</code>
-                                                            	The scope object. For configuration handlers, this will usually equal the owner.
+                                                             The scope object. For configuration handlers, 
+this will usually equal the owner.
                                                         </dd>
                                                 </dl>
 
@@ -534,6 +529,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="destroy">destroy</a></h4>
                                     <div class="detail">
@@ -548,7 +545,8 @@ back by the event utility (YAHOO.util.Event).
                                         </code>
                                         
                                         <div class="description">
-                                            Removes the Panel element from the DOM and sets all child elements to null.
+                                            Removes the Panel element from the DOM and sets all child elements 
+to null.
                                         </div>
 
                                         <div class="description">
@@ -566,6 +564,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="doSubmit">doSubmit</a></h4>
                                     <div class="detail">
@@ -580,7 +580,17 @@ back by the event utility (YAHOO.util.Event).
                                         </code>
                                         
                                         <div class="description">
-                                            Performs the submission of the Dialog form depending on the value of "postmethod" property.
+                                            Submits the Dialog's form depending on the value of the 
+"postmethod" configuration property.  <strong>Please note:
+</strong> As of version 2.3 this method will automatically handle 
+asyncronous file uploads should the Dialog instance's form contain 
+<code>&#60;input type="file"&#62;</code> elements.  If a Dialog 
+instance will be handling asyncronous file uploads, its 
+<code>callback</code> property will need to be setup with a 
+<code>upload</code> handler rather than the standard 
+<code>success</code> and, or <code>failure</code> handlers.  For more 
+information, see the <a href="http://developer.yahoo.com/yui/
+connection/#file">Connection Manager documenation on file uploads</a>.
                                         </div>
 
                                         <div class="description">
@@ -598,6 +608,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="focusDefaultButton">focusDefaultButton</a></h4>
                                     <div class="detail">
@@ -612,7 +624,9 @@ back by the event utility (YAHOO.util.Event).
                                         </code>
                                         
                                         <div class="description">
-                                            Sets the focus to the button that is designated as the default. By default, his handler is executed when the show event is fired.
+                                            Sets the focus to the button that is designated as the default via 
+the "buttons" configuration property. By default, this method is 
+called when the Dialog is made visible.
                                         </div>
 
                                         <div class="description">
@@ -630,6 +644,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="focusFirst">focusFirst</a></h4>
                                     <div class="detail">
@@ -644,7 +660,9 @@ back by the event utility (YAHOO.util.Event).
                                         </code>
                                         
                                         <div class="description">
-                                            The default event handler used to focus the first field of the form when the Dialog is shown.
+                                            Sets focus to the first element in the Dialog's form or the first 
+button defined via the "buttons" configuration property. Called 
+when the Dialog is made visible.
                                         </div>
 
                                         <div class="description">
@@ -662,6 +680,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="focusFirstButton">focusFirstButton</a></h4>
                                     <div class="detail">
@@ -676,7 +696,8 @@ back by the event utility (YAHOO.util.Event).
                                         </code>
                                         
                                         <div class="description">
-                                            Sets the focus to the first button in the button list
+                                            Sets the focus to the first button created via the "buttons"
+configuration property.
                                         </div>
 
                                         <div class="description">
@@ -694,6 +715,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="focusLast">focusLast</a></h4>
                                     <div class="detail">
@@ -708,7 +731,8 @@ back by the event utility (YAHOO.util.Event).
                                         </code>
                                         
                                         <div class="description">
-                                            Sets the focus to the last button in the button or form element in the Dialog
+                                            Sets focus to the last element in the Dialog's form or the last 
+button defined via the "buttons" configuration property.
                                         </div>
 
                                         <div class="description">
@@ -726,6 +750,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="focusLastButton">focusLastButton</a></h4>
                                     <div class="detail">
@@ -740,7 +766,8 @@ back by the event utility (YAHOO.util.Event).
                                         </code>
                                         
                                         <div class="description">
-                                            Sets the focus to the first button in the button list
+                                            Sets the focus to the last button created via the "buttons" 
+configuration property.
                                         </div>
 
                                         <div class="description">
@@ -758,6 +785,47 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="getButtons">getButtons</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Array
+                                            <strong>getButtons</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Returns an array containing each of the Dialog's 
+buttons, by default an array of HTML <code>&#60;BUTTON&#60;</code> 
+elements.  If the Dialog's buttons were created using the 
+YAHOO.widget.Button class (via the inclusion of the optional Button 
+dependancy on the page), an array of YAHOO.widget.Button instances 
+is returned.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Array
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getData">getData</a></h4>
                                     <div class="detail">
@@ -772,7 +840,8 @@ back by the event utility (YAHOO.util.Event).
                                         </code>
                                         
                                         <div class="description">
-                                            Returns a JSON-compatible data structure representing the data currently contained in the form.
+                                            Returns a JSON-compatible data structure representing the data 
+currently contained in the form.
                                         </div>
 
                                         <div class="description">
@@ -783,13 +852,16 @@ back by the event utility (YAHOO.util.Event).
                                                     <code>
                                                         Object
                                                     </code></dt>
-                                                    <dd>A JSON object reprsenting the data of the current form.</dd>
+                                                    <dd>A JSON object reprsenting the data of the 
+current form.</dd>
                                                 </dl>
              
                                         </div>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="init">init</a></h4>
                                     <div class="detail">
@@ -815,7 +887,10 @@ back by the event utility (YAHOO.util.Event).
                                         </code>
                                         
                                         <div class="description">
-                                            The Dialog initialization method, which is executed for Dialog and all of its subclasses. This method is automatically called by the constructor, and  sets up all DOM references for pre-existing markup, and creates required markup if it is not already present.
+                                            The Dialog initialization method, which is executed for Dialog and 
+all of its subclasses. This method is automatically called by the 
+constructor, and  sets up all DOM references for pre-existing markup, 
+and creates required markup if it is not already present.
                                         </div>
 
                                         <div class="description">
@@ -824,15 +899,17 @@ back by the event utility (YAHOO.util.Event).
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>el &lt;String&gt;</code>
-                                                            	The element ID representing the Dialog <em>OR</em>
+                                                             The element ID representing the Dialog <em>OR</em>
                                                         </dd>
                                                         <dd>
                                                             <code>el &lt;HTMLElement&gt;</code>
-                                                            	The element representing the Dialog
+                                                             The element representing the Dialog
                                                         </dd>
                                                         <dd>
                                                             <code>userConfig &lt;Object&gt;</code>
-                                                            	The configuration object literal containing the configuration that should be set for this Dialog. See configuration documentation for more details.
+                                                             The configuration object literal 
+containing the configuration that should be set for this Dialog. 
+See configuration documentation for more details.
                                                         </dd>
                                                 </dl>
 
@@ -848,6 +925,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="initDefaultConfig">initDefaultConfig</a></h4>
                                     <div class="detail">
@@ -862,7 +941,8 @@ back by the event utility (YAHOO.util.Event).
                                         </code>
                                         
                                         <div class="description">
-                                            Initializes the class's configurable properties which can be changed using the Dialog's Config object (cfg).
+                                            Initializes the class's configurable properties which can be changed 
+using the Dialog's Config object (cfg).
                                         </div>
 
                                         <div class="description">
@@ -880,6 +960,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="initEvents">initEvents</a></h4>
                                     <div class="detail">
@@ -894,7 +976,8 @@ back by the event utility (YAHOO.util.Event).
                                         </code>
                                         
                                         <div class="description">
-                                            Initializes the custom events for Dialog which are fired automatically at appropriate times by the Dialog class.
+                                            Initializes the custom events for Dialog which are fired 
+automatically at appropriate times by the Dialog class.
                                         </div>
 
                                         <div class="description">
@@ -912,6 +995,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="registerForm">registerForm</a></h4>
                                     <div class="detail">
@@ -926,7 +1011,8 @@ back by the event utility (YAHOO.util.Event).
                                         </code>
                                         
                                         <div class="description">
-                                            Prepares the Dialog's internal FORM object, creating one if one is not currently present.
+                                            Prepares the Dialog's internal FORM object, creating one if one is
+not currently present.
                                         </div>
 
                                         <div class="description">
@@ -944,6 +1030,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="submit">submit</a></h4>
                                     <div class="detail">
@@ -958,7 +1046,8 @@ back by the event utility (YAHOO.util.Event).
                                         </code>
                                         
                                         <div class="description">
-                                            Executes a submit of the Dialog followed by a hide, if validation is successful.
+                                            Executes a submit of the Dialog followed by a hide, if validation 
+is successful.
                                         </div>
 
                                         <div class="description">
@@ -976,6 +1065,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="toString">toString</a></h4>
                                     <div class="detail">
@@ -1008,6 +1099,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="validate">validate</a></h4>
                                     <div class="detail">
@@ -1022,7 +1115,10 @@ back by the event utility (YAHOO.util.Event).
                                         </code>
                                         
                                         <div class="description">
-                                            Built-in function hook for writing a validation function that will be checked for a "true" value prior to a submit. This function, as implemented by default, always returns true, so it should be overridden if validation is necessary.
+                                            Built-in function hook for writing a validation function that will 
+be checked for a "true" value prior to a submit. This function, as 
+implemented by default, always returns true, so it should be 
+overridden if validation is necessary.
                                         </div>
 
                                         <div class="description">
@@ -1040,6 +1136,7 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
                             </div>
                         </div>
 
@@ -1047,98 +1144,15 @@ back by the event utility (YAHOO.util.Event).
                                 <h4>Methods inherited from <a href="YAHOO.widget.Panel.html">YAHOO.widget.Panel</a>:</h4>
                                 <div class="content">
                                     <code>
-                                        
-                                            <a href="YAHOO.widget.Panel.html#buildMask">buildMask</a>,
-                                            <a href="YAHOO.widget.Panel.html#buildWrapper">buildWrapper</a>,
-                                            <a href="YAHOO.widget.Panel.html#configClose">configClose</a>,
-                                            <a href="YAHOO.widget.Panel.html#configDraggable">configDraggable</a>,
-                                            <a href="YAHOO.widget.Panel.html#configHeight">configHeight</a>,
-                                            <a href="YAHOO.widget.Panel.html#configKeyListeners">configKeyListeners</a>,
-                                            <a href="YAHOO.widget.Panel.html#configModal">configModal</a>,
-                                            <a href="YAHOO.widget.Panel.html#configUnderlay">configUnderlay</a>,
-                                            <a href="YAHOO.widget.Panel.html#configWidth">configWidth</a>,
-                                            <a href="YAHOO.widget.Panel.html#configzIndex">configzIndex</a>,
-                                            <a href="YAHOO.widget.Panel.html#destroy">destroy</a>,
-                                            <a href="YAHOO.widget.Panel.html#hideMask">hideMask</a>,
-                                            <a href="YAHOO.widget.Panel.html#init">init</a>,
-                                            <a href="YAHOO.widget.Panel.html#initDefaultConfig">initDefaultConfig</a>,
-                                            <a href="YAHOO.widget.Panel.html#initEvents">initEvents</a>,
-                                            <a href="YAHOO.widget.Panel.html#onDomResize">onDomResize</a>,
-                                            <a href="YAHOO.widget.Panel.html#registerDragDrop">registerDragDrop</a>,
-                                            <a href="YAHOO.widget.Panel.html#removeMask">removeMask</a>,
-                                            <a href="YAHOO.widget.Panel.html#render">render</a>,
-                                            <a href="YAHOO.widget.Panel.html#showMask">showMask</a>,
-                                            <a href="YAHOO.widget.Panel.html#sizeMask">sizeMask</a>,
-                                            <a href="YAHOO.widget.Panel.html#sizeUnderlay">sizeUnderlay</a>,
-                                            <a href="YAHOO.widget.Panel.html#toString">toString</a>
-                                    </code>
-                                </div>
-                            </div>
-                            <div class="section field inheritance">
-                                <h4>Methods inherited from <a href="YAHOO.widget.Module.html">YAHOO.widget.Module</a>:</h4>
-                                <div class="content">
-                                    <code>
-                                        
-                                            <a href="YAHOO.widget.Module.html#appendToBody">appendToBody</a>,
-                                            <a href="YAHOO.widget.Module.html#appendToFooter">appendToFooter</a>,
-                                            <a href="YAHOO.widget.Module.html#appendToHeader">appendToHeader</a>,
-                                            <a href="YAHOO.widget.Module.html#configMonitorResize">configMonitorResize</a>,
-                                            <a href="YAHOO.widget.Module.html#configVisible">configVisible</a>,
-                                            <a href="YAHOO.widget.Module.html#destroy">destroy</a>,
-                                            <a href="YAHOO.widget.Module.html#hide">hide</a>,
-                                            <a href="YAHOO.widget.Module.html#init">init</a>,
-                                            <a href="YAHOO.widget.Module.html#initDefaultConfig">initDefaultConfig</a>,
-                                            <a href="YAHOO.widget.Module.html#initEvents">initEvents</a>,
-                                            <a href="YAHOO.widget.Module.html#initResizeMonitor">initResizeMonitor</a>,
-                                            <a href="YAHOO.widget.Module.html#onDomResize">onDomResize</a>,
-                                            <a href="YAHOO.widget.Module.html#render">render</a>,
-                                            <a href="YAHOO.widget.Module.html#setBody">setBody</a>,
-                                            <a href="YAHOO.widget.Module.html#setFooter">setFooter</a>,
-                                            <a href="YAHOO.widget.Module.html#setHeader">setHeader</a>,
-                                            <a href="YAHOO.widget.Module.html#show">show</a>,
-                                            <a href="YAHOO.widget.Module.html#toString">toString</a>
-                                    </code>
-                                </div>
-                            </div>
-                            <div class="section field inheritance">
-                                <h4>Methods inherited from <a href="YAHOO.widget.Overlay.html">YAHOO.widget.Overlay</a>:</h4>
-                                <div class="content">
-                                    <code>
-                                        
-                                            <a href="YAHOO.widget.Overlay.html#align">align</a>,
-                                            <a href="YAHOO.widget.Overlay.html#center">center</a>,
-                                            <a href="YAHOO.widget.Overlay.html#configConstrainToViewport">configConstrainToViewport</a>,
-                                            <a href="YAHOO.widget.Overlay.html#configContext">configContext</a>,
-                                            <a href="YAHOO.widget.Overlay.html#configFixedCenter">configFixedCenter</a>,
-                                            <a href="YAHOO.widget.Overlay.html#configHeight">configHeight</a>,
-                                            <a href="YAHOO.widget.Overlay.html#configIframe">configIframe</a>,
-                                            <a href="YAHOO.widget.Overlay.html#configVisible">configVisible</a>,
-                                            <a href="YAHOO.widget.Overlay.html#configWidth">configWidth</a>,
-                                            <a href="YAHOO.widget.Overlay.html#configX">configX</a>,
-                                            <a href="YAHOO.widget.Overlay.html#configXY">configXY</a>,
-                                            <a href="YAHOO.widget.Overlay.html#configY">configY</a>,
-                                            <a href="YAHOO.widget.Overlay.html#configzIndex">configzIndex</a>,
-                                            <a href="YAHOO.widget.Overlay.html#destroy">destroy</a>,
-                                            <a href="YAHOO.widget.Overlay.html#doCenterOnDOMEvent">doCenterOnDOMEvent</a>,
-                                            <a href="YAHOO.widget.Overlay.html#enforceConstraints">enforceConstraints</a>,
-                                            <a href="YAHOO.widget.Overlay.html#hideIframe">hideIframe</a>,
-                                            <a href="YAHOO.widget.Overlay.html#hideMacGeckoScrollbars">hideMacGeckoScrollbars</a>,
-                                            <a href="YAHOO.widget.Overlay.html#init">init</a>,
-                                            <a href="YAHOO.widget.Overlay.html#initDefaultConfig">initDefaultConfig</a>,
-                                            <a href="YAHOO.widget.Overlay.html#initEvents">initEvents</a>,
-                                            <a href="YAHOO.widget.Overlay.html#moveTo">moveTo</a>,
-                                            <a href="YAHOO.widget.Overlay.html#onDomResize">onDomResize</a>,
-                                            <a href="YAHOO.widget.Overlay.html#showIframe">showIframe</a>,
-                                            <a href="YAHOO.widget.Overlay.html#showMacGeckoScrollbars">showMacGeckoScrollbars</a>,
-                                            <a href="YAHOO.widget.Overlay.html#syncPosition">syncPosition</a>,
-                                            <a href="YAHOO.widget.Overlay.html#toString">toString</a>
+                                            <a class="" href="YAHOO.widget.Panel.html#buildMask">buildMask</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Panel.html#buildWrapper">buildWrapper</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Panel.html#configClose">configClose</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Panel.html#configDraggable">configDraggable</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Panel.html#configHeight">configHeight</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Panel.html#configKeyListeners">configKeyListeners</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Panel.html#configModal">configModal</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Panel.html#configUnderlay">configUnderlay</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Panel.html#configWidth">configWidth</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Panel.html#configzIndex">configzIndex</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Panel.html#destroy">destroy</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Panel.html#hideMask">hideMask</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Panel.html#init">init</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Panel.html#initDefaultConfig">initDefaultConfig</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Panel.html#initEvents">initEvents</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Panel.html#registerDragDrop">registerDragDrop</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Panel.html#removeMask">removeMask</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Panel.html#render">render</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Panel.html#showMask">showMask</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Panel.html#sizeMask">sizeMask</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Panel.html#sizeUnderlay">sizeUnderlay</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.Panel.html#toString">toString</a>
                                     </code>
                                 </div>
                             </div>
 
                         <div class="section method details">
-                            <h3><a name="methodDetails">Events</a></h3>
+                            <h3><a name="eventDetails">Events</a></h3>
                             <div class="content">
+                                    <div class="">
                                     <h4>
                                         <a name="asyncSubmitEvent">asyncSubmitEvent</a></h4>
                                     <div class="detail">
@@ -1166,14 +1180,16 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
-                                        <a name="beforeSumitEvent">beforeSumitEvent</a></h4>
+                                        <a name="beforeSubmitEvent">beforeSubmitEvent</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>beforeSumitEvent</strong>
+                                            <strong>beforeSubmitEvent</strong>
 
                                             (
                                             )
@@ -1193,6 +1209,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="cancelEvent">cancelEvent</a></h4>
                                     <div class="detail">
@@ -1220,6 +1238,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="formSubmitEvent">formSubmitEvent</a></h4>
                                     <div class="detail">
@@ -1247,6 +1267,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="manualSubmitEvent">manualSubmitEvent</a></h4>
                                     <div class="detail">
@@ -1274,6 +1296,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="submitEvent">submitEvent</a></h4>
                                     <div class="detail">
@@ -1301,6 +1325,7 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
                             </div>
                         </div>
 
@@ -1309,45 +1334,7 @@ back by the event utility (YAHOO.util.Event).
                             <h4>Events inherited from <a href="YAHOO.widget.Panel.html">YAHOO.widget.Panel</a>:</h4>
                             <div class="content">
                                 <code>
-                                    
-                                        <a href="YAHOO.widget.Panel.html#dragEvent">dragEvent</a>,
-                                        <a href="YAHOO.widget.Panel.html#hideMaskEvent">hideMaskEvent</a>,
-                                        <a href="YAHOO.widget.Panel.html#showMaskEvent">showMaskEvent</a>
-                                </code>
-                            </div>
-                        </div>
-                        <div class="section field inheritance">
-                            <h4>Events inherited from <a href="YAHOO.widget.Module.html">YAHOO.widget.Module</a>:</h4>
-                            <div class="content">
-                                <code>
-                                    
-                                        <a href="YAHOO.widget.Module.html#appendEvent">appendEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#beforeHideEvent">beforeHideEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#beforeInitEvent">beforeInitEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#beforeRenderEvent">beforeRenderEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#beforeShowEvent">beforeShowEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#changeBodyEvent">changeBodyEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#changeContentEvent">changeContentEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#changeFooterEvent">changeFooterEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#changeHeaderEvent">changeHeaderEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#destroyEvent">destroyEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#hideEvent">hideEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#initEvent">initEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#renderEvent">renderEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#showEvent">showEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#YAHOO.widget.Module.textResizeEvent">YAHOO.widget.Module.textResizeEvent</a>
-                                </code>
-                            </div>
-                        </div>
-                        <div class="section field inheritance">
-                            <h4>Events inherited from <a href="YAHOO.widget.Overlay.html">YAHOO.widget.Overlay</a>:</h4>
-                            <div class="content">
-                                <code>
-                                    
-                                        <a href="YAHOO.widget.Overlay.html#beforeMoveEvent">beforeMoveEvent</a>,
-                                        <a href="YAHOO.widget.Overlay.html#moveEvent">moveEvent</a>,
-                                        <a href="YAHOO.widget.Overlay.html#YAHOO.widget.Overlay.windowResizeEvent">YAHOO.widget.Overlay.windowResizeEvent</a>,
-                                        <a href="YAHOO.widget.Overlay.html#YAHOO.widget.Overlay.windowScrollEvent">YAHOO.widget.Overlay.windowScrollEvent</a>
+                                        <a class="" href="YAHOO.widget.Panel.html#dragEvent">dragEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Panel.html#hideMaskEvent">hideMaskEvent</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Panel.html#showMaskEvent">showMaskEvent</a><span class="">,</span>
                                 </code>
                             </div>
                         </div>
@@ -1355,12 +1342,38 @@ back by the event utility (YAHOO.util.Event).
                         <div class="section field details">
                             <h3><a name="field_detail">Configuration Attributes</a></h3>
                             <div class="content">
+                                    <div class="">
                                     <h4><a name="buttons">buttons</a>
-                                        <code>- Object[]</code>
+                                        <code>- {Array|String}</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Object literal(s) defining the buttons for the Dialog's footer.
+                                            Array of object literals, each containing a set of properties 
+defining a button to be appended into the Dialog's footer.
+Each button object in the buttons array can have three properties:
+<dt>text:</dt>
+<dd>The text that will display on the face of the button.  <em>
+Please note:</em> As of version 2.3, the text can include 
+HTML.</dd>
+<dt>handler:</dt>
+<dd>Can be either:
+<ol>
+<li>A reference to a function that should fire when the 
+button is clicked.  (In this case scope of this function is 
+always its Dialog instance.)</li>
+<li>An object literal representing the code to be 
+executed when the button is clicked.  Format:<br> <code> {<br>  
+<strong>fn:</strong> Function,   &#47;&#47; The handler to call 
+when  the event fires.<br> <strong>obj:</strong> Object, 
+&#47;&#47; An  object to pass back to the handler.<br> <strong>
+scope:</strong>  Object &#47;&#47; The object to use for the 
+scope of the handler. <br> } </code> <br><em>Please note: this 
+functionality was added in version 2.3.</em></li>
+</ol>
+</dd>
+<dt>isDefault:</dt>
+<dd>An optional boolean value that specifies that a button 
+should be highlighted and focused by default.</dd>
                                         </div>
                                     </div>
  
@@ -1370,12 +1383,15 @@ back by the event utility (YAHOO.util.Event).
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="postmethod">postmethod</a>
                                         <code>- String</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            The method to use for posting the Dialog's form. Possible values are "async", "form", and "manual".
+                                            The method to use for posting the Dialog's form. Possible values 
+are "async", "form", and "manual".
                                         </div>
                                     </div>
  
@@ -1385,6 +1401,7 @@ back by the event utility (YAHOO.util.Event).
                                     </div>        
 
                                     <hr />
+                                    </div>        
 
                             </div>
                         </div>
@@ -1393,41 +1410,7 @@ back by the event utility (YAHOO.util.Event).
                             <h4>Configuration attributes inherited from <a href="YAHOO.widget.Panel.html">YAHOO.widget.Panel</a>:</h4>
                             <div class="content">
                                 <code>
-                                    
-                                        <a href="YAHOO.widget.Panel.html#close">close</a>,
-                                        <a href="YAHOO.widget.Panel.html#draggable">draggable</a>,
-                                        <a href="YAHOO.widget.Panel.html#keylisteners">keylisteners</a>,
-                                        <a href="YAHOO.widget.Panel.html#modal">modal</a>,
-                                        <a href="YAHOO.widget.Panel.html#underlay">underlay</a>
-                                </code>
-                            </div>
-                        </div>
-                        <div class="section field inheritance">
-                            <h4>Configuration attributes inherited from <a href="YAHOO.widget.Module.html">YAHOO.widget.Module</a>:</h4>
-                            <div class="content">
-                                <code>
-                                    
-                                        <a href="YAHOO.widget.Module.html#effect">effect</a>,
-                                        <a href="YAHOO.widget.Module.html#monitorresize">monitorresize</a>,
-                                        <a href="YAHOO.widget.Module.html#visible">visible</a>
-                                </code>
-                            </div>
-                        </div>
-                        <div class="section field inheritance">
-                            <h4>Configuration attributes inherited from <a href="YAHOO.widget.Overlay.html">YAHOO.widget.Overlay</a>:</h4>
-                            <div class="content">
-                                <code>
-                                    
-                                        <a href="YAHOO.widget.Overlay.html#constraintoviewport">constraintoviewport</a>,
-                                        <a href="YAHOO.widget.Overlay.html#context">context</a>,
-                                        <a href="YAHOO.widget.Overlay.html#fixedcenter">fixedcenter</a>,
-                                        <a href="YAHOO.widget.Overlay.html#height">height</a>,
-                                        <a href="YAHOO.widget.Overlay.html#iframe">iframe</a>,
-                                        <a href="YAHOO.widget.Overlay.html#width">width</a>,
-                                        <a href="YAHOO.widget.Overlay.html#x">x</a>,
-                                        <a href="YAHOO.widget.Overlay.html#xy">xy</a>,
-                                        <a href="YAHOO.widget.Overlay.html#y">y</a>,
-                                        <a href="YAHOO.widget.Overlay.html#zIndex">zIndex</a>
+                                        <a class="" href="YAHOO.widget.Panel.html#close">close</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Panel.html#draggable">draggable</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Panel.html#keylisteners">keylisteners</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Panel.html#modal">modal</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.Panel.html#underlay">underlay</a><span class="">,</span>
                                 </code>
                             </div>
                         </div>
@@ -1449,6 +1432,8 @@ back by the event utility (YAHOO.util.Event).
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
+
                                 <li class=""><a href="module_connection.html">connection</a></li>
 
                                 <li class="selected"><a href="module_container.html">container</a></li>
@@ -1461,11 +1446,15 @@ back by the event utility (YAHOO.util.Event).
 
                                 <li class=""><a href="module_dragdrop.html">dragdrop</a></li>
 
+                                <li class=""><a href="module_editor.html">editor</a></li>
+
                                 <li class=""><a href="module_element.html">element</a></li>
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
                                 <li class=""><a href="module_history.html">history</a></li>
+
+                                <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
@@ -1478,6 +1467,10 @@ back by the event utility (YAHOO.util.Event).
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
+
+                                <li class=""><a href="module_yuiloader.html">yuiloader</a></li>
+
+                                <li class=""><a href="module_yuitest.html">yuitest</a></li>
                         </ul>
                     </div>
 
@@ -1514,25 +1507,28 @@ back by the event utility (YAHOO.util.Event).
                     <div class="module">
                         <h4>Properties</h4>
                         <ul class="content">        
-                                <li><a href="#callback">callback</a>
+                                <li class=""><a href="#callback">callback</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#callback.argument">callback.argument</a>
+                                <li class=""><a href="#callback.argument">callback.argument</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#callback.failure">callback.failure</a>
+                                <li class=""><a href="#callback.failure">callback.failure</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#callback.success">callback.success</a>
+                                <li class=""><a href="#callback.success">callback.success</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Dialog._DEFAULT_CONFIG">YAHOO.widget.Dialog._DEFAULT_CONFIG</a>
+                                <li class="private"><a href="#DEFAULT_CONFIG">DEFAULT_CONFIG</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Dialog._EVENT_TYPES">YAHOO.widget.Dialog._EVENT_TYPES</a>
+                                <li class="private"><a href="#EVENT_TYPES">EVENT_TYPES</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Dialog.CSS_DIALOG">YAHOO.widget.Dialog.CSS_DIALOG</a>
+                                <li class=""><a href="#form">form</a>
+                                        <!--<code>&lt;String&gt;</code>-->
+                                </li>
+                                <li class=""><a href="#YAHOO.widget.Dialog.CSS_DIALOG">YAHOO.widget.Dialog.CSS_DIALOG</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
                         </ul>
@@ -1541,67 +1537,67 @@ back by the event utility (YAHOO.util.Event).
                     <div class="module">
                         <h4>Methods</h4>
                         <ul class="content">        
-                                <li><!--<code>void</code>-->
-                                <a href="#_onFormKeyDown">_onFormKeyDown</a>
-                                </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#blurButtons">blurButtons</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#cancel">cancel</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configButtons">configButtons</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configClose">configClose</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configPostMethod">configPostMethod</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#destroy">destroy</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#doSubmit">doSubmit</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#focusDefaultButton">focusDefaultButton</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#focusFirst">focusFirst</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#focusFirstButton">focusFirstButton</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#focusLast">focusLast</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#focusLastButton">focusLastButton</a>
                                 </li>
-                                <li><!--<code>Object</code>-->
+                                <li class=""><!--<code>Array</code>-->
+                                <a href="#getButtons">getButtons</a>
+                                </li>
+                                <li class=""><!--<code>Object</code>-->
                                 <a href="#getData">getData</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#init">init</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#initDefaultConfig">initDefaultConfig</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#initEvents">initEvents</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#registerForm">registerForm</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#submit">submit</a>
                                 </li>
-                                <li><!--<code>String</code>-->
+                                <li class=""><!--<code>String</code>-->
                                 <a href="#toString">toString</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#validate">validate</a>
                                 </li>
                         </ul>
@@ -1610,22 +1606,22 @@ back by the event utility (YAHOO.util.Event).
                     <div class="module">
                         <h4>Events</h4>
                         <ul class="content">        
-                                <li>
+                                <li class="">
                                 <a href="#asyncSubmitEvent">asyncSubmitEvent</a>
                                 </li>
-                                <li>
-                                <a href="#beforeSumitEvent">beforeSumitEvent</a>
+                                <li class="">
+                                <a href="#beforeSubmitEvent">beforeSubmitEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#cancelEvent">cancelEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#formSubmitEvent">formSubmitEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#manualSubmitEvent">manualSubmitEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#submitEvent">submitEvent</a>
                                 </li>
                         </ul>
@@ -1634,10 +1630,10 @@ back by the event utility (YAHOO.util.Event).
                     <div class="module">
                         <h4>Configuration Attributes</h4>
                         <ul class="content">        
-                                <li>
+                                <li class="">
                                 <a href="#buttons">buttons</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#postmethod">postmethod</a>
                                 </li>
                         </ul>

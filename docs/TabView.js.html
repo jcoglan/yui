@@ -3,27 +3,38 @@
 <head>
 	<title>API: tabview   TabView.js  (YUI Library)</title>
 	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
 </head>
 
 <body id="yahoo-com">
+
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
         <h1>Yahoo! UI Library</h1>
-        <h3>tabview&nbsp; <span class="subtitle">2.2.2</span></h3>
+        <h3>tabview&nbsp; <span class="subtitle">2.3.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_tabview.html">tabview</a>
                 
                  &gt; TabView.js (source view) 
             </p>
+
 	</div>
 
 	<div id="bd">
 		<div id="yui-main">
 			<div class="yui-b">
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> Show Private</span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> Show Protected</span>
+            </form>
 
                     <div id="srcout">
+                        <style>
+                            #doc3 #classopts { display:none; }
+                        </style>
 <div class="highlight" ><pre><span class="o">(</span><span class="k">function</span><span class="o">()</span> <span class="o">{</span>
 
     <span class="c">/**</span>
@@ -143,7 +154,12 @@
 
         <span class="k">var</span> <span class="nx">activate</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">preventDefault</span><span class="o">(</span><span class="nx">e</span><span class="o">);</span>
-            <span class="nx">self</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="s1">&#39;activeTab&#39;</span><span class="o">,</span> <span class="k">this</span><span class="o">);</span>
+            <span class="k">var</span> <span class="nx">silent</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="k">this</span> <span class="o">==</span> <span class="nx">self</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;activeTab&#39;</span><span class="o">))</span> <span class="o">{</span>
+                <span class="nx">silent</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span> <span class="c">// dont fire activeTabChange if already active</span>
+<span class="c"></span>            <span class="o">}</span>
+            <span class="nx">self</span><span class="o">.</span><span class="nx">set</span><span class="o">(</span><span class="s1">&#39;activeTab&#39;</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="nx">silent</span><span class="o">);</span>
         <span class="o">};</span>
         
         <span class="nx">tab</span><span class="o">.</span><span class="nx">addListener</span><span class="o">(</span> <span class="nx">tab</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;activationEvent&#39;</span><span class="o">),</span> <span class="nx">activate</span><span class="o">);</span>
@@ -279,6 +295,10 @@
         <span class="o">}</span>
         
         <span class="k">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;element&#39;</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(!</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">hasClass</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">CLASSNAME</span><span class="o">))</span> <span class="o">{</span>
+            <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">addClass</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">CLASSNAME</span><span class="o">);</span>        
+        <span class="o">}</span>
         
         <span class="c">/**</span>
 <span class="c">         * The Tabs belonging to the TabView instance.</span>
@@ -383,6 +403,12 @@
             <span class="nx">_initTabs</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
         <span class="o">}</span>
         
+        <span class="c">// Due to delegation we add all DOM_EVENTS to the TabView container</span>
+<span class="c"></span>        <span class="c">// but IE will leak when unsupported events are added, so remove these</span>
+<span class="c"></span>        <span class="k">this</span><span class="o">.</span><span class="nx">DOM_EVENTS</span><span class="o">.</span><span class="nx">submit</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">DOM_EVENTS</span><span class="o">.</span><span class="nx">focus</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">DOM_EVENTS</span><span class="o">.</span><span class="nx">blur</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
         <span class="k">for</span> <span class="o">(</span><span class="k">var</span> <span class="nx">type</span> <span class="k">in</span> <span class="k">this</span><span class="o">.</span><span class="nx">DOM_EVENTS</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">if</span> <span class="o">(</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">hasOwnProperty</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">DOM_EVENTS</span><span class="o">,</span> <span class="nx">type</span><span class="o">)</span> <span class="o">)</span> <span class="o">{</span>
                 <span class="k">this</span><span class="o">.</span><span class="nx">addListener</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="nx">type</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">DOMEventHandler</span><span class="o">);</span>
@@ -392,9 +418,8 @@
     
     <span class="c">/**</span>
 <span class="c">     * Creates Tab instances from a collection of HTMLElements.</span>
-<span class="c">     * @method createTabs</span>
+<span class="c">     * @method initTabs</span>
 <span class="c">     * @private</span>
-<span class="c">     * @param {Array|HTMLCollection} elements The elements to use for Tabs.</span>
 <span class="c">     * @return void</span>
 <span class="c">     */</span>
     <span class="k">var</span> <span class="nx">_initTabs</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
@@ -418,7 +443,8 @@
             
             <span class="k">if</span> <span class="o">(</span><span class="nx">tab</span><span class="o">.</span><span class="nx">hasClass</span><span class="o">(</span><span class="nx">tab</span><span class="o">.</span><span class="nx">ACTIVE_CLASSNAME</span><span class="o">)</span> <span class="o">)</span> <span class="o">{</span>
                 <span class="k">this</span><span class="o">.</span><span class="nx">_configs</span><span class="o">.</span><span class="nx">activeTab</span><span class="o">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">tab</span><span class="o">;</span> <span class="c">// dont invoke method</span>
-<span class="c"></span>            <span class="o">}</span>
+<span class="c"></span>                <span class="k">this</span><span class="o">.</span><span class="nx">_configs</span><span class="o">.</span><span class="nx">activeIndex</span><span class="o">.</span><span class="nx">value</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">getTabIndex</span><span class="o">(</span><span class="nx">tab</span><span class="o">);</span>
+            <span class="o">}</span>
         <span class="o">}</span>
     <span class="o">};</span>
     
@@ -552,6 +578,8 @@
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
+
                                 <li class=""><a href="module_connection.html">connection</a></li>
 
                                 <li class=""><a href="module_container.html">container</a></li>
@@ -564,11 +592,15 @@
 
                                 <li class=""><a href="module_dragdrop.html">dragdrop</a></li>
 
+                                <li class=""><a href="module_editor.html">editor</a></li>
+
                                 <li class=""><a href="module_element.html">element</a></li>
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
                                 <li class=""><a href="module_history.html">history</a></li>
+
+                                <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
@@ -581,6 +613,10 @@
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
+
+                                <li class=""><a href="module_yuiloader.html">yuiloader</a></li>
+
+                                <li class=""><a href="module_yuitest.html">yuitest</a></li>
                         </ul>
                     </div>
 

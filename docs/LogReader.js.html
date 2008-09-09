@@ -3,27 +3,38 @@
 <head>
 	<title>API: logger   LogReader.js  (YUI Library)</title>
 	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
 </head>
 
 <body id="yahoo-com">
+
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
         <h1>Yahoo! UI Library</h1>
-        <h3>Logger Widget&nbsp; <span class="subtitle">2.2.2</span></h3>
+        <h3>Logger Widget&nbsp; <span class="subtitle">2.3.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_logger.html">logger</a>
                 
                  &gt; LogReader.js (source view) 
             </p>
+
 	</div>
 
 	<div id="bd">
 		<div id="yui-main">
 			<div class="yui-b">
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> Show Private</span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> Show Protected</span>
+            </form>
 
                     <div id="srcout">
+                        <style>
+                            #doc3 #classopts { display:none; }
+                        </style>
 <div class="highlight" ><pre><span class="c">/****************************************************************************/</span>
 <span class="c">/****************************************************************************/</span>
 <span class="c">/****************************************************************************/</span>
@@ -38,10 +49,14 @@
 <span class="c"> * @param oConfigs {Object} (optional) Object literal of configuration params.</span>
 <span class="c"> */</span>
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">LogReader</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">elContainer</span><span class="o">,</span> <span class="nx">oConfigs</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">var</span> <span class="nx">oSelf</span> <span class="o">=</span> <span class="k">this</span><span class="o">;</span>
     <span class="k">this</span><span class="o">.</span><span class="nx">_sName</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">LogReader</span><span class="o">.</span><span class="nx">_index</span><span class="o">;</span>
     <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">LogReader</span><span class="o">.</span><span class="nx">_index</span><span class="o">++;</span>
-
+    
+    <span class="c">// Internal vars</span>
+<span class="c"></span>    <span class="k">this</span><span class="o">.</span><span class="nx">_buffer</span> <span class="o">=</span> <span class="o">[];</span> <span class="c">// output buffer</span>
+<span class="c"></span>    <span class="k">this</span><span class="o">.</span><span class="nx">_filterCheckboxes</span> <span class="o">=</span> <span class="o">{};</span> <span class="c">// pointers to checkboxes</span>
+<span class="c"></span>    <span class="k">this</span><span class="o">.</span><span class="nx">_lastTime</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Logger</span><span class="o">.</span><span class="nx">getStartTime</span><span class="o">();</span> <span class="c">// timestamp of last log message to console</span>
+<span class="c"></span>
     <span class="c">// Parse config vars here</span>
 <span class="c"></span>    <span class="k">if</span> <span class="o">(</span><span class="nx">oConfigs</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="nx">oConfigs</span><span class="o">.</span><span class="nx">constructor</span> <span class="o">==</span> <span class="nb">Object</span><span class="o">))</span> <span class="o">{</span>
         <span class="k">for</span><span class="o">(</span><span class="k">var</span> <span class="nx">param</span> <span class="k">in</span> <span class="nx">oConfigs</span><span class="o">)</span> <span class="o">{</span>
@@ -49,158 +64,26 @@
         <span class="o">}</span>
     <span class="o">}</span>
 
-    <span class="c">// Validate container</span>
-<span class="c"></span>    <span class="nx">elContainer</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="nx">elContainer</span><span class="o">);</span>
-    <span class="c">// Attach to existing container...</span>
-<span class="c"></span>    <span class="k">if</span><span class="o">(</span><span class="nx">elContainer</span> <span class="o">&amp;&amp;</span> <span class="nx">elContainer</span><span class="o">.</span><span class="nx">tagName</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="nx">elContainer</span><span class="o">.</span><span class="nx">tagName</span><span class="o">.</span><span class="nx">toLowerCase</span><span class="o">()</span> <span class="o">==</span> <span class="s2">&quot;div&quot;</span><span class="o">))</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">_elContainer</span> <span class="o">=</span> <span class="nx">elContainer</span><span class="o">;</span>
-        <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">addClass</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elContainer</span><span class="o">,</span><span class="s2">&quot;yui-log&quot;</span><span class="o">);</span>
+    <span class="k">this</span><span class="o">.</span><span class="nx">_initContainerEl</span><span class="o">(</span><span class="nx">elContainer</span><span class="o">);</span>
+    <span class="k">if</span><span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">_elContainer</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;Could not instantiate LogReader due to an invalid container element &quot;</span> <span class="o">+</span>
+                <span class="nx">elContainer</span><span class="o">,</span> <span class="s2">&quot;error&quot;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">toString</span><span class="o">());</span>
+        <span class="k">return</span><span class="o">;</span>
     <span class="o">}</span>
-    <span class="c">// ...or create container from scratch</span>
-<span class="c"></span>    <span class="k">else</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">_elContainer</span> <span class="o">=</span> <span class="nb">document</span><span class="o">.</span><span class="nx">body</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;div&quot;</span><span class="o">));</span>
-        <span class="c">//this._elContainer.id = &quot;yui-log&quot; + this._sName;</span>
-<span class="c"></span>        <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">addClass</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elContainer</span><span class="o">,</span><span class="s2">&quot;yui-log&quot;</span><span class="o">);</span>
-        <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">addClass</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elContainer</span><span class="o">,</span><span class="s2">&quot;yui-log-container&quot;</span><span class="o">);</span>
-
-        <span class="c">//YAHOO.widget.LogReader._elDefaultContainer = this._elContainer;</span>
-<span class="c"></span>
-        <span class="c">// If implementer has provided container values, trust and set those</span>
-<span class="c"></span>        <span class="k">var</span> <span class="nx">containerStyle</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elContainer</span><span class="o">.</span><span class="nx">style</span><span class="o">;</span>
-        <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">width</span><span class="o">)</span> <span class="o">{</span>
-            <span class="nx">containerStyle</span><span class="o">.</span><span class="nx">width</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">width</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">right</span><span class="o">)</span> <span class="o">{</span>
-            <span class="nx">containerStyle</span><span class="o">.</span><span class="nx">right</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">right</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">top</span><span class="o">)</span> <span class="o">{</span>
-            <span class="nx">containerStyle</span><span class="o">.</span><span class="nx">top</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">top</span><span class="o">;</span>
-        <span class="o">}</span>
-         <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">left</span><span class="o">)</span> <span class="o">{</span>
-            <span class="nx">containerStyle</span><span class="o">.</span><span class="nx">left</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">left</span><span class="o">;</span>
-            <span class="nx">containerStyle</span><span class="o">.</span><span class="nx">right</span> <span class="o">=</span> <span class="s2">&quot;auto&quot;</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">bottom</span><span class="o">)</span> <span class="o">{</span>
-            <span class="nx">containerStyle</span><span class="o">.</span><span class="nx">bottom</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">bottom</span><span class="o">;</span>
-            <span class="nx">containerStyle</span><span class="o">.</span><span class="nx">top</span> <span class="o">=</span> <span class="s2">&quot;auto&quot;</span><span class="o">;</span>
-        <span class="o">}</span>
-       <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">fontSize</span><span class="o">)</span> <span class="o">{</span>
-            <span class="nx">containerStyle</span><span class="o">.</span><span class="nx">fontSize</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">fontSize</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="c">// For Opera</span>
-<span class="c"></span>        <span class="k">if</span><span class="o">(</span><span class="nx">navigator</span><span class="o">.</span><span class="nx">userAgent</span><span class="o">.</span><span class="nx">toLowerCase</span><span class="o">().</span><span class="nx">indexOf</span><span class="o">(</span><span class="s2">&quot;opera&quot;</span><span class="o">)</span> <span class="o">!=</span> <span class="o">-</span><span class="m">1</span><span class="o">)</span> <span class="o">{</span>
-            <span class="nb">document</span><span class="o">.</span><span class="nx">body</span><span class="o">.</span><span class="nx">style</span> <span class="o">+=</span> <span class="s1">&#39;&#39;</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elContainer</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c">// Create header</span>
-<span class="c"></span>        <span class="k">if</span><span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">_elHd</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_elHd</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elContainer</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;div&quot;</span><span class="o">));</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_elHd</span><span class="o">.</span><span class="nx">id</span> <span class="o">=</span> <span class="s2">&quot;yui-log-hd&quot;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="nx">_sName</span><span class="o">;</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_elHd</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;yui-log-hd&quot;</span><span class="o">;</span>
-
-            <span class="k">this</span><span class="o">.</span><span class="nx">_elCollapse</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elHd</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;div&quot;</span><span class="o">));</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_elCollapse</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;yui-log-btns&quot;</span><span class="o">;</span>
-
-            <span class="k">this</span><span class="o">.</span><span class="nx">_btnCollapse</span> <span class="o">=</span> <span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;input&quot;</span><span class="o">);</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_btnCollapse</span><span class="o">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s2">&quot;button&quot;</span><span class="o">;</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_btnCollapse</span><span class="o">.</span><span class="nx">style</span><span class="o">.</span><span class="nx">fontSize</span> <span class="o">=</span>
-                <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getStyle</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elContainer</span><span class="o">,</span><span class="s2">&quot;fontSize&quot;</span><span class="o">);</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_btnCollapse</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;yui-log-button&quot;</span><span class="o">;</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_btnCollapse</span><span class="o">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s2">&quot;Collapse&quot;</span><span class="o">;</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_btnCollapse</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elCollapse</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_btnCollapse</span><span class="o">);</span>
-            <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">addListener</span><span class="o">(</span>
-                <span class="nx">oSelf</span><span class="o">.</span><span class="nx">_btnCollapse</span><span class="o">,</span><span class="s1">&#39;click&#39;</span><span class="o">,</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">_onClickCollapseBtn</span><span class="o">,</span><span class="nx">oSelf</span><span class="o">);</span>
-
-            <span class="k">this</span><span class="o">.</span><span class="nx">_title</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elHd</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;h4&quot;</span><span class="o">));</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_title</span><span class="o">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">&quot;Logger Console&quot;</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="c">// Ceate console</span>
-<span class="c"></span>        <span class="k">if</span><span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">_elConsole</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_elConsole</span> <span class="o">=</span>
-                <span class="k">this</span><span class="o">.</span><span class="nx">_elContainer</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;div&quot;</span><span class="o">));</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_elConsole</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;yui-log-bd&quot;</span><span class="o">;</span>
-
-            <span class="c">// If implementer has provided console, trust and set those</span>
-<span class="c"></span>            <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">height</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">this</span><span class="o">.</span><span class="nx">_elConsole</span><span class="o">.</span><span class="nx">style</span><span class="o">.</span><span class="nx">height</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">height</span><span class="o">;</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-        <span class="c">// Don&#39;t create footer if disabled</span>
-<span class="c"></span>        <span class="k">if</span><span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">_elFt</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">footerEnabled</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_elFt</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elContainer</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;div&quot;</span><span class="o">));</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_elFt</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;yui-log-ft&quot;</span><span class="o">;</span>
-
-            <span class="k">this</span><span class="o">.</span><span class="nx">_elBtns</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elFt</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;div&quot;</span><span class="o">));</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_elBtns</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;yui-log-btns&quot;</span><span class="o">;</span>
-
-            <span class="k">this</span><span class="o">.</span><span class="nx">_btnPause</span> <span class="o">=</span> <span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;input&quot;</span><span class="o">);</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_btnPause</span><span class="o">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s2">&quot;button&quot;</span><span class="o">;</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_btnPause</span><span class="o">.</span><span class="nx">style</span><span class="o">.</span><span class="nx">fontSize</span> <span class="o">=</span>
-                <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getStyle</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elContainer</span><span class="o">,</span><span class="s2">&quot;fontSize&quot;</span><span class="o">);</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_btnPause</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;yui-log-button&quot;</span><span class="o">;</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_btnPause</span><span class="o">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s2">&quot;Pause&quot;</span><span class="o">;</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_btnPause</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elBtns</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_btnPause</span><span class="o">);</span>
-            <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">addListener</span><span class="o">(</span>
-                <span class="nx">oSelf</span><span class="o">.</span><span class="nx">_btnPause</span><span class="o">,</span><span class="s1">&#39;click&#39;</span><span class="o">,</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">_onClickPauseBtn</span><span class="o">,</span><span class="nx">oSelf</span><span class="o">);</span>
-
-            <span class="k">this</span><span class="o">.</span><span class="nx">_btnClear</span> <span class="o">=</span> <span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;input&quot;</span><span class="o">);</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_btnClear</span><span class="o">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s2">&quot;button&quot;</span><span class="o">;</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_btnClear</span><span class="o">.</span><span class="nx">style</span><span class="o">.</span><span class="nx">fontSize</span> <span class="o">=</span>
-                <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getStyle</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elContainer</span><span class="o">,</span><span class="s2">&quot;fontSize&quot;</span><span class="o">);</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_btnClear</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;yui-log-button&quot;</span><span class="o">;</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_btnClear</span><span class="o">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s2">&quot;Clear&quot;</span><span class="o">;</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_btnClear</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elBtns</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_btnClear</span><span class="o">);</span>
-            <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">addListener</span><span class="o">(</span>
-                <span class="nx">oSelf</span><span class="o">.</span><span class="nx">_btnClear</span><span class="o">,</span><span class="s1">&#39;click&#39;</span><span class="o">,</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">_onClickClearBtn</span><span class="o">,</span><span class="nx">oSelf</span><span class="o">);</span>
-
-            <span class="k">this</span><span class="o">.</span><span class="nx">_elCategoryFilters</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elFt</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;div&quot;</span><span class="o">));</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_elCategoryFilters</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;yui-log-categoryfilters&quot;</span><span class="o">;</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_elSourceFilters</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elFt</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;div&quot;</span><span class="o">));</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_elSourceFilters</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;yui-log-sourcefilters&quot;</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="c">// If Drag and Drop utility is available...</span>
-<span class="c"></span>    <span class="c">// ...and draggable is true...</span>
-<span class="c"></span>    <span class="c">// ...then make the header draggable</span>
-<span class="c"></span>    <span class="k">if</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">DD</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">draggable</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">var</span> <span class="nx">ylog_dd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">DD</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elContainer</span><span class="o">);</span>
-        <span class="nx">ylog_dd</span><span class="o">.</span><span class="nx">setHandleElId</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elHd</span><span class="o">.</span><span class="nx">id</span><span class="o">);</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">_elHd</span><span class="o">.</span><span class="nx">style</span><span class="o">.</span><span class="nx">cursor</span> <span class="o">=</span> <span class="s2">&quot;move&quot;</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="c">// Initialize internal vars</span>
-<span class="c"></span>    <span class="k">if</span><span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">_buffer</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">_buffer</span> <span class="o">=</span> <span class="o">[];</span> <span class="c">// output buffer</span>
-<span class="c"></span>    <span class="o">}</span>
-    <span class="c">// Timestamp of last log message to console</span>
-<span class="c"></span>    <span class="k">this</span><span class="o">.</span><span class="nx">_lastTime</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Logger</span><span class="o">.</span><span class="nx">getStartTime</span><span class="o">();</span> 
     
+    <span class="k">this</span><span class="o">.</span><span class="nx">_initHeaderEl</span><span class="o">();</span>
+    <span class="k">this</span><span class="o">.</span><span class="nx">_initConsoleEl</span><span class="o">();</span>
+    <span class="k">this</span><span class="o">.</span><span class="nx">_initFooterEl</span><span class="o">();</span>
+
+    <span class="k">this</span><span class="o">.</span><span class="nx">_initDragDrop</span><span class="o">();</span>
+
+    <span class="k">this</span><span class="o">.</span><span class="nx">_initCategories</span><span class="o">();</span>
+    <span class="k">this</span><span class="o">.</span><span class="nx">_initSources</span><span class="o">();</span>
+
     <span class="c">// Subscribe to Logger custom events</span>
 <span class="c"></span>    <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Logger</span><span class="o">.</span><span class="nx">newLogEvent</span><span class="o">.</span><span class="nx">subscribe</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_onNewLog</span><span class="o">,</span> <span class="k">this</span><span class="o">);</span>
     <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Logger</span><span class="o">.</span><span class="nx">logResetEvent</span><span class="o">.</span><span class="nx">subscribe</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_onReset</span><span class="o">,</span> <span class="k">this</span><span class="o">);</span>
 
-    <span class="c">// Initialize filters</span>
-<span class="c"></span>    <span class="k">this</span><span class="o">.</span><span class="nx">_filterCheckboxes</span> <span class="o">=</span> <span class="o">{};</span>
-    
-    <span class="c">// Initialize category filters</span>
-<span class="c"></span>    <span class="k">this</span><span class="o">.</span><span class="nx">_categoryFilters</span> <span class="o">=</span> <span class="o">[];</span>
-    <span class="k">var</span> <span class="nx">catsLen</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Logger</span><span class="o">.</span><span class="nx">categories</span><span class="o">.</span><span class="nx">length</span><span class="o">;</span>
-    <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elCategoryFilters</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">for</span><span class="o">(</span><span class="k">var</span> <span class="nx">i</span><span class="o">=</span><span class="m">0</span><span class="o">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">catsLen</span><span class="o">;</span> <span class="nx">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_createCategoryCheckbox</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Logger</span><span class="o">.</span><span class="nx">categories</span><span class="o">[</span><span class="nx">i</span><span class="o">]);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="c">// Initialize source filters</span>
-<span class="c"></span>    <span class="k">this</span><span class="o">.</span><span class="nx">_sourceFilters</span> <span class="o">=</span> <span class="o">[];</span>
-    <span class="k">var</span> <span class="nx">sourcesLen</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Logger</span><span class="o">.</span><span class="nx">sources</span><span class="o">.</span><span class="nx">length</span><span class="o">;</span>
-    <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elSourceFilters</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">for</span><span class="o">(</span><span class="k">var</span> <span class="nx">j</span><span class="o">=</span><span class="m">0</span><span class="o">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">sourcesLen</span><span class="o">;</span> <span class="nx">j</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_createSourceCheckbox</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Logger</span><span class="o">.</span><span class="nx">sources</span><span class="o">[</span><span class="nx">j</span><span class="o">]);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
     <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Logger</span><span class="o">.</span><span class="nx">categoryCreateEvent</span><span class="o">.</span><span class="nx">subscribe</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_onCategoryCreate</span><span class="o">,</span> <span class="k">this</span><span class="o">);</span>
     <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Logger</span><span class="o">.</span><span class="nx">sourceCreateEvent</span><span class="o">.</span><span class="nx">subscribe</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_onSourceCreate</span><span class="o">,</span> <span class="k">this</span><span class="o">);</span>
 
@@ -495,7 +378,10 @@
 
     <span class="k">this</span><span class="o">.</span><span class="nx">_categoryFilters</span><span class="o">.</span><span class="nx">push</span><span class="o">(</span><span class="nx">sCategory</span><span class="o">);</span>
     <span class="k">this</span><span class="o">.</span><span class="nx">_filterLogs</span><span class="o">();</span>
-    <span class="k">this</span><span class="o">.</span><span class="nx">getCheckbox</span><span class="o">(</span><span class="nx">sCategory</span><span class="o">).</span><span class="nx">checked</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="k">var</span> <span class="nx">elCheckbox</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">getCheckbox</span><span class="o">(</span><span class="nx">sCategory</span><span class="o">);</span>
+    <span class="k">if</span><span class="o">(</span><span class="nx">elCheckbox</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nx">elCheckbox</span><span class="o">.</span><span class="nx">checked</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
 <span class="o">};</span>
 
 <span class="c">/**</span>
@@ -513,7 +399,10 @@
         <span class="o">}</span>
     <span class="o">}</span>
     <span class="k">this</span><span class="o">.</span><span class="nx">_filterLogs</span><span class="o">();</span>
-    <span class="k">this</span><span class="o">.</span><span class="nx">getCheckbox</span><span class="o">(</span><span class="nx">sCategory</span><span class="o">).</span><span class="nx">checked</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="k">var</span> <span class="nx">elCheckbox</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">getCheckbox</span><span class="o">(</span><span class="nx">sCategory</span><span class="o">);</span>
+    <span class="k">if</span><span class="o">(</span><span class="nx">elCheckbox</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nx">elCheckbox</span><span class="o">.</span><span class="nx">checked</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
 <span class="o">};</span>
 
 <span class="c">/**</span>
@@ -551,7 +440,10 @@
     <span class="o">}</span>
     <span class="nx">filtersArray</span><span class="o">.</span><span class="nx">push</span><span class="o">(</span><span class="nx">sSource</span><span class="o">);</span>
     <span class="k">this</span><span class="o">.</span><span class="nx">_filterLogs</span><span class="o">();</span>
-    <span class="k">this</span><span class="o">.</span><span class="nx">getCheckbox</span><span class="o">(</span><span class="nx">sSource</span><span class="o">).</span><span class="nx">checked</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="k">var</span> <span class="nx">elCheckbox</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">getCheckbox</span><span class="o">(</span><span class="nx">sSource</span><span class="o">);</span>
+    <span class="k">if</span><span class="o">(</span><span class="nx">elCheckbox</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nx">elCheckbox</span><span class="o">.</span><span class="nx">checked</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
 <span class="o">};</span>
 
 <span class="c">/**</span>
@@ -569,7 +461,10 @@
         <span class="o">}</span>
     <span class="o">}</span>
     <span class="k">this</span><span class="o">.</span><span class="nx">_filterLogs</span><span class="o">();</span>
-    <span class="k">this</span><span class="o">.</span><span class="nx">getCheckbox</span><span class="o">(</span><span class="nx">sSource</span><span class="o">).</span><span class="nx">checked</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="k">var</span> <span class="nx">elCheckbox</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">getCheckbox</span><span class="o">(</span><span class="nx">sSource</span><span class="o">);</span>
+    <span class="k">if</span><span class="o">(</span><span class="nx">elCheckbox</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nx">elCheckbox</span><span class="o">.</span><span class="nx">checked</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
 <span class="o">};</span>
 
 <span class="c">/**</span>
@@ -646,8 +541,10 @@
     <span class="k">var</span> <span class="nx">sourceAndDetail</span> <span class="o">=</span> <span class="o">(</span><span class="nx">sourceDetail</span><span class="o">)</span> <span class="o">?</span>
         <span class="nx">source</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nx">sourceDetail</span> <span class="o">:</span> <span class="nx">source</span><span class="o">;</span>
         
+    
     <span class="c">// Escape HTML entities in the log message itself for output to console</span>
-<span class="c"></span>    <span class="k">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">html2Text</span><span class="o">(</span><span class="nx">oLogMsg</span><span class="o">.</span><span class="nx">msg</span><span class="o">);</span>
+<span class="c"></span>    <span class="c">//var msg = this.html2Text(oLogMsg.msg); //TODO: delete</span>
+<span class="c"></span>    <span class="k">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">html2Text</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">dump</span><span class="o">(</span><span class="nx">oLogMsg</span><span class="o">.</span><span class="nx">msg</span><span class="o">));</span>
 
     <span class="c">// Verbose output includes extra line breaks</span>
 <span class="c"></span>    <span class="k">var</span> <span class="nx">output</span> <span class="o">=</span>  <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">verboseOutput</span><span class="o">)</span> <span class="o">?</span>
@@ -901,6 +798,244 @@
 <span class="c">/////////////////////////////////////////////////////////////////////////////</span>
 <span class="c"></span>
 <span class="c">/**</span>
+<span class="c"> * Initializes the primary container element.</span>
+<span class="c"> *</span>
+<span class="c"> * @method _initContainerEl</span>
+<span class="c"> * @param elContainer {HTMLElement} Container element by reference or string ID.</span>
+<span class="c"> * @private</span>
+<span class="c"> */</span>
+<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">LogReader</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">_initContainerEl</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">elContainer</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c">// Validate container</span>
+<span class="c"></span>    <span class="nx">elContainer</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="nx">elContainer</span><span class="o">);</span>
+    <span class="c">// Attach to existing container...</span>
+<span class="c"></span>    <span class="k">if</span><span class="o">(</span><span class="nx">elContainer</span> <span class="o">&amp;&amp;</span> <span class="nx">elContainer</span><span class="o">.</span><span class="nx">tagName</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="nx">elContainer</span><span class="o">.</span><span class="nx">tagName</span><span class="o">.</span><span class="nx">toLowerCase</span><span class="o">()</span> <span class="o">==</span> <span class="s2">&quot;div&quot;</span><span class="o">))</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">_elContainer</span> <span class="o">=</span> <span class="nx">elContainer</span><span class="o">;</span>
+        <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">addClass</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elContainer</span><span class="o">,</span><span class="s2">&quot;yui-log&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="c">// ...or create container from scratch</span>
+<span class="c"></span>    <span class="k">else</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">_elContainer</span> <span class="o">=</span> <span class="nb">document</span><span class="o">.</span><span class="nx">body</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;div&quot;</span><span class="o">));</span>
+        <span class="c">//this._elContainer.id = &quot;yui-log&quot; + this._sName;</span>
+<span class="c"></span>        <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">addClass</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elContainer</span><span class="o">,</span><span class="s2">&quot;yui-log&quot;</span><span class="o">);</span>
+        <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">addClass</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elContainer</span><span class="o">,</span><span class="s2">&quot;yui-log-container&quot;</span><span class="o">);</span>
+
+        <span class="c">//YAHOO.widget.LogReader._elDefaultContainer = this._elContainer;</span>
+<span class="c"></span>
+        <span class="c">// If implementer has provided container values, trust and set those</span>
+<span class="c"></span>        <span class="k">var</span> <span class="nx">containerStyle</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elContainer</span><span class="o">.</span><span class="nx">style</span><span class="o">;</span>
+        <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">width</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nx">containerStyle</span><span class="o">.</span><span class="nx">width</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">width</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">right</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nx">containerStyle</span><span class="o">.</span><span class="nx">right</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">right</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">top</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nx">containerStyle</span><span class="o">.</span><span class="nx">top</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">top</span><span class="o">;</span>
+        <span class="o">}</span>
+         <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">left</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nx">containerStyle</span><span class="o">.</span><span class="nx">left</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">left</span><span class="o">;</span>
+            <span class="nx">containerStyle</span><span class="o">.</span><span class="nx">right</span> <span class="o">=</span> <span class="s2">&quot;auto&quot;</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">bottom</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nx">containerStyle</span><span class="o">.</span><span class="nx">bottom</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">bottom</span><span class="o">;</span>
+            <span class="nx">containerStyle</span><span class="o">.</span><span class="nx">top</span> <span class="o">=</span> <span class="s2">&quot;auto&quot;</span><span class="o">;</span>
+        <span class="o">}</span>
+       <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">fontSize</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nx">containerStyle</span><span class="o">.</span><span class="nx">fontSize</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">fontSize</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="c">// For Opera</span>
+<span class="c"></span>        <span class="k">if</span><span class="o">(</span><span class="nx">navigator</span><span class="o">.</span><span class="nx">userAgent</span><span class="o">.</span><span class="nx">toLowerCase</span><span class="o">().</span><span class="nx">indexOf</span><span class="o">(</span><span class="s2">&quot;opera&quot;</span><span class="o">)</span> <span class="o">!=</span> <span class="o">-</span><span class="m">1</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nb">document</span><span class="o">.</span><span class="nx">body</span><span class="o">.</span><span class="nx">style</span> <span class="o">+=</span> <span class="s1">&#39;&#39;</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">};</span>
+
+<span class="c">/**</span>
+<span class="c"> * Initializes the header element.</span>
+<span class="c"> *</span>
+<span class="c"> * @method _initHeaderEl</span>
+<span class="c"> * @private</span>
+<span class="c"> */</span>
+<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">LogReader</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">_initHeaderEl</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">var</span> <span class="nx">oSelf</span> <span class="o">=</span> <span class="k">this</span><span class="o">;</span>
+
+    <span class="c">// Destroy header</span>
+<span class="c"></span>    <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elHd</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c">// Unhook DOM events</span>
+<span class="c"></span>        <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">purgeElement</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elHd</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+
+        <span class="c">// Remove DOM elements</span>
+<span class="c"></span>        <span class="k">this</span><span class="o">.</span><span class="nx">_elHd</span><span class="o">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">;</span>
+    <span class="o">}</span>
+    
+    <span class="c">// Create header</span>
+<span class="c"></span>    <span class="k">this</span><span class="o">.</span><span class="nx">_elHd</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elContainer</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;div&quot;</span><span class="o">));</span>
+    <span class="k">this</span><span class="o">.</span><span class="nx">_elHd</span><span class="o">.</span><span class="nx">id</span> <span class="o">=</span> <span class="s2">&quot;yui-log-hd&quot;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="nx">_sName</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="nx">_elHd</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;yui-log-hd&quot;</span><span class="o">;</span>
+
+    <span class="k">this</span><span class="o">.</span><span class="nx">_elCollapse</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elHd</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;div&quot;</span><span class="o">));</span>
+    <span class="k">this</span><span class="o">.</span><span class="nx">_elCollapse</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;yui-log-btns&quot;</span><span class="o">;</span>
+
+    <span class="k">this</span><span class="o">.</span><span class="nx">_btnCollapse</span> <span class="o">=</span> <span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;input&quot;</span><span class="o">);</span>
+    <span class="k">this</span><span class="o">.</span><span class="nx">_btnCollapse</span><span class="o">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s2">&quot;button&quot;</span><span class="o">;</span>
+    <span class="c">//this._btnCollapse.style.fontSize =</span>
+<span class="c"></span>    <span class="c">//    YAHOO.util.Dom.getStyle(this._elContainer,&quot;fontSize&quot;);</span>
+<span class="c"></span>    <span class="k">this</span><span class="o">.</span><span class="nx">_btnCollapse</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;yui-log-button&quot;</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="nx">_btnCollapse</span><span class="o">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s2">&quot;Collapse&quot;</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="nx">_btnCollapse</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elCollapse</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_btnCollapse</span><span class="o">);</span>
+    <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">addListener</span><span class="o">(</span>
+        <span class="nx">oSelf</span><span class="o">.</span><span class="nx">_btnCollapse</span><span class="o">,</span><span class="s1">&#39;click&#39;</span><span class="o">,</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">_onClickCollapseBtn</span><span class="o">,</span><span class="nx">oSelf</span><span class="o">);</span>
+
+    <span class="k">this</span><span class="o">.</span><span class="nx">_title</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elHd</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;h4&quot;</span><span class="o">));</span>
+    <span class="k">this</span><span class="o">.</span><span class="nx">_title</span><span class="o">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">&quot;Logger Console&quot;</span><span class="o">;</span>
+<span class="o">};</span>
+
+<span class="c">/**</span>
+<span class="c"> * Initializes the console element.</span>
+<span class="c"> *</span>
+<span class="c"> * @method _initConsoleEl</span>
+<span class="c"> * @private</span>
+<span class="c"> */</span>
+<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">LogReader</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">_initConsoleEl</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c">// Destroy console</span>
+<span class="c"></span>    <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elConsole</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c">// Unhook DOM events</span>
+<span class="c"></span>        <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">purgeElement</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elConsole</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+
+        <span class="c">// Remove DOM elements</span>
+<span class="c"></span>        <span class="k">this</span><span class="o">.</span><span class="nx">_elConsole</span><span class="o">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c">// Ceate console</span>
+<span class="c"></span>    <span class="k">this</span><span class="o">.</span><span class="nx">_elConsole</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elContainer</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;div&quot;</span><span class="o">));</span>
+    <span class="k">this</span><span class="o">.</span><span class="nx">_elConsole</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;yui-log-bd&quot;</span><span class="o">;</span>
+
+    <span class="c">// If implementer has provided console, trust and set those</span>
+<span class="c"></span>    <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">height</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">_elConsole</span><span class="o">.</span><span class="nx">style</span><span class="o">.</span><span class="nx">height</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">height</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">};</span>
+
+<span class="c">/**</span>
+<span class="c"> * Initializes the footer element.</span>
+<span class="c"> *</span>
+<span class="c"> * @method _initFooterEl</span>
+<span class="c"> * @private</span>
+<span class="c"> */</span>
+<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">LogReader</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">_initFooterEl</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">var</span> <span class="nx">oSelf</span> <span class="o">=</span> <span class="k">this</span><span class="o">;</span>
+
+    <span class="c">// Don&#39;t create footer elements if footer is disabled</span>
+<span class="c"></span>    <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">footerEnabled</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c">// Destroy console</span>
+<span class="c"></span>        <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elFt</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c">// Unhook DOM events</span>
+<span class="c"></span>            <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">purgeElement</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elFt</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+
+            <span class="c">// Remove DOM elements</span>
+<span class="c"></span>            <span class="k">this</span><span class="o">.</span><span class="nx">_elFt</span><span class="o">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="k">this</span><span class="o">.</span><span class="nx">_elFt</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elContainer</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;div&quot;</span><span class="o">));</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">_elFt</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;yui-log-ft&quot;</span><span class="o">;</span>
+
+        <span class="k">this</span><span class="o">.</span><span class="nx">_elBtns</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elFt</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;div&quot;</span><span class="o">));</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">_elBtns</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;yui-log-btns&quot;</span><span class="o">;</span>
+
+        <span class="k">this</span><span class="o">.</span><span class="nx">_btnPause</span> <span class="o">=</span> <span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;input&quot;</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">_btnPause</span><span class="o">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s2">&quot;button&quot;</span><span class="o">;</span>
+        <span class="c">//this._btnPause.style.fontSize =</span>
+<span class="c"></span>        <span class="c">//    YAHOO.util.Dom.getStyle(this._elContainer,&quot;fontSize&quot;);</span>
+<span class="c"></span>        <span class="k">this</span><span class="o">.</span><span class="nx">_btnPause</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;yui-log-button&quot;</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">_btnPause</span><span class="o">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s2">&quot;Pause&quot;</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">_btnPause</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elBtns</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_btnPause</span><span class="o">);</span>
+        <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">addListener</span><span class="o">(</span>
+            <span class="nx">oSelf</span><span class="o">.</span><span class="nx">_btnPause</span><span class="o">,</span><span class="s1">&#39;click&#39;</span><span class="o">,</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">_onClickPauseBtn</span><span class="o">,</span><span class="nx">oSelf</span><span class="o">);</span>
+
+        <span class="k">this</span><span class="o">.</span><span class="nx">_btnClear</span> <span class="o">=</span> <span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;input&quot;</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">_btnClear</span><span class="o">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s2">&quot;button&quot;</span><span class="o">;</span>
+        <span class="c">//this._btnClear.style.fontSize =</span>
+<span class="c"></span>        <span class="c">//    YAHOO.util.Dom.getStyle(this._elContainer,&quot;fontSize&quot;);</span>
+<span class="c"></span>        <span class="k">this</span><span class="o">.</span><span class="nx">_btnClear</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;yui-log-button&quot;</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">_btnClear</span><span class="o">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s2">&quot;Clear&quot;</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">_btnClear</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elBtns</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_btnClear</span><span class="o">);</span>
+        <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">addListener</span><span class="o">(</span>
+            <span class="nx">oSelf</span><span class="o">.</span><span class="nx">_btnClear</span><span class="o">,</span><span class="s1">&#39;click&#39;</span><span class="o">,</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">_onClickClearBtn</span><span class="o">,</span><span class="nx">oSelf</span><span class="o">);</span>
+
+        <span class="k">this</span><span class="o">.</span><span class="nx">_elCategoryFilters</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elFt</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;div&quot;</span><span class="o">));</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">_elCategoryFilters</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;yui-log-categoryfilters&quot;</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">_elSourceFilters</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elFt</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;div&quot;</span><span class="o">));</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">_elSourceFilters</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;yui-log-sourcefilters&quot;</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">};</span>
+
+<span class="c">/**</span>
+<span class="c"> * Initializes Drag and Drop on the header element.</span>
+<span class="c"> *</span>
+<span class="c"> * @method _initDragDrop</span>
+<span class="c"> * @private</span>
+<span class="c"> */</span>
+<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">LogReader</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">_initDragDrop</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c">// If Drag and Drop utility is available...</span>
+<span class="c"></span>    <span class="c">// ...and draggable is true...</span>
+<span class="c"></span>    <span class="c">// ...then make the header draggable</span>
+<span class="c"></span>    <span class="k">if</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">DD</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">draggable</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elHd</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">var</span> <span class="nx">ylog_dd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">DD</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elContainer</span><span class="o">);</span>
+        <span class="nx">ylog_dd</span><span class="o">.</span><span class="nx">setHandleElId</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elHd</span><span class="o">.</span><span class="nx">id</span><span class="o">);</span>
+        <span class="c">//TODO: use class name</span>
+<span class="c"></span>        <span class="k">this</span><span class="o">.</span><span class="nx">_elHd</span><span class="o">.</span><span class="nx">style</span><span class="o">.</span><span class="nx">cursor</span> <span class="o">=</span> <span class="s2">&quot;move&quot;</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">};</span>
+
+<span class="c">/**</span>
+<span class="c"> * Initializes category filters.</span>
+<span class="c"> *</span>
+<span class="c"> * @method _initCategories</span>
+<span class="c"> * @private</span>
+<span class="c"> */</span>
+<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">LogReader</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">_initCategories</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c">// Initialize category filters</span>
+<span class="c"></span>    <span class="k">this</span><span class="o">.</span><span class="nx">_categoryFilters</span> <span class="o">=</span> <span class="o">[];</span>
+    <span class="k">var</span> <span class="nx">aInitialCategories</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Logger</span><span class="o">.</span><span class="nx">categories</span><span class="o">;</span>
+
+    <span class="k">for</span><span class="o">(</span><span class="k">var</span> <span class="nx">j</span><span class="o">=</span><span class="m">0</span><span class="o">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">aInitialCategories</span><span class="o">.</span><span class="nx">length</span><span class="o">;</span> <span class="nx">j</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">var</span> <span class="nx">sCategory</span> <span class="o">=</span> <span class="nx">aInitialCategories</span><span class="o">[</span><span class="nx">j</span><span class="o">];</span>
+
+        <span class="c">// Add category to the internal array of filters</span>
+<span class="c"></span>        <span class="k">this</span><span class="o">.</span><span class="nx">_categoryFilters</span><span class="o">.</span><span class="nx">push</span><span class="o">(</span><span class="nx">sCategory</span><span class="o">);</span>
+
+        <span class="c">// Add checkbox element if UI is enabled</span>
+<span class="c"></span>        <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elCategoryFilters</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="nx">_createCategoryCheckbox</span><span class="o">(</span><span class="nx">sCategory</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">};</span>
+
+<span class="c">/**</span>
+<span class="c"> * Initializes source filters.</span>
+<span class="c"> *</span>
+<span class="c"> * @method _initSources</span>
+<span class="c"> * @private</span>
+<span class="c"> */</span>
+<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">LogReader</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">_initSources</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c">// Initialize source filters</span>
+<span class="c"></span>    <span class="k">this</span><span class="o">.</span><span class="nx">_sourceFilters</span> <span class="o">=</span> <span class="o">[];</span>
+    <span class="k">var</span> <span class="nx">aInitialSources</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Logger</span><span class="o">.</span><span class="nx">sources</span><span class="o">;</span>
+
+    <span class="k">for</span><span class="o">(</span><span class="k">var</span> <span class="nx">j</span><span class="o">=</span><span class="m">0</span><span class="o">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">aInitialSources</span><span class="o">.</span><span class="nx">length</span><span class="o">;</span> <span class="nx">j</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">var</span> <span class="nx">sSource</span> <span class="o">=</span> <span class="nx">aInitialSources</span><span class="o">[</span><span class="nx">j</span><span class="o">];</span>
+
+        <span class="c">// Add source to the internal array of filters</span>
+<span class="c"></span>        <span class="k">this</span><span class="o">.</span><span class="nx">_sourceFilters</span><span class="o">.</span><span class="nx">push</span><span class="o">(</span><span class="nx">sSource</span><span class="o">);</span>
+
+        <span class="c">// Add checkbox element if UI is enabled</span>
+<span class="c"></span>        <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elSourceFilters</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="nx">_createSourceCheckbox</span><span class="o">(</span><span class="nx">sSource</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}}</span>
+<span class="o">;</span>
+
+<span class="c">/**</span>
 <span class="c"> * Creates the UI for a category filter in the LogReader footer element.</span>
 <span class="c"> *</span>
 <span class="c"> * @method _createCategoryCheckbox</span>
@@ -912,8 +1047,6 @@
 
     <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elFt</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">var</span> <span class="nx">elParent</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elCategoryFilters</span><span class="o">;</span>
-        <span class="k">var</span> <span class="nx">filters</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_categoryFilters</span><span class="o">;</span>
-
         <span class="k">var</span> <span class="nx">elFilter</span> <span class="o">=</span> <span class="nx">elParent</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;span&quot;</span><span class="o">));</span>
         <span class="nx">elFilter</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;yui-log-filtergrp&quot;</span><span class="o">;</span>
         
@@ -927,8 +1060,6 @@
         <span class="nx">chkCategory</span> <span class="o">=</span> <span class="nx">elFilter</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nx">chkCategory</span><span class="o">);</span>
         <span class="nx">chkCategory</span><span class="o">.</span><span class="nx">checked</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
 
-        <span class="c">// Add this checked filter to the internal array of filters</span>
-<span class="c"></span>        <span class="nx">filters</span><span class="o">.</span><span class="nx">push</span><span class="o">(</span><span class="nx">sCategory</span><span class="o">);</span>
         <span class="c">// Subscribe to the click event</span>
 <span class="c"></span>        <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">addListener</span><span class="o">(</span><span class="nx">chkCategory</span><span class="o">,</span><span class="s1">&#39;click&#39;</span><span class="o">,</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">_onCheckCategory</span><span class="o">,</span><span class="nx">oSelf</span><span class="o">);</span>
 
@@ -954,8 +1085,6 @@
 
     <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_elFt</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">var</span> <span class="nx">elParent</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_elSourceFilters</span><span class="o">;</span>
-        <span class="k">var</span> <span class="nx">filters</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_sourceFilters</span><span class="o">;</span>
-
         <span class="k">var</span> <span class="nx">elFilter</span> <span class="o">=</span> <span class="nx">elParent</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;span&quot;</span><span class="o">));</span>
         <span class="nx">elFilter</span><span class="o">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;yui-log-filtergrp&quot;</span><span class="o">;</span>
 
@@ -969,8 +1098,6 @@
         <span class="nx">chkSource</span> <span class="o">=</span> <span class="nx">elFilter</span><span class="o">.</span><span class="nx">appendChild</span><span class="o">(</span><span class="nx">chkSource</span><span class="o">);</span>
         <span class="nx">chkSource</span><span class="o">.</span><span class="nx">checked</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
 
-        <span class="c">// Add this checked filter to the internal array of filters</span>
-<span class="c"></span>        <span class="nx">filters</span><span class="o">.</span><span class="nx">push</span><span class="o">(</span><span class="nx">sSource</span><span class="o">);</span>
         <span class="c">// Subscribe to the click event</span>
 <span class="c"></span>        <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">.</span><span class="nx">addListener</span><span class="o">(</span><span class="nx">chkSource</span><span class="o">,</span><span class="s1">&#39;click&#39;</span><span class="o">,</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">_onCheckSource</span><span class="o">,</span><span class="nx">oSelf</span><span class="o">);</span>
 
@@ -1103,6 +1230,10 @@
 <span class="c"> */</span>
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">LogReader</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">_onCategoryCreate</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">sType</span><span class="o">,</span> <span class="nx">aArgs</span><span class="o">,</span> <span class="nx">oSelf</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">var</span> <span class="nx">category</span> <span class="o">=</span> <span class="nx">aArgs</span><span class="o">[</span><span class="m">0</span><span class="o">];</span>
+    
+    <span class="c">// Add category to the internal array of filters</span>
+<span class="c"></span>    <span class="nx">oSelf</span><span class="o">.</span><span class="nx">_categoryFilters</span><span class="o">.</span><span class="nx">push</span><span class="o">(</span><span class="nx">category</span><span class="o">);</span>
+
     <span class="k">if</span><span class="o">(</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">_elFt</span><span class="o">)</span> <span class="o">{</span>
         <span class="nx">oSelf</span><span class="o">.</span><span class="nx">_createCategoryCheckbox</span><span class="o">(</span><span class="nx">category</span><span class="o">);</span>
     <span class="o">}</span>
@@ -1119,6 +1250,10 @@
 <span class="c"> */</span>
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">LogReader</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">_onSourceCreate</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">sType</span><span class="o">,</span> <span class="nx">aArgs</span><span class="o">,</span> <span class="nx">oSelf</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">var</span> <span class="nx">source</span> <span class="o">=</span> <span class="nx">aArgs</span><span class="o">[</span><span class="m">0</span><span class="o">];</span>
+    
+    <span class="c">// Add source to the internal array of filters</span>
+<span class="c"></span>    <span class="nx">oSelf</span><span class="o">.</span><span class="nx">_sourceFilters</span><span class="o">.</span><span class="nx">push</span><span class="o">(</span><span class="nx">source</span><span class="o">);</span>
+
     <span class="k">if</span><span class="o">(</span><span class="nx">oSelf</span><span class="o">.</span><span class="nx">_elFt</span><span class="o">)</span> <span class="o">{</span>
         <span class="nx">oSelf</span><span class="o">.</span><span class="nx">_createSourceCheckbox</span><span class="o">(</span><span class="nx">source</span><span class="o">);</span>
     <span class="o">}</span>
@@ -1255,6 +1390,8 @@
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
+
                                 <li class=""><a href="module_connection.html">connection</a></li>
 
                                 <li class=""><a href="module_container.html">container</a></li>
@@ -1267,11 +1404,15 @@
 
                                 <li class=""><a href="module_dragdrop.html">dragdrop</a></li>
 
+                                <li class=""><a href="module_editor.html">editor</a></li>
+
                                 <li class=""><a href="module_element.html">element</a></li>
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
                                 <li class=""><a href="module_history.html">history</a></li>
+
+                                <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class="selected"><a href="module_logger.html">logger</a></li>
 
@@ -1284,6 +1425,10 @@
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
+
+                                <li class=""><a href="module_yuiloader.html">yuiloader</a></li>
+
+                                <li class=""><a href="module_yuitest.html">yuitest</a></li>
                         </ul>
                     </div>
 

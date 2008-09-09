@@ -3,26 +3,33 @@
 <head>
 	<title>API: event  YAHOO.util.Event   (YUI Library)</title>
 	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
 </head>
 
 <body id="yahoo-com">
+
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
         <h1>Yahoo! UI Library</h1>
-        <h3>Event Utility&nbsp; <span class="subtitle">2.2.2</span></h3>
+        <h3>Event Utility&nbsp; <span class="subtitle">2.3.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_event.html">event</a>
                  &gt; YAHOO.util.Event 
                 
             </p>
+
 	</div>
 
 	<div id="bd">
 		<div id="yui-main">
 			<div class="yui-b">
-
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> Show Private</span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> Show Protected</span>
+            </form>
 
                     <h2>
                         
@@ -53,8 +60,9 @@ registers during the unload event.
                         <div class="section field details">
                             <h3><a name="field_detail">Properties</a></h3>
                             <div class="content">
+                                    <div class="private">
                                     <h4><a name="_interval">_interval</a>
-                                        <code>- private object</code>
+                                        <code>- private static object</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
@@ -66,6 +74,8 @@ registers during the unload event.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="ADJ_SCOPE">ADJ_SCOPE</a>
                                         <code>- static final int</code>
                                     </h4>
@@ -80,6 +90,8 @@ on or the custom object passed in by the listener, int constant
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="counter">counter</a>
                                         <code>- private static object</code>
                                     </h4>
@@ -93,6 +105,8 @@ on or the custom object passed in by the listener, int constant
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="DOMReady">DOMReady</a>
                                         <code>- private static boolean</code>
                                     </h4>
@@ -106,6 +120,8 @@ on or the custom object passed in by the listener, int constant
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="EL">EL</a>
                                         <code>- static final int</code>
                                     </h4>
@@ -119,6 +135,8 @@ on or the custom object passed in by the listener, int constant
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="elCache
 DOM element cache">elCache
 DOM element cache</a>
@@ -133,10 +151,13 @@ DOM element cache</a>
                                         
 
                                     <div class="deprecated">
-                                        <strong>Deprecated: </strong>Elements are not cached any longer
+                                        <strong>Deprecated: </strong>Elements are not cached due to issues that arise when
+elements are removed and re-added
                                     </div>        
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="FN">FN</a>
                                         <code>- static final int</code>
                                     </h4>
@@ -150,46 +171,46 @@ DOM element cache</a>
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="isIE">isIE</a>
                                         <code>- private static object</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            IE detection needed to properly calculate pageX and pageY.  
-capabilities checking didn't seem to work because another 
-browser that does not provide the properties have the values 
-calculated in a different manner than IE.
-                                        </div>
-                                    </div>
-     
-                                        
-
-
-                                    <hr />
-                                    <h4><a name="isSafari">isSafari</a>
-                                        <code>- private static object</code>
-                                    </h4>
-                                    <div class="detail">
-                                        <div class="description">
-                                            Safari detection is necessary to work around the preventDefault
-bug that makes it so you can't cancel a href click from the 
-handler.  Since this function has been used outside of this
-utility, it was changed to detect all KHTML browser to be more
-friendly towards the non-Safari browsers that share the engine.
-Internally, the preventDefault bug detection now uses the
-webkit property.
+                                            IE detection
                                         </div>
                                     </div>
      
                                         
 
                                     <div class="deprecated">
-                                        <strong>Deprecated: </strong>&#160;
+                                        <strong>Deprecated: </strong>use YAHOO.env.ua.ie
                                     </div>        
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="isSafari">isSafari</a>
+                                        <code>- private static object</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Safari detection
+                                        </div>
+                                    </div>
+     
+                                        
+
+                                    <div class="deprecated">
+                                        <strong>Deprecated: </strong>use YAHOO.env.ua.webkit
+                                    </div>        
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="lastError">lastError</a>
-                                        <code>- Error</code>
+                                        <code>- static Error</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
@@ -203,6 +224,8 @@ is set
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="legacyEvents">legacyEvents</a>
                                         <code>- private static object</code>
                                     </h4>
@@ -217,6 +240,8 @@ in Safari
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="legacyHandlers">legacyHandlers</a>
                                         <code>- private static object</code>
                                     </h4>
@@ -230,6 +255,8 @@ in Safari
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="legacyMap">legacyMap</a>
                                         <code>- private static object</code>
                                     </h4>
@@ -243,6 +270,8 @@ in Safari
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="listeners">listeners</a>
                                         <code>- private static array</code>
                                     </h4>
@@ -256,6 +285,8 @@ in Safari
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="loadComplete">loadComplete</a>
                                         <code>- private static boolean</code>
                                     </h4>
@@ -269,6 +300,8 @@ in Safari
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="OBJ">OBJ</a>
                                         <code>- static final int</code>
                                     </h4>
@@ -283,6 +316,8 @@ parameter to the callback, int constant
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="onAvailStack">onAvailStack</a>
                                         <code>- private static object</code>
                                     </h4>
@@ -296,6 +331,8 @@ parameter to the callback, int constant
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="POLL_INTERVAL">POLL_INTERVAL</a>
                                         <code>- static final int</code>
                                     </h4>
@@ -309,6 +346,8 @@ parameter to the callback, int constant
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="POLL_RETRYS">POLL_RETRYS</a>
                                         <code>- static final int</code>
                                     </h4>
@@ -316,8 +355,8 @@ parameter to the callback, int constant
                                         <div class="description">
                                             The number of times we should look for elements that are not
 in the DOM at the time the event is requested after the document
-has been loaded.  The default is 200@amp;50 ms, so it will poll
-for 10 seconds or until all outstanding handlers are bound
+has been loaded.  The default is 4000@amp;10 ms, so it will poll
+for 40 seconds or until all outstanding handlers are bound
 (whichever comes first).
                                         </div>
                                     </div>
@@ -326,6 +365,8 @@ for 10 seconds or until all outstanding handlers are bound
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="retryCount">retryCount</a>
                                         <code>- private static object</code>
                                     </h4>
@@ -341,6 +382,8 @@ the page load.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="TYPE">TYPE</a>
                                         <code>- static final int</code>
                                     </h4>
@@ -354,6 +397,8 @@ the page load.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="unloadListeners">unloadListeners</a>
                                         <code>- private static array</code>
                                     </h4>
@@ -368,21 +413,32 @@ are detached
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="webkit">webkit</a>
-                                        <code>- static string</code>
+                                        <code>- private static string</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            If WebKit is detected, we keep track of the version number of
-the engine.  The webkit property will contain a string with
-the webkit version number if webkit is detected, null
-otherwise.
-Safari 1.3.2 (312.6): 312.8.1 <-- currently the latest
-available on Mac OSX 10.3.
-Safari 2.0.2: 416 <-- hasOwnProperty introduced
-Safari 2.0.4: 418 <-- preventDefault fixed (I believe)
-Safari 2.0.4 (419.3): 418.9.1 <-- current release
-http://developer.apple.com/internet/safari/uamatrix.html
+                                            webkit version
+                                        </div>
+                                    </div>
+     
+                                        
+
+                                    <div class="deprecated">
+                                        <strong>Deprecated: </strong>use YAHOO.env.ua.webkit
+                                    </div>        
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="webkitKeymap">webkitKeymap</a>
+                                        <code>- private static final {int: int}</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Normalized keycodes for webkit/safari
                                         </div>
                                     </div>
      
@@ -390,6 +446,8 @@ http://developer.apple.com/internet/safari/uamatrix.html
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="WFN">WFN</a>
                                         <code>- static final int</code>
                                     </h4>
@@ -403,6 +461,7 @@ http://developer.apple.com/internet/safari/uamatrix.html
 
 
                                     <hr />
+                                    </div>
 
 
                             </div>
@@ -412,6 +471,7 @@ http://developer.apple.com/internet/safari/uamatrix.html
                         <div class="section method details">
                             <h3><a name="methodDetails">Methods</a></h3>
                             <div class="content">
+                                    <div class="private">
                                     <h4>
                                         <a name="_getCacheIndex">_getCacheIndex</a></h4>
                                     <div class="detail">
@@ -444,6 +504,8 @@ http://developer.apple.com/internet/safari/uamatrix.html
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_getScroll">_getScroll</a></h4>
                                     <div class="detail">
@@ -477,6 +539,8 @@ pageX and pageY in Internet Explorer
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_getScrollLeft">_getScrollLeft</a></h4>
                                     <div class="detail">
@@ -509,6 +573,8 @@ pageX and pageY in Internet Explorer
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_getScrollTop">_getScrollTop</a></h4>
                                     <div class="detail">
@@ -541,6 +607,8 @@ pageX and pageY in Internet Explorer
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_isValidCollection">_isValidCollection</a></h4>
                                     <div class="detail">
@@ -589,6 +657,8 @@ fail if the object is an array, but is empty.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_load">_load</a></h4>
                                     <div class="detail">
@@ -621,6 +691,8 @@ fail if the object is an array, but is empty.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_ready">_ready</a></h4>
                                     <div class="detail">
@@ -654,6 +726,8 @@ usable.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_simpleAdd">_simpleAdd</a></h4>
                                     <div class="detail">
@@ -722,6 +796,8 @@ usable.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_simpleRemove">_simpleRemove</a></h4>
                                     <div class="detail">
@@ -790,6 +866,8 @@ usable.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_tryPreloadAttach">_tryPreloadAttach</a></h4>
                                     <div class="detail">
@@ -824,6 +902,8 @@ available
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_unload">_unload</a></h4>
                                     <div class="detail">
@@ -857,6 +937,8 @@ automatically during the unload event.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="addListener">addListener</a></h4>
                                     <div class="detail">
@@ -864,7 +946,7 @@ automatically during the unload event.
                                         
                                          static 
                                         
-                                        boolean
+                                        Boolean
                                             <strong>addListener</strong>
                                            (
                                                 
@@ -900,9 +982,10 @@ automatically during the unload event.
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>el &lt;Object&gt;</code>
-                                                                    The html element to assign the 
-event to
+                                                            <code>el &lt;String|HTMLElement|Array|NodeList&gt;</code>
+                                                             An id, an element 
+reference, or a collection of ids and/or elements to assign the 
+listener to.
                                                         </dd>
                                                         <dd>
                                                             <code>sType &lt;String&gt;</code>
@@ -918,16 +1001,18 @@ event to
 passed as a parameter to the handler
                                                         </dd>
                                                         <dd>
-                                                            <code>override &lt;boolean&gt;</code>
+                                                            <code>override &lt;Boolean|object&gt;</code>
                                                               If true, the obj passed in becomes
-the execution scope of the listener
+the execution scope of the listener. If an
+object, this object becomes the execution
+scope.
                                                         </dd>
                                                 </dl>
 
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
-                                                        boolean
+                                                        Boolean
                                                     </code></dt>
                                                     <dd>True if the action was successful or defered,
 false if one or more of the elements 
@@ -939,6 +1024,8 @@ or if the operation throws an exception.</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="clearCache">clearCache</a></h4>
                                     <div class="detail">
@@ -974,6 +1061,8 @@ or if the operation throws an exception.</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="fireLegacyEvent">fireLegacyEvent</a></h4>
                                     <div class="detail">
@@ -1007,6 +1096,8 @@ so we can fire our custom listener stack.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="generateId">generateId</a></h4>
                                     <div class="detail">
@@ -1052,6 +1143,8 @@ have one.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getCharCode">getCharCode</a></h4>
                                     <div class="detail">
@@ -1096,6 +1189,8 @@ have one.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="getEl">getEl</a></h4>
                                     <div class="detail">
@@ -1132,6 +1227,8 @@ fires, we can no longer use document.getElementById
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getEvent">getEvent</a></h4>
                                     <div class="detail">
@@ -1180,6 +1277,8 @@ this function at all.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="getLegacyIndex">getLegacyIndex</a></h4>
                                     <div class="detail">
@@ -1213,6 +1312,8 @@ signature
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getListeners">getListeners</a></h4>
                                     <div class="detail">
@@ -1272,6 +1373,8 @@ left out, all listeners will be returned
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getPageX">getPageX</a></h4>
                                     <div class="detail">
@@ -1316,6 +1419,8 @@ left out, all listeners will be returned
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getPageY">getPageY</a></h4>
                                     <div class="detail">
@@ -1360,6 +1465,8 @@ left out, all listeners will be returned
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getRelatedTarget">getRelatedTarget</a></h4>
                                     <div class="detail">
@@ -1404,6 +1511,8 @@ left out, all listeners will be returned
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getTarget">getTarget</a></h4>
                                     <div class="detail">
@@ -1427,7 +1536,9 @@ left out, all listeners will be returned
                                         </code>
                                         
                                         <div class="description">
-                                            Returns the event's target element
+                                            Returns the event's target element.  Safari sometimes provides
+a text node, and this is automatically resolved to the text
+node's parent so that it behaves like other browsers.
                                         </div>
 
                                         <div class="description">
@@ -1459,6 +1570,8 @@ now resolved automatically
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getTime">getTime</a></h4>
                                     <div class="detail">
@@ -1504,6 +1617,8 @@ event is modified using the current time.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getXY">getXY</a></h4>
                                     <div class="detail">
@@ -1548,6 +1663,8 @@ event is modified using the current time.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="on">on</a></h4>
                                     <div class="detail">
@@ -1580,6 +1697,8 @@ event is modified using the current time.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="onAvailable">onAvailable</a></h4>
                                     <div class="detail">
@@ -1617,6 +1736,8 @@ soon as possible as the page loads.  If you use this after the
 initial page load it will poll for a fixed time for the element.
 The number of times it will poll and the frequency are
 configurable.  By default it will poll for 10 seconds.
+<p>The callback is executed with a single parameter:
+the custom object parameter, if provided.</p>
                                         </div>
 
                                         <div class="description">
@@ -1637,9 +1758,10 @@ configurable.  By default it will poll for 10 seconds.
 a parameter to p_fn.
                                                         </dd>
                                                         <dd>
-                                                            <code>p_override &lt;boolean&gt;</code>
+                                                            <code>p_override &lt;boolean|object&gt;</code>
                                                              If set to true, p_fn will execute
-in the scope of p_obj
+in the scope of p_obj, if set to an object it
+will execute in the scope of that object
                                                         </dd>
                                                 </dl>
 
@@ -1655,6 +1777,8 @@ in the scope of p_obj
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="onContentReady">onContentReady</a></h4>
                                     <div class="detail">
@@ -1689,6 +1813,8 @@ in the scope of p_obj
                                             Works the same way as onAvailable, but additionally checks the
 state of sibling elements to determine if the content of the
 available element is safe to modify.
+<p>The callback is executed with a single parameter:
+the custom object parameter, if provided.</p>
                                         </div>
 
                                         <div class="description">
@@ -1709,9 +1835,10 @@ available element is safe to modify.
 a parameter to p_fn.
                                                         </dd>
                                                         <dd>
-                                                            <code>p_override &lt;boolean&gt;</code>
+                                                            <code>p_override &lt;boolean|object&gt;</code>
                                                              If set to true, p_fn will execute
-in the scope of p_obj
+in the scope of p_obj.  If an object, p_fn will
+exectute in the scope of that object
                                                         </dd>
                                                 </dl>
 
@@ -1727,6 +1854,8 @@ in the scope of p_obj
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="onDOMReady">onDOMReady</a></h4>
                                     <div class="detail">
@@ -1754,7 +1883,23 @@ in the scope of p_obj
                                         </code>
                                         
                                         <div class="description">
-                                            Executes the supplied callback when the DOM is first usable.
+                                            Executes the supplied callback when the DOM is first usable.  This
+will execute immediately if called after the DOMReady event has
+fired.   @todo the DOMContentReady event does not fire when the
+script is dynamically injected into the page.  This means the
+DOMReady custom event will never fire in FireFox or Opera when the
+library is injected.  It _will_ fire in Safari, and the IE 
+implementation would allow for us to fire it if the defered script
+is not available.  We want this to behave the same in all browsers.
+Is there a way to identify when the script has been injected 
+instead of included inline?  Is there a way to know whether the 
+window onload event has fired without having had a listener attached 
+to it when it did so?
+<p>The callback is a CustomEvent, so the signature is:</p>
+<p>type <string>, args <array>, customobject <object></p>
+<p>For DOMReady events, there are no fire argments, so the
+signature is:</p>
+<p>"DOMReady", [], obj</p>
                                         </div>
 
                                         <div class="description">
@@ -1771,7 +1916,7 @@ in the scope of p_obj
 a parameter to p_fn.
                                                         </dd>
                                                         <dd>
-                                                            <code>p_scope &lt;boolean&gt;</code>
+                                                            <code>p_scope &lt;boolean|object&gt;</code>
                                                              If set to true, p_fn will execute
 in the scope of p_obj, if set to an object it
 will execute in the scope of that object
@@ -1790,6 +1935,8 @@ will execute in the scope of that object
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="preventDefault">preventDefault</a></h4>
                                     <div class="detail">
@@ -1834,6 +1981,8 @@ will execute in the scope of that object
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="purgeElement">purgeElement</a></h4>
                                     <div class="detail">
@@ -1898,12 +2047,14 @@ left out, all listeners will be removed
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="regCE">regCE</a></h4>
                                     <div class="detail">
                                         <code>
                                          private 
-                                        
+                                         static 
                                         
                                         void
                                             <strong>regCE</strong>
@@ -1927,10 +2078,15 @@ compatibility
                                                     <dd></dd>
                                                 </dl>
              
+                                            <div class="deprecated">
+                                                <strong>Deprecated</strong> still here for backwards compatibility
+                                            </div>        
                                         </div>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="removeListener">removeListener</a></h4>
                                     <div class="detail">
@@ -1958,7 +2114,7 @@ compatibility
                                         </code>
                                         
                                         <div class="description">
-                                            Removes an event handler
+                                            Removes an event listener
                                         </div>
 
                                         <div class="description">
@@ -1966,9 +2122,10 @@ compatibility
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>el &lt;Object&gt;</code>
-                                                             the html element or the id of the element to 
-assign the event to.
+                                                            <code>el &lt;String|HTMLElement|Array|NodeList&gt;</code>
+                                                             An id, an element 
+reference, or a collection of ids and/or elements to remove
+the listener from.
                                                         </dd>
                                                         <dd>
                                                             <code>sType &lt;String&gt;</code>
@@ -1995,6 +2152,8 @@ otherwise.</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="resolveTextNode">resolveTextNode</a></h4>
                                     <div class="detail">
@@ -2041,6 +2200,8 @@ return value for getTarget and getRelatedTarget.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="startInterval">startInterval</a></h4>
                                     <div class="detail">
@@ -2073,6 +2234,8 @@ return value for getTarget and getRelatedTarget.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="stopEvent">stopEvent</a></h4>
                                     <div class="detail">
@@ -2117,6 +2280,8 @@ return value for getTarget and getRelatedTarget.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="stopPropagation">stopPropagation</a></h4>
                                     <div class="detail">
@@ -2161,6 +2326,8 @@ return value for getTarget and getRelatedTarget.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="useLegacyEvent">useLegacyEvent</a></h4>
                                     <div class="detail">
@@ -2195,13 +2362,15 @@ Safari browsers with a broken preventDefault
 
                                     </div>
                                     <hr />
+                                    </div>
                             </div>
                         </div>
 
 
                         <div class="section method details">
-                            <h3><a name="methodDetails">Events</a></h3>
+                            <h3><a name="eventDetails">Events</a></h3>
                             <div class="content">
+                                    <div class="">
                                     <h4>
                                         <a name="DOMReadyEvent">DOMReadyEvent</a></h4>
                                     <div class="detail">
@@ -2229,6 +2398,7 @@ Safari browsers with a broken preventDefault
 
                                     </div>
                                     <hr />
+                                    </div>
                             </div>
                         </div>
 
@@ -2253,6 +2423,8 @@ Safari browsers with a broken preventDefault
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
+
                                 <li class=""><a href="module_connection.html">connection</a></li>
 
                                 <li class=""><a href="module_container.html">container</a></li>
@@ -2265,11 +2437,15 @@ Safari browsers with a broken preventDefault
 
                                 <li class=""><a href="module_dragdrop.html">dragdrop</a></li>
 
+                                <li class=""><a href="module_editor.html">editor</a></li>
+
                                 <li class=""><a href="module_element.html">element</a></li>
 
                                 <li class="selected"><a href="module_event.html">event</a></li>
 
                                 <li class=""><a href="module_history.html">history</a></li>
+
+                                <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
@@ -2282,6 +2458,10 @@ Safari browsers with a broken preventDefault
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
+
+                                <li class=""><a href="module_yuiloader.html">yuiloader</a></li>
+
+                                <li class=""><a href="module_yuitest.html">yuitest</a></li>
                         </ul>
                     </div>
 
@@ -2291,6 +2471,7 @@ Safari browsers with a broken preventDefault
                                 <li class=""><a href="YAHOO.util.CustomEvent.html">YAHOO.util.CustomEvent</a></li>
                                 <li class="selected"><a href="YAHOO.util.Event.html">YAHOO.util.Event</a></li>
                                 <li class=""><a href="YAHOO.util.EventProvider.html">YAHOO.util.EventProvider</a></li>
+                                <li class=""><a href="YAHOO.util.KeyListener.html">YAHOO.util.KeyListener</a></li>
                                 <li class=""><a href="YAHOO.util.Subscriber.html">YAHOO.util.Subscriber</a></li>
                         </ul>
                     </div>
@@ -2301,84 +2482,88 @@ Safari browsers with a broken preventDefault
                                 <li class=""><a href="CustomEvent.js.html">CustomEvent.js</a></li>
                                 <li class=""><a href="Event.js.html">Event.js</a></li>
                                 <li class=""><a href="EventProvider.js.html">EventProvider.js</a></li>
+                                <li class=""><a href="KeyListener.js.html">KeyListener.js</a></li>
                         </ul>
                     </div>
 
                     <div class="module">
                         <h4>Properties</h4>
                         <ul class="content">        
-                                <li><a href="#_interval">_interval</a>
+                                <li class="private"><a href="#_interval">_interval</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
-                                <li><a href="#ADJ_SCOPE">ADJ_SCOPE</a>
+                                <li class=""><a href="#ADJ_SCOPE">ADJ_SCOPE</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
-                                <li><a href="#counter">counter</a>
+                                <li class="private"><a href="#counter">counter</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
-                                <li><a href="#DOMReady">DOMReady</a>
+                                <li class="private"><a href="#DOMReady">DOMReady</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
-                                <li><a href="#EL">EL</a>
+                                <li class=""><a href="#EL">EL</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
-                                <li><a href="#elCache
+                                <li class="private"><a href="#elCache
 DOM element cache">elCache
 DOM element cache</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
-                                <li><a href="#FN">FN</a>
+                                <li class=""><a href="#FN">FN</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
-                                <li><a href="#isIE">isIE</a>
+                                <li class="private"><a href="#isIE">isIE</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
-                                <li><a href="#isSafari">isSafari</a>
+                                <li class="private"><a href="#isSafari">isSafari</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
-                                <li><a href="#lastError">lastError</a>
+                                <li class=""><a href="#lastError">lastError</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
-                                <li><a href="#legacyEvents">legacyEvents</a>
+                                <li class="private"><a href="#legacyEvents">legacyEvents</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
-                                <li><a href="#legacyHandlers">legacyHandlers</a>
+                                <li class="private"><a href="#legacyHandlers">legacyHandlers</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
-                                <li><a href="#legacyMap">legacyMap</a>
+                                <li class="private"><a href="#legacyMap">legacyMap</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
-                                <li><a href="#listeners">listeners</a>
+                                <li class="private"><a href="#listeners">listeners</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
-                                <li><a href="#loadComplete">loadComplete</a>
+                                <li class="private"><a href="#loadComplete">loadComplete</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
-                                <li><a href="#OBJ">OBJ</a>
+                                <li class=""><a href="#OBJ">OBJ</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
-                                <li><a href="#onAvailStack">onAvailStack</a>
+                                <li class="private"><a href="#onAvailStack">onAvailStack</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
-                                <li><a href="#POLL_INTERVAL">POLL_INTERVAL</a>
+                                <li class=""><a href="#POLL_INTERVAL">POLL_INTERVAL</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
-                                <li><a href="#POLL_RETRYS">POLL_RETRYS</a>
+                                <li class=""><a href="#POLL_RETRYS">POLL_RETRYS</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
-                                <li><a href="#retryCount">retryCount</a>
+                                <li class="private"><a href="#retryCount">retryCount</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
-                                <li><a href="#TYPE">TYPE</a>
+                                <li class=""><a href="#TYPE">TYPE</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
-                                <li><a href="#unloadListeners">unloadListeners</a>
+                                <li class="private"><a href="#unloadListeners">unloadListeners</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
-                                <li><a href="#webkit">webkit</a>
+                                <li class="private"><a href="#webkit">webkit</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
-                                <li><a href="#WFN">WFN</a>
+                                <li class="private"><a href="#webkitKeymap">webkitKeymap</a>
+                                        <!--<code>&lt;int&gt;</code>-->
+                                </li>
+                                <li class=""><a href="#WFN">WFN</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
                         </ul>
@@ -2387,121 +2572,121 @@ DOM element cache</a>
                     <div class="module">
                         <h4>Methods</h4>
                         <ul class="content">        
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_getCacheIndex">_getCacheIndex</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_getScroll">_getScroll</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_getScrollLeft">_getScrollLeft</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_getScrollTop">_getScrollTop</a>
                                 </li>
-                                <li><!--<code>boolean</code>-->
+                                <li class="private"><!--<code>boolean</code>-->
                                 <a href="#_isValidCollection">_isValidCollection</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_load">_load</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_ready">_ready</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_simpleAdd">_simpleAdd</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_simpleRemove">_simpleRemove</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_tryPreloadAttach">_tryPreloadAttach</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_unload">_unload</a>
                                 </li>
-                                <li><!--<code>boolean</code>-->
+                                <li class=""><!--<code>Boolean</code>-->
                                 <a href="#addListener">addListener</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#clearCache">clearCache</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#fireLegacyEvent">fireLegacyEvent</a>
                                 </li>
-                                <li><!--<code>string</code>-->
+                                <li class=""><!--<code>string</code>-->
                                 <a href="#generateId">generateId</a>
                                 </li>
-                                <li><!--<code>int</code>-->
+                                <li class=""><!--<code>int</code>-->
                                 <a href="#getCharCode">getCharCode</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#getEl">getEl</a>
                                 </li>
-                                <li><!--<code>Event</code>-->
+                                <li class=""><!--<code>Event</code>-->
                                 <a href="#getEvent">getEvent</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#getLegacyIndex">getLegacyIndex</a>
                                 </li>
-                                <li><!--<code>Object</code>-->
+                                <li class=""><!--<code>Object</code>-->
                                 <a href="#getListeners">getListeners</a>
                                 </li>
-                                <li><!--<code>int</code>-->
+                                <li class=""><!--<code>int</code>-->
                                 <a href="#getPageX">getPageX</a>
                                 </li>
-                                <li><!--<code>int</code>-->
+                                <li class=""><!--<code>int</code>-->
                                 <a href="#getPageY">getPageY</a>
                                 </li>
-                                <li><!--<code>HTMLElement</code>-->
+                                <li class=""><!--<code>HTMLElement</code>-->
                                 <a href="#getRelatedTarget">getRelatedTarget</a>
                                 </li>
-                                <li><!--<code>HTMLElement</code>-->
+                                <li class=""><!--<code>HTMLElement</code>-->
                                 <a href="#getTarget">getTarget</a>
                                 </li>
-                                <li><!--<code>Date</code>-->
+                                <li class=""><!--<code>Date</code>-->
                                 <a href="#getTime">getTime</a>
                                 </li>
-                                <li><!--<code>[x, y]</code>-->
+                                <li class=""><!--<code>[x, y]</code>-->
                                 <a href="#getXY">getXY</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#on">on</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#onAvailable">onAvailable</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#onContentReady">onContentReady</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#onDOMReady">onDOMReady</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#preventDefault">preventDefault</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#purgeElement">purgeElement</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#regCE">regCE</a>
                                 </li>
-                                <li><!--<code>boolean</code>-->
+                                <li class=""><!--<code>boolean</code>-->
                                 <a href="#removeListener">removeListener</a>
                                 </li>
-                                <li><!--<code>HTMLElement</code>-->
+                                <li class=""><!--<code>HTMLElement</code>-->
                                 <a href="#resolveTextNode">resolveTextNode</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#startInterval">startInterval</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#stopEvent">stopEvent</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#stopPropagation">stopPropagation</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#useLegacyEvent">useLegacyEvent</a>
                                 </li>
                         </ul>
@@ -2510,7 +2695,7 @@ DOM element cache</a>
                     <div class="module">
                         <h4>Events</h4>
                         <ul class="content">        
-                                <li>
+                                <li class="">
                                 <a href="#DOMReadyEvent">DOMReadyEvent</a>
                                 </li>
                         </ul>

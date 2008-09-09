@@ -1,18 +1,19 @@
 <?php
+
 print "data = { ";
 
 $index = 0;
 
 foreach($_GET as $key => $value) {
 	
-	print "$key:";
+    print htmlspecialchars("$key:", ENT_QUOTES);
     
 	if (gettype($value) == "array") {
 		print "[";
-		for ($i = 0;$i < count($_GET["$key"]);$i++) { 
-		   $v = $_GET["$key"][$i]; 
+		for ($i = 0;$i < count($_GET[$key]);$i++) { 
+		   $v = $_GET[$key][$i]; 
 		   print "\"$v\"";
-		   if ($i < count($_GET["$key"])-1) {
+		   if ($i < count($_GET[$key])-1) {
 				print ",";
 		   }
 		} 

@@ -3,26 +3,33 @@
 <head>
 	<title>API: menu  YAHOO.widget.MenuManager   (YUI Library)</title>
 	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
 </head>
 
 <body id="yahoo-com">
+
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
         <h1>Yahoo! UI Library</h1>
-        <h3>Menu&nbsp; <span class="subtitle">2.2.2</span></h3>
+        <h3>Menu&nbsp; <span class="subtitle">2.3.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_menu.html">menu</a>
                  &gt; YAHOO.widget.MenuManager 
                 
             </p>
+
 	</div>
 
 	<div id="bd">
 		<div id="yui-main">
 			<div class="yui-b">
-
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> Show Private</span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> Show Protected</span>
+            </form>
 
                     <h2>
                         
@@ -44,8 +51,8 @@
   
 
                     <div class="summary description">
-                        Singleton that manages a collection of all menus and menu items.  Listens for 
-DOM events at the document level and dispatches the events to the 
+                        Singleton that manages a collection of all menus and menu items.  Listens 
+for DOM events at the document level and dispatches the events to the 
 corresponding menu or menu item.
                     </div>
 
@@ -55,51 +62,7 @@ corresponding menu or menu item.
                         <div class="section method details">
                             <h3><a name="methodDetails">Methods</a></h3>
                             <div class="content">
-                                    <h4>
-                                        <a name="addItem">addItem</a></h4>
-                                    <div class="detail">
-                                        <code>
-                                         private 
-                                        
-                                        
-                                        void
-                                            <strong>addItem</strong>
-                                           (
-                                                
-                                                        
-                                                         p_oItem
-                                                    
-                                                
-                                            )
-                                        </code>
-                                        
-                                        <div class="description">
-                                            Adds an item to the collection of known menu items.
-                                        </div>
-
-                                        <div class="description">
-
-                                                <dl>
-                                                    <dt>Parameters:</dt>
-                                                        <dd>
-                                                            <code>p_oItem &lt;YAHOO.widget.MenuItem&gt;</code>
-                                                             Object specifying the MenuItem 
-instance to be added.
-                                                        </dd>
-                                                </dl>
-
-                                                <dl>
-                                                    <dt>Returns:
-                                                    <code>
-                                                        void
-                                                    </code></dt>
-                                                    <dd></dd>
-                                                </dl>
-             
-                                        </div>
-
-                                    </div>
-                                    <hr />
+                                    <div class="">
                                     <h4>
                                         <a name="addMenu">addMenu</a></h4>
                                     <div class="detail">
@@ -145,6 +108,8 @@ instance to be added.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getFocusedMenu">getFocusedMenu</a></h4>
                                     <div class="detail">
@@ -159,7 +124,8 @@ instance to be added.
                                         </code>
                                         
                                         <div class="description">
-                                            Returns a reference to the menu that currently has focus.
+                                            Returns a reference to the menu that currently 
+has focus.
                                         </div>
 
                                         <div class="description">
@@ -177,6 +143,8 @@ instance to be added.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getFocusedMenuItem">getFocusedMenuItem</a></h4>
                                     <div class="detail">
@@ -210,6 +178,8 @@ has focus.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getMenu">getMenu</a></h4>
                                     <div class="detail">
@@ -238,7 +208,8 @@ has focus.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_sId &lt;String&gt;</code>
-                                                             String specifying the id of the menu to
+                                                             String specifying the id of the 
+<code>&#60;div&#62;</code> element representing the menu to
 be retrieved.
                                                         </dd>
                                                 </dl>
@@ -255,6 +226,107 @@ be retrieved.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="getMenuItem">getMenuItem</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        YAHOO.widget.MenuItem
+                                            <strong>getMenuItem</strong>
+                                           (
+                                                
+                                                        
+                                                         p_sId
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Returns a menu item with the specified id.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>p_sId &lt;String&gt;</code>
+                                                             String specifying the id of the 
+<code>&#60;li&#62;</code> element representing the menu item to
+be retrieved.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        YAHOO.widget.MenuItem
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="getMenuItemGroup">getMenuItemGroup</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Array
+                                            <strong>getMenuItemGroup</strong>
+                                           (
+                                                
+                                                        
+                                                         p_sId
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Returns an array of menu item instances whose 
+corresponding <code>&#60;li&#62;</code> elements are child 
+nodes of the <code>&#60;ul&#62;</code> element with the 
+specified id.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>p_sId &lt;String&gt;</code>
+                                                             String specifying the id of the 
+<code>&#60;ul&#62;</code> element representing the group of 
+menu items to be retrieved.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Array
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="getMenuRootElement">getMenuRootElement</a></h4>
                                     <div class="detail">
@@ -274,8 +346,8 @@ be retrieved.
                                         </code>
                                         
                                         <div class="description">
-                                            Finds the root DIV node of a menu or the root LI node of a 
-menu item.
+                                            Finds the root DIV node of a menu or the root LI node of 
+a menu item.
                                         </div>
 
                                         <div class="description">
@@ -283,10 +355,10 @@ menu item.
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>p_oElement &lt;<a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-
-one-html.html#ID-58190037">HTMLElement</a>&gt;</code>
-                                                             Object specifying 
-an HTML element.
+                                                            <code>p_oElement &lt;<a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/
+level-one-html.html#ID-58190037">HTMLElement</a>&gt;</code>
+                                                             Object 
+specifying an HTML element.
                                                         </dd>
                                                 </dl>
 
@@ -302,6 +374,8 @@ an HTML element.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getMenus">getMenus</a></h4>
                                     <div class="detail">
@@ -335,6 +409,8 @@ menu manger.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="hideVisible">hideVisible</a></h4>
                                     <div class="detail">
@@ -349,7 +425,8 @@ menu manger.
                                         </code>
                                         
                                         <div class="description">
-                                            Hides all visible, dynamically positioned menus.
+                                            Hides all visible, dynamically positioned menus 
+(excluding instances of YAHOO.widget.MenuBar).
                                         </div>
 
                                         <div class="description">
@@ -367,6 +444,8 @@ menu manger.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="onDOMEvent">onDOMEvent</a></h4>
                                     <div class="detail">
@@ -386,10 +465,10 @@ menu manger.
                                         </code>
                                         
                                         <div class="description">
-                                            Generic, global event handler for all of a menu's DOM-based 
-events.  This listens for events against the document object.  If the 
-target of a given event is a member of a menu or menu item's DOM, the 
-instance's corresponding Custom Event is fired.
+                                            Generic, global event handler for all of a menu's 
+DOM-based events.  This listens for events against the document 
+object.  If the target of a given event is a member of a menu or 
+menu item's DOM, the instance's corresponding Custom Event is fired.
                                         </div>
 
                                         <div class="description">
@@ -398,8 +477,8 @@ instance's corresponding Custom Event is fired.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_oEvent &lt;Event&gt;</code>
-                                                             Object representing the DOM event object passed 
-back by the event utility (YAHOO.util.Event).
+                                                             Object representing the DOM event object  
+passed back by the event utility (YAHOO.util.Event).
                                                         </dd>
                                                 </dl>
 
@@ -415,6 +494,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="onItemAdded">onItemAdded</a></h4>
                                     <div class="detail">
@@ -447,12 +528,13 @@ back by the event utility (YAHOO.util.Event).
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_sType &lt;String&gt;</code>
-                                                             String representing the name of the event that 
-was fired.
+                                                             String representing the name of the event  
+that was fired.
                                                         </dd>
                                                         <dd>
                                                             <code>p_aArgs &lt;Array&gt;</code>
-                                                             Array of arguments sent when the event was fired.
+                                                             Array of arguments sent when the event 
+was fired.
                                                         </dd>
                                                 </dl>
 
@@ -468,6 +550,8 @@ was fired.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="onItemDestroy">onItemDestroy</a></h4>
                                     <div class="detail">
@@ -500,12 +584,13 @@ was fired.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_sType &lt;String&gt;</code>
-                                                             String representing the name of the event that 
-was fired.
+                                                             String representing the name of the event  
+that was fired.
                                                         </dd>
                                                         <dd>
                                                             <code>p_aArgs &lt;Array&gt;</code>
-                                                             Array of arguments sent when the event was fired.
+                                                             Array of arguments sent when the event 
+was fired.
                                                         </dd>
                                                 </dl>
 
@@ -521,59 +606,8 @@ was fired.
 
                                     </div>
                                     <hr />
-                                    <h4>
-                                        <a name="onItemRemoved">onItemRemoved</a></h4>
-                                    <div class="detail">
-                                        <code>
-                                         private 
-                                        
-                                        
-                                        void
-                                            <strong>onItemRemoved</strong>
-                                           (
-                                                
-                                                        
-                                                         p_sType
-                                                    
-                                                
-                                                        , 
-                                                         p_aArgs
-                                                    
-                                                
-                                            )
-                                        </code>
-                                        
-                                        <div class="description">
-                                            "itemremoved" event handler for a Menu instance.
-                                        </div>
-
-                                        <div class="description">
-
-                                                <dl>
-                                                    <dt>Parameters:</dt>
-                                                        <dd>
-                                                            <code>p_sType &lt;String&gt;</code>
-                                                             String representing the name of the event that 
-was fired.
-                                                        </dd>
-                                                        <dd>
-                                                            <code>p_aArgs &lt;Array&gt;</code>
-                                                             Array of arguments sent when the event was fired.
-                                                        </dd>
-                                                </dl>
-
-                                                <dl>
-                                                    <dt>Returns:
-                                                    <code>
-                                                        void
-                                                    </code></dt>
-                                                    <dd></dd>
-                                                </dl>
-             
-                                        </div>
-
                                     </div>
-                                    <hr />
+                                    <div class="private">
                                     <h4>
                                         <a name="onMenuBlur">onMenuBlur</a></h4>
                                     <div class="detail">
@@ -606,12 +640,13 @@ was fired.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_sType &lt;String&gt;</code>
-                                                             String representing the name of the event that 
-was fired.
+                                                             String representing the name of the event  
+that was fired.
                                                         </dd>
                                                         <dd>
                                                             <code>p_aArgs &lt;Array&gt;</code>
-                                                             Array of arguments sent when the event was fired.
+                                                             Array of arguments sent when the event 
+was fired.
                                                         </dd>
                                                 </dl>
 
@@ -627,6 +662,8 @@ was fired.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="onMenuDestroy">onMenuDestroy</a></h4>
                                     <div class="detail">
@@ -646,6 +683,10 @@ was fired.
                                                          p_aArgs
                                                     
                                                 
+                                                        , 
+                                                         p_oMenu
+                                                    
+                                                
                                             )
                                         </code>
                                         
@@ -659,12 +700,17 @@ was fired.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_sType &lt;String&gt;</code>
-                                                             String representing the name of the event that 
-was fired.
+                                                             String representing the name of the event 
+that was fired.
                                                         </dd>
                                                         <dd>
                                                             <code>p_aArgs &lt;Array&gt;</code>
-                                                             Array of arguments sent when the event was fired.
+                                                             Array of arguments sent when the event 
+was fired.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>p_oMenu &lt;YAHOO.widget.Menu&gt;</code>
+                                                             The menu that fired the event.
                                                         </dd>
                                                 </dl>
 
@@ -680,6 +726,8 @@ was fired.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="onMenuFocus">onMenuFocus</a></h4>
                                     <div class="detail">
@@ -712,12 +760,13 @@ was fired.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_sType &lt;String&gt;</code>
-                                                             String representing the name of the event that 
-was fired.
+                                                             String representing the name of the event 
+that was fired.
                                                         </dd>
                                                         <dd>
                                                             <code>p_aArgs &lt;Array&gt;</code>
-                                                             Array of arguments sent when the event was fired.
+                                                             Array of arguments sent when the event 
+was fired.
                                                         </dd>
                                                 </dl>
 
@@ -733,6 +782,8 @@ was fired.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="onMenuVisibleConfigChange">onMenuVisibleConfigChange</a></h4>
                                     <div class="detail">
@@ -756,8 +807,8 @@ was fired.
                                         </code>
                                         
                                         <div class="description">
-                                            Event handler for when the "visible" configuration property 
-of a Menu instance changes.
+                                            Event handler for when the "visible" configuration  
+property of a Menu instance changes.
                                         </div>
 
                                         <div class="description">
@@ -766,12 +817,13 @@ of a Menu instance changes.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_sType &lt;String&gt;</code>
-                                                             String representing the name of the event that 
-was fired.
+                                                             String representing the name of the event  
+that was fired.
                                                         </dd>
                                                         <dd>
                                                             <code>p_aArgs &lt;Array&gt;</code>
-                                                             Array of arguments sent when the event was fired.
+                                                             Array of arguments sent when the event 
+was fired.
                                                         </dd>
                                                 </dl>
 
@@ -787,51 +839,8 @@ was fired.
 
                                     </div>
                                     <hr />
-                                    <h4>
-                                        <a name="removeItem">removeItem</a></h4>
-                                    <div class="detail">
-                                        <code>
-                                         private 
-                                        
-                                        
-                                        void
-                                            <strong>removeItem</strong>
-                                           (
-                                                
-                                                        
-                                                         p_oItem
-                                                    
-                                                
-                                            )
-                                        </code>
-                                        
-                                        <div class="description">
-                                            Removes an item from the collection of known menu items.
-                                        </div>
-
-                                        <div class="description">
-
-                                                <dl>
-                                                    <dt>Parameters:</dt>
-                                                        <dd>
-                                                            <code>p_oItem &lt;YAHOO.widget.MenuItem&gt;</code>
-                                                             Object specifying the MenuItem 
-instance to be removed.
-                                                        </dd>
-                                                </dl>
-
-                                                <dl>
-                                                    <dt>Returns:
-                                                    <code>
-                                                        void
-                                                    </code></dt>
-                                                    <dd></dd>
-                                                </dl>
-             
-                                        </div>
-
                                     </div>
-                                    <hr />
+                                    <div class="">
                                     <h4>
                                         <a name="removeMenu">removeMenu</a></h4>
                                     <div class="detail">
@@ -877,6 +886,8 @@ instance to be removed.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="toString">toString</a></h4>
                                     <div class="detail">
@@ -909,6 +920,7 @@ instance to be removed.
 
                                     </div>
                                     <hr />
+                                    </div>
                             </div>
                         </div>
 
@@ -935,6 +947,8 @@ instance to be removed.
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
+
                                 <li class=""><a href="module_connection.html">connection</a></li>
 
                                 <li class=""><a href="module_container.html">container</a></li>
@@ -947,11 +961,15 @@ instance to be removed.
 
                                 <li class=""><a href="module_dragdrop.html">dragdrop</a></li>
 
+                                <li class=""><a href="module_editor.html">editor</a></li>
+
                                 <li class=""><a href="module_element.html">element</a></li>
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
                                 <li class=""><a href="module_history.html">history</a></li>
+
+                                <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
@@ -964,6 +982,10 @@ instance to be removed.
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
+
+                                <li class=""><a href="module_yuiloader.html">yuiloader</a></li>
+
+                                <li class=""><a href="module_yuitest.html">yuitest</a></li>
                         </ul>
                     </div>
 
@@ -973,7 +995,7 @@ instance to be removed.
                                 <li class=""><a href="YAHOO.widget.ContextMenu.html">YAHOO.widget.ContextMenu</a></li>
                                 <li class=""><a href="YAHOO.widget.ContextMenuItem.html">YAHOO.widget.ContextMenuItem</a></li>
                                 <li class=""><a href="YAHOO.widget.Menu.html">YAHOO.widget.Menu</a></li>
-                                <li class=""><a href="YAHOO.widget.Menubar.html">YAHOO.widget.Menubar</a></li>
+                                <li class=""><a href="YAHOO.widget.MenuBar.html">YAHOO.widget.MenuBar</a></li>
                                 <li class=""><a href="YAHOO.widget.MenuBarItem.html">YAHOO.widget.MenuBarItem</a></li>
                                 <li class=""><a href="YAHOO.widget.MenuItem.html">YAHOO.widget.MenuItem</a></li>
                                 <li class="selected"><a href="YAHOO.widget.MenuManager.html">YAHOO.widget.MenuManager</a></li>
@@ -997,61 +1019,58 @@ instance to be removed.
                     <div class="module">
                         <h4>Methods</h4>
                         <ul class="content">        
-                                <li><!--<code>void</code>-->
-                                <a href="#addItem">addItem</a>
-                                </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#addMenu">addMenu</a>
                                 </li>
-                                <li><!--<code>YAHOO.widget.Menu</code>-->
+                                <li class=""><!--<code>YAHOO.widget.Menu</code>-->
                                 <a href="#getFocusedMenu">getFocusedMenu</a>
                                 </li>
-                                <li><!--<code>YAHOO.widget.MenuItem</code>-->
+                                <li class=""><!--<code>YAHOO.widget.MenuItem</code>-->
                                 <a href="#getFocusedMenuItem">getFocusedMenuItem</a>
                                 </li>
-                                <li><!--<code>YAHOO.widget.Menu</code>-->
+                                <li class=""><!--<code>YAHOO.widget.Menu</code>-->
                                 <a href="#getMenu">getMenu</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>YAHOO.widget.MenuItem</code>-->
+                                <a href="#getMenuItem">getMenuItem</a>
+                                </li>
+                                <li class=""><!--<code>Array</code>-->
+                                <a href="#getMenuItemGroup">getMenuItemGroup</a>
+                                </li>
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#getMenuRootElement">getMenuRootElement</a>
                                 </li>
-                                <li><!--<code>Array</code>-->
+                                <li class=""><!--<code>Array</code>-->
                                 <a href="#getMenus">getMenus</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#hideVisible">hideVisible</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#onDOMEvent">onDOMEvent</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#onItemAdded">onItemAdded</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#onItemDestroy">onItemDestroy</a>
                                 </li>
-                                <li><!--<code>void</code>-->
-                                <a href="#onItemRemoved">onItemRemoved</a>
-                                </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#onMenuBlur">onMenuBlur</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#onMenuDestroy">onMenuDestroy</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#onMenuFocus">onMenuFocus</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#onMenuVisibleConfigChange">onMenuVisibleConfigChange</a>
                                 </li>
-                                <li><!--<code>void</code>-->
-                                <a href="#removeItem">removeItem</a>
-                                </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#removeMenu">removeMenu</a>
                                 </li>
-                                <li><!--<code>String</code>-->
+                                <li class=""><!--<code>String</code>-->
                                 <a href="#toString">toString</a>
                                 </li>
                         </ul>

@@ -3,29 +3,40 @@
 <head>
 	<title>API: calendar   Calendar.js  (YUI Library)</title>
 	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
 </head>
 
 <body id="yahoo-com">
+
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
         <h1>Yahoo! UI Library</h1>
-        <h3>Calendar&nbsp; <span class="subtitle">2.2.2</span></h3>
+        <h3>Calendar&nbsp; <span class="subtitle">2.3.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_calendar.html">calendar</a>
                 
                  &gt; Calendar.js (source view) 
             </p>
+
 	</div>
 
 	<div id="bd">
 		<div id="yui-main">
 			<div class="yui-b">
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> Show Private</span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> Show Protected</span>
+            </form>
 
                     <div id="srcout">
+                        <style>
+                            #doc3 #classopts { display:none; }
+                        </style>
 <div class="highlight" ><pre><span class="c">/**</span>
-<span class="c">* The Calendar component is a UI control that enables users to choose one or more dates from a graphical calendar presented in a one-month (&quot;one-up&quot;) or two-month (&quot;two-up&quot;) interface. Calendars are generated entirely via script and can be navigated without any page refreshes.</span>
+<span class="c">* The Calendar component is a UI control that enables users to choose one or more dates from a graphical calendar presented in a one-month  or multi-month interface. Calendars are generated entirely via script and can be navigated without any page refreshes.</span>
 <span class="c">* @module    calendar</span>
 <span class="c">* @title     Calendar</span>
 <span class="c">* @namespace YAHOO.widget</span>
@@ -42,7 +53,6 @@
 <span class="c">*	&lt;xmp&gt;</span>
 <span class="c">*		&lt;div id=&quot;cal1Container&quot;&gt;&lt;/div&gt;</span>
 <span class="c">*	&lt;/xmp&gt;</span>
-<span class="c">* Note that the table can be replaced with any kind of element.</span>
 <span class="c">* &lt;/p&gt;</span>
 <span class="c">* @namespace YAHOO.widget</span>
 <span class="c">* @class Calendar</span>
@@ -177,7 +187,7 @@
 	<span class="nx">SELECTED</span> <span class="o">:</span> <span class="o">{</span><span class="nx">key</span><span class="o">:</span><span class="s2">&quot;selected&quot;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span><span class="kc">null</span><span class="o">},</span>
 	<span class="nx">TITLE</span> <span class="o">:</span> <span class="o">{</span><span class="nx">key</span><span class="o">:</span><span class="s2">&quot;title&quot;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span><span class="s2">&quot;&quot;</span><span class="o">},</span>
 	<span class="nx">CLOSE</span> <span class="o">:</span> <span class="o">{</span><span class="nx">key</span><span class="o">:</span><span class="s2">&quot;close&quot;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span><span class="kc">false</span><span class="o">},</span>
-	<span class="nx">IFRAME</span> <span class="o">:</span> <span class="o">{</span><span class="nx">key</span><span class="o">:</span><span class="s2">&quot;iframe&quot;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span><span class="kc">true</span><span class="o">},</span>
+	<span class="nx">IFRAME</span> <span class="o">:</span> <span class="o">{</span><span class="nx">key</span><span class="o">:</span><span class="s2">&quot;iframe&quot;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">ua</span><span class="o">.</span><span class="nx">ie</span> <span class="o">&amp;&amp;</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">ua</span><span class="o">.</span><span class="nx">ie</span> <span class="o">&lt;=</span> <span class="m">6</span><span class="o">)</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="kc">false</span><span class="o">},</span>
 	<span class="nx">MINDATE</span> <span class="o">:</span> <span class="o">{</span><span class="nx">key</span><span class="o">:</span><span class="s2">&quot;mindate&quot;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span><span class="kc">null</span><span class="o">},</span>
 	<span class="nx">MAXDATE</span> <span class="o">:</span> <span class="o">{</span><span class="nx">key</span><span class="o">:</span><span class="s2">&quot;maxdate&quot;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span><span class="kc">null</span><span class="o">},</span>
 	<span class="nx">MULTI_SELECT</span> <span class="o">:</span> <span class="o">{</span><span class="nx">key</span><span class="o">:</span><span class="s2">&quot;multi_select&quot;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span><span class="kc">false</span><span class="o">},</span>
@@ -205,7 +215,11 @@
 	<span class="nx">MD_DAY_POSITION</span><span class="o">:{</span><span class="nx">key</span><span class="o">:</span><span class="s2">&quot;md_day_position&quot;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span><span class="m">2</span><span class="o">},</span>
 	<span class="nx">MDY_MONTH_POSITION</span><span class="o">:{</span><span class="nx">key</span><span class="o">:</span><span class="s2">&quot;mdy_month_position&quot;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span><span class="m">1</span><span class="o">},</span>
 	<span class="nx">MDY_DAY_POSITION</span><span class="o">:{</span><span class="nx">key</span><span class="o">:</span><span class="s2">&quot;mdy_day_position&quot;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span><span class="m">2</span><span class="o">},</span>
-	<span class="nx">MDY_YEAR_POSITION</span><span class="o">:{</span><span class="nx">key</span><span class="o">:</span><span class="s2">&quot;mdy_year_position&quot;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span><span class="m">3</span><span class="o">}</span>
+	<span class="nx">MDY_YEAR_POSITION</span><span class="o">:{</span><span class="nx">key</span><span class="o">:</span><span class="s2">&quot;mdy_year_position&quot;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span><span class="m">3</span><span class="o">},</span>
+	<span class="nx">MY_LABEL_MONTH_POSITION</span><span class="o">:{</span><span class="nx">key</span><span class="o">:</span><span class="s2">&quot;my_label_month_position&quot;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span><span class="m">1</span><span class="o">},</span>
+	<span class="nx">MY_LABEL_YEAR_POSITION</span><span class="o">:{</span><span class="nx">key</span><span class="o">:</span><span class="s2">&quot;my_label_year_position&quot;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span><span class="m">2</span><span class="o">},</span>
+	<span class="nx">MY_LABEL_MONTH_SUFFIX</span><span class="o">:{</span><span class="nx">key</span><span class="o">:</span><span class="s2">&quot;my_label_month_suffix&quot;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span><span class="s2">&quot; &quot;</span><span class="o">},</span>
+	<span class="nx">MY_LABEL_YEAR_SUFFIX</span><span class="o">:{</span><span class="nx">key</span><span class="o">:</span><span class="s2">&quot;my_label_year_suffix&quot;</span><span class="o">,</span> <span class="nx">value</span><span class="o">:</span><span class="s2">&quot;&quot;</span><span class="o">}</span>
 <span class="o">};</span>
 
 <span class="c">/**</span>
@@ -371,7 +385,7 @@
 <span class="c">* @param {Object}	config		The configuration object containing the Calendar&#39;s arguments</span>
 <span class="c">*/</span>
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">init</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">id</span><span class="o">,</span> <span class="nx">containerId</span><span class="o">,</span> <span class="nx">config</span><span class="o">)</span> <span class="o">{</span>
-	<span class="k">this</span><span class="o">.</span><span class="nx">logger</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">LogWriter</span><span class="o">(</span><span class="s2">&quot;Calendar_Core &quot;</span> <span class="o">+</span> <span class="nx">id</span><span class="o">);</span>
+	<span class="k">this</span><span class="o">.</span><span class="nx">logger</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">LogWriter</span><span class="o">(</span><span class="s2">&quot;Calendar &quot;</span> <span class="o">+</span> <span class="nx">id</span><span class="o">);</span>
 	<span class="k">this</span><span class="o">.</span><span class="nx">initEvents</span><span class="o">();</span>
 	<span class="k">this</span><span class="o">.</span><span class="nx">today</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="o">();</span>
 	<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">DateMath</span><span class="o">.</span><span class="nx">clearTime</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">today</span><span class="o">);</span>
@@ -405,7 +419,7 @@
 
 	<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">addClass</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">Style</span><span class="o">.</span><span class="nx">CSS_CONTAINER</span><span class="o">);</span>	
 	<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">addClass</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">Style</span><span class="o">.</span><span class="nx">CSS_SINGLE</span><span class="o">);</span>
-
+	
 	<span class="k">this</span><span class="o">.</span><span class="nx">cellDates</span> <span class="o">=</span> <span class="o">[];</span>
 	<span class="k">this</span><span class="o">.</span><span class="nx">cells</span> <span class="o">=</span> <span class="o">[];</span>
 	<span class="k">this</span><span class="o">.</span><span class="nx">renderStack</span> <span class="o">=</span> <span class="o">[];</span>
@@ -421,7 +435,9 @@
 <span class="o">};</span>
 
 <span class="c">/**</span>
-<span class="c">* Renders the built-in IFRAME shim for the IE6 and below</span>
+<span class="c">* Default Config listener for the iframe property. If the iframe config property is set to true, </span>
+<span class="c">* renders the built-in IFRAME shim if the container is relatively or absolutely positioned.</span>
+<span class="c">* </span>
 <span class="c">* @method configIframe</span>
 <span class="c">*/</span>
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">configIframe</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">type</span><span class="o">,</span> <span class="nx">args</span><span class="o">,</span> <span class="nx">obj</span><span class="o">)</span> <span class="o">{</span>
@@ -431,12 +447,19 @@
 		<span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">inDocument</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">))</span> <span class="o">{</span>
 			<span class="k">if</span> <span class="o">(</span><span class="nx">useIframe</span><span class="o">)</span> <span class="o">{</span>
 				<span class="k">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">getStyle</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">,</span> <span class="s2">&quot;position&quot;</span><span class="o">);</span>
-
-				<span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">browser</span> <span class="o">==</span> <span class="s2">&quot;ie&quot;</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="nx">pos</span> <span class="o">==</span> <span class="s2">&quot;absolute&quot;</span> <span class="o">||</span> <span class="nx">pos</span> <span class="o">==</span> <span class="s2">&quot;relative&quot;</span><span class="o">))</span> <span class="o">{</span>
-					<span class="k">if</span> <span class="o">(!</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">inDocument</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">iframe</span><span class="o">))</span> <span class="o">{</span>
+				
+				<span class="k">if</span> <span class="o">(</span><span class="nx">pos</span> <span class="o">==</span> <span class="s2">&quot;absolute&quot;</span> <span class="o">||</span> <span class="nx">pos</span> <span class="o">==</span> <span class="s2">&quot;relative&quot;</span><span class="o">)</span> <span class="o">{</span>
+					
+					<span class="k">if</span> <span class="o">(!</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">inDocument</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">iframe</span><span class="o">))</span> <span class="o">{</span>
 						<span class="k">this</span><span class="o">.</span><span class="nx">iframe</span> <span class="o">=</span> <span class="nb">document</span><span class="o">.</span><span class="nx">createElement</span><span class="o">(</span><span class="s2">&quot;iframe&quot;</span><span class="o">);</span>
 						<span class="k">this</span><span class="o">.</span><span class="nx">iframe</span><span class="o">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s2">&quot;javascript:false;&quot;</span><span class="o">;</span>
+
 						<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">setStyle</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">iframe</span><span class="o">,</span> <span class="s2">&quot;opacity&quot;</span><span class="o">,</span> <span class="s2">&quot;0&quot;</span><span class="o">);</span>
+
+						<span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">ua</span><span class="o">.</span><span class="nx">ie</span> <span class="o">&amp;&amp;</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">ua</span><span class="o">.</span><span class="nx">ie</span> <span class="o">&lt;=</span> <span class="m">6</span><span class="o">)</span> <span class="o">{</span>
+							<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">addClass</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">iframe</span><span class="o">,</span> <span class="s2">&quot;fixedsize&quot;</span><span class="o">);</span>
+						<span class="o">}</span>
+
 						<span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">.</span><span class="nx">insertBefore</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">iframe</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">oDomContainer</span><span class="o">.</span><span class="nx">firstChild</span><span class="o">);</span>
 					<span class="o">}</span>
 				<span class="o">}</span>
@@ -753,9 +776,12 @@
 
 	<span class="c">/**</span>
 <span class="c">	* Whether or not an iframe shim should be placed under the Calendar to prevent select boxes from bleeding through in Internet Explorer 6 and below.</span>
+<span class="c">	* This property is enabled by default for IE6 and below. It is disabled by default for other browsers for performance reasons, but can be </span>
+<span class="c">	* enabled if required.</span>
+<span class="c">	* </span>
 <span class="c">	* @config iframe</span>
 <span class="c">	* @type Boolean</span>
-<span class="c">	* @default true</span>
+<span class="c">	* @default true for IE6 and below, false for all other browsers</span>
 <span class="c">	*/</span>
 	<span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">addProperty</span><span class="o">(</span><span class="nx">defCfg</span><span class="o">.</span><span class="nx">IFRAME</span><span class="o">.</span><span class="nx">key</span><span class="o">,</span> <span class="o">{</span> <span class="nx">value</span><span class="o">:</span><span class="nx">defCfg</span><span class="o">.</span><span class="nx">IFRAME</span><span class="o">.</span><span class="nx">value</span><span class="o">,</span> <span class="nx">handler</span><span class="o">:</span><span class="k">this</span><span class="o">.</span><span class="nx">configIframe</span><span class="o">,</span> <span class="nx">validator</span><span class="o">:</span><span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">checkBoolean</span> <span class="o">}</span> <span class="o">);</span>
 
@@ -1007,6 +1033,38 @@
 <span class="c">	* @default 3</span>
 <span class="c">	*/</span>
 	<span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">addProperty</span><span class="o">(</span><span class="nx">defCfg</span><span class="o">.</span><span class="nx">MDY_YEAR_POSITION</span><span class="o">.</span><span class="nx">key</span><span class="o">,</span>	<span class="o">{</span> <span class="nx">value</span><span class="o">:</span><span class="nx">defCfg</span><span class="o">.</span><span class="nx">MDY_YEAR_POSITION</span><span class="o">.</span><span class="nx">value</span><span class="o">,</span> <span class="nx">handler</span><span class="o">:</span><span class="k">this</span><span class="o">.</span><span class="nx">configLocale</span><span class="o">,</span> <span class="nx">validator</span><span class="o">:</span><span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">checkNumber</span> <span class="o">}</span> <span class="o">);</span>
+	
+	<span class="c">/**</span>
+<span class="c">	* The position of the month in the month year label string used as the Calendar header</span>
+<span class="c">	* @config MY_LABEL_MONTH_POSITION</span>
+<span class="c">	* @type Number</span>
+<span class="c">	* @default 1</span>
+<span class="c">	*/</span>
+	<span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">addProperty</span><span class="o">(</span><span class="nx">defCfg</span><span class="o">.</span><span class="nx">MY_LABEL_MONTH_POSITION</span><span class="o">.</span><span class="nx">key</span><span class="o">,</span>	<span class="o">{</span> <span class="nx">value</span><span class="o">:</span><span class="nx">defCfg</span><span class="o">.</span><span class="nx">MY_LABEL_MONTH_POSITION</span><span class="o">.</span><span class="nx">value</span><span class="o">,</span> <span class="nx">handler</span><span class="o">:</span><span class="k">this</span><span class="o">.</span><span class="nx">configLocale</span><span class="o">,</span> <span class="nx">validator</span><span class="o">:</span><span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">checkNumber</span> <span class="o">}</span> <span class="o">);</span>
+
+	<span class="c">/**</span>
+<span class="c">	* The position of the year in the month year label string used as the Calendar header</span>
+<span class="c">	* @config MY_LABEL_YEAR_POSITION</span>
+<span class="c">	* @type Number</span>
+<span class="c">	* @default 2</span>
+<span class="c">	*/</span>
+	<span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">addProperty</span><span class="o">(</span><span class="nx">defCfg</span><span class="o">.</span><span class="nx">MY_LABEL_YEAR_POSITION</span><span class="o">.</span><span class="nx">key</span><span class="o">,</span>	<span class="o">{</span> <span class="nx">value</span><span class="o">:</span><span class="nx">defCfg</span><span class="o">.</span><span class="nx">MY_LABEL_YEAR_POSITION</span><span class="o">.</span><span class="nx">value</span><span class="o">,</span> <span class="nx">handler</span><span class="o">:</span><span class="k">this</span><span class="o">.</span><span class="nx">configLocale</span><span class="o">,</span> <span class="nx">validator</span><span class="o">:</span><span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">checkNumber</span> <span class="o">}</span> <span class="o">);</span>
+	
+	<span class="c">/**</span>
+<span class="c">	* The suffix used after the month when rendering the Calendar header</span>
+<span class="c">	* @config MY_LABEL_MONTH_SUFFIX</span>
+<span class="c">	* @type String</span>
+<span class="c">	* @default &quot; &quot;</span>
+<span class="c">	*/</span>
+	<span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">addProperty</span><span class="o">(</span><span class="nx">defCfg</span><span class="o">.</span><span class="nx">MY_LABEL_MONTH_SUFFIX</span><span class="o">.</span><span class="nx">key</span><span class="o">,</span>	<span class="o">{</span> <span class="nx">value</span><span class="o">:</span><span class="nx">defCfg</span><span class="o">.</span><span class="nx">MY_LABEL_MONTH_SUFFIX</span><span class="o">.</span><span class="nx">value</span><span class="o">,</span> <span class="nx">handler</span><span class="o">:</span><span class="k">this</span><span class="o">.</span><span class="nx">configLocale</span> <span class="o">}</span> <span class="o">);</span>
+	
+	<span class="c">/**</span>
+<span class="c">	* The suffix used after the year when rendering the Calendar header</span>
+<span class="c">	* @config MY_LABEL_YEAR_SUFFIX</span>
+<span class="c">	* @type String</span>
+<span class="c">	* @default &quot;&quot;</span>
+<span class="c">	*/</span>
+	<span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">addProperty</span><span class="o">(</span><span class="nx">defCfg</span><span class="o">.</span><span class="nx">MY_LABEL_YEAR_SUFFIX</span><span class="o">.</span><span class="nx">key</span><span class="o">,</span> <span class="o">{</span> <span class="nx">value</span><span class="o">:</span><span class="nx">defCfg</span><span class="o">.</span><span class="nx">MY_LABEL_YEAR_SUFFIX</span><span class="o">.</span><span class="nx">value</span><span class="o">,</span> <span class="nx">handler</span><span class="o">:</span><span class="k">this</span><span class="o">.</span><span class="nx">configLocale</span> <span class="o">}</span> <span class="o">);</span>
 <span class="o">};</span>
 
 <span class="c">/**</span>
@@ -1271,7 +1329,15 @@
 <span class="c">*/</span>
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">buildMonthLabel</span> <span class="o">=</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
 	<span class="k">var</span> <span class="nx">pageDate</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">_DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">PAGEDATE</span><span class="o">.</span><span class="nx">key</span><span class="o">);</span>
-	<span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="nx">Locale</span><span class="o">.</span><span class="nx">LOCALE_MONTHS</span><span class="o">[</span><span class="nx">pageDate</span><span class="o">.</span><span class="nx">getMonth</span><span class="o">()]</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nx">pageDate</span><span class="o">.</span><span class="nx">getFullYear</span><span class="o">();</span>
+
+	<span class="k">var</span> <span class="nx">monthLabel</span>  <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">Locale</span><span class="o">.</span><span class="nx">LOCALE_MONTHS</span><span class="o">[</span><span class="nx">pageDate</span><span class="o">.</span><span class="nx">getMonth</span><span class="o">()]</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="nx">Locale</span><span class="o">.</span><span class="nx">MY_LABEL_MONTH_SUFFIX</span><span class="o">;</span>
+	<span class="k">var</span> <span class="nx">yearLabel</span> <span class="o">=</span> <span class="nx">pageDate</span><span class="o">.</span><span class="nx">getFullYear</span><span class="o">()</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="nx">Locale</span><span class="o">.</span><span class="nx">MY_LABEL_YEAR_SUFFIX</span><span class="o">;</span>
+
+	<span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">Locale</span><span class="o">.</span><span class="nx">MY_LABEL_MONTH_POSITION</span> <span class="o">==</span> <span class="m">2</span> <span class="o">||</span> <span class="k">this</span><span class="o">.</span><span class="nx">Locale</span><span class="o">.</span><span class="nx">MY_LABEL_YEAR_POSITION</span> <span class="o">==</span> <span class="m">1</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="nx">yearLabel</span> <span class="o">+</span> <span class="nx">monthLabel</span><span class="o">;</span>
+	<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="nx">monthLabel</span> <span class="o">+</span> <span class="nx">yearLabel</span><span class="o">;</span>
+	<span class="o">}</span>
 <span class="o">};</span>
 
 <span class="c">/**</span>
@@ -2033,6 +2099,12 @@
 <span class="c">* Selects a date or a collection of dates on the current calendar. This method, by default,</span>
 <span class="c">* does not call the render method explicitly. Once selection has completed, render must be </span>
 <span class="c">* called for the changes to be reflected visually.</span>
+<span class="c">*</span>
+<span class="c">* Any dates which are OOB (out of bounds, not selectable) will not be selected and the array of </span>
+<span class="c">* selected dates passed to the selectEvent will not contain OOB dates.</span>
+<span class="c">* </span>
+<span class="c">* If all dates are OOB, the no state change will occur; beforeSelect and select events will not be fired.</span>
+<span class="c">*</span>
 <span class="c">* @method select</span>
 <span class="c">* @param	{String/Date/Date[]}	date	The date string of dates to select in the current calendar. Valid formats are</span>
 <span class="c">*								individual date(s) (12/24/2005,12/26/2005) or date range(s) (12/24/2005-1/1/2006).</span>
@@ -2042,29 +2114,44 @@
 <span class="c">*/</span>
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">select</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">date</span><span class="o">)</span> <span class="o">{</span>
 	<span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;Select: &quot;</span> <span class="o">+</span> <span class="nx">date</span><span class="o">,</span> <span class="s2">&quot;info&quot;</span><span class="o">);</span>
-	<span class="k">this</span><span class="o">.</span><span class="nx">beforeSelectEvent</span><span class="o">.</span><span class="nx">fire</span><span class="o">();</span>
-	
-	<span class="k">var</span> <span class="nx">cfgSelected</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">_DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">SELECTED</span><span class="o">.</span><span class="nx">key</span><span class="o">;</span>
 
-	<span class="k">var</span> <span class="nx">selected</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="nx">cfgSelected</span><span class="o">);</span>
 	<span class="k">var</span> <span class="nx">aToBeSelected</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_toFieldArray</span><span class="o">(</span><span class="nx">date</span><span class="o">);</span>
 	<span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;Selection field array: &quot;</span> <span class="o">+</span> <span class="nx">aToBeSelected</span><span class="o">,</span> <span class="s2">&quot;info&quot;</span><span class="o">);</span>
 
-	<span class="k">for</span> <span class="o">(</span><span class="k">var</span> <span class="nx">a</span><span class="o">=</span><span class="m">0</span><span class="o">;</span><span class="nx">a</span><span class="o">&lt;</span><span class="nx">aToBeSelected</span><span class="o">.</span><span class="nx">length</span><span class="o">;++</span><span class="nx">a</span><span class="o">)</span> <span class="o">{</span>
-		<span class="k">var</span> <span class="nx">toSelect</span> <span class="o">=</span> <span class="nx">aToBeSelected</span><span class="o">[</span><span class="nx">a</span><span class="o">];</span> <span class="c">// For each date item in the list of dates we&#39;re trying to select</span>
-<span class="c"></span>		<span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_indexOfSelectedFieldArray</span><span class="o">(</span><span class="nx">toSelect</span><span class="o">)</span> <span class="o">==</span> <span class="o">-</span><span class="m">1</span><span class="o">)</span> <span class="o">{</span> <span class="c">// not already selected?</span>
-<span class="c"></span>			<span class="nx">selected</span><span class="o">[</span><span class="nx">selected</span><span class="o">.</span><span class="nx">length</span><span class="o">]=</span><span class="nx">toSelect</span><span class="o">;</span>
+	<span class="c">// Filtered array of valid dates</span>
+<span class="c"></span>	<span class="k">var</span> <span class="nx">validDates</span> <span class="o">=</span> <span class="o">[];</span>
+	<span class="k">var</span> <span class="nx">selected</span> <span class="o">=</span> <span class="o">[];</span>
+	<span class="k">var</span> <span class="nx">cfgSelected</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">_DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">SELECTED</span><span class="o">.</span><span class="nx">key</span><span class="o">;</span>
+	
+	<span class="k">for</span> <span class="o">(</span><span class="k">var</span> <span class="nx">a</span><span class="o">=</span><span class="m">0</span><span class="o">;</span> <span class="nx">a</span> <span class="o">&lt;</span> <span class="nx">aToBeSelected</span><span class="o">.</span><span class="nx">length</span><span class="o">;</span> <span class="o">++</span><span class="nx">a</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">var</span> <span class="nx">toSelect</span> <span class="o">=</span> <span class="nx">aToBeSelected</span><span class="o">[</span><span class="nx">a</span><span class="o">];</span>
+
+		<span class="k">if</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">isDateOOB</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_toDate</span><span class="o">(</span><span class="nx">toSelect</span><span class="o">)))</span> <span class="o">{</span>
+			
+			<span class="k">if</span> <span class="o">(</span><span class="nx">validDates</span><span class="o">.</span><span class="nx">length</span> <span class="o">===</span> <span class="m">0</span><span class="o">)</span> <span class="o">{</span>
+				<span class="k">this</span><span class="o">.</span><span class="nx">beforeSelectEvent</span><span class="o">.</span><span class="nx">fire</span><span class="o">();</span>
+				<span class="nx">selected</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="nx">cfgSelected</span><span class="o">);</span>
+			<span class="o">}</span>
+
+			<span class="nx">validDates</span><span class="o">.</span><span class="nx">push</span><span class="o">(</span><span class="nx">toSelect</span><span class="o">);</span>
+			
+			<span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_indexOfSelectedFieldArray</span><span class="o">(</span><span class="nx">toSelect</span><span class="o">)</span> <span class="o">==</span> <span class="o">-</span><span class="m">1</span><span class="o">)</span> <span class="o">{</span> 
+				<span class="nx">selected</span><span class="o">[</span><span class="nx">selected</span><span class="o">.</span><span class="nx">length</span><span class="o">]</span> <span class="o">=</span> <span class="nx">toSelect</span><span class="o">;</span>
+			<span class="o">}</span>
 		<span class="o">}</span>
 	<span class="o">}</span>
 	
-	<span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">parent</span><span class="o">)</span> <span class="o">{</span>
-		<span class="k">this</span><span class="o">.</span><span class="nx">parent</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">setProperty</span><span class="o">(</span><span class="nx">cfgSelected</span><span class="o">,</span> <span class="nx">selected</span><span class="o">);</span>
-	<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-		<span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">setProperty</span><span class="o">(</span><span class="nx">cfgSelected</span><span class="o">,</span> <span class="nx">selected</span><span class="o">);</span>
+	<span class="k">if</span> <span class="o">(</span><span class="nx">validDates</span><span class="o">.</span><span class="nx">length</span> <span class="o">===</span> <span class="m">0</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;All provided dates were OOB. beforeSelect and select events not fired&quot;</span><span class="o">,</span> <span class="s2">&quot;info&quot;</span><span class="o">);</span> <span class="o">}</span>
+
+	<span class="k">if</span> <span class="o">(</span><span class="nx">validDates</span><span class="o">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="m">0</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">parent</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">this</span><span class="o">.</span><span class="nx">parent</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">setProperty</span><span class="o">(</span><span class="nx">cfgSelected</span><span class="o">,</span> <span class="nx">selected</span><span class="o">);</span>
+		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+			<span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">setProperty</span><span class="o">(</span><span class="nx">cfgSelected</span><span class="o">,</span> <span class="nx">selected</span><span class="o">);</span>
+		<span class="o">}</span>
+		<span class="k">this</span><span class="o">.</span><span class="nx">selectEvent</span><span class="o">.</span><span class="nx">fire</span><span class="o">(</span><span class="nx">validDates</span><span class="o">);</span>
 	<span class="o">}</span>
 
-	<span class="k">this</span><span class="o">.</span><span class="nx">selectEvent</span><span class="o">.</span><span class="nx">fire</span><span class="o">(</span><span class="nx">aToBeSelected</span><span class="o">);</span>
-	
 	<span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="nx">getSelectedDates</span><span class="o">();</span>
 <span class="o">};</span>
 
@@ -2072,39 +2159,46 @@
 <span class="c">* Selects a date on the current calendar by referencing the index of the cell that should be selected.</span>
 <span class="c">* This method is used to easily select a single cell (usually with a mouse click) without having to do</span>
 <span class="c">* a full render. The selected style is applied to the cell directly.</span>
+<span class="c">*</span>
+<span class="c">* If the cell is not marked with the CSS_CELL_SELECTABLE class (as is the case by default for out of month </span>
+<span class="c">* or out of bounds cells), it will not be selected and in such a case beforeSelect and select events will not be fired.</span>
+<span class="c">* </span>
 <span class="c">* @method selectCell</span>
 <span class="c">* @param	{Number}	cellIndex	The index of the cell to select in the current calendar. </span>
 <span class="c">* @return	{Date[]}	Array of JavaScript Date objects representing all individual dates that are currently selected.</span>
 <span class="c">*/</span>
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">selectCell</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">cellIndex</span><span class="o">)</span> <span class="o">{</span>
-	<span class="k">this</span><span class="o">.</span><span class="nx">beforeSelectEvent</span><span class="o">.</span><span class="nx">fire</span><span class="o">();</span>
-	
-	<span class="k">var</span> <span class="nx">cfgSelected</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">_DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">SELECTED</span><span class="o">.</span><span class="nx">key</span><span class="o">;</span>
-	<span class="k">var</span> <span class="nx">selected</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="nx">cfgSelected</span><span class="o">);</span>
 
 	<span class="k">var</span> <span class="nx">cell</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cells</span><span class="o">[</span><span class="nx">cellIndex</span><span class="o">];</span>
 	<span class="k">var</span> <span class="nx">cellDate</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cellDates</span><span class="o">[</span><span class="nx">cellIndex</span><span class="o">];</span>
-
 	<span class="k">var</span> <span class="nx">dCellDate</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_toDate</span><span class="o">(</span><span class="nx">cellDate</span><span class="o">);</span>
 	<span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;Select: &quot;</span> <span class="o">+</span> <span class="nx">dCellDate</span><span class="o">,</span> <span class="s2">&quot;info&quot;</span><span class="o">);</span>
+	
+	<span class="k">var</span> <span class="nx">selectable</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">hasClass</span><span class="o">(</span><span class="nx">cell</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">Style</span><span class="o">.</span><span class="nx">CSS_CELL_SELECTABLE</span><span class="o">);</span>
+	<span class="k">if</span> <span class="o">(!</span><span class="nx">selectable</span><span class="o">)</span> <span class="o">{</span><span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;The cell at cellIndex:&quot;</span> <span class="o">+</span> <span class="nx">cellIndex</span> <span class="o">+</span> <span class="s2">&quot; is not a selectable cell. beforeSelect, select events not fired&quot;</span><span class="o">,</span> <span class="s2">&quot;info&quot;</span><span class="o">);</span> <span class="o">}</span>
 
-	<span class="k">var</span> <span class="nx">selectDate</span> <span class="o">=</span> <span class="nx">cellDate</span><span class="o">.</span><span class="nx">concat</span><span class="o">();</span>
+	<span class="k">if</span> <span class="o">(</span><span class="nx">selectable</span><span class="o">)</span> <span class="o">{</span>
 
-	<span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_indexOfSelectedFieldArray</span><span class="o">(</span><span class="nx">selectDate</span><span class="o">)</span> <span class="o">==</span> <span class="o">-</span><span class="m">1</span><span class="o">)</span> <span class="o">{</span>
-		<span class="nx">selected</span><span class="o">[</span><span class="nx">selected</span><span class="o">.</span><span class="nx">length</span><span class="o">]</span> <span class="o">=</span> <span class="nx">selectDate</span><span class="o">;</span>
+		<span class="k">this</span><span class="o">.</span><span class="nx">beforeSelectEvent</span><span class="o">.</span><span class="nx">fire</span><span class="o">();</span>
+
+		<span class="k">var</span> <span class="nx">cfgSelected</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">_DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">SELECTED</span><span class="o">.</span><span class="nx">key</span><span class="o">;</span>
+		<span class="k">var</span> <span class="nx">selected</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="nx">cfgSelected</span><span class="o">);</span>
+
+		<span class="k">var</span> <span class="nx">selectDate</span> <span class="o">=</span> <span class="nx">cellDate</span><span class="o">.</span><span class="nx">concat</span><span class="o">();</span>
+
+		<span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_indexOfSelectedFieldArray</span><span class="o">(</span><span class="nx">selectDate</span><span class="o">)</span> <span class="o">==</span> <span class="o">-</span><span class="m">1</span><span class="o">)</span> <span class="o">{</span>
+			<span class="nx">selected</span><span class="o">[</span><span class="nx">selected</span><span class="o">.</span><span class="nx">length</span><span class="o">]</span> <span class="o">=</span> <span class="nx">selectDate</span><span class="o">;</span>
+		<span class="o">}</span>
+		<span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">parent</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">this</span><span class="o">.</span><span class="nx">parent</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">setProperty</span><span class="o">(</span><span class="nx">cfgSelected</span><span class="o">,</span> <span class="nx">selected</span><span class="o">);</span>
+		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+			<span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">setProperty</span><span class="o">(</span><span class="nx">cfgSelected</span><span class="o">,</span> <span class="nx">selected</span><span class="o">);</span>
+		<span class="o">}</span>
+		<span class="k">this</span><span class="o">.</span><span class="nx">renderCellStyleSelected</span><span class="o">(</span><span class="nx">dCellDate</span><span class="o">,</span><span class="nx">cell</span><span class="o">);</span>
+		<span class="k">this</span><span class="o">.</span><span class="nx">selectEvent</span><span class="o">.</span><span class="nx">fire</span><span class="o">([</span><span class="nx">selectDate</span><span class="o">]);</span>
+
+		<span class="k">this</span><span class="o">.</span><span class="nx">doCellMouseOut</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="nx">cell</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="k">this</span><span class="o">);</span>		
 	<span class="o">}</span>
-
-	<span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">parent</span><span class="o">)</span> <span class="o">{</span>
-		<span class="k">this</span><span class="o">.</span><span class="nx">parent</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">setProperty</span><span class="o">(</span><span class="nx">cfgSelected</span><span class="o">,</span> <span class="nx">selected</span><span class="o">);</span>
-	<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-		<span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">setProperty</span><span class="o">(</span><span class="nx">cfgSelected</span><span class="o">,</span> <span class="nx">selected</span><span class="o">);</span>
-	<span class="o">}</span>
-
-	<span class="k">this</span><span class="o">.</span><span class="nx">renderCellStyleSelected</span><span class="o">(</span><span class="nx">dCellDate</span><span class="o">,</span><span class="nx">cell</span><span class="o">);</span>
-
-	<span class="k">this</span><span class="o">.</span><span class="nx">selectEvent</span><span class="o">.</span><span class="nx">fire</span><span class="o">([</span><span class="nx">selectDate</span><span class="o">]);</span>
-
-	<span class="k">this</span><span class="o">.</span><span class="nx">doCellMouseOut</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="nx">cell</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="k">this</span><span class="o">);</span>
 
 	<span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="nx">getSelectedDates</span><span class="o">();</span>
 <span class="o">};</span>
@@ -2113,6 +2207,12 @@
 <span class="c">* Deselects a date or a collection of dates on the current calendar. This method, by default,</span>
 <span class="c">* does not call the render method explicitly. Once deselection has completed, render must be </span>
 <span class="c">* called for the changes to be reflected visually.</span>
+<span class="c">* </span>
+<span class="c">* The method will not attempt to deselect any dates which are OOB (out of bounds, and hence not selectable) </span>
+<span class="c">* and the array of deselected dates passed to the deselectEvent will not contain any OOB dates.</span>
+<span class="c">* </span>
+<span class="c">* If all dates are OOB, beforeDeselect and deselect events will not be fired.</span>
+<span class="c">* </span>
 <span class="c">* @method deselect</span>
 <span class="c">* @param	{String/Date/Date[]}	date	The date string of dates to deselect in the current calendar. Valid formats are</span>
 <span class="c">*								individual date(s) (12/24/2005,12/26/2005) or date range(s) (12/24/2005-1/1/2006).</span>
@@ -2121,30 +2221,45 @@
 <span class="c">* @return	{Date[]}			Array of JavaScript Date objects representing all individual dates that are currently selected.</span>
 <span class="c">*/</span>
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">deselect</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">date</span><span class="o">)</span> <span class="o">{</span>
-	<span class="k">this</span><span class="o">.</span><span class="nx">beforeDeselectEvent</span><span class="o">.</span><span class="nx">fire</span><span class="o">();</span>
+	<span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;Deselect: &quot;</span> <span class="o">+</span> <span class="nx">date</span><span class="o">,</span> <span class="s2">&quot;info&quot;</span><span class="o">);</span>
+
+	<span class="k">var</span> <span class="nx">aToBeDeselected</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_toFieldArray</span><span class="o">(</span><span class="nx">date</span><span class="o">);</span>
+	<span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;Deselection field array: &quot;</span> <span class="o">+</span> <span class="nx">aToBeDeselected</span><span class="o">,</span> <span class="s2">&quot;info&quot;</span><span class="o">);</span>
+
+	<span class="k">var</span> <span class="nx">validDates</span> <span class="o">=</span> <span class="o">[];</span>
+	<span class="k">var</span> <span class="nx">selected</span> <span class="o">=</span> <span class="o">[];</span>
 	<span class="k">var</span> <span class="nx">cfgSelected</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">_DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">SELECTED</span><span class="o">.</span><span class="nx">key</span><span class="o">;</span>
 
-	<span class="k">var</span> <span class="nx">selected</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="nx">cfgSelected</span><span class="o">);</span>
+	<span class="k">for</span> <span class="o">(</span><span class="k">var</span> <span class="nx">a</span><span class="o">=</span><span class="m">0</span><span class="o">;</span> <span class="nx">a</span> <span class="o">&lt;</span> <span class="nx">aToBeDeselected</span><span class="o">.</span><span class="nx">length</span><span class="o">;</span> <span class="o">++</span><span class="nx">a</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">var</span> <span class="nx">toDeselect</span> <span class="o">=</span> <span class="nx">aToBeDeselected</span><span class="o">[</span><span class="nx">a</span><span class="o">];</span>
 
-	<span class="k">var</span> <span class="nx">aToBeSelected</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_toFieldArray</span><span class="o">(</span><span class="nx">date</span><span class="o">);</span>
+		<span class="k">if</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">isDateOOB</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_toDate</span><span class="o">(</span><span class="nx">toDeselect</span><span class="o">)))</span> <span class="o">{</span>
 
-	<span class="k">for</span> <span class="o">(</span><span class="k">var</span> <span class="nx">a</span><span class="o">=</span><span class="m">0</span><span class="o">;</span><span class="nx">a</span><span class="o">&lt;</span><span class="nx">aToBeSelected</span><span class="o">.</span><span class="nx">length</span><span class="o">;++</span><span class="nx">a</span><span class="o">)</span> <span class="o">{</span>
-		<span class="k">var</span> <span class="nx">toSelect</span> <span class="o">=</span> <span class="nx">aToBeSelected</span><span class="o">[</span><span class="nx">a</span><span class="o">];</span> <span class="c">// For each date item in the list of dates we&#39;re trying to select</span>
-<span class="c"></span>		<span class="k">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_indexOfSelectedFieldArray</span><span class="o">(</span><span class="nx">toSelect</span><span class="o">);</span>
-	
-		<span class="k">if</span> <span class="o">(</span><span class="nx">index</span> <span class="o">!=</span> <span class="o">-</span><span class="m">1</span><span class="o">)</span> <span class="o">{</span>	
-			<span class="nx">selected</span><span class="o">.</span><span class="nx">splice</span><span class="o">(</span><span class="nx">index</span><span class="o">,</span><span class="m">1</span><span class="o">);</span>
+			<span class="k">if</span> <span class="o">(</span><span class="nx">validDates</span><span class="o">.</span><span class="nx">length</span> <span class="o">===</span> <span class="m">0</span><span class="o">)</span> <span class="o">{</span>
+				<span class="k">this</span><span class="o">.</span><span class="nx">beforeDeselectEvent</span><span class="o">.</span><span class="nx">fire</span><span class="o">();</span>
+				<span class="nx">selected</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="nx">cfgSelected</span><span class="o">);</span>
+			<span class="o">}</span>
+
+			<span class="nx">validDates</span><span class="o">.</span><span class="nx">push</span><span class="o">(</span><span class="nx">toDeselect</span><span class="o">);</span>
+
+			<span class="k">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_indexOfSelectedFieldArray</span><span class="o">(</span><span class="nx">toDeselect</span><span class="o">);</span>
+			<span class="k">if</span> <span class="o">(</span><span class="nx">index</span> <span class="o">!=</span> <span class="o">-</span><span class="m">1</span><span class="o">)</span> <span class="o">{</span>	
+				<span class="nx">selected</span><span class="o">.</span><span class="nx">splice</span><span class="o">(</span><span class="nx">index</span><span class="o">,</span><span class="m">1</span><span class="o">);</span>
+			<span class="o">}</span>
 		<span class="o">}</span>
 	<span class="o">}</span>
 
-	<span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">parent</span><span class="o">)</span> <span class="o">{</span>
-		<span class="k">this</span><span class="o">.</span><span class="nx">parent</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">setProperty</span><span class="o">(</span><span class="nx">cfgSelected</span><span class="o">,</span> <span class="nx">selected</span><span class="o">);</span>
-	<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-		<span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">setProperty</span><span class="o">(</span><span class="nx">cfgSelected</span><span class="o">,</span> <span class="nx">selected</span><span class="o">);</span>
+	<span class="k">if</span> <span class="o">(</span><span class="nx">validDates</span><span class="o">.</span><span class="nx">length</span> <span class="o">===</span> <span class="m">0</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;All provided dates were OOB. beforeDeselect and deselect events not fired&quot;</span><span class="o">);}</span>
+
+	<span class="k">if</span> <span class="o">(</span><span class="nx">validDates</span><span class="o">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="m">0</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">parent</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">this</span><span class="o">.</span><span class="nx">parent</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">setProperty</span><span class="o">(</span><span class="nx">cfgSelected</span><span class="o">,</span> <span class="nx">selected</span><span class="o">);</span>
+		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+			<span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">setProperty</span><span class="o">(</span><span class="nx">cfgSelected</span><span class="o">,</span> <span class="nx">selected</span><span class="o">);</span>
+		<span class="o">}</span>
+		<span class="k">this</span><span class="o">.</span><span class="nx">deselectEvent</span><span class="o">.</span><span class="nx">fire</span><span class="o">(</span><span class="nx">validDates</span><span class="o">);</span>
 	<span class="o">}</span>
 
-	<span class="k">this</span><span class="o">.</span><span class="nx">deselectEvent</span><span class="o">.</span><span class="nx">fire</span><span class="o">(</span><span class="nx">aToBeSelected</span><span class="o">);</span>
-	
 	<span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="nx">getSelectedDates</span><span class="o">();</span>
 <span class="o">};</span>
 
@@ -2152,41 +2267,50 @@
 <span class="c">* Deselects a date on the current calendar by referencing the index of the cell that should be deselected.</span>
 <span class="c">* This method is used to easily deselect a single cell (usually with a mouse click) without having to do</span>
 <span class="c">* a full render. The selected style is removed from the cell directly.</span>
+<span class="c">* </span>
+<span class="c">* If the cell is not marked with the CSS_CELL_SELECTABLE class (as is the case by default for out of month </span>
+<span class="c">* or out of bounds cells), the method will not attempt to deselect it and in such a case, beforeDeselect and </span>
+<span class="c">* deselect events will not be fired.</span>
+<span class="c">* </span>
 <span class="c">* @method deselectCell</span>
 <span class="c">* @param	{Number}	cellIndex	The index of the cell to deselect in the current calendar. </span>
 <span class="c">* @return	{Date[]}	Array of JavaScript Date objects representing all individual dates that are currently selected.</span>
 <span class="c">*/</span>
-<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">deselectCell</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">i</span><span class="o">)</span> <span class="o">{</span>
-	<span class="k">this</span><span class="o">.</span><span class="nx">beforeDeselectEvent</span><span class="o">.</span><span class="nx">fire</span><span class="o">();</span>
-	
-	<span class="k">var</span> <span class="nx">defCfg</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">_DEFAULT_CONFIG</span><span class="o">;</span>
-	
-	<span class="k">var</span> <span class="nx">selected</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="nx">defCfg</span><span class="o">.</span><span class="nx">SELECTED</span><span class="o">.</span><span class="nx">key</span><span class="o">);</span>
-
-	<span class="k">var</span> <span class="nx">cell</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cells</span><span class="o">[</span><span class="nx">i</span><span class="o">];</span>
-	<span class="k">var</span> <span class="nx">cellDate</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cellDates</span><span class="o">[</span><span class="nx">i</span><span class="o">];</span>
+<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">deselectCell</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">cellIndex</span><span class="o">)</span> <span class="o">{</span>
+	<span class="k">var</span> <span class="nx">cell</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cells</span><span class="o">[</span><span class="nx">cellIndex</span><span class="o">];</span>
+	<span class="k">var</span> <span class="nx">cellDate</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cellDates</span><span class="o">[</span><span class="nx">cellIndex</span><span class="o">];</span>
 	<span class="k">var</span> <span class="nx">cellDateIndex</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_indexOfSelectedFieldArray</span><span class="o">(</span><span class="nx">cellDate</span><span class="o">);</span>
+	
+	<span class="k">var</span> <span class="nx">selectable</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">hasClass</span><span class="o">(</span><span class="nx">cell</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">Style</span><span class="o">.</span><span class="nx">CSS_CELL_SELECTABLE</span><span class="o">);</span>
+	<span class="k">if</span> <span class="o">(!</span><span class="nx">selectable</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;The cell at cellIndex:&quot;</span> <span class="o">+</span> <span class="nx">cellIndex</span> <span class="o">+</span> <span class="s2">&quot; is not a selectable/deselectable cell&quot;</span><span class="o">,</span> <span class="s2">&quot;info&quot;</span><span class="o">);</span> <span class="o">}</span>
 
-	<span class="k">var</span> <span class="nx">dCellDate</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_toDate</span><span class="o">(</span><span class="nx">cellDate</span><span class="o">);</span>
+	<span class="k">if</span> <span class="o">(</span><span class="nx">selectable</span><span class="o">)</span> <span class="o">{</span>
 
-	<span class="k">var</span> <span class="nx">selectDate</span> <span class="o">=</span> <span class="nx">cellDate</span><span class="o">.</span><span class="nx">concat</span><span class="o">();</span>
+		<span class="k">this</span><span class="o">.</span><span class="nx">beforeDeselectEvent</span><span class="o">.</span><span class="nx">fire</span><span class="o">();</span>
 
-	<span class="k">if</span> <span class="o">(</span><span class="nx">cellDateIndex</span> <span class="o">&gt;</span> <span class="o">-</span><span class="m">1</span><span class="o">)</span> <span class="o">{</span>
-		<span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="nx">defCfg</span><span class="o">.</span><span class="nx">PAGEDATE</span><span class="o">.</span><span class="nx">key</span><span class="o">).</span><span class="nx">getMonth</span><span class="o">()</span> <span class="o">==</span> <span class="nx">dCellDate</span><span class="o">.</span><span class="nx">getMonth</span><span class="o">()</span> <span class="o">&amp;&amp;</span>
-			<span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="nx">defCfg</span><span class="o">.</span><span class="nx">PAGEDATE</span><span class="o">.</span><span class="nx">key</span><span class="o">).</span><span class="nx">getFullYear</span><span class="o">()</span> <span class="o">==</span> <span class="nx">dCellDate</span><span class="o">.</span><span class="nx">getFullYear</span><span class="o">())</span> <span class="o">{</span>
-			<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">removeClass</span><span class="o">(</span><span class="nx">cell</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">Style</span><span class="o">.</span><span class="nx">CSS_CELL_SELECTED</span><span class="o">);</span>
+		<span class="k">var</span> <span class="nx">defCfg</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">_DEFAULT_CONFIG</span><span class="o">;</span>
+		<span class="k">var</span> <span class="nx">selected</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="nx">defCfg</span><span class="o">.</span><span class="nx">SELECTED</span><span class="o">.</span><span class="nx">key</span><span class="o">);</span>
+
+		<span class="k">var</span> <span class="nx">dCellDate</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_toDate</span><span class="o">(</span><span class="nx">cellDate</span><span class="o">);</span>
+		<span class="k">var</span> <span class="nx">selectDate</span> <span class="o">=</span> <span class="nx">cellDate</span><span class="o">.</span><span class="nx">concat</span><span class="o">();</span>
+
+		<span class="k">if</span> <span class="o">(</span><span class="nx">cellDateIndex</span> <span class="o">&gt;</span> <span class="o">-</span><span class="m">1</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="nx">defCfg</span><span class="o">.</span><span class="nx">PAGEDATE</span><span class="o">.</span><span class="nx">key</span><span class="o">).</span><span class="nx">getMonth</span><span class="o">()</span> <span class="o">==</span> <span class="nx">dCellDate</span><span class="o">.</span><span class="nx">getMonth</span><span class="o">()</span> <span class="o">&amp;&amp;</span>
+				<span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="nx">defCfg</span><span class="o">.</span><span class="nx">PAGEDATE</span><span class="o">.</span><span class="nx">key</span><span class="o">).</span><span class="nx">getFullYear</span><span class="o">()</span> <span class="o">==</span> <span class="nx">dCellDate</span><span class="o">.</span><span class="nx">getFullYear</span><span class="o">())</span> <span class="o">{</span>
+				<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">removeClass</span><span class="o">(</span><span class="nx">cell</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">Style</span><span class="o">.</span><span class="nx">CSS_CELL_SELECTED</span><span class="o">);</span>
+			<span class="o">}</span>
+			<span class="nx">selected</span><span class="o">.</span><span class="nx">splice</span><span class="o">(</span><span class="nx">cellDateIndex</span><span class="o">,</span> <span class="m">1</span><span class="o">);</span>
 		<span class="o">}</span>
 
-		<span class="nx">selected</span><span class="o">.</span><span class="nx">splice</span><span class="o">(</span><span class="nx">cellDateIndex</span><span class="o">,</span> <span class="m">1</span><span class="o">);</span>
+		<span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">parent</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">this</span><span class="o">.</span><span class="nx">parent</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">setProperty</span><span class="o">(</span><span class="nx">defCfg</span><span class="o">.</span><span class="nx">SELECTED</span><span class="o">.</span><span class="nx">key</span><span class="o">,</span> <span class="nx">selected</span><span class="o">);</span>
+		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+			<span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">setProperty</span><span class="o">(</span><span class="nx">defCfg</span><span class="o">.</span><span class="nx">SELECTED</span><span class="o">.</span><span class="nx">key</span><span class="o">,</span> <span class="nx">selected</span><span class="o">);</span>
+		<span class="o">}</span>
+
+		<span class="k">this</span><span class="o">.</span><span class="nx">deselectEvent</span><span class="o">.</span><span class="nx">fire</span><span class="o">(</span><span class="nx">selectDate</span><span class="o">);</span>
 	<span class="o">}</span>
 
-	<span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">parent</span><span class="o">)</span> <span class="o">{</span>
-		<span class="k">this</span><span class="o">.</span><span class="nx">parent</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">setProperty</span><span class="o">(</span><span class="nx">defCfg</span><span class="o">.</span><span class="nx">SELECTED</span><span class="o">.</span><span class="nx">key</span><span class="o">,</span> <span class="nx">selected</span><span class="o">);</span>
-	<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-		<span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">setProperty</span><span class="o">(</span><span class="nx">defCfg</span><span class="o">.</span><span class="nx">SELECTED</span><span class="o">.</span><span class="nx">key</span><span class="o">,</span> <span class="nx">selected</span><span class="o">);</span>
-	<span class="o">}</span>
-	
-	<span class="k">this</span><span class="o">.</span><span class="nx">deselectEvent</span><span class="o">.</span><span class="nx">fire</span><span class="o">(</span><span class="nx">selectDate</span><span class="o">);</span>
 	<span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="nx">getSelectedDates</span><span class="o">();</span>
 <span class="o">};</span>
 
@@ -2320,6 +2444,33 @@
 <span class="c">*/</span>
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">isDateOOM</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">date</span><span class="o">)</span> <span class="o">{</span>
 	<span class="k">return</span> <span class="o">(</span><span class="nx">date</span><span class="o">.</span><span class="nx">getMonth</span><span class="o">()</span> <span class="o">!=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">_DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">PAGEDATE</span><span class="o">.</span><span class="nx">key</span><span class="o">).</span><span class="nx">getMonth</span><span class="o">());</span>
+<span class="o">};</span>
+
+<span class="c">/**</span>
+<span class="c">* Determines whether a given date is OOB (out of bounds - less than the mindate or more than the maxdate).</span>
+<span class="c">*</span>
+<span class="c">* @method	isDateOOB</span>
+<span class="c">* @param	{Date}	date	The JavaScript Date object for which to check the OOB status</span>
+<span class="c">* @return	{Boolean}	true if the date is OOB</span>
+<span class="c">*/</span>
+<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">isDateOOB</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">date</span><span class="o">)</span> <span class="o">{</span>
+	<span class="k">var</span> <span class="nx">defCfg</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Calendar</span><span class="o">.</span><span class="nx">_DEFAULT_CONFIG</span><span class="o">;</span>
+	
+	<span class="k">var</span> <span class="nx">minDate</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="nx">defCfg</span><span class="o">.</span><span class="nx">MINDATE</span><span class="o">.</span><span class="nx">key</span><span class="o">);</span>
+	<span class="k">var</span> <span class="nx">maxDate</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="nx">defCfg</span><span class="o">.</span><span class="nx">MAXDATE</span><span class="o">.</span><span class="nx">key</span><span class="o">);</span>
+	<span class="k">var</span> <span class="nx">dm</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">DateMath</span><span class="o">;</span>
+	
+	<span class="k">if</span> <span class="o">(</span><span class="nx">minDate</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nx">minDate</span> <span class="o">=</span> <span class="nx">dm</span><span class="o">.</span><span class="nx">clearTime</span><span class="o">(</span><span class="nx">minDate</span><span class="o">);</span>
+	<span class="o">}</span> 
+	<span class="k">if</span> <span class="o">(</span><span class="nx">maxDate</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nx">maxDate</span> <span class="o">=</span> <span class="nx">dm</span><span class="o">.</span><span class="nx">clearTime</span><span class="o">(</span><span class="nx">maxDate</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="k">var</span> <span class="nx">clearedDate</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="o">(</span><span class="nx">date</span><span class="o">.</span><span class="nx">getTime</span><span class="o">());</span>
+	<span class="nx">clearedDate</span> <span class="o">=</span> <span class="nx">dm</span><span class="o">.</span><span class="nx">clearTime</span><span class="o">(</span><span class="nx">clearedDate</span><span class="o">);</span>
+
+	<span class="k">return</span> <span class="o">((</span><span class="nx">minDate</span> <span class="o">&amp;&amp;</span> <span class="nx">clearedDate</span><span class="o">.</span><span class="nx">getTime</span><span class="o">()</span> <span class="o">&lt;</span> <span class="nx">minDate</span><span class="o">.</span><span class="nx">getTime</span><span class="o">())</span> <span class="o">||</span> <span class="o">(</span><span class="nx">maxDate</span> <span class="o">&amp;&amp;</span> <span class="nx">clearedDate</span><span class="o">.</span><span class="nx">getTime</span><span class="o">()</span> <span class="o">&gt;</span> <span class="nx">maxDate</span><span class="o">.</span><span class="nx">getTime</span><span class="o">()));</span>
 <span class="o">};</span>
 
 <span class="c">/**</span>
@@ -2680,6 +2831,8 @@
 
 <span class="c">/**</span>
 <span class="c">* Returns a string representing the current browser.</span>
+<span class="c">* @deprecated As of 2.3.0, environment information is available in YAHOO.env.ua</span>
+<span class="c">* @see YAHOO.env.ua</span>
 <span class="c">* @property browser</span>
 <span class="c">* @type String</span>
 <span class="c">*/</span>
@@ -2736,6 +2889,8 @@
 
                                 <li class="selected"><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
+
                                 <li class=""><a href="module_connection.html">connection</a></li>
 
                                 <li class=""><a href="module_container.html">container</a></li>
@@ -2748,11 +2903,15 @@
 
                                 <li class=""><a href="module_dragdrop.html">dragdrop</a></li>
 
+                                <li class=""><a href="module_editor.html">editor</a></li>
+
                                 <li class=""><a href="module_element.html">element</a></li>
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
                                 <li class=""><a href="module_history.html">history</a></li>
+
+                                <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
@@ -2765,6 +2924,10 @@
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
+
+                                <li class=""><a href="module_yuiloader.html">yuiloader</a></li>
+
+                                <li class=""><a href="module_yuitest.html">yuitest</a></li>
                         </ul>
                     </div>
 

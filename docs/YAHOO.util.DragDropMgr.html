@@ -3,26 +3,33 @@
 <head>
 	<title>API: dragdrop  YAHOO.util.DragDropMgr   (YUI Library)</title>
 	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
 </head>
 
 <body id="yahoo-com">
+
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
         <h1>Yahoo! UI Library</h1>
-        <h3>Drag and Drop&nbsp; <span class="subtitle">2.2.2</span></h3>
+        <h3>Drag and Drop&nbsp; <span class="subtitle">2.3.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_dragdrop.html">dragdrop</a>
                  &gt; YAHOO.util.DragDropMgr 
                 
             </p>
+
 	</div>
 
 	<div id="bd">
 		<div id="yui-main">
 			<div class="yui-b">
-
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> Show Private</span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> Show Protected</span>
+            </form>
 
                     <h2>
                         
@@ -54,6 +61,7 @@ be useful in your DragDrop implementations.
                         <div class="section field details">
                             <h3><a name="field_detail">Properties</a></h3>
                             <div class="content">
+                                    <div class="private">
                                     <h4><a name="_timeoutCount">_timeoutCount</a>
                                         <code>- private static object</code>
                                     </h4>
@@ -67,6 +75,8 @@ be useful in your DragDrop implementations.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="clickPixelThresh">clickPixelThresh</a>
                                         <code>- static int</code>
                                     </h4>
@@ -81,6 +91,8 @@ mousedown before the drag is initiated.  Default=3;
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="clickTimeout">clickTimeout</a>
                                         <code>- private static Object</code>
                                     </h4>
@@ -94,6 +106,8 @@ mousedown before the drag is initiated.  Default=3;
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="clickTimeThresh">clickTimeThresh</a>
                                         <code>- static int</code>
                                     </h4>
@@ -108,6 +122,8 @@ drag if we don't get a mouseup event. Default=1000
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="deltaX">deltaX</a>
                                         <code>- private static int</code>
                                     </h4>
@@ -121,6 +137,8 @@ drag if we don't get a mouseup event. Default=1000
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="deltaY">deltaY</a>
                                         <code>- private static int</code>
                                     </h4>
@@ -134,6 +152,8 @@ drag if we don't get a mouseup event. Default=1000
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="dragCurrent">dragCurrent</a>
                                         <code>- private static DragDrop</code>
                                     </h4>
@@ -147,6 +167,8 @@ drag if we don't get a mouseup event. Default=1000
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="dragOvers">dragOvers</a>
                                         <code>- private static Array</code>
                                     </h4>
@@ -160,6 +182,8 @@ drag if we don't get a mouseup event. Default=1000
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="dragThreshMet">dragThreshMet</a>
                                         <code>- private static boolean</code>
                                     </h4>
@@ -174,6 +198,8 @@ mousdown time threshold has been met
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="elementCache">elementCache</a>
                                         <code>- private static object</code>
                                     </h4>
@@ -187,6 +213,8 @@ mousdown time threshold has been met
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="handleIds">handleIds</a>
                                         <code>- private static {string: string}</code>
                                     </h4>
@@ -202,6 +230,8 @@ handle and not the html element itself.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="ids">ids</a>
                                         <code>- private static {string: string}</code>
                                     </h4>
@@ -217,13 +247,15 @@ object.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="initialized">initialized</a>
                                         <code>- private static object</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
                                             Internal flag that is set to true when drag and drop has been
-intialized
+initialized
                                         </div>
                                     </div>
      
@@ -231,6 +263,8 @@ intialized
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="interactionInfo">interactionInfo</a>
                                         <code>- static object</code>
                                     </h4>
@@ -256,6 +290,8 @@ validDrop: boolean
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="INTERSECT">INTERSECT</a>
                                         <code>- static final int</code>
                                     </h4>
@@ -271,6 +307,8 @@ drop objects.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="locationCache">locationCache</a>
                                         <code>- private static object</code>
                                     </h4>
@@ -285,6 +323,8 @@ initiated, cleared when the drag is finished.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="locked">locked</a>
                                         <code>- private static object</code>
                                     </h4>
@@ -298,6 +338,8 @@ initiated, cleared when the drag is finished.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="mode">mode</a>
                                         <code>- static int</code>
                                     </h4>
@@ -311,6 +353,8 @@ initiated, cleared when the drag is finished.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="POINT">POINT</a>
                                         <code>- static final int</code>
                                     </h4>
@@ -325,6 +369,8 @@ location of the cursor during the drag/drop
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="preventDefault">preventDefault</a>
                                         <code>- static boolean</code>
                                     </h4>
@@ -340,6 +386,8 @@ false if you need the default behavior (not recommended)
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="startX">startX</a>
                                         <code>- private static int</code>
                                     </h4>
@@ -354,6 +402,8 @@ drag threshold is met.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="startY">startY</a>
                                         <code>- private static int</code>
                                     </h4>
@@ -368,6 +418,8 @@ drag threshold is met.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="stopPropagation">stopPropagation</a>
                                         <code>- static boolean</code>
                                     </h4>
@@ -384,6 +436,8 @@ mouse click.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="STRICT_INTERSECT">STRICT_INTERSECT</a>
                                         <code>- static final int</code>
                                     </h4>
@@ -398,6 +452,8 @@ overlap of two or more drag and drop objects.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="useCache">useCache</a>
                                         <code>- static boolean</code>
                                     </h4>
@@ -412,6 +468,7 @@ drag and drop linked element constantly during a drag.
 
 
                                     <hr />
+                                    </div>
 
 
                             </div>
@@ -421,6 +478,7 @@ drag and drop linked element constantly during a drag.
                         <div class="section method details">
                             <h3><a name="methodDetails">Methods</a></h3>
                             <div class="content">
+                                    <div class="private">
                                     <h4>
                                         <a name="_addListeners">_addListeners</a></h4>
                                     <div class="detail">
@@ -454,6 +512,8 @@ an error if this file is loaded before the Event Utility.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_execOnAll">_execOnAll</a></h4>
                                     <div class="detail">
@@ -486,6 +546,8 @@ an error if this file is loaded before the Event Utility.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_onLoad">_onLoad</a></h4>
                                     <div class="detail">
@@ -518,6 +580,8 @@ an error if this file is loaded before the Event Utility.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_onResize">_onResize</a></h4>
                                     <div class="detail">
@@ -550,6 +614,8 @@ an error if this file is loaded before the Event Utility.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_onUnload">_onUnload</a></h4>
                                     <div class="detail">
@@ -582,6 +648,8 @@ an error if this file is loaded before the Event Utility.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_remove">_remove</a></h4>
                                     <div class="detail">
@@ -615,6 +683,8 @@ DragDrop.unreg, use that method instead of calling this directly.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="fireEvents">fireEvents</a></h4>
                                     <div class="detail">
@@ -668,6 +738,8 @@ hovering over or dropping on
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getBestMatch">getBestMatch</a></h4>
                                     <div class="detail">
@@ -717,6 +789,8 @@ targeted
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getClientHeight">getClientHeight</a></h4>
                                     <div class="detail">
@@ -752,6 +826,8 @@ targeted
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getClientWidth">getClientWidth</a></h4>
                                     <div class="detail">
@@ -787,6 +863,8 @@ targeted
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getCss">getCss</a></h4>
                                     <div class="detail">
@@ -835,6 +913,8 @@ document.getElById(id).style)
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getDDById">getDDById</a></h4>
                                     <div class="detail">
@@ -879,6 +959,8 @@ document.getElById(id).style)
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getElement">getElement</a></h4>
                                     <div class="detail">
@@ -926,6 +1008,8 @@ document.getElById(id).style)
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="getElWrapper">getElWrapper</a></h4>
                                     <div class="detail">
@@ -973,6 +1057,8 @@ document.getElById(id).style)
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getLocation">getLocation</a></h4>
                                     <div class="detail">
@@ -1021,6 +1107,8 @@ the instance is configured for.</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getPosX">getPosX</a></h4>
                                     <div class="detail">
@@ -1068,6 +1156,8 @@ the instance is configured for.</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getPosY">getPosY</a></h4>
                                     <div class="detail">
@@ -1115,6 +1205,8 @@ the instance is configured for.</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getRelated">getRelated</a></h4>
                                     <div class="detail">
@@ -1168,6 +1260,8 @@ passed in instance belongs to.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="getScroll">getScroll</a></h4>
                                     <div class="detail">
@@ -1200,6 +1294,8 @@ passed in instance belongs to.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getScrollLeft">getScrollLeft</a></h4>
                                     <div class="detail">
@@ -1232,6 +1328,8 @@ passed in instance belongs to.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getScrollTop">getScrollTop</a></h4>
                                     <div class="detail">
@@ -1264,6 +1362,8 @@ passed in instance belongs to.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getStyle">getStyle</a></h4>
                                     <div class="detail">
@@ -1319,6 +1419,8 @@ passed in instance belongs to.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="handleMouseDown">handleMouseDown</a></h4>
                                     <div class="detail">
@@ -1372,6 +1474,8 @@ Sets up the events required to track the object being dragged
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="handleMouseMove">handleMouseMove</a></h4>
                                     <div class="detail">
@@ -1417,6 +1521,8 @@ from the context of the html element.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="handleMouseUp">handleMouseUp</a></h4>
                                     <div class="detail">
@@ -1462,6 +1568,8 @@ from the context of the document.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="handleWasClicked">handleWasClicked</a></h4>
                                     <div class="detail">
@@ -1508,6 +1616,8 @@ clicked.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="init">init</a></h4>
                                     <div class="detail">
@@ -1540,6 +1650,8 @@ clicked.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="isDragDrop">isDragDrop</a></h4>
                                     <div class="detail">
@@ -1586,6 +1698,8 @@ false otherwise</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="isHandle">isHandle</a></h4>
                                     <div class="detail">
@@ -1632,6 +1746,8 @@ otherwise</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="isLegalTarget">isLegalTarget</a></h4>
                                     <div class="detail">
@@ -1684,6 +1800,8 @@ dd obj</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="isLocked">isLocked</a></h4>
                                     <div class="detail">
@@ -1716,6 +1834,8 @@ dd obj</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="isOverTarget">isOverTarget</a></h4>
                                     <div class="detail">
@@ -1784,6 +1904,8 @@ dd obj</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="isTypeOfDD">isTypeOfDD</a></h4>
                                     <div class="detail">
@@ -1832,6 +1954,8 @@ evaluates a well-known variable in DragDrop.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="lock">lock</a></h4>
                                     <div class="detail">
@@ -1864,6 +1988,8 @@ evaluates a well-known variable in DragDrop.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="moveToEl">moveToEl</a></h4>
                                     <div class="detail">
@@ -1917,6 +2043,8 @@ target element.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="numericSort">numericSort</a></h4>
                                     <div class="detail">
@@ -1949,6 +2077,8 @@ target element.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="refreshCache">refreshCache</a></h4>
                                     <div class="detail">
@@ -2003,6 +2133,8 @@ YAHOO.util.DragDropMgr.refreshCache({group1:true, group2:true});
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="regDragDrop">regDragDrop</a></h4>
                                     <div class="detail">
@@ -2056,6 +2188,8 @@ This is executed in DragDrop.init()
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="regHandle">regHandle</a></h4>
                                     <div class="detail">
@@ -2110,6 +2244,8 @@ handle
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="removeDDFromGroup">removeDDFromGroup</a></h4>
                                     <div class="detail">
@@ -2143,6 +2279,8 @@ by DragDrop.removeFromGroup, so don't call this function directly.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="startDrag">startDrag</a></h4>
                                     <div class="detail">
@@ -2196,11 +2334,13 @@ time threshold has been met.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="stopDrag">stopDrag</a></h4>
                                     <div class="detail">
                                         <code>
-                                         private 
+                                        
                                          static 
                                         
                                         void
@@ -2211,12 +2351,22 @@ time threshold has been met.
                                                          e
                                                     
                                                 
+                                                        , 
+                                                         silent
+                                                    
+                                                
                                             )
                                         </code>
                                         
                                         <div class="description">
-                                            Internal function to clean up event handlers after the drag 
-operation is complete
+                                            Ends the current drag, cleans up the state, and fires the endDrag
+and mouseUp events.  Called internally when a mouseup is detected
+during the drag.  Can be fired manually during the drag by passing
+either another event (such as the mousemove event received in onDrag)
+or a fake event with pageX and pageY defined (so that endDrag and
+onMouseUp have usable position data.).  Alternatively, pass true
+for the silent parameter so that the endDrag and onMouseUp events
+are skipped (so no event data is needed.)
                                         </div>
 
                                         <div class="description">
@@ -2225,7 +2375,13 @@ operation is complete
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>e &lt;Event&gt;</code>
-                                                             the event
+                                                             the mouseup event, another event (or a fake event) 
+with pageX and pageY defined, or nothing if the 
+silent parameter is true
+                                                        </dd>
+                                                        <dd>
+                                                            <code>silent &lt;boolean&gt;</code>
+                                                             skips the enddrag and mouseup events if true
                                                         </dd>
                                                 </dl>
 
@@ -2241,6 +2397,8 @@ operation is complete
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="stopEvent">stopEvent</a></h4>
                                     <div class="detail">
@@ -2286,6 +2444,8 @@ features are turned on.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="swapNode">swapNode</a></h4>
                                     <div class="detail">
@@ -2339,6 +2499,8 @@ emulate the IE behavior
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="unlock">unlock</a></h4>
                                     <div class="detail">
@@ -2371,6 +2533,8 @@ emulate the IE behavior
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="unregAll">unregAll</a></h4>
                                     <div class="detail">
@@ -2403,6 +2567,8 @@ emulate the IE behavior
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="verifyEl">verifyEl</a></h4>
                                     <div class="detail">
@@ -2450,6 +2616,7 @@ error' when trying to access the offsetParent of such an element
 
                                     </div>
                                     <hr />
+                                    </div>
                             </div>
                         </div>
 
@@ -2476,6 +2643,8 @@ error' when trying to access the offsetParent of such an element
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
+
                                 <li class=""><a href="module_connection.html">connection</a></li>
 
                                 <li class=""><a href="module_container.html">container</a></li>
@@ -2488,11 +2657,15 @@ error' when trying to access the offsetParent of such an element
 
                                 <li class="selected"><a href="module_dragdrop.html">dragdrop</a></li>
 
+                                <li class=""><a href="module_editor.html">editor</a></li>
+
                                 <li class=""><a href="module_element.html">element</a></li>
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
                                 <li class=""><a href="module_history.html">history</a></li>
+
+                                <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
@@ -2505,6 +2678,10 @@ error' when trying to access the offsetParent of such an element
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
+
+                                <li class=""><a href="module_yuiloader.html">yuiloader</a></li>
+
+                                <li class=""><a href="module_yuitest.html">yuitest</a></li>
                         </ul>
                     </div>
 
@@ -2534,79 +2711,79 @@ error' when trying to access the offsetParent of such an element
                     <div class="module">
                         <h4>Properties</h4>
                         <ul class="content">        
-                                <li><a href="#_timeoutCount">_timeoutCount</a>
+                                <li class="private"><a href="#_timeoutCount">_timeoutCount</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#clickPixelThresh">clickPixelThresh</a>
+                                <li class=""><a href="#clickPixelThresh">clickPixelThresh</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#clickTimeout">clickTimeout</a>
+                                <li class="private"><a href="#clickTimeout">clickTimeout</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#clickTimeThresh">clickTimeThresh</a>
+                                <li class=""><a href="#clickTimeThresh">clickTimeThresh</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#deltaX">deltaX</a>
+                                <li class="private"><a href="#deltaX">deltaX</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#deltaY">deltaY</a>
+                                <li class="private"><a href="#deltaY">deltaY</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#dragCurrent">dragCurrent</a>
+                                <li class="private"><a href="#dragCurrent">dragCurrent</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#dragOvers">dragOvers</a>
+                                <li class="private"><a href="#dragOvers">dragOvers</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#dragThreshMet">dragThreshMet</a>
+                                <li class="private"><a href="#dragThreshMet">dragThreshMet</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#elementCache">elementCache</a>
+                                <li class="private"><a href="#elementCache">elementCache</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#handleIds">handleIds</a>
+                                <li class="private"><a href="#handleIds">handleIds</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#ids">ids</a>
+                                <li class="private"><a href="#ids">ids</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#initialized">initialized</a>
+                                <li class="private"><a href="#initialized">initialized</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#interactionInfo">interactionInfo</a>
+                                <li class=""><a href="#interactionInfo">interactionInfo</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#INTERSECT">INTERSECT</a>
+                                <li class=""><a href="#INTERSECT">INTERSECT</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#locationCache">locationCache</a>
+                                <li class="private"><a href="#locationCache">locationCache</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#locked">locked</a>
+                                <li class="private"><a href="#locked">locked</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#mode">mode</a>
+                                <li class=""><a href="#mode">mode</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#POINT">POINT</a>
+                                <li class=""><a href="#POINT">POINT</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#preventDefault">preventDefault</a>
+                                <li class=""><a href="#preventDefault">preventDefault</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#startX">startX</a>
+                                <li class="private"><a href="#startX">startX</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#startY">startY</a>
+                                <li class="private"><a href="#startY">startY</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#stopPropagation">stopPropagation</a>
+                                <li class=""><a href="#stopPropagation">stopPropagation</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#STRICT_INTERSECT">STRICT_INTERSECT</a>
+                                <li class=""><a href="#STRICT_INTERSECT">STRICT_INTERSECT</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#useCache">useCache</a>
+                                <li class=""><a href="#useCache">useCache</a>
                                         <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
                         </ul>
@@ -2615,145 +2792,145 @@ error' when trying to access the offsetParent of such an element
                     <div class="module">
                         <h4>Methods</h4>
                         <ul class="content">        
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_addListeners">_addListeners</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_execOnAll">_execOnAll</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_onLoad">_onLoad</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_onResize">_onResize</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_onUnload">_onUnload</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_remove">_remove</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#fireEvents">fireEvents</a>
                                 </li>
-                                <li><!--<code>DragDrop</code>-->
+                                <li class=""><!--<code>DragDrop</code>-->
                                 <a href="#getBestMatch">getBestMatch</a>
                                 </li>
-                                <li><!--<code>int</code>-->
+                                <li class=""><!--<code>int</code>-->
                                 <a href="#getClientHeight">getClientHeight</a>
                                 </li>
-                                <li><!--<code>int</code>-->
+                                <li class=""><!--<code>int</code>-->
                                 <a href="#getClientWidth">getClientWidth</a>
                                 </li>
-                                <li><!--<code>Object</code>-->
+                                <li class=""><!--<code>Object</code>-->
                                 <a href="#getCss">getCss</a>
                                 </li>
-                                <li><!--<code>DragDrop</code>-->
+                                <li class=""><!--<code>DragDrop</code>-->
                                 <a href="#getDDById">getDDById</a>
                                 </li>
-                                <li><!--<code>Object</code>-->
+                                <li class=""><!--<code>Object</code>-->
                                 <a href="#getElement">getElement</a>
                                 </li>
-                                <li><!--<code>YAHOO.util.DDM.ElementWrapper</code>-->
+                                <li class="private"><!--<code>YAHOO.util.DDM.ElementWrapper</code>-->
                                 <a href="#getElWrapper">getElWrapper</a>
                                 </li>
-                                <li><!--<code>YAHOO.util.Region</code>-->
+                                <li class=""><!--<code>YAHOO.util.Region</code>-->
                                 <a href="#getLocation">getLocation</a>
                                 </li>
-                                <li><!--<code>int</code>-->
+                                <li class=""><!--<code>int</code>-->
                                 <a href="#getPosX">getPosX</a>
                                 </li>
-                                <li><!--<code>int</code>-->
+                                <li class=""><!--<code>int</code>-->
                                 <a href="#getPosY">getPosY</a>
                                 </li>
-                                <li><!--<code>DragDrop[]</code>-->
+                                <li class=""><!--<code>DragDrop[]</code>-->
                                 <a href="#getRelated">getRelated</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#getScroll">getScroll</a>
                                 </li>
-                                <li><!--<code>int</code>-->
+                                <li class=""><!--<code>int</code>-->
                                 <a href="#getScrollLeft">getScrollLeft</a>
                                 </li>
-                                <li><!--<code>int</code>-->
+                                <li class=""><!--<code>int</code>-->
                                 <a href="#getScrollTop">getScrollTop</a>
                                 </li>
-                                <li><!--<code>string</code>-->
+                                <li class=""><!--<code>string</code>-->
                                 <a href="#getStyle">getStyle</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#handleMouseDown">handleMouseDown</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#handleMouseMove">handleMouseMove</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#handleMouseUp">handleMouseUp</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#handleWasClicked">handleWasClicked</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#init">init</a>
                                 </li>
-                                <li><!--<code>boolean</code>-->
+                                <li class=""><!--<code>boolean</code>-->
                                 <a href="#isDragDrop">isDragDrop</a>
                                 </li>
-                                <li><!--<code>boolean</code>-->
+                                <li class=""><!--<code>boolean</code>-->
                                 <a href="#isHandle">isHandle</a>
                                 </li>
-                                <li><!--<code>boolean</code>-->
+                                <li class=""><!--<code>boolean</code>-->
                                 <a href="#isLegalTarget">isLegalTarget</a>
                                 </li>
-                                <li><!--<code>boolean</code>-->
+                                <li class=""><!--<code>boolean</code>-->
                                 <a href="#isLocked">isLocked</a>
                                 </li>
-                                <li><!--<code>boolean</code>-->
+                                <li class="private"><!--<code>boolean</code>-->
                                 <a href="#isOverTarget">isOverTarget</a>
                                 </li>
-                                <li><!--<code>boolean</code>-->
+                                <li class=""><!--<code>boolean</code>-->
                                 <a href="#isTypeOfDD">isTypeOfDD</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#lock">lock</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#moveToEl">moveToEl</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#numericSort">numericSort</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#refreshCache">refreshCache</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#regDragDrop">regDragDrop</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#regHandle">regHandle</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#removeDDFromGroup">removeDDFromGroup</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#startDrag">startDrag</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#stopDrag">stopDrag</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#stopEvent">stopEvent</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#swapNode">swapNode</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#unlock">unlock</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#unregAll">unregAll</a>
                                 </li>
-                                <li><!--<code>boolean</code>-->
+                                <li class=""><!--<code>boolean</code>-->
                                 <a href="#verifyEl">verifyEl</a>
                                 </li>
                         </ul>

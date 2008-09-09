@@ -1,0 +1,1337 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>YUI Library Examples: Rich Text Editor (beta): Skinning the Editor</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    	<link rel="stylesheet" type="text/css" href="../../assets/yui.css" >
+
+<style>
+/*Supplemental CSS for the YUI distribution*/
+#custom-doc { width: 95%; min-width: 950px; }
+#pagetitle {background-image: url(../../assets/bg_hd.gif);}
+#pagetitle h1 {background-image: url(../../assets/title_h_bg.gif);}
+
+</style>
+
+<link rel="stylesheet" type="text/css" href="../../assets/dpSyntaxHighlighter.css">
+<!--Script and CSS includes for YUI dependencies on this page-->
+<link rel="stylesheet" type="text/css" href="../../build/container/assets/skins/sam/container.css" />
+<link rel="stylesheet" type="text/css" href="../../build/menu/assets/skins/sam/menu.css" />
+<link rel="stylesheet" type="text/css" href="../../build/button/assets/skins/sam/button.css" />
+<link rel="stylesheet" type="text/css" href="../../build/editor/assets/skins/sam/editor.css" />
+<script type="text/javascript" src="../../build/yahoo/yahoo-min.js"></script>
+<script type="text/javascript" src="../../build/event/event-min.js"></script>
+<script type="text/javascript" src="../../build/dom/dom-min.js"></script>
+<script type="text/javascript" src="../../build/animation/animation-min.js"></script>
+<script type="text/javascript" src="../../build/connection/connection-min.js"></script>
+<script type="text/javascript" src="../../build/element/element-beta-min.js"></script>
+<script type="text/javascript" src="../../build/container/container-min.js"></script>
+<script type="text/javascript" src="../../build/menu/menu-min.js"></script>
+<script type="text/javascript" src="../../build/button/button-beta-min.js"></script>
+<script type="text/javascript" src="../../build/editor/editor-beta-min.js"></script>
+
+<!--there is no custom header content for this example-->
+
+
+</head>
+<body id="yahoo-com" class=" yui-skin-sam">
+<div id="custom-doc" class="yui-t2">
+<div id="hd">
+	<div id="ygunav">
+		<p><em>
+			<a href="http://developer.yahoo.com">Yahoo! Developer Network Home</a> <i> - </i>	
+			<a href="http://help.yahoo.com/help/us/ysearch">Help</a>
+			</em>
+		</p>
+		<form action="http://search.yahoo.com/search"><label for="ygsp">YDN Site Search</label> 
+		<input name="vs" type="hidden" value="developer.yahoo.com">
+		<input name="fr" type="hidden" value="ush-myweb">
+		<input id="ygsp" name="va" size="22"> 
+		<input type="submit" value="Search" class="ygbt"></form>
+	</div>
+	<div id="ygma"><a href="../../"><img src="../../assets/yui.gif"  border="0" width="378" height="28"></a></div>
+	<div id="pagetitle"><h1>YUI Library Examples: Rich Text Editor (beta): Skinning the Editor</h1></div>
+</div>
+<div id="bd">	
+	<div id="yui-main">
+		<div class="yui-b">
+		  <div class="yui-ge">
+			  <div class="yui-u first example">
+	
+	<div class="promo">
+	<h1>Rich Text Editor (beta): Skinning the Editor</h1>
+	
+	<div class="exampleIntro">
+	<p>Editor skinning is done via CSS.  The Editor comes with a default skin, but you can extend or override this as needed.</p>
+			
+	</div>	
+					
+	<div class="example-container module ">
+			<div id="example-canvas" class="bd">
+	
+		
+	<!--BEGIN SOURCE CODE FOR EXAMPLE =============================== -->
+	
+	<style>
+    #editor_container .yui-toolbar-separator-5 {
+        border: none;
+    }   
+</style>
+
+<form method="post" action="#" id="form1">
+<textarea id="editor" name="editor" rows="20" cols="75">
+This is some more test text.<br>This is some more test text.<br>This is some more test text.<br>This is some more test text.<br>This is some more test text.<br>This is some more test text.<br>This is some more test text.<br>
+</textarea>
+</form>
+
+<script>
+
+(function() {
+    var Dom = YAHOO.util.Dom,
+        Event = YAHOO.util.Event;
+    var myConfig = {
+        height: '300px',
+        width: '522px',
+        animate: true,
+        dompath: true
+    };
+
+    var myEditor = new YAHOO.widget.Editor('editor', myConfig);
+    myEditor.render();
+
+})();
+</script>
+
+	
+	<!--END SOURCE CODE FOR EXAMPLE =============================== -->
+	
+		
+		</div>
+		
+	
+	</div>			
+	</div>
+		
+	<h2 class="first">Editor's core CSS file</h2>
+
+<p>The editors base class is a starting point for skinning the Editor. Include this file and use the skin file as a reference for your new skin.</p>
+<textarea name="code" class="CSS">
+/* Setup the container with some padding and zoom it for IE's hasLayout */
+.yui-toolbar-container .yui-toolbar-subcont {
+    padding: .25em 0;
+    zoom: 1;
+}
+/* Setup the :after so that compliant browsers don't loose the bounding box */
+.yui-toolbar-container .yui-toolbar-subcont:after { display: block; clear: both; visibility: hidden; content: '.'; height: 0;}
+
+/* Drag handle for the toolbar's draggable property */
+.yui-toolbar-container span.yui-toolbar-draghandle {
+    cursor: move;
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+    overflow: hidden;
+    text-indent: 77777px;
+    width: 2px;
+    height: 20px;
+    display: block;
+    clear: none;
+    float: left;
+    margin: 0 0 0 .2em;
+}
+/* If the titlebar is draggable, the set the cursor */
+.yui-toolbar-container .yui-toolbar-titlebar.draggable {
+    cursor: move;
+}
+/* Set the titlebar to relative so we can position the collapse button */
+.yui-toolbar-container .yui-toolbar-titlebar {
+    position: relative;
+}
+/* Toolbar's titlebar styles */
+.yui-toolbar-container .yui-toolbar-titlebar h2 {
+    font-weight: bold;
+    border: none;
+    color: #000;
+    margin: 0;
+    padding: .2em;
+}
+/* If the toolbar is grouped the draghandle needs to be bigger */
+.yui-toolbar-container.yui-toolbar-grouped span.yui-toolbar-draghandle {
+    height: 40px;
+}
+
+/* Float the groups so they position nicely and zoom them for IE */
+.yui-toolbar-container .yui-toolbar-group {
+    float: left;
+    zoom: 1;
+}
+/* Setup the :after so that compliant browsers don't loose the bounding box */
+.yui-toolbar-container .yui-toolbar-group:after { display: block; clear: both; visibility: hidden; content: '.'; height: 0;}
+/* Grouped title styles */
+.yui-toolbar-container .yui-toolbar-group h3 {
+    font-size: 75%;
+    color: #999;
+    padding-left: .25em;
+}
+/* Style the separators with a left border */
+.yui-toolbar-container span.yui-toolbar-separator {
+    border-left: 1px solid #999;
+    overflow: hidden;
+    text-indent: 77777px;
+    width: 2px;
+    height: 18px;
+    margin: .2em 0 .2em .1em;
+    display: block;
+    clear: none;
+    float: left;
+}
+/* Set the height of a grouped separator to a little bit bigger */
+.yui-toolbar-container.yui-toolbar-grouped span.yui-toolbar-separator {
+    height: 35px;
+}
+
+/* Reset the height of a separator inside of a group */
+.yui-toolbar-container.yui-toolbar-grouped .yui-toolbar-group span.yui-toolbar-separator {
+    height: 18px;
+}
+
+/* Kill the default styles of the list */
+.yui-toolbar-container ul li {
+    margin: 0;
+    float: left;
+}
+
+/* Setup the default style of a button in the toolbar */
+.yui-toolbar-container .yui-button {
+    border: 1px solid #999999;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    height: 20px;
+    width: 30px;
+    overflow: hidden;
+    display: block;
+    float: left;
+    margin: 0 1px;
+    position: relative;
+    filter: none; /* UNDO Button filter..*/
+}
+
+/* setup the default style of the A inside of the toolbar button */
+.yui-toolbar-container .yui-button .first-child, .yui-toolbar-container .yui-button .first-child a {
+    margin: 0;
+    border: 0;
+    display: block;
+    text-indent: 50px !important; /* IE Fix */
+    width: 200px;
+    overflow:hidden;
+}
+
+/* Setup the disabled state of a button */
+.yui-toolbar-container .yui-button-disabled {
+    opacity: .5;
+    filter: alpha(opacity=50);
+    cursor: default;
+}
+/* remove any padding from the A */
+.yui-toolbar-container .yui-button a {
+    padding: 0;
+}
+/* Fix a style inherited from the Button widget for IE */
+.yui-toolbar-container .yui-button.ie6.hover {
+    background-color: #98D5FC !important;
+}
+
+/* Select Button Emulation */
+.yui-toolbar-container .yui-toolbar-select {
+    height: 20px;
+    width: auto;
+}
+
+/* Override the default Button style for select menu*/
+.yui-toolbar-container .yui-toolbar-select a {
+    border: none;
+    background-color: transparent;
+    height: 19px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    opacity: 1;
+    filter: none;
+}
+/* Fix IE */
+.yui-toolbar-container .yui-toolbar-select .first-child {
+    width: 100% !important; /* For IE */
+}
+/* Reset the text-indent because we want to see the text of a select menu */
+.yui-toolbar-container .yui-toolbar-select .first-child a {
+    text-indent: 3px !important;
+    width: 100% !important; /* For IE */
+}
+
+/* Fix styles inherited from Button  */
+.yui-toolbar-container .yui-toolbar-select.yui-button-disabled a {
+    cursor: default;
+    opacity: 1;
+    filter: none;
+    display: block;
+}
+
+
+/* Font Family Drop Down */
+.yui-toolbar-container .yui-toolbar-fontname {
+    width: 125px;
+}
+
+/* Header Drop Down */
+.yui-toolbar-container .yui-toolbar-heading {
+    width: 80px;
+}
+
+/* Font Family Menu Style - This styles the menu items and the selected menu item */
+.yui-toolbar-fontname-arial { font-family: Arial; }
+.yui-toolbar-fontname-arial-black { font-family: Arial Black; }
+.yui-toolbar-fontname-comic-sans-ms { font-family: Comic Sans MS; }
+.yui-toolbar-fontname-courier-new { font-family: Courier New; }
+.yui-toolbar-fontname-times-new-roman { font-family: Times New Roman; }
+.yui-toolbar-fontname-verdana { font-family: Verdana; }
+.yui-toolbar-fontname-impact { font-family: Impact; }
+.yui-toolbar-fontname-lucida-console { font-family: Lucida Console; }
+.yui-toolbar-fontname-tahoma { font-family: Tahoma; }
+.yui-toolbar-fontname-trebuchet-ms { font-family: Trebuchet MS; }
+
+/* Put a fake border around buttons that have focus */
+.yui-toolbar-container .yui-push-button-focus {
+    border: 1px dotted #999;
+}
+
+/* Spin Button */
+.yui-toolbar-container .yui-toolbar-spinbutton {
+    position: relative;
+    width: 35px;
+}
+
+/* Set a default width */
+.yui-toolbar-container .yui-toolbar-spinbutton .first-child {
+    width: 35px;
+}
+/* Setup the default style for the A */
+.yui-toolbar-container .yui-toolbar-spinbutton .first-child a {
+    border: none;
+    background-color: transparent;
+    background-image: none;
+    background-repeat: no-repeat;
+    width: 28px;
+    height: 20px;
+    text-align: left;
+    text-indent: 2px !important;
+    z-index: 0;
+    opacity: 1;
+    filter: none;
+}
+
+/* Setup the position and style for the up and down arrows */
+.yui-toolbar-container .yui-toolbar-spinbutton.yui-button a.up, .yui-toolbar-container .yui-toolbar-spinbutton.yui-button a.down {
+    position: absolute;
+    display: block
+    right: 0;
+    cursor: pointer;
+    text-indent: 999px;
+    overflow: hidden;
+    z-index: 1;
+    border: none;
+}
+/* Position all panels/overlays as absolute by default */
+.yui-toolbar-container .yui-overlay {
+    position: absolute;
+}
+/* Smash the default style for lists */
+.yui-toolbar-container .yui-overlay ul li {
+    float: none;
+}
+
+/* Setup the default look of a color menu and Zoom it for IE */
+.yui-toolbar-colors {
+    width: 133px;
+    zoom: 1;
+    display: none;
+    z-index: 100;
+    overflow: hidden;
+}
+
+/* Setup the :after so that compliant browsers don't loose the bounding box */
+.yui-toolbar-colors:after { display: block; clear: both; visibility: hidden; content: '.'; height: 0;}
+/* Style all of the A's so the float properly */
+.yui-toolbar-colors a {
+    height: 9px;
+    width: 9px;
+    float: left;
+    display: block;
+    overflow: hidden;
+    text-indent: 999px;
+    margin: 0;
+    cursor: pointer;
+    border: 1px solid #F6F7EE;
+}
+/* Put a little border around one that is hovered over */
+.yui-toolbar-colors a:hover {
+    border: 1px solid black;
+}
+
+/* Smash the inhertited Menu style */
+.yui-color-button-menu {
+    overflow: hidden;
+    background-color: transparent;
+}
+
+/* This is the preview box at the bottom of the menu - Zoom it for IE */
+.yui-toolbar-colors span {
+    position: relative;
+    display: block;
+    padding: 3px;
+    overflow: hidden;
+    float: left;
+    width: 100%;
+    zoom: 1;
+}
+/* Setup the :after so that compliant browsers don't loose the bounding box */
+.yui-toolbar-colors span:after { display: block; clear: both; visibility: hidden; content: '.'; height: 0;}
+
+/* This is the box with the color preview in it */
+.yui-toolbar-colors span em {
+    height: 35px;
+    width: 30px;
+    float: left;
+    display: block;
+    overflow: hidden;
+    text-indent: 999px;
+    margin: 0.75px;
+    border: 1px solid black;
+}
+
+/* The container for the name and hex code */
+.yui-toolbar-colors span strong {
+    font-weight: normal;
+    padding-left: 3px;
+    display: block;
+    font-size: 85%;
+    float: left;
+    width: 65%;
+}
+
+/* Reset the z-index of the toolbar container so that menu's appear over the iframe in IE and Safari */
+.yui-toolbar-container {
+    z-index: 1;
+}
+
+/* The div around the iFrame */
+.yui-editor-container .yui-editor-editable-container {
+    position: relative;
+    z-index: 0;
+}
+/* The disbled state of the Editor */
+.yui-editor-container .yui-editor-masked {
+    background-color: #CCC;
+}
+/* Style the eidtable iframe to hide it */
+.yui-editor-container iframe {
+    border: 0px;
+    padding: 0;
+    margin: 0;
+}
+/* Reset some padding on the editable iframes container */
+.yui-editor-container .yui-editor-editable {
+    padding: 0;
+    margin: 0;
+}
+/* Style the dom path box at the bottom of the editor */
+.yui-editor-container .dompath {
+    height: 1em;
+    padding:0.25em;
+    font-size: 85%;
+}
+
+/* Header styles for the Property Editor */
+.yui-editor-panel .hd {
+    text-align: left;
+    position: relative;
+}
+/* Setup some padding around the h3 */
+.yui-editor-panel .hd h3 {
+    font-weight: bold;
+    padding: 0.25em 0pt 0.25em 0.25em;
+}
+
+/* set it to relative so we can position the close button - Zoom it for IE */
+.yui-editor-panel .bd {
+    width: 100%;
+    zoom: 1;
+    position: relative;
+}
+/* Setup some padding for the body container - Zoom it for IE */
+.yui-editor-panel .bd div.yui-editor-body-cont {
+    padding: .25em .1em;
+    zoom: 1;
+}
+
+/* Setup the :after so that compliant browsers don't loose the bounding box */
+.yui-editor-panel .bd div.yui-editor-body-cont:after { display: block; clear: both; visibility: hidden; content: '.'; height: 0;}
+
+/* style the footer of the property editor */
+.yui-editor-panel .ft {
+    text-align: right;
+    width: 99%;
+    float: left;
+    clear: both;
+}
+
+/* Style the "tip" icon */
+.yui-editor-panel .ft span.tip {
+    display: block;
+    position: relative;
+    padding-left:23px;
+    text-align:left;
+    margin: .5em;
+    zoom: 1;
+}
+
+
+/* setup some form fields */
+.yui-editor-panel label {
+    clear: both;
+    float: left;
+    padding: 0;
+    overflow: auto; /* This fixes the caret issue in Firefox */
+    width: 100%;
+    zoom: 1;
+    text-align: left;
+}
+
+/* more form fields */
+.yui-editor-panel label strong {
+    float: left;
+    width: 6em;
+}
+
+/* The remove link in the Link Property Editor */
+.yui-editor-panel .removeLink {
+    width: 80%;
+    text-align: right;
+}
+
+/* More form styling */
+.yui-editor-panel label input {
+    margin-left: .25em;
+    float: left;
+}
+
+/* Image Padding in the Property Editor */
+.yui-editor-panel .yui-toolbar-group-padding {
+    width: 100px;
+}
+
+/* Image Border in the Property Editor */
+.yui-editor-panel .yui-toolbar-group-border {
+    width: 175px;
+    *width: 190px;
+}
+
+/* Image Text Flow in the Property Editor */
+.yui-editor-panel .yui-toolbar-group-textflow {
+    width: 150px;
+    *width: 180px;
+}
+
+/* Image Height/Width in the Property Editor */
+.yui-editor-panel .height-width {
+    float: left;
+    width: 68%;
+}
+/* Image Height/Width title */
+.yui-editor-panel .height-width h3 {
+    padding-right: 11px;
+}
+/* Image Height/Width container */
+.yui-editor-panel .height-width span {
+    font-style: italic;
+    display: block;
+    float: left;
+    overflow:auto;
+}
+/* Image Height/Width original info container */
+.yui-editor-panel .height-width span.info {
+    font-size: 70%;
+}
+
+/* Border Size/Type button widths */
+.yui-editor-panel .yui-toolbar-bordersize, .yui-editor-panel .yui-toolbar-bordertype {
+    width: 50px;
+    font-size: 75%;
+}
+
+/* Kill the separators in the Property Editor */
+.yui-editor-panel .yui-toolbar-container span.yui-toolbar-separator {
+    border: none;
+}
+
+/* Undo the floats on the a's */
+.yui-editor-panel .yui-toolbar-container div.yuimenu li.yuimenuitem a {
+    float: none;
+}
+
+/* Border Type solid */
+.yui-editor-panel .yui-toolbar-bordertype span a span.yui-toolbar-bordertype-solid {
+    border-bottom: 1px solid black;
+    text-indent: 777px;
+    overflow: hidden;
+    display: block;
+    width: 22px;
+    height: 8px;
+    position: absolute;
+    left: 2px;
+}
+/* Border Type dotted */
+.yui-editor-panel .yui-toolbar-bordertype span a span.yui-toolbar-bordertype-dotted {
+    border-bottom: 1px dotted black;
+    text-indent: 777px;
+    overflow: hidden;
+    display: block;
+    width: 22px;
+    height: 8px;
+    position: absolute;
+    left: 2px;
+}
+/* Border Type dashed */
+.yui-editor-panel .yui-toolbar-bordertype span a span.yui-toolbar-bordertype-dashed {
+    border-bottom: 1px dashed black;
+    text-indent: 777px;
+    overflow: hidden;
+    display: block;
+    width: 22px;
+    height: 8px;
+    position: absolute;
+    left: 2px;
+}
+/* Border Size 1 */
+.yui-editor-panel .yui-toolbar-bordersize span a span.yui-toolbar-bordersize-1 {
+    border-bottom: 1px solid black;
+    text-indent: 777px;
+    overflow: hidden;
+    display: block;
+    width: 22px;
+    height: 8px;
+    position: absolute;
+    left: 2px;
+}
+/* Border Size 2 */
+.yui-editor-panel .yui-toolbar-bordersize span a span.yui-toolbar-bordersize-2 {
+    border-bottom: 2px solid black;
+    text-indent: 777px;
+    overflow: hidden;
+    display: block;
+    width: 22px;
+    height: 8px;
+    position: absolute;
+    left: 2px;
+}
+/* Border Size 3 */
+.yui-editor-panel .yui-toolbar-bordersize span a span.yui-toolbar-bordersize-3 {
+    border-bottom: 3px solid black;
+    text-indent: 777px;
+    overflow: hidden;
+    display: block;
+    width: 22px;
+    height: 8px;
+    position: absolute;
+    left: 2px;
+}
+/* Border Size 4 */
+.yui-editor-panel .yui-toolbar-bordersize span a span.yui-toolbar-bordersize-4 {
+    border-bottom: 4px solid black;
+    text-indent: 777px;
+    overflow: hidden;
+    display: block;
+    width: 22px;
+    height: 8px;
+    position: absolute;
+    left: 2px;
+}
+/* Border Size 5 */
+.yui-editor-panel .yui-toolbar-bordersize span a span.yui-toolbar-bordersize-5 {
+    border-bottom: 5px solid black;
+    text-indent: 777px;
+    overflow: hidden;
+    display: block;
+    width: 22px;
+    height: 8px;
+    position: absolute;
+    left: 2px;
+}
+
+/* Border Size menu size */
+.yui-toolbar-container .yui-toolbar-bordersize-menu {
+    width: 30px;
+}
+/* Border Size menu styles */
+.yui-toolbar-bordersize-menu .yuimenuitemlabel, .yui-toolbar-bordertype-menu .yuimenuitemlabel {
+    display: block;
+    width: 50px;
+    color: #ffffff;
+    position: relative;
+    margin-left: 20px;
+    padding: 0;
+}
+/* Border Size menu styles - Checked */
+.yui-toolbar-bordersize-menu .yuimenuitemlabel .checkedindicator, .yui-toolbar-bordertype-menu .yuimenuitemlabel .checkedindicator {
+    position: absolute;
+    left: -14px;
+}
+/* Border Size menu styles - Selected */
+.yui-toolbar-bordersize-menu .yuimenuitem a.selected, .yui-toolbar-bordertype-menu .yuimenuitem a.selected {
+    color: #B3D4FF;
+}
+
+/* Border Size 0 - Menu Item */
+div.yuimenu.yui-toolbar-bordersize-menu li.yui-toolbar-bordersize-0 a {
+    color: #000;
+}
+/* Border Size 0 - Selected Menu Item */
+div.yuimenu.yui-toolbar-bordersize-menu li.yui-toolbar-bordersize-0 a.selected {
+    color: #fff;
+}
+/* Border Size 1 - Menu Item */
+div.yuimenu.yui-toolbar-bordersize-menu li.yui-toolbar-bordersize-1 a {
+    border-bottom: 1px solid black;
+}
+/* Border Size 2 - Menu Item */
+div.yuimenu.yui-toolbar-bordersize-menu li.yui-toolbar-bordersize-2 a {
+    border-bottom: 2px solid black;
+}
+/* Border Size 3 - Menu Item */
+div.yuimenu.yui-toolbar-bordersize-menu li.yui-toolbar-bordersize-3 a {
+    border-bottom: 3px solid black;
+}
+/* Border Size 4 - Menu Item */
+div.yuimenu.yui-toolbar-bordersize-menu li.yui-toolbar-bordersize-4 a {
+    border-bottom: 4px solid black;
+}
+/* Border Size 5 - Menu Item */
+div.yuimenu.yui-toolbar-bordersize-menu li.yui-toolbar-bordersize-5 a {
+    border-bottom: 5px solid black;
+}
+
+
+/* Border Type Solid - Menu Item */
+div.yuimenu.yui-toolbar-bordertype-menu li.yui-toolbar-bordertype-solid a {
+    border-bottom: 1px solid black;
+}
+/* Border Type Dashed - Menu Item */
+div.yuimenu.yui-toolbar-bordertype-menu li.yui-toolbar-bordertype-dashed a {
+    border-bottom: 1px dashed black;
+}
+/* Border Type Dotted - Menu Item */
+div.yuimenu.yui-toolbar-bordertype-menu li.yui-toolbar-bordertype-dotted a {
+    border-bottom: 1px dotted black;
+}
+/* Hidden Headers for Accessibility */
+h2.yui-editor-skipheader, h3.yui-editor-skipheader {
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    width: 0;
+    overflow: hidden;
+    position: absolute;
+}
+</textarea>
+
+<h2>Sam's skin CSS file</h2>
+
+<textarea name="code" class="CSS">
+/* Color the border of the container */
+.yui-skin-sam .yui-toolbar-container {
+    border: 1px solid #808080;
+    zoom: 1;
+}
+/* Load the background image on the Toolbars titlebar */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-titlebar {
+    background: url(../../../../assets/skins/sam/sprite.png) repeat-x 0 -200px;
+}
+
+/* Give the titlebar some color and padding */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-titlebar h2 {
+    color: #000000;
+    font-weight: bold;
+    margin: 0;
+    padding: 0.3em 1em;
+    font-size: 100%;
+    text-align: left;
+}
+
+/* Give the toolbars groups titles some color and padding */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-group h3 {
+    color: #808080;
+    font-size: 75%;
+    margin: 1em 0 0.25em;
+    padding-bottom: 0;
+    padding-left: 0.25em;
+    text-align: left;
+}
+
+/* Hide all of the sepatators borders */
+.yui-toolbar-container span.yui-toolbar-separator {
+    border: none;
+}
+
+/* Background color of the toolbar */
+.yui-skin-sam .yui-toolbar-container {
+    background-color: #F2F2F2;
+}
+
+/* Add some padding to the toolbars sub container */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-subcont {
+    padding: 0 1em 0.35em;
+}
+
+/* Remove the shadows from the menus in the toolbar - Menu.css override */
+.yui-skin-sam .yui-editor-container .visible .yui-menu-shadow, .yui-skin-sam .yui-editor-panel .visible .yui-menu-shadow {
+    display: none;
+}
+
+/* Remove padding/margin from lists */
+.yui-skin-sam .yui-editor-container ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+/* Remove padding/margin from list items */
+.yui-skin-sam .yui-editor-container ul li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Place a border around the right/left/bottom of the Editors container (Toolbar provides the top border..) */
+.yui-skin-sam .yui-editor-container .yui-editor-editable-container {
+    border: 1px solid #808080;
+    border-top: none;
+}
+
+/* Set the color and the border of the dompath container at the bottom of the editor */
+.yui-skin-sam .yui-editor-container .dompath {
+    background-color: #F2F2F2;
+    border:1px solid #808080;
+    border-top: none;
+    color: #999;
+    text-align: left;
+}
+
+/* Set the image for the collapse button on the toolbar */
+.yui-skin-sam .yui-toolbar-container .collapse {
+    background: url(../../../../assets/skins/sam/sprite.png) no-repeat 0 -400px;
+}
+/* Position the image and the container */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-titlebar span.collapse {
+    cursor: pointer;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    display: block;
+    overflow: hidden;
+    height: 15px;
+    width: 15px;
+    text-indent: 9999px;
+}
+
+/* Remove some padding on the top of the select lists */
+.yui-toolbar-container .yui-toolbar-select .first-child a {
+    padding-top: 0;
+}
+
+/* Set the default styles for the buttons */
+.yui-skin-sam .yui-toolbar-container .yui-button {
+    background: url(../../../../assets/skins/sam/sprite.png) repeat-x 0 0;
+    border: 1px solid #808080;
+    cursor: pointer;
+    height: 22px;
+    margin: 0;
+    overflow: hidden;
+    /*padding: 2px 5px;*/
+    position: relative;
+    display: block;
+}
+/* Handle the hover state of the buttons */
+.yui-skin-sam .yui-toolbar-container .yui-button-hover {
+    background:url(../../../../assets/skins/sam/sprite.png) repeat-x 0 -1300px;
+    border-color: #808080;
+}
+
+/* Handle the selected state of the buttons */
+.yui-skin-sam .yui-toolbar-container .yui-button-selected {
+    background:url(../../../../assets/skins/sam/sprite.png) no-repeat 0 -1700px;
+    border-color: #808080;
+}
+
+
+/* Handle the icon placeholder for the buttons */
+.yui-skin-sam .yui-toolbar-container .yui-button span.yui-toolbar-icon {
+    display: block;
+    position: absolute;
+    top: 2px;
+    height: 18px;
+    width: 18px;
+    overflow: hidden;
+    background-image: url( editor-sprite.gif );
+    background-repeat: no-repeat;
+    background-position: 30px 30px;
+}
+
+/* Swap out the image to an active image */
+.yui-skin-sam .yui-toolbar-container .yui-button-selected span.yui-toolbar-icon, .yui-skin-sam .yui-toolbar-container .yui-button-hover span.yui-toolbar-icon {
+    background-image: url(editor-sprite-active.gif);
+}
+
+.yui-skin-sam .visible .yuimenuitemlabel {
+    text-align:left;
+}
+
+/* Set the background color of all menu containers */
+.yui-skin-sam .yui-button-menu {
+    background-color: #ffffff;
+}
+
+/* Set the background of all menu items that are selected */
+.yui-skin-sam div.yuimenu li.selected {
+    background-color: #B3D4FF;
+}
+/* Set the color of the hrefs in a selected menu item */
+.yui-skin-sam div.yuimenu li.selected a.selected {
+    color: #000;
+}
+
+/* Setting the background position of the sprite */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-bold span.yui-toolbar-icon {
+    background-position: 0 0;
+    left: 5px;
+}
+/* Setting the background position of the sprite */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-italic span.yui-toolbar-icon {
+    background-position: 0 -36px;
+    left: 5px;
+}
+/* Setting the background position of the sprite */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-underline span.yui-toolbar-icon {
+    background-position: 0 -72px;
+    left: 5px;
+}
+/* Setting the background position of the sprite */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-subscript span.yui-toolbar-icon {
+    background-position: 0 -180px;
+    left: 5px;
+}
+/* Setting the background position of the sprite */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-superscript span.yui-toolbar-icon {
+    background-position: 0 -144px;
+    left: 5px;
+}
+/* Setting the background position of the sprite */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-forecolor span.yui-toolbar-icon {
+    background-position: 0 -216px;
+    left: 5px;
+}
+/* Setting the background position of the sprite */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-backcolor span.yui-toolbar-icon {
+    background-position: 0 -288px;
+    left: 5px;
+}
+/* Setting the background position of the sprite */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-justifyleft span.yui-toolbar-icon {
+    background-position: 0 -324px;
+    left: 5px;
+}
+/* Setting the background position of the sprite */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-justifycenter span.yui-toolbar-icon {
+    background-position: 0 -360px;
+    left: 5px;
+}
+/* Setting the background position of the sprite */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-justifyright span.yui-toolbar-icon {
+    background-position: 0 -396px;
+    left: 5px;
+}
+/* Setting the background position of the sprite */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-justifyfull span.yui-toolbar-icon {
+    background-position: 0 -432px;
+    left: 5px;
+}
+/* Setting the background position of the sprite */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-indent span.yui-toolbar-icon {
+    background-position: 0 -720px;
+    left: 5px;
+}
+/* Setting the background position of the sprite */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-outdent span.yui-toolbar-icon {
+    background-position: 0 -684px;
+    left: 5px;
+}
+/* Setting the background position of the sprite */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-createlink span.yui-toolbar-icon {
+    background-position: 0 -792px;
+    left: 5px;
+}
+/* Setting the background position of the sprite */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-insertimage span.yui-toolbar-icon {
+    background-position: 1px -756px;
+    left: 5px;
+}
+/* Setting the background position of the sprite */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-left span.yui-toolbar-icon {
+    background-position: 0 -972px;
+    left: 5px;
+}
+/* Setting the background position of the sprite */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-right span.yui-toolbar-icon {
+    background-position: 0 -936px;
+    left: 5px;
+}
+/* Setting the background position of the sprite */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-inline span.yui-toolbar-icon {
+    background-position: 0 -900px;
+    left: 5px;
+}
+/* Setting the background position of the sprite */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-block span.yui-toolbar-icon {
+    background-position: 0 -864px;
+    left: 5px;
+}
+/* Setting the background position of the sprite */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-bordercolor span.yui-toolbar-icon {
+    background-position: 0 -252px;
+    left: 5px;
+}
+/* Setting the background position of the sprite */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-removeformat span.yui-toolbar-icon {
+    background-position: 0 -1080px;
+    left: 5px;
+}
+/* Setting the background position of the sprite */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-hiddenelements span.yui-toolbar-icon {
+    background-position: 0 -1044px;
+    left: 5px;
+}
+/* Setting the background position of the sprite */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-insertunorderedlist span.yui-toolbar-icon {
+    background-position: 0 -468px;
+    left: 5px;
+}
+/* Setting the background position of the sprite */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-insertorderedlist span.yui-toolbar-icon {
+    background-position: 0 -504px;
+    left: 5px;
+}
+/* Remove the right border on these icons so they appear to be in a "group" together */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-fontname,
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-bold,
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-italic,
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-subscript,
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-forecolor,
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-removeformat,
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-justifyleft,
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-justifycenter,
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-justifyright,
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-indent,
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-outdent,
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-insertunorderedlist,
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-createlink,
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-left,
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-inline,
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-block,
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-bordersize,
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-bordertype
+{
+    border-right: none;
+}
+/* Set the width of the href to be very large so we can style it and hide the text */
+.yui-skin-sam .yui-toolbar-container .yui-button .first-child, .yui-skin-sam .yui-toolbar-container .yui-button .first-child a {
+    width: 500px;
+    position: absolute;
+    _position: static;
+    top: -1px;
+}
+/* Reset the position of the first child so the iframe in IE will not move above the menu */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-select .first-child, .yui-skin-sam .yui-toolbar-container .yui-toolbar-spinbutton .first-child {
+    position: static;
+}
+/* Set the height of the first-child element so we get the buttons area back */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-select .first-child a, .yui-skin-sam .yui-toolbar-container .yui-toolbar-spinbutton .first-child a {
+    height: 19px;
+    left: 0;
+}
+
+
+/* Spin Buttons - Remove the icon holder, they don't need it */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-spinbutton span.yui-toolbar-icon {
+    display: none;
+}
+
+/* Spin Buttons - The up arrow */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-spinbutton.yui-button a.up {
+    top: 0;
+    right: 0;
+    background-image: url( editor-sprite.gif );
+    background-position: 0 -1221px;
+    overflow: hidden;
+    height: 8px;
+    width: 8px;
+    min-height: 0;
+}
+/* Spin Buttons - The down arrow */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-spinbutton.yui-button a.down {
+    bottom: 0;
+    right: 0;
+    background-image: url( editor-sprite.gif );
+    background-position: 0 -1187px;
+    overflow: hidden;
+    height: 8px;
+    width: 8px;
+    min-height: 0;
+}
+/* Set the icon of the select menu for the drop down arrow */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-select span.yui-toolbar-icon {
+    background-image: url( editor-sprite.gif );
+    background-position: 0px -1144px;
+    overflow: hidden;
+    right: -2px;
+    top: 0px;
+    height: 20px;
+}
+/* Fix the color menu background if it's inside a Property Editor */
+.yui-skin-sam .yui-editor-panel .yui-color-button-menu .bd {
+    background-color: transparent;
+    border: none;
+    width: 135px;
+}
+
+/* Place a border around the color menu */
+.yui-skin-sam .yui-color-button-menu .yui-toolbar-colors {
+    border: 1px solid #808080;
+}
+/* Color the input yellow if it has the warning class applied */
+.yui-editor-panel label input.warning {
+    background-color: #FFEE69;
+}
+
+/* Property Editor Panel styles */
+.yui-skin-sam .yui-editor-panel .yui-panel {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background-color: transparent;
+    overflow: visible;
+}
+
+/* Image Properties - Border container size */
+.yui-skin-sam .yui-editor-panel .yui-toolbar-group-border {
+    width: 190px;
+    *width: 195px;
+}
+/* Image Properties - Text flow container size */
+.yui-skin-sam .yui-editor-panel .yui-toolbar-group-textflow {
+    width: 185px;
+}
+
+/* Margins on the header of the Property Editor */
+.yui-skin-sam .yui-editor-panel .hd {
+    margin: 13px 0 0;
+    padding: 0;
+    border: none;
+}
+/* Setup the background image on the title bar
+    We are styling the h3 instead if the div so we can make room
+    for the "knob" that floats on the top of the window.
+*/
+.yui-skin-sam .yui-editor-panel .hd h3 {
+    color: #000;
+    border: 1px solid #808080;
+    background: url(../../../../assets/skins/sam/sprite.png) repeat-x 0 -200px;
+    width: 99%;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    font-size: 93%;
+    text-indent: 5px;
+    height: 20px;
+}
+/* Style the body of the Property Editor */
+.yui-skin-sam .yui-editor-panel .bd {
+    background-color: #F2F2F2;
+    border-left: 1px solid #808080;
+    border-right: 1px solid #808080;
+    width: 99%;
+    margin: 0;
+    *margin-left: -1px;
+    padding: 0;
+    overflow: visible;
+}
+/* Remove the padding/margin on lists in the Property Editor */
+.yui-skin-sam .yui-editor-panel ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Remove the padding/margin on list items in the Property Editor */
+.yui-skin-sam .yui-editor-panel ul li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Form styling */
+.yui-skin-sam .yui-editor-panel label strong {
+    font-weight: normal;
+    font-size: 93%;
+}
+
+/* Remove the background image set in Panel.css */
+.yui-skin-sam .yui-editor-panel .hd {
+    background: none;
+}
+
+/* Give the footer som color and a border */
+.yui-skin-sam .yui-editor-panel .ft {
+    background-color: #F2F2F2;
+    border: 1px solid #808080;
+    border-top: none;
+    padding: 0;
+    margin: 0;
+    z-index: -1;
+}
+
+/* Style the close button in the Property Editor */
+.yui-skin-sam .yui-editor-panel .hd span.close {
+    background:url(../../../../assets/skins/sam/sprite.png) no-repeat 0 -300px;
+    cursor:pointer;
+    display:block;
+    height:16px;
+    overflow:hidden;
+    position:absolute;
+    right:5px;
+    text-indent:500px;
+    top:2px;
+    width:26px;
+}
+
+/* Setup the icon for a tip */
+.yui-skin-sam .yui-editor-panel .ft span.tip span.icon {
+    background-image: url( editor-sprite.gif );
+    background-position: 0 -1260px;
+    display: block;
+    height: 20px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 20px;
+}
+/* Setup the background image for an info icon */
+.yui-skin-sam .yui-editor-panel .ft span.tip span.icon-info {
+    background-position: 2px -1260px;
+}
+/* Setup the background image for a warning icon */
+.yui-skin-sam .yui-editor-panel .ft span.tip span.icon-warn {
+    background-position: 2px -1296px;
+}
+
+/* Handle the knob that floats on top of the panel */
+.yui-skin-sam .yui-editor-panel .hd span.knob {
+    position: absolute;
+    height: 10px;
+    width: 28px;
+    top: -10px;
+    left: 25px;
+    text-indent: 9999px;
+    overflow: hidden;
+    background-image: url( editor-knob.gif );
+    background-repeat: no-repeat;
+}
+/* Reset some styles from the editor toolbar, when a toolbar is inside the Property Editor */
+.yui-skin-sam .yui-editor-panel .yui-toolbar-container {
+    float: left;
+    width: 100%;
+    background-image: none;
+    border: none;
+}
+/* Reset styles for menu buttons inside the Property Editor */
+.yui-skin-sam .yui-editor-panel .yui-toolbar-container .bd {
+    background-color: #ffffff;
+    border-bottom: 1px solid #808080;
+}
+
+/* Style the titles of the toolbar groups */
+.yui-skin-sam .yui-editor-panel .yui-toolbar-group h3 {
+    color: #000;
+    float: left;
+    padding-top: 5px;
+}
+
+/* This image is the one used to place the blankimage placeholder into the editor when you click on Insert an Image */
+.yui-editor-blankimage {
+    background-image: url( blankimage.png );
+}
+</textarea>
+
+				</div>
+				<div class="yui-u">
+					
+				
+					<div id="examples">
+						<h3 class='firstContent'>Rich Text Editor (beta) Examples:</h3>
+	
+						<div id="exampleToc">
+							<ul>
+								<li><a href='../editor/flickr_editor.html'>Flickr Image Search</a></li><li><a href='../editor/cal_editor.html'>Calendar Plugin</a></li><li><a href='../editor/icon_editor.html'>Icon Insertion</a></li><li><a href='../editor/switch_editor.html'>Plain Text Switcher</a></li><li><a href='../editor/post_editor.html'>Editor Data Post with Connection Manager</a></li><li class='selected'><a href='../editor/skinning_editor.html'>Skinning the Editor</a></li>							</ul>
+						</div>
+					</div>
+					
+					<div id="module">
+						<h3>More Rich Text Editor (beta) Resources:</h3>
+						<ul>
+							<li><a href="http://developer.yahoo.com/yui/editor/">User's Guide</a> (external)</li>
+							<li><a href="../../docs/module_editor.html">API Documentation</a></li>
+							<li><a href="http://yuiblog.com/assets/pdf/cheatsheets/editor.pdf">Cheat Sheet PDF</a> (external)</li>
+						</ul>
+					</div>
+					
+	
+			  </div>
+		</div>
+		
+		</div>
+	</div>
+
+
+<div class="yui-b" id="tocWrapper">
+<!-- TABLE OF CONTENTS -->
+<div id="toc">
+	
+<ul>
+<li class="sect first">Yahoo! UI Library</li><li class="item"><a title="The Yahoo! User Interface Library (YUI)" href="http://developer.yahoo.com/yui/">Home (external)</a></li><li class="item"><a title="The Yahoo! User Interface Blog" href="http://yuiblog.com">YUIBlog (external)</a></li><li class="item"><a title="The Yahoo! Group YDN-JavaScript hosts the YUI community forum" href="http://tech.groups.yahoo.com/group/ydn-javascript/">YUI Discussion Forum (external)</a></li><li class="item"><a title="The YUI Library can be downloaded from SourceForge" href="http://sourceforge.net/projects/yui/">YUI on Sourceforge (external)</a></li><li class="item"><a title="Instantly searchable API documentation for the entire YUI library." href="../../docs/index.html">API Documentation</a></li><li class="item"><a title="Examples of every YUI utility and control in action" href="../../examples/">Functional Examples</a></li><li class="item"><a title="Videos and podcasts from the YUI Team and from the Yahoo! frontend engineering community." href="http://developer.yahoo.com/yui/theater/">YUI Theater (external)</a></li><li class="item"><a title="YUI is free and open, offered under a BSD license." href="http://developer.yahoo.com/yui/license.html">YUI License (external)</a></li><li class="sect">YUI Functional Examples</li><li class="item"><a title="The YUI Animation Utility - Functional Examples" href="../../examples/animation/index.html">Animation</a></li><li class="item"><a title="The YUI AutoComplete Control - Functional Examples" href="../../examples/autocomplete/index.html">AutoComplete</a></li><li class="item"><a title="The YUI Browser History Manager - Functional Examples" href="../../examples/history/index.html">Browser History Manager (beta)</a></li><li class="item"><a title="The YUI Button Control - Functional Examples" href="../../examples/button/index.html">Button (beta)</a></li><li class="item"><a title="The YUI Calendar Control - Functional Examples" href="../../examples/calendar/index.html">Calendar</a></li><li class="item"><a title="The YUI Color Picker Control - Functional Examples" href="../../examples/colorpicker/index.html">Color Picker (beta)</a></li><li class="item"><a title="The YUI Connection Manager (AJAX) - Functional Examples" href="../../examples/connection/index.html">Connection Manager</a></li><li class="item"><a title="The YUI Container Family (Module, Overlay, Tooltip, Panel, Dialog, SimpleDialog) - Functional Examples" href="../../examples/container/index.html">Container</a></li><li class="item"><a title="The YUI DataTable Control - Functional Examples" href="../../examples/datatable/index.html">DataTable (beta)</a></li><li class="item"><a title="The YUI Dom Collection - Functional Examples" href="../../examples/dom/index.html">Dom</a></li><li class="item"><a title="The YUI Drag &amp; Drop Utility - Functional Examples" href="../../examples/dragdrop/index.html">Drag &amp; Drop</a></li><li class="item"><a title="The YUI Event Utility - Functional Examples" href="../../examples/event/index.html">Event</a></li><li class="item"><a title="The YUI ImageLoader Utility - Functional Examples" href="../../examples/imageloader/index.html">ImageLoader (experimental)</a></li><li class="item"><a title="The YUI Logger Control - Functional Examples" href="../../examples/logger/index.html">Logger</a></li><li class="item"><a title="The YUI Menu Control - Functional Examples" href="../../examples/menu/index.html">Menu</a></li><li class="selected "><a title="The YUI Rich Text Editor - Functional Examples" href="../../examples/editor/index.html">Rich Text Editor (beta)</a></li><li class="item"><a title="The YUI Slider Control - Functional Examples" href="../../examples/slider/index.html">Slider</a></li><li class="item"><a title="The YUI TabView Control - Functional Examples" href="../../examples/tabview/index.html">TabView</a></li><li class="item"><a title="The YUI TreeView Control - Functional Examples" href="../../examples/treeview/index.html">TreeView</a></li><li class="item"><a title="The YUI Loader Utility - Functional Examples" href="../../examples/yuiloader/index.html">YUI Loader (beta)</a></li><li class="item"><a title="The YUI Test Utility - Functional Examples" href="../../examples/yuitest/index.html">YUI Test (beta)</a></li><li class="item"><a title="YUI Reset CSS - Functional Examples" href="../../examples/reset/index.html">Reset CSS</a></li><li class="item"><a title="YUI Base CSS - Functional Examples" href="../../examples/base/index.html">Base CSS</a></li><li class="item"><a title="YUI Fonts CSS - Functional Examples" href="../../examples/fonts/index.html">Fonts CSS</a></li><li class="item"><a title="YUI Grids CSS - Functional Examples" href="../../examples/grids/index.html">Grids CSS</a></li><li class="sect">YUI Articles on the YUI Website</li><li class="item"><a title="Answers to Frequently Asked Questions about the YUI Library" href="http://developer.yahoo.com/yui/articles/faq/">YUI FAQ (external)</a></li><li class="item"><a title="Yahoo!'s philosophy of Graded Browser Support" href="http://developer.yahoo.com/yui/articles/gbs/">Graded Browser Support (external)</a></li><li class="item"><a title="Reporting Bugs and Making Feature Requests for YUI Components" href="http://developer.yahoo.com/yui/articles/reportingbugs/">Bug Reports/Feature Requests (external)</a></li><li class="item"><a title="Serve YUI source files from Yahoo! -- free, fast, and simple" href="http://developer.yahoo.com/yui/articles/hosting/">Serving YUI Files from Yahoo! (external)</a></li><li class="item"><a title="Best practices for working with web services while protecting user privacy" href="http://developer.yahoo.com/security/">Security Best Practices (external)</a></li></ul>
+</div>
+</div>
+
+	<div id="ft">
+        <p class="first">Copyright &copy; 2007 Yahoo! Inc. All rights reserved.</p>
+        <p><a href="http://privacy.yahoo.com/privacy/us/devel/index.html">Privacy Policy</a> - 
+            <a href="http://docs.yahoo.com/info/terms/">Terms of Service</a> - 
+            <a href="http://docs.yahoo.com/info/copyright/copyright.html">Copyright Policy</a> - 
+            <a href="http://careers.yahoo.com/">Job Openings</a></p>
+	</div>
+</div>
+</div>
+<script src="../../assets/dpSyntaxHighlighter.js"></script>
+<script language="javascript"> 
+dp.SyntaxHighlighter.HighlightAll('code'); 
+</script>
+
+<script src='../../assets/YUIexamples.js'></script>
+
+
+</body>
+</html>

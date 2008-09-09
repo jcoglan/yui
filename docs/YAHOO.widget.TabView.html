@@ -3,26 +3,33 @@
 <head>
 	<title>API: tabview  YAHOO.widget.TabView   (YUI Library)</title>
 	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
 </head>
 
 <body id="yahoo-com">
+
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
         <h1>Yahoo! UI Library</h1>
-        <h3>tabview&nbsp; <span class="subtitle">2.2.2</span></h3>
+        <h3>tabview&nbsp; <span class="subtitle">2.3.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_tabview.html">tabview</a>
                  &gt; YAHOO.widget.TabView 
                 
             </p>
+
 	</div>
 
 	<div id="bd">
 		<div id="yui-main">
 			<div class="yui-b">
-
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> Show Private</span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> Show Protected</span>
+            </form>
 
                     <h2>
                         
@@ -93,6 +100,7 @@ initial attributes.  Ignored if first arg is attributes object.
                         <div class="section field details">
                             <h3><a name="field_detail">Properties</a></h3>
                             <div class="content">
+                                    <div class="private">
                                     <h4><a name="_contentParent">_contentParent</a>
                                         <code>- private HTMLElement</code>
                                     </h4>
@@ -106,6 +114,8 @@ initial attributes.  Ignored if first arg is attributes object.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="_tabParent">_tabParent</a>
                                         <code>- private HTMLElement</code>
                                     </h4>
@@ -119,6 +129,8 @@ initial attributes.  Ignored if first arg is attributes object.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="CLASSNAME">CLASSNAME</a>
                                         <code>- object</code>
                                     </h4>
@@ -135,6 +147,8 @@ initial attributes.  Ignored if first arg is attributes object.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="CONTENT_PARENT_CLASSNAME">CONTENT_PARENT_CLASSNAME</a>
                                         <code>- object</code>
                                     </h4>
@@ -155,6 +169,8 @@ building from existing markup.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="TAB_PARENT_CLASSNAME">TAB_PARENT_CLASSNAME</a>
                                         <code>- object</code>
                                     </h4>
@@ -175,6 +191,7 @@ from existing markup.
 
 
                                     <hr />
+                                    </div>
 
 
                             </div>
@@ -185,7 +202,7 @@ from existing markup.
                             <div class="content">
                                 <code>
                                     
-                                        <a href="YAHOO.util.Element.html#DOM_EVENTS">DOM_EVENTS</a>
+                                        <a class="" href="YAHOO.util.Element.html#DOM_EVENTS">DOM_EVENTS</a>
                                 </code>
                             </div>
                         </div>
@@ -194,7 +211,7 @@ from existing markup.
                             <div class="content">
                                 <code>
                                     
-                                        <a href="YAHOO.util.AttributeProvider.html#_configs">_configs</a>
+                                        <a class="private" href="YAHOO.util.AttributeProvider.html#_configs">_configs</a>
                                 </code>
                             </div>
                         </div>
@@ -203,8 +220,8 @@ from existing markup.
                             <div class="content">
                                 <code>
                                     
-                                        <a href="YAHOO.util.EventProvider.html#__yui_events">__yui_events</a>,
-                                        <a href="YAHOO.util.EventProvider.html#__yui_subscribers">__yui_subscribers</a>
+                                        <a class="private" href="YAHOO.util.EventProvider.html#__yui_events">__yui_events</a><span class="private">,</span>
+                                        <a class="private" href="YAHOO.util.EventProvider.html#__yui_subscribers">__yui_subscribers</a>
                                 </code>
                             </div>
                         </div>
@@ -212,6 +229,7 @@ from existing markup.
                         <div class="section method details">
                             <h3><a name="methodDetails">Methods</a></h3>
                             <div class="content">
+                                    <div class="">
                                     <h4>
                                         <a name="addTab">addTab</a></h4>
                                     <div class="detail">
@@ -265,6 +283,8 @@ If no index is specified, the tab is added to the end of the tab list.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="contentTransition">contentTransition</a></h4>
                                     <div class="detail">
@@ -297,50 +317,8 @@ If no index is specified, the tab is added to the end of the tab list.
 
                                     </div>
                                     <hr />
-                                    <h4>
-                                        <a name="createTabs">createTabs</a></h4>
-                                    <div class="detail">
-                                        <code>
-                                         private 
-                                        
-                                        
-                                        void
-                                            <strong>createTabs</strong>
-                                           (
-                                                
-                                                        
-                                                         elements
-                                                    
-                                                
-                                            )
-                                        </code>
-                                        
-                                        <div class="description">
-                                            Creates Tab instances from a collection of HTMLElements.
-                                        </div>
-
-                                        <div class="description">
-
-                                                <dl>
-                                                    <dt>Parameters:</dt>
-                                                        <dd>
-                                                            <code>elements &lt;Array|HTMLCollection&gt;</code>
-                                                             The elements to use for Tabs.
-                                                        </dd>
-                                                </dl>
-
-                                                <dl>
-                                                    <dt>Returns:
-                                                    <code>
-                                                        void
-                                                    </code></dt>
-                                                    <dd>void</dd>
-                                                </dl>
-             
-                                        </div>
-
                                     </div>
-                                    <hr />
+                                    <div class="">
                                     <h4>
                                         <a name="DOMEventHandler">DOMEventHandler</a></h4>
                                     <div class="detail">
@@ -385,6 +363,8 @@ If no index is specified, the tab is added to the end of the tab list.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getTab">getTab</a></h4>
                                     <div class="detail">
@@ -429,6 +409,8 @@ If no index is specified, the tab is added to the end of the tab list.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getTabIndex">getTabIndex</a></h4>
                                     <div class="detail">
@@ -473,6 +455,8 @@ If no index is specified, the tab is added to the end of the tab list.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="initAttributes">initAttributes</a></h4>
                                     <div class="detail">
@@ -517,6 +501,42 @@ If no index is specified, the tab is added to the end of the tab list.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4>
+                                        <a name="initTabs">initTabs</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        void
+                                            <strong>initTabs</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Creates Tab instances from a collection of HTMLElements.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd>void</dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="removeTab">removeTab</a></h4>
                                     <div class="detail">
@@ -561,6 +581,8 @@ If no index is specified, the tab is added to the end of the tab list.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="toString">toString</a></h4>
                                     <div class="detail">
@@ -593,6 +615,7 @@ If no index is specified, the tab is added to the end of the tab list.
 
                                     </div>
                                     <hr />
+                                    </div>
                             </div>
                         </div>
 
@@ -600,27 +623,7 @@ If no index is specified, the tab is added to the end of the tab list.
                                 <h4>Methods inherited from <a href="YAHOO.util.Element.html">YAHOO.util.Element</a>:</h4>
                                 <div class="content">
                                     <code>
-                                        
-                                            <a href="YAHOO.util.Element.html#_registerHTMLAttr">_registerHTMLAttr</a>,
-                                            <a href="YAHOO.util.Element.html#addClass">addClass</a>,
-                                            <a href="YAHOO.util.Element.html#addListener">addListener</a>,
-                                            <a href="YAHOO.util.Element.html#appendChild">appendChild</a>,
-                                            <a href="YAHOO.util.Element.html#appendTo">appendTo</a>,
-                                            <a href="YAHOO.util.Element.html#fireQueue">fireQueue</a>,
-                                            <a href="YAHOO.util.Element.html#getElementsByClassName">getElementsByClassName</a>,
-                                            <a href="YAHOO.util.Element.html#getElementsByTagName">getElementsByTagName</a>,
-                                            <a href="YAHOO.util.Element.html#getStyle">getStyle</a>,
-                                            <a href="YAHOO.util.Element.html#hasChildNodes">hasChildNodes</a>,
-                                            <a href="YAHOO.util.Element.html#hasClass">hasClass</a>,
-                                            <a href="YAHOO.util.Element.html#initAttributes">initAttributes</a>,
-                                            <a href="YAHOO.util.Element.html#insertBefore">insertBefore</a>,
-                                            <a href="YAHOO.util.Element.html#on">on</a>,
-                                            <a href="YAHOO.util.Element.html#removeChild">removeChild</a>,
-                                            <a href="YAHOO.util.Element.html#removeClass">removeClass</a>,
-                                            <a href="YAHOO.util.Element.html#removeListener">removeListener</a>,
-                                            <a href="YAHOO.util.Element.html#replaceChild">replaceChild</a>,
-                                            <a href="YAHOO.util.Element.html#replaceClass">replaceClass</a>,
-                                            <a href="YAHOO.util.Element.html#setStyle">setStyle</a>
+                                            <a class="private" href="YAHOO.util.Element.html#_registerHTMLAttr">_registerHTMLAttr</a><span class="private">,</span>                                            <a class="" href="YAHOO.util.Element.html#addClass">addClass</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#addListener">addListener</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#appendChild">appendChild</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#appendTo">appendTo</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#fireQueue">fireQueue</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#getElementsByClassName">getElementsByClassName</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#getElementsByTagName">getElementsByTagName</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#getStyle">getStyle</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#hasChildNodes">hasChildNodes</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#hasClass">hasClass</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#initAttributes">initAttributes</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#insertBefore">insertBefore</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#on">on</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#removeChild">removeChild</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#removeClass">removeClass</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#removeListener">removeListener</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#replaceChild">replaceChild</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#replaceClass">replaceClass</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#setStyle">setStyle</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#subscribe">subscribe</a>
                                     </code>
                                 </div>
                             </div>
@@ -628,20 +631,7 @@ If no index is specified, the tab is added to the end of the tab list.
                                 <h4>Methods inherited from <a href="YAHOO.util.AttributeProvider.html">YAHOO.util.AttributeProvider</a>:</h4>
                                 <div class="content">
                                     <code>
-                                        
-                                            <a href="YAHOO.util.AttributeProvider.html#configureAttribute">configureAttribute</a>,
-                                            <a href="YAHOO.util.AttributeProvider.html#fireBeforeChangeEvent">fireBeforeChangeEvent</a>,
-                                            <a href="YAHOO.util.AttributeProvider.html#fireChangeEvent">fireChangeEvent</a>,
-                                            <a href="YAHOO.util.AttributeProvider.html#get">get</a>,
-                                            <a href="YAHOO.util.AttributeProvider.html#getAttributeConfig">getAttributeConfig</a>,
-                                            <a href="YAHOO.util.AttributeProvider.html#getAttributeKeys">getAttributeKeys</a>,
-                                            <a href="YAHOO.util.AttributeProvider.html#refresh">refresh</a>,
-                                            <a href="YAHOO.util.AttributeProvider.html#register">register</a>,
-                                            <a href="YAHOO.util.AttributeProvider.html#resetAttributeConfig">resetAttributeConfig</a>,
-                                            <a href="YAHOO.util.AttributeProvider.html#resetValue">resetValue</a>,
-                                            <a href="YAHOO.util.AttributeProvider.html#set">set</a>,
-                                            <a href="YAHOO.util.AttributeProvider.html#setAttributeConfig">setAttributeConfig</a>,
-                                            <a href="YAHOO.util.AttributeProvider.html#setAttributes">setAttributes</a>
+                                            <a class="" href="YAHOO.util.AttributeProvider.html#configureAttribute">configureAttribute</a><span class="">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#fireBeforeChangeEvent">fireBeforeChangeEvent</a><span class="">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#fireChangeEvent">fireChangeEvent</a><span class="">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#get">get</a><span class="">,</span>                                            <a class="private" href="YAHOO.util.AttributeProvider.html#getAttributeConfig">getAttributeConfig</a><span class="private">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#getAttributeKeys">getAttributeKeys</a><span class="">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#refresh">refresh</a><span class="">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#register">register</a><span class="">,</span>                                            <a class="private" href="YAHOO.util.AttributeProvider.html#resetAttributeConfig">resetAttributeConfig</a><span class="private">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#resetValue">resetValue</a><span class="">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#set">set</a><span class="">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#setAttributeConfig">setAttributeConfig</a><span class="">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#setAttributes">setAttributes</a>
                                     </code>
                                 </div>
                             </div>
@@ -649,20 +639,15 @@ If no index is specified, the tab is added to the end of the tab list.
                                 <h4>Methods inherited from <a href="YAHOO.util.EventProvider.html">YAHOO.util.EventProvider</a>:</h4>
                                 <div class="content">
                                     <code>
-                                        
-                                            <a href="YAHOO.util.EventProvider.html#createEvent">createEvent</a>,
-                                            <a href="YAHOO.util.EventProvider.html#fireEvent">fireEvent</a>,
-                                            <a href="YAHOO.util.EventProvider.html#hasEvent">hasEvent</a>,
-                                            <a href="YAHOO.util.EventProvider.html#subscribe">subscribe</a>,
-                                            <a href="YAHOO.util.EventProvider.html#unsubscribe">unsubscribe</a>,
-                                            <a href="YAHOO.util.EventProvider.html#unsubscribeAll">unsubscribeAll</a>
+                                            <a class="" href="YAHOO.util.EventProvider.html#createEvent">createEvent</a><span class="">,</span>                                            <a class="" href="YAHOO.util.EventProvider.html#fireEvent">fireEvent</a><span class="">,</span>                                            <a class="" href="YAHOO.util.EventProvider.html#hasEvent">hasEvent</a><span class="">,</span>                                            <a class="" href="YAHOO.util.EventProvider.html#subscribe">subscribe</a><span class="">,</span>                                            <a class="" href="YAHOO.util.EventProvider.html#unsubscribe">unsubscribe</a><span class="">,</span>                                            <a class="" href="YAHOO.util.EventProvider.html#unsubscribeAll">unsubscribeAll</a>
                                     </code>
                                 </div>
                             </div>
 
                         <div class="section method details">
-                            <h3><a name="methodDetails">Events</a></h3>
+                            <h3><a name="eventDetails">Events</a></h3>
                             <div class="content">
+                                    <div class="">
                                     <h4>
                                         <a name="activeTabChange">activeTabChange</a></h4>
                                     <div class="detail">
@@ -700,6 +685,8 @@ myTabs.addListener('activeTabChange', handler);</code></p>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="beforeActiveTabChange">beforeActiveTabChange</a></h4>
                                     <div class="detail">
@@ -739,6 +726,8 @@ myTabs.addListener('beforeActiveTabChange', handler);</code></p>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="beforeOrientationChange">beforeOrientationChange</a></h4>
                                     <div class="detail">
@@ -778,6 +767,8 @@ myTabs.addListener('beforeOrientationChange', handler);</code></p>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="orientationChange">orientationChange</a></h4>
                                     <div class="detail">
@@ -815,6 +806,7 @@ myTabs.addListener('orientationChange', handler);</code></p>
 
                                     </div>
                                     <hr />
+                                    </div>
                             </div>
                         </div>
 
@@ -823,9 +815,7 @@ myTabs.addListener('orientationChange', handler);</code></p>
                             <h4>Events inherited from <a href="YAHOO.util.Element.html">YAHOO.util.Element</a>:</h4>
                             <div class="content">
                                 <code>
-                                    
-                                        <a href="YAHOO.util.Element.html#available">available</a>,
-                                        <a href="YAHOO.util.Element.html#contentReady">contentReady</a>
+                                        <a class="" href="YAHOO.util.Element.html#available">available</a><span class="">,</span>                                        <a class="" href="YAHOO.util.Element.html#contentReady">contentReady</a><span class="">,</span>
                                 </code>
                             </div>
                         </div>
@@ -833,6 +823,7 @@ myTabs.addListener('orientationChange', handler);</code></p>
                         <div class="section field details">
                             <h3><a name="field_detail">Configuration Attributes</a></h3>
                             <div class="content">
+                                    <div class="">
                                     <h4><a name="activeIndex">activeIndex</a>
                                         <code>- Int</code>
                                     </h4>
@@ -845,6 +836,8 @@ myTabs.addListener('orientationChange', handler);</code></p>
      
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="activeTab">activeTab</a>
                                         <code>- YAHOO.widget.Tab</code>
                                     </h4>
@@ -857,6 +850,8 @@ myTabs.addListener('orientationChange', handler);</code></p>
      
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="orientation">orientation</a>
                                         <code>- String</code>
                                     </h4>
@@ -872,6 +867,8 @@ myTabs.addListener('orientationChange', handler);</code></p>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="tabs">tabs</a>
                                         <code>- Array</code>
                                     </h4>
@@ -884,6 +881,7 @@ myTabs.addListener('orientationChange', handler);</code></p>
      
 
                                     <hr />
+                                    </div>        
 
                             </div>
                         </div>
@@ -892,8 +890,7 @@ myTabs.addListener('orientationChange', handler);</code></p>
                             <h4>Configuration attributes inherited from <a href="YAHOO.util.Element.html">YAHOO.util.Element</a>:</h4>
                             <div class="content">
                                 <code>
-                                    
-                                        <a href="YAHOO.util.Element.html#element">element</a>
+                                        <a class="" href="YAHOO.util.Element.html#element">element</a><span class="">,</span>
                                 </code>
                             </div>
                         </div>
@@ -915,6 +912,8 @@ myTabs.addListener('orientationChange', handler);</code></p>
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
+
                                 <li class=""><a href="module_connection.html">connection</a></li>
 
                                 <li class=""><a href="module_container.html">container</a></li>
@@ -927,11 +926,15 @@ myTabs.addListener('orientationChange', handler);</code></p>
 
                                 <li class=""><a href="module_dragdrop.html">dragdrop</a></li>
 
+                                <li class=""><a href="module_editor.html">editor</a></li>
+
                                 <li class=""><a href="module_element.html">element</a></li>
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
                                 <li class=""><a href="module_history.html">history</a></li>
+
+                                <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
@@ -944,6 +947,10 @@ myTabs.addListener('orientationChange', handler);</code></p>
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
+
+                                <li class=""><a href="module_yuiloader.html">yuiloader</a></li>
+
+                                <li class=""><a href="module_yuitest.html">yuitest</a></li>
                         </ul>
                     </div>
 
@@ -966,19 +973,19 @@ myTabs.addListener('orientationChange', handler);</code></p>
                     <div class="module">
                         <h4>Properties</h4>
                         <ul class="content">        
-                                <li><a href="#_contentParent">_contentParent</a>
+                                <li class="private"><a href="#_contentParent">_contentParent</a>
                                         <!--<code>&lt;object&gt;</code>-->
                                 </li>
-                                <li><a href="#_tabParent">_tabParent</a>
+                                <li class="private"><a href="#_tabParent">_tabParent</a>
                                         <!--<code>&lt;object&gt;</code>-->
                                 </li>
-                                <li><a href="#CLASSNAME">CLASSNAME</a>
+                                <li class=""><a href="#CLASSNAME">CLASSNAME</a>
                                         <!--<code>&lt;object&gt;</code>-->
                                 </li>
-                                <li><a href="#CONTENT_PARENT_CLASSNAME">CONTENT_PARENT_CLASSNAME</a>
+                                <li class=""><a href="#CONTENT_PARENT_CLASSNAME">CONTENT_PARENT_CLASSNAME</a>
                                         <!--<code>&lt;object&gt;</code>-->
                                 </li>
-                                <li><a href="#TAB_PARENT_CLASSNAME">TAB_PARENT_CLASSNAME</a>
+                                <li class=""><a href="#TAB_PARENT_CLASSNAME">TAB_PARENT_CLASSNAME</a>
                                         <!--<code>&lt;object&gt;</code>-->
                                 </li>
                         </ul>
@@ -987,31 +994,31 @@ myTabs.addListener('orientationChange', handler);</code></p>
                     <div class="module">
                         <h4>Methods</h4>
                         <ul class="content">        
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#addTab">addTab</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#contentTransition">contentTransition</a>
                                 </li>
-                                <li><!--<code>void</code>-->
-                                <a href="#createTabs">createTabs</a>
-                                </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#DOMEventHandler">DOMEventHandler</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#getTab">getTab</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#getTabIndex">getTabIndex</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#initAttributes">initAttributes</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
+                                <a href="#initTabs">initTabs</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#removeTab">removeTab</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#toString">toString</a>
                                 </li>
                         </ul>
@@ -1020,16 +1027,16 @@ myTabs.addListener('orientationChange', handler);</code></p>
                     <div class="module">
                         <h4>Events</h4>
                         <ul class="content">        
-                                <li>
+                                <li class="">
                                 <a href="#activeTabChange">activeTabChange</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#beforeActiveTabChange">beforeActiveTabChange</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#beforeOrientationChange">beforeOrientationChange</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#orientationChange">orientationChange</a>
                                 </li>
                         </ul>
@@ -1038,16 +1045,16 @@ myTabs.addListener('orientationChange', handler);</code></p>
                     <div class="module">
                         <h4>Configuration Attributes</h4>
                         <ul class="content">        
-                                <li>
+                                <li class="">
                                 <a href="#activeIndex">activeIndex</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#activeTab">activeTab</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#orientation">orientation</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#tabs">tabs</a>
                                 </li>
                         </ul>

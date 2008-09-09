@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Handling Menu Click Events</title>
+
+<style type="text/css">
+/*margin and padding on body element
+  can introduce errors in determining
+  element position and are not recommended;
+  we turn them off as a foundation for YUI
+  CSS treatments. */
+body {
+	margin:0;
+	padding:0;
+}
+</style>
+
+<link rel="stylesheet" type="text/css" href="../../build/fonts/fonts-min.css" />
+<link rel="stylesheet" type="text/css" href="../../build/menu/assets/skins/sam/menu.css" />
+<!-- The following modules were requested but are not defined: container-core -->
+<script type="text/javascript" src="../../build/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="../../build/container/container_core.js"></script>
+<script type="text/javascript" src="../../build/menu/menu.js"></script>
+<!-- The following modules were requested but are not defined: container-core -->
+
+<!--there is no custom header content for this example-->
+
+</head>
+
+<body class=" yui-skin-sam">
+
+<h1>Handling Menu Click Events</h1>
+
+<div class="exampleIntro">
+	<p>This example demonstrates how to register a "click" event handler for a MenuItem instance.</p>
+<p id="clicknote"><em>Note:</em> By default clicking outside of a menu will hide it.  Additionally, menu items without a submenu or a URL to navigate will hide their parent menu when clicked.  Click the "Show Menu" button below to make the menu visible if it is hidden.</p>			
+</div>
+
+<!--BEGIN SOURCE CODE FOR EXAMPLE =============================== -->
+
+<script type="text/javascript">
+
+    // Instantiate and render the menu when the page's DOM is ready
+
+    YAHOO.util.Event.onDOMReady(function () {
+
+        // "click" event handler for the menu
+
+        function onMenuClick(p_sType, p_aArgs, p_oValue) {
+
+            this.show();
+
+        }
+
+
+        // "click" event handler for each menu item
+
+        function onMenuItemClick(p_sType, p_aArgs, p_oValue) {
+
+            YAHOO.log(("index: " + this.index + 
+                       ", text: " + this.cfg.getProperty("text") + 
+                       ", value: " + p_oValue), "info", "example9");
+
+            /*
+                 Show the parent menu when the menu item is clicked since 
+                 menus hide by default when clicked.
+            */
+        
+            this.parent.show();
+        
+        }
+
+        /*
+             Instantiate the menu.  The first argument passed to the 
+             constructor is the id of the DOM element to be created for the 
+             menu; the second is an object literal representing a set of 
+             configuration properties for the menu.
+        */
+
+        var oMenu = new YAHOO.widget.Menu("mymenu", { fixedcenter: true });
+
+        /*
+            Add items to the menu by passing an array of object literals 
+            (each of which represents a set of YAHOO.widget.MenuItem 
+            configuration properties) to the "addItems" method.
+        */
+
+        oMenu.addItems(
+            [
+                //  Register a "click" event handler for the first item.
+
+                { text: "Item One", onclick: { fn: onMenuItemClick } },
+
+                /*
+                     Register a "click" event handler for the second item, 
+                     passing a string arguemnt ("foo") to the event handler.
+                */
+                { text: "Item Two", onclick: { fn: onMenuItemClick, obj: "foo" } },
+
+
+                /*
+                     Register a "click" event handler for the third item and
+                     passing and array as an argument to the event handler.
+                */
+                { text: "Item Three", onclick: { fn: onMenuItemClick, obj: ["foo", "bar"] } },
+            ]
+        );
+
+        oMenu.clickEvent.subscribe(onMenuClick);
+
+        oMenu.showEvent.subscribe(function () {
+
+            this.focus();
+        
+        });
+
+        /*
+             Since this menu is built completely from script, call the "render" 
+             method passing in the id of the DOM element that the menu's 
+             root element should be appended to.
+        */
+
+        oMenu.render("rendertarget");
+
+        YAHOO.util.Event.addListener("menutoggle", "click", oMenu.show, null, oMenu);
+    
+    });
+    
+</script>
+
+<button id="menutoggle" type="button">Show Menu</button>
+<div id="rendertarget"></div>
+<!--END SOURCE CODE FOR EXAMPLE =============================== -->
+
+</body>
+</html>

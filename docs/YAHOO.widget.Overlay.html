@@ -3,26 +3,33 @@
 <head>
 	<title>API: container  YAHOO.widget.Overlay   (YUI Library)</title>
 	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
 </head>
 
 <body id="yahoo-com">
+
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
         <h1>Yahoo! UI Library</h1>
-        <h3>Container&nbsp; <span class="subtitle">2.2.2</span></h3>
+        <h3>Container&nbsp; <span class="subtitle">2.3.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_container.html">container</a>
                  &gt; YAHOO.widget.Overlay 
                 
             </p>
+
 	</div>
 
 	<div id="bd">
 		<div id="yui-main">
 			<div class="yui-b">
-
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> Show Private</span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> Show Protected</span>
+            </form>
 
                     <h2>
                         
@@ -31,7 +38,7 @@
                         
                             Class <b>YAHOO.widget.Overlay</b>
                         <span class="extends">
-                           - extends <a href="YAHOO.widget.Module.html">YAHOO.widget.Module</a>
+                           - extends <a href="Module.html">Module</a>
                         </span>
 
                         <span class="extends">
@@ -44,7 +51,6 @@
                         <dl class="subclasses">
                             <dt>Known Subclasses:</dd>
                             <dd>
-                                    <a href="YAHOO.widget.Panel.html">YAHOO.widget.Panel</a>
                                     <a href="YAHOO.widget.Menu.html">YAHOO.widget.Menu</a>
                                     <a href="YAHOO.widget.Tooltip.html">YAHOO.widget.Tooltip</a>
                             </dd>
@@ -53,7 +59,12 @@
   
 
                     <div class="summary description">
-                        Overlay is a Module that is absolutely positioned above the page flow. It has convenience methods for positioning and sizing, as well as options for controlling zIndex and constraining the Overlay's position to the current visible viewport. Overlay also contains a dynamicly generated IFRAME which is placed beneath it for Internet Explorer 6 and 5.x so that it will be properly rendered above SELECT elements.
+                        Overlay is a Module that is absolutely positioned above the page flow. It 
+has convenience methods for positioning and sizing, as well as options for 
+controlling zIndex and constraining the Overlay's position to the current 
+visible viewport. Overlay also contains a dynamicly generated IFRAME which 
+is placed beneath it for Internet Explorer 6 and 5.x so that it will be 
+properly rendered above SELECT elements.
                     </div>
 
                         <div class="section constructor details">
@@ -80,19 +91,21 @@
                                                     <code>el
                                                     &lt;String&gt; 
                                                     </code>
-                                                    	The element ID representing the Overlay <em>OR</em>
+                                                     The element ID representing the Overlay <em>OR</em>
                                                 </dd>
                                                 <dd>
                                                     <code>el
                                                     &lt;HTMLElement&gt; 
                                                     </code>
-                                                    	The element representing the Overlay
+                                                     The element representing the Overlay
                                                 </dd>
                                                 <dd>
                                                     <code>userConfig
                                                     &lt;Object&gt; 
                                                     </code>
-                                                    	The configuration object literal containing 10/23/2006the configuration that should be set for this Overlay. See configuration documentation for more details.
+                                                     The configuration object literal containing 
+the configuration that should be set for this Overlay. See configuration 
+documentation for more details.
                                                 </dd>
                                         </dl>
                                     
@@ -105,7 +118,8 @@
                         <div class="section field details">
                             <h3><a name="field_detail">Properties</a></h3>
                             <div class="content">
-                                    <h4><a name="YAHOO.widget.Overlay._DEFAULT_CONFIG">YAHOO.widget.Overlay._DEFAULT_CONFIG</a>
+                                    <div class="private">
+                                    <h4><a name="DEFAULT_CONFIG">DEFAULT_CONFIG</a>
                                         <code>- private final Object</code>
                                     </h4>
                                     <div class="detail">
@@ -118,7 +132,9 @@
 
 
                                     <hr />
-                                    <h4><a name="YAHOO.widget.Overlay._EVENT_TYPES">YAHOO.widget.Overlay._EVENT_TYPES</a>
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="EVENT_TYPES">EVENT_TYPES</a>
                                         <code>- private final Object</code>
                                     </h4>
                                     <div class="detail">
@@ -131,12 +147,15 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="YAHOO.widget.Overlay._initialized">YAHOO.widget.Overlay._initialized</a>
                                         <code>- private Boolean</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            A boolean that indicated whether the window resize and scroll events have already been subscribed to.
+                                            A boolean that indicated whether the window resize and scroll events have 
+already been subscribed to.
                                         </div>
                                     </div>
      
@@ -144,12 +163,15 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Overlay.BOTTOM_LEFT">YAHOO.widget.Overlay.BOTTOM_LEFT</a>
                                         <code>- static final String</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Constant representing the top bottom left corner of an element, used for configuring the context element alignment
+                                            Constant representing the top bottom left corner of an element, used for 
+configuring the context element alignment
                                         </div>
                                     </div>
      
@@ -157,12 +179,15 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Overlay.BOTTOM_RIGHT">YAHOO.widget.Overlay.BOTTOM_RIGHT</a>
                                         <code>- static final String</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Constant representing the bottom right corner of an element, used for configuring the context element alignment
+                                            Constant representing the bottom right corner of an element, used for 
+configuring the context element alignment
                                         </div>
                                     </div>
      
@@ -170,6 +195,8 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Overlay.CSS_OVERLAY">YAHOO.widget.Overlay.CSS_OVERLAY</a>
                                         <code>- static final String</code>
                                     </h4>
@@ -183,6 +210,8 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Overlay.IFRAME_SRC">YAHOO.widget.Overlay.IFRAME_SRC</a>
                                         <code>- static final String</code>
                                     </h4>
@@ -193,15 +222,21 @@
                                     </div>
      
                                         
+                                    <div class="default">
+                                        Default Value: 3
+                                    </div>        
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Overlay.TOP_LEFT">YAHOO.widget.Overlay.TOP_LEFT</a>
                                         <code>- static final String</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Constant representing the top left corner of an element, used for configuring the context element alignment
+                                            Constant representing the top left corner of an element, used for 
+configuring the context element alignment
                                         </div>
                                     </div>
      
@@ -209,12 +244,15 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Overlay.TOP_RIGHT">YAHOO.widget.Overlay.TOP_RIGHT</a>
                                         <code>- static final String</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Constant representing the top right corner of an element, used for configuring the context element alignment
+                                            Constant representing the top right corner of an element, used for 
+configuring the context element alignment
                                         </div>
                                     </div>
      
@@ -222,36 +260,17 @@
 
 
                                     <hr />
+                                    </div>
 
 
                             </div>
                         </div>
 
-                        <div class="section field inheritance">
-                            <h4>Properties inherited from <a href="YAHOO.widget.Module.html">YAHOO.widget.Module</a>:</h4>
-                            <div class="content">
-                                <code>
-                                    
-                                        <a href="YAHOO.widget.Module.html#body">body</a>,
-                                        <a href="YAHOO.widget.Module.html#browser">browser</a>,
-                                        <a href="YAHOO.widget.Module.html#cfg">cfg</a>,
-                                        <a href="YAHOO.widget.Module.html#contructor">contructor</a>,
-                                        <a href="YAHOO.widget.Module.html#element">element</a>,
-                                        <a href="YAHOO.widget.Module.html#footer">footer</a>,
-                                        <a href="YAHOO.widget.Module.html#header">header</a>,
-                                        <a href="YAHOO.widget.Module.html#id">id</a>,
-                                        <a href="YAHOO.widget.Module.html#imageRoot">imageRoot</a>,
-                                        <a href="YAHOO.widget.Module.html#isSecure">isSecure</a>,
-                                        <a href="YAHOO.widget.Module.html#platform">platform</a>,
-                                        <a href="YAHOO.widget.Module.html#YAHOO.widget.Module._DEFAULT_CONFIG">YAHOO.widget.Module._DEFAULT_CONFIG</a>,
-                                        <a href="YAHOO.widget.Module.html#YAHOO.widget.Module._EVENT_TYPES">YAHOO.widget.Module._EVENT_TYPES</a>
-                                </code>
-                            </div>
-                        </div>
 
                         <div class="section method details">
                             <h3><a name="methodDetails">Methods</a></h3>
                             <div class="content">
+                                    <div class="">
                                     <h4>
                                         <a name="align">align</a></h4>
                                     <div class="detail">
@@ -275,7 +294,9 @@
                                         </code>
                                         
                                         <div class="description">
-                                            Aligns the Overlay to its context element using the specified corner points (represented by the constants TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, and BOTTOM_RIGHT.
+                                            Aligns the Overlay to its context element using the specified corner 
+points (represented by the constants TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, 
+and BOTTOM_RIGHT.
                                         </div>
 
                                         <div class="description">
@@ -284,11 +305,13 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>elementAlign &lt;String&gt;</code>
-                                                            		The String representing the corner of the Overlay that should be aligned to the context element
+                                                              The String representing the corner of 
+the Overlay that should be aligned to the context element
                                                         </dd>
                                                         <dd>
                                                             <code>contextAlign &lt;String&gt;</code>
-                                                            		The corner of the context element that the elementAlign corner should stick to.
+                                                              The corner of the context element 
+that the elementAlign corner should stick to.
                                                         </dd>
                                                 </dl>
 
@@ -304,6 +327,43 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="bringToTop">bringToTop</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>bringToTop</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Places the Overlay on top of all other instances of 
+YAHOO.widget.Overlay.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="center">center</a></h4>
                                     <div class="detail">
@@ -336,6 +396,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configConstrainToViewport">configConstrainToViewport</a></h4>
                                     <div class="detail">
@@ -363,7 +425,8 @@
                                         </code>
                                         
                                         <div class="description">
-                                            The default event handler fired when the "constraintoviewport" property is changed.
+                                            The default event handler fired when the "constraintoviewport" 
+property is changed.
                                         </div>
 
                                         <div class="description">
@@ -372,15 +435,18 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>type &lt;String&gt;</code>
-                                                            	The CustomEvent type (usually the property name)
+                                                             The CustomEvent type (usually the property name)
                                                         </dd>
                                                         <dd>
                                                             <code>args &lt;Object[]&gt;</code>
-                                                            	The CustomEvent arguments. For configuration handlers, args[0] will equal the newly applied value for the property.
+                                                             The CustomEvent arguments. For configuration 
+handlers, args[0] will equal the newly applied value for 
+the property.
                                                         </dd>
                                                         <dd>
                                                             <code>obj &lt;Object&gt;</code>
-                                                            	The scope object. For configuration handlers, this will usually equal the owner.
+                                                             The scope object. For configuration handlers, 
+this will usually equal the owner.
                                                         </dd>
                                                 </dl>
 
@@ -396,6 +462,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configContext">configContext</a></h4>
                                     <div class="detail">
@@ -423,7 +491,8 @@
                                         </code>
                                         
                                         <div class="description">
-                                            The default event handler fired when the "context" property is changed.
+                                            The default event handler fired when the "context" property 
+is changed.
                                         </div>
 
                                         <div class="description">
@@ -432,15 +501,17 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>type &lt;String&gt;</code>
-                                                            	The CustomEvent type (usually the property name)
+                                                             The CustomEvent type (usually the property name)
                                                         </dd>
                                                         <dd>
                                                             <code>args &lt;Object[]&gt;</code>
-                                                            	The CustomEvent arguments. For configuration handlers, args[0] will equal the newly applied value for the property.
+                                                             The CustomEvent arguments. For configuration 
+handlers, args[0] will equal the newly applied value for the property.
                                                         </dd>
                                                         <dd>
                                                             <code>obj &lt;Object&gt;</code>
-                                                            	The scope object. For configuration handlers, this will usually equal the owner.
+                                                             The scope object. For configuration handlers, 
+this will usually equal the owner.
                                                         </dd>
                                                 </dl>
 
@@ -456,6 +527,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configFixedCenter">configFixedCenter</a></h4>
                                     <div class="detail">
@@ -483,7 +556,8 @@
                                         </code>
                                         
                                         <div class="description">
-                                            The default event handler fired when the "fixedcenter" property is changed.
+                                            The default event handler fired when the "fixedcenter" property 
+is changed.
                                         </div>
 
                                         <div class="description">
@@ -492,15 +566,17 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>type &lt;String&gt;</code>
-                                                            	The CustomEvent type (usually the property name)
+                                                             The CustomEvent type (usually the property name)
                                                         </dd>
                                                         <dd>
                                                             <code>args &lt;Object[]&gt;</code>
-                                                            	The CustomEvent arguments. For configuration handlers, args[0] will equal the newly applied value for the property.
+                                                             The CustomEvent arguments. For configuration 
+handlers, args[0] will equal the newly applied value for the property.
                                                         </dd>
                                                         <dd>
                                                             <code>obj &lt;Object&gt;</code>
-                                                            	The scope object. For configuration handlers, this will usually equal the owner.
+                                                             The scope object. For configuration handlers, 
+this will usually equal the owner.
                                                         </dd>
                                                 </dl>
 
@@ -516,6 +592,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configHeight">configHeight</a></h4>
                                     <div class="detail">
@@ -552,15 +630,17 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>type &lt;String&gt;</code>
-                                                            	The CustomEvent type (usually the property name)
+                                                             The CustomEvent type (usually the property name)
                                                         </dd>
                                                         <dd>
                                                             <code>args &lt;Object[]&gt;</code>
-                                                            	The CustomEvent arguments. For configuration handlers, args[0] will equal the newly applied value for the property.
+                                                             The CustomEvent arguments. For configuration 
+handlers, args[0] will equal the newly applied value for the property.
                                                         </dd>
                                                         <dd>
                                                             <code>obj &lt;Object&gt;</code>
-                                                            	The scope object. For configuration handlers, this will usually equal the owner.
+                                                             The scope object. For configuration handlers, 
+this will usually equal the owner.
                                                         </dd>
                                                 </dl>
 
@@ -576,6 +656,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configIframe">configIframe</a></h4>
                                     <div class="detail">
@@ -612,15 +694,17 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>type &lt;String&gt;</code>
-                                                            	The CustomEvent type (usually the property name)
+                                                             The CustomEvent type (usually the property name)
                                                         </dd>
                                                         <dd>
                                                             <code>args &lt;Object[]&gt;</code>
-                                                            	The CustomEvent arguments. For configuration handlers, args[0] will equal the newly applied value for the property.
+                                                             The CustomEvent arguments. For configuration 
+handlers, args[0] will equal the newly applied value for the property.
                                                         </dd>
                                                         <dd>
                                                             <code>obj &lt;Object&gt;</code>
-                                                            	The scope object. For configuration handlers, this will usually equal the owner.
+                                                             The scope object. For configuration handlers, 
+this will usually equal the owner.
                                                         </dd>
                                                 </dl>
 
@@ -636,6 +720,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configVisible">configVisible</a></h4>
                                     <div class="detail">
@@ -663,7 +749,9 @@
                                         </code>
                                         
                                         <div class="description">
-                                            The default event handler fired when the "visible" property is changed. This method is responsible for firing showEvent and hideEvent.
+                                            The default event handler fired when the "visible" property is 
+changed.  This method is responsible for firing showEvent
+and hideEvent.
                                         </div>
 
                                         <div class="description">
@@ -672,15 +760,17 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>type &lt;String&gt;</code>
-                                                            	The CustomEvent type (usually the property name)
+                                                             The CustomEvent type (usually the property name)
                                                         </dd>
                                                         <dd>
                                                             <code>args &lt;Object[]&gt;</code>
-                                                            	The CustomEvent arguments. For configuration handlers, args[0] will equal the newly applied value for the property.
+                                                             The CustomEvent arguments. For configuration
+handlers, args[0] will equal the newly applied value for the property.
                                                         </dd>
                                                         <dd>
                                                             <code>obj &lt;Object&gt;</code>
-                                                            	The scope object. For configuration handlers, this will usually equal the owner.
+                                                             The scope object. For configuration handlers, 
+this will usually equal the owner.
                                                         </dd>
                                                 </dl>
 
@@ -696,6 +786,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configWidth">configWidth</a></h4>
                                     <div class="detail">
@@ -732,15 +824,17 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>type &lt;String&gt;</code>
-                                                            	The CustomEvent type (usually the property name)
+                                                             The CustomEvent type (usually the property name)
                                                         </dd>
                                                         <dd>
                                                             <code>args &lt;Object[]&gt;</code>
-                                                            	The CustomEvent arguments. For configuration handlers, args[0] will equal the newly applied value for the property.
+                                                             The CustomEvent arguments. For configuration 
+handlers, args[0] will equal the newly applied value for the property.
                                                         </dd>
                                                         <dd>
                                                             <code>obj &lt;Object&gt;</code>
-                                                            	The scope object. For configuration handlers, this will usually equal the owner.
+                                                             The scope object. For configuration handlers, 
+this will usually equal the owner.
                                                         </dd>
                                                 </dl>
 
@@ -756,6 +850,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configX">configX</a></h4>
                                     <div class="detail">
@@ -792,15 +888,17 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>type &lt;String&gt;</code>
-                                                            	The CustomEvent type (usually the property name)
+                                                             The CustomEvent type (usually the property name)
                                                         </dd>
                                                         <dd>
                                                             <code>args &lt;Object[]&gt;</code>
-                                                            	The CustomEvent arguments. For configuration handlers, args[0] will equal the newly applied value for the property.
+                                                             The CustomEvent arguments. For configuration 
+handlers, args[0] will equal the newly applied value for the property.
                                                         </dd>
                                                         <dd>
                                                             <code>obj &lt;Object&gt;</code>
-                                                            	The scope object. For configuration handlers, this will usually equal the owner.
+                                                             The scope object. For configuration handlers, 
+this will usually equal the owner.
                                                         </dd>
                                                 </dl>
 
@@ -816,6 +914,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configXY">configXY</a></h4>
                                     <div class="detail">
@@ -852,15 +952,17 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>type &lt;String&gt;</code>
-                                                            	The CustomEvent type (usually the property name)
+                                                             The CustomEvent type (usually the property name)
                                                         </dd>
                                                         <dd>
                                                             <code>args &lt;Object[]&gt;</code>
-                                                            	The CustomEvent arguments. For configuration handlers, args[0] will equal the newly applied value for the property.
+                                                             The CustomEvent arguments. For configuration 
+handlers, args[0] will equal the newly applied value for the property.
                                                         </dd>
                                                         <dd>
                                                             <code>obj &lt;Object&gt;</code>
-                                                            	The scope object. For configuration handlers, this will usually equal the owner.
+                                                             The scope object. For configuration handlers, 
+this will usually equal the owner.
                                                         </dd>
                                                 </dl>
 
@@ -876,6 +978,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configY">configY</a></h4>
                                     <div class="detail">
@@ -912,15 +1016,17 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>type &lt;String&gt;</code>
-                                                            	The CustomEvent type (usually the property name)
+                                                             The CustomEvent type (usually the property name)
                                                         </dd>
                                                         <dd>
                                                             <code>args &lt;Object[]&gt;</code>
-                                                            	The CustomEvent arguments. For configuration handlers, args[0] will equal the newly applied value for the property.
+                                                             The CustomEvent arguments. For configuration 
+handlers, args[0] will equal the newly applied value for the property.
                                                         </dd>
                                                         <dd>
                                                             <code>obj &lt;Object&gt;</code>
-                                                            	The scope object. For configuration handlers, this will usually equal the owner.
+                                                             The scope object. For configuration handlers, 
+this will usually equal the owner.
                                                         </dd>
                                                 </dl>
 
@@ -936,6 +1042,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configzIndex">configzIndex</a></h4>
                                     <div class="detail">
@@ -972,15 +1080,17 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>type &lt;String&gt;</code>
-                                                            	The CustomEvent type (usually the property name)
+                                                             The CustomEvent type (usually the property name)
                                                         </dd>
                                                         <dd>
                                                             <code>args &lt;Object[]&gt;</code>
-                                                            	The CustomEvent arguments. For configuration handlers, args[0] will equal the newly applied value for the property.
+                                                             The CustomEvent arguments. For configuration 
+handlers, args[0] will equal the newly applied value for the property.
                                                         </dd>
                                                         <dd>
                                                             <code>obj &lt;Object&gt;</code>
-                                                            	The scope object. For configuration handlers, this will usually equal the owner.
+                                                             The scope object. For configuration handlers, 
+this will usually equal the owner.
                                                         </dd>
                                                 </dl>
 
@@ -996,6 +1106,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="destroy">destroy</a></h4>
                                     <div class="detail">
@@ -1010,7 +1122,8 @@
                                         </code>
                                         
                                         <div class="description">
-                                            Removes the Overlay element from the DOM and sets all child elements to null.
+                                            Removes the Overlay element from the DOM and sets all child 
+elements to null.
                                         </div>
 
                                         <div class="description">
@@ -1028,6 +1141,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="doCenterOnDOMEvent">doCenterOnDOMEvent</a></h4>
                                     <div class="detail">
@@ -1042,7 +1157,8 @@
                                         </code>
                                         
                                         <div class="description">
-                                            Center event handler used for centering on scroll/resize, but only if the Overlay is visible
+                                            Center event handler used for centering on scroll/resize, but only if 
+the Overlay is visible
                                         </div>
 
                                         <div class="description">
@@ -1060,6 +1176,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="enforceConstraints">enforceConstraints</a></h4>
                                     <div class="detail">
@@ -1087,7 +1205,8 @@
                                         </code>
                                         
                                         <div class="description">
-                                            The default event handler executed when the moveEvent is fired, if the "constraintoviewport" is set to true.
+                                            The default event handler executed when the moveEvent is fired, if the 
+"constraintoviewport" is set to true.
                                         </div>
 
                                         <div class="description">
@@ -1096,15 +1215,17 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>type &lt;String&gt;</code>
-                                                            	The CustomEvent type (usually the property name)
+                                                             The CustomEvent type (usually the property name)
                                                         </dd>
                                                         <dd>
                                                             <code>args &lt;Object[]&gt;</code>
-                                                            	The CustomEvent arguments. For configuration handlers, args[0] will equal the newly applied value for the property.
+                                                             The CustomEvent arguments. For configuration 
+handlers, args[0] will equal the newly applied value for the property.
                                                         </dd>
                                                         <dd>
                                                             <code>obj &lt;Object&gt;</code>
-                                                            	The scope object. For configuration handlers, this will usually equal the owner.
+                                                             The scope object. For configuration handlers, 
+this will usually equal the owner.
                                                         </dd>
                                                 </dl>
 
@@ -1120,6 +1241,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="hideIframe">hideIframe</a></h4>
                                     <div class="detail">
@@ -1134,7 +1257,7 @@
                                         </code>
                                         
                                         <div class="description">
-                                            Hides the iframe shim, if it has been enabled
+                                            Hides the iframe shim, if it has been enabled.
                                         </div>
 
                                         <div class="description">
@@ -1152,6 +1275,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="hideMacGeckoScrollbars">hideMacGeckoScrollbars</a></h4>
                                     <div class="detail">
@@ -1166,8 +1291,9 @@
                                         </code>
                                         
                                         <div class="description">
-                                            Adds a special CSS class to the Overlay when Mac/Gecko is in use, to work around a Gecko bug where
-scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=187435
+                                            Adds a CSS class ("hide-scrollbars") and removes a CSS class 
+("show-scrollbars") to the Overlay to fix a bug in Gecko on Mac OS X 
+(https://bugzilla.mozilla.org/show_bug.cgi?id=187435)
                                         </div>
 
                                         <div class="description">
@@ -1185,6 +1311,8 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="init">init</a></h4>
                                     <div class="detail">
@@ -1210,7 +1338,10 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                                         </code>
                                         
                                         <div class="description">
-                                            The Overlay initialization method, which is executed for Overlay and all of its subclasses. This method is automatically called by the constructor, and  sets up all DOM references for pre-existing markup, and creates required markup if it is not already present.
+                                            The Overlay initialization method, which is executed for Overlay and  
+all of its subclasses. This method is automatically called by the 
+constructor, and  sets up all DOM references for pre-existing markup, 
+and creates required markup if it is not already present.
                                         </div>
 
                                         <div class="description">
@@ -1219,15 +1350,17 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>el &lt;String&gt;</code>
-                                                            	The element ID representing the Overlay <em>OR</em>
+                                                             The element ID representing the Overlay <em>OR</em>
                                                         </dd>
                                                         <dd>
                                                             <code>el &lt;HTMLElement&gt;</code>
-                                                            	The element representing the Overlay
+                                                             The element representing the Overlay
                                                         </dd>
                                                         <dd>
                                                             <code>userConfig &lt;Object&gt;</code>
-                                                            	The configuration object literal containing the configuration that should be set for this Overlay. See configuration documentation for more details.
+                                                             The configuration object literal 
+containing the configuration that should be set for this Overlay. 
+See configuration documentation for more details.
                                                         </dd>
                                                 </dl>
 
@@ -1243,6 +1376,8 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="initDefaultConfig">initDefaultConfig</a></h4>
                                     <div class="detail">
@@ -1257,7 +1392,8 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                                         </code>
                                         
                                         <div class="description">
-                                            Initializes the class's configurable properties which can be changed using the Overlay's Config object (cfg).
+                                            Initializes the class's configurable properties which can be changed 
+using the Overlay's Config object (cfg).
                                         </div>
 
                                         <div class="description">
@@ -1275,6 +1411,8 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="initEvents">initEvents</a></h4>
                                     <div class="detail">
@@ -1289,7 +1427,8 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                                         </code>
                                         
                                         <div class="description">
-                                            Initializes the custom events for Overlay which are fired automatically at appropriate times by the Overlay class.
+                                            Initializes the custom events for Overlay which are fired  
+automatically at appropriate times by the Overlay class.
                                         </div>
 
                                         <div class="description">
@@ -1307,6 +1446,8 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="moveTo">moveTo</a></h4>
                                     <div class="detail">
@@ -1330,7 +1471,8 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                                         </code>
                                         
                                         <div class="description">
-                                            Moves the Overlay to the specified position. This function is identical to calling this.cfg.setProperty("xy", [x,y]);
+                                            Moves the Overlay to the specified position. This function is  
+identical to calling this.cfg.setProperty("xy", [x,y]);
                                         </div>
 
                                         <div class="description">
@@ -1339,11 +1481,11 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>x &lt;Number&gt;</code>
-                                                            	The Overlay's new x position
+                                                             The Overlay's new x position
                                                         </dd>
                                                         <dd>
                                                             <code>y &lt;Number&gt;</code>
-                                                            	The Overlay's new y position
+                                                             The Overlay's new y position
                                                         </dd>
                                                 </dl>
 
@@ -1359,6 +1501,8 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="onDomResize">onDomResize</a></h4>
                                     <div class="detail">
@@ -1391,11 +1535,11 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>e &lt;DOMEvent&gt;</code>
-                                                            	The resize DOM event
+                                                             The resize DOM event
                                                         </dd>
                                                         <dd>
                                                             <code>obj &lt;Object&gt;</code>
-                                                            	The scope object
+                                                             The scope object
                                                         </dd>
                                                 </dl>
 
@@ -1411,6 +1555,8 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="showIframe">showIframe</a></h4>
                                     <div class="detail">
@@ -1425,7 +1571,7 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                                         </code>
                                         
                                         <div class="description">
-                                            Shows the iframe shim, if it has been enabled
+                                            Shows the iframe shim, if it has been enabled.
                                         </div>
 
                                         <div class="description">
@@ -1443,6 +1589,8 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="showMacGeckoScrollbars">showMacGeckoScrollbars</a></h4>
                                     <div class="detail">
@@ -1457,8 +1605,9 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                                         </code>
                                         
                                         <div class="description">
-                                            Removes a special CSS class from the Overlay when Mac/Gecko is in use, to work around a Gecko bug where
-scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=187435
+                                            Adds a CSS class ("show-scrollbars") and removes a CSS class 
+("hide-scrollbars") to the Overlay to fix a bug in Gecko on Mac OS X 
+(https://bugzilla.mozilla.org/show_bug.cgi?id=187435)
                                         </div>
 
                                         <div class="description">
@@ -1476,6 +1625,43 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="syncIframe">syncIframe</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>syncIframe</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Syncronizes the size and position of iframe shim to that of its 
+corresponding Overlay instance.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="syncPosition">syncPosition</a></h4>
                                     <div class="detail">
@@ -1490,7 +1676,9 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                                         </code>
                                         
                                         <div class="description">
-                                            Synchronizes the Panel's "xy", "x", and "y" properties with the Panel's position in the DOM. This is primarily used to update position information during drag & drop.
+                                            Synchronizes the Panel's "xy", "x", and "y" properties with the 
+Panel's position in the DOM. This is primarily used to update  
+position information during drag & drop.
                                         </div>
 
                                         <div class="description">
@@ -1508,6 +1696,8 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="toString">toString</a></h4>
                                     <div class="detail">
@@ -1540,6 +1730,8 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="YAHOO.widget.Overlay.windowResizeHandler">YAHOO.widget.Overlay.windowResizeHandler</a></h4>
                                     <div class="detail">
@@ -1584,6 +1776,8 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="YAHOO.widget.Overlay.windowScrollHandler">YAHOO.widget.Overlay.windowScrollHandler</a></h4>
                                     <div class="detail">
@@ -1628,39 +1822,15 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
 
                                     </div>
                                     <hr />
+                                    </div>
                             </div>
                         </div>
 
-                            <div class="section field inheritance">
-                                <h4>Methods inherited from <a href="YAHOO.widget.Module.html">YAHOO.widget.Module</a>:</h4>
-                                <div class="content">
-                                    <code>
-                                        
-                                            <a href="YAHOO.widget.Module.html#appendToBody">appendToBody</a>,
-                                            <a href="YAHOO.widget.Module.html#appendToFooter">appendToFooter</a>,
-                                            <a href="YAHOO.widget.Module.html#appendToHeader">appendToHeader</a>,
-                                            <a href="YAHOO.widget.Module.html#configMonitorResize">configMonitorResize</a>,
-                                            <a href="YAHOO.widget.Module.html#configVisible">configVisible</a>,
-                                            <a href="YAHOO.widget.Module.html#destroy">destroy</a>,
-                                            <a href="YAHOO.widget.Module.html#hide">hide</a>,
-                                            <a href="YAHOO.widget.Module.html#init">init</a>,
-                                            <a href="YAHOO.widget.Module.html#initDefaultConfig">initDefaultConfig</a>,
-                                            <a href="YAHOO.widget.Module.html#initEvents">initEvents</a>,
-                                            <a href="YAHOO.widget.Module.html#initResizeMonitor">initResizeMonitor</a>,
-                                            <a href="YAHOO.widget.Module.html#onDomResize">onDomResize</a>,
-                                            <a href="YAHOO.widget.Module.html#render">render</a>,
-                                            <a href="YAHOO.widget.Module.html#setBody">setBody</a>,
-                                            <a href="YAHOO.widget.Module.html#setFooter">setFooter</a>,
-                                            <a href="YAHOO.widget.Module.html#setHeader">setHeader</a>,
-                                            <a href="YAHOO.widget.Module.html#show">show</a>,
-                                            <a href="YAHOO.widget.Module.html#toString">toString</a>
-                                    </code>
-                                </div>
-                            </div>
 
                         <div class="section method details">
-                            <h3><a name="methodDetails">Events</a></h3>
+                            <h3><a name="eventDetails">Events</a></h3>
                             <div class="content">
+                                    <div class="">
                                     <h4>
                                         <a name="beforeMoveEvent">beforeMoveEvent</a></h4>
                                     <div class="detail">
@@ -1695,11 +1865,11 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>x &lt;Number&gt;</code>
-                                                            	x coordinate
+                                                             x coordinate
                                                         </dd>
                                                         <dd>
                                                             <code>y &lt;Number&gt;</code>
-                                                            	y coordinate
+                                                             y coordinate
                                                         </dd>
                                                 </dl>
 
@@ -1708,6 +1878,8 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="moveEvent">moveEvent</a></h4>
                                     <div class="detail">
@@ -1742,11 +1914,11 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>x &lt;Number&gt;</code>
-                                                            	x coordinate
+                                                             x coordinate
                                                         </dd>
                                                         <dd>
                                                             <code>y &lt;Number&gt;</code>
-                                                            	y coordinate
+                                                             y coordinate
                                                         </dd>
                                                 </dl>
 
@@ -1755,6 +1927,8 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="YAHOO.widget.Overlay.windowResizeEvent">YAHOO.widget.Overlay.windowResizeEvent</a></h4>
                                     <div class="detail">
@@ -1770,7 +1944,8 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                                         </code>
                                         
                                         <div class="description">
-                                            A singleton CustomEvent used for reacting to the DOM event for window resize
+                                            A singleton CustomEvent used for reacting to the DOM event for
+window resize
                                         </div>
 
                                         <div class="description">
@@ -1782,6 +1957,8 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="YAHOO.widget.Overlay.windowScrollEvent">YAHOO.widget.Overlay.windowScrollEvent</a></h4>
                                     <div class="detail">
@@ -1797,7 +1974,8 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                                         </code>
                                         
                                         <div class="description">
-                                            A singleton CustomEvent used for reacting to the DOM event for window scroll
+                                            A singleton CustomEvent used for reacting to the DOM event for 
+window scroll
                                         </div>
 
                                         <div class="description">
@@ -1809,43 +1987,23 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
 
                                     </div>
                                     <hr />
+                                    </div>
                             </div>
                         </div>
 
 
-                        <div class="section field inheritance">
-                            <h4>Events inherited from <a href="YAHOO.widget.Module.html">YAHOO.widget.Module</a>:</h4>
-                            <div class="content">
-                                <code>
-                                    
-                                        <a href="YAHOO.widget.Module.html#appendEvent">appendEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#beforeHideEvent">beforeHideEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#beforeInitEvent">beforeInitEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#beforeRenderEvent">beforeRenderEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#beforeShowEvent">beforeShowEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#changeBodyEvent">changeBodyEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#changeContentEvent">changeContentEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#changeFooterEvent">changeFooterEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#changeHeaderEvent">changeHeaderEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#destroyEvent">destroyEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#hideEvent">hideEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#initEvent">initEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#renderEvent">renderEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#showEvent">showEvent</a>,
-                                        <a href="YAHOO.widget.Module.html#YAHOO.widget.Module.textResizeEvent">YAHOO.widget.Module.textResizeEvent</a>
-                                </code>
-                            </div>
-                        </div>
 
                         <div class="section field details">
                             <h3><a name="field_detail">Configuration Attributes</a></h3>
                             <div class="content">
+                                    <div class="">
                                     <h4><a name="constraintoviewport">constraintoviewport</a>
                                         <code>- Boolean</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            True if the Overlay should be prevented from being positioned out of the viewport.
+                                            True if the Overlay should be prevented from being positioned 
+out of the viewport.
                                         </div>
                                     </div>
  
@@ -1855,12 +2013,18 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="context">context</a>
                                         <code>- Array</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            The array of context arguments for context-sensitive positioning. The format is: [id or element, element corner, context corner]. For example, setting this property to ["img1", "tl", "bl"] would align the Overlay's top left corner to the context element's bottom left corner.
+                                            The array of context arguments for context-sensitive positioning.  
+The format is: [id or element, element corner, context corner]. 
+For example, setting this property to ["img1", "tl", "bl"] would 
+align the Overlay's top left corner to the context element's 
+bottom left corner.
                                         </div>
                                     </div>
  
@@ -1870,12 +2034,15 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="fixedcenter">fixedcenter</a>
                                         <code>- Boolean</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            True if the Overlay should be anchored to the center of the viewport.
+                                            True if the Overlay should be anchored to the center of 
+the viewport.
                                         </div>
                                     </div>
  
@@ -1885,6 +2052,8 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="height">height</a>
                                         <code>- String</code>
                                     </h4>
@@ -1900,21 +2069,29 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="iframe">iframe</a>
                                         <code>- Boolean</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            True if the Overlay should have an IFRAME shim (for correcting the select z-index bug in IE6 and below).
+                                            Boolean indicating whether or not the Overlay should 
+have an IFRAME shim; used to prevent <SELECT> elements from 
+poking through an Overlay instance in IE6.  When set to "true", 
+the iframe shim is created when the Overlay instance is intially
+made visible.
                                         </div>
                                     </div>
  
      
                                     <div class="default">
-                                        Default Value: true for IE6 and below, false for all others
+                                        Default Value: true for IE6 and below, false for all other browsers.
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="width">width</a>
                                         <code>- String</code>
                                     </h4>
@@ -1930,6 +2107,8 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="x">x</a>
                                         <code>- Number</code>
                                     </h4>
@@ -1945,6 +2124,8 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="xy">xy</a>
                                         <code>- Number[]</code>
                                     </h4>
@@ -1960,6 +2141,8 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="y">y</a>
                                         <code>- Number</code>
                                     </h4>
@@ -1975,6 +2158,8 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="zIndex">zIndex</a>
                                         <code>- Number</code>
                                     </h4>
@@ -1990,21 +2175,11 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                                     </div>        
 
                                     <hr />
+                                    </div>        
 
                             </div>
                         </div>
 
-                        <div class="section field inheritance">
-                            <h4>Configuration attributes inherited from <a href="YAHOO.widget.Module.html">YAHOO.widget.Module</a>:</h4>
-                            <div class="content">
-                                <code>
-                                    
-                                        <a href="YAHOO.widget.Module.html#effect">effect</a>,
-                                        <a href="YAHOO.widget.Module.html#monitorresize">monitorresize</a>,
-                                        <a href="YAHOO.widget.Module.html#visible">visible</a>
-                                </code>
-                            </div>
-                        </div>
 
 			</div>
 		</div>
@@ -2023,6 +2198,8 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
+
                                 <li class=""><a href="module_connection.html">connection</a></li>
 
                                 <li class="selected"><a href="module_container.html">container</a></li>
@@ -2035,11 +2212,15 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
 
                                 <li class=""><a href="module_dragdrop.html">dragdrop</a></li>
 
+                                <li class=""><a href="module_editor.html">editor</a></li>
+
                                 <li class=""><a href="module_element.html">element</a></li>
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
                                 <li class=""><a href="module_history.html">history</a></li>
+
+                                <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
@@ -2052,6 +2233,10 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
+
+                                <li class=""><a href="module_yuiloader.html">yuiloader</a></li>
+
+                                <li class=""><a href="module_yuitest.html">yuitest</a></li>
                         </ul>
                     </div>
 
@@ -2088,31 +2273,31 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                     <div class="module">
                         <h4>Properties</h4>
                         <ul class="content">        
-                                <li><a href="#YAHOO.widget.Overlay._DEFAULT_CONFIG">YAHOO.widget.Overlay._DEFAULT_CONFIG</a>
+                                <li class="private"><a href="#DEFAULT_CONFIG">DEFAULT_CONFIG</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Overlay._EVENT_TYPES">YAHOO.widget.Overlay._EVENT_TYPES</a>
+                                <li class="private"><a href="#EVENT_TYPES">EVENT_TYPES</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Overlay._initialized">YAHOO.widget.Overlay._initialized</a>
+                                <li class="private"><a href="#YAHOO.widget.Overlay._initialized">YAHOO.widget.Overlay._initialized</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Overlay.BOTTOM_LEFT">YAHOO.widget.Overlay.BOTTOM_LEFT</a>
+                                <li class=""><a href="#YAHOO.widget.Overlay.BOTTOM_LEFT">YAHOO.widget.Overlay.BOTTOM_LEFT</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Overlay.BOTTOM_RIGHT">YAHOO.widget.Overlay.BOTTOM_RIGHT</a>
+                                <li class=""><a href="#YAHOO.widget.Overlay.BOTTOM_RIGHT">YAHOO.widget.Overlay.BOTTOM_RIGHT</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Overlay.CSS_OVERLAY">YAHOO.widget.Overlay.CSS_OVERLAY</a>
+                                <li class=""><a href="#YAHOO.widget.Overlay.CSS_OVERLAY">YAHOO.widget.Overlay.CSS_OVERLAY</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Overlay.IFRAME_SRC">YAHOO.widget.Overlay.IFRAME_SRC</a>
+                                <li class=""><a href="#YAHOO.widget.Overlay.IFRAME_SRC">YAHOO.widget.Overlay.IFRAME_SRC</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Overlay.TOP_LEFT">YAHOO.widget.Overlay.TOP_LEFT</a>
+                                <li class=""><a href="#YAHOO.widget.Overlay.TOP_LEFT">YAHOO.widget.Overlay.TOP_LEFT</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Overlay.TOP_RIGHT">YAHOO.widget.Overlay.TOP_RIGHT</a>
+                                <li class=""><a href="#YAHOO.widget.Overlay.TOP_RIGHT">YAHOO.widget.Overlay.TOP_RIGHT</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
                         </ul>
@@ -2121,91 +2306,97 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                     <div class="module">
                         <h4>Methods</h4>
                         <ul class="content">        
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#align">align</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#bringToTop">bringToTop</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#center">center</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configConstrainToViewport">configConstrainToViewport</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configContext">configContext</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configFixedCenter">configFixedCenter</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configHeight">configHeight</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configIframe">configIframe</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configVisible">configVisible</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configWidth">configWidth</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configX">configX</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configXY">configXY</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configY">configY</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configzIndex">configzIndex</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#destroy">destroy</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#doCenterOnDOMEvent">doCenterOnDOMEvent</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#enforceConstraints">enforceConstraints</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#hideIframe">hideIframe</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#hideMacGeckoScrollbars">hideMacGeckoScrollbars</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#init">init</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#initDefaultConfig">initDefaultConfig</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#initEvents">initEvents</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#moveTo">moveTo</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#onDomResize">onDomResize</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#showIframe">showIframe</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#showMacGeckoScrollbars">showMacGeckoScrollbars</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#syncIframe">syncIframe</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#syncPosition">syncPosition</a>
                                 </li>
-                                <li><!--<code>String</code>-->
+                                <li class=""><!--<code>String</code>-->
                                 <a href="#toString">toString</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#YAHOO.widget.Overlay.windowResizeHandler">YAHOO.widget.Overlay.windowResizeHandler</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#YAHOO.widget.Overlay.windowScrollHandler">YAHOO.widget.Overlay.windowScrollHandler</a>
                                 </li>
                         </ul>
@@ -2214,16 +2405,16 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                     <div class="module">
                         <h4>Events</h4>
                         <ul class="content">        
-                                <li>
+                                <li class="">
                                 <a href="#beforeMoveEvent">beforeMoveEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#moveEvent">moveEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#YAHOO.widget.Overlay.windowResizeEvent">YAHOO.widget.Overlay.windowResizeEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#YAHOO.widget.Overlay.windowScrollEvent">YAHOO.widget.Overlay.windowScrollEvent</a>
                                 </li>
                         </ul>
@@ -2232,34 +2423,34 @@ scrollbars cannot be hidden. See https://bugzilla.mozilla.org/show_bug.cgi?id=18
                     <div class="module">
                         <h4>Configuration Attributes</h4>
                         <ul class="content">        
-                                <li>
+                                <li class="">
                                 <a href="#constraintoviewport">constraintoviewport</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#context">context</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#fixedcenter">fixedcenter</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#height">height</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#iframe">iframe</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#width">width</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#x">x</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#xy">xy</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#y">y</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#zIndex">zIndex</a>
                                 </li>
                         </ul>

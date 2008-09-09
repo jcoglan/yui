@@ -1,275 +1,125 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-        "http://www.w3.org/TR/html4/strict.dtd"><html>
-    <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8">
-        <title>Example: Adding A Context Menu To A TreeView (YUI Library)</title>
-
-                <!-- Standard reset and fonts -->
-
-        <link rel="stylesheet" type="text/css" href="../../build/reset/reset.css">
-        <link rel="stylesheet" type="text/css" href="../../build/fonts/fonts.css">
-
-            
-
-        <!-- CSS for TreeView -->
-        <link rel="stylesheet" type="text/css" href="../../build/treeview/assets/tree.css">
-
-         
-
-        <!-- CSS for Menu -->
-
-        <link rel="stylesheet" type="text/css" href="../../build/menu/assets/menu.css">
- 
-
-        <!-- Page-specific styles -->
-
-        <style type="text/css">
-
-            h1 { 
-
-                font-weight:bold; 
-                margin:0 0 1em 0;
-            }
-
-            body {
-            
-                padding:1em;
-            
-            }
-
-            p, ul {
-
-                margin:1em 0;
-
-            }
-
-            h1 em,
-            p em,
-            #operainstructions li em {
-
-                font-weight:bold;
-
-            }
-
-            #operainstructions {
-
-                list-style-type:square;
-                margin-left:2em;
-
-            }
-
-        </style>
-
-                <!-- Namespace source file -->
-
-        <script type="text/javascript" src="../../build/yahoo/yahoo.js"></script>
-
-        <!-- Dependency source files -->
-
-        <script type="text/javascript" src="../../build/event/event.js"></script>
-        <script type="text/javascript" src="../../build/dom/dom.js"></script>
-
-            
-
-        <!-- TreeView source file -->
-
-        <script type="text/javascript" src="../../build/treeview/treeview.js"></script>
-        
-        <!-- Container source file -->
-        <script type="text/javascript" src="../../build/container/container_core.js"></script>
-
-        <!-- Menu source file -->
-        <script type="text/javascript" src="../../build/menu/menu.js"></script>
-
-        <!-- Page-specific script -->
-        <script type="text/javascript">
-
-            YAHOO.example.onTreeViewAvailble = function() {
-            
-                var oTreeView,      // The YAHOO.widget.TreeView instance
-                    oContextMenu,       // The YAHOO.widget.ContextMenu instance
-                    oTextNodeMap = {},      // Hash of YAHOO.widget.TextNode instances in the tree
-                    oCurrentTextNode = null;    // The YAHOO.widget.TextNode instance whose "contextmenu" DOM event triggered the display of the context menu
-            
-
-                function buildRandomTextBranch(p_oNode) {
-
-                    if(p_oNode.depth < 6) {
-
-                        for(var i=0; i<Math.floor(Math.random() * 4); i++) {
-
-                            var oTextNode = new YAHOO.widget.TextNode(p_oNode.label + "-" + i, p_oNode, false);
-
-                            oTextNodeMap[oTextNode.labelElId] = oTextNode;
-                            
-                            buildRandomTextBranch(oTextNode);
-
-                        }
-
-                    }
-
-                }
-
-
-                // Create a tree
-
-                oTreeView = new YAHOO.widget.TreeView("mytreeview");
-
-                for (var i = 0; i < Math.floor((Math.random()*4) + 3); i++) {
-
-                    var oTextNode = new YAHOO.widget.TextNode("label-" + i, oTreeView.getRoot(), false);
-                    
-                    oTextNodeMap[oTextNode.labelElId] = oTextNode;
-                    
-                    buildRandomTextBranch(oTextNode);
-
-                }
-        
-                oTreeView.draw();
-
-
-                function addNode() {
-
-                    var sLabel = window.prompt("Enter a label for the new node:", "");
-
-                    if(sLabel && sLabel.length > 0) {
-                        
-                        var oChildNode = new YAHOO.widget.TextNode(sLabel, oCurrentTextNode, false);
-    
-                        oCurrentTextNode.refresh();
-                        oCurrentTextNode.expand();
-
-                        oTextNodeMap[oChildNode.labelElId] = oChildNode;
-
-                    }
-
-                }
-                
-
-                function editNodeLabel() {
-
-                    var sLabel = window.prompt("Enter a new label for this node:", oCurrentTextNode.getLabelEl().innerHTML);
-    
-                    if(sLabel && sLabel.length > 0) {
-                        
-                        oCurrentTextNode.getLabelEl().innerHTML = sLabel;
-    
-                    }
-
-                }
-                
-
-                function deleteNode() {
-
-                    delete oTextNodeMap[oCurrentTextNode.labelElId];
-
-                    oTreeView.removeNode(oCurrentTextNode);
-                    oTreeView.draw();
-
-                }
-
-
-                /*
-                    "contextmenu" event handler for the element(s) that triggered the display of the context menu
-                */
-                function onTriggerContextMenu(p_oEvent, p_oMenu) {
-
-                    /*
-                         Returns a TextNode instance that corresponds to the DOM
-                         element whose "contextmenu" event triggered the display
-                         of the context menu.
-                    */
-        
-                    function GetTextNodeFromEventTarget(p_oTarget) {
-        
-                        if(p_oTarget.tagName.toUpperCase() == "A" && p_oTarget.className == "ygtvlabel") {
-
-                            return oTextNodeMap[p_oTarget.id];
-        
-                        }
-                        else {
-    
-                            if(p_oTarget.parentNode) {
-    
-                                return GetTextNodeFromEventTarget(p_oTarget.parentNode);
-                            
-                            }
-                        
-                        }
-                    
-                    }
-
-
-                    var oTextNode = GetTextNodeFromEventTarget(this.contextEventTarget);
-
-                    if(oTextNode) {
-
-                        oCurrentTextNode = oTextNode;
-
-                    }
-                    else {
-                    
-                        this.cancel();
-                        
-                    }
-                
-                }
-
-
-                // Create the context menu for the tree
-
-                oContextMenu = new YAHOO.widget.ContextMenu("mytreecontextmenu", 
-                                                                    {
-                                                                        trigger: "mytreeview",
-                                                                        lazyload: true, 
-                                                                        itemdata: [
-                                                                            { text: "Add Child Node", onclick: { fn: addNode } },
-                                                                            { text: "Edit Node Label", onclick: { fn: editNodeLabel } },
-                                                                            { text: "Delete Node", onclick: { fn: deleteNode } }
-                                                                        ] 
-                                                                    }
-                                                                );
-
-
-                oContextMenu.triggerContextMenuEvent.subscribe(onTriggerContextMenu, oContextMenu, true);
-
-            };
-
-
-            // Build the tree view when the "mytreeview" DIV is available in the DOM
-
-            YAHOO.util.Event.onAvailable("mytreeview", YAHOO.example.onTreeViewAvailble);
-                    
-        </script>
-
-    </head>
-    <body>
-        <h1>Example: Adding A Context Menu To A TreeView (YUI Library) <em>[<a href="index.html">Examples Home</a>]</em></h1>
-
-        <p>
-            When adding context menus to large data structures like a 
-            <code>&#60;table&#62;</code> or large list (<code>&#60;ol&#62;</code> 
-            or <code>&#60;ul&#62;</code>), it is recommended to bind a single 
-            YAHOO.widget.ContextMenu instance to the structure's root element, than to a set 
-            of its child nodes (<code>&#60;tr&#62;</code>s or <code>&#60;li&#62;</code>s).
-            
-            Doing so significantly improves the performance of a web page or 
-            application by reducing the number of "contextmenu" event handlers 
-            as well as the number of YAHOO.widget.ContextMenu instances in memory.
-        </p>
-
-        <p>
-            This example demonstrates how to display a context menu when the 
-            user clicks on any of the labels of the nodes in a YAHOO.widget.TreeView instance.
-        </p>
-
-        <p><em>Please Note:</em> Opera users will need to do the following to use this example:</p>
-
-        <ul id="operainstructions">
-            <li><em>Opera for Windows:</em>  Hold down the control key and click with the left mouse button.</li>
-            <li><em>Opera for OS X:</em>  Hold down the command key (&#8984;) and click with the left mouse button.</li>
-        </ul>
-        
-        <div id="mytreeview"></div>
-    </body>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>YUI Library Examples: Menu Family: Adding A Context Menu To A TreeView</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    	<link rel="stylesheet" type="text/css" href="../../assets/yui.css" >
+
+<style>
+/*Supplemental CSS for the YUI distribution*/
+#custom-doc { width: 95%; min-width: 950px; }
+#pagetitle {background-image: url(../../assets/bg_hd.gif);}
+#pagetitle h1 {background-image: url(../../assets/title_h_bg.gif);}
+
+</style>
+
+<!--Script and CSS includes for YUI dependencies on this page-->
+<link rel="stylesheet" type="text/css" href="../../build/button/assets/skins/sam/button.css" />
+<script type="text/javascript" src="../../build/yahoo/yahoo-min.js"></script>
+<script type="text/javascript" src="../../build/dom/dom-min.js"></script>
+<script type="text/javascript" src="../../build/event/event-min.js"></script>
+<script type="text/javascript" src="../../build/element/element-beta-min.js"></script>
+<script type="text/javascript" src="../../build/button/button-beta-min.js"></script>
+
+<!--there is no custom header content for this example-->
+
+
+</head>
+<body id="yahoo-com" class=" yui-skin-sam">
+<div id="custom-doc" class="yui-t2">
+<div id="hd">
+	<div id="ygunav">
+		<p><em>
+			<a href="http://developer.yahoo.com">Yahoo! Developer Network Home</a> <i> - </i>	
+			<a href="http://help.yahoo.com/help/us/ysearch">Help</a>
+			</em>
+		</p>
+		<form action="http://search.yahoo.com/search"><label for="ygsp">YDN Site Search</label> 
+		<input name="vs" type="hidden" value="developer.yahoo.com">
+		<input name="fr" type="hidden" value="ush-myweb">
+		<input id="ygsp" name="va" size="22"> 
+		<input type="submit" value="Search" class="ygbt"></form>
+	</div>
+	<div id="ygma"><a href="../../"><img src="../../assets/yui.gif"  border="0" width="378" height="28"></a></div>
+	<div id="pagetitle"><h1>YUI Library Examples: Menu Family: Adding A Context Menu To A TreeView</h1></div>
+</div>
+<div id="bd">	
+	<div id="yui-main">
+		<div class="yui-b">
+		  <div class="yui-ge">
+			  <div class="yui-u first example">
+	
+	<div class="promo">
+	<h1>Menu Family: Adding A Context Menu To A TreeView</h1>
+	
+	<div class="exampleIntro">
+	<p>This example demonstates how to add a context menu to a YUI TreeView control.</p>			
+	</div>	
+					
+	<div class="example-container module  newWindow">
+			<div id="example-canvas" class="bd">
+	
+		<p class="newWindowButton yui-skin-sam"><span id="newWindowLink"><span class="first-child"><a href="treeviewcontextmenu_source.html" target="_blank">View example in new window.</a></span></span>		
+	
+		
+		</div>
+		
+	
+	</div>			
+	</div>
+		
+					</div>
+				<div class="yui-u">
+					
+				
+					<div id="examples">
+						<h3 class='firstContent'>Menu Family Examples:</h3>
+	
+						<div id="exampleToc">
+							<ul>
+								<li><a href='../menu/example01.html'>Basic Menu From Markup</a></li><li><a href='../menu/example02.html'>Basic Menu From JavaScript</a></li><li><a href='../menu/example03.html'>Grouped Menu Items Using Markup</a></li><li><a href='../menu/example04.html'>Grouped Menu Items Using JavaScript</a></li><li><a href='../menu/example05.html'>Grouped Menu Items With Titles From Markup</a></li><li><a href='../menu/example06.html'>Grouped Menu Items With Titles From JavaScript</a></li><li><a href='../menu/example07.html'>Multi-tiered Menu From Markup</a></li><li><a href='../menu/example08.html'>Multi-tiered Menu From JavaScript</a></li><li><a href='../menu/example09.html'>Handling Menu Click Events</a></li><li><a href='../menu/example10.html'>Listening For Menu Events</a></li><li><a href='../menu/example11.html'>MenuItem Configuration Properties</a></li><li><a href='../menu/example12.html'>Setting Menu Configuration Properties At Runtime</a></li><li><a href='../menu/leftnavfrommarkup.html'>Website Left Nav With Submenus Built From Markup</a></li><li><a href='../menu/leftnavfromjs.html'>Website Left Nav With Submenus From JavaScript</a></li><li><a href='../menu/topnavfrommarkup.html'>Website Top Nav With Submenus Built From Markup</a></li><li><a href='../menu/topnavfromjs.html'>Website Top Nav With Submenus From JavaScript</a></li><li><a href='../menu/leftnavfrommarkupwithanim.html'>Website Left Nav Using Animation With Submenus Built From Markup</a></li><li><a href='../menu/leftnavfromjswithanim.html'>Website Left Nav Using Animation With Submenus From JavaScript</a></li><li><a href='../menu/topnavfrommarkupwithanim.html'>Website Top Nav Using Animation With Submenus Built From Markup</a></li><li><a href='../menu/topnavfromjswithanim.html'>Website Top Nav Using Animation With Submenus From JavaScript</a></li><li><a href='../menu/contextmenu.html'>Context Menu</a></li><li><a href='../menu/tablecontextmenu.html'>Adding A Context Menu To A Table</a></li><li class='selected'><a href='../menu/treeviewcontextmenu.html'>Adding A Context Menu To A TreeView</a></li><li><a href='../menu/programsmenu.html'>OS-Style Programs Menu</a></li><li><a href='../menu/applicationmenubar.html'>Application Menubar</a></li><li><a href='../datatable/dt_contextmenu.html'>Context Menu Integration (included with examples for DataTable Control (beta))</a></li><li><a href='../button/btn_example07.html'>Menu Buttons (included with examples for Button Control (beta))</a></li><li><a href='../button/btn_example08.html'>Split Buttons (included with examples for Button Control (beta))</a></li>							</ul>
+						</div>
+					</div>
+					
+					<div id="module">
+						<h3>More Menu Family Resources:</h3>
+						<ul>
+							<li><a href="http://developer.yahoo.com/yui/menu/">User's Guide</a> (external)</li>
+							<li><a href="../../docs/module_menu.html">API Documentation</a></li>
+							<li><a href="http://yuiblog.com/assets/pdf/cheatsheets/menu.pdf">Cheat Sheet PDF</a> (external)</li>
+						</ul>
+					</div>
+					
+	
+			  </div>
+		</div>
+		
+		</div>
+	</div>
+
+
+<div class="yui-b" id="tocWrapper">
+<!-- TABLE OF CONTENTS -->
+<div id="toc">
+	
+<ul>
+<li class="sect first">Yahoo! UI Library</li><li class="item"><a title="The Yahoo! User Interface Library (YUI)" href="http://developer.yahoo.com/yui/">Home (external)</a></li><li class="item"><a title="The Yahoo! User Interface Blog" href="http://yuiblog.com">YUIBlog (external)</a></li><li class="item"><a title="The Yahoo! Group YDN-JavaScript hosts the YUI community forum" href="http://tech.groups.yahoo.com/group/ydn-javascript/">YUI Discussion Forum (external)</a></li><li class="item"><a title="The YUI Library can be downloaded from SourceForge" href="http://sourceforge.net/projects/yui/">YUI on Sourceforge (external)</a></li><li class="item"><a title="Instantly searchable API documentation for the entire YUI library." href="../../docs/index.html">API Documentation</a></li><li class="item"><a title="Examples of every YUI utility and control in action" href="../../examples/">Functional Examples</a></li><li class="item"><a title="Videos and podcasts from the YUI Team and from the Yahoo! frontend engineering community." href="http://developer.yahoo.com/yui/theater/">YUI Theater (external)</a></li><li class="item"><a title="YUI is free and open, offered under a BSD license." href="http://developer.yahoo.com/yui/license.html">YUI License (external)</a></li><li class="sect">YUI Functional Examples</li><li class="item"><a title="The YUI Animation Utility - Functional Examples" href="../../examples/animation/index.html">Animation</a></li><li class="item"><a title="The YUI AutoComplete Control - Functional Examples" href="../../examples/autocomplete/index.html">AutoComplete</a></li><li class="item"><a title="The YUI Browser History Manager - Functional Examples" href="../../examples/history/index.html">Browser History Manager (beta)</a></li><li class="item"><a title="The YUI Button Control - Functional Examples" href="../../examples/button/index.html">Button (beta)</a></li><li class="item"><a title="The YUI Calendar Control - Functional Examples" href="../../examples/calendar/index.html">Calendar</a></li><li class="item"><a title="The YUI Color Picker Control - Functional Examples" href="../../examples/colorpicker/index.html">Color Picker (beta)</a></li><li class="item"><a title="The YUI Connection Manager (AJAX) - Functional Examples" href="../../examples/connection/index.html">Connection Manager</a></li><li class="item"><a title="The YUI Container Family (Module, Overlay, Tooltip, Panel, Dialog, SimpleDialog) - Functional Examples" href="../../examples/container/index.html">Container</a></li><li class="item"><a title="The YUI DataTable Control - Functional Examples" href="../../examples/datatable/index.html">DataTable (beta)</a></li><li class="item"><a title="The YUI Dom Collection - Functional Examples" href="../../examples/dom/index.html">Dom</a></li><li class="item"><a title="The YUI Drag &amp; Drop Utility - Functional Examples" href="../../examples/dragdrop/index.html">Drag &amp; Drop</a></li><li class="item"><a title="The YUI Event Utility - Functional Examples" href="../../examples/event/index.html">Event</a></li><li class="item"><a title="The YUI ImageLoader Utility - Functional Examples" href="../../examples/imageloader/index.html">ImageLoader (experimental)</a></li><li class="item"><a title="The YUI Logger Control - Functional Examples" href="../../examples/logger/index.html">Logger</a></li><li class="selected "><a title="The YUI Menu Control - Functional Examples" href="../../examples/menu/index.html">Menu</a></li><li class="item"><a title="The YUI Rich Text Editor - Functional Examples" href="../../examples/editor/index.html">Rich Text Editor (beta)</a></li><li class="item"><a title="The YUI Slider Control - Functional Examples" href="../../examples/slider/index.html">Slider</a></li><li class="item"><a title="The YUI TabView Control - Functional Examples" href="../../examples/tabview/index.html">TabView</a></li><li class="item"><a title="The YUI TreeView Control - Functional Examples" href="../../examples/treeview/index.html">TreeView</a></li><li class="item"><a title="The YUI Loader Utility - Functional Examples" href="../../examples/yuiloader/index.html">YUI Loader (beta)</a></li><li class="item"><a title="The YUI Test Utility - Functional Examples" href="../../examples/yuitest/index.html">YUI Test (beta)</a></li><li class="item"><a title="YUI Reset CSS - Functional Examples" href="../../examples/reset/index.html">Reset CSS</a></li><li class="item"><a title="YUI Base CSS - Functional Examples" href="../../examples/base/index.html">Base CSS</a></li><li class="item"><a title="YUI Fonts CSS - Functional Examples" href="../../examples/fonts/index.html">Fonts CSS</a></li><li class="item"><a title="YUI Grids CSS - Functional Examples" href="../../examples/grids/index.html">Grids CSS</a></li><li class="sect">YUI Articles on the YUI Website</li><li class="item"><a title="Answers to Frequently Asked Questions about the YUI Library" href="http://developer.yahoo.com/yui/articles/faq/">YUI FAQ (external)</a></li><li class="item"><a title="Yahoo!'s philosophy of Graded Browser Support" href="http://developer.yahoo.com/yui/articles/gbs/">Graded Browser Support (external)</a></li><li class="item"><a title="Reporting Bugs and Making Feature Requests for YUI Components" href="http://developer.yahoo.com/yui/articles/reportingbugs/">Bug Reports/Feature Requests (external)</a></li><li class="item"><a title="Serve YUI source files from Yahoo! -- free, fast, and simple" href="http://developer.yahoo.com/yui/articles/hosting/">Serving YUI Files from Yahoo! (external)</a></li><li class="item"><a title="Best practices for working with web services while protecting user privacy" href="http://developer.yahoo.com/security/">Security Best Practices (external)</a></li></ul>
+</div>
+</div>
+
+	<div id="ft">
+        <p class="first">Copyright &copy; 2007 Yahoo! Inc. All rights reserved.</p>
+        <p><a href="http://privacy.yahoo.com/privacy/us/devel/index.html">Privacy Policy</a> - 
+            <a href="http://docs.yahoo.com/info/terms/">Terms of Service</a> - 
+            <a href="http://docs.yahoo.com/info/copyright/copyright.html">Copyright Policy</a> - 
+            <a href="http://careers.yahoo.com/">Job Openings</a></p>
+	</div>
+</div>
+</div>
+
+
+<script src='../../assets/YUIexamples.js'></script>
+
+
+</body>
 </html>

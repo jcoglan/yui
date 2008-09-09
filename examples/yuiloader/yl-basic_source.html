@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>YUI Loader Utility Example: Loading YUI TreeView and Calendar with the YUI Loader Utility</title>
+</head>
+
+<body class="yui-skin-sam">
+
+<h1>YUI Loader Utility Example: Loading the YUI Calendar Control with the YUI Loader Utility</h1>
+
+<p>In this example, we bring a YUI component onto the page using the <a href="http://developer.yahoo.com/yui/loader/">YUI Loader Utility</a>. This example implements YUI Loader via the <code>YAHOO_config</code> object.  We load the YUI Loader script file, then specify in <code>YAHOO_config</code> which component we want loaded on the page &mdash; and what we want to do once it <em>is</em> loaded.</p>
+
+<div id="calendar_container"></div>
+
+<script>
+YAHOO_config = {
+
+	//we don't have loader on the page, so we'll use our
+	//"listener" to log to the console if supported by the 
+	//browser.  "listener" is a method that will be fired
+	//by the YAHOO Global Object each time a new YUI module
+	//is successfully loaded.
+	listener: function(moduleInformation) {
+		//if(console) {console.log(moduleInformation);}
+	}, 
+	
+	//the "load" member of YAHOO_config is where we provide
+	//information to the YUI Loader Utility about what components
+	//we want to load, where they exist, and what to do once
+	//they're loaded.
+	load: {
+		require: ['calendar'], //what components?
+		base: '../../build/', //where do they live?
+		//loadOptional: true, //load all optional dependencies?
+		//filter: "DEBUG", 	//use debug versions (or apply some
+							//some other filter?
+
+		//onLoadComplete is the function that YUI Loader
+		//should call when all components are successfully loaded.
+		onLoadComplete: function(loader) {
+		
+			//Once the YUI Calendar Control and dependencies are on
+			//the page, we'll verify that our target container is 
+			//available in the DOM and then instantiate a default
+			//calendar into it:
+			YAHOO.util.Event.onAvailable("calendar_container", function() {
+				var myCal = new YAHOO.widget.Calendar("mycal_id", "calendar_container");
+				myCal.render();
+			})
+		}
+	}
+}
+</script>
+
+<!--Having created our YAHOO_config object, we now load the YUI
+    Loader Utility; it will consume the object and follow the 
+	instructions we provided there.-->
+<script src="../../build/yuiloader/yuiloader-beta.js"></script>
+
+</body>
+</html>

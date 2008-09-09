@@ -3,27 +3,38 @@
 <head>
 	<title>API: slider   Slider.js  (YUI Library)</title>
 	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
 </head>
 
 <body id="yahoo-com">
+
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
         <h1>Yahoo! UI Library</h1>
-        <h3>Slider Widget&nbsp; <span class="subtitle">2.2.2</span></h3>
+        <h3>Slider Widget&nbsp; <span class="subtitle">2.3.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_slider.html">slider</a>
                 
                  &gt; Slider.js (source view) 
             </p>
+
 	</div>
 
 	<div id="bd">
 		<div id="yui-main">
 			<div class="yui-b">
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> Show Private</span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> Show Protected</span>
+            </form>
 
                     <div id="srcout">
+                        <style>
+                            #doc3 #classopts { display:none; }
+                        </style>
 <div class="highlight" ><pre><span class="c">/**</span>
 <span class="c"> * The Slider component is a UI control that enables the user to adjust </span>
 <span class="c"> * values in a finite range along one or two axes. Typically, the Slider </span>
@@ -130,6 +141,7 @@
 <span class="c"> * @type boolean</span>
 <span class="c"> */</span>
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Slider</span><span class="o">.</span><span class="nx">ANIM_AVAIL</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+
 
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">extend</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Slider</span><span class="o">,</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">DragDrop</span><span class="o">,</span> <span class="o">{</span>
 
@@ -244,6 +256,36 @@
 <span class="c">         * @default 0.2</span>
 <span class="c">         */</span>
         <span class="k">this</span><span class="o">.</span><span class="nx">animationDuration</span> <span class="o">=</span> <span class="m">0</span><span class="o">.</span><span class="m">2</span><span class="o">;</span>
+
+        <span class="c">/**</span>
+<span class="c">         * Constant for valueChangeSource, indicating that the user clicked or</span>
+<span class="c">         * dragged the slider to change the value.</span>
+<span class="c">         * @property SOURCE_UI_EVENT</span>
+<span class="c">         * @final</span>
+<span class="c">         * @default 1</span>
+<span class="c">         */</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">SOURCE_UI_EVENT</span> <span class="o">=</span> <span class="m">1</span><span class="o">;</span>
+
+        <span class="c">/**</span>
+<span class="c">         * Constant for valueChangeSource, indicating that the value was altered</span>
+<span class="c">         * by a programmatic call to setValue/setRegionValue.</span>
+<span class="c">         * @property SOURCE_SET_VALUE</span>
+<span class="c">         * @final</span>
+<span class="c">         * @default 2</span>
+<span class="c">         */</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">SOURCE_SET_VALUE</span> <span class="o">=</span> <span class="m">2</span><span class="o">;</span>
+
+        <span class="c">/**</span>
+<span class="c">         * When the slider value changes, this property is set to identify where</span>
+<span class="c">         * the update came from.  This will be either 1, meaning the slider was</span>
+<span class="c">         * clicked or dragged, or 2, meaning that it was set via a setValue() call.</span>
+<span class="c">         * This can be used within event handlers to apply some of the logic only</span>
+<span class="c">         * when dealing with one source or another.</span>
+<span class="c">         * @property valueChangeSource</span>
+<span class="c">         * @type int</span>
+<span class="c">         * @since 2.3.0</span>
+<span class="c">         */</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">valueChangeSource</span> <span class="o">=</span> <span class="m">0</span><span class="o">;</span>
     <span class="o">},</span>
 
     <span class="c">/**</span>
@@ -487,6 +529,7 @@
 <span class="c">     */</span>
     <span class="nx">focus</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
         <span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;focus&quot;</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">valueChangeSource</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">SOURCE_UI_EVENT</span><span class="o">;</span>
 
         <span class="c">// Focus the background element if possible</span>
 <span class="c"></span>        <span class="k">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">getEl</span><span class="o">();</span>
@@ -604,6 +647,8 @@
     <span class="nx">setValue</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">newOffset</span><span class="o">,</span> <span class="nx">skipAnim</span><span class="o">,</span> <span class="nx">force</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;setValue &quot;</span> <span class="o">+</span> <span class="nx">newOffset</span><span class="o">);</span>
 
+        <span class="k">this</span><span class="o">.</span><span class="nx">valueChangeSource</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">SOURCE_SET_VALUE</span><span class="o">;</span>
+
         <span class="k">if</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">thumb</span><span class="o">.</span><span class="nx">available</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;defer setValue until after onAvailble&quot;</span><span class="o">);</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">deferredSetValue</span> <span class="o">=</span> <span class="nx">arguments</span><span class="o">;</span>
@@ -653,6 +698,8 @@
 <span class="c">     * @return {boolean} true if the move was performed, false if it failed</span>
 <span class="c">     */</span>
     <span class="nx">setRegionValue</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">newOffset</span><span class="o">,</span> <span class="nx">newOffset2</span><span class="o">,</span> <span class="nx">skipAnim</span><span class="o">,</span> <span class="nx">force</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="k">this</span><span class="o">.</span><span class="nx">valueChangeSource</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">SOURCE_SET_VALUE</span><span class="o">;</span>
 
         <span class="k">if</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">thumb</span><span class="o">.</span><span class="nx">available</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;defer setRegionValue until after onAvailble&quot;</span><span class="o">);</span>
@@ -1035,6 +1082,8 @@
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
+
                                 <li class=""><a href="module_connection.html">connection</a></li>
 
                                 <li class=""><a href="module_container.html">container</a></li>
@@ -1047,11 +1096,15 @@
 
                                 <li class=""><a href="module_dragdrop.html">dragdrop</a></li>
 
+                                <li class=""><a href="module_editor.html">editor</a></li>
+
                                 <li class=""><a href="module_element.html">element</a></li>
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
                                 <li class=""><a href="module_history.html">history</a></li>
+
+                                <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
@@ -1064,6 +1117,10 @@
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
+
+                                <li class=""><a href="module_yuiloader.html">yuiloader</a></li>
+
+                                <li class=""><a href="module_yuitest.html">yuitest</a></li>
                         </ul>
                     </div>
 

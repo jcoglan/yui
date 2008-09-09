@@ -3,27 +3,38 @@
 <head>
 	<title>API: tabview   Tab.js  (YUI Library)</title>
 	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
 </head>
 
 <body id="yahoo-com">
+
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
         <h1>Yahoo! UI Library</h1>
-        <h3>tabview&nbsp; <span class="subtitle">2.2.2</span></h3>
+        <h3>tabview&nbsp; <span class="subtitle">2.3.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_tabview.html">tabview</a>
                 
                  &gt; Tab.js (source view) 
             </p>
+
 	</div>
 
 	<div id="bd">
 		<div id="yui-main">
 			<div class="yui-b">
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> Show Private</span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> Show Protected</span>
+            </form>
 
                     <div id="srcout">
+                        <style>
+                            #doc3 #classopts { display:none; }
+                        </style>
 <div class="highlight" ><pre><span class="o">(</span><span class="k">function</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">var</span> <span class="nx">Dom</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">,</span>
         <span class="nx">Event</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">;</span>
@@ -79,7 +90,7 @@
 <span class="c">     * The class name applied to active tabs.</span>
 <span class="c">     * @property ACTIVE_CLASSNAME</span>
 <span class="c">     * @type String</span>
-<span class="c">     * @default &quot;on&quot;</span>
+<span class="c">     * @default &quot;selected&quot;</span>
 <span class="c">     */</span>
     <span class="nx">proto</span><span class="o">.</span><span class="nx">ACTIVE_CLASSNAME</span> <span class="o">=</span> <span class="s1">&#39;selected&#39;</span><span class="o">;</span>
     
@@ -113,6 +124,8 @@
 <span class="c">     * @type object</span>
 <span class="c">     */</span>
     <span class="nx">proto</span><span class="o">.</span><span class="nx">loadHandler</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+
+    <span class="nx">proto</span><span class="o">.</span><span class="nx">_loading</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
     
     <span class="c">/**</span>
 <span class="c">     * Provides a readable name for the tab.</span>
@@ -319,7 +332,8 @@
 <span class="c">         * @default &#39;#&#39;</span>
 <span class="c">         */</span>
         <span class="k">this</span><span class="o">.</span><span class="nx">setAttributeConfig</span><span class="o">(</span><span class="s1">&#39;href&#39;</span><span class="o">,</span> <span class="o">{</span>
-            <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">href</span> <span class="o">||</span> <span class="s1">&#39;#&#39;</span><span class="o">,</span>
+            <span class="nx">value</span><span class="o">:</span> <span class="nx">attr</span><span class="o">.</span><span class="nx">href</span> <span class="o">||</span>
+                    <span class="k">this</span><span class="o">.</span><span class="nx">getElementsByTagName</span><span class="o">(</span><span class="s1">&#39;a&#39;</span><span class="o">)[</span><span class="m">0</span><span class="o">].</span><span class="nx">getAttribute</span><span class="o">(</span><span class="s1">&#39;href&#39;</span><span class="o">,</span> <span class="m">2</span><span class="o">)</span> <span class="o">||</span> <span class="s1">&#39;#&#39;</span><span class="o">,</span>
             <span class="nx">method</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">value</span><span class="o">)</span> <span class="o">{</span>
                 <span class="k">this</span><span class="o">.</span><span class="nx">getElementsByTagName</span><span class="o">(</span><span class="s1">&#39;a&#39;</span><span class="o">)[</span><span class="m">0</span><span class="o">].</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">value</span><span class="o">;</span>
             <span class="o">},</span>
@@ -339,8 +353,8 @@
                     <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;contentEl&#39;</span><span class="o">).</span><span class="nx">style</span><span class="o">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;block&#39;</span><span class="o">;</span>
                     
                     <span class="k">if</span> <span class="o">(</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;dataSrc&#39;</span><span class="o">)</span> <span class="o">)</span> <span class="o">{</span>
-                     <span class="c">// load dynamic content unless already loaded and caching</span>
-<span class="c"></span>                        <span class="k">if</span> <span class="o">(</span> <span class="o">!</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;dataLoaded&#39;</span><span class="o">)</span> <span class="o">||</span> <span class="o">!</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;cacheData&#39;</span><span class="o">)</span> <span class="o">)</span> <span class="o">{</span>
+                     <span class="c">// load dynamic content unless already loading or loaded and caching</span>
+<span class="c"></span>                        <span class="k">if</span> <span class="o">(</span> <span class="o">!</span><span class="k">this</span><span class="o">.</span><span class="nx">_loading</span> <span class="o">&amp;&amp;</span> <span class="o">!(</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;dataLoaded&#39;</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;cacheData&#39;</span><span class="o">))</span> <span class="o">)</span> <span class="o">{</span>
                             <span class="nx">_dataConnect</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
                         <span class="o">}</span>
                     <span class="o">}</span>
@@ -409,7 +423,7 @@
         <span class="o">}</span>
 
         <span class="nx">Dom</span><span class="o">.</span><span class="nx">addClass</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;contentEl&#39;</span><span class="o">).</span><span class="nx">parentNode</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">LOADING_CLASSNAME</span><span class="o">);</span>
-        
+        <span class="k">this</span><span class="o">.</span><span class="nx">_loading</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span> 
         <span class="k">this</span><span class="o">.</span><span class="nx">dataConnection</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Connect</span><span class="o">.</span><span class="nx">asyncRequest</span><span class="o">(</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;loadMethod&#39;</span><span class="o">),</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;dataSrc&#39;</span><span class="o">),</span> 
@@ -420,12 +434,14 @@
                     <span class="k">this</span><span class="o">.</span><span class="nx">dataConnection</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
                     <span class="nx">Dom</span><span class="o">.</span><span class="nx">removeClass</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;contentEl&#39;</span><span class="o">).</span><span class="nx">parentNode</span><span class="o">,</span>
                             <span class="k">this</span><span class="o">.</span><span class="nx">LOADING_CLASSNAME</span><span class="o">);</span>
+                    <span class="k">this</span><span class="o">.</span><span class="nx">_loading</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
                 <span class="o">},</span>
                 <span class="nx">failure</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">o</span><span class="o">)</span> <span class="o">{</span>
                     <span class="k">this</span><span class="o">.</span><span class="nx">loadHandler</span><span class="o">.</span><span class="nx">failure</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="nx">o</span><span class="o">);</span>
                     <span class="k">this</span><span class="o">.</span><span class="nx">dataConnection</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
                     <span class="nx">Dom</span><span class="o">.</span><span class="nx">removeClass</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;contentEl&#39;</span><span class="o">).</span><span class="nx">parentNode</span><span class="o">,</span>
                             <span class="k">this</span><span class="o">.</span><span class="nx">LOADING_CLASSNAME</span><span class="o">);</span>
+                    <span class="k">this</span><span class="o">.</span><span class="nx">_loading</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
                 <span class="o">},</span>
                 <span class="nx">scope</span><span class="o">:</span> <span class="k">this</span><span class="o">,</span>
                 <span class="nx">timeout</span><span class="o">:</span> <span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;dataTimeout&#39;</span><span class="o">)</span>
@@ -550,6 +566,8 @@
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
+
                                 <li class=""><a href="module_connection.html">connection</a></li>
 
                                 <li class=""><a href="module_container.html">container</a></li>
@@ -562,11 +580,15 @@
 
                                 <li class=""><a href="module_dragdrop.html">dragdrop</a></li>
 
+                                <li class=""><a href="module_editor.html">editor</a></li>
+
                                 <li class=""><a href="module_element.html">element</a></li>
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
                                 <li class=""><a href="module_history.html">history</a></li>
+
+                                <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
@@ -579,6 +601,10 @@
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
+
+                                <li class=""><a href="module_yuiloader.html">yuiloader</a></li>
+
+                                <li class=""><a href="module_yuitest.html">yuitest</a></li>
                         </ul>
                     </div>
 

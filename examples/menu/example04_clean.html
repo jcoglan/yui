@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Grouped Menu Items Using JavaScript</title>
+
+<style type="text/css">
+/*margin and padding on body element
+  can introduce errors in determining
+  element position and are not recommended;
+  we turn them off as a foundation for YUI
+  CSS treatments. */
+body {
+	margin:0;
+	padding:0;
+}
+</style>
+
+<link rel="stylesheet" type="text/css" href="../../build/fonts/fonts-min.css" />
+<link rel="stylesheet" type="text/css" href="../../build/menu/assets/skins/sam/menu.css" />
+<!-- The following modules were requested but are not defined: container-core -->
+<script type="text/javascript" src="../../build/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="../../build/container/container_core.js"></script>
+<script type="text/javascript" src="../../build/menu/menu.js"></script>
+<!-- The following modules were requested but are not defined: container-core -->
+
+<!--there is no custom header content for this example-->
+
+</head>
+
+<body class=" yui-skin-sam">
+
+<h1>Grouped Menu Items Using JavaScript</h1>
+
+<div class="exampleIntro">
+	<p>This example demonstrates how to group MenuItem instances.</p>
+<p id="clicknote"><em>Note:</em> By default clicking outside of a menu will hide it.  Additionally, menu items without a submenu or a URL to navigate will hide their parent menu when clicked.  Click the "Show Menu" button below to make the menu visible if it is hidden.</p>			
+</div>
+
+<!--BEGIN SOURCE CODE FOR EXAMPLE =============================== -->
+
+<script type="text/javascript">
+
+    // Instantiate and render the menu when the page's DOM is ready
+
+    YAHOO.util.Event.onDOMReady(function () {
+
+        /*
+             Instantiate the menu.  The first argument passed to the 
+             constructor is the id of the DOM element to be created for the 
+             menu; the second is an object literal representing a set of 
+             configuration properties for the menu.
+        */
+
+        var oMenu = new YAHOO.widget.Menu("menuwithgroups", { fixedcenter: true });
+
+        /*
+            Add items to the menu by passing a multi-dimensional array of 
+            object literals (each of which represents a set of 
+            YAHOO.widget.MenuItem configuration properties) to the 
+            "addItems" method.
+        */
+
+        oMenu.addItems([
+
+            [
+                { text: "Yahoo! Mail", url: "http://mail.yahoo.com" },
+                { text: "Yahoo! Address Book", url: "http://addressbook.yahoo.com" },
+                { text: "Yahoo! Calendar", url: "http://calendar.yahoo.com" },
+                { text: "Yahoo! Notepad", url: "http://notepad.yahoo.com" }
+            ],
+
+            [
+
+                { text: "Yahoo! Local", url: "http://local.yahoo.com" },
+                { text: "Yahoo! Maps", url: "http://maps.yahoo.com" },
+                { text: "Yahoo! Travel", url: "http://travel.yahoo.com" },
+                { text: "Yahoo! Shopping", url: "http://shopping.yahoo.com" } 
+            
+            ],
+
+            [
+
+                { text: "Yahoo! Messenger", url: "http://messenger.yahoo.com" },
+                { text: "Yahoo! 360", url: "http://360.yahoo.com" },
+                { text: "Yahoo! Groups", url: "http://groups.yahoo.com" },
+                { text: "Yahoo! Photos", url: "http://photos.yahoo.com" }
+            
+            ]
+        
+        ]);
+
+        oMenu.showEvent.subscribe(function () {
+
+            this.focus();
+        
+        });
+
+        /*
+             Since this menu is built completely from script, call the "render" 
+             method passing in the id of the DOM element that the menu's 
+             root element should be appended to.
+        */
+
+        oMenu.render("rendertarget");
+
+        YAHOO.util.Event.addListener("menutoggle", "click", oMenu.show, null, oMenu);
+    
+    });
+    
+</script>
+
+<button id="menutoggle" type="button">Show Menu</button>
+<div id="rendertarget"></div>
+<!--END SOURCE CODE FOR EXAMPLE =============================== -->
+
+</body>
+</html>

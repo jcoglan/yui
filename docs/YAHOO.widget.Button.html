@@ -3,26 +3,33 @@
 <head>
 	<title>API: button  YAHOO.widget.Button   (YUI Library)</title>
 	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
 </head>
 
 <body id="yahoo-com">
+
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
         <h1>Yahoo! UI Library</h1>
-        <h3>Button&nbsp; <span class="subtitle">2.2.2</span></h3>
+        <h3>Button&nbsp; <span class="subtitle">2.3.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_button.html">button</a>
                  &gt; YAHOO.widget.Button 
                 
             </p>
+
 	</div>
 
 	<div id="bd">
 		<div id="yui-main">
 			<div class="yui-b">
-
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> Show Private</span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> Show Protected</span>
+            </form>
 
                     <h2>
                         
@@ -74,33 +81,37 @@
                                                     &lt;String&gt; 
                                                     </code>
                                                      String specifying the id attribute of the 
-<code>&#60;input&#62;</code>, <code>&#60;a&#62;</code> or 
-<code>&#60;span&#62;</code> element to be used to create the button.
+<code>&#60;input&#62;</code>, <code>&#60;button&#62;</code>,
+<code>&#60;a&#62;</code>, or <code>&#60;span&#62;</code> element to 
+be used to create the button.
                                                 </dd>
                                                 <dd>
                                                     <code>p_oElement
                                                     &lt;<a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-
-one-html.html#ID-6043025">HTMLInputElement</a>|<a href="
+one-html.html#ID-6043025">HTMLInputElement</a>|<a href="http://www.w3.org
+/TR/2000/WD-DOM-Level-1-20000929/level-one-html.html#ID-34812697">
+HTMLButtonElement</a>|<a href="
 http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-one-html.html#
 ID-33759296">HTMLElement</a>&gt; 
                                                     </code>
                                                      Object reference for the 
-<code>&#60;input&#62;</code>, <code>&#60;a&#62;</code> or 
-<code>&#60;span&#62;</code> element to be used to create the button.
+<code>&#60;input&#62;</code>, <code>&#60;button&#62;</code>, 
+<code>&#60;a&#62;</code>, or <code>&#60;span&#62;</code> element to be 
+used to create the button.
                                                 </dd>
                                                 <dd>
                                                     <code>p_oElement
                                                     &lt;Object&gt; 
                                                     </code>
-                                                     Object literal specifying a set of configuration  
-attributes used to create the button.
+                                                     Object literal specifying a set of   
+configuration attributes used to create the button.
                                                 </dd>
                                                 <dd>
                                                     <code>p_oAttributes
                                                     &lt;Object&gt; 
                                                     </code>
-                                                     Optional. Object literal specifying a set of 
-configuration attributes used to create the button.
+                                                     Optional. Object literal specifying a set  
+of configuration attributes used to create the button.
                                                 </dd>
                                         </dl>
                                     
@@ -113,13 +124,14 @@ configuration attributes used to create the button.
                         <div class="section field details">
                             <h3><a name="field_detail">Properties</a></h3>
                             <div class="content">
+                                    <div class="protected">
                                     <h4><a name="_activationButtonPressed">_activationButtonPressed</a>
                                         <code>- protected Boolean</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Boolean indicating if the mouse button that toggles the button's
-"active" state has been pressed.
+                                            Boolean indicating if the mouse button that toggles 
+the button's "active" state has been pressed.
                                         </div>
                                     </div>
      
@@ -130,6 +142,8 @@ configuration attributes used to create the button.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4><a name="_activationKeyPressed">_activationKeyPressed</a>
                                         <code>- protected Boolean</code>
                                     </h4>
@@ -147,11 +161,13 @@ configuration attributes used to create the button.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4><a name="_button">_button</a>
-                                        <code>- protected <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-
-one-html.html#ID-48250443">HTMLAnchorElement</a>|<a href="
-http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-one-html.html#ID-
-34812697">HTMLButtonElement</a></code>
+                                        <code>- protected <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/
+level-one-html.html#ID-48250443">HTMLAnchorElement</a>|<a href="
+http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-one-html.html
+#ID-34812697">HTMLButtonElement</a></code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
@@ -167,6 +183,8 @@ http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-one-html.html#ID-
 
 
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4><a name="_hasKeyEventHandlers">_hasKeyEventHandlers</a>
                                         <code>- protected Boolean</code>
                                     </h4>
@@ -184,13 +202,15 @@ http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-one-html.html#ID-
 
 
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4><a name="_hasMouseEventHandlers">_hasMouseEventHandlers</a>
                                         <code>- protected Boolean</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Boolean indicating if the button's "mouseout" and "mousedown" 
-and "mouseup" event handlers are assigned
+                                            Boolean indicating if the button's "mouseout," 
+"mousedown," and "mouseup" event handlers are assigned
                                         </div>
                                     </div>
      
@@ -201,14 +221,17 @@ and "mouseup" event handlers are assigned
 
 
                                     <hr />
-                                    <h4><a name="_hiddenField">_hiddenField</a>
-                                        <code>- protected <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-
-one-html.html#ID-6043025">HTMLInputElement</a></code>
+                                    </div>
+                                    <div class="protected">
+                                    <h4><a name="_hiddenFields">_hiddenFields</a>
+                                        <code>- protected <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/
+level-one-html.html#ID-6043025">HTMLInputElement</a>|Array</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Object reference to the <code>&#60;input&#62;</code> element 
-used when the button's parent form is submitted.
+                                            Object reference to the <code>&#60;input&#62;</code>  
+element, or array of HTML form elements used to represent the button
+when its parent form is submitted.
                                         </div>
                                     </div>
      
@@ -219,8 +242,11 @@ used when the button's parent form is submitted.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4><a name="_menu">_menu</a>
-                                        <code>- protected <a href="YAHOO.widget.Menu.html">YAHOO.widget.Menu</a></code>
+                                        <code>- protected {<a href="YAHOO.widget.Overlay.html">YAHOO.widget.Overlay</a>|
+<a href="YAHOO.widget.Menu.html">YAHOO.widget.Menu</a>}</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
@@ -235,13 +261,15 @@ used when the button's parent form is submitted.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4><a name="_onclickAttributeValue">_onclickAttributeValue</a>
                                         <code>- protected Object</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Object reference to the button's current value for the "onclick"
-configuration attribute.
+                                            Object reference to the button's current value for the 
+"onclick" configuration attribute.
                                         </div>
                                     </div>
      
@@ -252,13 +280,15 @@ configuration attribute.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="ACTIVATION_KEYS">ACTIVATION_KEYS</a>
                                         <code>- final Array</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Array of numbers representing keys that (when presed) toggle 
-the button's "active" state.
+                                            Array of numbers representing keys that (when presed) 
+toggle the button's "active" state.
                                         </div>
                                     </div>
      
@@ -269,13 +299,15 @@ the button's "active" state.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="CHECK_ACTIVATION_KEYS">CHECK_ACTIVATION_KEYS</a>
                                         <code>- final Array</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Array of numbers representing keys that (when pressed) toggle 
-the button's "checked" attribute.
+                                            Array of numbers representing keys that (when pressed) 
+toggle the button's "checked" attribute.
                                         </div>
                                     </div>
      
@@ -286,6 +318,8 @@ the button's "checked" attribute.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="CHECKBOX_CHECKED_TITLE">CHECKBOX_CHECKED_TITLE</a>
                                         <code>- final String</code>
                                     </h4>
@@ -303,13 +337,15 @@ the button's "checked" attribute.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="CHECKBOX_DEFAULT_TITLE">CHECKBOX_DEFAULT_TITLE</a>
                                         <code>- final String</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            String representing the default title applied to buttons of 
-type "checkbox."
+                                            String representing the default title applied to 
+buttons of type "checkbox."
                                         </div>
                                     </div>
      
@@ -320,30 +356,34 @@ type "checkbox."
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="CSS_CLASS_NAME">CSS_CLASS_NAME</a>
                                         <code>- final String</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            String representing the CSS class(es) to be applied to the 
-button's root element.
+                                            String representing the CSS class(es) to be applied to  
+the button's root element.
                                         </div>
                                     </div>
      
                                         
                                     <div class="default">
-                                        Default Value: "yuibutton"
+                                        Default Value: "yui-button"
                                     </div>        
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="MENUBUTTON_DEFAULT_TITLE">MENUBUTTON_DEFAULT_TITLE</a>
                                         <code>- final String</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            String representing the default title applied to buttons of 
-type "menubutton."
+                                            String representing the default title applied to 
+buttons of type "menu."
                                         </div>
                                     </div>
      
@@ -354,13 +394,15 @@ type "menubutton."
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="MENUBUTTON_MENU_VISIBLE_TITLE">MENUBUTTON_MENU_VISIBLE_TITLE</a>
                                         <code>- final String</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
                                             String representing the title applied to buttons of type 
-"menubutton" when the button's menu is visible.
+"menu" when the button's menu is visible.
                                         </div>
                                     </div>
      
@@ -371,13 +413,34 @@ type "menubutton."
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4><a name="NODE_NAME">NODE_NAME</a>
+                                        <code>- final String</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            The name of the node to be used for the button's 
+root element.
+                                        </div>
+                                    </div>
+     
+                                        
+                                    <div class="default">
+                                        Default Value: "SPAN"
+                                    </div>        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="OPTION_AREA_WIDTH">OPTION_AREA_WIDTH</a>
                                         <code>- final Number</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Width (in pixels) of the area of a split button that when 
-pressed will display a menu.
+                                            Width (in pixels) of the area of a split button that  
+when pressed will display a menu.
                                         </div>
                                     </div>
      
@@ -388,13 +451,15 @@ pressed will display a menu.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="RADIO_CHECKED_TITLE">RADIO_CHECKED_TITLE</a>
                                         <code>- final String</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            String representing the title applied to buttons of type "radio" 
-when checked.
+                                            String representing the title applied to buttons of 
+type "radio" when checked.
                                         </div>
                                     </div>
      
@@ -405,13 +470,15 @@ when checked.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="RADIO_DEFAULT_TITLE">RADIO_DEFAULT_TITLE</a>
                                         <code>- final String</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            String representing the default title applied to buttons of 
-type "radio."
+                                            String representing the default title applied to buttons 
+of type "radio."
                                         </div>
                                     </div>
      
@@ -422,13 +489,15 @@ type "radio."
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="SPLITBUTTON_DEFAULT_TITLE">SPLITBUTTON_DEFAULT_TITLE</a>
                                         <code>- final String</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            String representing the default title applied to buttons of 
-type "splitebutton."
+                                            String representing the default title applied to 
+buttons of type "split."
                                         </div>
                                     </div>
      
@@ -440,23 +509,28 @@ Ctrl + Shift + M to show the menu."
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="SPLITBUTTON_OPTION_VISIBLE_TITLE">SPLITBUTTON_OPTION_VISIBLE_TITLE</a>
                                         <code>- final String</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
                                             String representing the title applied to buttons of type 
-"splitbutton" when the button's menu is visible.
+"split" when the button's menu is visible.
                                         </div>
                                     </div>
      
                                         
                                     <div class="default">
-                                        Default Value: "Menu expanded.  Press Esc or Ctrl + Shift + M to hide the menu."
+                                        Default Value: "Menu expanded.  Press Esc or Ctrl + Shift + M to hide 
+the menu."
                                     </div>        
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="SUBMIT_TITLE">SUBMIT_TITLE</a>
                                         <code>- final String</code>
                                     </h4>
@@ -474,22 +548,7 @@ type "submit."
 
 
                                     <hr />
-                                    <h4><a name="TAG_NAME">TAG_NAME</a>
-                                        <code>- final String</code>
-                                    </h4>
-                                    <div class="detail">
-                                        <div class="description">
-                                            The name of the tag to be used for the button's root element.
-                                        </div>
                                     </div>
-     
-                                        
-                                    <div class="default">
-                                        Default Value: "SPAN"
-                                    </div>        
-
-
-                                    <hr />
 
 
                             </div>
@@ -500,7 +559,7 @@ type "submit."
                             <div class="content">
                                 <code>
                                     
-                                        <a href="YAHOO.util.Element.html#DOM_EVENTS">DOM_EVENTS</a>
+                                        <a class="" href="YAHOO.util.Element.html#DOM_EVENTS">DOM_EVENTS</a>
                                 </code>
                             </div>
                         </div>
@@ -509,7 +568,7 @@ type "submit."
                             <div class="content">
                                 <code>
                                     
-                                        <a href="YAHOO.util.AttributeProvider.html#_configs">_configs</a>
+                                        <a class="private" href="YAHOO.util.AttributeProvider.html#_configs">_configs</a>
                                 </code>
                             </div>
                         </div>
@@ -518,8 +577,8 @@ type "submit."
                             <div class="content">
                                 <code>
                                     
-                                        <a href="YAHOO.util.EventProvider.html#__yui_events">__yui_events</a>,
-                                        <a href="YAHOO.util.EventProvider.html#__yui_subscribers">__yui_subscribers</a>
+                                        <a class="private" href="YAHOO.util.EventProvider.html#__yui_events">__yui_events</a><span class="private">,</span>
+                                        <a class="private" href="YAHOO.util.EventProvider.html#__yui_subscribers">__yui_subscribers</a>
                                 </code>
                             </div>
                         </div>
@@ -527,6 +586,7 @@ type "submit."
                         <div class="section method details">
                             <h3><a name="methodDetails">Methods</a></h3>
                             <div class="content">
+                                    <div class="protected">
                                     <h4>
                                         <a name="_addListenersToForm">_addListenersToForm</a></h4>
                                     <div class="detail">
@@ -559,52 +619,8 @@ type "submit."
 
                                     </div>
                                     <hr />
-                                    <h4>
-                                        <a name="_createButtonElement">_createButtonElement</a></h4>
-                                    <div class="detail">
-                                        <code>
-                                         protected 
-                                        
-                                        
-                                        <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/
-level-one-html.html#ID-58190037">HTMLElement</a>
-                                            <strong>_createButtonElement</strong>
-                                           (
-                                                
-                                                        
-                                                         p_sType
-                                                    
-                                                
-                                            )
-                                        </code>
-                                        
-                                        <div class="description">
-                                            Creates the button's element.
-                                        </div>
-
-                                        <div class="description">
-
-                                                <dl>
-                                                    <dt>Parameters:</dt>
-                                                        <dd>
-                                                            <code>p_sType &lt;String&gt;</code>
-                                                             String indicating the type of element to create.
-                                                        </dd>
-                                                </dl>
-
-                                                <dl>
-                                                    <dt>Returns:
-                                                    <code>
-                                                        <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/
-level-one-html.html#ID-58190037">HTMLElement</a>
-                                                    </code></dt>
-                                                    <dd></dd>
-                                                </dl>
-             
-                                        </div>
-
                                     </div>
-                                    <hr />
+                                    <div class="protected">
                                     <h4>
                                         <a name="_hideMenu">_hideMenu</a></h4>
                                     <div class="detail">
@@ -637,6 +653,8 @@ level-one-html.html#ID-58190037">HTMLElement</a>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_isActivationKey">_isActivationKey</a></h4>
                                     <div class="detail">
@@ -656,8 +674,8 @@ level-one-html.html#ID-58190037">HTMLElement</a>
                                         </code>
                                         
                                         <div class="description">
-                                            Determines if the specified keycode is one that toggles the 
-button's "active" state.
+                                            Determines if the specified keycode is one that toggles  
+the button's "active" state.
                                         </div>
 
                                         <div class="description">
@@ -666,7 +684,8 @@ button's "active" state.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_nKeyCode &lt;Number&gt;</code>
-                                                             Number representing the keycode to be evaluated.
+                                                             Number representing the keycode to 
+be evaluated.
                                                         </dd>
                                                 </dl>
 
@@ -682,6 +701,8 @@ button's "active" state.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_isSplitButtonOptionKey">_isSplitButtonOptionKey</a></h4>
                                     <div class="detail">
@@ -701,8 +722,8 @@ button's "active" state.
                                         </code>
                                         
                                         <div class="description">
-                                            Determines if the specified keycode is one that toggles the 
-display of the split button's menu.
+                                            Determines if the specified keycode is one that toggles  
+the display of the split button's menu.
                                         </div>
 
                                         <div class="description">
@@ -711,8 +732,8 @@ display of the split button's menu.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_oEvent &lt;Event&gt;</code>
-                                                             Object representing the DOM event object passed 
-back by the event utility (YAHOO.util.Event).
+                                                             Object representing the DOM event object  
+passed back by the event utility (YAHOO.util.Event).
                                                         </dd>
                                                 </dl>
 
@@ -728,6 +749,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_onAppendTo">_onAppendTo</a></h4>
                                     <div class="detail">
@@ -756,8 +779,8 @@ back by the event utility (YAHOO.util.Event).
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_oEvent &lt;Event&gt;</code>
-                                                             Object representing the DOM event object passed 
-back by the event utility (YAHOO.util.Event).
+                                                             Object representing the DOM event object  
+passed back by the event utility (YAHOO.util.Event).
                                                         </dd>
                                                 </dl>
 
@@ -773,6 +796,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_onBlur">_onBlur</a></h4>
                                     <div class="detail">
@@ -801,8 +826,8 @@ back by the event utility (YAHOO.util.Event).
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_oEvent &lt;Event&gt;</code>
-                                                             Object representing the DOM event object passed 
-back by the event utility (YAHOO.util.Event).
+                                                             Object representing the DOM event object  
+passed back by the event utility (YAHOO.util.Event).
                                                         </dd>
                                                 </dl>
 
@@ -818,6 +843,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_onClick">_onClick</a></h4>
                                     <div class="detail">
@@ -846,8 +873,8 @@ back by the event utility (YAHOO.util.Event).
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_oEvent &lt;Event&gt;</code>
-                                                             Object representing the DOM event object passed 
-back by the event utility (YAHOO.util.Event).
+                                                             Object representing the DOM event object  
+passed back by the event utility (YAHOO.util.Event).
                                                         </dd>
                                                 </dl>
 
@@ -863,6 +890,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_onDocumentKeyUp">_onDocumentKeyUp</a></h4>
                                     <div class="detail">
@@ -891,8 +920,8 @@ back by the event utility (YAHOO.util.Event).
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_oEvent &lt;Event&gt;</code>
-                                                             Object representing the DOM event object passed 
-back by the event utility (YAHOO.util.Event).
+                                                             Object representing the DOM event object  
+passed back by the event utility (YAHOO.util.Event).
                                                         </dd>
                                                 </dl>
 
@@ -908,6 +937,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_onDocumentMouseDown">_onDocumentMouseDown</a></h4>
                                     <div class="detail">
@@ -936,8 +967,8 @@ back by the event utility (YAHOO.util.Event).
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_oEvent &lt;Event&gt;</code>
-                                                             Object representing the DOM event object passed 
-back by the event utility (YAHOO.util.Event).
+                                                             Object representing the DOM event object  
+passed back by the event utility (YAHOO.util.Event).
                                                         </dd>
                                                 </dl>
 
@@ -953,6 +984,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_onDocumentMouseUp">_onDocumentMouseUp</a></h4>
                                     <div class="detail">
@@ -981,8 +1014,8 @@ back by the event utility (YAHOO.util.Event).
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_oEvent &lt;Event&gt;</code>
-                                                             Object representing the DOM event object passed 
-back by the event utility (YAHOO.util.Event).
+                                                             Object representing the DOM event object  
+passed back by the event utility (YAHOO.util.Event).
                                                         </dd>
                                                 </dl>
 
@@ -998,6 +1031,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_onFocus">_onFocus</a></h4>
                                     <div class="detail">
@@ -1026,8 +1061,8 @@ back by the event utility (YAHOO.util.Event).
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_oEvent &lt;Event&gt;</code>
-                                                             Object representing the DOM event object passed 
-back by the event utility (YAHOO.util.Event).
+                                                             Object representing the DOM event object  
+passed back by the event utility (YAHOO.util.Event).
                                                         </dd>
                                                 </dl>
 
@@ -1043,6 +1078,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_onFormReset">_onFormReset</a></h4>
                                     <div class="detail">
@@ -1071,8 +1108,8 @@ back by the event utility (YAHOO.util.Event).
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_oEvent &lt;Event&gt;</code>
-                                                             Object representing the DOM event object passed 
-back by the event utility (YAHOO.util.Event).
+                                                             Object representing the DOM event 
+object passed back by the event utility (YAHOO.util.Event).
                                                         </dd>
                                                 </dl>
 
@@ -1088,51 +1125,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
-                                    <h4>
-                                        <a name="_onFormSubmit">_onFormSubmit</a></h4>
-                                    <div class="detail">
-                                        <code>
-                                         protected 
-                                        
-                                        
-                                        void
-                                            <strong>_onFormSubmit</strong>
-                                           (
-                                                
-                                                        
-                                                         p_oEvent
-                                                    
-                                                
-                                            )
-                                        </code>
-                                        
-                                        <div class="description">
-                                            "submit" event handler for the button's form.
-                                        </div>
-
-                                        <div class="description">
-
-                                                <dl>
-                                                    <dt>Parameters:</dt>
-                                                        <dd>
-                                                            <code>p_oEvent &lt;Event&gt;</code>
-                                                             Object representing the DOM event object passed 
-back by the event utility (YAHOO.util.Event).
-                                                        </dd>
-                                                </dl>
-
-                                                <dl>
-                                                    <dt>Returns:
-                                                    <code>
-                                                        void
-                                                    </code></dt>
-                                                    <dd></dd>
-                                                </dl>
-             
-                                        </div>
-
                                     </div>
-                                    <hr />
+                                    <div class="protected">
                                     <h4>
                                         <a name="_onKeyDown">_onKeyDown</a></h4>
                                     <div class="detail">
@@ -1161,8 +1155,8 @@ back by the event utility (YAHOO.util.Event).
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_oEvent &lt;Event&gt;</code>
-                                                             Object representing the DOM event object passed 
-back by the event utility (YAHOO.util.Event).
+                                                             Object representing the DOM event object  
+passed back by the event utility (YAHOO.util.Event).
                                                         </dd>
                                                 </dl>
 
@@ -1178,6 +1172,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_onKeyUp">_onKeyUp</a></h4>
                                     <div class="detail">
@@ -1206,8 +1202,8 @@ back by the event utility (YAHOO.util.Event).
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_oEvent &lt;Event&gt;</code>
-                                                             Object representing the DOM event object passed 
-back by the event utility (YAHOO.util.Event).
+                                                             Object representing the DOM event object  
+passed back by the event utility (YAHOO.util.Event).
                                                         </dd>
                                                 </dl>
 
@@ -1223,6 +1219,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_onMenuClick">_onMenuClick</a></h4>
                                     <div class="detail">
@@ -1255,12 +1253,13 @@ back by the event utility (YAHOO.util.Event).
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_sType &lt;String&gt;</code>
-                                                             String representing the name of the event that 
-was fired.
+                                                             String representing the name of the event  
+that was fired.
                                                         </dd>
                                                         <dd>
                                                             <code>p_aArgs &lt;Array&gt;</code>
-                                                             Array of arguments sent when the event was fired.
+                                                             Array of arguments sent when the event 
+was fired.
                                                         </dd>
                                                 </dl>
 
@@ -1276,6 +1275,8 @@ was fired.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_onMenuHide">_onMenuHide</a></h4>
                                     <div class="detail">
@@ -1291,10 +1292,6 @@ was fired.
                                                          p_sType
                                                     
                                                 
-                                                        , 
-                                                         p_aArgs
-                                                    
-                                                
                                             )
                                         </code>
                                         
@@ -1308,12 +1305,8 @@ was fired.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_sType &lt;String&gt;</code>
-                                                             String representing the name of the event that 
-was fired.
-                                                        </dd>
-                                                        <dd>
-                                                            <code>p_aArgs &lt;Array&gt;</code>
-                                                             Array of arguments sent when the event was fired.
+                                                             String representing the name of the event  
+that was fired.
                                                         </dd>
                                                 </dl>
 
@@ -1329,6 +1322,8 @@ was fired.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_onMenuItemAdded">_onMenuItemAdded</a></h4>
                                     <div class="detail">
@@ -1365,16 +1360,19 @@ was fired.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_sType &lt;String&gt;</code>
-                                                             String representing the name of the event that 
-was fired.
+                                                             String representing the name of the event  
+that was fired.
                                                         </dd>
                                                         <dd>
                                                             <code>p_aArgs &lt;Array&gt;</code>
-                                                             Array of arguments sent when the event was fired.
+                                                             Array of arguments sent when the event
+was fired.
                                                         </dd>
                                                         <dd>
-                                                            <code>p_oItem &lt;<a href="YAHOO.widget.MenuItem.html">YAHOO.widget.MenuItem</a>&gt;</code>
-                                                             Object representing the menu item that subscribed to the event.
+                                                            <code>p_oItem &lt;<a href="YAHOO.widget.MenuItem.html">
+YAHOO.widget.MenuItem</a>&gt;</code>
+                                                             Object representing the menu 
+item that subscribed to the event.
                                                         </dd>
                                                 </dl>
 
@@ -1390,6 +1388,8 @@ was fired.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_onMenuItemSelected">_onMenuItemSelected</a></h4>
                                     <div class="detail">
@@ -1410,7 +1410,7 @@ was fired.
                                                     
                                                 
                                                         , 
-                                                         p_oItem
+                                                         p_nItem
                                                     
                                                 
                                             )
@@ -1427,16 +1427,18 @@ button's menu.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_sType &lt;String&gt;</code>
-                                                             String representing the name of the event that 
-was fired.
+                                                             String representing the name of the event  
+that was fired.
                                                         </dd>
                                                         <dd>
                                                             <code>p_aArgs &lt;Array&gt;</code>
-                                                             Array of arguments sent when the event was fired.
+                                                             Array of arguments sent when the event 
+was fired.
                                                         </dd>
                                                         <dd>
-                                                            <code>p_oItem &lt;<a href="YAHOO.widget.MenuItem.html">YAHOO.widget.MenuItem</a>&gt;</code>
-                                                             Object representing the menu item that subscribed to the event.
+                                                            <code>p_nItem &lt;Number&gt;</code>
+                                                             Number representing the index of the menu
+item that subscribed to the event.
                                                         </dd>
                                                 </dl>
 
@@ -1452,6 +1454,8 @@ was fired.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_onMenuKeyDown">_onMenuKeyDown</a></h4>
                                     <div class="detail">
@@ -1484,12 +1488,13 @@ was fired.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_sType &lt;String&gt;</code>
-                                                             String representing the name of the event that 
-was fired.
+                                                             String representing the name of the event  
+that was fired.
                                                         </dd>
                                                         <dd>
                                                             <code>p_aArgs &lt;Array&gt;</code>
-                                                             Array of arguments sent when the event was fired.
+                                                             Array of arguments sent when the event 
+was fired.
                                                         </dd>
                                                 </dl>
 
@@ -1505,6 +1510,8 @@ was fired.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_onMenuRender">_onMenuRender</a></h4>
                                     <div class="detail">
@@ -1520,10 +1527,6 @@ was fired.
                                                          p_sType
                                                     
                                                 
-                                                        , 
-                                                         p_aArgs
-                                                    
-                                                
                                             )
                                         </code>
                                         
@@ -1537,12 +1540,8 @@ was fired.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_sType &lt;String&gt;</code>
-                                                             String representing the name of the event that 
-was fired.
-                                                        </dd>
-                                                        <dd>
-                                                            <code>p_aArgs &lt;Array&gt;</code>
-                                                             Array of arguments sent when the event was fired.
+                                                             String representing the name of the  
+event thatwas fired.
                                                         </dd>
                                                 </dl>
 
@@ -1558,6 +1557,8 @@ was fired.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_onMenuShow">_onMenuShow</a></h4>
                                     <div class="detail">
@@ -1573,10 +1574,6 @@ was fired.
                                                          p_sType
                                                     
                                                 
-                                                        , 
-                                                         p_aArgs
-                                                    
-                                                
                                             )
                                         </code>
                                         
@@ -1590,12 +1587,8 @@ was fired.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_sType &lt;String&gt;</code>
-                                                             String representing the name of the event that 
-was fired.
-                                                        </dd>
-                                                        <dd>
-                                                            <code>p_aArgs &lt;Array&gt;</code>
-                                                             Array of arguments sent when the event was fired.
+                                                             String representing the name of the event  
+that was fired.
                                                         </dd>
                                                 </dl>
 
@@ -1611,6 +1604,8 @@ was fired.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_onMouseDown">_onMouseDown</a></h4>
                                     <div class="detail">
@@ -1639,8 +1634,8 @@ was fired.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_oEvent &lt;Event&gt;</code>
-                                                             Object representing the DOM event object passed 
-back by the event utility (YAHOO.util.Event).
+                                                             Object representing the DOM event object  
+passed back by the event utility (YAHOO.util.Event).
                                                         </dd>
                                                 </dl>
 
@@ -1656,6 +1651,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_onMouseOut">_onMouseOut</a></h4>
                                     <div class="detail">
@@ -1684,8 +1681,8 @@ back by the event utility (YAHOO.util.Event).
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_oEvent &lt;Event&gt;</code>
-                                                             Object representing the DOM event object passed 
-back by the event utility (YAHOO.util.Event).
+                                                             Object representing the DOM event object  
+passed back by the event utility (YAHOO.util.Event).
                                                         </dd>
                                                 </dl>
 
@@ -1701,6 +1698,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_onMouseOver">_onMouseOver</a></h4>
                                     <div class="detail">
@@ -1729,8 +1728,8 @@ back by the event utility (YAHOO.util.Event).
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_oEvent &lt;Event&gt;</code>
-                                                             Object representing the DOM event object passed 
-back by the event utility (YAHOO.util.Event).
+                                                             Object representing the DOM event object  
+passed back by the event utility (YAHOO.util.Event).
                                                         </dd>
                                                 </dl>
 
@@ -1746,6 +1745,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_onMouseUp">_onMouseUp</a></h4>
                                     <div class="detail">
@@ -1774,8 +1775,8 @@ back by the event utility (YAHOO.util.Event).
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_oEvent &lt;Event&gt;</code>
-                                                             Object representing the DOM event object passed 
-back by the event utility (YAHOO.util.Event).
+                                                             Object representing the DOM event object  
+passed back by the event utility (YAHOO.util.Event).
                                                         </dd>
                                                 </dl>
 
@@ -1791,6 +1792,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_onOption">_onOption</a></h4>
                                     <div class="detail">
@@ -1819,8 +1822,8 @@ back by the event utility (YAHOO.util.Event).
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_oEvent &lt;Event&gt;</code>
-                                                             Object representing the DOM event object passed 
-back by the event utility (YAHOO.util.Event).
+                                                             Object representing the DOM event object  
+passed back by the event utility (YAHOO.util.Event).
                                                         </dd>
                                                 </dl>
 
@@ -1836,26 +1839,30 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
-                                        <a name="_setAccessKey">_setAccessKey</a></h4>
+                                        <a name="_onOverlayBeforeShow">_onOverlayBeforeShow</a></h4>
                                     <div class="detail">
                                         <code>
-                                         protected 
+                                         private 
                                         
                                         
                                         void
-                                            <strong>_setAccessKey</strong>
+                                            <strong>_onOverlayBeforeShow</strong>
                                            (
                                                 
                                                         
-                                                         p_sAccessKey
+                                                         p_sType
                                                     
                                                 
                                             )
                                         </code>
                                         
                                         <div class="description">
-                                            Sets the value of the button's "accesskey" attribute.
+                                            "beforeshow" event handler for the 
+<a href="YAHOO.widget.Overlay.html">YAHOO.widget.Overlay</a> instance 
+serving as the button's menu.
                                         </div>
 
                                         <div class="description">
@@ -1863,9 +1870,9 @@ back by the event utility (YAHOO.util.Event).
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>p_sAccessKey &lt;String&gt;</code>
-                                                             String indicating the value for the button's 
-"accesskey" attribute.
+                                                            <code>p_sType &lt;String&gt;</code>
+                                                             String representing the name of the event  
+that was fired.
                                                         </dd>
                                                 </dl>
 
@@ -1881,6 +1888,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_setChecked">_setChecked</a></h4>
                                     <div class="detail">
@@ -1909,8 +1918,8 @@ back by the event utility (YAHOO.util.Event).
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_bChecked &lt;Boolean&gt;</code>
-                                                             Boolean indicating the value for the button's 
-"checked" attribute.
+                                                             Boolean indicating the value for  
+the button's "checked" attribute.
                                                         </dd>
                                                 </dl>
 
@@ -1926,6 +1935,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_setDisabled">_setDisabled</a></h4>
                                     <div class="detail">
@@ -1954,8 +1965,8 @@ back by the event utility (YAHOO.util.Event).
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_bDisabled &lt;Boolean&gt;</code>
-                                                             Boolean indicating the value for the button's 
-"disabled" attribute.
+                                                             Boolean indicating the value for 
+the button's "disabled" attribute.
                                                         </dd>
                                                 </dl>
 
@@ -1971,6 +1982,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_setHref">_setHref</a></h4>
                                     <div class="detail">
@@ -2016,6 +2029,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_setLabel">_setLabel</a></h4>
                                     <div class="detail">
@@ -2061,6 +2076,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_setMenu">_setMenu</a></h4>
                                     <div class="detail">
@@ -2106,6 +2123,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_setOnClick">_setOnClick</a></h4>
                                     <div class="detail">
@@ -2151,6 +2170,56 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
+                                    <h4>
+                                        <a name="_setSelectedMenuItem">_setSelectedMenuItem</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         protected 
+                                        
+                                        
+                                        void
+                                            <strong>_setSelectedMenuItem</strong>
+                                           (
+                                                
+                                                        
+                                                         p_nIndex
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Sets the value of the button's 
+"selectedMenuItem" attribute.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>p_nIndex &lt;Number&gt;</code>
+                                                             Number representing the index of the item 
+in the button's menu that is currently selected.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_setTabIndex">_setTabIndex</a></h4>
                                     <div class="detail">
@@ -2179,8 +2248,8 @@ back by the event utility (YAHOO.util.Event).
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_nTabIndex &lt;Number&gt;</code>
-                                                             Number indicating the value for the button's 
-"tabindex" attribute.
+                                                             Number indicating the value for the 
+button's "tabindex" attribute.
                                                         </dd>
                                                 </dl>
 
@@ -2196,6 +2265,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_setTarget">_setTarget</a></h4>
                                     <div class="detail">
@@ -2241,6 +2312,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_setTitle">_setTitle</a></h4>
                                     <div class="detail">
@@ -2269,8 +2342,8 @@ back by the event utility (YAHOO.util.Event).
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_nTabIndex &lt;String&gt;</code>
-                                                             Number indicating the value for the button's 
-"title" attribute.
+                                                             Number indicating the value for 
+the button's "title" attribute.
                                                         </dd>
                                                 </dl>
 
@@ -2286,6 +2359,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_setType">_setType</a></h4>
                                     <div class="detail">
@@ -2331,6 +2406,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="_showMenu">_showMenu</a></h4>
                                     <div class="detail">
@@ -2359,9 +2436,9 @@ back by the event utility (YAHOO.util.Event).
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_oEvent &lt;Event&gt;</code>
-                                                             Object representing the DOM event object passed 
-back by the event utility (YAHOO.util.Event) that triggered the display of
-the menu.
+                                                             Object representing the DOM event object 
+passed back by the event utility (YAHOO.util.Event) that triggered 
+the display of the menu.
                                                         </dd>
                                                 </dl>
 
@@ -2377,6 +2454,8 @@ the menu.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="addHiddenFieldsToForm">addHiddenFieldsToForm</a></h4>
                                     <div class="detail">
@@ -2396,9 +2475,9 @@ the menu.
                                         </code>
                                         
                                         <div class="description">
-                                            Searches the specified form and adds hidden fields for instances 
-of YAHOO.widget.Button that are of type "radio," "checkbox," "menubutton," 
-and "splitbutton."
+                                            Searches the specified form and adds hidden fields for  
+instances of YAHOO.widget.Button that are of type "radio," "checkbox," 
+"menu," and "split."
                                         </div>
 
                                         <div class="description">
@@ -2425,6 +2504,43 @@ for the form to search.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="addStateCSSClasses">addStateCSSClasses</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>addStateCSSClasses</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Appends state-specific CSS classes to the button's root 
+DOM element.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="blur">blur</a></h4>
                                     <div class="detail">
@@ -2458,33 +2574,47 @@ for the form to search.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
-                                        <a name="createHiddenField">createHiddenField</a></h4>
+                                        <a name="createButtonElement">createButtonElement</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                        <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-
-one-html.html#ID-6043025">HTMLInputElement</a>
-                                            <strong>createHiddenField</strong>
+                                        <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/
+level-one-html.html#ID-58190037">HTMLElement</a>
+                                            <strong>createButtonElement</strong>
                                            (
+                                                
+                                                        
+                                                         p_sType
+                                                    
+                                                
                                             )
                                         </code>
                                         
                                         <div class="description">
-                                            Creates the button's hidden form field and appends it to its
-parent form.
+                                            Creates the button's HTML elements.
                                         </div>
 
                                         <div class="description">
 
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>p_sType &lt;String&gt;</code>
+                                                             String indicating the type of element 
+to create.
+                                                        </dd>
+                                                </dl>
 
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
-                                                        <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-
-one-html.html#ID-6043025">HTMLInputElement</a>
+                                                        <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/
+level-one-html.html#ID-58190037">HTMLElement</a>
                                                     </code></dt>
                                                     <dd></dd>
                                                 </dl>
@@ -2493,6 +2623,45 @@ one-html.html#ID-6043025">HTMLInputElement</a>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="createHiddenFields">createHiddenFields</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/
+level-one-html.html#ID-6043025">HTMLInputElement</a>|Array
+                                            <strong>createHiddenFields</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Creates the button's hidden form field and appends it 
+to its parent form.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/
+level-one-html.html#ID-6043025">HTMLInputElement</a>|Array
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="createInputElement">createInputElement</a></h4>
                                     <div class="detail">
@@ -2568,6 +2737,8 @@ one-html.html#ID-6043025">HTMLInputElement</a>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="destroy">destroy</a></h4>
                                     <div class="detail">
@@ -2601,6 +2772,8 @@ removes all event handlers.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="focus">focus</a></h4>
                                     <div class="detail">
@@ -2615,8 +2788,8 @@ removes all event handlers.
                                         </code>
                                         
                                         <div class="description">
-                                            Causes the button to receive the focus and fires the button's
-"focus" event.
+                                            Causes the button to receive the focus and fires the 
+button's "focus" event.
                                         </div>
 
                                         <div class="description">
@@ -2634,54 +2807,8 @@ removes all event handlers.
 
                                     </div>
                                     <hr />
-                                    <h4>
-                                        <a name="getFirstElement">getFirstElement</a></h4>
-                                    <div class="detail">
-                                        <code>
-                                         private 
-                                        
-                                        
-                                        <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/
-level-one-html.html#ID-58190037">HTMLElement</a>
-                                            <strong>getFirstElement</strong>
-                                           (
-                                                
-                                                        
-                                                         p_oElement
-                                                    
-                                                
-                                            )
-                                        </code>
-                                        
-                                        <div class="description">
-                                            Returns an HTML element's first HTML element node.
-                                        </div>
-
-                                        <div class="description">
-
-                                                <dl>
-                                                    <dt>Parameters:</dt>
-                                                        <dd>
-                                                            <code>p_oElement &lt;<a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/
-level-one-html.html#ID-58190037">HTMLElement</a>&gt;</code>
-                                                             Object 
-reference specifying the element to be evaluated.
-                                                        </dd>
-                                                </dl>
-
-                                                <dl>
-                                                    <dt>Returns:
-                                                    <code>
-                                                        <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/
-level-one-html.html#ID-58190037">HTMLElement</a>
-                                                    </code></dt>
-                                                    <dd></dd>
-                                                </dl>
-             
-                                        </div>
-
                                     </div>
-                                    <hr />
+                                    <div class="">
                                     <h4>
                                         <a name="getForm">getForm</a></h4>
                                     <div class="detail">
@@ -2689,8 +2816,8 @@ level-one-html.html#ID-58190037">HTMLElement</a>
                                         
                                         
                                         
-                                        <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-
-one-html.html#ID-40002357">HTMLFormElement</a>
+                                        <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-
+20000929/level-one-html.html#ID-40002357">HTMLFormElement</a>
                                             <strong>getForm</strong>
                                            (
                                             )
@@ -2706,8 +2833,8 @@ one-html.html#ID-40002357">HTMLFormElement</a>
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
-                                                        <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-
-one-html.html#ID-40002357">HTMLFormElement</a>
+                                                        <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-
+20000929/level-one-html.html#ID-40002357">HTMLFormElement</a>
                                                     </code></dt>
                                                     <dd></dd>
                                                 </dl>
@@ -2716,23 +2843,26 @@ one-html.html#ID-40002357">HTMLFormElement</a>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
-                                        <a name="getHiddenField">getHiddenField</a></h4>
+                                        <a name="getHiddenFields">getHiddenFields</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                        <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-
-one-html.html#ID-6043025">HTMLInputElement</a>
-                                            <strong>getHiddenField</strong>
+                                        <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/
+level-one-html.html#ID-6043025">HTMLInputElement</a>|Array
+                                            <strong>getHiddenFields</strong>
                                            (
                                             )
                                         </code>
                                         
                                         <div class="description">
-                                            Returns a reference to the <code>&#60;input&#62;</code> element 
-used when the button's parent form is submitted.
+                                            Returns an <code>&#60;input&#62;</code> element or 
+array of form elements used to represent the button when its parent 
+form is submitted.
                                         </div>
 
                                         <div class="description">
@@ -2741,8 +2871,8 @@ used when the button's parent form is submitted.
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
-                                                        <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-
-one-html.html#ID-6043025">HTMLInputElement</a>
+                                                        <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/
+level-one-html.html#ID-6043025">HTMLInputElement</a>|Array
                                                     </code></dt>
                                                     <dd></dd>
                                                 </dl>
@@ -2751,6 +2881,8 @@ one-html.html#ID-6043025">HTMLInputElement</a>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getMenu">getMenu</a></h4>
                                     <div class="detail">
@@ -2758,7 +2890,9 @@ one-html.html#ID-6043025">HTMLInputElement</a>
                                         
                                         
                                         
-                                        <a href="YAHOO.widget.Menu.html">YAHOO.widget.Menu</a>
+                                        <a href="YAHOO.widget.Overlay.html">
+YAHOO.widget.Overlay</a>|<a 
+href="YAHOO.widget.Menu.html">YAHOO.widget.Menu</a>
                                             <strong>getMenu</strong>
                                            (
                                             )
@@ -2774,7 +2908,9 @@ one-html.html#ID-6043025">HTMLInputElement</a>
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
-                                                        <a href="YAHOO.widget.Menu.html">YAHOO.widget.Menu</a>
+                                                        <a href="YAHOO.widget.Overlay.html">
+YAHOO.widget.Overlay</a>|<a 
+href="YAHOO.widget.Menu.html">YAHOO.widget.Menu</a>
                                                     </code></dt>
                                                     <dd></dd>
                                                 </dl>
@@ -2783,6 +2919,8 @@ one-html.html#ID-6043025">HTMLInputElement</a>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="hasFocus">hasFocus</a></h4>
                                     <div class="detail">
@@ -2797,7 +2935,8 @@ one-html.html#ID-6043025">HTMLInputElement</a>
                                         </code>
                                         
                                         <div class="description">
-                                            Returns a boolean indicating whether or not the button has focus.
+                                            Returns a boolean indicating whether or not the button 
+has focus.
                                         </div>
 
                                         <div class="description">
@@ -2815,6 +2954,8 @@ one-html.html#ID-6043025">HTMLInputElement</a>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="init">init</a></h4>
                                     <div class="detail">
@@ -2852,27 +2993,31 @@ one-html.html#ID-6043025">HTMLInputElement</a>
                                                         <dd>
                                                             <code>p_oElement &lt;String&gt;</code>
                                                              String specifying the id attribute of the 
-<code>&#60;input&#62;</code>, <code>&#60;a&#62;</code> or 
-<code>&#60;span&#62;</code> element to be used to create the button.
+<code>&#60;input&#62;</code>, <code>&#60;button&#62;</code>,
+<code>&#60;a&#62;</code>, or <code>&#60;span&#62;</code> element to 
+be used to create the button.
                                                         </dd>
                                                         <dd>
-                                                            <code>p_oElement &lt;<a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-
-one-html.html#ID-6043025">HTMLInputElement</a>|<a href="
-http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-one-html.html#
-ID-33759296">HTMLElement</a>&gt;</code>
+                                                            <code>p_oElement &lt;<a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/
+level-one-html.html#ID-6043025">HTMLInputElement</a>|<a href="http://
+www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-one-html.html
+#ID-34812697">HTMLButtonElement</a>|<a href="http://www.w3.org/TR
+/2000/WD-DOM-Level-1-20000929/level-one-html.html#ID-33759296">
+HTMLElement</a>&gt;</code>
                                                              Object reference for the 
-<code>&#60;input&#62;</code>, <code>&#60;a&#62;</code> or 
-<code>&#60;span&#62;</code> element to be used to create the button.
+<code>&#60;input&#62;</code>, <code>&#60;button&#62;</code>, 
+<code>&#60;a&#62;</code>, or <code>&#60;span&#62;</code> element to be 
+used to create the button.
                                                         </dd>
                                                         <dd>
                                                             <code>p_oElement &lt;Object&gt;</code>
-                                                             Object literal specifying a set of configuration 
-attributes used to create the button.
+                                                             Object literal specifying a set of 
+configuration attributes used to create the button.
                                                         </dd>
                                                         <dd>
                                                             <code>p_oAttributes &lt;Object&gt;</code>
-                                                             Optional. Object literal specifying a set of  
-configuration attributes used to create the button.
+                                                             Optional. Object literal specifying a 
+set of configuration attributes used to create the button.
                                                         </dd>
                                                 </dl>
 
@@ -2888,6 +3033,8 @@ configuration attributes used to create the button.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="initAttributes">initAttributes</a></h4>
                                     <div class="detail">
@@ -2907,8 +3054,8 @@ configuration attributes used to create the button.
                                         </code>
                                         
                                         <div class="description">
-                                            Initializes all of the configuration attributes used to create 
-the button.
+                                            Initializes all of the configuration attributes used to  
+create the button.
                                         </div>
 
                                         <div class="description">
@@ -2934,6 +3081,8 @@ configuration attributes used to create the button.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="initConfig">initConfig</a></h4>
                                     <div class="detail">
@@ -2953,8 +3102,8 @@ configuration attributes used to create the button.
                                         </code>
                                         
                                         <div class="description">
-                                            Initializes the set of configuration attributes that are used to  
-instantiate the button.
+                                            Initializes the set of configuration attributes that are 
+used to instantiate the button.
                                         </div>
 
                                         <div class="description">
@@ -2980,6 +3129,8 @@ configuration attributes.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="isActive">isActive</a></h4>
                                     <div class="detail">
@@ -2994,7 +3145,8 @@ configuration attributes.
                                         </code>
                                         
                                         <div class="description">
-                                            Returns a boolean indicating whether or not the button is active.
+                                            Returns a boolean indicating whether or not the button 
+is active.
                                         </div>
 
                                         <div class="description">
@@ -3012,38 +3164,28 @@ configuration attributes.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
-                                        <a name="onFormKeyDown">onFormKeyDown</a></h4>
+                                        <a name="removeHiddenFields">removeHiddenFields</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
                                         void
-                                            <strong>onFormKeyDown</strong>
+                                            <strong>removeHiddenFields</strong>
                                            (
-                                                
-                                                        
-                                                         p_oEvent
-                                                    
-                                                
                                             )
                                         </code>
                                         
                                         <div class="description">
-                                            "keydown" event handler for the button's form.
+                                            Removes the button's hidden form field(s) from its 
+parent form.
                                         </div>
 
                                         <div class="description">
 
-                                                <dl>
-                                                    <dt>Parameters:</dt>
-                                                        <dd>
-                                                            <code>p_oEvent &lt;Event&gt;</code>
-                                                             Object representing the DOM event object passed 
-back by the event utility (YAHOO.util.Event).
-                                                        </dd>
-                                                </dl>
 
                                                 <dl>
                                                     <dt>Returns:
@@ -3057,6 +3199,43 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="removeStateCSSClasses">removeStateCSSClasses</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>removeStateCSSClasses</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Removes state-specific CSS classes to the button's root 
+DOM element.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="setAttributeFromDOMAttribute">setAttributeFromDOMAttribute</a></h4>
                                     <div class="detail">
@@ -3104,6 +3283,8 @@ attribute to retrieve from the DOM element.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="setAttributesFromSrcElement">setAttributesFromSrcElement</a></h4>
                                     <div class="detail">
@@ -3128,9 +3309,9 @@ attribute to retrieve from the DOM element.
                                         
                                         <div class="description">
                                             Gets the values for all the attributes of the source element 
-(either <code>&#60;input&#62;</code> or <code>&#60;a&#62;</code>) that map to
-Button configuration attributes and sets them into a collection that is
-passed to the Button constructor.
+(either <code>&#60;input&#62;</code> or <code>&#60;a&#62;</code>) that 
+map to Button configuration attributes and sets them into a collection 
+that is passed to the Button constructor.
                                         </div>
 
                                         <div class="description">
@@ -3143,8 +3324,8 @@ one-html.html#ID-6043025">HTMLInputElement</a>|<a href="http://www.w3.org/
 TR/2000/WD-DOM-Level-1-20000929/level-one-html.html#ID-
 48250443">HTMLAnchorElement</a>&gt;</code>
                                                              Object reference to the HTML 
-element (either <code>&#60;input&#62;</code> or <code>&#60;span&#62;</code>) 
-used to create the button.
+element (either <code>&#60;input&#62;</code> or <code>&#60;span&#62;
+</code>) used to create the button.
                                                         </dd>
                                                         <dd>
                                                             <code>p_oAttributes &lt;Object&gt;</code>
@@ -3165,6 +3346,8 @@ configuration attributes used to create the button.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="setFormElementProperties">setFormElementProperties</a></h4>
                                     <div class="detail">
@@ -3179,8 +3362,8 @@ configuration attributes used to create the button.
                                         </code>
                                         
                                         <div class="description">
-                                            Gets the value of the attributes from the form element and 
-sets them into the collection of configuration attributes used to 
+                                            Gets the value of the attributes from the form element  
+and sets them into the collection of configuration attributes used to 
 configure the button.
                                         </div>
 
@@ -3199,6 +3382,8 @@ configure the button.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="protected">
                                     <h4>
                                         <a name="submitForm">submitForm</a></h4>
                                     <div class="detail">
@@ -3206,14 +3391,16 @@ configure the button.
                                          protected 
                                         
                                         
-                                        void
+                                        Boolean
                                             <strong>submitForm</strong>
                                            (
                                             )
                                         </code>
                                         
                                         <div class="description">
-                                            Submits the form to which the button belongs.
+                                            Submits the form to which the button belongs.  Returns  
+true if the form was submitted successfully, false if the submission 
+was cancelled.
                                         </div>
 
                                         <div class="description">
@@ -3222,7 +3409,7 @@ configure the button.
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
-                                                        void
+                                                        Boolean
                                                     </code></dt>
                                                     <dd></dd>
                                                 </dl>
@@ -3231,6 +3418,8 @@ configure the button.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="toString">toString</a></h4>
                                     <div class="detail">
@@ -3263,6 +3452,54 @@ configure the button.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="YAHOO.widget.Button.onFormKeyPress">YAHOO.widget.Button.onFormKeyPress</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>YAHOO.widget.Button.onFormKeyPress</strong>
+                                           (
+                                                
+                                                        
+                                                         p_oEvent
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            "keypress" event handler for the button's form.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>p_oEvent &lt;Event&gt;</code>
+                                                             Object representing the DOM event object passed 
+back by the event utility (YAHOO.util.Event).
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
                             </div>
                         </div>
 
@@ -3270,27 +3507,7 @@ configure the button.
                                 <h4>Methods inherited from <a href="YAHOO.util.Element.html">YAHOO.util.Element</a>:</h4>
                                 <div class="content">
                                     <code>
-                                        
-                                            <a href="YAHOO.util.Element.html#_registerHTMLAttr">_registerHTMLAttr</a>,
-                                            <a href="YAHOO.util.Element.html#addClass">addClass</a>,
-                                            <a href="YAHOO.util.Element.html#addListener">addListener</a>,
-                                            <a href="YAHOO.util.Element.html#appendChild">appendChild</a>,
-                                            <a href="YAHOO.util.Element.html#appendTo">appendTo</a>,
-                                            <a href="YAHOO.util.Element.html#fireQueue">fireQueue</a>,
-                                            <a href="YAHOO.util.Element.html#getElementsByClassName">getElementsByClassName</a>,
-                                            <a href="YAHOO.util.Element.html#getElementsByTagName">getElementsByTagName</a>,
-                                            <a href="YAHOO.util.Element.html#getStyle">getStyle</a>,
-                                            <a href="YAHOO.util.Element.html#hasChildNodes">hasChildNodes</a>,
-                                            <a href="YAHOO.util.Element.html#hasClass">hasClass</a>,
-                                            <a href="YAHOO.util.Element.html#initAttributes">initAttributes</a>,
-                                            <a href="YAHOO.util.Element.html#insertBefore">insertBefore</a>,
-                                            <a href="YAHOO.util.Element.html#on">on</a>,
-                                            <a href="YAHOO.util.Element.html#removeChild">removeChild</a>,
-                                            <a href="YAHOO.util.Element.html#removeClass">removeClass</a>,
-                                            <a href="YAHOO.util.Element.html#removeListener">removeListener</a>,
-                                            <a href="YAHOO.util.Element.html#replaceChild">replaceChild</a>,
-                                            <a href="YAHOO.util.Element.html#replaceClass">replaceClass</a>,
-                                            <a href="YAHOO.util.Element.html#setStyle">setStyle</a>
+                                            <a class="private" href="YAHOO.util.Element.html#_registerHTMLAttr">_registerHTMLAttr</a><span class="private">,</span>                                            <a class="" href="YAHOO.util.Element.html#addClass">addClass</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#addListener">addListener</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#appendChild">appendChild</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#appendTo">appendTo</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#fireQueue">fireQueue</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#getElementsByClassName">getElementsByClassName</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#getElementsByTagName">getElementsByTagName</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#getStyle">getStyle</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#hasChildNodes">hasChildNodes</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#hasClass">hasClass</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#initAttributes">initAttributes</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#insertBefore">insertBefore</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#on">on</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#removeChild">removeChild</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#removeClass">removeClass</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#removeListener">removeListener</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#replaceChild">replaceChild</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#replaceClass">replaceClass</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#setStyle">setStyle</a><span class="">,</span>                                            <a class="" href="YAHOO.util.Element.html#subscribe">subscribe</a>
                                     </code>
                                 </div>
                             </div>
@@ -3298,20 +3515,7 @@ configure the button.
                                 <h4>Methods inherited from <a href="YAHOO.util.AttributeProvider.html">YAHOO.util.AttributeProvider</a>:</h4>
                                 <div class="content">
                                     <code>
-                                        
-                                            <a href="YAHOO.util.AttributeProvider.html#configureAttribute">configureAttribute</a>,
-                                            <a href="YAHOO.util.AttributeProvider.html#fireBeforeChangeEvent">fireBeforeChangeEvent</a>,
-                                            <a href="YAHOO.util.AttributeProvider.html#fireChangeEvent">fireChangeEvent</a>,
-                                            <a href="YAHOO.util.AttributeProvider.html#get">get</a>,
-                                            <a href="YAHOO.util.AttributeProvider.html#getAttributeConfig">getAttributeConfig</a>,
-                                            <a href="YAHOO.util.AttributeProvider.html#getAttributeKeys">getAttributeKeys</a>,
-                                            <a href="YAHOO.util.AttributeProvider.html#refresh">refresh</a>,
-                                            <a href="YAHOO.util.AttributeProvider.html#register">register</a>,
-                                            <a href="YAHOO.util.AttributeProvider.html#resetAttributeConfig">resetAttributeConfig</a>,
-                                            <a href="YAHOO.util.AttributeProvider.html#resetValue">resetValue</a>,
-                                            <a href="YAHOO.util.AttributeProvider.html#set">set</a>,
-                                            <a href="YAHOO.util.AttributeProvider.html#setAttributeConfig">setAttributeConfig</a>,
-                                            <a href="YAHOO.util.AttributeProvider.html#setAttributes">setAttributes</a>
+                                            <a class="" href="YAHOO.util.AttributeProvider.html#configureAttribute">configureAttribute</a><span class="">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#fireBeforeChangeEvent">fireBeforeChangeEvent</a><span class="">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#fireChangeEvent">fireChangeEvent</a><span class="">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#get">get</a><span class="">,</span>                                            <a class="private" href="YAHOO.util.AttributeProvider.html#getAttributeConfig">getAttributeConfig</a><span class="private">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#getAttributeKeys">getAttributeKeys</a><span class="">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#refresh">refresh</a><span class="">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#register">register</a><span class="">,</span>                                            <a class="private" href="YAHOO.util.AttributeProvider.html#resetAttributeConfig">resetAttributeConfig</a><span class="private">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#resetValue">resetValue</a><span class="">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#set">set</a><span class="">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#setAttributeConfig">setAttributeConfig</a><span class="">,</span>                                            <a class="" href="YAHOO.util.AttributeProvider.html#setAttributes">setAttributes</a>
                                     </code>
                                 </div>
                             </div>
@@ -3319,20 +3523,15 @@ configure the button.
                                 <h4>Methods inherited from <a href="YAHOO.util.EventProvider.html">YAHOO.util.EventProvider</a>:</h4>
                                 <div class="content">
                                     <code>
-                                        
-                                            <a href="YAHOO.util.EventProvider.html#createEvent">createEvent</a>,
-                                            <a href="YAHOO.util.EventProvider.html#fireEvent">fireEvent</a>,
-                                            <a href="YAHOO.util.EventProvider.html#hasEvent">hasEvent</a>,
-                                            <a href="YAHOO.util.EventProvider.html#subscribe">subscribe</a>,
-                                            <a href="YAHOO.util.EventProvider.html#unsubscribe">unsubscribe</a>,
-                                            <a href="YAHOO.util.EventProvider.html#unsubscribeAll">unsubscribeAll</a>
+                                            <a class="" href="YAHOO.util.EventProvider.html#createEvent">createEvent</a><span class="">,</span>                                            <a class="" href="YAHOO.util.EventProvider.html#fireEvent">fireEvent</a><span class="">,</span>                                            <a class="" href="YAHOO.util.EventProvider.html#hasEvent">hasEvent</a><span class="">,</span>                                            <a class="" href="YAHOO.util.EventProvider.html#subscribe">subscribe</a><span class="">,</span>                                            <a class="" href="YAHOO.util.EventProvider.html#unsubscribe">unsubscribe</a><span class="">,</span>                                            <a class="" href="YAHOO.util.EventProvider.html#unsubscribeAll">unsubscribeAll</a>
                                     </code>
                                 </div>
                             </div>
 
                         <div class="section method details">
-                            <h3><a name="methodDetails">Events</a></h3>
+                            <h3><a name="eventDetails">Events</a></h3>
                             <div class="content">
+                                    <div class="">
                                     <h4>
                                         <a name="blur">blur</a></h4>
                                     <div class="detail">
@@ -3348,11 +3547,11 @@ configure the button.
                                         </code>
                                         
                                         <div class="description">
-                                            Fires when the menu item loses the input focus.  Passes back a 
-single object representing the original DOM event object passed back by the 
-event utility (YAHOO.util.Event) when the event was fired.  See <a href="
-YAHOO.util.Element.html#addListener">Element.addListener</a> for more 
-information on listening for this event.
+                                            Fires when the menu item loses the input focus.  Passes back  
+a single object representing the original DOM event object passed back by 
+the event utility (YAHOO.util.Event) when the event was fired.  See 
+<a href="YAHOO.util.Element.html#addListener">Element.addListener</a> for  
+more information on listening for this event.
                                         </div>
 
                                         <div class="description">
@@ -3364,6 +3563,8 @@ information on listening for this event.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="focus">focus</a></h4>
                                     <div class="detail">
@@ -3379,11 +3580,11 @@ information on listening for this event.
                                         </code>
                                         
                                         <div class="description">
-                                            Fires when the menu item receives focus.  Passes back a single 
-object representing the original DOM event object passed back by the event 
-utility (YAHOO.util.Event) when the event was fired.  See <a href="
-YAHOO.util.Element.html#addListener">Element.addListener</a> for more 
-information on listening for this event.
+                                            Fires when the menu item receives focus.  Passes back a  
+single object representing the original DOM event object passed back by 
+the event utility (YAHOO.util.Event) when the event was fired.  See 
+<a href="YAHOO.util.Element.html#addListener">Element.addListener</a> 
+for more information on listening for this event.
                                         </div>
 
                                         <div class="description">
@@ -3395,6 +3596,8 @@ information on listening for this event.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="option">option</a></h4>
                                     <div class="detail">
@@ -3410,11 +3613,11 @@ information on listening for this event.
                                         </code>
                                         
                                         <div class="description">
-                                            Fires when the user invokes the button's option.  Passes back a 
-single object representing the original DOM event (either "mousedown" or 
-"keydown") that caused the "option" event to fire.  See <a href="
-YAHOO.util.Element.html#addListener">Element.addListener</a> for more 
-information on listening for this event.
+                                            Fires when the user invokes the button's option.  Passes 
+back a single object representing the original DOM event (either 
+"mousedown" or "keydown") that caused the "option" event to fire.  See 
+<a href="YAHOO.util.Element.html#addListener">Element.addListener</a> 
+for more information on listening for this event.
                                         </div>
 
                                         <div class="description">
@@ -3426,6 +3629,7 @@ information on listening for this event.
 
                                     </div>
                                     <hr />
+                                    </div>
                             </div>
                         </div>
 
@@ -3434,9 +3638,7 @@ information on listening for this event.
                             <h4>Events inherited from <a href="YAHOO.util.Element.html">YAHOO.util.Element</a>:</h4>
                             <div class="content">
                                 <code>
-                                    
-                                        <a href="YAHOO.util.Element.html#available">available</a>,
-                                        <a href="YAHOO.util.Element.html#contentReady">contentReady</a>
+                                        <a class="" href="YAHOO.util.Element.html#available">available</a><span class="">,</span>                                        <a class="" href="YAHOO.util.Element.html#contentReady">contentReady</a><span class="">,</span>
                                 </code>
                             </div>
                         </div>
@@ -3444,13 +3646,14 @@ information on listening for this event.
                         <div class="section field details">
                             <h3><a name="field_detail">Configuration Attributes</a></h3>
                             <div class="content">
+                                    <div class="">
                                     <h4><a name="checked">checked</a>
                                         <code>- Boolean</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Boolean indicating if the button is checked.  Applies only
-to buttons of type "radio" and "checkbox."
+                                            Boolean indicating if the button is checked. 
+Applies only to buttons of type "radio" and "checkbox."
                                         </div>
                                     </div>
  
@@ -3460,6 +3663,8 @@ to buttons of type "radio" and "checkbox."
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="container">container</a>
                                         <code>- <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/
 level-one-html.html#ID-58190037">HTMLElement</a>|String</code>
@@ -3478,6 +3683,8 @@ rendered into.
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="disabled">disabled</a>
                                         <code>- Boolean</code>
                                     </h4>
@@ -3495,25 +3702,48 @@ or fire events.  Does not apply to button's of type "link.")
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
+                                    <h4><a name="focusmenu">focusmenu</a>
+                                        <code>- Boolean</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Boolean indicating whether or not the button's menu 
+should be focused when it is made visible.
+                                        </div>
+                                    </div>
+ 
+     
+                                    <div class="default">
+                                        Default Value: true
+                                    </div>        
+
+                                    <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="href">href</a>
                                         <code>- String</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            String specifying the href for the button.  Applies only to 
-buttons of type "link."
+                                            String specifying the href for the button.  Applies
+only to buttons of type "link."
                                         </div>
                                     </div>
  
      
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="label">label</a>
                                         <code>- String</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            String specifying the button's text label or innerHTML.
+                                            String specifying the button's text label 
+or innerHTML.
                                         </div>
                                     </div>
  
@@ -3523,30 +3753,77 @@ buttons of type "link."
                                     </div>        
 
                                     <hr />
-                                    <h4><a name="menu">menu</a>
-                                        <code>- <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/
-level-one-html.html#ID-58190037">HTMLElement</a>|String|Array</code>
+                                    </div>        
+                                    <div class="">
+                                    <h4><a name="lazyloadmenu">lazyloadmenu</a>
+                                        <code>- Boolean</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Object specifying the menu for the button.  The value can be
-one of the following:
+                                            Boolean indicating the value to set for the 
+<a href="YAHOO.widget.Menu.html#lazyLoad">"lazyload"</a>
+configuration property of the button's menu.  Setting 
+"lazyloadmenu" to <code>true </code> will defer rendering of 
+the button's menu until the first time it is made visible.  
+If "lazyloadmenu" is set to <code>false</code>, the button's 
+menu will be rendered immediately if the button is in the 
+document, or in response to the button's "appendTo" event if 
+the button is not yet in the document.  In either case, the 
+menu is rendered into the button's parent HTML element.  
+<em>This attribute does not apply if a 
+<a href="YAHOO.widget.Menu.html">YAHOO.widget.Menu</a> or 
+<a href="YAHOO.widget.Overlay.html">YAHOO.widget.Overlay</a> 
+instance is passed as the value of the button's "menu" 
+configuration attribute. <a href="YAHOO.widget.Menu.html">
+YAHOO.widget.Menu</a> or <a href="YAHOO.widget.Overlay.html">
+YAHOO.widget.Overlay</a> instances should be rendered before 
+being set as the value for the "menu" configuration 
+attribute.</em>
+                                        </div>
+                                    </div>
+ 
+     
+                                    <div class="default">
+                                        Default Value: true
+                                    </div>        
+
+                                    <hr />
+                                    </div>        
+                                    <div class="">
+                                    <h4><a name="menu">menu</a>
+                                        <code>- <a href="YAHOO.widget.Menu.html">YAHOO.widget.Menu</a>|<a 
+href="YAHOO.widget.Overlay.html">YAHOO.widget.Overlay</a>|<a 
+href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-
+one-html.html#ID-58190037">HTMLElement</a>|String|Array</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Object specifying the menu for the button.  
+The value can be one of the following:
 <ul>
 <li>Object specifying a <a href="YAHOO.widget.Menu.html">
 YAHOO.widget.Menu</a> instance.</li>
-<li>String specifying the id attribute of the <code>&#60;div&#62;</code> 
-element used to create the menu.</li>
-<li>String specifying the id attribute of the 
-<code>&#60;select&#62;</code> element used to create the menu.</li>
-<li>Object specifying the <code>&#60;div&#62;</code> element used to 
-create the menu.</li>
-<li>Object specifying the <code>&#60;select&#62;</code> element used to 
-create the menu.</li>
+<li>Object specifying a <a href="YAHOO.widget.Overlay.html">
+YAHOO.widget.Overlay</a> instance.</li>
+<li>String specifying the id attribute of the <code>&#60;div&#62;
+</code> element used to create the menu.  By default the menu 
+will be created as an instance of 
+<a href="YAHOO.widget.Overlay.html">YAHOO.widget.Overlay</a>.  
+If the <a href="YAHOO.widget.Menu.html#CSS_CLASS_NAME">
+default CSS class name for YAHOO.widget.Menu</a> is applied to 
+the <code>&#60;div&#62;</code> element, it will be created as an
+instance of <a href="YAHOO.widget.Menu.html">YAHOO.widget.Menu
+</a>.</li><li>String specifying the id attribute of the 
+<code>&#60;select&#62;</code> element used to create the menu.
+</li><li>Object specifying the <code>&#60;div&#62;</code> element
+used to create the menu.</li>
+<li>Object specifying the <code>&#60;select&#62;</code> element
+used to create the menu.</li>
 <li>Array of object literals, each representing a set of 
 <a href="YAHOO.widget.MenuItem.html">YAHOO.widget.MenuItem</a> 
 configuration attributes.</li>
-<li>Array of strings representing the text labels for each menu item in 
-the menu.</li>
+<li>Array of strings representing the text labels for each menu 
+item in the menu.</li>
 </ul>
                                         </div>
                                     </div>
@@ -3557,6 +3834,26 @@ the menu.</li>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
+                                    <h4><a name="menuclassname">menuclassname</a>
+                                        <code>- String</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            String representing the CSS class name to be 
+applied to the root element of the button's menu.
+                                        </div>
+                                    </div>
+ 
+     
+                                    <div class="default">
+                                        Default Value: "yui-button-menu"
+                                    </div>        
+
+                                    <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="name">name</a>
                                         <code>- String</code>
                                     </h4>
@@ -3572,17 +3869,20 @@ the menu.</li>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="onclick">onclick</a>
                                         <code>- Object</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Object literal representing the code to be executed when 
-the button is clicked.  Format:<br> <code> {<br> 
-<strong>fn:</strong> Function,   &#47;&#47; The handler to call when the 
-event fires.<br> <strong>obj:</strong> Object, &#47;&#47; An object to 
-pass back to the handler.<br> <strong>scope:</strong> Object &#47;&#47; 
-The object to use for the scope of the handler.<br> } </code>
+                                            Object literal representing the code to be executed  
+when the button is clicked.  Format:<br> <code> {<br> 
+<strong>fn:</strong> Function,   &#47;&#47; The handler to call 
+when the event fires.<br> <strong>obj:</strong> Object, 
+&#47;&#47; An object to pass back to the handler.<br> 
+<strong>scope:</strong> Object &#47;&#47;  The object to use 
+for the scope of the handler.<br> } </code>
                                         </div>
                                     </div>
  
@@ -3592,13 +3892,15 @@ The object to use for the scope of the handler.<br> } </code>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="selectedMenuItem">selectedMenuItem</a>
-                                        <code>- <a href="YAHOO.widget.MenuItem.html">YAHOO.widget.MenuItem</a></code>
+                                        <code>- Number</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Reference to the item in the button's menu that is
-currently selected.
+                                            Number representing the index of the item in the 
+button's menu that is currently selected.
                                         </div>
                                     </div>
  
@@ -3608,6 +3910,8 @@ currently selected.
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="srcelement">srcelement</a>
                                         <code>- <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/
 level-one-html.html#ID-58190037">HTMLElement</a>|String</code>
@@ -3615,8 +3919,8 @@ level-one-html.html#ID-58190037">HTMLElement</a>|String</code>
                                     <div class="detail">
                                         <div class="description">
                                             Object reference to the HTML element (either 
-<code>&#60;input&#62;</code> or <code>&#60;span&#62;</code>) used to 
-create the button.
+<code>&#60;input&#62;</code> or <code>&#60;span&#62;</code>) 
+used to create the button.
                                         </div>
                                     </div>
  
@@ -3626,6 +3930,8 @@ create the button.
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="tabindex">tabindex</a>
                                         <code>- Number</code>
                                     </h4>
@@ -3641,19 +3947,23 @@ create the button.
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="target">target</a>
                                         <code>- String</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            String specifying the target for the button.  Applies only  
-to buttons of type "link."
+                                            String specifying the target for the button.  
+Applies only to buttons of type "link."
                                         </div>
                                     </div>
  
      
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="title">title</a>
                                         <code>- String</code>
                                     </h4>
@@ -3669,23 +3979,27 @@ to buttons of type "link."
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="type">type</a>
                                         <code>- String</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            String specifying the button's type.  Possible values are: 
-"button," "link," "submit," "reset," "checkbox," "radio," "menubutton," 
-and "splitbutton."
+                                            String specifying the button's type.  Possible 
+values are: "push," "link," "submit," "reset," "checkbox," 
+"radio," "menu," and "split."
                                         </div>
                                     </div>
  
      
                                     <div class="default">
-                                        Default Value: "button"
+                                        Default Value: "push"
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="value">value</a>
                                         <code>- Object</code>
                                     </h4>
@@ -3701,6 +4015,7 @@ and "splitbutton."
                                     </div>        
 
                                     <hr />
+                                    </div>        
 
                             </div>
                         </div>
@@ -3709,8 +4024,7 @@ and "splitbutton."
                             <h4>Configuration attributes inherited from <a href="YAHOO.util.Element.html">YAHOO.util.Element</a>:</h4>
                             <div class="content">
                                 <code>
-                                    
-                                        <a href="YAHOO.util.Element.html#element">element</a>
+                                        <a class="" href="YAHOO.util.Element.html#element">element</a><span class="">,</span>
                                 </code>
                             </div>
                         </div>
@@ -3732,6 +4046,8 @@ and "splitbutton."
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
+
                                 <li class=""><a href="module_connection.html">connection</a></li>
 
                                 <li class=""><a href="module_container.html">container</a></li>
@@ -3744,11 +4060,15 @@ and "splitbutton."
 
                                 <li class=""><a href="module_dragdrop.html">dragdrop</a></li>
 
+                                <li class=""><a href="module_editor.html">editor</a></li>
+
                                 <li class=""><a href="module_element.html">element</a></li>
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
                                 <li class=""><a href="module_history.html">history</a></li>
+
+                                <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
@@ -3761,6 +4081,10 @@ and "splitbutton."
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
+
+                                <li class=""><a href="module_yuiloader.html">yuiloader</a></li>
+
+                                <li class=""><a href="module_yuitest.html">yuitest</a></li>
                         </ul>
                     </div>
 
@@ -3783,70 +4107,70 @@ and "splitbutton."
                     <div class="module">
                         <h4>Properties</h4>
                         <ul class="content">        
-                                <li><a href="#_activationButtonPressed">_activationButtonPressed</a>
+                                <li class="protected"><a href="#_activationButtonPressed">_activationButtonPressed</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#_activationKeyPressed">_activationKeyPressed</a>
+                                <li class="protected"><a href="#_activationKeyPressed">_activationKeyPressed</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#_button">_button</a>
+                                <li class="protected"><a href="#_button">_button</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#_hasKeyEventHandlers">_hasKeyEventHandlers</a>
+                                <li class="protected"><a href="#_hasKeyEventHandlers">_hasKeyEventHandlers</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#_hasMouseEventHandlers">_hasMouseEventHandlers</a>
+                                <li class="protected"><a href="#_hasMouseEventHandlers">_hasMouseEventHandlers</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#_hiddenField">_hiddenField</a>
+                                <li class="protected"><a href="#_hiddenFields">_hiddenFields</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#_menu">_menu</a>
+                                <li class="protected"><a href="#_menu">_menu</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#_onclickAttributeValue">_onclickAttributeValue</a>
+                                <li class="protected"><a href="#_onclickAttributeValue">_onclickAttributeValue</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#ACTIVATION_KEYS">ACTIVATION_KEYS</a>
+                                <li class=""><a href="#ACTIVATION_KEYS">ACTIVATION_KEYS</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#CHECK_ACTIVATION_KEYS">CHECK_ACTIVATION_KEYS</a>
+                                <li class=""><a href="#CHECK_ACTIVATION_KEYS">CHECK_ACTIVATION_KEYS</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#CHECKBOX_CHECKED_TITLE">CHECKBOX_CHECKED_TITLE</a>
+                                <li class=""><a href="#CHECKBOX_CHECKED_TITLE">CHECKBOX_CHECKED_TITLE</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#CHECKBOX_DEFAULT_TITLE">CHECKBOX_DEFAULT_TITLE</a>
+                                <li class=""><a href="#CHECKBOX_DEFAULT_TITLE">CHECKBOX_DEFAULT_TITLE</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#CSS_CLASS_NAME">CSS_CLASS_NAME</a>
+                                <li class=""><a href="#CSS_CLASS_NAME">CSS_CLASS_NAME</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#MENUBUTTON_DEFAULT_TITLE">MENUBUTTON_DEFAULT_TITLE</a>
+                                <li class=""><a href="#MENUBUTTON_DEFAULT_TITLE">MENUBUTTON_DEFAULT_TITLE</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#MENUBUTTON_MENU_VISIBLE_TITLE">MENUBUTTON_MENU_VISIBLE_TITLE</a>
+                                <li class=""><a href="#MENUBUTTON_MENU_VISIBLE_TITLE">MENUBUTTON_MENU_VISIBLE_TITLE</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#OPTION_AREA_WIDTH">OPTION_AREA_WIDTH</a>
+                                <li class=""><a href="#NODE_NAME">NODE_NAME</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#RADIO_CHECKED_TITLE">RADIO_CHECKED_TITLE</a>
+                                <li class=""><a href="#OPTION_AREA_WIDTH">OPTION_AREA_WIDTH</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#RADIO_DEFAULT_TITLE">RADIO_DEFAULT_TITLE</a>
+                                <li class=""><a href="#RADIO_CHECKED_TITLE">RADIO_CHECKED_TITLE</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#SPLITBUTTON_DEFAULT_TITLE">SPLITBUTTON_DEFAULT_TITLE</a>
+                                <li class=""><a href="#RADIO_DEFAULT_TITLE">RADIO_DEFAULT_TITLE</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#SPLITBUTTON_OPTION_VISIBLE_TITLE">SPLITBUTTON_OPTION_VISIBLE_TITLE</a>
+                                <li class=""><a href="#SPLITBUTTON_DEFAULT_TITLE">SPLITBUTTON_DEFAULT_TITLE</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#SUBMIT_TITLE">SUBMIT_TITLE</a>
+                                <li class=""><a href="#SPLITBUTTON_OPTION_VISIBLE_TITLE">SPLITBUTTON_OPTION_VISIBLE_TITLE</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#TAG_NAME">TAG_NAME</a>
+                                <li class=""><a href="#SUBMIT_TITLE">SUBMIT_TITLE</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
                         </ul>
@@ -3855,194 +4179,201 @@ and "splitbutton."
                     <div class="module">
                         <h4>Methods</h4>
                         <ul class="content">        
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_addListenersToForm">_addListenersToForm</a>
                                 </li>
-                                <li><!--<code><a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/
-level-one-html.html#ID-58190037">HTMLElement</a></code>-->
-                                <a href="#_createButtonElement">_createButtonElement</a>
-                                </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_hideMenu">_hideMenu</a>
                                 </li>
-                                <li><!--<code>Boolean</code>-->
+                                <li class="protected"><!--<code>Boolean</code>-->
                                 <a href="#_isActivationKey">_isActivationKey</a>
                                 </li>
-                                <li><!--<code>Boolean</code>-->
+                                <li class="protected"><!--<code>Boolean</code>-->
                                 <a href="#_isSplitButtonOptionKey">_isSplitButtonOptionKey</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_onAppendTo">_onAppendTo</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_onBlur">_onBlur</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_onClick">_onClick</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_onDocumentKeyUp">_onDocumentKeyUp</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_onDocumentMouseDown">_onDocumentMouseDown</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_onDocumentMouseUp">_onDocumentMouseUp</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_onFocus">_onFocus</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_onFormReset">_onFormReset</a>
                                 </li>
-                                <li><!--<code>void</code>-->
-                                <a href="#_onFormSubmit">_onFormSubmit</a>
-                                </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_onKeyDown">_onKeyDown</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_onKeyUp">_onKeyUp</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_onMenuClick">_onMenuClick</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_onMenuHide">_onMenuHide</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_onMenuItemAdded">_onMenuItemAdded</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_onMenuItemSelected">_onMenuItemSelected</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_onMenuKeyDown">_onMenuKeyDown</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_onMenuRender">_onMenuRender</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_onMenuShow">_onMenuShow</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_onMouseDown">_onMouseDown</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_onMouseOut">_onMouseOut</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_onMouseOver">_onMouseOver</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_onMouseUp">_onMouseUp</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_onOption">_onOption</a>
                                 </li>
-                                <li><!--<code>void</code>-->
-                                <a href="#_setAccessKey">_setAccessKey</a>
+                                <li class="private"><!--<code>void</code>-->
+                                <a href="#_onOverlayBeforeShow">_onOverlayBeforeShow</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_setChecked">_setChecked</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_setDisabled">_setDisabled</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_setHref">_setHref</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_setLabel">_setLabel</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_setMenu">_setMenu</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_setOnClick">_setOnClick</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
+                                <a href="#_setSelectedMenuItem">_setSelectedMenuItem</a>
+                                </li>
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_setTabIndex">_setTabIndex</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_setTarget">_setTarget</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_setTitle">_setTitle</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_setType">_setType</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>void</code>-->
                                 <a href="#_showMenu">_showMenu</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#addHiddenFieldsToForm">addHiddenFieldsToForm</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#addStateCSSClasses">addStateCSSClasses</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#blur">blur</a>
                                 </li>
-                                <li><!--<code><a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-
-one-html.html#ID-6043025">HTMLInputElement</a></code>-->
-                                <a href="#createHiddenField">createHiddenField</a>
+                                <li class=""><!--<code><a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/
+level-one-html.html#ID-58190037">HTMLElement</a></code>-->
+                                <a href="#createButtonElement">createButtonElement</a>
                                 </li>
-                                <li><!--<code><a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-
+                                <li class=""><!--<code><a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/
+level-one-html.html#ID-6043025">HTMLInputElement</a>|Array</code>-->
+                                <a href="#createHiddenFields">createHiddenFields</a>
+                                </li>
+                                <li class="private"><!--<code><a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-
 one-html.html#ID-6043025">HTMLInputElement</a></code>-->
                                 <a href="#createInputElement">createInputElement</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#destroy">destroy</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#focus">focus</a>
                                 </li>
-                                <li><!--<code><a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/
-level-one-html.html#ID-58190037">HTMLElement</a></code>-->
-                                <a href="#getFirstElement">getFirstElement</a>
-                                </li>
-                                <li><!--<code><a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-
-one-html.html#ID-40002357">HTMLFormElement</a></code>-->
+                                <li class=""><!--<code><a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-
+20000929/level-one-html.html#ID-40002357">HTMLFormElement</a></code>-->
                                 <a href="#getForm">getForm</a>
                                 </li>
-                                <li><!--<code><a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-
-one-html.html#ID-6043025">HTMLInputElement</a></code>-->
-                                <a href="#getHiddenField">getHiddenField</a>
+                                <li class=""><!--<code><a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/
+level-one-html.html#ID-6043025">HTMLInputElement</a>|Array</code>-->
+                                <a href="#getHiddenFields">getHiddenFields</a>
                                 </li>
-                                <li><!--<code><a href="YAHOO.widget.Menu.html">YAHOO.widget.Menu</a></code>-->
+                                <li class=""><!--<code><a href="YAHOO.widget.Overlay.html">
+YAHOO.widget.Overlay</a>|<a 
+href="YAHOO.widget.Menu.html">YAHOO.widget.Menu</a></code>-->
                                 <a href="#getMenu">getMenu</a>
                                 </li>
-                                <li><!--<code>Boolean</code>-->
+                                <li class=""><!--<code>Boolean</code>-->
                                 <a href="#hasFocus">hasFocus</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#init">init</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#initAttributes">initAttributes</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#initConfig">initConfig</a>
                                 </li>
-                                <li><!--<code>Boolean</code>-->
+                                <li class=""><!--<code>Boolean</code>-->
                                 <a href="#isActive">isActive</a>
                                 </li>
-                                <li><!--<code>void</code>-->
-                                <a href="#onFormKeyDown">onFormKeyDown</a>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#removeHiddenFields">removeHiddenFields</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#removeStateCSSClasses">removeStateCSSClasses</a>
+                                </li>
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#setAttributeFromDOMAttribute">setAttributeFromDOMAttribute</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#setAttributesFromSrcElement">setAttributesFromSrcElement</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#setFormElementProperties">setFormElementProperties</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="protected"><!--<code>Boolean</code>-->
                                 <a href="#submitForm">submitForm</a>
                                 </li>
-                                <li><!--<code>String</code>-->
+                                <li class=""><!--<code>String</code>-->
                                 <a href="#toString">toString</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#YAHOO.widget.Button.onFormKeyPress">YAHOO.widget.Button.onFormKeyPress</a>
                                 </li>
                         </ul>
                     </div>
@@ -4050,13 +4381,13 @@ one-html.html#ID-6043025">HTMLInputElement</a></code>-->
                     <div class="module">
                         <h4>Events</h4>
                         <ul class="content">        
-                                <li>
+                                <li class="">
                                 <a href="#blur">blur</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#focus">focus</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#option">option</a>
                                 </li>
                         </ul>
@@ -4065,49 +4396,58 @@ one-html.html#ID-6043025">HTMLInputElement</a></code>-->
                     <div class="module">
                         <h4>Configuration Attributes</h4>
                         <ul class="content">        
-                                <li>
+                                <li class="">
                                 <a href="#checked">checked</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#container">container</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#disabled">disabled</a>
                                 </li>
-                                <li>
+                                <li class="">
+                                <a href="#focusmenu">focusmenu</a>
+                                </li>
+                                <li class="">
                                 <a href="#href">href</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#label">label</a>
                                 </li>
-                                <li>
+                                <li class="">
+                                <a href="#lazyloadmenu">lazyloadmenu</a>
+                                </li>
+                                <li class="">
                                 <a href="#menu">menu</a>
                                 </li>
-                                <li>
+                                <li class="">
+                                <a href="#menuclassname">menuclassname</a>
+                                </li>
+                                <li class="">
                                 <a href="#name">name</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#onclick">onclick</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#selectedMenuItem">selectedMenuItem</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#srcelement">srcelement</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#tabindex">tabindex</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#target">target</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#title">title</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#type">type</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#value">value</a>
                                 </li>
                         </ul>

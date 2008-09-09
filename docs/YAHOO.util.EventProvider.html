@@ -3,26 +3,33 @@
 <head>
 	<title>API: event  YAHOO.util.EventProvider   (YUI Library)</title>
 	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
 </head>
 
 <body id="yahoo-com">
+
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
         <h1>Yahoo! UI Library</h1>
-        <h3>Event Utility&nbsp; <span class="subtitle">2.2.2</span></h3>
+        <h3>Event Utility&nbsp; <span class="subtitle">2.3.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_event.html">event</a>
                  &gt; YAHOO.util.EventProvider 
                 
             </p>
+
 	</div>
 
 	<div id="bd">
 		<div id="yui-main">
 			<div class="yui-b">
-
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> Show Private</span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> Show Protected</span>
+            </form>
 
                     <h2>
                         
@@ -55,6 +62,7 @@ not be created at all.
                         <div class="section field details">
                             <h3><a name="field_detail">Properties</a></h3>
                             <div class="content">
+                                    <div class="private">
                                     <h4><a name="__yui_events">__yui_events</a>
                                         <code>- private Object[]</code>
                                     </h4>
@@ -68,6 +76,8 @@ not be created at all.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="__yui_subscribers">__yui_subscribers</a>
                                         <code>- private Object[]</code>
                                     </h4>
@@ -81,6 +91,7 @@ not be created at all.
 
 
                                     <hr />
+                                    </div>
 
 
                             </div>
@@ -90,6 +101,7 @@ not be created at all.
                         <div class="section method details">
                             <h3><a name="methodDetails">Methods</a></h3>
                             <div class="content">
+                                    <div class="">
                                     <h4>
                                         <a name="createEvent">createEvent</a></h4>
                                     <div class="detail">
@@ -160,6 +172,8 @@ the event.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="fireEvent">fireEvent</a></h4>
                                     <div class="detail">
@@ -191,6 +205,8 @@ following parameters:
 <li>The custom object (if any) that was passed into the subscribe() 
 method</li>
 </ul>
+If the custom event has not been explicitly created, it will be
+created now with the default config, scoped to the host object
                                         </div>
 
                                         <div class="description">
@@ -213,14 +229,15 @@ the handler.
                                                     <code>
                                                         boolean
                                                     </code></dt>
-                                                    <dd>the return value from CustomEvent.fire, or null if 
-the custom event does not exist.</dd>
+                                                    <dd>the return value from CustomEvent.fire</dd>
                                                 </dl>
              
                                         </div>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="hasEvent">hasEvent</a></h4>
                                     <div class="detail">
@@ -266,6 +283,8 @@ with createEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="subscribe">subscribe</a></h4>
                                     <div class="detail">
@@ -288,8 +307,6 @@ with createEvent.
                                                         , 
                                                          p_obj
                                                     
-                                                
-
                                                 
                                                         , 
                                                          p_override
@@ -315,10 +332,6 @@ with createEvent.
                                                                     the function to exectute when the event fires
                                                         </dd>
                                                         <dd>
-                                                            <code>p_obj &lt;object&gt;</code>
-                                                            
-                                                        </dd>
-                                                        <dd>
                                                             <code>p_obj &lt;Object&gt;</code>
                                                                      An object to be passed along when the event 
 fires
@@ -342,6 +355,8 @@ execution scope of the listener
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="unsubscribe">unsubscribe</a></h4>
                                     <div class="detail">
@@ -378,7 +393,9 @@ execution scope of the listener
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_type &lt;string&gt;</code>
-                                                                The type, or name of the event
+                                                                The type, or name of the event.  If the type
+is not specified, it will attempt to remove
+the listener from all hosted events.
                                                         </dd>
                                                         <dd>
                                                             <code>p_fn &lt;Function&gt;</code>
@@ -407,6 +424,8 @@ that lives on the prototype)
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="unsubscribeAll">unsubscribeAll</a></h4>
                                     <div class="detail">
@@ -426,7 +445,9 @@ that lives on the prototype)
                                         </code>
                                         
                                         <div class="description">
-                                            Removes all listeners from the specified event
+                                            Removes all listeners from the specified event.  If the event type
+is not specified, all listeners from all hosted custom events will
+be removed.
                                         </div>
 
                                         <div class="description">
@@ -451,6 +472,7 @@ that lives on the prototype)
 
                                     </div>
                                     <hr />
+                                    </div>
                             </div>
                         </div>
 
@@ -477,6 +499,8 @@ that lives on the prototype)
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
+
                                 <li class=""><a href="module_connection.html">connection</a></li>
 
                                 <li class=""><a href="module_container.html">container</a></li>
@@ -489,11 +513,15 @@ that lives on the prototype)
 
                                 <li class=""><a href="module_dragdrop.html">dragdrop</a></li>
 
+                                <li class=""><a href="module_editor.html">editor</a></li>
+
                                 <li class=""><a href="module_element.html">element</a></li>
 
                                 <li class="selected"><a href="module_event.html">event</a></li>
 
                                 <li class=""><a href="module_history.html">history</a></li>
+
+                                <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
@@ -506,6 +534,10 @@ that lives on the prototype)
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
+
+                                <li class=""><a href="module_yuiloader.html">yuiloader</a></li>
+
+                                <li class=""><a href="module_yuitest.html">yuitest</a></li>
                         </ul>
                     </div>
 
@@ -515,6 +547,7 @@ that lives on the prototype)
                                 <li class=""><a href="YAHOO.util.CustomEvent.html">YAHOO.util.CustomEvent</a></li>
                                 <li class=""><a href="YAHOO.util.Event.html">YAHOO.util.Event</a></li>
                                 <li class="selected"><a href="YAHOO.util.EventProvider.html">YAHOO.util.EventProvider</a></li>
+                                <li class=""><a href="YAHOO.util.KeyListener.html">YAHOO.util.KeyListener</a></li>
                                 <li class=""><a href="YAHOO.util.Subscriber.html">YAHOO.util.Subscriber</a></li>
                         </ul>
                     </div>
@@ -525,16 +558,17 @@ that lives on the prototype)
                                 <li class=""><a href="CustomEvent.js.html">CustomEvent.js</a></li>
                                 <li class=""><a href="Event.js.html">Event.js</a></li>
                                 <li class=""><a href="EventProvider.js.html">EventProvider.js</a></li>
+                                <li class=""><a href="KeyListener.js.html">KeyListener.js</a></li>
                         </ul>
                     </div>
 
                     <div class="module">
                         <h4>Properties</h4>
                         <ul class="content">        
-                                <li><a href="#__yui_events">__yui_events</a>
+                                <li class="private"><a href="#__yui_events">__yui_events</a>
                                         <!--<code>&lt;Object[]&gt;</code>-->
                                 </li>
-                                <li><a href="#__yui_subscribers">__yui_subscribers</a>
+                                <li class="private"><a href="#__yui_subscribers">__yui_subscribers</a>
                                         <!--<code>&lt;Object[]&gt;</code>-->
                                 </li>
                         </ul>
@@ -543,22 +577,22 @@ that lives on the prototype)
                     <div class="module">
                         <h4>Methods</h4>
                         <ul class="content">        
-                                <li><!--<code>CustomEvent</code>-->
+                                <li class=""><!--<code>CustomEvent</code>-->
                                 <a href="#createEvent">createEvent</a>
                                 </li>
-                                <li><!--<code>boolean</code>-->
+                                <li class=""><!--<code>boolean</code>-->
                                 <a href="#fireEvent">fireEvent</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#hasEvent">hasEvent</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#subscribe">subscribe</a>
                                 </li>
-                                <li><!--<code>boolean</code>-->
+                                <li class=""><!--<code>boolean</code>-->
                                 <a href="#unsubscribe">unsubscribe</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#unsubscribeAll">unsubscribeAll</a>
                                 </li>
                         </ul>

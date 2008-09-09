@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Setting Menu Configuration Properties At Runtime</title>
+
+<style type="text/css">
+/*margin and padding on body element
+  can introduce errors in determining
+  element position and are not recommended;
+  we turn them off as a foundation for YUI
+  CSS treatments. */
+body {
+	margin:0;
+	padding:0;
+}
+</style>
+
+<link rel="stylesheet" type="text/css" href="../../build/fonts/fonts-min.css" />
+<link rel="stylesheet" type="text/css" href="../../build/menu/assets/skins/sam/menu.css" />
+<!-- The following modules were requested but are not defined: container-core -->
+<script type="text/javascript" src="../../build/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="../../build/container/container_core.js"></script>
+<script type="text/javascript" src="../../build/menu/menu.js"></script>
+<!-- The following modules were requested but are not defined: container-core -->
+
+
+<!--begin custom header content for this example-->
+<style type="text/css">
+
+    li.yuimenuitem a em {
+    
+        font-style: italic;
+    }
+    
+    li.yuimenuitem strong {
+    
+        font-weight: bold;
+    
+    }
+
+</style>
+<!--end custom header content for this example-->
+
+</head>
+
+<body class=" yui-skin-sam">
+
+<h1>Setting Menu Configuration Properties At Runtime</h1>
+
+<div class="exampleIntro">
+	<p>This example demonstrates how to set MenuItem configuration properties at runtime and listen for the changes through the "configChangedEvent."</p>
+<p id="clicknote"><em>Note:</em> By default clicking outside of a menu will hide it.  Additionally, menu items without a submenu or a URL to navigate will hide their parent menu when clicked.  Click the "Show Menu" button below to make the menu visible if it is hidden.</p>			
+</div>
+
+<!--BEGIN SOURCE CODE FOR EXAMPLE =============================== -->
+
+<script type="text/javascript">
+
+    // Instantiate and render the menu when the page's DOM is ready
+
+    YAHOO.example.onDOMReady = function(p_sType) {
+
+        // "config change" event handler for each menu item
+
+        function onMenuItemConfigChange(p_sType, p_aArgs) {
+
+            var sPropertyName = p_aArgs[0][0],
+                sPropertyValue = p_aArgs[0][1];
+
+            YAHOO.log(("Index: " + this.index + ", " +
+                       "Group Index: " + this.groupIndex + ", " +
+                       "Custom Event Type: " + p_sType + ", " +                  
+                       "\"" + sPropertyName + "\" Property Set To: \"" 
+                       + sPropertyValue + "\""), "info", "example12");
+        
+        }
+
+
+        /*
+             Instantiate the menu.  The first argument passed to the 
+             constructor is the id of the DOM element to be created for the 
+             menu; the second is an object literal representing a set of 
+             configuration properties for the menu.
+        */
+
+        var oMenu = new YAHOO.widget.Menu("basicmenu", { fixedcenter: true });
+
+        oMenu.itemAddedEvent.subscribe(function (p_sType, p_aArgs) {
+
+            var oMenuItem = p_aArgs[0];
+           
+            /*
+                 Subscribe to each of the menu item's "configChanged" event as each 
+                 one is added to the menu.
+            */
+
+            oMenuItem.cfg.configChangedEvent.subscribe(onMenuItemConfigChange);
+
+        });
+
+        oMenu.showEvent.subscribe(function () {
+
+            this.focus();
+        
+        });
+
+        /*
+            Add items to the menu by passing an array of strings (each of which 
+            represents the "text" configuration property of a 
+            YAHOO.widget.MenuItem instance) to the "addItems" method.
+        */
+
+        oMenu.addItems([
+            
+                "MenuItem 0",
+                "MenuItem 1",
+                "MenuItem 2",
+                "MenuItem 3",
+                "MenuItem 4",
+                "MenuItem 5"
+
+            ]);
+
+        /*
+             Since this menu is built completely from script, call the "render" 
+             method passing in the id of the DOM element that the menu's 
+             root element should be appended to.
+        */
+
+        oMenu.render("rendertarget");
+
+        /*
+             Set a configuration property of each menu item to trigger 
+             the configChangedEvent for each menu item.
+        */
+
+        oMenu.getItem(0).cfg.setProperty("selected", true);
+        oMenu.getItem(1).cfg.setProperty("disabled", true);
+        oMenu.getItem(2).cfg.setProperty("helptext", "Help Me!");
+        oMenu.getItem(3).cfg.setProperty("emphasis", true);
+        oMenu.getItem(4).cfg.setProperty("strongemphasis", true);  
+        oMenu.getItem(5).cfg.setProperty("checked", true);
+        
+        YAHOO.util.Event.addListener("menutoggle", "click", oMenu.show, null, oMenu);
+
+    };
+
+
+    YAHOO.util.Event.onDOMReady(YAHOO.example.onDOMReady);
+    
+</script>
+
+<button id="menutoggle" type="button">Show Menu</button>
+<div id="rendertarget"></div>
+<!--END SOURCE CODE FOR EXAMPLE =============================== -->
+
+</body>
+</html>

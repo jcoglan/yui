@@ -3,27 +3,38 @@
 <head>
 	<title>API: animation   Anim.js  (YUI Library)</title>
 	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
 </head>
 
 <body id="yahoo-com">
+
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
         <h1>Yahoo! UI Library</h1>
-        <h3>animation&nbsp; <span class="subtitle">2.2.2</span></h3>
+        <h3>animation&nbsp; <span class="subtitle">2.3.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_animation.html">animation</a>
                 
                  &gt; Anim.js (source view) 
             </p>
+
 	</div>
 
 	<div id="bd">
 		<div id="yui-main">
 			<div class="yui-b">
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> Show Private</span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> Show Protected</span>
+            </form>
 
                     <div id="srcout">
+                        <style>
+                            #doc3 #classopts { display:none; }
+                        </style>
 <div class="highlight" ><pre><span class="c">/*</span>
 <span class="c">Copyright (c) 2006, Yahoo! Inc. All rights reserved.</span>
 <span class="c">Code licensed under the BSD License:</span>
@@ -58,9 +69,10 @@
 <span class="c"> */</span>
 
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Anim</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="nx">attributes</span><span class="o">,</span> <span class="nx">duration</span><span class="o">,</span> <span class="nx">method</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="nx">el</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">init</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="nx">attributes</span><span class="o">,</span> <span class="nx">duration</span><span class="o">,</span> <span class="nx">method</span><span class="o">);</span> 
+    <span class="k">if</span> <span class="o">(!</span><span class="nx">el</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;element required to create Anim instance&#39;</span><span class="o">,</span> <span class="s1">&#39;error&#39;</span><span class="o">,</span> <span class="s1">&#39;Anim&#39;</span><span class="o">);</span>
     <span class="o">}</span>
+    <span class="k">this</span><span class="o">.</span><span class="nx">init</span><span class="o">(</span><span class="nx">el</span><span class="o">,</span> <span class="nx">attributes</span><span class="o">,</span> <span class="nx">duration</span><span class="o">,</span> <span class="nx">method</span><span class="o">);</span> 
 <span class="o">};</span>
 
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Anim</span><span class="o">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="o">{</span>
@@ -71,7 +83,7 @@
 <span class="c">     */</span>
     <span class="nx">toString</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
         <span class="k">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">getEl</span><span class="o">();</span>
-        <span class="k">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">el</span><span class="o">.</span><span class="nx">id</span> <span class="o">||</span> <span class="nx">el</span><span class="o">.</span><span class="nx">tagName</span><span class="o">;</span>
+        <span class="k">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">el</span><span class="o">.</span><span class="nx">id</span> <span class="o">||</span> <span class="nx">el</span><span class="o">.</span><span class="nx">tagName</span> <span class="o">||</span> <span class="nx">el</span><span class="o">;</span>
         <span class="k">return</span> <span class="o">(</span><span class="s2">&quot;Anim &quot;</span> <span class="o">+</span> <span class="nx">id</span><span class="o">);</span>
     <span class="o">},</span>
     
@@ -181,10 +193,10 @@
             <span class="k">if</span> <span class="o">(</span><span class="nx">start</span><span class="o">.</span><span class="nx">constructor</span> <span class="o">==</span> <span class="nb">Array</span><span class="o">)</span> <span class="o">{</span>
                 <span class="nx">end</span> <span class="o">=</span> <span class="o">[];</span>
                 <span class="k">for</span> <span class="o">(</span><span class="k">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="m">0</span><span class="o">,</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">start</span><span class="o">.</span><span class="nx">length</span><span class="o">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="o">;</span> <span class="o">++</span><span class="nx">i</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="nx">end</span><span class="o">[</span><span class="nx">i</span><span class="o">]</span> <span class="o">=</span> <span class="nx">start</span><span class="o">[</span><span class="nx">i</span><span class="o">]</span> <span class="o">+</span> <span class="nx">attributes</span><span class="o">[</span><span class="nx">attr</span><span class="o">][</span><span class="s1">&#39;by&#39;</span><span class="o">][</span><span class="nx">i</span><span class="o">];</span>
-                <span class="o">}</span>
+                    <span class="nx">end</span><span class="o">[</span><span class="nx">i</span><span class="o">]</span> <span class="o">=</span> <span class="nx">start</span><span class="o">[</span><span class="nx">i</span><span class="o">]</span> <span class="o">+</span> <span class="nx">attributes</span><span class="o">[</span><span class="nx">attr</span><span class="o">][</span><span class="s1">&#39;by&#39;</span><span class="o">][</span><span class="nx">i</span><span class="o">]</span> <span class="o">*</span> <span class="m">1</span><span class="o">;</span> <span class="c">// times 1 to cast &quot;by&quot; </span>
+<span class="c"></span>                <span class="o">}</span>
             <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                <span class="nx">end</span> <span class="o">=</span> <span class="nx">start</span> <span class="o">+</span> <span class="nx">attributes</span><span class="o">[</span><span class="nx">attr</span><span class="o">][</span><span class="s1">&#39;by&#39;</span><span class="o">];</span>
+                <span class="nx">end</span> <span class="o">=</span> <span class="nx">start</span> <span class="o">+</span> <span class="nx">attributes</span><span class="o">[</span><span class="nx">attr</span><span class="o">][</span><span class="s1">&#39;by&#39;</span><span class="o">]</span> <span class="o">*</span> <span class="m">1</span><span class="o">;</span>
             <span class="o">}</span>
         <span class="o">}</span>
         
@@ -192,7 +204,9 @@
         <span class="k">this</span><span class="o">.</span><span class="nx">runtimeAttributes</span><span class="o">[</span><span class="nx">attr</span><span class="o">].</span><span class="nx">end</span> <span class="o">=</span> <span class="nx">end</span><span class="o">;</span>
 
         <span class="c">// set units if needed</span>
-<span class="c"></span>        <span class="k">this</span><span class="o">.</span><span class="nx">runtimeAttributes</span><span class="o">[</span><span class="nx">attr</span><span class="o">].</span><span class="nx">unit</span> <span class="o">=</span> <span class="o">(</span> <span class="nx">isset</span><span class="o">(</span><span class="nx">attributes</span><span class="o">[</span><span class="nx">attr</span><span class="o">].</span><span class="nx">unit</span><span class="o">)</span> <span class="o">)</span> <span class="o">?</span> <span class="nx">attributes</span><span class="o">[</span><span class="nx">attr</span><span class="o">][</span><span class="s1">&#39;unit&#39;</span><span class="o">]</span> <span class="o">:</span> <span class="k">this</span><span class="o">.</span><span class="nx">getDefaultUnit</span><span class="o">(</span><span class="nx">attr</span><span class="o">);</span>
+<span class="c"></span>        <span class="k">this</span><span class="o">.</span><span class="nx">runtimeAttributes</span><span class="o">[</span><span class="nx">attr</span><span class="o">].</span><span class="nx">unit</span> <span class="o">=</span> <span class="o">(</span> <span class="nx">isset</span><span class="o">(</span><span class="nx">attributes</span><span class="o">[</span><span class="nx">attr</span><span class="o">].</span><span class="nx">unit</span><span class="o">)</span> <span class="o">)</span> <span class="o">?</span>
+                <span class="nx">attributes</span><span class="o">[</span><span class="nx">attr</span><span class="o">][</span><span class="s1">&#39;unit&#39;</span><span class="o">]</span> <span class="o">:</span> <span class="k">this</span><span class="o">.</span><span class="nx">getDefaultUnit</span><span class="o">(</span><span class="nx">attr</span><span class="o">);</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
     <span class="o">},</span>
 
     <span class="c">/**</span>
@@ -256,7 +270,7 @@
 <span class="c">         * @property duration</span>
 <span class="c">         * @type Number</span>
 <span class="c">         */</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">duration</span> <span class="o">=</span> <span class="nx">duration</span> <span class="o">||</span> <span class="m">1</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">duration</span> <span class="o">=</span> <span class="o">!</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isUndefined</span><span class="o">(</span><span class="nx">duration</span><span class="o">)</span> <span class="o">?</span> <span class="nx">duration</span> <span class="o">:</span> <span class="m">1</span><span class="o">;</span>
         
         <span class="c">/**</span>
 <span class="c">         * The method that will provide values to the attribute(s) during the animation. </span>
@@ -290,6 +304,13 @@
 <span class="c">         */</span>
         <span class="k">this</span><span class="o">.</span><span class="nx">totalFrames</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">AnimMgr</span><span class="o">.</span><span class="nx">fps</span><span class="o">;</span>
         
+        <span class="c">/**</span>
+<span class="c">         * Changes the animated element</span>
+<span class="c">         * @method setEl</span>
+<span class="c">         */</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">setEl</span> <span class="o">=</span> <span class="k">function</span><span class="o">(</span><span class="nx">element</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nx">el</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="nx">element</span><span class="o">);</span>
+        <span class="o">};</span>
         
         <span class="c">/**</span>
 <span class="c">         * Returns a reference to the animated element.</span>
@@ -336,7 +357,11 @@
             
             <span class="k">this</span><span class="o">.</span><span class="nx">totalFrames</span> <span class="o">=</span> <span class="o">(</span> <span class="k">this</span><span class="o">.</span><span class="nx">useSeconds</span> <span class="o">)</span> <span class="o">?</span> <span class="nb">Math</span><span class="o">.</span><span class="nx">ceil</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">AnimMgr</span><span class="o">.</span><span class="nx">fps</span> <span class="o">*</span> <span class="k">this</span><span class="o">.</span><span class="nx">duration</span><span class="o">)</span> <span class="o">:</span> <span class="k">this</span><span class="o">.</span><span class="nx">duration</span><span class="o">;</span>
     
+            <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">duration</span> <span class="o">===</span> <span class="m">0</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">useSeconds</span><span class="o">)</span> <span class="o">{</span> <span class="c">// jump to last frame if zero second duration </span>
+<span class="c"></span>                <span class="k">this</span><span class="o">.</span><span class="nx">totalFrames</span> <span class="o">=</span> <span class="m">1</span><span class="o">;</span> 
+            <span class="o">}</span>
             <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">AnimMgr</span><span class="o">.</span><span class="nx">registerElement</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
         <span class="o">};</span>
           
         <span class="c">/**</span>
@@ -478,6 +503,8 @@
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
+
                                 <li class=""><a href="module_connection.html">connection</a></li>
 
                                 <li class=""><a href="module_container.html">container</a></li>
@@ -490,11 +517,15 @@
 
                                 <li class=""><a href="module_dragdrop.html">dragdrop</a></li>
 
+                                <li class=""><a href="module_editor.html">editor</a></li>
+
                                 <li class=""><a href="module_element.html">element</a></li>
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
                                 <li class=""><a href="module_history.html">history</a></li>
+
+                                <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
@@ -507,6 +538,10 @@
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
+
+                                <li class=""><a href="module_yuiloader.html">yuiloader</a></li>
+
+                                <li class=""><a href="module_yuitest.html">yuitest</a></li>
                         </ul>
                     </div>
 

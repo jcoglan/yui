@@ -3,26 +3,33 @@
 <head>
 	<title>API: calendar  YAHOO.widget.Calendar   (YUI Library)</title>
 	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
 </head>
 
 <body id="yahoo-com">
+
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
         <h1>Yahoo! UI Library</h1>
-        <h3>Calendar&nbsp; <span class="subtitle">2.2.2</span></h3>
+        <h3>Calendar&nbsp; <span class="subtitle">2.3.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_calendar.html">calendar</a>
                  &gt; YAHOO.widget.Calendar 
                 
             </p>
+
 	</div>
 
 	<div id="bd">
 		<div id="yui-main">
 			<div class="yui-b">
-
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> Show Private</span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> Show Protected</span>
+            </form>
 
                     <h2>
                         
@@ -59,7 +66,6 @@ follows:
 <xmp>
 <div id="cal1Container"></div>
 </xmp>
-Note that the table can be replaced with any kind of element.
 </p>
                     </div>
 
@@ -114,6 +120,7 @@ Note that the table can be replaced with any kind of element.
                         <div class="section field details">
                             <h3><a name="field_detail">Properties</a></h3>
                             <div class="content">
+                                    <div class="private">
                                     <h4><a name="_renderStack">_renderStack</a>
                                         <code>- private Array</code>
                                     </h4>
@@ -127,6 +134,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="_selectedDates">_selectedDates</a>
                                         <code>- private Array</code>
                                     </h4>
@@ -140,6 +149,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="browser">browser</a>
                                         <code>- String</code>
                                     </h4>
@@ -151,8 +162,13 @@ Note that the table can be replaced with any kind of element.
      
                                         
 
+                                    <div class="deprecated">
+                                        <strong>Deprecated: </strong>As of 2.3.0, environment information is available in YAHOO.env.ua
+                                    </div>        
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="cellDates">cellDates</a>
                                         <code>- Array[](Number[])</code>
                                     </h4>
@@ -166,6 +182,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="cells">cells</a>
                                         <code>- HTMLTableCellElement[]</code>
                                     </h4>
@@ -179,6 +197,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="cfg">cfg</a>
                                         <code>- YAHOO.util.Config</code>
                                     </h4>
@@ -192,6 +212,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="Config">Config</a>
                                         <code>- private Object</code>
                                     </h4>
@@ -208,6 +230,8 @@ Note that the table can be replaced with any kind of element.
                                     </div>        
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="domEventMap">domEventMap</a>
                                         <code>- Object</code>
                                     </h4>
@@ -221,6 +245,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="id">id</a>
                                         <code>- String</code>
                                     </h4>
@@ -234,6 +260,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="index">index</a>
                                         <code>- Number</code>
                                     </h4>
@@ -247,6 +275,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Locale">Locale</a>
                                         <code>- Object</code>
                                     </h4>
@@ -260,6 +290,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="oDomContainer">oDomContainer</a>
                                         <code>- HTMLElement</code>
                                     </h4>
@@ -273,6 +305,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Options">Options</a>
                                         <code>- Object</code>
                                     </h4>
@@ -286,6 +320,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="parent">parent</a>
                                         <code>- CalendarGroup</code>
                                     </h4>
@@ -299,6 +335,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="renderStack">renderStack</a>
                                         <code>- Array[]</code>
                                     </h4>
@@ -312,6 +350,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_BODY">Style.CSS_BODY</a>
                                         <code>- object</code>
                                     </h4>
@@ -325,6 +365,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_CALENDAR">Style.CSS_CALENDAR</a>
                                         <code>- object</code>
                                     </h4>
@@ -338,6 +380,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_CELL">Style.CSS_CELL</a>
                                         <code>- object</code>
                                     </h4>
@@ -351,6 +395,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_CELL_BOTTOM">Style.CSS_CELL_BOTTOM</a>
                                         <code>- object</code>
                                     </h4>
@@ -364,6 +410,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_CELL_HIGHLIGHT1">Style.CSS_CELL_HIGHLIGHT1</a>
                                         <code>- object</code>
                                     </h4>
@@ -377,6 +425,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_CELL_HIGHLIGHT2">Style.CSS_CELL_HIGHLIGHT2</a>
                                         <code>- object</code>
                                     </h4>
@@ -390,6 +440,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_CELL_HIGHLIGHT3">Style.CSS_CELL_HIGHLIGHT3</a>
                                         <code>- object</code>
                                     </h4>
@@ -403,6 +455,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_CELL_HIGHLIGHT4">Style.CSS_CELL_HIGHLIGHT4</a>
                                         <code>- object</code>
                                     </h4>
@@ -416,6 +470,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_CELL_HOVER">Style.CSS_CELL_HOVER</a>
                                         <code>- object</code>
                                     </h4>
@@ -429,6 +485,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_CELL_LEFT">Style.CSS_CELL_LEFT</a>
                                         <code>- object</code>
                                     </h4>
@@ -442,6 +500,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_CELL_OOB">Style.CSS_CELL_OOB</a>
                                         <code>- object</code>
                                     </h4>
@@ -455,6 +515,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_CELL_OOM">Style.CSS_CELL_OOM</a>
                                         <code>- object</code>
                                     </h4>
@@ -468,6 +530,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_CELL_RESTRICTED">Style.CSS_CELL_RESTRICTED</a>
                                         <code>- object</code>
                                     </h4>
@@ -481,6 +545,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_CELL_RIGHT">Style.CSS_CELL_RIGHT</a>
                                         <code>- object</code>
                                     </h4>
@@ -494,6 +560,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_CELL_SELECTABLE">Style.CSS_CELL_SELECTABLE</a>
                                         <code>- object</code>
                                     </h4>
@@ -507,6 +575,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_CELL_SELECTED">Style.CSS_CELL_SELECTED</a>
                                         <code>- object</code>
                                     </h4>
@@ -520,6 +590,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_CELL_SELECTOR">Style.CSS_CELL_SELECTOR</a>
                                         <code>- object</code>
                                     </h4>
@@ -533,6 +605,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_CELL_TODAY">Style.CSS_CELL_TODAY</a>
                                         <code>- object</code>
                                     </h4>
@@ -546,6 +620,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_CELL_TOP">Style.CSS_CELL_TOP</a>
                                         <code>- object</code>
                                     </h4>
@@ -559,6 +635,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_CLOSE">Style.CSS_CLOSE</a>
                                         <code>- object</code>
                                     </h4>
@@ -572,6 +650,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_CONTAINER">Style.CSS_CONTAINER</a>
                                         <code>- object</code>
                                     </h4>
@@ -585,6 +665,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_FOOTER">Style.CSS_FOOTER</a>
                                         <code>- object</code>
                                     </h4>
@@ -598,6 +680,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_HEADER">Style.CSS_HEADER</a>
                                         <code>- object</code>
                                     </h4>
@@ -611,6 +695,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_HEADER_TEXT">Style.CSS_HEADER_TEXT</a>
                                         <code>- object</code>
                                     </h4>
@@ -624,6 +710,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_NAV_LEFT">Style.CSS_NAV_LEFT</a>
                                         <code>- object</code>
                                     </h4>
@@ -637,6 +725,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_NAV_RIGHT">Style.CSS_NAV_RIGHT</a>
                                         <code>- object</code>
                                     </h4>
@@ -650,6 +740,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_ROW_FOOTER">Style.CSS_ROW_FOOTER</a>
                                         <code>- object</code>
                                     </h4>
@@ -663,6 +755,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_ROW_HEADER">Style.CSS_ROW_HEADER</a>
                                         <code>- object</code>
                                     </h4>
@@ -676,6 +770,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_SINGLE">Style.CSS_SINGLE</a>
                                         <code>- object</code>
                                     </h4>
@@ -689,6 +785,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_WEEKDAY_CELL">Style.CSS_WEEKDAY_CELL</a>
                                         <code>- object</code>
                                     </h4>
@@ -702,6 +800,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="Style.CSS_WEEKDAY_ROW">Style.CSS_WEEKDAY_ROW</a>
                                         <code>- object</code>
                                     </h4>
@@ -715,6 +815,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="today">today</a>
                                         <code>- Date</code>
                                     </h4>
@@ -728,6 +830,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="YAHOO.widget.Calendar._DEFAULT_CONFIG">YAHOO.widget.Calendar._DEFAULT_CONFIG</a>
                                         <code>- private static final Object</code>
                                     </h4>
@@ -741,6 +845,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="YAHOO.widget.Calendar._EVENT_TYPES">YAHOO.widget.Calendar._EVENT_TYPES</a>
                                         <code>- private static final Object</code>
                                     </h4>
@@ -754,6 +860,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="YAHOO.widget.Calendar._STYLES">YAHOO.widget.Calendar._STYLES</a>
                                         <code>- private static final Object</code>
                                     </h4>
@@ -767,6 +875,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Calendar.DATE">YAHOO.widget.Calendar.DATE</a>
                                         <code>- static final String</code>
                                     </h4>
@@ -780,6 +890,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Calendar.DISPLAY_DAYS">YAHOO.widget.Calendar.DISPLAY_DAYS</a>
                                         <code>- static final Number</code>
                                     </h4>
@@ -793,6 +905,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Calendar.IMG_ROOT">YAHOO.widget.Calendar.IMG_ROOT</a>
                                         <code>- static String</code>
                                     </h4>
@@ -809,6 +923,8 @@ Note that the table can be replaced with any kind of element.
                                     </div>        
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Calendar.LONG">YAHOO.widget.Calendar.LONG</a>
                                         <code>- static final String</code>
                                     </h4>
@@ -822,6 +938,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Calendar.MEDIUM">YAHOO.widget.Calendar.MEDIUM</a>
                                         <code>- static final String</code>
                                     </h4>
@@ -835,6 +953,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Calendar.MONTH">YAHOO.widget.Calendar.MONTH</a>
                                         <code>- static final String</code>
                                     </h4>
@@ -848,6 +968,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Calendar.MONTH_DAY">YAHOO.widget.Calendar.MONTH_DAY</a>
                                         <code>- static final String</code>
                                     </h4>
@@ -861,6 +983,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Calendar.ONE_CHAR">YAHOO.widget.Calendar.ONE_CHAR</a>
                                         <code>- static final String</code>
                                     </h4>
@@ -874,6 +998,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Calendar.RANGE">YAHOO.widget.Calendar.RANGE</a>
                                         <code>- static final String</code>
                                     </h4>
@@ -887,6 +1013,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Calendar.SHORT">YAHOO.widget.Calendar.SHORT</a>
                                         <code>- static final String</code>
                                     </h4>
@@ -900,6 +1028,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Calendar.STOP_RENDER">YAHOO.widget.Calendar.STOP_RENDER</a>
                                         <code>- static final String</code>
                                     </h4>
@@ -913,6 +1043,8 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Calendar.WEEKDAY">YAHOO.widget.Calendar.WEEKDAY</a>
                                         <code>- static final String</code>
                                     </h4>
@@ -926,6 +1058,7 @@ Note that the table can be replaced with any kind of element.
 
 
                                     <hr />
+                                    </div>
 
 
                             </div>
@@ -935,6 +1068,7 @@ Note that the table can be replaced with any kind of element.
                         <div class="section method details">
                             <h3><a name="methodDetails">Methods</a></h3>
                             <div class="content">
+                                    <div class="private">
                                     <h4>
                                         <a name="_addRenderer">_addRenderer</a></h4>
                                     <div class="detail">
@@ -999,6 +1133,8 @@ on the renderer type
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_fieldArraysAreEqual">_fieldArraysAreEqual</a></h4>
                                     <div class="detail">
@@ -1051,6 +1187,8 @@ on the renderer type
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_indexOfSelectedFieldArray">_indexOfSelectedFieldArray</a></h4>
                                     <div class="detail">
@@ -1096,6 +1234,8 @@ on the renderer type
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_parseDate">_parseDate</a></h4>
                                     <div class="detail">
@@ -1140,6 +1280,8 @@ on the renderer type
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_parseDates">_parseDates</a></h4>
                                     <div class="detail">
@@ -1184,6 +1326,8 @@ on the renderer type
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_parsePageDate">_parsePageDate</a></h4>
                                     <div class="detail">
@@ -1229,6 +1373,8 @@ and is parsed into a Date object normalized to the first day of the month. If no
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_parseRange">_parseRange</a></h4>
                                     <div class="detail">
@@ -1281,6 +1427,8 @@ and is parsed into a Date object normalized to the first day of the month. If no
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_toDate">_toDate</a></h4>
                                     <div class="detail">
@@ -1325,6 +1473,8 @@ and is parsed into a Date object normalized to the first day of the month. If no
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_toFieldArray">_toFieldArray</a></h4>
                                     <div class="detail">
@@ -1373,6 +1523,8 @@ This method can also take a JavaScript Date object or an array of Date objects.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="addMonthRenderer">addMonthRenderer</a></h4>
                                     <div class="detail">
@@ -1426,6 +1578,8 @@ when a date cell matches the month passed to this method.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="addMonths">addMonths</a></h4>
                                     <div class="detail">
@@ -1471,6 +1625,8 @@ calendar page date to the new month.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="addRenderer">addRenderer</a></h4>
                                     <div class="detail">
@@ -1525,6 +1681,8 @@ include date (12/24/2005), month/day (12/24), and range (12/1/2004-1/1/2005)
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="addWeekdayRenderer">addWeekdayRenderer</a></h4>
                                     <div class="detail">
@@ -1578,6 +1736,8 @@ when a date cell matches the weekday passed to this method.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="addYears">addYears</a></h4>
                                     <div class="detail">
@@ -1623,6 +1783,8 @@ calendar page date to the new month.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="applyListeners">applyListeners</a></h4>
                                     <div class="detail">
@@ -1655,6 +1817,8 @@ calendar page date to the new month.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="buildDayLabel">buildDayLabel</a></h4>
                                     <div class="detail">
@@ -1699,6 +1863,8 @@ calendar page date to the new month.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="buildMonthLabel">buildMonthLabel</a></h4>
                                     <div class="detail">
@@ -1732,6 +1898,8 @@ footer, depending on configuration.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="buildWeekdays">buildWeekdays</a></h4>
                                     <div class="detail">
@@ -1776,6 +1944,8 @@ footer, depending on configuration.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="clear">clear</a></h4>
                                     <div class="detail">
@@ -1809,6 +1979,8 @@ to the current month and year.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="clearAllBodyCellStyles">clearAllBodyCellStyles</a></h4>
                                     <div class="detail">
@@ -1853,6 +2025,8 @@ to the current month and year.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="clearElement">clearElement</a></h4>
                                     <div class="detail">
@@ -1897,6 +2071,8 @@ to the current month and year.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configClose">configClose</a></h4>
                                     <div class="detail">
@@ -1929,6 +2105,8 @@ to the current month and year.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configIframe">configIframe</a></h4>
                                     <div class="detail">
@@ -1943,7 +2121,8 @@ to the current month and year.
                                         </code>
                                         
                                         <div class="description">
-                                            Renders the built-in IFRAME shim for the IE6 and below
+                                            Default Config listener for the iframe property. If the iframe config property is set to true, 
+renders the built-in IFRAME shim if the container is relatively or absolutely positioned.
                                         </div>
 
                                         <div class="description">
@@ -1961,6 +2140,8 @@ to the current month and year.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configLocale">configLocale</a></h4>
                                     <div class="detail">
@@ -1993,6 +2174,8 @@ to the current month and year.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configLocaleValues">configLocaleValues</a></h4>
                                     <div class="detail">
@@ -2025,6 +2208,8 @@ to the current month and year.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configMaxDate">configMaxDate</a></h4>
                                     <div class="detail">
@@ -2057,6 +2242,8 @@ to the current month and year.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configMinDate">configMinDate</a></h4>
                                     <div class="detail">
@@ -2089,6 +2276,8 @@ to the current month and year.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configOptions">configOptions</a></h4>
                                     <div class="detail">
@@ -2121,6 +2310,8 @@ to the current month and year.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configPageDate">configPageDate</a></h4>
                                     <div class="detail">
@@ -2153,6 +2344,8 @@ to the current month and year.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configSelected">configSelected</a></h4>
                                     <div class="detail">
@@ -2185,6 +2378,8 @@ to the current month and year.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configTitle">configTitle</a></h4>
                                     <div class="detail">
@@ -2217,6 +2412,8 @@ to the current month and year.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="deselect">deselect</a></h4>
                                     <div class="detail">
@@ -2239,6 +2436,9 @@ to the current month and year.
                                             Deselects a date or a collection of dates on the current calendar. This method, by default,
 does not call the render method explicitly. Once deselection has completed, render must be 
 called for the changes to be reflected visually.
+The method will not attempt to deselect any dates which are OOB (out of bounds, and hence not selectable) 
+and the array of deselected dates passed to the deselectEvent will not contain any OOB dates.
+If all dates are OOB, beforeDeselect and deselect events will not be fired.
                                         </div>
 
                                         <div class="description">
@@ -2266,6 +2466,8 @@ This method can also take a JavaScript Date object or an array of Date objects.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="deselectAll">deselectAll</a></h4>
                                     <div class="detail">
@@ -2301,6 +2503,8 @@ of the calendar.</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="deselectCell">deselectCell</a></h4>
                                     <div class="detail">
@@ -2323,6 +2527,9 @@ of the calendar.</dd>
                                             Deselects a date on the current calendar by referencing the index of the cell that should be deselected.
 This method is used to easily deselect a single cell (usually with a mouse click) without having to do
 a full render. The selected style is removed from the cell directly.
+If the cell is not marked with the CSS_CELL_SELECTABLE class (as is the case by default for out of month 
+or out of bounds cells), the method will not attempt to deselect it and in such a case, beforeDeselect and 
+deselect events will not be fired.
                                         </div>
 
                                         <div class="description">
@@ -2347,6 +2554,8 @@ a full render. The selected style is removed from the cell directly.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="doCellMouseOut">doCellMouseOut</a></h4>
                                     <div class="detail">
@@ -2399,6 +2608,8 @@ a full render. The selected style is removed from the cell directly.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="doCellMouseOver">doCellMouseOver</a></h4>
                                     <div class="detail">
@@ -2451,6 +2662,8 @@ a full render. The selected style is removed from the cell directly.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="doSelectCell">doSelectCell</a></h4>
                                     <div class="detail">
@@ -2504,6 +2717,8 @@ when the calendar is rendered.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getDateByCellId">getDateByCellId</a></h4>
                                     <div class="detail">
@@ -2548,6 +2763,8 @@ when the calendar is rendered.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getDateFieldsByCellId">getDateFieldsByCellId</a></h4>
                                     <div class="detail">
@@ -2592,6 +2809,8 @@ when the calendar is rendered.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getSelectedDates">getSelectedDates</a></h4>
                                     <div class="detail">
@@ -2624,6 +2843,8 @@ when the calendar is rendered.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="hide">hide</a></h4>
                                     <div class="detail">
@@ -2656,6 +2877,8 @@ when the calendar is rendered.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="init">init</a></h4>
                                     <div class="detail">
@@ -2716,6 +2939,8 @@ when the calendar is rendered.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="initEvents">initEvents</a></h4>
                                     <div class="detail">
@@ -2748,6 +2973,8 @@ when the calendar is rendered.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="initStyles">initStyles</a></h4>
                                     <div class="detail">
@@ -2780,6 +3007,54 @@ when the calendar is rendered.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="isDateOOB">isDateOOB</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Boolean
+                                            <strong>isDateOOB</strong>
+                                           (
+                                                
+                                                        
+                                                         date
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Determines whether a given date is OOB (out of bounds - less than the mindate or more than the maxdate).
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>date &lt;Date&gt;</code>
+                                                            	The JavaScript Date object for which to check the OOB status
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Boolean
+                                                    </code></dt>
+                                                    <dd>true if the date is OOB</dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="isDateOOM">isDateOOM</a></h4>
                                     <div class="detail">
@@ -2824,6 +3099,8 @@ when the calendar is rendered.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="nextMonth">nextMonth</a></h4>
                                     <div class="detail">
@@ -2856,6 +3133,8 @@ when the calendar is rendered.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="nextYear">nextYear</a></h4>
                                     <div class="detail">
@@ -2888,6 +3167,8 @@ when the calendar is rendered.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="onBeforeDeselect">onBeforeDeselect</a></h4>
                                     <div class="detail">
@@ -2923,6 +3204,8 @@ when the calendar is rendered.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="onBeforeSelect">onBeforeSelect</a></h4>
                                     <div class="detail">
@@ -2958,6 +3241,8 @@ when the calendar is rendered.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="onChangePage">onChangePage</a></h4>
                                     <div class="detail">
@@ -2993,6 +3278,8 @@ when the calendar is rendered.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="onClear">onClear</a></h4>
                                     <div class="detail">
@@ -3028,6 +3315,8 @@ when the calendar is rendered.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="onDeselect">onDeselect</a></h4>
                                     <div class="detail">
@@ -3075,6 +3364,8 @@ when the calendar is rendered.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="onRender">onRender</a></h4>
                                     <div class="detail">
@@ -3110,6 +3401,8 @@ when the calendar is rendered.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="onReset">onReset</a></h4>
                                     <div class="detail">
@@ -3145,6 +3438,8 @@ when the calendar is rendered.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="onSelect">onSelect</a></h4>
                                     <div class="detail">
@@ -3192,6 +3487,8 @@ when the calendar is rendered.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="previousMonth">previousMonth</a></h4>
                                     <div class="detail">
@@ -3224,6 +3521,8 @@ when the calendar is rendered.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="previousYear">previousYear</a></h4>
                                     <div class="detail">
@@ -3256,6 +3555,8 @@ when the calendar is rendered.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="refreshLocale">refreshLocale</a></h4>
                                     <div class="detail">
@@ -3288,6 +3589,8 @@ when the calendar is rendered.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="render">render</a></h4>
                                     <div class="detail">
@@ -3323,6 +3626,8 @@ individual render tasks.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="renderBody">renderBody</a></h4>
                                     <div class="detail">
@@ -3375,6 +3680,8 @@ individual render tasks.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="renderBodyCellRestricted">renderBodyCellRestricted</a></h4>
                                     <div class="detail">
@@ -3429,6 +3736,8 @@ should not be terminated</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="renderCellDefault">renderCellDefault</a></h4>
                                     <div class="detail">
@@ -3484,6 +3793,8 @@ widget class.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="renderCellNotThisMonth">renderCellNotThisMonth</a></h4>
                                     <div class="detail">
@@ -3538,6 +3849,8 @@ should not be terminated</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="renderCellStyleHighlight1">renderCellStyleHighlight1</a></h4>
                                     <div class="detail">
@@ -3590,6 +3903,8 @@ should not be terminated</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="renderCellStyleHighlight2">renderCellStyleHighlight2</a></h4>
                                     <div class="detail">
@@ -3642,6 +3957,8 @@ should not be terminated</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="renderCellStyleHighlight3">renderCellStyleHighlight3</a></h4>
                                     <div class="detail">
@@ -3694,6 +4011,8 @@ should not be terminated</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="renderCellStyleHighlight4">renderCellStyleHighlight4</a></h4>
                                     <div class="detail">
@@ -3746,6 +4065,8 @@ should not be terminated</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="renderCellStyleSelected">renderCellStyleSelected</a></h4>
                                     <div class="detail">
@@ -3799,6 +4120,8 @@ should not be terminated</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="renderCellStyleToday">renderCellStyleToday</a></h4>
                                     <div class="detail">
@@ -3851,6 +4174,8 @@ should not be terminated</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="renderFooter">renderFooter</a></h4>
                                     <div class="detail">
@@ -3896,6 +4221,8 @@ no footer.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="renderHeader">renderHeader</a></h4>
                                     <div class="detail">
@@ -3940,6 +4267,8 @@ no footer.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="renderOutOfBoundsDate">renderOutOfBoundsDate</a></h4>
                                     <div class="detail">
@@ -3994,6 +4323,8 @@ should not be terminated</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="renderRowFooter">renderRowFooter</a></h4>
                                     <div class="detail">
@@ -4046,6 +4377,8 @@ should not be terminated</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="renderRowHeader">renderRowHeader</a></h4>
                                     <div class="detail">
@@ -4098,6 +4431,8 @@ should not be terminated</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="reset">reset</a></h4>
                                     <div class="detail">
@@ -4131,6 +4466,8 @@ sets the calendar to the initial selection(s).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="resetRenderers">resetRenderers</a></h4>
                                     <div class="detail">
@@ -4163,6 +4500,8 @@ sets the calendar to the initial selection(s).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="select">select</a></h4>
                                     <div class="detail">
@@ -4185,6 +4524,9 @@ sets the calendar to the initial selection(s).
                                             Selects a date or a collection of dates on the current calendar. This method, by default,
 does not call the render method explicitly. Once selection has completed, render must be 
 called for the changes to be reflected visually.
+Any dates which are OOB (out of bounds, not selectable) will not be selected and the array of 
+selected dates passed to the selectEvent will not contain OOB dates.
+If all dates are OOB, the no state change will occur; beforeSelect and select events will not be fired.
                                         </div>
 
                                         <div class="description">
@@ -4212,6 +4554,8 @@ This method can also take a JavaScript Date object or an array of Date objects.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="selectCell">selectCell</a></h4>
                                     <div class="detail">
@@ -4234,6 +4578,8 @@ This method can also take a JavaScript Date object or an array of Date objects.
                                             Selects a date on the current calendar by referencing the index of the cell that should be selected.
 This method is used to easily select a single cell (usually with a mouse click) without having to do
 a full render. The selected style is applied to the cell directly.
+If the cell is not marked with the CSS_CELL_SELECTABLE class (as is the case by default for out of month 
+or out of bounds cells), it will not be selected and in such a case beforeSelect and select events will not be fired.
                                         </div>
 
                                         <div class="description">
@@ -4258,6 +4604,8 @@ a full render. The selected style is applied to the cell directly.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="setMonth">setMonth</a></h4>
                                     <div class="detail">
@@ -4302,6 +4650,8 @@ a full render. The selected style is applied to the cell directly.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="setYear">setYear</a></h4>
                                     <div class="detail">
@@ -4346,6 +4696,8 @@ a full render. The selected style is applied to the cell directly.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="show">show</a></h4>
                                     <div class="detail">
@@ -4378,6 +4730,8 @@ a full render. The selected style is applied to the cell directly.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="styleCellDefault">styleCellDefault</a></h4>
                                     <div class="detail">
@@ -4430,6 +4784,8 @@ a full render. The selected style is applied to the cell directly.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="subtractMonths">subtractMonths</a></h4>
                                     <div class="detail">
@@ -4475,6 +4831,8 @@ calendar page date to the new month.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="subtractYears">subtractYears</a></h4>
                                     <div class="detail">
@@ -4520,6 +4878,8 @@ calendar page date to the new month.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="toString">toString</a></h4>
                                     <div class="detail">
@@ -4552,6 +4912,8 @@ calendar page date to the new month.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="validate">validate</a></h4>
                                     <div class="detail">
@@ -4586,13 +4948,15 @@ it doesn't.</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
                             </div>
                         </div>
 
 
                         <div class="section method details">
-                            <h3><a name="methodDetails">Events</a></h3>
+                            <h3><a name="eventDetails">Events</a></h3>
                             <div class="content">
+                                    <div class="">
                                     <h4>
                                         <a name="beforeDeselectEvent">beforeDeselectEvent</a></h4>
                                     <div class="detail">
@@ -4620,6 +4984,8 @@ it doesn't.</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="beforeRenderEvent">beforeRenderEvent</a></h4>
                                     <div class="detail">
@@ -4647,6 +5013,8 @@ it doesn't.</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="beforeSelectEvent">beforeSelectEvent</a></h4>
                                     <div class="detail">
@@ -4674,6 +5042,8 @@ it doesn't.</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="changePageEvent">changePageEvent</a></h4>
                                     <div class="detail">
@@ -4701,6 +5071,8 @@ it doesn't.</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="clearEvent">clearEvent</a></h4>
                                     <div class="detail">
@@ -4728,6 +5100,8 @@ it doesn't.</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="deselectEvent">deselectEvent</a></h4>
                                     <div class="detail">
@@ -4767,6 +5141,8 @@ it doesn't.</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="renderEvent">renderEvent</a></h4>
                                     <div class="detail">
@@ -4794,6 +5170,8 @@ it doesn't.</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="resetEvent">resetEvent</a></h4>
                                     <div class="detail">
@@ -4821,6 +5199,8 @@ it doesn't.</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="selectEvent">selectEvent</a></h4>
                                     <div class="detail">
@@ -4860,6 +5240,7 @@ it doesn't.</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
                             </div>
                         </div>
 
@@ -4868,6 +5249,7 @@ it doesn't.</dd>
                         <div class="section field details">
                             <h3><a name="field_detail">Configuration Attributes</a></h3>
                             <div class="content">
+                                    <div class="">
                                     <h4><a name="close">close</a>
                                         <code>- Boolean</code>
                                     </h4>
@@ -4883,6 +5265,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="DATE_DELIMITER">DATE_DELIMITER</a>
                                         <code>- String</code>
                                     </h4>
@@ -4898,6 +5282,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="DATE_FIELD_DELIMITER">DATE_FIELD_DELIMITER</a>
                                         <code>- String</code>
                                     </h4>
@@ -4913,6 +5299,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="DATE_RANGE_DELIMITER">DATE_RANGE_DELIMITER</a>
                                         <code>- String</code>
                                     </h4>
@@ -4928,6 +5316,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="HIDE_BLANK_WEEKS">HIDE_BLANK_WEEKS</a>
                                         <code>- Boolean</code>
                                     </h4>
@@ -4943,21 +5333,27 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="iframe">iframe</a>
                                         <code>- Boolean</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
                                             Whether or not an iframe shim should be placed under the Calendar to prevent select boxes from bleeding through in Internet Explorer 6 and below.
+This property is enabled by default for IE6 and below. It is disabled by default for other browsers for performance reasons, but can be 
+enabled if required.
                                         </div>
                                     </div>
  
      
                                     <div class="default">
-                                        Default Value: true
+                                        Default Value: true for IE6 and below, false for all other browsers
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="LOCALE_MONTHS">LOCALE_MONTHS</a>
                                         <code>- String</code>
                                     </h4>
@@ -4973,6 +5369,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="LOCALE_WEEKDAYS">LOCALE_WEEKDAYS</a>
                                         <code>- String</code>
                                     </h4>
@@ -4988,6 +5386,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="maxdate">maxdate</a>
                                         <code>- String</code>
                                     </h4>
@@ -5003,6 +5403,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="MD_DAY_POSITION">MD_DAY_POSITION</a>
                                         <code>- Number</code>
                                     </h4>
@@ -5018,6 +5420,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="MD_MONTH_POSITION">MD_MONTH_POSITION</a>
                                         <code>- Number</code>
                                     </h4>
@@ -5033,6 +5437,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="MDY_DAY_POSITION">MDY_DAY_POSITION</a>
                                         <code>- Number</code>
                                     </h4>
@@ -5048,6 +5454,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="MDY_MONTH_POSITION">MDY_MONTH_POSITION</a>
                                         <code>- Number</code>
                                     </h4>
@@ -5063,6 +5471,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="MDY_YEAR_POSITION">MDY_YEAR_POSITION</a>
                                         <code>- Number</code>
                                     </h4>
@@ -5078,6 +5488,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="mindate">mindate</a>
                                         <code>- String</code>
                                     </h4>
@@ -5093,6 +5505,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="MONTHS_LONG">MONTHS_LONG</a>
                                         <code>- String[]</code>
                                     </h4>
@@ -5108,6 +5522,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="MONTHS_SHORT">MONTHS_SHORT</a>
                                         <code>- String[]</code>
                                     </h4>
@@ -5123,6 +5539,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="MULTI_SELECT">MULTI_SELECT</a>
                                         <code>- Boolean</code>
                                     </h4>
@@ -5138,6 +5556,76 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
+                                    <h4><a name="MY_LABEL_MONTH_POSITION">MY_LABEL_MONTH_POSITION</a>
+                                        <code>- Number</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            The position of the month in the month year label string used as the Calendar header
+                                        </div>
+                                    </div>
+ 
+     
+                                    <div class="default">
+                                        Default Value: 1
+                                    </div>        
+
+                                    <hr />
+                                    </div>        
+                                    <div class="">
+                                    <h4><a name="MY_LABEL_MONTH_SUFFIX">MY_LABEL_MONTH_SUFFIX</a>
+                                        <code>- String</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            The suffix used after the month when rendering the Calendar header
+                                        </div>
+                                    </div>
+ 
+     
+                                    <div class="default">
+                                        Default Value: " "
+                                    </div>        
+
+                                    <hr />
+                                    </div>        
+                                    <div class="">
+                                    <h4><a name="MY_LABEL_YEAR_POSITION">MY_LABEL_YEAR_POSITION</a>
+                                        <code>- Number</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            The position of the year in the month year label string used as the Calendar header
+                                        </div>
+                                    </div>
+ 
+     
+                                    <div class="default">
+                                        Default Value: 2
+                                    </div>        
+
+                                    <hr />
+                                    </div>        
+                                    <div class="">
+                                    <h4><a name="MY_LABEL_YEAR_SUFFIX">MY_LABEL_YEAR_SUFFIX</a>
+                                        <code>- String</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            The suffix used after the year when rendering the Calendar header
+                                        </div>
+                                    </div>
+ 
+     
+                                    <div class="default">
+                                        Default Value: ""
+                                    </div>        
+
+                                    <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="MY_MONTH_POSITION">MY_MONTH_POSITION</a>
                                         <code>- Number</code>
                                     </h4>
@@ -5153,6 +5641,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="MY_YEAR_POSITION">MY_YEAR_POSITION</a>
                                         <code>- Number</code>
                                     </h4>
@@ -5168,6 +5658,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="NAV_ARROW_LEFT">NAV_ARROW_LEFT</a>
                                         <code>- String</code>
                                     </h4>
@@ -5186,6 +5678,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="NAV_ARROW_RIGHT">NAV_ARROW_RIGHT</a>
                                         <code>- String</code>
                                     </h4>
@@ -5204,6 +5698,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="pagedate">pagedate</a>
                                         <code>- String</code>
                                     </h4>
@@ -5219,6 +5715,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="selected">selected</a>
                                         <code>- String</code>
                                     </h4>
@@ -5234,6 +5732,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="SHOW_WEEK_FOOTER">SHOW_WEEK_FOOTER</a>
                                         <code>- Boolean</code>
                                     </h4>
@@ -5249,6 +5749,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="SHOW_WEEK_HEADER">SHOW_WEEK_HEADER</a>
                                         <code>- Boolean</code>
                                     </h4>
@@ -5264,6 +5766,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="SHOW_WEEKDAYS">SHOW_WEEKDAYS</a>
                                         <code>- Boolean</code>
                                     </h4>
@@ -5279,6 +5783,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="START_WEEKDAY">START_WEEKDAY</a>
                                         <code>- number</code>
                                     </h4>
@@ -5294,6 +5800,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="title">title</a>
                                         <code>- String</code>
                                     </h4>
@@ -5309,6 +5817,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="WEEKDAYS_1CHAR">WEEKDAYS_1CHAR</a>
                                         <code>- String[]</code>
                                     </h4>
@@ -5324,6 +5834,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="WEEKDAYS_LONG">WEEKDAYS_LONG</a>
                                         <code>- String[]</code>
                                     </h4>
@@ -5339,6 +5851,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="WEEKDAYS_MEDIUM">WEEKDAYS_MEDIUM</a>
                                         <code>- String[]</code>
                                     </h4>
@@ -5354,6 +5868,8 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="WEEKDAYS_SHORT">WEEKDAYS_SHORT</a>
                                         <code>- String[]</code>
                                     </h4>
@@ -5369,6 +5885,7 @@ it doesn't.</dd>
                                     </div>        
 
                                     <hr />
+                                    </div>        
 
                             </div>
                         </div>
@@ -5391,6 +5908,8 @@ it doesn't.</dd>
 
                                 <li class="selected"><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
+
                                 <li class=""><a href="module_connection.html">connection</a></li>
 
                                 <li class=""><a href="module_container.html">container</a></li>
@@ -5403,11 +5922,15 @@ it doesn't.</dd>
 
                                 <li class=""><a href="module_dragdrop.html">dragdrop</a></li>
 
+                                <li class=""><a href="module_editor.html">editor</a></li>
+
                                 <li class=""><a href="module_element.html">element</a></li>
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
                                 <li class=""><a href="module_history.html">history</a></li>
+
+                                <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
@@ -5420,6 +5943,10 @@ it doesn't.</dd>
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
+
+                                <li class=""><a href="module_yuiloader.html">yuiloader</a></li>
+
+                                <li class=""><a href="module_yuitest.html">yuitest</a></li>
                         </ul>
                     </div>
 
@@ -5446,190 +5973,190 @@ it doesn't.</dd>
                     <div class="module">
                         <h4>Properties</h4>
                         <ul class="content">        
-                                <li><a href="#_renderStack">_renderStack</a>
+                                <li class="private"><a href="#_renderStack">_renderStack</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#_selectedDates">_selectedDates</a>
+                                <li class="private"><a href="#_selectedDates">_selectedDates</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#browser">browser</a>
+                                <li class=""><a href="#browser">browser</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#cellDates">cellDates</a>
+                                <li class=""><a href="#cellDates">cellDates</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#cells">cells</a>
+                                <li class=""><a href="#cells">cells</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#cfg">cfg</a>
+                                <li class=""><a href="#cfg">cfg</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Config">Config</a>
+                                <li class="private"><a href="#Config">Config</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#domEventMap">domEventMap</a>
+                                <li class=""><a href="#domEventMap">domEventMap</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#id">id</a>
+                                <li class=""><a href="#id">id</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#index">index</a>
+                                <li class=""><a href="#index">index</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Locale">Locale</a>
+                                <li class=""><a href="#Locale">Locale</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#oDomContainer">oDomContainer</a>
+                                <li class=""><a href="#oDomContainer">oDomContainer</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Options">Options</a>
+                                <li class=""><a href="#Options">Options</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#parent">parent</a>
+                                <li class=""><a href="#parent">parent</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#renderStack">renderStack</a>
+                                <li class=""><a href="#renderStack">renderStack</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_BODY">Style.CSS_BODY</a>
+                                <li class=""><a href="#Style.CSS_BODY">Style.CSS_BODY</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_CALENDAR">Style.CSS_CALENDAR</a>
+                                <li class=""><a href="#Style.CSS_CALENDAR">Style.CSS_CALENDAR</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_CELL">Style.CSS_CELL</a>
+                                <li class=""><a href="#Style.CSS_CELL">Style.CSS_CELL</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_CELL_BOTTOM">Style.CSS_CELL_BOTTOM</a>
+                                <li class=""><a href="#Style.CSS_CELL_BOTTOM">Style.CSS_CELL_BOTTOM</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_CELL_HIGHLIGHT1">Style.CSS_CELL_HIGHLIGHT1</a>
+                                <li class=""><a href="#Style.CSS_CELL_HIGHLIGHT1">Style.CSS_CELL_HIGHLIGHT1</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_CELL_HIGHLIGHT2">Style.CSS_CELL_HIGHLIGHT2</a>
+                                <li class=""><a href="#Style.CSS_CELL_HIGHLIGHT2">Style.CSS_CELL_HIGHLIGHT2</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_CELL_HIGHLIGHT3">Style.CSS_CELL_HIGHLIGHT3</a>
+                                <li class=""><a href="#Style.CSS_CELL_HIGHLIGHT3">Style.CSS_CELL_HIGHLIGHT3</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_CELL_HIGHLIGHT4">Style.CSS_CELL_HIGHLIGHT4</a>
+                                <li class=""><a href="#Style.CSS_CELL_HIGHLIGHT4">Style.CSS_CELL_HIGHLIGHT4</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_CELL_HOVER">Style.CSS_CELL_HOVER</a>
+                                <li class=""><a href="#Style.CSS_CELL_HOVER">Style.CSS_CELL_HOVER</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_CELL_LEFT">Style.CSS_CELL_LEFT</a>
+                                <li class=""><a href="#Style.CSS_CELL_LEFT">Style.CSS_CELL_LEFT</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_CELL_OOB">Style.CSS_CELL_OOB</a>
+                                <li class=""><a href="#Style.CSS_CELL_OOB">Style.CSS_CELL_OOB</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_CELL_OOM">Style.CSS_CELL_OOM</a>
+                                <li class=""><a href="#Style.CSS_CELL_OOM">Style.CSS_CELL_OOM</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_CELL_RESTRICTED">Style.CSS_CELL_RESTRICTED</a>
+                                <li class=""><a href="#Style.CSS_CELL_RESTRICTED">Style.CSS_CELL_RESTRICTED</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_CELL_RIGHT">Style.CSS_CELL_RIGHT</a>
+                                <li class=""><a href="#Style.CSS_CELL_RIGHT">Style.CSS_CELL_RIGHT</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_CELL_SELECTABLE">Style.CSS_CELL_SELECTABLE</a>
+                                <li class=""><a href="#Style.CSS_CELL_SELECTABLE">Style.CSS_CELL_SELECTABLE</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_CELL_SELECTED">Style.CSS_CELL_SELECTED</a>
+                                <li class=""><a href="#Style.CSS_CELL_SELECTED">Style.CSS_CELL_SELECTED</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_CELL_SELECTOR">Style.CSS_CELL_SELECTOR</a>
+                                <li class=""><a href="#Style.CSS_CELL_SELECTOR">Style.CSS_CELL_SELECTOR</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_CELL_TODAY">Style.CSS_CELL_TODAY</a>
+                                <li class=""><a href="#Style.CSS_CELL_TODAY">Style.CSS_CELL_TODAY</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_CELL_TOP">Style.CSS_CELL_TOP</a>
+                                <li class=""><a href="#Style.CSS_CELL_TOP">Style.CSS_CELL_TOP</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_CLOSE">Style.CSS_CLOSE</a>
+                                <li class=""><a href="#Style.CSS_CLOSE">Style.CSS_CLOSE</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_CONTAINER">Style.CSS_CONTAINER</a>
+                                <li class=""><a href="#Style.CSS_CONTAINER">Style.CSS_CONTAINER</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_FOOTER">Style.CSS_FOOTER</a>
+                                <li class=""><a href="#Style.CSS_FOOTER">Style.CSS_FOOTER</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_HEADER">Style.CSS_HEADER</a>
+                                <li class=""><a href="#Style.CSS_HEADER">Style.CSS_HEADER</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_HEADER_TEXT">Style.CSS_HEADER_TEXT</a>
+                                <li class=""><a href="#Style.CSS_HEADER_TEXT">Style.CSS_HEADER_TEXT</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_NAV_LEFT">Style.CSS_NAV_LEFT</a>
+                                <li class=""><a href="#Style.CSS_NAV_LEFT">Style.CSS_NAV_LEFT</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_NAV_RIGHT">Style.CSS_NAV_RIGHT</a>
+                                <li class=""><a href="#Style.CSS_NAV_RIGHT">Style.CSS_NAV_RIGHT</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_ROW_FOOTER">Style.CSS_ROW_FOOTER</a>
+                                <li class=""><a href="#Style.CSS_ROW_FOOTER">Style.CSS_ROW_FOOTER</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_ROW_HEADER">Style.CSS_ROW_HEADER</a>
+                                <li class=""><a href="#Style.CSS_ROW_HEADER">Style.CSS_ROW_HEADER</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_SINGLE">Style.CSS_SINGLE</a>
+                                <li class=""><a href="#Style.CSS_SINGLE">Style.CSS_SINGLE</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_WEEKDAY_CELL">Style.CSS_WEEKDAY_CELL</a>
+                                <li class=""><a href="#Style.CSS_WEEKDAY_CELL">Style.CSS_WEEKDAY_CELL</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#Style.CSS_WEEKDAY_ROW">Style.CSS_WEEKDAY_ROW</a>
+                                <li class=""><a href="#Style.CSS_WEEKDAY_ROW">Style.CSS_WEEKDAY_ROW</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#today">today</a>
+                                <li class=""><a href="#today">today</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Calendar._DEFAULT_CONFIG">YAHOO.widget.Calendar._DEFAULT_CONFIG</a>
+                                <li class="private"><a href="#YAHOO.widget.Calendar._DEFAULT_CONFIG">YAHOO.widget.Calendar._DEFAULT_CONFIG</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Calendar._EVENT_TYPES">YAHOO.widget.Calendar._EVENT_TYPES</a>
+                                <li class="private"><a href="#YAHOO.widget.Calendar._EVENT_TYPES">YAHOO.widget.Calendar._EVENT_TYPES</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Calendar._STYLES">YAHOO.widget.Calendar._STYLES</a>
+                                <li class="private"><a href="#YAHOO.widget.Calendar._STYLES">YAHOO.widget.Calendar._STYLES</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Calendar.DATE">YAHOO.widget.Calendar.DATE</a>
+                                <li class=""><a href="#YAHOO.widget.Calendar.DATE">YAHOO.widget.Calendar.DATE</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Calendar.DISPLAY_DAYS">YAHOO.widget.Calendar.DISPLAY_DAYS</a>
+                                <li class=""><a href="#YAHOO.widget.Calendar.DISPLAY_DAYS">YAHOO.widget.Calendar.DISPLAY_DAYS</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Calendar.IMG_ROOT">YAHOO.widget.Calendar.IMG_ROOT</a>
+                                <li class=""><a href="#YAHOO.widget.Calendar.IMG_ROOT">YAHOO.widget.Calendar.IMG_ROOT</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Calendar.LONG">YAHOO.widget.Calendar.LONG</a>
+                                <li class=""><a href="#YAHOO.widget.Calendar.LONG">YAHOO.widget.Calendar.LONG</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Calendar.MEDIUM">YAHOO.widget.Calendar.MEDIUM</a>
+                                <li class=""><a href="#YAHOO.widget.Calendar.MEDIUM">YAHOO.widget.Calendar.MEDIUM</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Calendar.MONTH">YAHOO.widget.Calendar.MONTH</a>
+                                <li class=""><a href="#YAHOO.widget.Calendar.MONTH">YAHOO.widget.Calendar.MONTH</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Calendar.MONTH_DAY">YAHOO.widget.Calendar.MONTH_DAY</a>
+                                <li class=""><a href="#YAHOO.widget.Calendar.MONTH_DAY">YAHOO.widget.Calendar.MONTH_DAY</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Calendar.ONE_CHAR">YAHOO.widget.Calendar.ONE_CHAR</a>
+                                <li class=""><a href="#YAHOO.widget.Calendar.ONE_CHAR">YAHOO.widget.Calendar.ONE_CHAR</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Calendar.RANGE">YAHOO.widget.Calendar.RANGE</a>
+                                <li class=""><a href="#YAHOO.widget.Calendar.RANGE">YAHOO.widget.Calendar.RANGE</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Calendar.SHORT">YAHOO.widget.Calendar.SHORT</a>
+                                <li class=""><a href="#YAHOO.widget.Calendar.SHORT">YAHOO.widget.Calendar.SHORT</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Calendar.STOP_RENDER">YAHOO.widget.Calendar.STOP_RENDER</a>
+                                <li class=""><a href="#YAHOO.widget.Calendar.STOP_RENDER">YAHOO.widget.Calendar.STOP_RENDER</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Calendar.WEEKDAY">YAHOO.widget.Calendar.WEEKDAY</a>
+                                <li class=""><a href="#YAHOO.widget.Calendar.WEEKDAY">YAHOO.widget.Calendar.WEEKDAY</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
                         </ul>
@@ -5638,262 +6165,265 @@ it doesn't.</dd>
                     <div class="module">
                         <h4>Methods</h4>
                         <ul class="content">        
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_addRenderer">_addRenderer</a>
                                 </li>
-                                <li><!--<code>Boolean</code>-->
+                                <li class="private"><!--<code>Boolean</code>-->
                                 <a href="#_fieldArraysAreEqual">_fieldArraysAreEqual</a>
                                 </li>
-                                <li><!--<code>Number</code>-->
+                                <li class="private"><!--<code>Number</code>-->
                                 <a href="#_indexOfSelectedFieldArray">_indexOfSelectedFieldArray</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_parseDate">_parseDate</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_parseDates">_parseDates</a>
                                 </li>
-                                <li><!--<code>Date</code>-->
+                                <li class="private"><!--<code>Date</code>-->
                                 <a href="#_parsePageDate">_parsePageDate</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_parseRange">_parseRange</a>
                                 </li>
-                                <li><!--<code>Date</code>-->
+                                <li class="private"><!--<code>Date</code>-->
                                 <a href="#_toDate">_toDate</a>
                                 </li>
-                                <li><!--<code>Array[](Number[])</code>-->
+                                <li class="private"><!--<code>Array[](Number[])</code>-->
                                 <a href="#_toFieldArray">_toFieldArray</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#addMonthRenderer">addMonthRenderer</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#addMonths">addMonths</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#addRenderer">addRenderer</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#addWeekdayRenderer">addWeekdayRenderer</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#addYears">addYears</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#applyListeners">applyListeners</a>
                                 </li>
-                                <li><!--<code>String</code>-->
+                                <li class=""><!--<code>String</code>-->
                                 <a href="#buildDayLabel">buildDayLabel</a>
                                 </li>
-                                <li><!--<code>String</code>-->
+                                <li class=""><!--<code>String</code>-->
                                 <a href="#buildMonthLabel">buildMonthLabel</a>
                                 </li>
-                                <li><!--<code>Array</code>-->
+                                <li class=""><!--<code>Array</code>-->
                                 <a href="#buildWeekdays">buildWeekdays</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#clear">clear</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#clearAllBodyCellStyles">clearAllBodyCellStyles</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#clearElement">clearElement</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configClose">configClose</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configIframe">configIframe</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configLocale">configLocale</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configLocaleValues">configLocaleValues</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configMaxDate">configMaxDate</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configMinDate">configMinDate</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configOptions">configOptions</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configPageDate">configPageDate</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configSelected">configSelected</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configTitle">configTitle</a>
                                 </li>
-                                <li><!--<code>Date[]</code>-->
+                                <li class=""><!--<code>Date[]</code>-->
                                 <a href="#deselect">deselect</a>
                                 </li>
-                                <li><!--<code>Date[]</code>-->
+                                <li class=""><!--<code>Date[]</code>-->
                                 <a href="#deselectAll">deselectAll</a>
                                 </li>
-                                <li><!--<code>Date[]</code>-->
+                                <li class=""><!--<code>Date[]</code>-->
                                 <a href="#deselectCell">deselectCell</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#doCellMouseOut">doCellMouseOut</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#doCellMouseOver">doCellMouseOver</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#doSelectCell">doSelectCell</a>
                                 </li>
-                                <li><!--<code>Date</code>-->
+                                <li class=""><!--<code>Date</code>-->
                                 <a href="#getDateByCellId">getDateByCellId</a>
                                 </li>
-                                <li><!--<code>Array</code>-->
+                                <li class=""><!--<code>Array</code>-->
                                 <a href="#getDateFieldsByCellId">getDateFieldsByCellId</a>
                                 </li>
-                                <li><!--<code>Date[]</code>-->
+                                <li class=""><!--<code>Date[]</code>-->
                                 <a href="#getSelectedDates">getSelectedDates</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#hide">hide</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#init">init</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#initEvents">initEvents</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#initStyles">initStyles</a>
                                 </li>
-                                <li><!--<code>Boolean</code>-->
+                                <li class=""><!--<code>Boolean</code>-->
+                                <a href="#isDateOOB">isDateOOB</a>
+                                </li>
+                                <li class=""><!--<code>Boolean</code>-->
                                 <a href="#isDateOOM">isDateOOM</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#nextMonth">nextMonth</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#nextYear">nextYear</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#onBeforeDeselect">onBeforeDeselect</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#onBeforeSelect">onBeforeSelect</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#onChangePage">onChangePage</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#onClear">onClear</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#onDeselect">onDeselect</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#onRender">onRender</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#onReset">onReset</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#onSelect">onSelect</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#previousMonth">previousMonth</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#previousYear">previousYear</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#refreshLocale">refreshLocale</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#render">render</a>
                                 </li>
-                                <li><!--<code>Array</code>-->
+                                <li class=""><!--<code>Array</code>-->
                                 <a href="#renderBody">renderBody</a>
                                 </li>
-                                <li><!--<code>String</code>-->
+                                <li class=""><!--<code>String</code>-->
                                 <a href="#renderBodyCellRestricted">renderBodyCellRestricted</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#renderCellDefault">renderCellDefault</a>
                                 </li>
-                                <li><!--<code>String</code>-->
+                                <li class=""><!--<code>String</code>-->
                                 <a href="#renderCellNotThisMonth">renderCellNotThisMonth</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#renderCellStyleHighlight1">renderCellStyleHighlight1</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#renderCellStyleHighlight2">renderCellStyleHighlight2</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#renderCellStyleHighlight3">renderCellStyleHighlight3</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#renderCellStyleHighlight4">renderCellStyleHighlight4</a>
                                 </li>
-                                <li><!--<code>String</code>-->
+                                <li class=""><!--<code>String</code>-->
                                 <a href="#renderCellStyleSelected">renderCellStyleSelected</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#renderCellStyleToday">renderCellStyleToday</a>
                                 </li>
-                                <li><!--<code>Array</code>-->
+                                <li class=""><!--<code>Array</code>-->
                                 <a href="#renderFooter">renderFooter</a>
                                 </li>
-                                <li><!--<code>Array</code>-->
+                                <li class=""><!--<code>Array</code>-->
                                 <a href="#renderHeader">renderHeader</a>
                                 </li>
-                                <li><!--<code>String</code>-->
+                                <li class=""><!--<code>String</code>-->
                                 <a href="#renderOutOfBoundsDate">renderOutOfBoundsDate</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#renderRowFooter">renderRowFooter</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#renderRowHeader">renderRowHeader</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#reset">reset</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#resetRenderers">resetRenderers</a>
                                 </li>
-                                <li><!--<code>Date[]</code>-->
+                                <li class=""><!--<code>Date[]</code>-->
                                 <a href="#select">select</a>
                                 </li>
-                                <li><!--<code>Date[]</code>-->
+                                <li class=""><!--<code>Date[]</code>-->
                                 <a href="#selectCell">selectCell</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#setMonth">setMonth</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#setYear">setYear</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#show">show</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#styleCellDefault">styleCellDefault</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#subtractMonths">subtractMonths</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#subtractYears">subtractYears</a>
                                 </li>
-                                <li><!--<code>String</code>-->
+                                <li class=""><!--<code>String</code>-->
                                 <a href="#toString">toString</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#validate">validate</a>
                                 </li>
                         </ul>
@@ -5902,31 +6432,31 @@ it doesn't.</dd>
                     <div class="module">
                         <h4>Events</h4>
                         <ul class="content">        
-                                <li>
+                                <li class="">
                                 <a href="#beforeDeselectEvent">beforeDeselectEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#beforeRenderEvent">beforeRenderEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#beforeSelectEvent">beforeSelectEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#changePageEvent">changePageEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#clearEvent">clearEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#deselectEvent">deselectEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#renderEvent">renderEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#resetEvent">resetEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#selectEvent">selectEvent</a>
                                 </li>
                         </ul>
@@ -5935,103 +6465,115 @@ it doesn't.</dd>
                     <div class="module">
                         <h4>Configuration Attributes</h4>
                         <ul class="content">        
-                                <li>
+                                <li class="">
                                 <a href="#close">close</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#DATE_DELIMITER">DATE_DELIMITER</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#DATE_FIELD_DELIMITER">DATE_FIELD_DELIMITER</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#DATE_RANGE_DELIMITER">DATE_RANGE_DELIMITER</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#HIDE_BLANK_WEEKS">HIDE_BLANK_WEEKS</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#iframe">iframe</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#LOCALE_MONTHS">LOCALE_MONTHS</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#LOCALE_WEEKDAYS">LOCALE_WEEKDAYS</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#maxdate">maxdate</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#MD_DAY_POSITION">MD_DAY_POSITION</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#MD_MONTH_POSITION">MD_MONTH_POSITION</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#MDY_DAY_POSITION">MDY_DAY_POSITION</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#MDY_MONTH_POSITION">MDY_MONTH_POSITION</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#MDY_YEAR_POSITION">MDY_YEAR_POSITION</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#mindate">mindate</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#MONTHS_LONG">MONTHS_LONG</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#MONTHS_SHORT">MONTHS_SHORT</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#MULTI_SELECT">MULTI_SELECT</a>
                                 </li>
-                                <li>
+                                <li class="">
+                                <a href="#MY_LABEL_MONTH_POSITION">MY_LABEL_MONTH_POSITION</a>
+                                </li>
+                                <li class="">
+                                <a href="#MY_LABEL_MONTH_SUFFIX">MY_LABEL_MONTH_SUFFIX</a>
+                                </li>
+                                <li class="">
+                                <a href="#MY_LABEL_YEAR_POSITION">MY_LABEL_YEAR_POSITION</a>
+                                </li>
+                                <li class="">
+                                <a href="#MY_LABEL_YEAR_SUFFIX">MY_LABEL_YEAR_SUFFIX</a>
+                                </li>
+                                <li class="">
                                 <a href="#MY_MONTH_POSITION">MY_MONTH_POSITION</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#MY_YEAR_POSITION">MY_YEAR_POSITION</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#NAV_ARROW_LEFT">NAV_ARROW_LEFT</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#NAV_ARROW_RIGHT">NAV_ARROW_RIGHT</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#pagedate">pagedate</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#selected">selected</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#SHOW_WEEK_FOOTER">SHOW_WEEK_FOOTER</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#SHOW_WEEK_HEADER">SHOW_WEEK_HEADER</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#SHOW_WEEKDAYS">SHOW_WEEKDAYS</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#START_WEEKDAY">START_WEEKDAY</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#title">title</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#WEEKDAYS_1CHAR">WEEKDAYS_1CHAR</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#WEEKDAYS_LONG">WEEKDAYS_LONG</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#WEEKDAYS_MEDIUM">WEEKDAYS_MEDIUM</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#WEEKDAYS_SHORT">WEEKDAYS_SHORT</a>
                                 </li>
                         </ul>

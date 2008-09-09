@@ -3,26 +3,33 @@
 <head>
 	<title>API: dragdrop  YAHOO.util.DragDrop   (YUI Library)</title>
 	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
 </head>
 
 <body id="yahoo-com">
+
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
         <h1>Yahoo! UI Library</h1>
-        <h3>Drag and Drop&nbsp; <span class="subtitle">2.2.2</span></h3>
+        <h3>Drag and Drop&nbsp; <span class="subtitle">2.3.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_dragdrop.html">dragdrop</a>
                  &gt; YAHOO.util.DragDrop 
                 
             </p>
+
 	</div>
 
 	<div id="bd">
 		<div id="yui-main">
 			<div class="yui-b">
-
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> Show Private</span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> Show Protected</span>
+            </form>
 
                     <h2>
                         
@@ -43,10 +50,10 @@
                         <dl class="subclasses">
                             <dt>Known Subclasses:</dd>
                             <dd>
+                                    <a href="YAHOO.util.ColumnResizer.html">YAHOO.util.ColumnResizer</a>
                                     <a href="YAHOO.widget.Slider.html">YAHOO.widget.Slider</a>
-                                    <a href="YAHOO.util.DD.html">YAHOO.util.DD</a>
                                     <a href="YAHOO.util.DDTarget.html">YAHOO.util.DDTarget</a>
-                                    <a href="WidthResizer.html">WidthResizer</a>
+                                    <a href="YAHOO.util.DD.html">YAHOO.util.DD</a>
                             </dd>
                        </dl>
                 
@@ -143,6 +150,7 @@ padding, isTarget, maintainOffset, primaryButtonOnly,
                         <div class="section field details">
                             <h3><a name="field_detail">Properties</a></h3>
                             <div class="content">
+                                    <div class="private">
                                     <h4><a name="__ygDragDrop">__ygDragDrop</a>
                                         <code>- private object</code>
                                     </h4>
@@ -156,6 +164,8 @@ padding, isTarget, maintainOffset, primaryButtonOnly,
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="_domRef">_domRef</a>
                                         <code>- private object</code>
                                     </h4>
@@ -169,6 +179,8 @@ padding, isTarget, maintainOffset, primaryButtonOnly,
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="available">available</a>
                                         <code>- boolean</code>
                                     </h4>
@@ -182,6 +194,8 @@ padding, isTarget, maintainOffset, primaryButtonOnly,
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="config">config</a>
                                         <code>- object</code>
                                     </h4>
@@ -195,6 +209,8 @@ padding, isTarget, maintainOffset, primaryButtonOnly,
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="constrainX">constrainX</a>
                                         <code>- private boolean</code>
                                     </h4>
@@ -208,6 +224,8 @@ padding, isTarget, maintainOffset, primaryButtonOnly,
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="constrainY">constrainY</a>
                                         <code>- private boolean</code>
                                     </h4>
@@ -221,6 +239,28 @@ padding, isTarget, maintainOffset, primaryButtonOnly,
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4><a name="cursorIsOver">cursorIsOver</a>
+                                        <code>- boolean</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Property that is assigned to a drag and drop object when testing to
+see if it is being targeted by another dd object.  This property
+can be used in intersect mode to help determine the focus of
+the mouse interaction.  DDM.getBestMatch uses this property first to
+determine the closest match in INTERSECT mode when multiple targets
+are part of the same interaction.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="deltaX">deltaX</a>
                                         <code>- private int</code>
                                     </h4>
@@ -234,6 +274,8 @@ padding, isTarget, maintainOffset, primaryButtonOnly,
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="deltaY">deltaY</a>
                                         <code>- private int</code>
                                     </h4>
@@ -247,6 +289,8 @@ padding, isTarget, maintainOffset, primaryButtonOnly,
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="dragElId">dragElId</a>
                                         <code>- private String</code>
                                     </h4>
@@ -262,6 +306,8 @@ YAHOO.util.DDProxy
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="groups">groups</a>
                                         <code>- {string: string}</code>
                                     </h4>
@@ -278,6 +324,8 @@ groups using a single DragDrop subclass if we want.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="handleElId">handleElId</a>
                                         <code>- private String</code>
                                     </h4>
@@ -294,6 +342,8 @@ header element within the linked html element is clicked.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="hasOuterHandles">hasOuterHandles</a>
                                         <code>- boolean</code>
                                     </h4>
@@ -314,6 +364,8 @@ if outer handles are defined.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="id">id</a>
                                         <code>- String</code>
                                     </h4>
@@ -330,6 +382,8 @@ interacted.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="invalidHandleClasses">invalidHandleClasses</a>
                                         <code>- string[]</code>
                                     </h4>
@@ -344,6 +398,8 @@ if clicked.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="invalidHandleIds">invalidHandleIds</a>
                                         <code>- {string: string}</code>
                                     </h4>
@@ -357,6 +413,8 @@ if clicked.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="invalidHandleTypes">invalidHandleTypes</a>
                                         <code>- {string: string}</code>
                                     </h4>
@@ -370,6 +428,8 @@ if clicked.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="locked">locked</a>
                                         <code>- private boolean</code>
                                     </h4>
@@ -384,6 +444,8 @@ onmousedown start drag.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="maintainOffset">maintainOffset</a>
                                         <code>- boolean</code>
                                     </h4>
@@ -399,6 +461,8 @@ when the page changes
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="maxX">maxX</a>
                                         <code>- private int</code>
                                     </h4>
@@ -412,6 +476,8 @@ when the page changes
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="maxY">maxY</a>
                                         <code>- private int</code>
                                     </h4>
@@ -425,6 +491,8 @@ when the page changes
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="minX">minX</a>
                                         <code>- private int</code>
                                     </h4>
@@ -438,6 +506,8 @@ when the page changes
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="minY">minY</a>
                                         <code>- private int</code>
                                     </h4>
@@ -451,6 +521,28 @@ when the page changes
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4><a name="overlap">overlap</a>
+                                        <code>- YAHOO.util.Region</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Property that is assigned to a drag and drop object when testing to
+see if it is being targeted by another dd object.  This is a region
+that represents the area the draggable element overlaps this target.
+DDM.getBestMatch uses this property to compare the size of the overlap
+to that of other targets in order to determine the closest match in
+INTERSECT mode when multiple targets are part of the same interaction.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="primaryButtonOnly">primaryButtonOnly</a>
                                         <code>- boolean</code>
                                     </h4>
@@ -467,6 +559,8 @@ by the browser
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="startPageX">startPageX</a>
                                         <code>- private int</code>
                                     </h4>
@@ -481,6 +575,8 @@ started
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="startPageY">startPageY</a>
                                         <code>- private int</code>
                                     </h4>
@@ -495,6 +591,8 @@ started
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="xTicks">xTicks</a>
                                         <code>- int[]</code>
                                     </h4>
@@ -510,6 +608,8 @@ when you define a tick interval.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="yTicks">yTicks</a>
                                         <code>- int[]</code>
                                     </h4>
@@ -525,6 +625,7 @@ when you define a tick interval.
 
 
                                     <hr />
+                                    </div>
 
 
                             </div>
@@ -534,6 +635,7 @@ when you define a tick interval.
                         <div class="section method details">
                             <h3><a name="methodDetails">Methods</a></h3>
                             <div class="content">
+                                    <div class="">
                                     <h4>
                                         <a name="addInvalidHandleClass">addInvalidHandleClass</a></h4>
                                     <div class="detail">
@@ -578,6 +680,8 @@ when you define a tick interval.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="addInvalidHandleId">addInvalidHandleId</a></h4>
                                     <div class="detail">
@@ -623,6 +727,8 @@ that should not initiate a drag
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="addInvalidHandleType">addInvalidHandleType</a></h4>
                                     <div class="detail">
@@ -669,6 +775,8 @@ drag handle that do something other than start the drag.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="addToGroup">addToGroup</a></h4>
                                     <div class="detail">
@@ -715,6 +823,8 @@ groups as needed.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="applyConfig">applyConfig</a></h4>
                                     <div class="detail">
@@ -751,6 +861,8 @@ each object.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="b4Drag">b4Drag</a></h4>
                                     <div class="detail">
@@ -783,6 +895,8 @@ each object.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="b4DragDrop">b4DragDrop</a></h4>
                                     <div class="detail">
@@ -815,6 +929,8 @@ each object.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="b4DragOut">b4DragOut</a></h4>
                                     <div class="detail">
@@ -847,6 +963,8 @@ each object.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="b4DragOver">b4DragOver</a></h4>
                                     <div class="detail">
@@ -879,6 +997,8 @@ each object.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="b4EndDrag">b4EndDrag</a></h4>
                                     <div class="detail">
@@ -911,6 +1031,8 @@ each object.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="b4MouseDown">b4MouseDown</a></h4>
                                     <div class="detail">
@@ -955,6 +1077,8 @@ each object.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="b4StartDrag">b4StartDrag</a></h4>
                                     <div class="detail">
@@ -987,6 +1111,8 @@ each object.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="clearConstraints">clearConstraints</a></h4>
                                     <div class="detail">
@@ -1020,6 +1146,8 @@ since they can't exist independent of a constraint at this time.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="clearTicks">clearTicks</a></h4>
                                     <div class="detail">
@@ -1052,6 +1180,8 @@ since they can't exist independent of a constraint at this time.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="endDrag">endDrag</a></h4>
                                     <div class="detail">
@@ -1096,6 +1226,8 @@ since they can't exist independent of a constraint at this time.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getDragEl">getDragEl</a></h4>
                                     <div class="detail">
@@ -1130,6 +1262,8 @@ element. An example of this can be found in YAHOO.util.DDProxy
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getEl">getEl</a></h4>
                                     <div class="detail">
@@ -1162,6 +1296,8 @@ element. An example of this can be found in YAHOO.util.DDProxy
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="getTargetCoord">getTargetCoord</a></h4>
                                     <div class="detail">
@@ -1215,6 +1351,8 @@ it to where the mouse location less the click offset would place us.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="getTick">getTick</a></h4>
                                     <div class="detail">
@@ -1269,6 +1407,8 @@ location when we have it set up like this.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="handleMouseDown">handleMouseDown</a></h4>
                                     <div class="detail">
@@ -1321,6 +1461,8 @@ location when we have it set up like this.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="handleOnAvailable">handleOnAvailable</a></h4>
                                     <div class="detail">
@@ -1353,6 +1495,8 @@ location when we have it set up like this.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="init">init</a></h4>
                                     <div class="detail">
@@ -1414,6 +1558,8 @@ YAHOO.util.DragDrop subclass
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="initTarget">initTarget</a></h4>
                                     <div class="detail">
@@ -1475,6 +1621,8 @@ get a mousedown handler.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="isLocked">isLocked</a></h4>
                                     <div class="detail">
@@ -1509,6 +1657,8 @@ false</dd>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="isTarget">isTarget</a></h4>
                                     <div class="detail">
@@ -1523,7 +1673,7 @@ false</dd>
                                         </code>
                                         
                                         <div class="description">
-                                            By default, all insances can be a drop target.  This can be disabled by
+                                            By default, all instances can be a drop target.  This can be disabled by
 setting isTarget to false.
                                         </div>
 
@@ -1542,6 +1692,8 @@ setting isTarget to false.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="isValidHandleChild">isValidHandleChild</a></h4>
                                     <div class="detail">
@@ -1586,6 +1738,8 @@ setting isTarget to false.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="lock">lock</a></h4>
                                     <div class="detail">
@@ -1618,6 +1772,8 @@ setting isTarget to false.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="onAvailable">onAvailable</a></h4>
                                     <div class="detail">
@@ -1651,6 +1807,8 @@ position was determined.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="onDrag">onDrag</a></h4>
                                     <div class="detail">
@@ -1696,6 +1854,8 @@ object.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="onDragDrop">onDragDrop</a></h4>
                                     <div class="detail">
@@ -1751,6 +1911,8 @@ was dropped on.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="onDragEnter">onDragEnter</a></h4>
                                     <div class="detail">
@@ -1806,6 +1968,8 @@ dragdrop items being hovered over.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="onDragOut">onDragOut</a></h4>
                                     <div class="detail">
@@ -1860,6 +2024,8 @@ that the mouse is no longer over.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="onDragOver">onDragOver</a></h4>
                                     <div class="detail">
@@ -1915,6 +2081,8 @@ being hovered over.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="onInvalidDrop">onInvalidDrop</a></h4>
                                     <div class="detail">
@@ -1960,6 +2128,8 @@ drop target
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="onMouseDown">onMouseDown</a></h4>
                                     <div class="detail">
@@ -2004,6 +2174,8 @@ drop target
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="onMouseUp">onMouseUp</a></h4>
                                     <div class="detail">
@@ -2048,6 +2220,8 @@ drop target
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="padding">padding</a></h4>
                                     <div class="detail">
@@ -2081,6 +2255,8 @@ the drop zone intersection with this object.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="removeFromGroup">removeFromGroup</a></h4>
                                     <div class="detail">
@@ -2125,6 +2301,8 @@ the drop zone intersection with this object.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="removeInvalidHandleClass">removeInvalidHandleClass</a></h4>
                                     <div class="detail">
@@ -2170,6 +2348,8 @@ re-enable
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="removeInvalidHandleId">removeInvalidHandleId</a></h4>
                                     <div class="detail">
@@ -2214,6 +2394,8 @@ re-enable
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="removeInvalidHandleType">removeInvalidHandleType</a></h4>
                                     <div class="detail">
@@ -2258,6 +2440,8 @@ re-enable
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="resetConstraints">resetConstraints</a></h4>
                                     <div class="detail">
@@ -2268,11 +2452,6 @@ re-enable
                                         void
                                             <strong>resetConstraints</strong>
                                            (
-                                                
-                                                        
-                                                         maintainOffset
-                                                    
-                                                
                                             )
                                         </code>
                                         
@@ -2282,13 +2461,6 @@ re-enable
 
                                         <div class="description">
 
-                                                <dl>
-                                                    <dt>Parameters:</dt>
-                                                        <dd>
-                                                            <code>maintainOffset &lt;boolean&gt;</code>
-                                                            
-                                                        </dd>
-                                                </dl>
 
                                                 <dl>
                                                     <dt>Returns:
@@ -2302,6 +2474,8 @@ re-enable
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="setDragElId">setDragElId</a></h4>
                                     <div class="detail">
@@ -2347,6 +2521,8 @@ will be moved with the cursor during a drag
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="setHandleElId">setHandleElId</a></h4>
                                     <div class="detail">
@@ -2397,6 +2573,8 @@ initiate the drag.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="setInitialPosition">setInitialPosition</a></h4>
                                     <div class="detail">
@@ -2449,6 +2627,8 @@ initiate the drag.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="setOuterHandleElId">setOuterHandleElId</a></h4>
                                     <div class="detail">
@@ -2494,6 +2674,8 @@ handle
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="setPadding">setPadding</a></h4>
                                     <div class="detail">
@@ -2566,6 +2748,8 @@ will have the first param, the left and right the second.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="setStartPosition">setStartPosition</a></h4>
                                     <div class="detail">
@@ -2611,6 +2795,8 @@ is initialized, the reset when a drag is started.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="setXConstraint">setXConstraint</a></h4>
                                     <div class="detail">
@@ -2676,6 +2862,8 @@ should move iTickSize pixels at a time.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="setXTicks">setXTicks</a></h4>
                                     <div class="detail">
@@ -2709,6 +2897,8 @@ in setXConstraint().
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="setYConstraint">setYConstraint</a></h4>
                                     <div class="detail">
@@ -2772,6 +2962,8 @@ element should move iTickSize pixels at a time.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="setYTicks">setYTicks</a></h4>
                                     <div class="detail">
@@ -2805,6 +2997,8 @@ setYConstraint().
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="startDrag">startDrag</a></h4>
                                     <div class="detail">
@@ -2858,6 +3052,8 @@ and the drag or mousedown time thresholds have beeen met.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="toString">toString</a></h4>
                                     <div class="detail">
@@ -2890,6 +3086,8 @@ and the drag or mousedown time thresholds have beeen met.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="unlock">unlock</a></h4>
                                     <div class="detail">
@@ -2922,6 +3120,8 @@ and the drag or mousedown time thresholds have beeen met.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="unreg">unreg</a></h4>
                                     <div class="detail">
@@ -2954,6 +3154,7 @@ and the drag or mousedown time thresholds have beeen met.
 
                                     </div>
                                     <hr />
+                                    </div>
                             </div>
                         </div>
 
@@ -2980,6 +3181,8 @@ and the drag or mousedown time thresholds have beeen met.
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
+
                                 <li class=""><a href="module_connection.html">connection</a></li>
 
                                 <li class=""><a href="module_container.html">container</a></li>
@@ -2992,11 +3195,15 @@ and the drag or mousedown time thresholds have beeen met.
 
                                 <li class="selected"><a href="module_dragdrop.html">dragdrop</a></li>
 
+                                <li class=""><a href="module_editor.html">editor</a></li>
+
                                 <li class=""><a href="module_element.html">element</a></li>
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
                                 <li class=""><a href="module_history.html">history</a></li>
+
+                                <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
@@ -3009,6 +3216,10 @@ and the drag or mousedown time thresholds have beeen met.
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
+
+                                <li class=""><a href="module_yuiloader.html">yuiloader</a></li>
+
+                                <li class=""><a href="module_yuitest.html">yuitest</a></li>
                         </ul>
                     </div>
 
@@ -3038,85 +3249,91 @@ and the drag or mousedown time thresholds have beeen met.
                     <div class="module">
                         <h4>Properties</h4>
                         <ul class="content">        
-                                <li><a href="#__ygDragDrop">__ygDragDrop</a>
+                                <li class="private"><a href="#__ygDragDrop">__ygDragDrop</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#_domRef">_domRef</a>
+                                <li class="private"><a href="#_domRef">_domRef</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#available">available</a>
+                                <li class=""><a href="#available">available</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#config">config</a>
+                                <li class=""><a href="#config">config</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#constrainX">constrainX</a>
+                                <li class="private"><a href="#constrainX">constrainX</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#constrainY">constrainY</a>
+                                <li class="private"><a href="#constrainY">constrainY</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#deltaX">deltaX</a>
+                                <li class=""><a href="#cursorIsOver">cursorIsOver</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#deltaY">deltaY</a>
+                                <li class="private"><a href="#deltaX">deltaX</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#dragElId">dragElId</a>
+                                <li class="private"><a href="#deltaY">deltaY</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#groups">groups</a>
+                                <li class="private"><a href="#dragElId">dragElId</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#handleElId">handleElId</a>
+                                <li class=""><a href="#groups">groups</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#hasOuterHandles">hasOuterHandles</a>
+                                <li class="private"><a href="#handleElId">handleElId</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#id">id</a>
+                                <li class=""><a href="#hasOuterHandles">hasOuterHandles</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#invalidHandleClasses">invalidHandleClasses</a>
+                                <li class=""><a href="#id">id</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#invalidHandleIds">invalidHandleIds</a>
+                                <li class=""><a href="#invalidHandleClasses">invalidHandleClasses</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#invalidHandleTypes">invalidHandleTypes</a>
+                                <li class=""><a href="#invalidHandleIds">invalidHandleIds</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#locked">locked</a>
+                                <li class=""><a href="#invalidHandleTypes">invalidHandleTypes</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#maintainOffset">maintainOffset</a>
+                                <li class="private"><a href="#locked">locked</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#maxX">maxX</a>
+                                <li class=""><a href="#maintainOffset">maintainOffset</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#maxY">maxY</a>
+                                <li class="private"><a href="#maxX">maxX</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#minX">minX</a>
+                                <li class="private"><a href="#maxY">maxY</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#minY">minY</a>
+                                <li class="private"><a href="#minX">minX</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#primaryButtonOnly">primaryButtonOnly</a>
+                                <li class="private"><a href="#minY">minY</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#startPageX">startPageX</a>
+                                <li class=""><a href="#overlap">overlap</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#startPageY">startPageY</a>
+                                <li class=""><a href="#primaryButtonOnly">primaryButtonOnly</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#xTicks">xTicks</a>
+                                <li class="private"><a href="#startPageX">startPageX</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
-                                <li><a href="#yTicks">yTicks</a>
+                                <li class="private"><a href="#startPageY">startPageY</a>
+                                        <!--<code>&lt;int[]&gt;</code>-->
+                                </li>
+                                <li class=""><a href="#xTicks">xTicks</a>
+                                        <!--<code>&lt;int[]&gt;</code>-->
+                                </li>
+                                <li class=""><a href="#yTicks">yTicks</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
                         </ul>
@@ -3125,172 +3342,172 @@ and the drag or mousedown time thresholds have beeen met.
                     <div class="module">
                         <h4>Methods</h4>
                         <ul class="content">        
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#addInvalidHandleClass">addInvalidHandleClass</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#addInvalidHandleId">addInvalidHandleId</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#addInvalidHandleType">addInvalidHandleType</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#addToGroup">addToGroup</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#applyConfig">applyConfig</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#b4Drag">b4Drag</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#b4DragDrop">b4DragDrop</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#b4DragOut">b4DragOut</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#b4DragOver">b4DragOver</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#b4EndDrag">b4EndDrag</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#b4MouseDown">b4MouseDown</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#b4StartDrag">b4StartDrag</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#clearConstraints">clearConstraints</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#clearTicks">clearTicks</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#endDrag">endDrag</a>
                                 </li>
-                                <li><!--<code>HTMLElement</code>-->
+                                <li class=""><!--<code>HTMLElement</code>-->
                                 <a href="#getDragEl">getDragEl</a>
                                 </li>
-                                <li><!--<code>HTMLElement</code>-->
+                                <li class=""><!--<code>HTMLElement</code>-->
                                 <a href="#getEl">getEl</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#getTargetCoord">getTargetCoord</a>
                                 </li>
-                                <li><!--<code>int</code>-->
+                                <li class="private"><!--<code>int</code>-->
                                 <a href="#getTick">getTick</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#handleMouseDown">handleMouseDown</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#handleOnAvailable">handleOnAvailable</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#init">init</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#initTarget">initTarget</a>
                                 </li>
-                                <li><!--<code>boolean</code>-->
+                                <li class=""><!--<code>boolean</code>-->
                                 <a href="#isLocked">isLocked</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#isTarget">isTarget</a>
                                 </li>
-                                <li><!--<code>boolean</code>-->
+                                <li class=""><!--<code>boolean</code>-->
                                 <a href="#isValidHandleChild">isValidHandleChild</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#lock">lock</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#onAvailable">onAvailable</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#onDrag">onDrag</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#onDragDrop">onDragDrop</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#onDragEnter">onDragEnter</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#onDragOut">onDragOut</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#onDragOver">onDragOver</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#onInvalidDrop">onInvalidDrop</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#onMouseDown">onMouseDown</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#onMouseUp">onMouseUp</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#padding">padding</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#removeFromGroup">removeFromGroup</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#removeInvalidHandleClass">removeInvalidHandleClass</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#removeInvalidHandleId">removeInvalidHandleId</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#removeInvalidHandleType">removeInvalidHandleType</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#resetConstraints">resetConstraints</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#setDragElId">setDragElId</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#setHandleElId">setHandleElId</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#setInitialPosition">setInitialPosition</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#setOuterHandleElId">setOuterHandleElId</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#setPadding">setPadding</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#setStartPosition">setStartPosition</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#setXConstraint">setXConstraint</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#setXTicks">setXTicks</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#setYConstraint">setYConstraint</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#setYTicks">setYTicks</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#startDrag">startDrag</a>
                                 </li>
-                                <li><!--<code>string</code>-->
+                                <li class=""><!--<code>string</code>-->
                                 <a href="#toString">toString</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#unlock">unlock</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#unreg">unreg</a>
                                 </li>
                         </ul>

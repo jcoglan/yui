@@ -3,26 +3,33 @@
 <head>
 	<title>API: yahoo  YAHOO_config   (YUI Library)</title>
 	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
 </head>
 
 <body id="yahoo-com">
+
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
         <h1>Yahoo! UI Library</h1>
-        <h3>YAHOO Global&nbsp; <span class="subtitle">2.2.2</span></h3>
+        <h3>YAHOO Global&nbsp; <span class="subtitle">2.3.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_yahoo.html">yahoo</a>
                  &gt; YAHOO_config 
                 
             </p>
+
 	</div>
 
 	<div id="bd">
 		<div id="yui-main">
 			<div class="yui-b">
-
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> Show Private</span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> Show Protected</span>
+            </form>
 
                     <h2>
                         
@@ -44,18 +51,39 @@
   
 
                     <div class="summary description">
-                        YAHOO_config is not included part of the library.  Instead it is an object
-that can be defined by the implementer immediately before including the
-YUI library.  The properties included in this object will be used to
-configure global properties needed as soon as the library begins to load.
+                        YAHOO_config is not included as part of the library.  Instead it is an 
+object that can be defined by the implementer immediately before 
+including the YUI library.  The properties included in this object
+will be used to configure global properties needed as soon as the 
+library begins to load.
                     </div>
 
 
                         <div class="section field details">
                             <h3><a name="field_detail">Properties</a></h3>
                             <div class="content">
+                                    <div class="">
+                                    <h4><a name="injecting">injecting</a>
+                                        <code>- static boolean</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Set to true if the library will be dynamically loaded after window.onload.
+Defaults to false
+                                        </div>
+                                    </div>
+     
+                                        
+                                    <div class="default">
+                                        Default Value: undefined
+                                    </div>        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="listener">listener</a>
-                                        <code>- static object</code>
+                                        <code>- static Function</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
@@ -67,9 +95,33 @@ YAHOO.env.getVersion</a> for the description of the version data structure.
                                     </div>
      
                                         
+                                    <div class="default">
+                                        Default Value: undefined
+                                    </div>        
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4><a name="load">load</a>
+                                        <code>- static object</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Instructs the yuiloader component to dynamically load yui components and
+their dependencies.  See the yuiloader documentation for more information
+about dynamic loading
+                                        </div>
+                                    </div>
+     
+                                        
+                                    <div class="default">
+                                        Default Value: undefined
+                                    </div>        
+
+
+                                    <hr />
+                                    </div>
 
 
                             </div>
@@ -100,6 +152,8 @@ YAHOO.env.getVersion</a> for the description of the version data structure.
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
+
                                 <li class=""><a href="module_connection.html">connection</a></li>
 
                                 <li class=""><a href="module_container.html">container</a></li>
@@ -112,11 +166,15 @@ YAHOO.env.getVersion</a> for the description of the version data structure.
 
                                 <li class=""><a href="module_dragdrop.html">dragdrop</a></li>
 
+                                <li class=""><a href="module_editor.html">editor</a></li>
+
                                 <li class=""><a href="module_element.html">element</a></li>
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
                                 <li class=""><a href="module_history.html">history</a></li>
+
+                                <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
@@ -129,6 +187,10 @@ YAHOO.env.getVersion</a> for the description of the version data structure.
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
 
                                 <li class="selected"><a href="module_yahoo.html">yahoo</a></li>
+
+                                <li class=""><a href="module_yuiloader.html">yuiloader</a></li>
+
+                                <li class=""><a href="module_yuitest.html">yuitest</a></li>
                         </ul>
                     </div>
 
@@ -137,6 +199,7 @@ YAHOO.env.getVersion</a> for the description of the version data structure.
                         <ul class="content">
                                 <li class=""><a href="YAHOO.html">YAHOO</a></li>
                                 <li class=""><a href="YAHOO.env.html">YAHOO.env</a></li>
+                                <li class=""><a href="YAHOO.env.ua.html">YAHOO.env.ua</a></li>
                                 <li class=""><a href="YAHOO.lang.html">YAHOO.lang</a></li>
                                 <li class="selected"><a href="YAHOO_config.html">YAHOO_config</a></li>
                         </ul>
@@ -145,6 +208,8 @@ YAHOO.env.getVersion</a> for the description of the version data structure.
                     <div class="module">
                         <h4>Files</h4>
                         <ul class="content">        
+                                <li class=""><a href="Env.js.html">Env.js</a></li>
+                                <li class=""><a href="Lang.js.html">Lang.js</a></li>
                                 <li class=""><a href="YAHOO.js.html">YAHOO.js</a></li>
                         </ul>
                     </div>
@@ -152,7 +217,13 @@ YAHOO.env.getVersion</a> for the description of the version data structure.
                     <div class="module">
                         <h4>Properties</h4>
                         <ul class="content">        
-                                <li><a href="#listener">listener</a>
+                                <li class=""><a href="#injecting">injecting</a>
+                                        <!--<code>&lt;object&gt;</code>-->
+                                </li>
+                                <li class=""><a href="#listener">listener</a>
+                                        <!--<code>&lt;object&gt;</code>-->
+                                </li>
+                                <li class=""><a href="#load">load</a>
                                         <!--<code>&lt;object&gt;</code>-->
                                 </li>
                         </ul>

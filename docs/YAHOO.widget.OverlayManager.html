@@ -3,26 +3,33 @@
 <head>
 	<title>API: container  YAHOO.widget.OverlayManager   (YUI Library)</title>
 	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
 </head>
 
 <body id="yahoo-com">
+
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
         <h1>Yahoo! UI Library</h1>
-        <h3>Container&nbsp; <span class="subtitle">2.2.2</span></h3>
+        <h3>Container&nbsp; <span class="subtitle">2.3.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_container.html">container</a>
                  &gt; YAHOO.widget.OverlayManager 
                 
             </p>
+
 	</div>
 
 	<div id="bd">
 		<div id="yui-main">
 			<div class="yui-b">
-
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> Show Private</span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> Show Protected</span>
+            </form>
 
                     <h2>
                         
@@ -44,7 +51,8 @@
   
 
                     <div class="summary description">
-                        OverlayManager is used for maintaining the focus status of multiple Overlays.* @namespace YAHOO.widget
+                        OverlayManager is used for maintaining the focus status of 
+multiple Overlays.
                     </div>
 
                         <div class="section constructor details">
@@ -70,13 +78,15 @@
                                                     <code>overlays
                                                     &lt;Array&gt; 
                                                     </code>
-                                                    	Optional. A collection of Overlays to register with the manager.
+                                                     Optional. A collection of Overlays to register 
+with the manager.
                                                 </dd>
                                                 <dd>
                                                     <code>userConfig
                                                     &lt;Object&gt; 
                                                     </code>
-                                                    		The object literal representing the user configuration of the OverlayManager
+                                                      The object literal representing the user 
+configuration of the OverlayManager
                                                 </dd>
                                         </dl>
                                     
@@ -89,6 +99,7 @@
                         <div class="section field details">
                             <h3><a name="field_detail">Properties</a></h3>
                             <div class="content">
+                                    <div class="private">
                                     <h4><a name="activeOverlay">activeOverlay</a>
                                         <code>- private YAHOO.widget.Overlay</code>
                                     </h4>
@@ -102,12 +113,15 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="cfg">cfg</a>
-                                        <code>- YAHOO.util.Config</code>
+                                        <code>- Config</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            The OverlayManager's Config object used for monitoring configuration properties.
+                                            The OverlayManager's Config object used for monitoring 
+configuration properties.
                                         </div>
                                     </div>
      
@@ -115,6 +129,8 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="contructor">contructor</a>
                                         <code>- Function</code>
                                     </h4>
@@ -128,6 +144,23 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4><a name="OverlayManager.CSS_FOCUSED">OverlayManager.CSS_FOCUSED</a>
+                                        <code>- static final String</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            The CSS class representing a focused Overlay
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="overlays">overlays</a>
                                         <code>- YAHOO.widget.Overlay[]</code>
                                     </h4>
@@ -141,19 +174,7 @@
 
 
                                     <hr />
-                                    <h4><a name="YAHOO.widget.OverlayManager.CSS_FOCUSED">YAHOO.widget.OverlayManager.CSS_FOCUSED</a>
-                                        <code>- static final String</code>
-                                    </h4>
-                                    <div class="detail">
-                                        <div class="description">
-                                            The CSS class representing a focused Overlay
-                                        </div>
                                     </div>
-     
-                                        
-
-
-                                    <hr />
 
 
                             </div>
@@ -163,6 +184,7 @@
                         <div class="section method details">
                             <h3><a name="methodDetails">Methods</a></h3>
                             <div class="content">
+                                    <div class="private">
                                     <h4>
                                         <a name="_onOverlayDestroy">_onOverlayDestroy</a></h4>
                                     <div class="detail">
@@ -199,15 +221,16 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_sType &lt;String&gt;</code>
-                                                             String representing the name of the event that 
-was fired.
+                                                             String representing the name of the event  
+that was fired.
                                                         </dd>
                                                         <dd>
                                                             <code>p_aArgs &lt;Array&gt;</code>
-                                                             Array of arguments sent when the event was fired.
+                                                             Array of arguments sent when the event 
+was fired.
                                                         </dd>
                                                         <dd>
-                                                            <code>p_oOverlay &lt;YAHOO.widget.Overlay&gt;</code>
+                                                            <code>p_oOverlay &lt;Overlay&gt;</code>
                                                              Object representing the menu that 
 fired the event.
                                                         </dd>
@@ -225,6 +248,8 @@ fired the event.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_onOverlayElementFocus">_onOverlayElementFocus</a></h4>
                                     <div class="detail">
@@ -255,8 +280,8 @@ configuration property.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>p_oEvent &lt;Event&gt;</code>
-                                                             Object representing the DOM event object passed 
-back by the event utility (YAHOO.util.Event).
+                                                             Object representing the DOM event 
+object passed back by the event utility (Event).
                                                         </dd>
                                                 </dl>
 
@@ -272,6 +297,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="blurAll">blurAll</a></h4>
                                     <div class="detail">
@@ -304,6 +331,63 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="bringToTop">bringToTop</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>bringToTop</strong>
+                                           (
+                                                
+                                                        
+                                                         p_oOverlay
+                                                    
+                                                
+
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Places the specified Overlay instance on top of all other 
+Overlay instances.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>p_oOverlay &lt;YAHOO.widget.Overlay&gt;</code>
+                                                             Object representing an 
+Overlay instance.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>p_oOverlay &lt;String&gt;</code>
+                                                             String representing the id of an 
+Overlay instance.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="compareZIndexDesc">compareZIndexDesc</a></h4>
                                     <div class="detail">
@@ -329,13 +413,16 @@ back by the event utility (YAHOO.util.Event).
                                                     <code>
                                                         Number
                                                     </code></dt>
-                                                    <dd>0, 1, or -1, depending on where the Overlay should fall in the stacking order.</dd>
+                                                    <dd>0, 1, or -1, depending on where the Overlay should 
+fall in the stacking order.</dd>
                                                 </dl>
              
                                         </div>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="find">find</a></h4>
                                     <div class="detail">
@@ -343,7 +430,7 @@ back by the event utility (YAHOO.util.Event).
                                         
                                         
                                         
-                                        YAHOO.widget.Overlay
+                                        Overlay
                                             <strong>find</strong>
                                            (
                                                 
@@ -365,27 +452,30 @@ back by the event utility (YAHOO.util.Event).
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>overlay &lt;YAHOO.widget.Overlay&gt;</code>
-                                                            		An Overlay to locate within the manager
+                                                            <code>overlay &lt;Overlay&gt;</code>
+                                                              An Overlay to locate within the manager
                                                         </dd>
                                                         <dd>
                                                             <code>overlay &lt;String&gt;</code>
-                                                            		An Overlay id to locate within the manager
+                                                              An Overlay id to locate within the manager
                                                         </dd>
                                                 </dl>
 
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
-                                                        YAHOO.widget.Overlay
+                                                        Overlay
                                                     </code></dt>
-                                                    <dd>The requested Overlay, if found, or null if it cannot be located.</dd>
+                                                    <dd>The requested Overlay, if found, or null if it 
+cannot be located.</dd>
                                                 </dl>
              
                                         </div>
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="focus">focus</a></h4>
                                     <div class="detail">
@@ -415,12 +505,12 @@ back by the event utility (YAHOO.util.Event).
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>overlay &lt;YAHOO.widget.Overlay&gt;</code>
-                                                            	The Overlay to focus
+                                                            <code>overlay &lt;Overlay&gt;</code>
+                                                             The Overlay to focus
                                                         </dd>
                                                         <dd>
                                                             <code>overlay &lt;String&gt;</code>
-                                                            	The id of the Overlay to focus
+                                                             The id of the Overlay to focus
                                                         </dd>
                                                 </dl>
 
@@ -436,6 +526,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getActive">getActive</a></h4>
                                     <div class="detail">
@@ -443,7 +535,7 @@ back by the event utility (YAHOO.util.Event).
                                         
                                         
                                         
-                                        YAHOO.widget.Overlay
+                                        Overlay
                                             <strong>getActive</strong>
                                            (
                                             )
@@ -459,7 +551,7 @@ back by the event utility (YAHOO.util.Event).
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
-                                                        YAHOO.widget.Overlay
+                                                        Overlay
                                                     </code></dt>
                                                     <dd>The currently focused Overlay</dd>
                                                 </dl>
@@ -468,6 +560,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="hideAll">hideAll</a></h4>
                                     <div class="detail">
@@ -500,6 +594,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="init">init</a></h4>
                                     <div class="detail">
@@ -531,12 +627,14 @@ back by the event utility (YAHOO.util.Event).
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>overlays &lt;YAHOO.widget.Overlay[]&gt;</code>
-                                                            	Optional. A collection of Overlays to register with the manager.
+                                                            <code>overlays &lt;Overlay[]&gt;</code>
+                                                             Optional. A collection of Overlays to 
+register with the manager.
                                                         </dd>
                                                         <dd>
                                                             <code>userConfig &lt;Object&gt;</code>
-                                                            		The object literal representing the user configuration of the OverlayManager
+                                                              The object literal representing the user 
+configuration of the OverlayManager
                                                         </dd>
                                                 </dl>
 
@@ -552,6 +650,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="initDefaultConfig">initDefaultConfig</a></h4>
                                     <div class="detail">
@@ -584,6 +684,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="register">register</a></h4>
                                     <div class="detail">
@@ -605,7 +707,9 @@ back by the event utility (YAHOO.util.Event).
                                         </code>
                                         
                                         <div class="description">
-                                            Registers an Overlay or an array of Overlays with the manager. Upon registration, the Overlay receives functions for focus and blur, along with CustomEvents for each.
+                                            Registers an Overlay or an array of Overlays with the manager. Upon 
+registration, the Overlay receives functions for focus and blur, 
+along with CustomEvents for each.
                                         </div>
 
                                         <div class="description">
@@ -613,12 +717,13 @@ back by the event utility (YAHOO.util.Event).
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>overlay &lt;YAHOO.widget.Overlay&gt;</code>
-                                                            		An Overlay to register with the manager.
+                                                            <code>overlay &lt;Overlay&gt;</code>
+                                                              An Overlay to register with the manager.
                                                         </dd>
                                                         <dd>
-                                                            <code>overlay &lt;YAHOO.widget.Overlay[]&gt;</code>
-                                                            		An array of Overlays to register with the manager.
+                                                            <code>overlay &lt;Overlay[]&gt;</code>
+                                                              An array of Overlays to register with 
+the manager.
                                                         </dd>
                                                 </dl>
 
@@ -634,6 +739,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="remove">remove</a></h4>
                                     <div class="detail">
@@ -663,12 +770,12 @@ back by the event utility (YAHOO.util.Event).
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>overlay &lt;YAHOO.widget.Overlay&gt;</code>
-                                                            	The Overlay to remove
+                                                            <code>overlay &lt;Overlay&gt;</code>
+                                                             The Overlay to remove
                                                         </dd>
                                                         <dd>
                                                             <code>overlay &lt;String&gt;</code>
-                                                            	The id of the Overlay to remove
+                                                             The id of the Overlay to remove
                                                         </dd>
                                                 </dl>
 
@@ -684,6 +791,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="showAll">showAll</a></h4>
                                     <div class="detail">
@@ -716,6 +825,8 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="toString">toString</a></h4>
                                     <div class="detail">
@@ -748,6 +859,7 @@ back by the event utility (YAHOO.util.Event).
 
                                     </div>
                                     <hr />
+                                    </div>
                             </div>
                         </div>
 
@@ -758,6 +870,7 @@ back by the event utility (YAHOO.util.Event).
                         <div class="section field details">
                             <h3><a name="field_detail">Configuration Attributes</a></h3>
                             <div class="content">
+                                    <div class="">
                                     <h4><a name="focusevent">focusevent</a>
                                         <code>- String</code>
                                     </h4>
@@ -773,12 +886,15 @@ back by the event utility (YAHOO.util.Event).
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="overlays">overlays</a>
                                         <code>- YAHOO.widget.Overlay[]</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            The collection of registered Overlays in use by the OverlayManager
+                                            The collection of registered Overlays in use by 
+the OverlayManager
                                         </div>
                                     </div>
  
@@ -788,6 +904,7 @@ back by the event utility (YAHOO.util.Event).
                                     </div>        
 
                                     <hr />
+                                    </div>        
 
                             </div>
                         </div>
@@ -810,6 +927,8 @@ back by the event utility (YAHOO.util.Event).
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
+
                                 <li class=""><a href="module_connection.html">connection</a></li>
 
                                 <li class="selected"><a href="module_container.html">container</a></li>
@@ -822,11 +941,15 @@ back by the event utility (YAHOO.util.Event).
 
                                 <li class=""><a href="module_dragdrop.html">dragdrop</a></li>
 
+                                <li class=""><a href="module_editor.html">editor</a></li>
+
                                 <li class=""><a href="module_element.html">element</a></li>
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
                                 <li class=""><a href="module_history.html">history</a></li>
+
+                                <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
@@ -839,6 +962,10 @@ back by the event utility (YAHOO.util.Event).
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
+
+                                <li class=""><a href="module_yuiloader.html">yuiloader</a></li>
+
+                                <li class=""><a href="module_yuitest.html">yuitest</a></li>
                         </ul>
                     </div>
 
@@ -875,20 +1002,20 @@ back by the event utility (YAHOO.util.Event).
                     <div class="module">
                         <h4>Properties</h4>
                         <ul class="content">        
-                                <li><a href="#activeOverlay">activeOverlay</a>
-                                        <!--<code>&lt;String&gt;</code>-->
+                                <li class="private"><a href="#activeOverlay">activeOverlay</a>
+                                        <!--<code>&lt;YAHOO.widget.Overlay[]&gt;</code>-->
                                 </li>
-                                <li><a href="#cfg">cfg</a>
-                                        <!--<code>&lt;String&gt;</code>-->
+                                <li class=""><a href="#cfg">cfg</a>
+                                        <!--<code>&lt;YAHOO.widget.Overlay[]&gt;</code>-->
                                 </li>
-                                <li><a href="#contructor">contructor</a>
-                                        <!--<code>&lt;String&gt;</code>-->
+                                <li class=""><a href="#contructor">contructor</a>
+                                        <!--<code>&lt;YAHOO.widget.Overlay[]&gt;</code>-->
                                 </li>
-                                <li><a href="#overlays">overlays</a>
-                                        <!--<code>&lt;String&gt;</code>-->
+                                <li class=""><a href="#OverlayManager.CSS_FOCUSED">OverlayManager.CSS_FOCUSED</a>
+                                        <!--<code>&lt;YAHOO.widget.Overlay[]&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.OverlayManager.CSS_FOCUSED">YAHOO.widget.OverlayManager.CSS_FOCUSED</a>
-                                        <!--<code>&lt;String&gt;</code>-->
+                                <li class=""><a href="#overlays">overlays</a>
+                                        <!--<code>&lt;YAHOO.widget.Overlay[]&gt;</code>-->
                                 </li>
                         </ul>
                     </div>
@@ -896,46 +1023,49 @@ back by the event utility (YAHOO.util.Event).
                     <div class="module">
                         <h4>Methods</h4>
                         <ul class="content">        
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_onOverlayDestroy">_onOverlayDestroy</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_onOverlayElementFocus">_onOverlayElementFocus</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#blurAll">blurAll</a>
                                 </li>
-                                <li><!--<code>Number</code>-->
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#bringToTop">bringToTop</a>
+                                </li>
+                                <li class="private"><!--<code>Number</code>-->
                                 <a href="#compareZIndexDesc">compareZIndexDesc</a>
                                 </li>
-                                <li><!--<code>YAHOO.widget.Overlay</code>-->
+                                <li class=""><!--<code>Overlay</code>-->
                                 <a href="#find">find</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#focus">focus</a>
                                 </li>
-                                <li><!--<code>YAHOO.widget.Overlay</code>-->
+                                <li class=""><!--<code>Overlay</code>-->
                                 <a href="#getActive">getActive</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#hideAll">hideAll</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#init">init</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#initDefaultConfig">initDefaultConfig</a>
                                 </li>
-                                <li><!--<code>Boolean</code>-->
+                                <li class=""><!--<code>Boolean</code>-->
                                 <a href="#register">register</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#remove">remove</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#showAll">showAll</a>
                                 </li>
-                                <li><!--<code>String</code>-->
+                                <li class=""><!--<code>String</code>-->
                                 <a href="#toString">toString</a>
                                 </li>
                         </ul>
@@ -945,10 +1075,10 @@ back by the event utility (YAHOO.util.Event).
                     <div class="module">
                         <h4>Configuration Attributes</h4>
                         <ul class="content">        
-                                <li>
+                                <li class="">
                                 <a href="#focusevent">focusevent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#overlays">overlays</a>
                                 </li>
                         </ul>

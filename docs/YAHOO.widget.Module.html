@@ -3,26 +3,33 @@
 <head>
 	<title>API: container  YAHOO.widget.Module   (YUI Library)</title>
 	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
 </head>
 
 <body id="yahoo-com">
+
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
         <h1>Yahoo! UI Library</h1>
-        <h3>Container&nbsp; <span class="subtitle">2.2.2</span></h3>
+        <h3>Container&nbsp; <span class="subtitle">2.3.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_container.html">container</a>
                  &gt; YAHOO.widget.Module 
                 
             </p>
+
 	</div>
 
 	<div id="bd">
 		<div id="yui-main">
 			<div class="yui-b">
-
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> Show Private</span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> Show Protected</span>
+            </form>
 
                     <h2>
                         
@@ -40,17 +47,16 @@
                     </h2>
                     <!-- class tree goes here -->
                     
-                        <dl class="subclasses">
-                            <dt>Known Subclasses:</dd>
-                            <dd>
-                                    <a href="YAHOO.widget.Overlay.html">YAHOO.widget.Overlay</a>
-                            </dd>
-                       </dl>
                 
   
 
                     <div class="summary description">
-                        Module is a JavaScript representation of the Standard Module Format. Standard Module Format is a simple standard for markup containers where child nodes representing the header, body, and footer of the content are denoted using the CSS classes "hd", "bd", and "ft" respectively. Module is the base class for all other classes in the YUI Container package.
+                        Module is a JavaScript representation of the Standard Module Format. 
+Standard Module Format is a simple standard for markup containers where 
+child nodes representing the header, body, and footer of the content are 
+denoted using the CSS classes "hd", "bd", and "ft" respectively. 
+Module is the base class for all other classes in the YUI 
+Container package.
                     </div>
 
                         <div class="section constructor details">
@@ -77,19 +83,21 @@
                                                     <code>el
                                                     &lt;String&gt; 
                                                     </code>
-                                                    			The element ID representing the Module <em>OR</em>
+                                                     The element ID representing the Module <em>OR</em>
                                                 </dd>
                                                 <dd>
                                                     <code>el
                                                     &lt;HTMLElement&gt; 
                                                     </code>
-                                                    		The element representing the Module
+                                                     The element representing the Module
                                                 </dd>
                                                 <dd>
                                                     <code>userConfig
                                                     &lt;Object&gt; 
                                                     </code>
-                                                    	The configuration Object literal containing the configuration that should be set for this module. See configuration documentation for more details.
+                                                     The configuration Object literal containing 
+the configuration that should be set for this module. See configuration 
+documentation for more details.
                                                 </dd>
                                         </dl>
                                     
@@ -102,6 +110,7 @@
                         <div class="section field details">
                             <h3><a name="field_detail">Properties</a></h3>
                             <div class="content">
+                                    <div class="">
                                     <h4><a name="body">body</a>
                                         <code>- HTMLElement</code>
                                     </h4>
@@ -115,25 +124,33 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="browser">browser</a>
                                         <code>- String</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            String representing the current user-agent browser
+                                            String representing the user-agent of the browser
                                         </div>
                                     </div>
      
                                         
 
+                                    <div class="deprecated">
+                                        <strong>Deprecated: </strong>Use YAHOO.env.ua
+                                    </div>        
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="cfg">cfg</a>
                                         <code>- YAHOO.util.Config</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            The Module's Config object used for monitoring configuration properties.
+                                            The Module's Config object used for monitoring 
+configuration properties.
                                         </div>
                                     </div>
      
@@ -141,6 +158,8 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="contructor">contructor</a>
                                         <code>- Function</code>
                                     </h4>
@@ -154,6 +173,23 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="DEFAULT_CONFIG">DEFAULT_CONFIG</a>
+                                        <code>- private final Object</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Constant representing the Module's configuration properties
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="element">element</a>
                                         <code>- HTMLElement</code>
                                     </h4>
@@ -167,6 +203,23 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="EVENT_TYPES">EVENT_TYPES</a>
+                                        <code>- private final Object</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Constant representing the name of the Module's events
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="footer">footer</a>
                                         <code>- HTMLElement</code>
                                     </h4>
@@ -180,6 +233,8 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="header">header</a>
                                         <code>- HTMLElement</code>
                                     </h4>
@@ -193,6 +248,8 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="id">id</a>
                                         <code>- String</code>
                                     </h4>
@@ -206,25 +263,35 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="imageRoot">imageRoot</a>
                                         <code>- String</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            The String representing the image root
+                                            A string representing the root path for all images created by
+a Module instance.
                                         </div>
                                     </div>
      
                                         
 
+                                    <div class="deprecated">
+                                        <strong>Deprecated: </strong>It is recommend that any images for a Module be applied
+via CSS using the "background-image" property.
+                                    </div>        
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="isSecure">isSecure</a>
                                         <code>- Boolean</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Boolean representing whether or not the current browsing context is secure (https)
+                                            Boolean representing whether or not the current browsing context is 
+secure (https)
                                         </div>
                                     </div>
      
@@ -232,6 +299,8 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="platform">platform</a>
                                         <code>- String</code>
                                     </h4>
@@ -245,32 +314,8 @@
 
 
                                     <hr />
-                                    <h4><a name="YAHOO.widget.Module._DEFAULT_CONFIG">YAHOO.widget.Module._DEFAULT_CONFIG</a>
-                                        <code>- private final Object</code>
-                                    </h4>
-                                    <div class="detail">
-                                        <div class="description">
-                                            Constant representing the Module's configuration properties
-                                        </div>
                                     </div>
-     
-                                        
-
-
-                                    <hr />
-                                    <h4><a name="YAHOO.widget.Module._EVENT_TYPES">YAHOO.widget.Module._EVENT_TYPES</a>
-                                        <code>- private final Object</code>
-                                    </h4>
-                                    <div class="detail">
-                                        <div class="description">
-                                            Constant representing the name of the Module's events
-                                        </div>
-                                    </div>
-     
-                                        
-
-
-                                    <hr />
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Module.CSS_BODY">YAHOO.widget.Module.CSS_BODY</a>
                                         <code>- static final String</code>
                                     </h4>
@@ -284,6 +329,8 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Module.CSS_FOOTER">YAHOO.widget.Module.CSS_FOOTER</a>
                                         <code>- static final String</code>
                                     </h4>
@@ -297,6 +344,8 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Module.CSS_HEADER">YAHOO.widget.Module.CSS_HEADER</a>
                                         <code>- static final String</code>
                                     </h4>
@@ -310,6 +359,8 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Module.CSS_MODULE">YAHOO.widget.Module.CSS_MODULE</a>
                                         <code>- static final String</code>
                                     </h4>
@@ -323,6 +374,8 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Module.IMG_ROOT">YAHOO.widget.Module.IMG_ROOT</a>
                                         <code>- static final String</code>
                                     </h4>
@@ -336,6 +389,8 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Module.IMG_ROOT_SSL">YAHOO.widget.Module.IMG_ROOT_SSL</a>
                                         <code>- static final String</code>
                                     </h4>
@@ -349,12 +404,15 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="YAHOO.widget.Module.RESIZE_MONITOR_SECURE_URL">YAHOO.widget.Module.RESIZE_MONITOR_SECURE_URL</a>
                                         <code>- static final String</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Constant representing the url for the "src" attribute of the iframe used to monitor changes to the browser's base font size
+                                            Constant representing the url for the "src" attribute of the iframe 
+used to monitor changes to the browser's base font size
                                         </div>
                                     </div>
      
@@ -362,6 +420,7 @@
 
 
                                     <hr />
+                                    </div>
 
 
                             </div>
@@ -371,6 +430,7 @@
                         <div class="section method details">
                             <h3><a name="methodDetails">Methods</a></h3>
                             <div class="content">
+                                    <div class="">
                                     <h4>
                                         <a name="appendToBody">appendToBody</a></h4>
                                     <div class="detail">
@@ -390,7 +450,8 @@
                                         </code>
                                         
                                         <div class="description">
-                                            Appends the passed element to the body. If no body is present, one will be automatically created.
+                                            Appends the passed element to the body. If no body is present, one 
+will be automatically created.
                                         </div>
 
                                         <div class="description">
@@ -399,7 +460,7 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>element &lt;HTMLElement&gt;</code>
-                                                            	The element to append to the body
+                                                             The element to append to the body
                                                         </dd>
                                                 </dl>
 
@@ -415,6 +476,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="appendToFooter">appendToFooter</a></h4>
                                     <div class="detail">
@@ -434,7 +497,8 @@
                                         </code>
                                         
                                         <div class="description">
-                                            Appends the passed element to the footer. If no footer is present, one will be automatically created.
+                                            Appends the passed element to the footer. If no footer is present, 
+one will be automatically created.
                                         </div>
 
                                         <div class="description">
@@ -443,7 +507,7 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>element &lt;HTMLElement&gt;</code>
-                                                            	The element to append to the footer
+                                                             The element to append to the footer
                                                         </dd>
                                                 </dl>
 
@@ -459,6 +523,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="appendToHeader">appendToHeader</a></h4>
                                     <div class="detail">
@@ -478,7 +544,8 @@
                                         </code>
                                         
                                         <div class="description">
-                                            Appends the passed element to the header. If no header is present, one will be automatically created.
+                                            Appends the passed element to the header. If no header is present, 
+one will be automatically created.
                                         </div>
 
                                         <div class="description">
@@ -487,7 +554,7 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>element &lt;HTMLElement&gt;</code>
-                                                            	The element to append to the header
+                                                             The element to append to the header
                                                         </dd>
                                                 </dl>
 
@@ -503,6 +570,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configMonitorResize">configMonitorResize</a></h4>
                                     <div class="detail">
@@ -539,15 +608,17 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>type &lt;String&gt;</code>
-                                                            	The CustomEvent type (usually the property name)
+                                                             The CustomEvent type (usually the property name)
                                                         </dd>
                                                         <dd>
                                                             <code>args &lt;Object[]&gt;</code>
-                                                            	The CustomEvent arguments. For configuration handlers, args[0] will equal the newly applied value for the property.
+                                                             The CustomEvent arguments. For configuration 
+handlers, args[0] will equal the newly applied value for the property.
                                                         </dd>
                                                         <dd>
                                                             <code>obj &lt;Object&gt;</code>
-                                                            	The scope object. For configuration handlers, this will usually equal the owner.
+                                                             The scope object. For configuration handlers, 
+this will usually equal the owner.
                                                         </dd>
                                                 </dl>
 
@@ -563,6 +634,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="configVisible">configVisible</a></h4>
                                     <div class="detail">
@@ -590,7 +663,9 @@
                                         </code>
                                         
                                         <div class="description">
-                                            Default event handler for changing the visibility property of a Module. By default, this is achieved by switching the "display" style between "block" and "none".
+                                            Default event handler for changing the visibility property of a 
+Module. By default, this is achieved by switching the "display" style 
+between "block" and "none".
 This method is responsible for firing showEvent and hideEvent.
                                         </div>
 
@@ -600,15 +675,17 @@ This method is responsible for firing showEvent and hideEvent.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>type &lt;String&gt;</code>
-                                                            	The CustomEvent type (usually the property name)
+                                                             The CustomEvent type (usually the property name)
                                                         </dd>
                                                         <dd>
                                                             <code>args &lt;Object[]&gt;</code>
-                                                            	The CustomEvent arguments. For configuration handlers, args[0] will equal the newly applied value for the property.
+                                                             The CustomEvent arguments. For configuration 
+handlers, args[0] will equal the newly applied value for the property.
                                                         </dd>
                                                         <dd>
                                                             <code>obj &lt;Object&gt;</code>
-                                                            	The scope object. For configuration handlers, this will usually equal the owner.
+                                                             The scope object. For configuration handlers, 
+this will usually equal the owner.
                                                         </dd>
                                                 </dl>
 
@@ -624,6 +701,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="destroy">destroy</a></h4>
                                     <div class="detail">
@@ -638,7 +717,8 @@ This method is responsible for firing showEvent and hideEvent.
                                         </code>
                                         
                                         <div class="description">
-                                            Removes the Module element from the DOM and sets all child elements to null.
+                                            Removes the Module element from the DOM and sets all child elements 
+to null.
                                         </div>
 
                                         <div class="description">
@@ -656,6 +736,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="hide">hide</a></h4>
                                     <div class="detail">
@@ -670,7 +752,9 @@ This method is responsible for firing showEvent and hideEvent.
                                         </code>
                                         
                                         <div class="description">
-                                            Hides the Module element by setting the visible configuration property to false. Also fires two events: beforeHideEvent prior to the visibility change, and hideEvent after.
+                                            Hides the Module element by setting the visible configuration 
+property to false. Also fires two events: beforeHideEvent prior to 
+the visibility change, and hideEvent after.
                                         </div>
 
                                         <div class="description">
@@ -688,6 +772,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="init">init</a></h4>
                                     <div class="detail">
@@ -713,7 +799,11 @@ This method is responsible for firing showEvent and hideEvent.
                                         </code>
                                         
                                         <div class="description">
-                                            The Module class's initialization method, which is executed for Module and all of its subclasses. This method is automatically called by the constructor, and  sets up all DOM references for pre-existing markup, and creates required markup if it is not already present.
+                                            The Module class's initialization method, which is executed for
+Module and all of its subclasses. This method is automatically 
+called by the constructor, and  sets up all DOM references for 
+pre-existing markup, and creates required markup if it is not 
+already present.
                                         </div>
 
                                         <div class="description">
@@ -722,15 +812,17 @@ This method is responsible for firing showEvent and hideEvent.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>el &lt;String&gt;</code>
-                                                            	The element ID representing the Module <em>OR</em>
+                                                             The element ID representing the Module <em>OR</em>
                                                         </dd>
                                                         <dd>
                                                             <code>el &lt;HTMLElement&gt;</code>
-                                                            	The element representing the Module
+                                                             The element representing the Module
                                                         </dd>
                                                         <dd>
                                                             <code>userConfig &lt;Object&gt;</code>
-                                                            	The configuration Object literal containing the configuration that should be set for this module. See configuration documentation for more details.
+                                                             The configuration Object literal 
+containing the configuration that should be set for this module. 
+See configuration documentation for more details.
                                                         </dd>
                                                 </dl>
 
@@ -746,6 +838,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="initDefaultConfig">initDefaultConfig</a></h4>
                                     <div class="detail">
@@ -760,7 +854,8 @@ This method is responsible for firing showEvent and hideEvent.
                                         </code>
                                         
                                         <div class="description">
-                                            Initializes the custom events for Module which are fired automatically at appropriate times by the Module class.
+                                            Initializes the custom events for Module which are fired 
+automatically at appropriate times by the Module class.
                                         </div>
 
                                         <div class="description">
@@ -778,6 +873,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="initEvents">initEvents</a></h4>
                                     <div class="detail">
@@ -792,7 +889,8 @@ This method is responsible for firing showEvent and hideEvent.
                                         </code>
                                         
                                         <div class="description">
-                                            Initializes the custom events for Module which are fired automatically at appropriate times by the Module class.
+                                            Initializes the custom events for Module which are fired 
+automatically at appropriate times by the Module class.
                                         </div>
 
                                         <div class="description">
@@ -810,6 +908,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="initResizeMonitor">initResizeMonitor</a></h4>
                                     <div class="detail">
@@ -824,7 +924,8 @@ This method is responsible for firing showEvent and hideEvent.
                                         </code>
                                         
                                         <div class="description">
-                                            Initialized an empty IFRAME that is placed out of the visible area that can be used to detect text resize.
+                                            Initialized an empty IFRAME that is placed out of the visible area 
+that can be used to detect text resize.
                                         </div>
 
                                         <div class="description">
@@ -842,6 +943,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="onDomResize">onDomResize</a></h4>
                                     <div class="detail">
@@ -874,11 +977,11 @@ This method is responsible for firing showEvent and hideEvent.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>e &lt;DOMEvent&gt;</code>
-                                                            	The DOM resize event
+                                                             The DOM resize event
                                                         </dd>
                                                         <dd>
                                                             <code>obj &lt;Object&gt;</code>
-                                                            	The scope object passed to the handler
+                                                             The scope object passed to the handler
                                                         </dd>
                                                 </dl>
 
@@ -894,6 +997,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="render">render</a></h4>
                                     <div class="detail">
@@ -919,7 +1024,13 @@ This method is responsible for firing showEvent and hideEvent.
                                         </code>
                                         
                                         <div class="description">
-                                            Renders the Module by inserting the elements that are not already in the main Module into their correct places. Optionally appends the Module to the specified node prior to the render's execution. NOTE: For Modules without existing markup, the appendToNode argument is REQUIRED. If this argument is ommitted and the current element is not present in the document, the function will return false, indicating that the render was a failure.
+                                            Renders the Module by inserting the elements that are not already 
+in the main Module into their correct places. Optionally appends 
+the Module to the specified node prior to the render's execution. 
+NOTE: For Modules without existing markup, the appendToNode argument 
+is REQUIRED. If this argument is ommitted and the current element is 
+not present in the document, the function will return false, 
+indicating that the render was a failure.
                                         </div>
 
                                         <div class="description">
@@ -928,15 +1039,18 @@ This method is responsible for firing showEvent and hideEvent.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>appendToNode &lt;String&gt;</code>
-                                                            	The element id to which the Module should be appended to prior to rendering <em>OR</em>
+                                                             The element id to which the Module 
+should be appended to prior to rendering <em>OR</em>
                                                         </dd>
                                                         <dd>
                                                             <code>appendToNode &lt;HTMLElement&gt;</code>
-                                                            	The element to which the Module should be appended to prior to rendering
+                                                             The element to which the Module 
+should be appended to prior to rendering
                                                         </dd>
                                                         <dd>
                                                             <code>moduleElement &lt;HTMLElement&gt;</code>
-                                                            	OPTIONAL. The element that represents the actual Standard Module container.
+                                                             OPTIONAL. The element that 
+represents the actual Standard Module container.
                                                         </dd>
                                                 </dl>
 
@@ -952,6 +1066,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="setBody">setBody</a></h4>
                                     <div class="detail">
@@ -973,7 +1089,9 @@ This method is responsible for firing showEvent and hideEvent.
                                         </code>
                                         
                                         <div class="description">
-                                            Sets the Module's body content to the HTML specified, or appends the passed element to the body. If no body is present, one will be automatically created.
+                                            Sets the Module's body content to the HTML specified, or appends the
+passed element to the body. If no body is present, one will be 
+automatically created.
                                         </div>
 
                                         <div class="description">
@@ -982,11 +1100,11 @@ This method is responsible for firing showEvent and hideEvent.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>bodyContent &lt;String&gt;</code>
-                                                            	The HTML used to set the body <em>OR</em>
+                                                             The HTML used to set the body <em>OR</em>
                                                         </dd>
                                                         <dd>
                                                             <code>bodyContent &lt;HTMLElement&gt;</code>
-                                                            	The HTMLElement to append to the body
+                                                             The HTMLElement to append to the body
                                                         </dd>
                                                 </dl>
 
@@ -1002,6 +1120,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="setFooter">setFooter</a></h4>
                                     <div class="detail">
@@ -1023,7 +1143,9 @@ This method is responsible for firing showEvent and hideEvent.
                                         </code>
                                         
                                         <div class="description">
-                                            Sets the Module's footer content to the HTML specified, or appends the passed element to the footer. If no footer is present, one will be automatically created.
+                                            Sets the Module's footer content to the HTML specified, or appends 
+the passed element to the footer. If no footer is present, one will 
+be automatically created.
                                         </div>
 
                                         <div class="description">
@@ -1032,11 +1154,13 @@ This method is responsible for firing showEvent and hideEvent.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>footerContent &lt;String&gt;</code>
-                                                            	The HTML used to set the footer <em>OR</em>
+                                                             The HTML used to set the footer 
+<em>OR</em>
                                                         </dd>
                                                         <dd>
                                                             <code>footerContent &lt;HTMLElement&gt;</code>
-                                                            	The HTMLElement to append to the footer
+                                                             The HTMLElement to append to 
+the footer
                                                         </dd>
                                                 </dl>
 
@@ -1052,6 +1176,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="setHeader">setHeader</a></h4>
                                     <div class="detail">
@@ -1073,7 +1199,9 @@ This method is responsible for firing showEvent and hideEvent.
                                         </code>
                                         
                                         <div class="description">
-                                            Sets the Module's header content to the HTML specified, or appends the passed element to the header. If no header is present, one will be automatically created.
+                                            Sets the Module's header content to the HTML specified, or appends 
+the passed element to the header. If no header is present, one will 
+be automatically created.
                                         </div>
 
                                         <div class="description">
@@ -1082,11 +1210,13 @@ This method is responsible for firing showEvent and hideEvent.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>headerContent &lt;String&gt;</code>
-                                                            	The HTML used to set the header <em>OR</em>
+                                                             The HTML used to set the header 
+<em>OR</em>
                                                         </dd>
                                                         <dd>
                                                             <code>headerContent &lt;HTMLElement&gt;</code>
-                                                            	The HTMLElement to append to the header
+                                                             The HTMLElement to append to 
+the header
                                                         </dd>
                                                 </dl>
 
@@ -1102,6 +1232,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="show">show</a></h4>
                                     <div class="detail">
@@ -1116,7 +1248,9 @@ This method is responsible for firing showEvent and hideEvent.
                                         </code>
                                         
                                         <div class="description">
-                                            Shows the Module element by setting the visible configuration property to true. Also fires two events: beforeShowEvent prior to the visibility change, and showEvent after.
+                                            Shows the Module element by setting the visible configuration 
+property to true. Also fires two events: beforeShowEvent prior to 
+the visibility change, and showEvent after.
                                         </div>
 
                                         <div class="description">
@@ -1134,6 +1268,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="toString">toString</a></h4>
                                     <div class="detail">
@@ -1166,13 +1302,15 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
                             </div>
                         </div>
 
 
                         <div class="section method details">
-                            <h3><a name="methodDetails">Events</a></h3>
+                            <h3><a name="eventDetails">Events</a></h3>
                             <div class="content">
+                                    <div class="">
                                     <h4>
                                         <a name="appendEvent">appendEvent</a></h4>
                                     <div class="detail">
@@ -1200,6 +1338,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="beforeHideEvent">beforeHideEvent</a></h4>
                                     <div class="detail">
@@ -1227,6 +1367,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="beforeInitEvent">beforeInitEvent</a></h4>
                                     <div class="detail">
@@ -1257,7 +1399,8 @@ This method is responsible for firing showEvent and hideEvent.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>classRef &lt;class&gt;</code>
-                                                            	class reference of the initializing class, such as this.beforeInitEvent.fire(YAHOO.widget.Module)
+                                                             class reference of the initializing 
+class, such as this.beforeInitEvent.fire(Module)
                                                         </dd>
                                                 </dl>
 
@@ -1266,6 +1409,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="beforeRenderEvent">beforeRenderEvent</a></h4>
                                     <div class="detail">
@@ -1293,6 +1438,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="beforeShowEvent">beforeShowEvent</a></h4>
                                     <div class="detail">
@@ -1320,6 +1467,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="changeBodyEvent">changeBodyEvent</a></h4>
                                     <div class="detail">
@@ -1350,7 +1499,8 @@ This method is responsible for firing showEvent and hideEvent.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>content &lt;String/HTMLElement&gt;</code>
-                                                            	String/element representing the new body content
+                                                             String/element representing 
+the new body content
                                                         </dd>
                                                 </dl>
 
@@ -1359,6 +1509,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="changeContentEvent">changeContentEvent</a></h4>
                                     <div class="detail">
@@ -1386,6 +1538,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="changeFooterEvent">changeFooterEvent</a></h4>
                                     <div class="detail">
@@ -1406,7 +1560,8 @@ This method is responsible for firing showEvent and hideEvent.
                                         </code>
                                         
                                         <div class="description">
-                                            CustomEvent fired when the footer content of the Module is modified
+                                            CustomEvent fired when the footer content of the Module 
+is modified
                                         </div>
 
                                         <div class="description">
@@ -1416,7 +1571,8 @@ This method is responsible for firing showEvent and hideEvent.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>content &lt;String/HTMLElement&gt;</code>
-                                                            	String/element representing the new footer content
+                                                             String/element representing 
+the new footer content
                                                         </dd>
                                                 </dl>
 
@@ -1425,6 +1581,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="changeHeaderEvent">changeHeaderEvent</a></h4>
                                     <div class="detail">
@@ -1445,7 +1603,8 @@ This method is responsible for firing showEvent and hideEvent.
                                         </code>
                                         
                                         <div class="description">
-                                            CustomEvent fired when the header content of the Module is modified
+                                            CustomEvent fired when the header content of the Module 
+is modified
                                         </div>
 
                                         <div class="description">
@@ -1455,7 +1614,8 @@ This method is responsible for firing showEvent and hideEvent.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>content &lt;String/HTMLElement&gt;</code>
-                                                            	String/element representing the new header content
+                                                             String/element representing 
+the new header content
                                                         </dd>
                                                 </dl>
 
@@ -1464,6 +1624,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="destroyEvent">destroyEvent</a></h4>
                                     <div class="detail">
@@ -1491,6 +1653,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="hideEvent">hideEvent</a></h4>
                                     <div class="detail">
@@ -1518,6 +1682,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="initEvent">initEvent</a></h4>
                                     <div class="detail">
@@ -1548,7 +1714,8 @@ This method is responsible for firing showEvent and hideEvent.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>classRef &lt;class&gt;</code>
-                                                            	class reference of the initializing class, such as this.beforeInitEvent.fire(YAHOO.widget.Module)
+                                                             class reference of the initializing 
+class, such as this.beforeInitEvent.fire(Module)
                                                         </dd>
                                                 </dl>
 
@@ -1557,6 +1724,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="renderEvent">renderEvent</a></h4>
                                     <div class="detail">
@@ -1584,6 +1753,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="showEvent">showEvent</a></h4>
                                     <div class="detail">
@@ -1611,6 +1782,8 @@ This method is responsible for firing showEvent and hideEvent.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="YAHOO.widget.Module.textResizeEvent">YAHOO.widget.Module.textResizeEvent</a></h4>
                                     <div class="detail">
@@ -1627,7 +1800,8 @@ This method is responsible for firing showEvent and hideEvent.
                                         
                                         <div class="description">
                                             Singleton CustomEvent fired when the font size is changed in the browser.
-Opera's "zoom" functionality currently does not support text size detection.
+Opera's "zoom" functionality currently does not support text 
+size detection.
                                         </div>
 
                                         <div class="description">
@@ -1639,6 +1813,7 @@ Opera's "zoom" functionality currently does not support text size detection.
 
                                     </div>
                                     <hr />
+                                    </div>
                             </div>
                         </div>
 
@@ -1647,12 +1822,14 @@ Opera's "zoom" functionality currently does not support text size detection.
                         <div class="section field details">
                             <h3><a name="field_detail">Configuration Attributes</a></h3>
                             <div class="content">
+                                    <div class="">
                                     <h4><a name="effect">effect</a>
                                         <code>- Object</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Object or array of objects representing the ContainerEffect classes that are active for animating the container.
+                                            Object or array of objects representing the ContainerEffect 
+classes that are active for animating the container.
                                         </div>
                                     </div>
  
@@ -1662,12 +1839,15 @@ Opera's "zoom" functionality currently does not support text size detection.
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="monitorresize">monitorresize</a>
                                         <code>- Boolean</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Specifies whether to create a special proxy iframe to monitor for user font resizing in the document
+                                            Specifies whether to create a special proxy iframe to monitor 
+for user font resizing in the document
                                         </div>
                                     </div>
  
@@ -1677,6 +1857,8 @@ Opera's "zoom" functionality currently does not support text size detection.
                                     </div>        
 
                                     <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="visible">visible</a>
                                         <code>- Boolean</code>
                                     </h4>
@@ -1692,6 +1874,7 @@ Opera's "zoom" functionality currently does not support text size detection.
                                     </div>        
 
                                     <hr />
+                                    </div>        
 
                             </div>
                         </div>
@@ -1714,6 +1897,8 @@ Opera's "zoom" functionality currently does not support text size detection.
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
+
                                 <li class=""><a href="module_connection.html">connection</a></li>
 
                                 <li class="selected"><a href="module_container.html">container</a></li>
@@ -1726,11 +1911,15 @@ Opera's "zoom" functionality currently does not support text size detection.
 
                                 <li class=""><a href="module_dragdrop.html">dragdrop</a></li>
 
+                                <li class=""><a href="module_editor.html">editor</a></li>
+
                                 <li class=""><a href="module_element.html">element</a></li>
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
                                 <li class=""><a href="module_history.html">history</a></li>
+
+                                <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
@@ -1743,6 +1932,10 @@ Opera's "zoom" functionality currently does not support text size detection.
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
+
+                                <li class=""><a href="module_yuiloader.html">yuiloader</a></li>
+
+                                <li class=""><a href="module_yuitest.html">yuitest</a></li>
                         </ul>
                     </div>
 
@@ -1779,64 +1972,64 @@ Opera's "zoom" functionality currently does not support text size detection.
                     <div class="module">
                         <h4>Properties</h4>
                         <ul class="content">        
-                                <li><a href="#body">body</a>
+                                <li class=""><a href="#body">body</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#browser">browser</a>
+                                <li class=""><a href="#browser">browser</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#cfg">cfg</a>
+                                <li class=""><a href="#cfg">cfg</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#contructor">contructor</a>
+                                <li class=""><a href="#contructor">contructor</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#element">element</a>
+                                <li class="private"><a href="#DEFAULT_CONFIG">DEFAULT_CONFIG</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#footer">footer</a>
+                                <li class=""><a href="#element">element</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#header">header</a>
+                                <li class="private"><a href="#EVENT_TYPES">EVENT_TYPES</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#id">id</a>
+                                <li class=""><a href="#footer">footer</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#imageRoot">imageRoot</a>
+                                <li class=""><a href="#header">header</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#isSecure">isSecure</a>
+                                <li class=""><a href="#id">id</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#platform">platform</a>
+                                <li class=""><a href="#imageRoot">imageRoot</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Module._DEFAULT_CONFIG">YAHOO.widget.Module._DEFAULT_CONFIG</a>
+                                <li class=""><a href="#isSecure">isSecure</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Module._EVENT_TYPES">YAHOO.widget.Module._EVENT_TYPES</a>
+                                <li class=""><a href="#platform">platform</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Module.CSS_BODY">YAHOO.widget.Module.CSS_BODY</a>
+                                <li class=""><a href="#YAHOO.widget.Module.CSS_BODY">YAHOO.widget.Module.CSS_BODY</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Module.CSS_FOOTER">YAHOO.widget.Module.CSS_FOOTER</a>
+                                <li class=""><a href="#YAHOO.widget.Module.CSS_FOOTER">YAHOO.widget.Module.CSS_FOOTER</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Module.CSS_HEADER">YAHOO.widget.Module.CSS_HEADER</a>
+                                <li class=""><a href="#YAHOO.widget.Module.CSS_HEADER">YAHOO.widget.Module.CSS_HEADER</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Module.CSS_MODULE">YAHOO.widget.Module.CSS_MODULE</a>
+                                <li class=""><a href="#YAHOO.widget.Module.CSS_MODULE">YAHOO.widget.Module.CSS_MODULE</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Module.IMG_ROOT">YAHOO.widget.Module.IMG_ROOT</a>
+                                <li class=""><a href="#YAHOO.widget.Module.IMG_ROOT">YAHOO.widget.Module.IMG_ROOT</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Module.IMG_ROOT_SSL">YAHOO.widget.Module.IMG_ROOT_SSL</a>
+                                <li class=""><a href="#YAHOO.widget.Module.IMG_ROOT_SSL">YAHOO.widget.Module.IMG_ROOT_SSL</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li><a href="#YAHOO.widget.Module.RESIZE_MONITOR_SECURE_URL">YAHOO.widget.Module.RESIZE_MONITOR_SECURE_URL</a>
+                                <li class=""><a href="#YAHOO.widget.Module.RESIZE_MONITOR_SECURE_URL">YAHOO.widget.Module.RESIZE_MONITOR_SECURE_URL</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
                         </ul>
@@ -1845,58 +2038,58 @@ Opera's "zoom" functionality currently does not support text size detection.
                     <div class="module">
                         <h4>Methods</h4>
                         <ul class="content">        
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#appendToBody">appendToBody</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#appendToFooter">appendToFooter</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#appendToHeader">appendToHeader</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configMonitorResize">configMonitorResize</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configVisible">configVisible</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#destroy">destroy</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#hide">hide</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#init">init</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#initDefaultConfig">initDefaultConfig</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#initEvents">initEvents</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#initResizeMonitor">initResizeMonitor</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#onDomResize">onDomResize</a>
                                 </li>
-                                <li><!--<code>Boolean</code>-->
+                                <li class=""><!--<code>Boolean</code>-->
                                 <a href="#render">render</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#setBody">setBody</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#setFooter">setFooter</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#setHeader">setHeader</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#show">show</a>
                                 </li>
-                                <li><!--<code>String</code>-->
+                                <li class=""><!--<code>String</code>-->
                                 <a href="#toString">toString</a>
                                 </li>
                         </ul>
@@ -1905,49 +2098,49 @@ Opera's "zoom" functionality currently does not support text size detection.
                     <div class="module">
                         <h4>Events</h4>
                         <ul class="content">        
-                                <li>
+                                <li class="">
                                 <a href="#appendEvent">appendEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#beforeHideEvent">beforeHideEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#beforeInitEvent">beforeInitEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#beforeRenderEvent">beforeRenderEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#beforeShowEvent">beforeShowEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#changeBodyEvent">changeBodyEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#changeContentEvent">changeContentEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#changeFooterEvent">changeFooterEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#changeHeaderEvent">changeHeaderEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#destroyEvent">destroyEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#hideEvent">hideEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#initEvent">initEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#renderEvent">renderEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#showEvent">showEvent</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#YAHOO.widget.Module.textResizeEvent">YAHOO.widget.Module.textResizeEvent</a>
                                 </li>
                         </ul>
@@ -1956,13 +2149,13 @@ Opera's "zoom" functionality currently does not support text size detection.
                     <div class="module">
                         <h4>Configuration Attributes</h4>
                         <ul class="content">        
-                                <li>
+                                <li class="">
                                 <a href="#effect">effect</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#monitorresize">monitorresize</a>
                                 </li>
-                                <li>
+                                <li class="">
                                 <a href="#visible">visible</a>
                                 </li>
                         </ul>

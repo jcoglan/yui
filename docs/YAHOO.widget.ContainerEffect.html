@@ -3,26 +3,33 @@
 <head>
 	<title>API: container  YAHOO.widget.ContainerEffect   (YUI Library)</title>
 	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
 </head>
 
 <body id="yahoo-com">
+
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
         <h1>Yahoo! UI Library</h1>
-        <h3>Container&nbsp; <span class="subtitle">2.2.2</span></h3>
+        <h3>Container&nbsp; <span class="subtitle">2.3.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_container.html">container</a>
                  &gt; YAHOO.widget.ContainerEffect 
                 
             </p>
+
 	</div>
 
 	<div id="bd">
 		<div id="yui-main">
 			<div class="yui-b">
-
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> Show Private</span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> Show Protected</span>
+            </form>
 
                     <h2>
                         
@@ -44,7 +51,8 @@
   
 
                     <div class="summary description">
-                        ContainerEffect encapsulates animation transitions that are executed when an Overlay is shown or hidden.
+                        ContainerEffect encapsulates animation transitions that are executed when 
+an Overlay is shown or hidden.
                     </div>
 
                         <div class="section constructor details">
@@ -79,31 +87,40 @@
                                                     <code>overlay
                                                     &lt;YAHOO.widget.Overlay&gt; 
                                                     </code>
-                                                    		The Overlay that the animation should be associated with
+                                                     The Overlay that the animation 
+should be associated with
                                                 </dd>
                                                 <dd>
                                                     <code>attrIn
                                                     &lt;Object&gt; 
                                                     </code>
-                                                    		The object literal representing the animation arguments to be used for the animate-in transition. The arguments for this literal are: attributes(object, see YAHOO.util.Anim for description), duration(Number), and method(i.e. YAHOO.util.Easing.easeIn).
+                                                     The object literal representing the animation 
+arguments to be used for the animate-in transition. The arguments for 
+this literal are: attributes(object, see YAHOO.util.Anim for description), 
+duration(Number), and method(i.e. Easing.easeIn).
                                                 </dd>
                                                 <dd>
                                                     <code>attrOut
                                                     &lt;Object&gt; 
                                                     </code>
-                                                    		The object literal representing the animation arguments to be used for the animate-out transition. The arguments for this literal are: attributes(object, see YAHOO.util.Anim for description), duration(Number), and method(i.e. YAHOO.util.Easing.easeIn).
+                                                     The object literal representing the animation 
+arguments to be used for the animate-out transition. The arguments for  
+this literal are: attributes(object, see YAHOO.util.Anim for description), 
+duration(Number), and method(i.e. Easing.easeIn).
                                                 </dd>
                                                 <dd>
                                                     <code>targetElement
                                                     &lt;HTMLElement&gt; 
                                                     </code>
-                                                    	Optional. The target element that should be animated during the transition. Defaults to overlay.element.
+                                                     Optional. The target element that  
+should be animated during the transition. Defaults to overlay.element.
                                                 </dd>
                                                 <dd>
                                                     <code>Optional.
                                                     &lt;class&gt; 
                                                     </code>
-                                                     The animation class to instantiate. Defaults to YAHOO.util.Anim. Other options include YAHOO.util.Motion.
+                                                     The animation class to instantiate. Defaults to 
+YAHOO.util.Anim. Other options include YAHOO.util.Motion.
                                                 </dd>
                                         </dl>
                                     
@@ -116,6 +133,7 @@
                         <div class="section field details">
                             <h3><a name="field_detail">Properties</a></h3>
                             <div class="content">
+                                    <div class="">
                                     <h4><a name="animClass">animClass</a>
                                         <code>- class</code>
                                     </h4>
@@ -129,6 +147,8 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="attrIn">attrIn</a>
                                         <code>- Object</code>
                                     </h4>
@@ -142,6 +162,8 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="attrOut">attrOut</a>
                                         <code>- Object</code>
                                     </h4>
@@ -155,6 +177,8 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="overlay">overlay</a>
                                         <code>- YAHOO.widget.Overlay</code>
                                     </h4>
@@ -168,6 +192,8 @@
 
 
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="targetElement">targetElement</a>
                                         <code>- HTMLElement</code>
                                     </h4>
@@ -181,6 +207,7 @@
 
 
                                     <hr />
+                                    </div>
 
 
                             </div>
@@ -190,6 +217,7 @@
                         <div class="section method details">
                             <h3><a name="methodDetails">Methods</a></h3>
                             <div class="content">
+                                    <div class="">
                                     <h4>
                                         <a name="animateIn">animateIn</a></h4>
                                     <div class="detail">
@@ -222,6 +250,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="animateOut">animateOut</a></h4>
                                     <div class="detail">
@@ -254,6 +284,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="FADE">FADE</a></h4>
                                     <div class="detail">
@@ -261,7 +293,7 @@
                                         
                                          static 
                                         
-                                        ContainerEffect
+                                        YAHOO.widget.ContainerEffect
                                             <strong>FADE</strong>
                                            (
                                                 
@@ -277,7 +309,8 @@
                                         </code>
                                         
                                         <div class="description">
-                                            A pre-configured ContainerEffect instance that can be used for fading an overlay in and out.
+                                            A pre-configured ContainerEffect instance that can be used for fading 
+an overlay in and out.
                                         </div>
 
                                         <div class="description">
@@ -285,19 +318,19 @@
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>overlay &lt;Overlay&gt;</code>
-                                                            	The Overlay object to animate
+                                                            <code>overlay &lt;YAHOO.widget.Overlay&gt;</code>
+                                                             The Overlay object to animate
                                                         </dd>
                                                         <dd>
                                                             <code>dur &lt;Number&gt;</code>
-                                                            	The duration of the animation
+                                                             The duration of the animation
                                                         </dd>
                                                 </dl>
 
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
-                                                        ContainerEffect
+                                                        YAHOO.widget.ContainerEffect
                                                     </code></dt>
                                                     <dd>The configured ContainerEffect object</dd>
                                                 </dl>
@@ -306,6 +339,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="handleCompleteAnimateIn">handleCompleteAnimateIn</a></h4>
                                     <div class="detail">
@@ -342,15 +377,15 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>type &lt;String&gt;</code>
-                                                            	The CustomEvent type
+                                                             The CustomEvent type
                                                         </dd>
                                                         <dd>
                                                             <code>args &lt;Object[]&gt;</code>
-                                                            	The CustomEvent arguments
+                                                             The CustomEvent arguments
                                                         </dd>
                                                         <dd>
                                                             <code>obj &lt;Object&gt;</code>
-                                                            	The scope object
+                                                             The scope object
                                                         </dd>
                                                 </dl>
 
@@ -366,6 +401,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="handleCompleteAnimateOut">handleCompleteAnimateOut</a></h4>
                                     <div class="detail">
@@ -402,15 +439,15 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>type &lt;String&gt;</code>
-                                                            	The CustomEvent type
+                                                             The CustomEvent type
                                                         </dd>
                                                         <dd>
                                                             <code>args &lt;Object[]&gt;</code>
-                                                            	The CustomEvent arguments
+                                                             The CustomEvent arguments
                                                         </dd>
                                                         <dd>
                                                             <code>obj &lt;Object&gt;</code>
-                                                            	The scope object
+                                                             The scope object
                                                         </dd>
                                                 </dl>
 
@@ -426,6 +463,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="handleStartAnimateIn">handleStartAnimateIn</a></h4>
                                     <div class="detail">
@@ -462,15 +501,15 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>type &lt;String&gt;</code>
-                                                            	The CustomEvent type
+                                                             The CustomEvent type
                                                         </dd>
                                                         <dd>
                                                             <code>args &lt;Object[]&gt;</code>
-                                                            	The CustomEvent arguments
+                                                             The CustomEvent arguments
                                                         </dd>
                                                         <dd>
                                                             <code>obj &lt;Object&gt;</code>
-                                                            	The scope object
+                                                             The scope object
                                                         </dd>
                                                 </dl>
 
@@ -486,6 +525,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="handleStartAnimateOut">handleStartAnimateOut</a></h4>
                                     <div class="detail">
@@ -522,15 +563,15 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>type &lt;String&gt;</code>
-                                                            	The CustomEvent type
+                                                             The CustomEvent type
                                                         </dd>
                                                         <dd>
                                                             <code>args &lt;Object[]&gt;</code>
-                                                            	The CustomEvent arguments
+                                                             The CustomEvent arguments
                                                         </dd>
                                                         <dd>
                                                             <code>obj &lt;Object&gt;</code>
-                                                            	The scope object
+                                                             The scope object
                                                         </dd>
                                                 </dl>
 
@@ -546,6 +587,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="handleTweenAnimateIn">handleTweenAnimateIn</a></h4>
                                     <div class="detail">
@@ -582,15 +625,15 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>type &lt;String&gt;</code>
-                                                            	The CustomEvent type
+                                                             The CustomEvent type
                                                         </dd>
                                                         <dd>
                                                             <code>args &lt;Object[]&gt;</code>
-                                                            	The CustomEvent arguments
+                                                             The CustomEvent arguments
                                                         </dd>
                                                         <dd>
                                                             <code>obj &lt;Object&gt;</code>
-                                                            	The scope object
+                                                             The scope object
                                                         </dd>
                                                 </dl>
 
@@ -606,6 +649,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="handleTweenAnimateOut">handleTweenAnimateOut</a></h4>
                                     <div class="detail">
@@ -642,15 +687,15 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>type &lt;String&gt;</code>
-                                                            	The CustomEvent type
+                                                             The CustomEvent type
                                                         </dd>
                                                         <dd>
                                                             <code>args &lt;Object[]&gt;</code>
-                                                            	The CustomEvent arguments
+                                                             The CustomEvent arguments
                                                         </dd>
                                                         <dd>
                                                             <code>obj &lt;Object&gt;</code>
-                                                            	The scope object
+                                                             The scope object
                                                         </dd>
                                                 </dl>
 
@@ -666,6 +711,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="init">init</a></h4>
                                     <div class="detail">
@@ -698,6 +745,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="SLIDE">SLIDE</a></h4>
                                     <div class="detail">
@@ -705,7 +754,7 @@
                                         
                                          static 
                                         
-                                        ContainerEffect
+                                        YAHOO.widget.ContainerEffect
                                             <strong>SLIDE</strong>
                                            (
                                                 
@@ -721,7 +770,8 @@
                                         </code>
                                         
                                         <div class="description">
-                                            A pre-configured ContainerEffect instance that can be used for sliding an overlay in and out.
+                                            A pre-configured ContainerEffect instance that can be used for sliding an 
+overlay in and out.
                                         </div>
 
                                         <div class="description">
@@ -729,19 +779,19 @@
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>overlay &lt;Overlay&gt;</code>
-                                                            	The Overlay object to animate
+                                                            <code>overlay &lt;YAHOO.widget.Overlay&gt;</code>
+                                                             The Overlay object to animate
                                                         </dd>
                                                         <dd>
                                                             <code>dur &lt;Number&gt;</code>
-                                                            	The duration of the animation
+                                                             The duration of the animation
                                                         </dd>
                                                 </dl>
 
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
-                                                        ContainerEffect
+                                                        YAHOO.widget.ContainerEffect
                                                     </code></dt>
                                                     <dd>The configured ContainerEffect object</dd>
                                                 </dl>
@@ -750,6 +800,8 @@
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="toString">toString</a></h4>
                                     <div class="detail">
@@ -782,6 +834,7 @@
 
                                     </div>
                                     <hr />
+                                    </div>
                             </div>
                         </div>
 
@@ -808,6 +861,8 @@
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
+
                                 <li class=""><a href="module_connection.html">connection</a></li>
 
                                 <li class="selected"><a href="module_container.html">container</a></li>
@@ -820,11 +875,15 @@
 
                                 <li class=""><a href="module_dragdrop.html">dragdrop</a></li>
 
+                                <li class=""><a href="module_editor.html">editor</a></li>
+
                                 <li class=""><a href="module_element.html">element</a></li>
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
                                 <li class=""><a href="module_history.html">history</a></li>
+
+                                <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
@@ -837,6 +896,10 @@
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
+
+                                <li class=""><a href="module_yuiloader.html">yuiloader</a></li>
+
+                                <li class=""><a href="module_yuitest.html">yuitest</a></li>
                         </ul>
                     </div>
 
@@ -873,19 +936,19 @@
                     <div class="module">
                         <h4>Properties</h4>
                         <ul class="content">        
-                                <li><a href="#animClass">animClass</a>
+                                <li class=""><a href="#animClass">animClass</a>
                                         <!--<code>&lt;HTMLElement&gt;</code>-->
                                 </li>
-                                <li><a href="#attrIn">attrIn</a>
+                                <li class=""><a href="#attrIn">attrIn</a>
                                         <!--<code>&lt;HTMLElement&gt;</code>-->
                                 </li>
-                                <li><a href="#attrOut">attrOut</a>
+                                <li class=""><a href="#attrOut">attrOut</a>
                                         <!--<code>&lt;HTMLElement&gt;</code>-->
                                 </li>
-                                <li><a href="#overlay">overlay</a>
+                                <li class=""><a href="#overlay">overlay</a>
                                         <!--<code>&lt;HTMLElement&gt;</code>-->
                                 </li>
-                                <li><a href="#targetElement">targetElement</a>
+                                <li class=""><a href="#targetElement">targetElement</a>
                                         <!--<code>&lt;HTMLElement&gt;</code>-->
                                 </li>
                         </ul>
@@ -894,40 +957,40 @@
                     <div class="module">
                         <h4>Methods</h4>
                         <ul class="content">        
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#animateIn">animateIn</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#animateOut">animateOut</a>
                                 </li>
-                                <li><!--<code>ContainerEffect</code>-->
+                                <li class=""><!--<code>YAHOO.widget.ContainerEffect</code>-->
                                 <a href="#FADE">FADE</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#handleCompleteAnimateIn">handleCompleteAnimateIn</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#handleCompleteAnimateOut">handleCompleteAnimateOut</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#handleStartAnimateIn">handleStartAnimateIn</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#handleStartAnimateOut">handleStartAnimateOut</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#handleTweenAnimateIn">handleTweenAnimateIn</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#handleTweenAnimateOut">handleTweenAnimateOut</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#init">init</a>
                                 </li>
-                                <li><!--<code>ContainerEffect</code>-->
+                                <li class=""><!--<code>YAHOO.widget.ContainerEffect</code>-->
                                 <a href="#SLIDE">SLIDE</a>
                                 </li>
-                                <li><!--<code>String</code>-->
+                                <li class=""><!--<code>String</code>-->
                                 <a href="#toString">toString</a>
                                 </li>
                         </ul>

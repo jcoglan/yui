@@ -3,26 +3,33 @@
 <head>
 	<title>API: history  YAHOO.util.History   (YUI Library)</title>
 	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
 </head>
 
 <body id="yahoo-com">
+
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
         <h1>Yahoo! UI Library</h1>
-        <h3>Browser History Manager&nbsp; <span class="subtitle">2.2.2</span></h3>
+        <h3>Browser History Manager&nbsp; <span class="subtitle">2.3.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_history.html">history</a>
                  &gt; YAHOO.util.History 
                 
             </p>
+
 	</div>
 
 	<div id="bd">
 		<div id="yui-main">
 			<div class="yui-b">
-
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> Show Private</span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> Show Protected</span>
+            </form>
 
                     <h2>
                         
@@ -69,6 +76,7 @@ be bookmarked in a specific state.
                         <div class="section field details">
                             <h3><a name="field_detail">Properties</a></h3>
                             <div class="content">
+                                    <div class="private">
                                     <h4><a name="_bhmReady">_bhmReady</a>
                                         <code>- private boolean</code>
                                     </h4>
@@ -85,23 +93,8 @@ be bookmarked in a specific state.
 
 
                                     <hr />
-                                    <h4><a name="_browser">_browser</a>
-                                        <code>- private string</code>
-                                    </h4>
-                                    <div class="detail">
-                                        <div class="description">
-                                            String identifying which browser we are in.
-Different code is run depending on which browser you are using.
-                                        </div>
                                     </div>
-     
-                                        
-                                    <div class="default">
-                                        Default Value: "unknown"
-                                    </div>        
-
-
-                                    <hr />
+                                    <div class="private">
                                     <h4><a name="_fqstates">_fqstates</a>
                                         <code>- private array</code>
                                     </h4>
@@ -118,6 +111,8 @@ Different code is run depending on which browser you are using.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="_iframe">_iframe</a>
                                         <code>- private HTMLIFrameElement</code>
                                     </h4>
@@ -134,6 +129,8 @@ Different code is run depending on which browser you are using.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="_initialized">_initialized</a>
                                         <code>- private boolean</code>
                                     </h4>
@@ -150,6 +147,8 @@ Different code is run depending on which browser you are using.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="_modules">_modules</a>
                                         <code>- private array</code>
                                     </h4>
@@ -166,6 +165,8 @@ Different code is run depending on which browser you are using.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="_storageField">_storageField</a>
                                         <code>- private HTMLInputElement|HTMLTextAreaElement</code>
                                     </h4>
@@ -184,6 +185,8 @@ the list of all states across pages within a single browser session.
 
 
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="_storageFieldReady">_storageFieldReady</a>
                                         <code>- private boolean</code>
                                     </h4>
@@ -200,22 +203,7 @@ the list of all states across pages within a single browser session.
 
 
                                     <hr />
-                                    <h4><a name="_ua">_ua</a>
-                                        <code>- private string</code>
-                                    </h4>
-                                    <div class="detail">
-                                        <div class="description">
-                                            User agent string used for browser detection.
-                                        </div>
                                     </div>
-     
-                                        
-                                    <div class="default">
-                                        Default Value: null
-                                    </div>        
-
-
-                                    <hr />
 
 
                             </div>
@@ -225,6 +213,7 @@ the list of all states across pages within a single browser session.
                         <div class="section method details">
                             <h3><a name="methodDetails">Methods</a></h3>
                             <div class="content">
+                                    <div class="private">
                                     <h4>
                                         <a name="_checkIframeLoaded">_checkIframeLoaded</a></h4>
                                     <div class="detail">
@@ -257,6 +246,8 @@ the list of all states across pages within a single browser session.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_getHash">_getHash</a></h4>
                                     <div class="detail">
@@ -292,6 +283,8 @@ implementation of an equivalent is trivial.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_handleFQStateChange">_handleFQStateChange</a></h4>
                                     <div class="detail">
@@ -338,6 +331,8 @@ changed.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_initialize">_initialize</a></h4>
                                     <div class="detail">
@@ -370,6 +365,8 @@ changed.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_storeStates">_storeStates</a></h4>
                                     <div class="detail">
@@ -405,6 +402,8 @@ place in the form field specified during initialization.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4>
                                         <a name="_trim">_trim</a></h4>
                                     <div class="detail">
@@ -449,6 +448,8 @@ place in the form field specified during initialization.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getBookmarkedState">getBookmarkedState</a></h4>
                                     <div class="detail">
@@ -495,6 +496,8 @@ if your application was bookmarked from a particular state.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getCurrentState">getCurrentState</a></h4>
                                     <div class="detail">
@@ -539,6 +542,8 @@ if your application was bookmarked from a particular state.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="getQueryStringParameter">getQueryStringParameter</a></h4>
                                     <div class="detail">
@@ -596,6 +601,8 @@ this method uses the URL in the address bar.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="initialize">initialize</a></h4>
                                     <div class="detail">
@@ -644,6 +651,54 @@ if you use https.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="multiNavigate">multiNavigate</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        boolean
+                                            <strong>multiNavigate</strong>
+                                           (
+                                                
+                                                        
+                                                         states
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Call this method when you want to store a new entry in the browser's history.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>states &lt;object&gt;</code>
+                                                             Associative array of module-state pairs to set simultaneously.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        boolean
+                                                    </code></dt>
+                                                    <dd>Indicates whether the new state was successfully added to the history.</dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="navigate">navigate</a></h4>
                                     <div class="detail">
@@ -696,6 +751,8 @@ if you use https.
 
                                     </div>
                                     <hr />
+                                    </div>
+                                    <div class="">
                                     <h4>
                                         <a name="register">register</a></h4>
                                     <div class="detail">
@@ -777,13 +834,15 @@ execution scope of the listener.
 
                                     </div>
                                     <hr />
+                                    </div>
                             </div>
                         </div>
 
 
                         <div class="section method details">
-                            <h3><a name="methodDetails">Events</a></h3>
+                            <h3><a name="eventDetails">Events</a></h3>
                             <div class="content">
+                                    <div class="">
                                     <h4>
                                         <a name="onLoadEvent">onLoadEvent</a></h4>
                                     <div class="detail">
@@ -811,6 +870,7 @@ execution scope of the listener.
 
                                     </div>
                                     <hr />
+                                    </div>
                             </div>
                         </div>
 
@@ -835,6 +895,8 @@ execution scope of the listener.
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
+
                                 <li class=""><a href="module_connection.html">connection</a></li>
 
                                 <li class=""><a href="module_container.html">container</a></li>
@@ -847,11 +909,15 @@ execution scope of the listener.
 
                                 <li class=""><a href="module_dragdrop.html">dragdrop</a></li>
 
+                                <li class=""><a href="module_editor.html">editor</a></li>
+
                                 <li class=""><a href="module_element.html">element</a></li>
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
                                 <li class="selected"><a href="module_history.html">history</a></li>
+
+                                <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
@@ -864,6 +930,10 @@ execution scope of the listener.
                                 <li class=""><a href="module_treeview.html">treeview</a></li>
 
                                 <li class=""><a href="module_yahoo.html">yahoo</a></li>
+
+                                <li class=""><a href="module_yuiloader.html">yuiloader</a></li>
+
+                                <li class=""><a href="module_yuitest.html">yuitest</a></li>
                         </ul>
                     </div>
 
@@ -884,32 +954,26 @@ execution scope of the listener.
                     <div class="module">
                         <h4>Properties</h4>
                         <ul class="content">        
-                                <li><a href="#_bhmReady">_bhmReady</a>
-                                        <!--<code>&lt;string&gt;</code>-->
+                                <li class="private"><a href="#_bhmReady">_bhmReady</a>
+                                        <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#_browser">_browser</a>
-                                        <!--<code>&lt;string&gt;</code>-->
+                                <li class="private"><a href="#_fqstates">_fqstates</a>
+                                        <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#_fqstates">_fqstates</a>
-                                        <!--<code>&lt;string&gt;</code>-->
+                                <li class="private"><a href="#_iframe">_iframe</a>
+                                        <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#_iframe">_iframe</a>
-                                        <!--<code>&lt;string&gt;</code>-->
+                                <li class="private"><a href="#_initialized">_initialized</a>
+                                        <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#_initialized">_initialized</a>
-                                        <!--<code>&lt;string&gt;</code>-->
+                                <li class="private"><a href="#_modules">_modules</a>
+                                        <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#_modules">_modules</a>
-                                        <!--<code>&lt;string&gt;</code>-->
+                                <li class="private"><a href="#_storageField">_storageField</a>
+                                        <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
-                                <li><a href="#_storageField">_storageField</a>
-                                        <!--<code>&lt;string&gt;</code>-->
-                                </li>
-                                <li><a href="#_storageFieldReady">_storageFieldReady</a>
-                                        <!--<code>&lt;string&gt;</code>-->
-                                </li>
-                                <li><a href="#_ua">_ua</a>
-                                        <!--<code>&lt;string&gt;</code>-->
+                                <li class="private"><a href="#_storageFieldReady">_storageFieldReady</a>
+                                        <!--<code>&lt;boolean&gt;</code>-->
                                 </li>
                         </ul>
                     </div>
@@ -917,40 +981,43 @@ execution scope of the listener.
                     <div class="module">
                         <h4>Methods</h4>
                         <ul class="content">        
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_checkIframeLoaded">_checkIframeLoaded</a>
                                 </li>
-                                <li><!--<code>string</code>-->
+                                <li class="private"><!--<code>string</code>-->
                                 <a href="#_getHash">_getHash</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_handleFQStateChange">_handleFQStateChange</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_initialize">_initialize</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class="private"><!--<code>void</code>-->
                                 <a href="#_storeStates">_storeStates</a>
                                 </li>
-                                <li><!--<code>string</code>-->
+                                <li class="private"><!--<code>string</code>-->
                                 <a href="#_trim">_trim</a>
                                 </li>
-                                <li><!--<code>string</code>-->
+                                <li class=""><!--<code>string</code>-->
                                 <a href="#getBookmarkedState">getBookmarkedState</a>
                                 </li>
-                                <li><!--<code>string</code>-->
+                                <li class=""><!--<code>string</code>-->
                                 <a href="#getCurrentState">getCurrentState</a>
                                 </li>
-                                <li><!--<code>string</code>-->
+                                <li class=""><!--<code>string</code>-->
                                 <a href="#getQueryStringParameter">getQueryStringParameter</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#initialize">initialize</a>
                                 </li>
-                                <li><!--<code>boolean</code>-->
+                                <li class=""><!--<code>boolean</code>-->
+                                <a href="#multiNavigate">multiNavigate</a>
+                                </li>
+                                <li class=""><!--<code>boolean</code>-->
                                 <a href="#navigate">navigate</a>
                                 </li>
-                                <li><!--<code>void</code>-->
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#register">register</a>
                                 </li>
                         </ul>
@@ -959,7 +1026,7 @@ execution scope of the listener.
                     <div class="module">
                         <h4>Events</h4>
                         <ul class="content">        
-                                <li>
+                                <li class="">
                                 <a href="#onLoadEvent">onLoadEvent</a>
                                 </li>
                         </ul>
