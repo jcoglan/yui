@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Charts Widget&nbsp; <span class="subtitle">2.5.1</span></h3>
+        <h3>Charts Widget&nbsp; <span class="subtitle">2.5.2</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_charts.html">charts</a>
@@ -192,6 +192,15 @@
 	<span class="nx">_initialized</span><span class="o">:</span> <span class="kc">false</span><span class="o">,</span>
 
 	<span class="c">/**</span>
+<span class="c">	 * Stores a reference to the dataTipFunction created by</span>
+<span class="c">	 * YAHOO.widget.FlashAdapter.createProxyFunction()</span>
+<span class="c">	 * @property _dataTipFunction</span>
+<span class="c">	 * @type String</span>
+<span class="c">	 * @private</span>
+<span class="c">	 */</span>
+	<span class="nx">_dataTipFunction</span><span class="o">:</span> <span class="kc">null</span><span class="o">,</span>
+
+	<span class="c">/**</span>
 <span class="c">	 * Public accessor to the unique name of the Chart instance.</span>
 <span class="c">	 *</span>
 <span class="c">	 * @method toString</span>
@@ -246,6 +255,28 @@
 			<span class="nx">styles</span><span class="o">[</span><span class="nx">i</span><span class="o">]</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">JSON</span><span class="o">.</span><span class="nx">stringify</span><span class="o">(</span><span class="nx">styles</span><span class="o">[</span><span class="nx">i</span><span class="o">]);</span>	
 		<span class="o">}</span>
 		<span class="k">this</span><span class="o">.</span><span class="nx">_swf</span><span class="o">.</span><span class="nx">setSeriesStyles</span><span class="o">(</span><span class="nx">styles</span><span class="o">);</span>
+	<span class="o">},</span>
+	
+	<span class="nx">destroy</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span>
+	<span class="o">{</span>
+		<span class="c">//stop polling if needed</span>
+<span class="c"></span>		<span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_dataSource</span> <span class="o">!==</span> <span class="kc">null</span><span class="o">)</span>
+		<span class="o">{</span>
+			<span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_pollingID</span> <span class="o">!==</span> <span class="kc">null</span><span class="o">)</span>
+			<span class="o">{</span>
+				<span class="k">this</span><span class="o">.</span><span class="nx">_dataSource</span><span class="o">.</span><span class="nx">clearInterval</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_pollingID</span><span class="o">);</span>
+				<span class="k">this</span><span class="o">.</span><span class="nx">_pollingID</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+		
+		<span class="c">//remove proxy functions</span>
+<span class="c"></span>		<span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_dataTipFunction</span><span class="o">)</span>
+		<span class="o">{</span>
+			<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">FlashAdapter</span><span class="o">.</span><span class="nx">removeProxyFunction</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_dataTipFunction</span><span class="o">);</span>
+		<span class="o">}</span>
+		
+		<span class="c">//call last</span>
+<span class="c"></span>		<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Chart</span><span class="o">.</span><span class="nx">superclass</span><span class="o">.</span><span class="nx">destroy</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
 	<span class="o">},</span>
 	
 	<span class="c">/**</span>
@@ -405,10 +436,7 @@
 			<span class="o">{</span>
 				<span class="k">this</span><span class="o">.</span><span class="nx">_pollingID</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">_dataSource</span><span class="o">.</span><span class="nx">setInterval</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_pollingInterval</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">_request</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">_loadDataHandler</span><span class="o">,</span> <span class="k">this</span><span class="o">);</span>
 			<span class="o">}</span>
-			<span class="k">else</span>
-			<span class="o">{</span>
-				<span class="k">this</span><span class="o">.</span><span class="nx">_dataSource</span><span class="o">.</span><span class="nx">sendRequest</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_request</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">_loadDataHandler</span><span class="o">,</span> <span class="k">this</span><span class="o">);</span>
-			<span class="o">}</span>
+			<span class="k">this</span><span class="o">.</span><span class="nx">_dataSource</span><span class="o">.</span><span class="nx">sendRequest</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_request</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">_loadDataHandler</span><span class="o">,</span> <span class="k">this</span><span class="o">);</span>
 		<span class="o">}</span>
 	<span class="o">},</span>
 
@@ -444,18 +472,21 @@
 					<span class="k">var</span> <span class="nx">clonedSeries</span> <span class="o">=</span> <span class="o">{};</span>
 					<span class="k">for</span><span class="o">(</span><span class="k">var</span> <span class="nx">prop</span> <span class="k">in</span> <span class="nx">currentSeries</span><span class="o">)</span>
 					<span class="o">{</span>
-						<span class="k">if</span><span class="o">(</span><span class="nx">prop</span> <span class="o">==</span> <span class="s2">&quot;style&quot;</span> <span class="o">&amp;&amp;</span> <span class="nx">currentSeries</span><span class="o">.</span><span class="nx">style</span> <span class="o">!==</span> <span class="kc">null</span><span class="o">)</span>
+						<span class="k">if</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">hasOwnProperty</span><span class="o">(</span><span class="nx">currentSeries</span><span class="o">,</span> <span class="nx">prop</span><span class="o">))</span>
 						<span class="o">{</span>
-							<span class="nx">clonedSeries</span><span class="o">.</span><span class="nx">style</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">JSON</span><span class="o">.</span><span class="nx">stringify</span><span class="o">(</span><span class="nx">currentSeries</span><span class="o">.</span><span class="nx">style</span><span class="o">);</span>
-							<span class="nx">styleChanged</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-							
-							<span class="c">//we don&#39;t want to modify the styles again next time</span>
-<span class="c"></span>							<span class="c">//so null out the style property.</span>
-<span class="c"></span>							<span class="nx">currentSeries</span><span class="o">.</span><span class="nx">style</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-						<span class="o">}</span>
-						<span class="k">else</span>
-						<span class="o">{</span>
-							<span class="nx">clonedSeries</span><span class="o">[</span><span class="nx">prop</span><span class="o">]</span> <span class="o">=</span> <span class="nx">currentSeries</span><span class="o">[</span><span class="nx">prop</span><span class="o">];</span>
+							<span class="k">if</span><span class="o">(</span><span class="nx">prop</span> <span class="o">==</span> <span class="s2">&quot;style&quot;</span> <span class="o">&amp;&amp;</span> <span class="nx">currentSeries</span><span class="o">.</span><span class="nx">style</span> <span class="o">!==</span> <span class="kc">null</span><span class="o">)</span>
+							<span class="o">{</span>
+								<span class="nx">clonedSeries</span><span class="o">.</span><span class="nx">style</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">JSON</span><span class="o">.</span><span class="nx">stringify</span><span class="o">(</span><span class="nx">currentSeries</span><span class="o">.</span><span class="nx">style</span><span class="o">);</span>
+								<span class="nx">styleChanged</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+   
+								<span class="c">//we don&#39;t want to modify the styles again next time</span>
+<span class="c"></span>								<span class="c">//so null out the style property.</span>
+<span class="c"></span>								<span class="nx">currentSeries</span><span class="o">.</span><span class="nx">style</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+							<span class="o">}</span>
+							<span class="k">else</span>
+							<span class="o">{</span>
+								<span class="nx">clonedSeries</span><span class="o">[</span><span class="nx">prop</span><span class="o">]</span> <span class="o">=</span> <span class="nx">currentSeries</span><span class="o">[</span><span class="nx">prop</span><span class="o">];</span>
+							<span class="o">}</span>
 						<span class="o">}</span>
 					<span class="o">}</span>
 					<span class="nx">dataProvider</span><span class="o">.</span><span class="nx">push</span><span class="o">(</span><span class="nx">clonedSeries</span><span class="o">);</span>
@@ -584,7 +615,7 @@
 <span class="c">	 */</span>
 	<span class="nx">_getCategoryNames</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span>
 	<span class="o">{</span>
-		<span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="nx">_swf</span><span class="o">.</span><span class="nx">getCategoryNames</span><span class="o">();</span>
+		<span class="k">this</span><span class="o">.</span><span class="nx">_swf</span><span class="o">.</span><span class="nx">getCategoryNames</span><span class="o">();</span>
 	<span class="o">},</span>
 
 	<span class="c">/**</span>
@@ -599,25 +630,6 @@
 	<span class="o">},</span>
 	
 	<span class="c">/**</span>
-<span class="c">	 * Storage for the dataTipFunction attribute.</span>
-<span class="c">	 *</span>
-<span class="c">	 * @property _dataTipFunction</span>
-<span class="c">	 * @private</span>
-<span class="c">	 */</span>
-	<span class="nx">_dataTipFunction</span><span class="o">:</span> <span class="kc">null</span><span class="o">,</span>
-	
-	<span class="c">/**</span>
-<span class="c">	 * Getter for the dataTipFunction attribute.</span>
-<span class="c">	 *</span>
-<span class="c">	 * @method _getDataTipFunction</span>
-<span class="c">	 * @private</span>
-<span class="c">	 */</span>
-	<span class="nx">_getDataTipFunction</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span>
-	<span class="o">{</span>
-		<span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="nx">_dataTipFunction</span><span class="o">;</span>
-	<span class="o">},</span>
-	
-	<span class="c">/**</span>
 <span class="c">	 * Setter for the dataTipFunction attribute.</span>
 <span class="c">	 *</span>
 <span class="c">	 * @method _setDataTipFunction</span>
@@ -625,7 +637,16 @@
 <span class="c">	 */</span>
 	<span class="nx">_setDataTipFunction</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">value</span><span class="o">)</span>
 	<span class="o">{</span>
-		<span class="k">this</span><span class="o">.</span><span class="nx">_dataTipFunction</span> <span class="o">=</span> <span class="nx">value</span><span class="o">;</span>
+		<span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_dataTipFunction</span><span class="o">)</span>
+		<span class="o">{</span>
+			<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">FlashAdapter</span><span class="o">.</span><span class="nx">removeProxyFunction</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_dataTipFunction</span><span class="o">);</span>
+		<span class="o">}</span>
+		
+		<span class="k">if</span><span class="o">(</span><span class="nx">value</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">value</span> <span class="o">==</span> <span class="s2">&quot;function&quot;</span><span class="o">)</span>
+		<span class="o">{</span>
+			<span class="nx">value</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">FlashAdapter</span><span class="o">.</span><span class="nx">createProxyFunction</span><span class="o">(</span><span class="nx">value</span><span class="o">);</span>
+			<span class="k">this</span><span class="o">.</span><span class="nx">_dataTipFunction</span> <span class="o">=</span> <span class="nx">value</span><span class="o">;</span>
+		<span class="o">}</span>
 		<span class="k">this</span><span class="o">.</span><span class="nx">_swf</span><span class="o">.</span><span class="nx">setDataTipFunction</span><span class="o">(</span><span class="nx">value</span><span class="o">);</span>
 	<span class="o">},</span>
 

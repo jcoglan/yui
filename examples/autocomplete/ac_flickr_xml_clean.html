@@ -27,15 +27,15 @@ body {
 <!--begin custom header content for this example-->
 <style type="text/css">
 /* custom styles for scrolling container */
-.flickrautocomplete {
+#flickrautocomplete {
     width:25em; /* set width of widget here */
     padding-bottom:2em;
 }
-.flickrautocomplete .yui-ac-content {
+#flickrautocomplete .yui-ac-content {
     max-height:30em;overflow:auto;overflow-x:hidden; /* set scrolling */
     _height:30em; /* ie6 */
 }
-.flickrautocomplete .flickrImg {
+#flickrautocomplete .flickrImg {
     width:6em;height:6em;padding:.1em;vertical-align:middle;
 }
 </style>
@@ -68,7 +68,7 @@ setting <code>autoHighlight</code> to <code>false</code>.</p>
 <!--BEGIN SOURCE CODE FOR EXAMPLE =============================== -->
 
 <h3>Enter Flickr tags to find a photo (separate with commas):</h3>
-<div class="flickrautocomplete">
+<div id="flickrautocomplete">
 	<input id="flickrinput" type="text">
 	<div id="flickrcontainer"></div>
 </div>

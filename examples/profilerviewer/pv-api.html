@@ -44,12 +44,15 @@
 			<a href="http://help.yahoo.com/help/us/ysearch">Help</a>
 			</em>
 		</p>
-		<form action="http://search.yahoo.com/search"><label for="ygsp">YDN Site Search</label> 
+		<form action="http://search.yahoo.com/search" id="sitesearchform">
 		<input name="vs" type="hidden" value="developer.yahoo.com">
-		<input name="fr" type="hidden" value="ush-myweb">
-		<input id="ygsp" name="va" size="22"> 
-		<input type="submit" value="Search" class="ygbt"></form>
-	</div>
+		<input name="vs" type="hidden" value="yuiblog.com">
+		<div id="sitesearch">
+			<label for="searchinput">Site Search (YDN &amp; YUIBlog): </label>
+			<input type="text" id="searchinput" name="p">
+			<input type="submit" value="Search" id="searchsubmit" class="ygbt">
+		</div>
+		</form>	</div>
 	<div id="ygma"><a href="../../"><img src="../../assets/yui.gif"  border="0" width="378" height="28"></a></div>
 	<div id="pagetitle"><h1>YUI Library Examples: ProfilerViewer Control (beta): Using the ProfilerViewer API while Profiling the YUI Menu Control</h1></div>
 </div>
@@ -92,17 +95,17 @@
 
 <p>This example has the following dependencies:</p>
 
-<textarea name="code" class="HTML" cols="60" rows="1"><link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.1/build/container/assets/skins/sam/container.css"> 
-<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.1/build/menu/assets/skins/sam/menu.css"> 
-<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.1/build/profilerviewer/assets/skins/sam/profilerviewer.css">
+<textarea name="code" class="HTML" cols="60" rows="1"><link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/container/assets/skins/sam/container.css"> 
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/menu/assets/skins/sam/menu.css"> 
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/profilerviewer/assets/skins/sam/profilerviewer.css">
 
-<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/utilities/utilities.js"></script>
-<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/element/element-beta-min.js"></script>
-<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/container/container-min.js"></script>
-<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/menu/menu.js"></script>
-<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/yuiloader/yuiloader-beta-min.js"></script>
-<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/profiler/profiler-beta-min.js"></script>
-<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/profilerviewer/profilerviewer-beta-min.js"></script></textarea>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/utilities/utilities.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/element/element-beta-min.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/container/container-min.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/menu/menu.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/yuiloader/yuiloader-beta-min.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/profiler/profiler-beta-min.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/profilerviewer/profilerviewer-beta-min.js"></script></textarea>
 
 
 <p>Here are some of the key features of this example:</p>
@@ -138,7 +141,7 @@ YAHOO.tool.Profiler.registerObject("YAHOO.util.Event", true);</textarea>
 
 <textarea name="code" class="JScript" cols="60" rows="1">// Instantiate ProfilerViewer, using its API to customize it a bit:
 var pv = new YAHOO.widget.ProfilerViewer("profiler", {
-    base: "http://yui.yahooapis.com/2.5.1/build/",
+    base: "http://yui.yahooapis.com/2.5.2/build/",
     visible: false, //default is false; this means only the
                     //ProfilerViewer launchbar will be displayed
                     //on initial render, and the rest of the console
@@ -156,7 +159,7 @@ var pv = new YAHOO.widget.ProfilerViewer("profiler", {
     //it takes up on the page:
     maxChartFunctions:8,
     tableHeight:"25em", //default: 15em
-    swfUrl:"http://yui.yahooapis.com/2.5.1/build/charts/assets/charts.swf"
+    swfUrl:"http://yui.yahooapis.com/2.5.2/build/charts/assets/charts.swf"
 });</textarea>
 
 <h3>3.  Use one of ProfilerViewer's "interesting moments" (custom events) to further customize the interaction</h3>
@@ -234,7 +237,7 @@ YAHOO.util.Event.onContentReady("productsandservices", function () {
     
     // Instantiate ProfilerViewer, using its API to customize it a bit:
     var pv = new YAHOO.widget.ProfilerViewer("profiler", {
-        base: "http://yui.yahooapis.com/2.5.1/build/",
+        base: "http://yui.yahooapis.com/2.5.2/build/",
         visible: false, //default is false; this means only the
                         //ProfilerViewer launchbar will be displayed
                         //on initial render, and the rest of the console
@@ -252,7 +255,7 @@ YAHOO.util.Event.onContentReady("productsandservices", function () {
         //it takes up on the page:
         maxChartFunctions:8,
         tableHeight:"25em", //default: 15em
-        swfUrl:"http://yui.yahooapis.com/2.5.1/build/charts/assets/charts.swf"
+        swfUrl:"http://yui.yahooapis.com/2.5.2/build/charts/assets/charts.swf"
     });
             
     //You can subscribe to "interesting moments" in the ProfilerViewer

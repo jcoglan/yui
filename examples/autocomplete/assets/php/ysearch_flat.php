@@ -1,5 +1,7 @@
 <?php
 
+/* yadl_spaceid - Skip Stamping */
+
 	header('Content-type: text/plain');
 	$search_queries = initArray();
 	$query = $_GET['query'];

@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Button&nbsp; <span class="subtitle">2.5.1</span></h3>
+        <h3>Button&nbsp; <span class="subtitle">2.5.2</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_button.html">button</a>
@@ -111,6 +111,7 @@
     <span class="k">var</span> <span class="nx">Dom</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">,</span>
         <span class="nx">Event</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">,</span>
         <span class="nx">Lang</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">,</span>
+        <span class="nx">UA</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">ua</span><span class="o">,</span>
         <span class="nx">Overlay</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Overlay</span><span class="o">,</span>
         <span class="nx">Menu</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Menu</span><span class="o">,</span>
     
@@ -151,7 +152,7 @@
     
         <span class="k">if</span> <span class="o">(</span><span class="nx">Lang</span><span class="o">.</span><span class="nx">isString</span><span class="o">(</span><span class="nx">p_sType</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="nx">Lang</span><span class="o">.</span><span class="nx">isString</span><span class="o">(</span><span class="nx">p_sName</span><span class="o">))</span> <span class="o">{</span>
         
-            <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">ua</span><span class="o">.</span><span class="nx">ie</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="nx">UA</span><span class="o">.</span><span class="nx">ie</span><span class="o">)</span> <span class="o">{</span>
         
                 <span class="c">/*</span>
 <span class="c">                    For IE it is necessary to create the element with the </span>
@@ -865,6 +866,7 @@
         <span class="nx">_setLabel</span><span class="o">:</span> <span class="k">function</span> <span class="o">(</span><span class="nx">p_sLabel</span><span class="o">)</span> <span class="o">{</span>
 
             <span class="k">this</span><span class="o">.</span><span class="nx">_button</span><span class="o">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">p_sLabel</span><span class="o">;</span>
+
             
             <span class="c">/*</span>
 <span class="c">                Remove and add the default class name from the root element</span>
@@ -877,21 +879,17 @@
 <span class="c">            */</span>
             
             <span class="k">var</span> <span class="nx">sClass</span><span class="o">,</span>
-                <span class="nx">me</span><span class="o">;</span>
+                <span class="nx">nGeckoVersion</span> <span class="o">=</span> <span class="nx">UA</span><span class="o">.</span><span class="nx">gecko</span><span class="o">;</span>
+				
             
-            <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">ua</span><span class="o">.</span><span class="nx">gecko</span> <span class="o">&amp;&amp;</span> <span class="nx">Dom</span><span class="o">.</span><span class="nx">inDocument</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s2">&quot;element&quot;</span><span class="o">)))</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="nx">nGeckoVersion</span> <span class="o">&amp;&amp;</span> <span class="nx">nGeckoVersion</span> <span class="o">&lt;</span> <span class="m">1</span><span class="o">.</span><span class="m">9</span> <span class="o">&amp;&amp;</span> <span class="nx">Dom</span><span class="o">.</span><span class="nx">inDocument</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s2">&quot;element&quot;</span><span class="o">)))</span> <span class="o">{</span>
             
-                <span class="nx">me</span> <span class="o">=</span> <span class="k">this</span><span class="o">;</span>
                 <span class="nx">sClass</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">CSS_CLASS_NAME</span><span class="o">;</span>                
 
                 <span class="k">this</span><span class="o">.</span><span class="nx">removeClass</span><span class="o">(</span><span class="nx">sClass</span><span class="o">);</span>
                 
-                <span class="nb">window</span><span class="o">.</span><span class="nx">setTimeout</span><span class="o">(</span><span class="k">function</span> <span class="o">()</span> <span class="o">{</span>
-                
-                    <span class="nx">me</span><span class="o">.</span><span class="nx">addClass</span><span class="o">(</span><span class="nx">sClass</span><span class="o">);</span>
-                
-                <span class="o">},</span> <span class="m">0</span><span class="o">);</span>
-            
+                <span class="nx">Lang</span><span class="o">.</span><span class="nx">later</span><span class="o">(</span><span class="m">0</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">addClass</span><span class="o">,</span> <span class="nx">sClass</span><span class="o">);</span>
+
             <span class="o">}</span>
         
         <span class="o">},</span>
@@ -1468,9 +1466,32 @@
 <span class="c">        * @return {Boolean}</span>
 <span class="c">        */</span>
         <span class="nx">_isSplitButtonOptionKey</span><span class="o">:</span> <span class="k">function</span> <span class="o">(</span><span class="nx">p_oEvent</span><span class="o">)</span> <span class="o">{</span>
+
+			<span class="k">var</span> <span class="nx">bShowMenu</span> <span class="o">=</span> <span class="o">(</span><span class="nx">p_oEvent</span><span class="o">.</span><span class="nx">ctrlKey</span> <span class="o">&amp;&amp;</span> <span class="nx">p_oEvent</span><span class="o">.</span><span class="nx">shiftKey</span> <span class="o">&amp;&amp;</span> 
+								<span class="nx">Event</span><span class="o">.</span><span class="nx">getCharCode</span><span class="o">(</span><span class="nx">p_oEvent</span><span class="o">)</span> <span class="o">==</span> <span class="m">77</span><span class="o">);</span>
+
+
+			<span class="k">function</span> <span class="nx">onKeyPress</span><span class="o">(</span><span class="nx">p_oEvent</span><span class="o">)</span> <span class="o">{</span>
+
+				<span class="nx">Event</span><span class="o">.</span><span class="nx">preventDefault</span><span class="o">(</span><span class="nx">p_oEvent</span><span class="o">);</span>
+
+				<span class="k">this</span><span class="o">.</span><span class="nx">removeListener</span><span class="o">(</span><span class="s2">&quot;keypress&quot;</span><span class="o">,</span> <span class="nx">onKeyPress</span><span class="o">);</span>
+			
+			<span class="o">}</span>
+
+
+			<span class="c">/*</span>
+<span class="c">				It is necessary to add a &quot;keypress&quot; event listener to prevent Opera&#39;s default</span>
+<span class="c">				browser context menu from appearing when the user presses Ctrl + Shift + M.</span>
+<span class="c">			*/</span>
+
+			<span class="k">if</span> <span class="o">(</span><span class="nx">bShowMenu</span> <span class="o">&amp;&amp;</span> <span class="nx">UA</span><span class="o">.</span><span class="nx">opera</span><span class="o">)</span> <span class="o">{</span>
+
+        		<span class="k">this</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="s2">&quot;keypress&quot;</span><span class="o">,</span> <span class="nx">onKeyPress</span><span class="o">);</span>
+
+			<span class="o">}</span>
         
-            <span class="k">return</span> <span class="o">(</span><span class="nx">p_oEvent</span><span class="o">.</span><span class="nx">ctrlKey</span> <span class="o">&amp;&amp;</span> <span class="nx">p_oEvent</span><span class="o">.</span><span class="nx">shiftKey</span> <span class="o">&amp;&amp;</span> 
-                <span class="nx">Event</span><span class="o">.</span><span class="nx">getCharCode</span><span class="o">(</span><span class="nx">p_oEvent</span><span class="o">)</span> <span class="o">==</span> <span class="m">77</span><span class="o">);</span>
+            <span class="k">return</span> <span class="nx">bShowMenu</span><span class="o">;</span>
         
         <span class="o">},</span>
         
@@ -1643,6 +1664,11 @@
                             <span class="nx">oMenu</span><span class="o">.</span><span class="nx">align</span><span class="o">(</span><span class="s2">&quot;bl&quot;</span><span class="o">,</span> <span class="s2">&quot;tl&quot;</span><span class="o">);</span>
                         
                         <span class="o">}</span>
+						<span class="k">else</span> <span class="o">{</span>
+
+							<span class="nx">oMenu</span><span class="o">.</span><span class="nx">align</span><span class="o">(</span><span class="s2">&quot;tl&quot;</span><span class="o">,</span> <span class="s2">&quot;bl&quot;</span><span class="o">);</span>
+
+						<span class="o">}</span>
             
                     <span class="o">}</span>
             
@@ -1686,11 +1712,11 @@
 
             <span class="k">if</span> <span class="o">(</span><span class="nx">Menu</span> <span class="o">&amp;&amp;</span> <span class="nx">oMenu</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="nx">oMenu</span> <span class="k">instanceof</span> <span class="nx">Menu</span><span class="o">))</span> <span class="o">{</span>
         
-                <span class="nx">oMenu</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">applyConfig</span><span class="o">({</span> <span class="nx">context</span><span class="o">:</span> <span class="o">[</span><span class="nx">oButtonEL</span><span class="o">,</span> <span class="s2">&quot;tl&quot;</span><span class="o">,</span> <span class="s2">&quot;bl&quot;</span><span class="o">],</span>
-                    <span class="nx">clicktohide</span><span class="o">:</span> <span class="kc">false</span><span class="o">,</span>
-                    <span class="nx">visible</span><span class="o">:</span> <span class="kc">true</span> <span class="o">});</span>
+                <span class="nx">oMenu</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">applyConfig</span><span class="o">({</span> <span class="nx">context</span><span class="o">:</span> <span class="o">[</span><span class="nx">oButtonEL</span><span class="o">,</span> <span class="s2">&quot;tl&quot;</span><span class="o">,</span> <span class="s2">&quot;bl&quot;</span><span class="o">],</span> <span class="nx">clicktohide</span><span class="o">:</span> <span class="kc">false</span> <span class="o">});</span>
                     
                 <span class="nx">oMenu</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">fireQueue</span><span class="o">();</span>
+                
+                <span class="nx">oMenu</span><span class="o">.</span><span class="nx">show</span><span class="o">();</span>
                 
                 <span class="nx">oMenu</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">setProperty</span><span class="o">(</span><span class="s2">&quot;maxheight&quot;</span><span class="o">,</span> <span class="m">0</span><span class="o">);</span>
             
@@ -2919,7 +2945,7 @@
                 <span class="o">}</span>
         
         
-                <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">ua</span><span class="o">.</span><span class="nx">ie</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="nx">UA</span><span class="o">.</span><span class="nx">ie</span><span class="o">)</span> <span class="o">{</span>
         
                     <span class="nx">bSubmitForm</span> <span class="o">=</span> <span class="nx">oForm</span><span class="o">.</span><span class="nx">fireEvent</span><span class="o">(</span><span class="s2">&quot;onsubmit&quot;</span><span class="o">);</span>
         
@@ -2941,7 +2967,7 @@
 <span class="c">                    method as well.</span>
 <span class="c">                */</span>
               
-                <span class="k">if</span> <span class="o">((</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">ua</span><span class="o">.</span><span class="nx">ie</span> <span class="o">||</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">env</span><span class="o">.</span><span class="nx">ua</span><span class="o">.</span><span class="nx">webkit</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="nx">bSubmitForm</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">((</span><span class="nx">UA</span><span class="o">.</span><span class="nx">ie</span> <span class="o">||</span> <span class="nx">UA</span><span class="o">.</span><span class="nx">webkit</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="nx">bSubmitForm</span><span class="o">)</span> <span class="o">{</span>
         
                     <span class="nx">oForm</span><span class="o">.</span><span class="nx">submit</span><span class="o">();</span>
                 

@@ -16,9 +16,9 @@
 <link rel="stylesheet" type="text/css" href="../../assets/dpSyntaxHighlighter.css">
 <!--Script and CSS includes for YUI dependencies on this page-->
 <link rel="stylesheet" type="text/css" href="../../build/button/assets/skins/sam/button.css" />
-<script type="text/javascript" src="../../build/yahoo/yahoo-min.js"></script>
-<script type="text/javascript" src="../../build/dom/dom-min.js"></script>
+<script type="text/javascript" src="../../build/yuiloader/yuiloader-beta-min.js"></script>
 <script type="text/javascript" src="../../build/event/event-min.js"></script>
+<script type="text/javascript" src="../../build/dom/dom-min.js"></script>
 <script type="text/javascript" src="../../build/element/element-beta-min.js"></script>
 <script type="text/javascript" src="../../build/button/button-min.js"></script>
 
@@ -35,12 +35,15 @@
 			<a href="http://help.yahoo.com/help/us/ysearch">Help</a>
 			</em>
 		</p>
-		<form action="http://search.yahoo.com/search"><label for="ygsp">YDN Site Search</label> 
+		<form action="http://search.yahoo.com/search" id="sitesearchform">
 		<input name="vs" type="hidden" value="developer.yahoo.com">
-		<input name="fr" type="hidden" value="ush-myweb">
-		<input id="ygsp" name="va" size="22"> 
-		<input type="submit" value="Search" class="ygbt"></form>
-	</div>
+		<input name="vs" type="hidden" value="yuiblog.com">
+		<div id="sitesearch">
+			<label for="searchinput">Site Search (YDN &amp; YUIBlog): </label>
+			<input type="text" id="searchinput" name="p">
+			<input type="submit" value="Search" id="searchsubmit" class="ygbt">
+		</div>
+		</form>	</div>
 	<div id="ygma"><a href="../../"><img src="../../assets/yui.gif"  border="0" width="378" height="28"></a></div>
 	<div id="pagetitle"><h1>YUI Library Examples: Layout Manager (beta): Complex Application</h1></div>
 </div>
@@ -209,9 +212,13 @@
                     YAHOO.util.Get.script('assets/js/buttons.js');
                     YAHOO.util.Get.script('assets/js/calendar.js');
                 }, 0);
+
+                YAHOO.example.app.layout.getUnitByPosition('right').set('animate', false);
+                YAHOO.example.app.layout.getUnitByPosition('right').collapse();
                 YAHOO.util.Dom.setStyle(document.body, 'visibility', 'visible');
                 setTimeout(function() {
                     YAHOO.example.app.layout.resize();
+                    YAHOO.example.app.layout.getUnitByPosition('right').set('animate', true);
                 }, 1000);
             });
             //Render the layout
@@ -704,10 +711,13 @@
             };
             //Give the DT a custom Height
             var dtH = (h - 27 - YAHOO.example.app.inboxToolbarHeight);
+
             //Create the DT, setting scrollable to true and setting the height
             YAHOO.widget.DataTable.MSG_EMPTY = 'This folder contains no messages';
+
             dataTable = new YAHOO.widget.DataTable("standard",
-                    myColumnDefs, myDataSource, { scrollable: true, height: dtH + 'px' });
+                    myColumnDefs, myDataSource, { scrollable: true, height: dtH + 'px', width: w + 'px' });
+            
             
             // Subscribe to events for row selection
             dataTable.subscribe("rowMouseoverEvent", dataTable.onEventHighlightRow);
@@ -770,7 +780,7 @@
                 YAHOO.log('Remove the loading class (icon) from the tabview..', 'info', 'inbox.js');
                 YAHOO.util.Dom.removeClass(YAHOO.example.app.tabView._tabParent, 'loading');
                 YAHOO.example.app.inboxLoading = false;
-            }, 0);
+            }, 1000);
         };
 
         YAHOO.log('Using loader to fetch datatable and editor (for the toolbar)', 'info', 'inbox.js');
@@ -1129,14 +1139,23 @@
             var r = YAHOO.example.app.layout.getUnitByPosition('right'),
             w = r.getSizes().body.w,
             h = r.getSizes().body.h;
+
             var logger = new YAHOO.widget.LogReader(r.body, {
                 logReaderEnabled: true,
                 draggable: false,
-                footerEnabled: false,
                 newestOnTop: true,
                 height: h + 'px',
                 width: w + 'px'
             });
+
+            
+            r.on('collapse', function() {
+                logger.pause();
+            });
+            r.on('expand', function() {
+                logger.resume();
+            });
+
             YAHOO.example.app.layout.on('resize', function() {
                 var r = YAHOO.example.app.layout.getUnitByPosition('right'),
                 w = r.getSizes().body.w,

@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Charts Widget&nbsp; <span class="subtitle">2.5.1</span></h3>
+        <h3>Charts Widget&nbsp; <span class="subtitle">2.5.2</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_charts.html">charts</a>
@@ -54,6 +54,43 @@
 
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">extend</span><span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">CartesianChart</span><span class="o">,</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Chart</span><span class="o">,</span>
 <span class="o">{</span>
+	<span class="c">/**</span>
+<span class="c">	 * Stores a reference to the xAxis labelFunction created by</span>
+<span class="c">	 * YAHOO.widget.FlashAdapter.createProxyFunction()</span>
+<span class="c">	 * @property _xAxisLabelFunction</span>
+<span class="c">	 * @type String</span>
+<span class="c">	 * @private</span>
+<span class="c">	 */</span>
+	<span class="nx">_xAxisLabelFunction</span><span class="o">:</span> <span class="kc">null</span><span class="o">,</span>
+	
+	<span class="c">/**</span>
+<span class="c">	 * Stores a reference to the yAxis labelFunction created by</span>
+<span class="c">	 * YAHOO.widget.FlashAdapter.createProxyFunction()</span>
+<span class="c">	 * @property _yAxisLabelFunction</span>
+<span class="c">	 * @type String</span>
+<span class="c">	 * @private</span>
+<span class="c">	 */</span>
+	<span class="nx">_yAxisLabelFunction</span><span class="o">:</span> <span class="kc">null</span><span class="o">,</span>
+	
+	<span class="nx">destroy</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span>
+	<span class="o">{</span>
+		<span class="c">//remove proxy functions</span>
+<span class="c"></span>		<span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_xAxisLabelFunction</span><span class="o">)</span>
+		<span class="o">{</span>
+			<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">FlashAdapter</span><span class="o">.</span><span class="nx">removeProxyFunction</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_xAxisLabelFunction</span><span class="o">);</span>
+			<span class="k">this</span><span class="o">.</span><span class="nx">_xAxisLabelFunction</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+		<span class="o">}</span>
+		
+		<span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_yAxisLabelFunction</span><span class="o">)</span>
+		<span class="o">{</span>
+			<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">FlashAdapter</span><span class="o">.</span><span class="nx">removeProxyFunction</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_yAxisLabelFunction</span><span class="o">);</span>
+			<span class="k">this</span><span class="o">.</span><span class="nx">_yAxisLabelFunction</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+		<span class="o">}</span>
+	
+		<span class="c">//call last</span>
+<span class="c"></span>		<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">CartesianChart</span><span class="o">.</span><span class="nx">superclass</span><span class="o">.</span><span class="nx">destroy</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+	<span class="o">},</span>
+	
 	<span class="c">/**</span>
 <span class="c">	 * Initializes the attributes.</span>
 <span class="c">	 *</span>
@@ -169,6 +206,16 @@
 <span class="c">	 */</span>
 	<span class="nx">_setXAxis</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">value</span><span class="o">)</span>
 	<span class="o">{</span>
+		<span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_xAxisLabelFunction</span><span class="o">)</span>
+		<span class="o">{</span>
+			<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">FlashAdapter</span><span class="o">.</span><span class="nx">removeProxyFunction</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_xAxisLabelFunction</span><span class="o">);</span>
+		<span class="o">}</span>
+		
+		<span class="k">if</span><span class="o">(</span><span class="nx">value</span><span class="o">.</span><span class="nx">labelFunction</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">value</span><span class="o">.</span><span class="nx">labelFunction</span> <span class="o">==</span> <span class="s2">&quot;function&quot;</span><span class="o">)</span>
+		<span class="o">{</span>
+			<span class="nx">value</span><span class="o">.</span><span class="nx">labelFunction</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">FlashAdapter</span><span class="o">.</span><span class="nx">createProxyFunction</span><span class="o">(</span><span class="nx">value</span><span class="o">);</span>
+			<span class="k">this</span><span class="o">.</span><span class="nx">_xAxisLabelFunction</span> <span class="o">=</span> <span class="nx">value</span><span class="o">.</span><span class="nx">labelFunction</span><span class="o">;</span>
+		<span class="o">}</span>
 		<span class="k">this</span><span class="o">.</span><span class="nx">_swf</span><span class="o">.</span><span class="nx">setHorizontalAxis</span><span class="o">(</span><span class="nx">value</span><span class="o">);</span>
 	<span class="o">},</span>
 
@@ -180,6 +227,16 @@
 <span class="c">	 */</span>
 	<span class="nx">_setYAxis</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">value</span><span class="o">)</span>
 	<span class="o">{</span>
+		<span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_yAxisLabelFunction</span><span class="o">)</span>
+		<span class="o">{</span>
+			<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">FlashAdapter</span><span class="o">.</span><span class="nx">removeProxyFunction</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_yAxisLabelFunction</span><span class="o">);</span>
+		<span class="o">}</span>
+
+		<span class="k">if</span><span class="o">(</span><span class="nx">value</span><span class="o">.</span><span class="nx">labelFunction</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">value</span><span class="o">.</span><span class="nx">labelFunction</span> <span class="o">==</span> <span class="s2">&quot;function&quot;</span><span class="o">)</span>
+		<span class="o">{</span>
+			<span class="nx">value</span><span class="o">.</span><span class="nx">labelFunction</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">FlashAdapter</span><span class="o">.</span><span class="nx">createProxyFunction</span><span class="o">(</span><span class="nx">value</span><span class="o">.</span><span class="nx">labelFunction</span><span class="o">);</span>
+			<span class="k">this</span><span class="o">.</span><span class="nx">_yAxisLabelFunction</span> <span class="o">=</span> <span class="nx">value</span><span class="o">.</span><span class="nx">labelFunction</span><span class="o">;</span>
+		<span class="o">}</span>
 		<span class="k">this</span><span class="o">.</span><span class="nx">_swf</span><span class="o">.</span><span class="nx">setVerticalAxis</span><span class="o">(</span><span class="nx">value</span><span class="o">);</span>
 	<span class="o">}</span>
 <span class="o">});</span>

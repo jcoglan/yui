@@ -16,9 +16,9 @@
 <link rel="stylesheet" type="text/css" href="../../assets/dpSyntaxHighlighter.css">
 <!--Script and CSS includes for YUI dependencies on this page-->
 <link rel="stylesheet" type="text/css" href="../../build/button/assets/skins/sam/button.css" />
-<script type="text/javascript" src="../../build/yahoo/yahoo-min.js"></script>
-<script type="text/javascript" src="../../build/dom/dom-min.js"></script>
+<script type="text/javascript" src="../../build/yuiloader/yuiloader-beta-min.js"></script>
 <script type="text/javascript" src="../../build/event/event-min.js"></script>
+<script type="text/javascript" src="../../build/dom/dom-min.js"></script>
 <script type="text/javascript" src="../../build/element/element-beta-min.js"></script>
 <script type="text/javascript" src="../../build/button/button-min.js"></script>
 
@@ -35,12 +35,15 @@
 			<a href="http://help.yahoo.com/help/us/ysearch">Help</a>
 			</em>
 		</p>
-		<form action="http://search.yahoo.com/search"><label for="ygsp">YDN Site Search</label> 
+		<form action="http://search.yahoo.com/search" id="sitesearchform">
 		<input name="vs" type="hidden" value="developer.yahoo.com">
-		<input name="fr" type="hidden" value="ush-myweb">
-		<input id="ygsp" name="va" size="22"> 
-		<input type="submit" value="Search" class="ygbt"></form>
-	</div>
+		<input name="vs" type="hidden" value="yuiblog.com">
+		<div id="sitesearch">
+			<label for="searchinput">Site Search (YDN &amp; YUIBlog): </label>
+			<input type="text" id="searchinput" name="p">
+			<input type="submit" value="Search" id="searchsubmit" class="ygbt">
+		</div>
+		</form>	</div>
 	<div id="ygma"><a href="../../"><img src="../../assets/yui.gif"  border="0" width="378" height="28"></a></div>
 	<div id="pagetitle"><h1>YUI Library Examples: Menu Family: Implementing ARIA Roles and States with Menu</h1></div>
 </div>
@@ -57,7 +60,9 @@
 	<div class="exampleIntro">
 	<p>
 This example demonstrates how use the <a href="http://www.w3.org/TR/aria-role/">WAI-ARIA Roles and States</a> 
-as implemented for <a href="http://www.mozilla.com/en-US/firefox/all-beta.html">Firefox 3</a> with the <a href="http://developer.yahoo.com/yui/menu">YUI Menu Control</a>.
+as implemented for <a href="http://www.mozilla.com/en-US/firefox/all-beta.html">Firefox 3</a> and 
+<a href="http://www.microsoft.com/windows/products/winfamily/ie/ie8/default.mspx">Internet Explorer 8</a> 
+with the <a href="http://developer.yahoo.com/yui/menu">YUI Menu Control</a>.
 </p>			
 	</div>	
 					
@@ -75,61 +80,74 @@ as implemented for <a href="http://www.mozilla.com/en-US/firefox/all-beta.html">
 		
 	<h2 class="first">Using ARIA roles and states in the Menu Control</h2>
 <p>
-Begin by defining an array of <a href="/yui/docs/YAHOO.widget.MenuItem.html#configattributes">MenuItem configuration properties</a> 
+Begin by defining an anonymous function in order to keep all variables out of the global scope.  
+Inside the anonymous function, define some shortcuts to widgets and utils that will be used 
+frequently as well as an array of 
+<a href="/yui/docs/YAHOO.widget.MenuItem.html#configattributes">MenuItem configuration properties</a> 
 that describe each item in the MenuBar.  
 </p>
+
 <textarea name="code" class="JScript" cols="60" rows="1">
-/*
-	 Define an array of object literals, each containing 
-	 the data necessary to create the items for a MenuBar.
-*/
+(function () {
 
-var aItemData = [
+	var Event = YAHOO.util.Event,
+		Dom = YAHOO.util.Dom,
+		MenuBar = YAHOO.widget.MenuBar,
 
-	{ text: "File", submenu: {  id: "filemenu", itemdata: [
 
-			{ text: "New File", helptext: "Ctrl + N" },
-			"New Folder",
-			{ text: "Open", helptext: "Ctrl + O" },
-			{ text: "Open With...", submenu: { id: "applications", itemdata: [
-					"Application 1", 
-					"Application 2", 
-					"Application 3", 
-					"Application 4"
-				] } 
+		/*
+			 Define an array of object literals, each containing 
+			 the data necessary to create the items for a MenuBar.
+		*/
+	
+		aItemData = [
+	
+			{ text: "File", submenu: {  id: "filemenu", itemdata: [
+	
+					{ text: "New File", helptext: "Ctrl + N" },
+					"New Folder",
+					{ text: "Open", helptext: "Ctrl + O" },
+					{ text: "Open With...", submenu: { id: "applications", itemdata: [
+							"Application 1", 
+							"Application 2", 
+							"Application 3", 
+							"Application 4"
+						] } 
+					},
+					{ text: "Print", helptext: "Ctrl + P" }
+	
+				] }
+			
 			},
-			{ text: "Print", helptext: "Ctrl + P" }
-
-		] }
-	
-	},
-	
-	{ text: "Edit", submenu: { id: "editmenu", itemdata: [
-
-			[ 
-				{ text: "Undo", helptext: "Ctrl + Z" },
-				{ text: "Redo", helptext: "Ctrl + Y" }
-			],
 			
-			[
-				{ text: "Cut", helptext: "Ctrl + X" },
-				{ text: "Copy", helptext: "Ctrl + C" },
-				{ text: "Paste", helptext: "Ctrl + V" },
-				{ text: "Delete", helptext: "Del" }
-			],
-			
-			[ { text: "Select All", helptext: "Ctrl + A" } ],
-
-			[
-				{ text: "Find", helptext: "Ctrl + F" },
-				{ text: "Find Again", helptext: "Ctrl + G" }
-			]
+			{ text: "Edit", submenu: { id: "editmenu", itemdata: [
 	
-		] }
+					[ 
+						{ text: "Undo", helptext: "Ctrl + Z" },
+						{ text: "Redo", helptext: "Ctrl + Y" }
+					],
+					
+					[
+						{ text: "Cut", helptext: "Ctrl + X" },
+						{ text: "Copy", helptext: "Ctrl + C" },
+						{ text: "Paste", helptext: "Ctrl + V" },
+						{ text: "Delete", helptext: "Del" }
+					],
+					
+					[ { text: "Select All", helptext: "Ctrl + A" } ],
+	
+					[
+						{ text: "Find", helptext: "Ctrl + F" },
+						{ text: "Find Again", helptext: "Ctrl + G" }
+					]
+			
+				] }
+	
+			}
+	
+		];
 
-	}
-
-];
+}());
 </textarea>
 <p>
 Next, use the <a href="../../event/#onavailable"><code>onDOMReady</code> 
@@ -143,18 +161,15 @@ page's DOM is available for scripting.
 	 to be scripted.
 */
 
-YAHOO.util.Event.onDOMReady(function () {
+Event.onDOMReady(function () {
 
 	/*
-		 Instantiate a MenuBar:  The first argument passed to the constructor is the id 
-		 of the HTML to be created that will represent the MenuBar; the second is an 
-		 object literal of configuration properties.
+		 Instantiate a MenuBar:  The first argument passed to the constructor is 
+		 the id of the HTML to be created that will represent the MenuBar; the 
+		 second is an object literal of configuration properties.
 	*/
 
-	var oMenuBar = new YAHOO.widget.MenuBar("mymenubar", { 
-															lazyload: true, 
-															itemdata: aItemData 
-															});
+	var oMenuBar = new MenuBar("mymenubar", { lazyload: true, itemdata: aItemData });
 
 
 	/*
@@ -164,9 +179,23 @@ YAHOO.util.Event.onDOMReady(function () {
 	
 	function onSubmenuShow() {
 	
-		if (this.id == "yahoo") {
+		var oIFrame;
+
+
+		if (this.id == "filemenu") {
+			
+			Dom.setX(this.element, 0);
+
+			oIFrame = this.iframe;            
+
+
+			if (oIFrame) {
 	
-			this.cfg.setProperty("x", 0);
+				Dom.setX(oIFrame, 0);
+	
+			}
+			
+			this.cfg.setProperty("x", 0, true);
 		
 		}
 	
@@ -179,99 +208,250 @@ YAHOO.util.Event.onDOMReady(function () {
 	
 });
 </textarea>
-<p>Lastly, apply the WAI-ARIA Roles and States to a Menu widget via a "render" event listener.  Waiting for a Menu's "render" event to fire ensures that all of its DOM elements have been appended to the document and are available to be scripted.   Roles and states are added to a Menu's DOM elements via the DOM <a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-one-core.html#ID-F68F082">setAttribute</a> method.</p>
+<p>
+Lastly, apply the WAI-ARIA Roles and States to a Menu widget via a "render" event listener.  
+Waiting for a Menu's "render" event to fire ensures that all of its DOM elements have been 
+appended to the document and are available to be scripted.   Roles and states are added to a 
+Menu's DOM elements via the DOM 
+<a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-one-core.html#ID-F68F082">setAttribute</a> method.
+</p>
 <textarea name="code" class="JScript" cols="60" rows="1">
 /*
-	Add the WAI-ARIA Roles and States to the MenuBar's DOM elements once it 
-	is rendered.
+	 Create a variable to store a reference to the currently focused MenuItem 
+	 label, or the MenuItem label that CAN be focused by the user.
 */
 
-oMenuBar.subscribe("render", function () {
+var oCurrentItemLabel;
+
+
+/*
+	 Initialize and render the MenuBar when the page's DOM is ready 
+	 to be scripted.
+*/
+
+Event.onDOMReady(function () {
 
 	/*
-		 Apply the "role" attribute of "menu" or "menubar" depending on the type of 
-		 the Menu control being rendered.
+		 Instantiate a MenuBar:  The first argument passed to the constructor is 
+		 the id of the HTML to be created that will represent the MenuBar; the 
+		 second is an object literal of configuration properties.
 	*/
 
-	this.element.setAttribute("role", 
-					(this instanceof YAHOO.widget.MenuBar ? "menubar" : "menu"));
+	var oMenuBar = new MenuBar("mymenubar", { lazyload: true, itemdata: aItemData });
 
 
 	/*
-		 Apply the appropriate "role" and "aria-[state]" attributes to the label of
-		 each MenuItem instance.
+		Add a "show" event listener that keeps the left-most
+		submenu against the left edge of the browser viewport.
 	*/
+	
+	function onSubmenuShow() {
+	
+		var oIFrame;
 
-	var aMenuItems = this.getItems(),
-		i = aMenuItems.length - 1,
-		oMenuItem,
-		oMenuItemLabel;
+
+		if (this.id == "filemenu") {
+			
+			Dom.setX(this.element, 0);
+
+			oIFrame = this.iframe;            
+
+
+			if (oIFrame) {
+	
+				Dom.setX(oIFrame, 0);
+	
+			}
+			
+			this.cfg.setProperty("x", 0, true);
+		
+		}
+	
+	}
 	
 
-	do {
+	// Subscribe to the "show" event for each submenu
+	
+	oMenuBar.subscribe("show", onSubmenuShow);
 
-		oMenuItem = aMenuItems[i];
+
+	/*
+		 Create a variable to store a reference to the currently focused MenuItem 
+		 label, or the MenuItem label that CAN be focused by the user.
+	*/
+
+	var oCurrentItemLabel;
 
 
+	/*
+		 Only apply the WAI-ARIA Roles and States for FF 3 and IE 8 since those
+		 are the only browsers that support them.
+	*/
+	
+	if ((UA.gecko && UA.gecko >= 1.9) || (UA.ie && UA.ie >= 8)) {
+	
 		/*
-			Retrieve a reference to the anchor element that serves as the label for 
-			each MenuItem.
+			Add the WAI-ARIA Roles and States to the MenuBar's DOM elements once it 
+			is rendered.
 		*/
 
-		oMenuItemLabel = oMenuItem.element.firstChild;
+		oMenuBar.subscribe("render", function () {
+
+			/*
+				 Apply the "role" attribute of "menu" or "menubar" depending on the 
+				 type of the Menu control being rendered.
+			*/
+
+			this.element.setAttribute("role", 
+							(this instanceof MenuBar ? "menubar" : "menu"));
 
 
-		// Set the "role" attribute of the label to "menuitem"
+			/*
+				 Apply the appropriate "role" and "aria-[state]" attributes to the 
+				 label of each MenuItem instance.
+			*/
 
-		oMenuItemLabel.setAttribute("role", "menuitem");
+			var aMenuItems = this.getItems(),
+				i = aMenuItems.length - 1,
+				oMenuItem,
+				oMenuItemLabel;
+			
+
+			do {
+
+				oMenuItem = aMenuItems[i];
 
 
-		// Remove the label from the browser's default tab order
+				/*
+					Retrieve a reference to the anchor element that serves as the 
+					label for each MenuItem.
+				*/
 
-		oMenuItemLabel.setAttribute("tabindex", -1);
+				oMenuItemLabel = oMenuItem.element.firstChild;
 
 
-		/*
-			Optional: JAWS announces the value of each anchor element's "href"
-			attribute when it recieves focus.  If the MenuItem instance's "url" 
-			attribute is set to the default, remove the attribute so that JAWS 
-			does announce its value.
-		*/
+				// Set the "role" attribute of the label to "menuitem"
 
-		if (oMenuItem.cfg.getProperty("url") == "#") {
+				oMenuItemLabel.setAttribute("role", "menuitem");
 
-			oMenuItemLabel.removeAttribute("href");
+
+				// Remove the label from the browser's default tab order
+				
+				oMenuItemLabel.tabIndex = -1;
+
+
+				/*
+					Optional: JAWS announces the value of each anchor element's 
+					"href" attribute when it recieves focus.  If the MenuItem 
+					instance's "url" attribute is set to the default, remove the 
+					attribute so that JAWS doesn't announce its value.
+				*/
+
+				if (oMenuItem.cfg.getProperty("url") == "#") {
+
+					oMenuItemLabel.removeAttribute("href");
+				
+				}
+
+
+				/*
+					If the MenuItem has a submenu, set the "aria-haspopup" 
+					attribute to true so that the screen reader can announce 
+				*/
+
+				if (oMenuItem.cfg.getProperty("submenu")) {
+				
+					oMenuItemLabel.setAttribute("aria-haspopup", true);
+				
+				}
+
+			}
+			while (i--);
+			
+
+			/*
+				 Set the "tabindex" of the first MenuItem's label to 0 so the user 
+				 can easily tab into and out of the control.
+			*/
+
+			if (this.getRoot() == this) {
+			
+				oCurrentItemLabel = this.getItem(0).element.firstChild;
+			
+				oCurrentItemLabel.tabIndex = 0;
+			
+			}
 		
+		});
+
+
+		function onMenuItemFocus(p_oEvent) {
+
+			// The currently focused element
+
+			var oTarget = Event.getTarget(p_oEvent);
+
+
+			if (Dom.isAncestor(oMenuBar.element, oTarget)) {
+
+				/*
+					Modify value of the tabIndex attribute so that the currently 
+					focused MenuItem label is in the browser's default tab order.
+				*/	
+
+				if (oCurrentItemLabel) {
+				
+					oCurrentItemLabel.tabIndex = -1;
+				
+				}
+
+				oCurrentItemLabel = oTarget;
+				oCurrentItemLabel.tabIndex = 0;
+			
+			}
+			else {
+			
+				/*
+					If the focus has moved to an element on the page that is not a 
+					part of the MenuBar, restore the MenuBar to its original state 
+					so that the first item is in the browser's default tab index.
+				*/
+			
+				oCurrentItemLabel.tabIndex = -1;
+
+				oCurrentItemLabel = oMenuBar.getItem(0).element.firstChild;
+				oCurrentItemLabel.tabIndex = 0;
+			
+			}
+
 		}
 
 
-		/*
-			If the MenuItem has a submenu, set the "aria-haspopup" attribute to 
-			true so that the screen reader can announce 
-		*/
+		// Subscribe to the focus event.
 
-		if (oMenuItem.cfg.getProperty("submenu")) {
+		if (UA.ie) {
 		
-			oMenuItemLabel.setAttribute("aria-haspopup", true);
+			/*					
+				Since the "focus" event doesn't bubble, and IE doesn't support 
+				listening for the capture phase of events, subscribe to the 
+				"focusin" event, which DOES bubble.
+			*/
+
+			Event.on(document, "focusin", onMenuItemFocus);
+		
+		}
+		else {
+
+			/*					
+				Since the "focus" event doesn't bubble, we'll use 
+				event capture for Gecko, Webkit and Opera.
+			*/
+		
+			document.addEventListener("focus", onMenuItemFocus, true);
 		
 		}
 
 	}
-	while (i--);
-	
-
-	/*
-		 Set the "tabindex" of the first MenuItem's label to 0 so the user can 
-		 easily tab into and out of the control.
-	*/
-
-	if (this.getRoot() == this) {
-	
-		this.getItem(0).element.firstChild.setAttribute("tabindex", 0);
-	
-	}
-
-});
 
 
 /*
@@ -283,9 +463,29 @@ oMenuBar.subscribe("render", function () {
 
 oMenuBar.render(document.body);
 </textarea>	
-<p>Once the WAI-ARIA Roles and States are applied, there are a few tweaks that can be made to the Menu's DOM elements to further improve the user experience.  For Menu, the label of each MenuItem instance is represented in HTML as an anchor element (i.e. <code>&#60;a class="yuimenuitemlabel"&#62;</code>), and in IE and Firefox, anchor elements are automatically part of the tab order.  Having MenuItem labels in the tab order by default is important when JavaScript is disabled to ensure that the user can navigate a Menu via the keyboard with the tab key.</p>
+<p>
+Once the WAI-ARIA Roles and States are applied, there are a few tweaks that can be made to the 
+Menu's DOM elements to further improve the user experience.  For Menu, the label of each MenuItem 
+instance is represented in HTML as an anchor element 
+(i.e. <code>&#60;a class="yuimenuitemlabel"&#62;</code>), and in IE and Firefox, anchor elements 
+are automatically part of the tab order.  Having MenuItem labels in the tab order by default is 
+important when JavaScript is disabled to ensure that the user can navigate a Menu via the keyboard 
+with the tab key.
+</p>
 
-<p>Since the Menu code provides its own, desktop-like keyboard functionality when JavaScript is enabled, having every MenuItem label in the browser's default tab order can be a nuisance to users of screen readers.   When navigating the document with the tab key, users of screen readers have to tab through every single MenuItem label in a Menu, regardless of whether or not they want to use the Menu Control.  This problem can be solved by setting the "tabindex" attribute of every MenuItem label but the first to a value of -1.  Setting an element's "tabindex" attribute to a value of -1 removes it from the browser's default tab order, while maintaining its focusability via JavaScript.  Since the YUI Menu keyboard functionality is activated when any MenuItem label has focus, with just one MenuItem label in the browser's default tab order the Menu's keyboard functionality will be preserved, while at the same time giving the user the ability to quickly tab into and out of the control.</p>					</div>
+<p>
+Since the Menu code provides its own, desktop-like keyboard functionality when JavaScript is 
+enabled, having every MenuItem label in the browser's default tab order can be a nuisance to users 
+of screen readers.   When navigating the document with the tab key, users of screen readers have to 
+tab through every single MenuItem label in a Menu, regardless of whether or not they want to use 
+the Menu Control.  This problem can be solved by setting the "tabindex" attribute of every 
+MenuItem label but the first to a value of -1.  Setting an element's "tabindex" attribute to a 
+value of -1 removes it from the browser's default tab order, while maintaining its focusability 
+via JavaScript.  Since the YUI Menu keyboard functionality is activated when any MenuItem label 
+has focus, with just one MenuItem label in the browser's default tab order the Menu's keyboard 
+functionality will be preserved, while at the same time giving the user the ability to quickly 
+tab into and out of the control.
+</p>					</div>
 				<div class="yui-u">
 					
 				

@@ -70,8 +70,8 @@ var editor = null;
                 },
                 test_regex: function() {
                     editor.setEditorHTML(Dom.get('testRegEx').innerHTML);
-                    var e_data = editor.cleanHTML();
-                    var real_data = editor.filter_all_rgb(Dom.get('testRegEx2').innerHTML);
+                    var e_data = (editor.cleanHTML()).toLowerCase();
+                    var real_data = editor.filter_all_rgb(Dom.get('testRegEx2').innerHTML.toLowerCase());
 
                     Assert.areEqual(real_data, e_data, 'Regex save routine failed');
                 },
@@ -118,7 +118,7 @@ var editor = null;
                 test_dom_path: function() {
                     editor.setEditorHTML('<p>This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test.</p><p>This is a test. This is a test. <em style="font-family: Comic Sans MS">This is a test. <strong id="test">This is a test.</strong> This is a test.</em> This is a test. This is a test. This is a test.</p><p>This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test. This is a test.</p>');
                     YAHOO.util.UserAction.click(editor._getDoc().getElementById('test'));
-                    Assert.areEqual('<span title="body">body</span> &lt; <span title="p">p</span> &lt; <span title="em">em</span> &lt; <span title="strong#test">strong#tes...</span>', editor.dompath.innerHTML, 'Dom path is not correct..');
+                    Assert.areEqual('<span title="body">body</span> &lt; <span title="p">p</span> &lt; <span title="em">em</span> &lt; <span title="strong#test">strong#tes...</span>', editor.dompath.innerHTML.toLowerCase(), 'Dom path is not correct..');
                     Assert.areEqual(true, editor.toolbar.getButtonByValue('bold').hasClass('yui-button-selected'), 'Bold button is not selected');
                     Assert.areEqual(true, editor.toolbar.getButtonByValue('italic').hasClass('yui-button-selected'), 'Italic button is not selected');
                     editor.toolbar.resetAllButtons();

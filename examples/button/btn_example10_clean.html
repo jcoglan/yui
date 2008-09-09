@@ -112,26 +112,6 @@ to reflect the currently selected date.
         function onButtonClick() {
 
             /*
-                 Create an empty body element for the Overlay instance in order 
-                 to reserve space to render the Calendar instance into.
-            */
-
-            oCalendarMenu.setBody("&#32;");
-
-            oCalendarMenu.body.id = "calendarcontainer";
-
-
-            // Render the Overlay instance into the Button's parent element
-
-            oCalendarMenu.render(this.get("container"));
-
-
-            // Align the Overlay to the Button instance
-
-            oCalendarMenu.align();
-
-
-            /*
                  Create a Calendar instance and render it into the body 
                  element of the Overlay.
             */
@@ -224,7 +204,7 @@ to reflect the currently selected date.
 
         // Create a Overlay instance to house the Calendar instance
 
-        var oCalendarMenu = new YAHOO.widget.Overlay("calendarmenu");
+        var oCalendarMenu = new YAHOO.widget.Overlay("calendarmenu", { visible: false });
 
 
         // Create a Button instance of type "menu"
@@ -234,7 +214,26 @@ to reflect the currently selected date.
                                         id: "calendarpicker", 
                                         label: "Choose A Date", 
                                         menu: oCalendarMenu, 
-                                        container: oDateFields });
+                                        container: "datefields" });
+
+
+		oButton.on("appendTo", function () {
+		
+			/*
+				 Create an empty body element for the Overlay instance in order 
+				 to reserve space to render the Calendar instance into.
+			*/
+	
+			oCalendarMenu.setBody("&#32;");
+	
+			oCalendarMenu.body.id = "calendarcontainer";
+	
+	
+			// Render the Overlay instance into the Button's parent element
+	
+			oCalendarMenu.render(this.get("container"));
+		
+		});
 
 
         /*

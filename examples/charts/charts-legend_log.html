@@ -17,7 +17,7 @@
 <!--Script and CSS includes for YUI dependencies on this page-->
 <link rel="stylesheet" type="text/css" href="../../build/logger/assets/skins/sam/logger.css" />
 <link rel="stylesheet" type="text/css" href="../../build/button/assets/skins/sam/button.css" />
-<script type="text/javascript" src="../../build/yahoo/yahoo-min.js"></script>
+<script type="text/javascript" src="../../build/yuiloader/yuiloader-beta-min.js"></script>
 <script type="text/javascript" src="../../build/event/event-min.js"></script>
 <script type="text/javascript" src="../../build/dom/dom-min.js"></script>
 <script type="text/javascript" src="../../build/logger/logger-min.js"></script>
@@ -33,7 +33,7 @@
 	#chart
 	{
 		float: left;
-		width: 400px;
+		width: 450px;
 		height: 300px;
 	}
 
@@ -43,52 +43,6 @@
 		font-size: 1.2em;
 		font-weight: bold;
 		margin-bottom: 0.4em;
-	}
-
-	#legend
-	{
-		float: left;
-		list-style: none;
-		padding: 5px;
-		margin-left: 10px;
-		margin-top: 90px;
-		background-color: #ffffff;
-	}
-
-	#legend li
-	{
-		height: 1.2em;
-		padding-left: 15px;
-		margin-bottom: 4px;
-		list-style: none;
-	}
-
-	.categoryName
-	{
-		display: block;
-		padding-left: 4px;
-		background-color: #ffffff;
-	}
-	
-	.summer
-	{
-		background-color: #00b8bf;
-	}
-	.fall
-	{
-		background-color: #8dd5e7;
-	}
-	.spring
-	{
-		background-color: #c0fff6;
-	}
-	.winter
-	{
-		background-color: #ffa928;
-	}
-	.undecided
-	{
-		background-color: #edff9f;
 	}
 </style>
 <!--end custom header content for this example-->
@@ -104,12 +58,15 @@
 			<a href="http://help.yahoo.com/help/us/ysearch">Help</a>
 			</em>
 		</p>
-		<form action="http://search.yahoo.com/search"><label for="ygsp">YDN Site Search</label> 
+		<form action="http://search.yahoo.com/search" id="sitesearchform">
 		<input name="vs" type="hidden" value="developer.yahoo.com">
-		<input name="fr" type="hidden" value="ush-myweb">
-		<input id="ygsp" name="va" size="22"> 
-		<input type="submit" value="Search" class="ygbt"></form>
-	</div>
+		<input name="vs" type="hidden" value="yuiblog.com">
+		<div id="sitesearch">
+			<label for="searchinput">Site Search (YDN &amp; YUIBlog): </label>
+			<input type="text" id="searchinput" name="p">
+			<input type="submit" value="Search" id="searchsubmit" class="ygbt">
+		</div>
+		</form>	</div>
 	<div id="ygma"><a href="../../"><img src="../../assets/yui.gif"  border="0" width="378" height="28"></a></div>
 	<div id="pagetitle"><h1>YUI Library Examples: Charts Control (experimental): Chart with Legend Example</h1></div>
 </div>
@@ -124,7 +81,7 @@
 	<h1>Charts Control (experimental): Chart with Legend Example</h1>
 	
 	<div class="exampleIntro">
-	<p>Though the <a href="http://developer.yahoo.com/yui/charts/">YUI Charts Control</a> doesn't support legends out of the box, you can easily create a legend using a simple unordered list.  This example shows you how.</p>
+	<p>A legend may be displayed with the <a href="http://developer.yahoo.com/yui/charts/">YUI Charts Control</a> by setting a few simple styles. This example shows you how.</p>
 <p>Please note: The YUI Charts Control requires Flash Player 9.0.45 or higher. The latest version of Flash Player is available at the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player Download Center</a>.</p>			
 	</div>	
 					
@@ -138,14 +95,6 @@
 	
 	<span class="chart_title">Survey: What is your favorite season?</span>
 <div id="chart">Unable to load Flash content. The YUI Charts Control requires Flash Player 9.0.45 or higher. You can install the latest version at the <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player Download Center</a>.</p></div>
-
-<ul id="legend">
-	<li class="summer"><span class="categoryName">Summer</span></li>
-	<li class="fall"><span class="categoryName">Fall</span></li>
-	<li class="spring"><span class="categoryName">Spring</span></li>
-	<li class="winter"><span class="categoryName">Winter</span></li>
-	<li class="undecided"><span class="categoryName">Undecided</span></li>
-</ul>
 
 <script type="text/javascript">
 
@@ -172,7 +121,22 @@
 	{
 		dataField: "count",
 		categoryField: "response",
-		series: [{}],
+		style:
+		{
+			padding: 20,
+			legend:
+			{
+				display: "right",
+				padding: 10,
+				spacing: 5,
+				font:
+				{
+					family: "Arial",
+					size: 13
+				}
+			}
+		},
+		//only needed for flash player express install
 		expressInstall: "assets/expressinstall.swf"
 	});
 
@@ -187,80 +151,41 @@
 	</div>			
 	</div>
 		
-	<h2 class="first">Build and HTML Legend</h2>
+	<h2 class="first">Add the Legend</h2>
 
-<p>The <a href="http://developer.yahoo.com/yui/charts">Charts Control</a> doesn't have a legend by default. However, one can build a simple legend using a standard HTML unordered list.</p>
+<p>The <a href="http://developer.yahoo.com/yui/charts/">Charts Control</a> may display a legend by specifying the legend display style. Accepted values include <code>"top"</code>, <code>"right"</code>, <code>"bottom"</code>, <code>"left"</code>, and the default value <code>"none"</code>.</p>
 
-<textarea name="code" class="HTML" cols="60" rows="7">
-<ul id="legend">
-	<li class="summer"><span class="categoryName">Summer</span></li>
-	<li class="fall"><span class="categoryName">Fall</span></li>
-	<li class="spring"><span class="categoryName">Spring</span></li>
-	<li class="winter"><span class="categoryName">Winter</span></li>
-	<li class="undecided"><span class="categoryName">Undecided</span></li>
-</ul>
-</textarea>
-
-<p>Each list item has its own class to allow CSS to give it the correct background color. A span element surrounds the text in the list item to allow styling, and a descriptive CSS class may be provided for extra semantic meaning.</p>
-
-<h2>Adding Styles</h2>
-
-<p>The legend itself is given a <code>list-style</code> value of <code>none</code> to hide the bullets. Each list item is given left padding to allow a <code>background-color</code> to be displayed.</p>
-
-<textarea name="code" class="CSS" cols="60" rows="10">
-#legend
+<textarea name="code" class="JScript" cols="60" rows="7">
+style:
 {
-	float: left;
-	list-style: none;
-	padding: 5px;
-	margin-left: 10px;
-	margin-top: 90px;
-	background-color: #ffffff;
-}
-
-#legend li
-{
-	height: 1.2em;
-	padding-left: 15px;
-	margin-bottom: 4px;
+	legend:
+	{
+		display: "right"
+	}
 }
 </textarea>
 
-<p>Each of the PieChart's categories has its own class that is used to set the <code>background-color</code> of the list item.</p>
+<p>Legends that are displayed on the left or right sides will arrange their series or category items vertically. When you specify that the legend should be displayed on the top or bottom, it will arrange its items horizontally.</p>
 
-<textarea name="code" class="CSS" cols="60" rows="10">
-.summer
+<h2>Other Legend Styles</h2>
+
+<p>Several substyles are available to allow you to customize the legend to fit your needs. In this example, we customize the font used by the text in the legend, the padding between the legend's items and the edge of the legend, and the spacing between the legend's items.</p>
+
+<textarea name="code" class="JScript" cols="60" rows="10">
+legend:
 {
-	background-color: #00b8bf;
-}
-.fall
-{
-	background-color: #8dd5e7;
-}
-.spring
-{
-	background-color: #c0fff6;
-}
-.winter
-{
-	background-color: #ffa928;
-}
-.undecided
-{
-	background-color: #edff9f;
+	display: "right",
+	padding: 10,
+	spacing: 5,
+	font:
+	{
+		family: "Arial",
+		size: 13
+	}
 }
 </textarea>
 
-<p>The span element inside the list items is given a <code>background-color</code> to match the legend's main background and to hide the category color under the text. Setting <code>display:block</code> conceals the colored background on the right side.</p>
-
-<textarea name="code" class="CSS" cols="60" rows="10">
-.categoryName
-{
-	display: block;
-	padding-left: 4px;
-	background-color: #ffffff;
-}
-</textarea>				</div>
+<p>There are more styles available for legends, including border and background options. For full details about the legend styles, read the <a href="http://developer.yahoo.com/yui/charts/">Charts Control User's Guide</a>.				</div>
 				<div class="yui-u">
 						<div id="loggerModule" class="yui-skin-sam">
 						<h3 class="firstContent">YUI Logger Output:</h3>

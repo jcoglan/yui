@@ -17,13 +17,12 @@
 <!--Script and CSS includes for YUI dependencies on this page-->
 <link rel="stylesheet" type="text/css" href="../../build/logger/assets/skins/sam/logger.css" />
 <link rel="stylesheet" type="text/css" href="../../build/button/assets/skins/sam/button.css" />
-<script type="text/javascript" src="../../build/yahoo/yahoo-min.js"></script>
+<script type="text/javascript" src="../../build/yuiloader/yuiloader-beta-min.js"></script>
 <script type="text/javascript" src="../../build/event/event-min.js"></script>
 <script type="text/javascript" src="../../build/dom/dom-min.js"></script>
 <script type="text/javascript" src="../../build/logger/logger-min.js"></script>
 <script type="text/javascript" src="../../build/element/element-beta-min.js"></script>
 <script type="text/javascript" src="../../build/button/button-min.js"></script>
-<script type="text/javascript" src="../../build/get/get-debug.js"></script>
 
 
 <!--begin custom header content for this example-->
@@ -77,12 +76,15 @@
 			<a href="http://help.yahoo.com/help/us/ysearch">Help</a>
 			</em>
 		</p>
-		<form action="http://search.yahoo.com/search"><label for="ygsp">YDN Site Search</label> 
+		<form action="http://search.yahoo.com/search" id="sitesearchform">
 		<input name="vs" type="hidden" value="developer.yahoo.com">
-		<input name="fr" type="hidden" value="ush-myweb">
-		<input id="ygsp" name="va" size="22"> 
-		<input type="submit" value="Search" class="ygbt"></form>
-	</div>
+		<input name="vs" type="hidden" value="yuiblog.com">
+		<div id="sitesearch">
+			<label for="searchinput">Site Search (YDN &amp; YUIBlog): </label>
+			<input type="text" id="searchinput" name="p">
+			<input type="submit" value="Search" id="searchsubmit" class="ygbt">
+		</div>
+		</form>	</div>
 	<div id="ygma"><a href="../../"><img src="../../assets/yui.gif"  border="0" width="378" height="28"></a></div>
 	<div id="pagetitle"><h1>YUI Library Examples: Get Utility: Getting CSS Style Sheets</h1></div>
 </div>
@@ -141,7 +143,7 @@ example.) </p>
             <div id="searchControls">
                 <!--Use a real form that works without JavaScript:-->
                 <form method="GET" action="http://search.yahooapis.com/NewsSearchService/V1/newsSearch" id="newsSearch">            
-                    <label for="p">Search Yahoo! News:</label> <input type="text" name="p" id="p" value="San Francisco" size="40">                
+                    <label for="searchString">Search Yahoo! News:</label> <input type="text" name="p" id="searchString" value="San Francisco" size="40">                
                     <input type="submit" id="getNewsData" value="Search Yahoo! News">                
                 </form>            
             </div>
@@ -273,11 +275,11 @@ var onSuccess = function(o) {
 
 <p>This example has the following dependencies:</p>
 
-<textarea name="code" class="HTML" cols="60" rows="1"><link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.1/build/button/assets/skins/sam/button.css" />
-<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/yahoo-dom-event/yahoo-dom-event.js"></script>
-<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/element/element-beta.js"></script>
-<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/button/button.js"></script>
-<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/get/get.js"></script></textarea>
+<textarea name="code" class="HTML" cols="60" rows="1"><link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/button/assets/skins/sam/button.css" />
+<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/element/element-beta.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/button/button.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/get/get.js"></script></textarea>
 
 <p>We start with a simple form on the page that will post to the <a href="http://news.search.yahoo.com/news/advanced">Yahoo! News Search engine</a>; if JavaScript is not enabled, the user will still be able to use the functionality of the News module.  A placeholder is added for the YUI Buttons that we'll add via script.  Those buttons do not need to be part of the page markup, because they aren't required for the core functionality of the page...they just control the CSS addition and removal, which in this case is cosmetic.</p>
 
@@ -295,7 +297,7 @@ var onSuccess = function(o) {
             <div id="searchControls">
                 <!--Use a real form that works without JavaScript:-->
                 <form method="GET" action="http://search.yahooapis.com/NewsSearchService/V1/newsSearch" id="newsSearch">            
-                    <label for="p">Search Yahoo! News:</label> <input type="text" name="p" id="p" value="San Francisco" size="40">                
+                    <label for="searchString">Search Yahoo! News:</label> <input type="text" name="p" id="searchString" value="San Francisco" size="40">                
                     <input type="submit" id="getNewsData" value="Search Yahoo! News">                
                 </form>            
             </div>

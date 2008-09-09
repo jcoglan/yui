@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Menu&nbsp; <span class="subtitle">2.5.1</span></h3>
+        <h3>Menu&nbsp; <span class="subtitle">2.5.2</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_menu.html">menu</a>
@@ -303,7 +303,7 @@
                     <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">hasOwnProperty</span><span class="o">(</span><span class="nx">m_oVisibleMenus</span><span class="o">,</span> <span class="nx">i</span><span class="o">))</span> <span class="o">{</span>
         
                         <span class="nx">oMenu</span> <span class="o">=</span> <span class="nx">m_oVisibleMenus</span><span class="o">[</span><span class="nx">i</span><span class="o">];</span>
-        
+
                         <span class="k">if</span> <span class="o">(</span><span class="nx">oMenu</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="s2">&quot;clicktohide&quot;</span><span class="o">)</span> <span class="o">&amp;&amp;</span> 
                             <span class="o">!(</span><span class="nx">oMenu</span> <span class="k">instanceof</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">MenuBar</span><span class="o">)</span> <span class="o">&amp;&amp;</span> 
                             <span class="nx">oMenu</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="s2">&quot;position&quot;</span><span class="o">)</span> <span class="o">==</span> <span class="s2">&quot;dynamic&quot;</span><span class="o">)</span> <span class="o">{</span>
@@ -312,8 +312,22 @@
         
                         <span class="o">}</span>
                         <span class="k">else</span> <span class="o">{</span>
-    
-                            <span class="nx">oMenu</span><span class="o">.</span><span class="nx">clearActiveItem</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+                            
+							<span class="k">if</span> <span class="o">(</span><span class="nx">oMenu</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="s2">&quot;showdelay&quot;</span><span class="o">)</span> <span class="o">&gt;</span> <span class="m">0</span><span class="o">)</span> <span class="o">{</span>
+							
+								<span class="nx">oMenu</span><span class="o">.</span><span class="nx">_cancelShowDelay</span><span class="o">();</span>
+							
+							<span class="o">}</span>
+
+
+							<span class="k">if</span> <span class="o">(</span><span class="nx">oMenu</span><span class="o">.</span><span class="nx">activeItem</span><span class="o">)</span> <span class="o">{</span>
+						
+								<span class="nx">oMenu</span><span class="o">.</span><span class="nx">activeItem</span><span class="o">.</span><span class="nx">blur</span><span class="o">();</span>
+								<span class="nx">oMenu</span><span class="o">.</span><span class="nx">activeItem</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">setProperty</span><span class="o">(</span><span class="s2">&quot;selected&quot;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+						
+								<span class="nx">oMenu</span><span class="o">.</span><span class="nx">activeItem</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>            
+						
+							<span class="o">}</span>
         
                         <span class="o">}</span>
         

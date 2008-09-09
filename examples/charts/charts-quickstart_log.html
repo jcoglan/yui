@@ -17,7 +17,7 @@
 <!--Script and CSS includes for YUI dependencies on this page-->
 <link rel="stylesheet" type="text/css" href="../../build/logger/assets/skins/sam/logger.css" />
 <link rel="stylesheet" type="text/css" href="../../build/button/assets/skins/sam/button.css" />
-<script type="text/javascript" src="../../build/yahoo/yahoo-min.js"></script>
+<script type="text/javascript" src="../../build/yuiloader/yuiloader-beta-min.js"></script>
 <script type="text/javascript" src="../../build/event/event-min.js"></script>
 <script type="text/javascript" src="../../build/dom/dom-min.js"></script>
 <script type="text/javascript" src="../../build/logger/logger-min.js"></script>
@@ -57,12 +57,15 @@
 			<a href="http://help.yahoo.com/help/us/ysearch">Help</a>
 			</em>
 		</p>
-		<form action="http://search.yahoo.com/search"><label for="ygsp">YDN Site Search</label> 
+		<form action="http://search.yahoo.com/search" id="sitesearchform">
 		<input name="vs" type="hidden" value="developer.yahoo.com">
-		<input name="fr" type="hidden" value="ush-myweb">
-		<input id="ygsp" name="va" size="22"> 
-		<input type="submit" value="Search" class="ygbt"></form>
-	</div>
+		<input name="vs" type="hidden" value="yuiblog.com">
+		<div id="sitesearch">
+			<label for="searchinput">Site Search (YDN &amp; YUIBlog): </label>
+			<input type="text" id="searchinput" name="p">
+			<input type="submit" value="Search" id="searchsubmit" class="ygbt">
+		</div>
+		</form>	</div>
 	<div id="ygma"><a href="../../"><img src="../../assets/yui.gif"  border="0" width="378" height="28"></a></div>
 	<div id="pagetitle"><h1>YUI Library Examples: Charts Control (experimental): Charts Quickstart Example</h1></div>
 </div>
@@ -123,11 +126,7 @@
 		{ displayName: "Utilities", yField: "utilities" }
 	];
 
-	var currencyAxis = new YAHOO.widget.NumericAxis();
-	currencyAxis.minimum = 800;
-	currencyAxis.labelFunction = "formatCurrencyAxisLabel";
-
-	function formatCurrencyAxisLabel( value )
+	YAHOO.example.formatCurrencyAxisLabel = function( value )
 	{
 		return YAHOO.util.Number.format( value,
 		{
@@ -137,19 +136,24 @@
 		});
 	}
 
-	function getDataTipText( item, index, series )
+	YAHOO.example.getDataTipText = function( item, index, series )
 	{
 		var toolTipText = series.displayName + " for " + item.month;
-		toolTipText += "\n" + formatCurrencyAxisLabel( item[series.yField] );
+		toolTipText += "\n" + YAHOO.example.formatCurrencyAxisLabel( item[series.yField] );
 		return toolTipText;
 	}
+
+	var currencyAxis = new YAHOO.widget.NumericAxis();
+	currencyAxis.minimum = 800;
+	currencyAxis.labelFunction = YAHOO.example.formatCurrencyAxisLabel;
 
 	var mychart = new YAHOO.widget.LineChart( "chart", myDataSource,
 	{
 		series: seriesDef,
 		xField: "month",
 		yAxis: currencyAxis,
-		dataTipFunction: "getDataTipText",
+		dataTipFunction: YAHOO.example.getDataTipText,
+		//only needed for flash player express install
 		expressInstall: "assets/expressinstall.swf"
 	});
 
@@ -190,7 +194,7 @@ myDataSource.responseSchema =
 
 <h2>Define Multiple Series</h2>
 
-<p>An Array of definitions allows you to specify more than one series to display in the Chart control. Each definition generally includes the field used to access data.</p>
+<p>An Array of definitions allows you to specify more than one series to display in the Chart control. Each definition generally includes an <code>xField</code> or <code>yField</code> value that specifies which key in the DataSource is used to access the data for a particular axis.</p>
 
 <textarea name="code" class="JScript" cols="60" rows="5">
 var seriesDef = 
@@ -200,22 +204,22 @@ var seriesDef =
 ];
 </textarea>
 
-<p>A <code>displayName</code> is recommended to providing more information about a series to the viewer.</p>
+<p>A <code>displayName</code> is recommended to provide more information about a series to the viewer. This value is used in the mouse-over data tip and the legend, if displayed.</p>
 
 <h2>Customize the Axis</h2>
 
-<p>The LineChart in this example uses a custom NumericAxis. This axis has a minimum bound set to the value 800. A <code>labelFunction</code> is used to format each label on the axis. Due to the nature of ActionScript-JavaScript communication, this function must be globally accessible, and one must pass a string representation of the function name rather than a reference to the function itself.</p>
+<p>The LineChart in this example uses a custom NumericAxis. This axis has a minimum bound set to the value 800. A <code>labelFunction</code> is used to format each label on the axis.</p>
 
 <textarea name="code" class="JScript" cols="60" rows="3">
 var currencyAxis = new YAHOO.widget.NumericAxis();
 currencyAxis.minimum = 800;
-currencyAxis.labelFunction = "formatCurrencyAxisLabel";
+currencyAxis.labelFunction = YAHOO.example.formatCurrencyAxisLabel;
 </textarea>
 
-<p>The function <code>currencyToAxis()</code> uses the  <code>YAHOO.util.Number</code> class included with DataSource to format the text as currency.</p>
+<p>The function <code>YAHOO.example.formatCurrencyAxisLabel()</code> uses the  <code>YAHOO.util.Number</code> class included with DataSource to format the text as currency.</p>
 
 <textarea name="code" class="JScript" cols="60" rows="9">
-function formatCurrencyAxisLabel( value )
+YAHOO.example.formatCurrencyAxisLabel = function( value )
 {
 	return YAHOO.util.Number.format( value,
 	{
@@ -226,15 +230,17 @@ function formatCurrencyAxisLabel( value )
 }
 </textarea>
 
+<p>Due to the nature of ActionScript-JavaScript communication, this function must be globally accessible. It may not be a method of an object instance. Pass the function reference directly or a string representation of the function name. In this case, we pass a reference to <code>YAHOO.example.formatCurrencyAxisLabel</code>, but we can also use the string value <code>"YAHOO.example.formatCurrencyAxisLabel"</code>.</p>
+
 <h2>Customize the Data Tip</h2>
 
 <p>The chart uses a <code>dataTipFunction</code> to format the text appearing on its mouse-over data tip.</p>
 
 <textarea name="code" class="JScript" cols="60" rows="6">
-function getDataTipText( item, index, series )
+YAHOO.example.getDataTipText = function( item, index, series )
 {
 	var toolTipText = series.displayName + " for " + item.month;
-	toolTipText += "\n" + formatCurrencyAxisLabel( item[series.yField] );
+	toolTipText += "\n" + YAHOO.example.formatCurrencyAxisLabel( item[series.yField] );
 	return toolTipText;
 }
 </textarea>
@@ -251,11 +257,11 @@ var mychart = new YAHOO.widget.LineChart( "chart", myDataSource,
 	xField: "month",
 	series: seriesDef,
 	yAxis: currencyAxis,
-	dataTipFunction: "getDataTipText"
+	dataTipFunction: YAHOO.example.getDataTipText
 });
 </textarea>
 
-<p>Once again, don't forget to pass the <code>dataTipFunction</code> as a string representation of the function name. The function must be globally accessible to allow Flash Player's ExternalInterface to call it.</p>				</div>
+<p>Once again, don't forget the function reference we pass to <code>dataTipFunction</code> must be globally-accessible to allow Flash Player's ExternalInterface to call it.</p>				</div>
 				<div class="yui-u">
 						<div id="loggerModule" class="yui-skin-sam">
 						<h3 class="firstContent">YUI Logger Output:</h3>

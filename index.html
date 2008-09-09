@@ -13,6 +13,8 @@
 
 </style>
 
+<!--Script and CSS includes for YUI dependencies on this page-->
+<script type="text/javascript" src="../../build/yuiloader-dom-event/yuiloader-dom-event.js"></script>
 <style type='text/css'>
 #components:after {content:'.';visibility:hidden;clear:both;height:0;display:block;}
 #components {zoom:1;}
@@ -27,12 +29,15 @@
 			<a href="http://help.yahoo.com/help/us/ysearch">Help</a>
 			</em>
 		</p>
-		<form action="http://search.yahoo.com/search"><label for="ygsp">YDN Site Search</label> 
+		<form action="http://search.yahoo.com/search" id="sitesearchform">
 		<input name="vs" type="hidden" value="developer.yahoo.com">
-		<input name="fr" type="hidden" value="ush-myweb">
-		<input id="ygsp" name="va" size="22"> 
-		<input type="submit" value="Search" class="ygbt"></form>
-	</div>
+		<input name="vs" type="hidden" value="yuiblog.com">
+		<div id="sitesearch">
+			<label for="searchinput">Site Search (YDN &amp; YUIBlog): </label>
+			<input type="text" id="searchinput" name="p">
+			<input type="submit" value="Search" id="searchsubmit" class="ygbt">
+		</div>
+		</form>	</div>
 	<div id="ygma"><a href=""><img src="assets/yui.gif"  border="0" width="378" height="28"></a></div>
 	<div id="pagetitle"><h1>The Yahoo! User Interface Library (YUI)</h1></div>
 </div>
@@ -55,7 +60,7 @@
 </ol>
 <h2 id="examples">YUI Functional Examples Included with This Download:</h2>
 
-<p>Along with the source code for YUI, your download includes <a href="examples/index.html">275 functional examples and tutorials</a> that demonstrate each component in action.  Use the list below or the menu at left to review these YUI demos &mdash; they're the best way to get oriented to what YUI can do and to grab sample code that can help you get started.  Remember that these examples and more, in addition to user's guides for each YUI component, can also be found on the <a href="http://developer.yahoo.com/yui/">YUI website</a> (external link).  (<strong>Note:</strong> Almost all examples in this distribution will work if you are browsing them from your filesystem, but some examples included here do need to be deployed on a PHP-enabled http server to function properly; if you don't have access to such a setup, just check out those examples <a href="http://developer.yahoo.com/yui/">on our website</a> to see how they work.)</p>
+<p>Along with the source code for YUI, your download includes <a href="examples/index.html">276 functional examples and tutorials</a> that demonstrate each component in action.  Use the list below or the menu at left to review these YUI demos &mdash; they're the best way to get oriented to what YUI can do and to grab sample code that can help you get started.  Remember that these examples and more, in addition to user's guides for each YUI component, can also be found on the <a href="http://developer.yahoo.com/yui/">YUI website</a> (external link).  (<strong>Note:</strong> Almost all examples in this distribution will work if you are browsing them from your filesystem, but some examples included here do need to be deployed on a PHP-enabled http server to function properly; if you don't have access to such a setup, just check out those examples <a href="http://developer.yahoo.com/yui/">on our website</a> to see how they work.)</p>
 
 </div>
 <!--stacked three-column grid-->

@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css" href="../../assets/dpSyntaxHighlighter.css">
 <!--Script and CSS includes for YUI dependencies on this page-->
 <link rel="stylesheet" type="text/css" href="../../build/button/assets/skins/sam/button.css" />
-<script type="text/javascript" src="../../build/yahoo/yahoo-min.js"></script>
+<script type="text/javascript" src="../../build/yuiloader/yuiloader-beta-min.js"></script>
 <script type="text/javascript" src="../../build/dom/dom-min.js"></script>
 <script type="text/javascript" src="../../build/event/event-min.js"></script>
 <script type="text/javascript" src="../../build/dragdrop/dragdrop-min.js"></script>
@@ -88,12 +88,15 @@
 			<a href="http://help.yahoo.com/help/us/ysearch">Help</a>
 			</em>
 		</p>
-		<form action="http://search.yahoo.com/search"><label for="ygsp">YDN Site Search</label> 
+		<form action="http://search.yahoo.com/search" id="sitesearchform">
 		<input name="vs" type="hidden" value="developer.yahoo.com">
-		<input name="fr" type="hidden" value="ush-myweb">
-		<input id="ygsp" name="va" size="22"> 
-		<input type="submit" value="Search" class="ygbt"></form>
-	</div>
+		<input name="vs" type="hidden" value="yuiblog.com">
+		<div id="sitesearch">
+			<label for="searchinput">Site Search (YDN &amp; YUIBlog): </label>
+			<input type="text" id="searchinput" name="p">
+			<input type="submit" value="Search" id="searchsubmit" class="ygbt">
+		</div>
+		</form>	</div>
 	<div id="ygma"><a href="../../"><img src="../../assets/yui.gif"  border="0" width="378" height="28"></a></div>
 	<div id="pagetitle"><h1>YUI Library Examples: Drag &amp; Drop: Drag and Drop - Staying in a Region</h1></div>
 </div>
@@ -151,6 +154,10 @@
             //Call the parent's init method
             YAHOO.example.DDRegion.superclass.init.apply(this, arguments);
             this.initConstraints();
+
+            Event.on(window, 'resize', function() {
+                this.initConstraints();
+            }, this, true);
         },
         initConstraints: function() {
             //Get the top, right, bottom and left positions
@@ -181,10 +188,6 @@
             //Set the constraints based on the above calculations
             this.setXConstraint(left, right);
             this.setYConstraint(top, bottom);
-
-            Event.on(window, 'resize', function() {
-                this.initConstraints();
-            }, this, true);
         }
     });
 
@@ -244,7 +247,7 @@
 <h2 id="demo-themath">The Math</h2>
 
 <p>The math for this is pretty easy, as shown in the code below:</p>
-<p><em>It should be noted that the box model comes into play here. Placing padding, margins or borders on the playing fields or the draggable elements will cause them to not stay in the fully in the playing field. They will overlap the region by the width of the margin/padding/border.</em></p>
+<p><em>It should be noted that the box model comes into play here. Placing padding, margins or borders on the playing field or the draggable elements will cause them to not stay fully in the playing field. They will overlap the region by the width of the margin/padding/border.</em></p>
 
 <textarea name="code" class="JScript">
 //Get the top, right, bottom and left positions
@@ -295,6 +298,10 @@ var bottom = region.bottom - xy[1] - height;
             //Call the parent's init method
             YAHOO.example.DDRegion.superclass.init.apply(this, arguments);
             this.initConstraints();
+
+            Event.on(window, 'resize', function() {
+                this.initConstraints();
+            }, this, true);
         },
         initConstraints: function() {
             //Get the top, right, bottom and left positions
@@ -325,10 +332,6 @@ var bottom = region.bottom - xy[1] - height;
             //Set the constraints based on the above calculations
             this.setXConstraint(left, right);
             this.setYConstraint(top, bottom);
-
-            Event.on(window, 'resize', function() {
-                this.initConstraints();
-            }, this, true);
         }
     });
 

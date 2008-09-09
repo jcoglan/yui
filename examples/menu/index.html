@@ -13,6 +13,8 @@
 
 </style>
 
+<!--Script and CSS includes for YUI dependencies on this page-->
+<script type="text/javascript" src="../../build/yuiloader-dom-event/yuiloader-dom-event.js"></script>
 
 </head>
 <body id="yahoo-com" class="">
@@ -24,12 +26,15 @@
 			<a href="http://help.yahoo.com/help/us/ysearch">Help</a>
 			</em>
 		</p>
-		<form action="http://search.yahoo.com/search"><label for="ygsp">YDN Site Search</label> 
+		<form action="http://search.yahoo.com/search" id="sitesearchform">
 		<input name="vs" type="hidden" value="developer.yahoo.com">
-		<input name="fr" type="hidden" value="ush-myweb">
-		<input id="ygsp" name="va" size="22"> 
-		<input type="submit" value="Search" class="ygbt"></form>
-	</div>
+		<input name="vs" type="hidden" value="yuiblog.com">
+		<div id="sitesearch">
+			<label for="searchinput">Site Search (YDN &amp; YUIBlog): </label>
+			<input type="text" id="searchinput" name="p">
+			<input type="submit" value="Search" id="searchsubmit" class="ygbt">
+		</div>
+		</form>	</div>
 	<div id="ygma"><a href="../../"><img src="../../assets/yui.gif"  border="0" width="378" height="28"></a></div>
 	<div id="pagetitle"><h1>YUI Library Examples: Menu Family</h1></div>
 </div>
@@ -43,7 +48,9 @@
 
 
 <p>The Menu family of components features a collection of controls that make it easy to add menus to your website or web application.  With the Menu Controls you can create website fly-out menus, customized context menus, or application-style menu bars with just a small amount of scripting</p><ul><li><a href='example01.html'>Basic Menu From Markup</a>: Basic Menu From Markup</li><li><a href='example02.html'>Basic Menu From JavaScript</a>: Basic Menu From JavaScript</li><li><a href='example03.html'>Grouped Menu Items Using Markup</a>: Grouped Menu Items Using Markup</li><li><a href='example04.html'>Grouped Menu Items Using JavaScript</a>: Grouped Menu Items Using JavaScript</li><li><a href='example05.html'>Grouped Menu Items With Titles From Markup</a>: Grouped Menu Items With Titles From Markup</li><li><a href='example06.html'>Grouped Menu Items With Titles From JavaScript</a>: Grouped Menu Items With Titles From JavaScript</li><li><a href='example07.html'>Multi-tiered Menu From Markup</a>: Multi-tiered Menu From Markup</li><li><a href='example08.html'>Multi-tiered Menu From JavaScript</a>: Multi-tiered Menu From JavaScript</li><li><a href='example09.html'>Handling Menu Click Events</a>: Handling Menu Click Events</li><li><a href='example10.html'>Listening For Menu Events</a>: Listening For Menu Events</li><li><a href='example11.html'>MenuItem Configuration Properties</a>: MenuItem Configuration Properties</li><li><a href='example12.html'>Setting Menu Configuration Properties At Runtime</a>: Setting Menu Configuration Properties At Runtime</li><li><a href='leftnavfrommarkup.html'>Website Left Nav With Submenus Built From Markup</a>: Website Left Nav With Submenus Built From Markup</li><li><a href='leftnavfromjs.html'>Website Left Nav With Submenus From JavaScript</a>: Website Left Nav With Submenus From JavaScript</li><li><a href='topnavfrommarkup.html'>Website Top Nav With Submenus Built From Markup</a>: Website Top Nav With Submenus Built From Markup</li><li><a href='topnavfromjs.html'>Website Top Nav With Submenus From JavaScript</a>: Website Top Nav With Submenus From JavaScript</li><li><a href='leftnavfrommarkupwithanim.html'>Website Left Nav Using Animation With Submenus Built From Markup</a>: Website Left Nav Using Animation With Submenus Built From Markup</li><li><a href='leftnavfromjswithanim.html'>Website Left Nav Using Animation With Submenus From JavaScript</a>: Website Left Nav Using Animation With Submenus From JavaScript</li><li><a href='topnavfrommarkupwithanim.html'>Website Top Nav Using Animation With Submenus Built From Markup</a>: Website Top Nav Using Animation With Submenus Built From Markup</li><li><a href='topnavfromjswithanim.html'>Website Top Nav Using Animation With Submenus From JavaScript</a>: Website Top Nav Using Animation With Submenus From JavaScript</li><li><a href='contextmenu.html'>Context Menu</a>: Context Menu</li><li><a href='tablecontextmenu.html'>Adding A Context Menu To A Table</a>: Adding A Context Menu To A Table</li><li><a href='treeviewcontextmenu.html'>Adding A Context Menu To A TreeView</a>: Adding A Context Menu To A TreeView</li><li><a href='programsmenu.html'>OS-Style Programs Menu</a>: OS-Style Programs Menu</li><li><a href='applicationmenubar.html'>Application Menubar</a>: Application Menubar</li><li><a href='menuwaiaria.html'>Implementing ARIA Roles and States with Menu</a>: This example demonstrates how use the <a href='http://www.w3.org/TR/aria-role/'>WAI-ARIA Roles and States</a> 
-as implemented for <a href='http://www.mozilla.com/en-US/firefox/all-beta.html'>Firefox 3</a> with the <a href='http://developer.yahoo.com/yui/menu'>YUI Menu Control</a>.</li></ul>
+as implemented for <a href='http://www.mozilla.com/en-US/firefox/all-beta.html'>Firefox 3</a> and 
+<a href="http://www.microsoft.com/windows/products/winfamily/ie/ie8/default.mspx">Internet Explorer 8</a> 
+with the <a href='http://developer.yahoo.com/yui/menu'>YUI Menu Control</a>.</li></ul>
 
 <h2 id='relatedExamples'>Other YUI Examples That Make Use of the Menu Family</h2><ul><li><a href='../../examples/datatable/dt_contextmenu.html'>Context Menu Integration</a> (included with examples for the <a href='../../examples/datatable/index.html'>DataTable Control (beta)</a>)</li><li><a href='../../examples/button/btn_example07.html'>Menu Buttons</a> (included with examples for the <a href='../../examples/button/index.html'>Button Control</a>)</li><li><a href='../../examples/button/btn_example08.html'>Split Buttons</a> (included with examples for the <a href='../../examples/button/index.html'>Button Control</a>)</li><li><a href='../../examples/button/btn_example11.html'>Color Picker Button</a> (included with examples for the <a href='../../examples/button/index.html'>Button Control</a>)</li><li><a href='../../examples/button/btn_example12.html'>Fixed Width Menu Button</a> (included with examples for the <a href='../../examples/button/index.html'>Button Control</a>)</li><li><a href='../../examples/button/btn_example14.html'>Slider Button</a> (included with examples for the <a href='../../examples/button/index.html'>Button Control</a>)</li><li><a href='../../examples/profilerviewer/pv-api.html'>Using the ProfilerViewer API while Profiling the YUI Menu Control</a> (included with examples for the <a href='../../examples/profilerviewer/index.html'>ProfilerViewer Control (beta)</a>)</li></ul>		
 			</div>
@@ -63,6 +70,8 @@ as implemented for <a href='http://www.mozilla.com/en-US/firefox/all-beta.html'>
 		  </div>
 	</div></div>
 </div>
+
+
 
 <div class="yui-b" id="tocWrapper">
 <!-- TABLE OF CONTENTS -->

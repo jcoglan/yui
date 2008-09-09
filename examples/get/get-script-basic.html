@@ -17,13 +17,12 @@
 <!--Script and CSS includes for YUI dependencies on this page-->
 <link rel="stylesheet" type="text/css" href="../../build/logger/assets/skins/sam/logger.css" />
 <link rel="stylesheet" type="text/css" href="../../build/button/assets/skins/sam/button.css" />
-<script type="text/javascript" src="../../build/yahoo/yahoo-min.js"></script>
+<script type="text/javascript" src="../../build/yuiloader/yuiloader-beta-min.js"></script>
 <script type="text/javascript" src="../../build/event/event-min.js"></script>
 <script type="text/javascript" src="../../build/dom/dom-min.js"></script>
 <script type="text/javascript" src="../../build/logger/logger-min.js"></script>
 <script type="text/javascript" src="../../build/element/element-beta-min.js"></script>
 <script type="text/javascript" src="../../build/button/button-min.js"></script>
-<script type="text/javascript" src="../../build/get/get-debug.js"></script>
 
 
 <!--begin custom header content for this example-->
@@ -55,12 +54,15 @@
 			<a href="http://help.yahoo.com/help/us/ysearch">Help</a>
 			</em>
 		</p>
-		<form action="http://search.yahoo.com/search"><label for="ygsp">YDN Site Search</label> 
+		<form action="http://search.yahoo.com/search" id="sitesearchform">
 		<input name="vs" type="hidden" value="developer.yahoo.com">
-		<input name="fr" type="hidden" value="ush-myweb">
-		<input id="ygsp" name="va" size="22"> 
-		<input type="submit" value="Search" class="ygbt"></form>
-	</div>
+		<input name="vs" type="hidden" value="yuiblog.com">
+		<div id="sitesearch">
+			<label for="searchinput">Site Search (YDN &amp; YUIBlog): </label>
+			<input type="text" id="searchinput" name="p">
+			<input type="submit" value="Search" id="searchsubmit" class="ygbt">
+		</div>
+		</form>	</div>
 	<div id="ygma"><a href="../../"><img src="../../assets/yui.gif"  border="0" width="378" height="28"></a></div>
 	<div id="pagetitle"><h1>YUI Library Examples: Get Utility: Getting a Script Node with JSON Data</h1></div>
 </div>
@@ -93,7 +95,7 @@
     <!--Use a real form that works without JavaScript:-->
     <form method="GET" action="http://siteexplorer.search.yahoo.com/advsearch" id="siteExplorer">
 
-        <label for="p">Site URL:</label> <input type="text" name="p" id="p" value="http://developer.yahoo.com/yui" size="40">
+        <label for="searchString">Site URL:</label> <input type="text" name="p" id="searchString" value="http://developer.yahoo.com/yui" size="40">
         
         <input type="hidden" name="bwm" value="i">
         <input type="hidden" name="bwms" value="p">
@@ -169,7 +171,7 @@ YAHOO.log("The Get Utility failed.", "info", "example");
         
         //Load the transitional state of the results section:
         elResults.innerHTML = "<h3>Retrieving incoming links for " +
-            Dom.get("p").value + ":</h3>" +
+            Dom.get("searchString").value + ":</h3>" +
             "<img src='http://l.yimg.com/us.yimg.com/i/nt/ic/ut/bsc/busybar_1.gif' " +
             "alt='Please wait...'>";
         
@@ -178,7 +180,7 @@ YAHOO.log("The Get Utility failed.", "info", "example");
             "appid=3wEDxLHV34HvAU2lMnI51S4Qra5m.baugqoSv4gcRllqqVZm3UrMDZWToMivf5BJ3Mom" +
             "&results=20&output=json&omit_inlinks=domain" +
             "&callback=YAHOO.example.SiteExplorer.callback" +
-            "&query=" + encodeURIComponent(Dom.get("p").value);
+            "&query=" + encodeURIComponent(Dom.get("searchString").value);
         
         //This simple line is the call to the Get Utility; we pass
         //in the URL and the configuration object, which in this case
@@ -282,11 +284,11 @@ YAHOO.util.Event.onDOMReady(
 
 <p>This example has the following dependencies:</p>
 
-<textarea name="code" class="HTML" cols="60" rows="1"><link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.1/build/button/assets/skins/sam/button.css" />
-<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/yahoo-dom-event/yahoo-dom-event.js"></script>
-<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/element/element-beta.js"></script>
-<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/button/button.js"></script>
-<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/get/get.js"></script></textarea>
+<textarea name="code" class="HTML" cols="60" rows="1"><link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/button/assets/skins/sam/button.css" />
+<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/element/element-beta.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/button/button.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/get/get.js"></script></textarea>
 
 <p>First, we create a plain HTML form that will work for users who do not have JavaScript enabled:</p>
 
@@ -296,7 +298,7 @@ YAHOO.util.Event.onDOMReady(
 	<!--Use a real form that works without JavaScript:-->
 	<form method="GET" action="http://siteexplorer.search.yahoo.com/advsearch" id="siteExplorer">
 
-        <label for="p">Site URL:</label> <input type="text" name="p" id="p" value="http://developer.yahoo.com/yui" size="40">
+        <label for="searchString">Site URL:</label> <input type="text" name="searchString" id="p" value="http://developer.yahoo.com/yui" size="40">
         
         <input type="hidden" name="bwm" value="i">
         <input type="hidden" name="bwms" value="p">
@@ -334,7 +336,7 @@ var getSiteExplorerData = function() {
     
     //Load the transitional state of the results section:
     elResults.innerHTML = "<h3>Retrieving incoming links for " +
-        Dom.get("p").value + ":</h3>" +
+        Dom.get("searchString").value + ":</h3>" +
         "<img src='http://l.yimg.com/us.yimg.com/i/nt/ic/ut/bsc/busybar_1.gif' " +
         "alt='Please wait...'>";
     
@@ -343,7 +345,7 @@ var getSiteExplorerData = function() {
         "appid=3wEDxLHV34HvAU2lMnI51S4Qra5m.baugqoSv4gcRllqqVZm3UrMDZWToMivf5BJ3Mom" +
         "&results=20&output=json&omit_inlinks=domain" +
         "&callback=YAHOO.example.SiteExplorer.callback" +
-        "&query=" + encodeURIComponent(Dom.get("p").value);
+        "&query=" + encodeURIComponent(Dom.get("searchString").value);
     
     //This simple line is the call to the Get Utility; we pass
     //in the URL and the configuration object, which in this case
@@ -425,7 +427,7 @@ YAHOO.log("The Get Utility failed.", "info", "example");
         
         //Load the transitional state of the results section:
         elResults.innerHTML = "<h3>Retrieving incoming links for " +
-            Dom.get("p").value + ":</h3>" +
+            Dom.get("searchString").value + ":</h3>" +
             "<img src='http://l.yimg.com/us.yimg.com/i/nt/ic/ut/bsc/busybar_1.gif' " +
             "alt='Please wait...'>";
         
@@ -434,7 +436,7 @@ YAHOO.log("The Get Utility failed.", "info", "example");
             "appid=3wEDxLHV34HvAU2lMnI51S4Qra5m.baugqoSv4gcRllqqVZm3UrMDZWToMivf5BJ3Mom" +
             "&results=20&output=json&omit_inlinks=domain" +
             "&callback=YAHOO.example.SiteExplorer.callback" +
-            "&query=" + encodeURIComponent(Dom.get("p").value);
+            "&query=" + encodeURIComponent(Dom.get("searchString").value);
         
         //This simple line is the call to the Get Utility; we pass
         //in the URL and the configuration object, which in this case

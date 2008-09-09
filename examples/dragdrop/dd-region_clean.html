@@ -118,6 +118,10 @@ body {
             //Call the parent's init method
             YAHOO.example.DDRegion.superclass.init.apply(this, arguments);
             this.initConstraints();
+
+            Event.on(window, 'resize', function() {
+                this.initConstraints();
+            }, this, true);
         },
         initConstraints: function() {
             //Get the top, right, bottom and left positions
@@ -148,10 +152,6 @@ body {
             //Set the constraints based on the above calculations
             this.setXConstraint(left, right);
             this.setYConstraint(top, bottom);
-
-            Event.on(window, 'resize', function() {
-                this.initConstraints();
-            }, this, true);
         }
     });
 

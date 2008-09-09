@@ -1,7 +1,14 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-
+    <style type="text/css">
+        .yui-skin-sam .yui-dt tbody td.up {
+            background-color: #efe;
+        }
+        .yui-skin-sam .yui-dt tbody td.down {
+            background-color: #fee;
+        }
+    </style>
 </head>
 
 <body class="yui-skin-sam">
@@ -19,14 +26,17 @@ loader.insert({
     onSuccess: function() {
         YAHOO.example.CustomFormatting = new function() {
             // Define a custom formatter for the Column labeled "flag"
-            // draws an up icon if value of field3 is greater than 100,
-            // otherwise renders a down icon
+            // draws an up icon and adds class "up" to the cell liner to affect
+            // a green background color if value of field3 is greater than 100.
+            // Otherwise renders a down icon and assigns class "down", setting
+            // the background color to red.
             this.myCustomFormatter = function(elCell, oRecord, oColumn, oData) {
-                YAHOO.util.Dom.addClass(elCell, "flag");
                 if(oRecord.getData("field3") > 100) {
+                    YAHOO.util.Dom.replaceClass(elCell.parentNode, "down", "up");
                     elCell.innerHTML = '&nbsp;<img src="../../build/datatable/assets/skins/sam/dt-arrow-up.png">';
                 }
                 else {
+                    YAHOO.util.Dom.replaceClass(elCell.parentNode, "up","down");
                     elCell.innerHTML = '&nbsp;<img src="../../build/datatable/assets/skins/sam/dt-arrow-dn.png">';
                 }
             };

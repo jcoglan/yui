@@ -16,9 +16,9 @@
 <link rel="stylesheet" type="text/css" href="../../assets/dpSyntaxHighlighter.css">
 <!--Script and CSS includes for YUI dependencies on this page-->
 <link rel="stylesheet" type="text/css" href="../../build/button/assets/skins/sam/button.css" />
-<script type="text/javascript" src="../../build/yahoo/yahoo-min.js"></script>
-<script type="text/javascript" src="../../build/dom/dom-min.js"></script>
+<script type="text/javascript" src="../../build/yuiloader/yuiloader-beta-min.js"></script>
 <script type="text/javascript" src="../../build/event/event-min.js"></script>
+<script type="text/javascript" src="../../build/dom/dom-min.js"></script>
 <script type="text/javascript" src="../../build/element/element-beta-min.js"></script>
 <script type="text/javascript" src="../../build/button/button-min.js"></script>
 
@@ -35,12 +35,15 @@
 			<a href="http://help.yahoo.com/help/us/ysearch">Help</a>
 			</em>
 		</p>
-		<form action="http://search.yahoo.com/search"><label for="ygsp">YDN Site Search</label> 
+		<form action="http://search.yahoo.com/search" id="sitesearchform">
 		<input name="vs" type="hidden" value="developer.yahoo.com">
-		<input name="fr" type="hidden" value="ush-myweb">
-		<input id="ygsp" name="va" size="22"> 
-		<input type="submit" value="Search" class="ygbt"></form>
-	</div>
+		<input name="vs" type="hidden" value="yuiblog.com">
+		<div id="sitesearch">
+			<label for="searchinput">Site Search (YDN &amp; YUIBlog): </label>
+			<input type="text" id="searchinput" name="p">
+			<input type="submit" value="Search" id="searchsubmit" class="ygbt">
+		</div>
+		</form>	</div>
 	<div id="ygma"><a href="../../"><img src="../../assets/yui.gif"  border="0" width="378" height="28"></a></div>
 	<div id="pagetitle"><h1>YUI Library Examples: Menu Family: Application Menubar</h1></div>
 </div>
@@ -200,20 +203,59 @@ YAHOO.util.Event.onDOMReady(function () {
     oMenuBar.render(document.body);
     
 
-    /*
-        Add a "show" event listener that keeps the left-most
-        submenu against the left edge of the browser viewport.
-    */
-    
-    function onSubmenuShow() {
-    
-        if (this.id == "yahoo") {
-    
-            this.cfg.setProperty("x", 0);
-        
-        }
-    
-    }
+	// Add a "show" event listener for each submenu.
+	
+	function onSubmenuShow() {
+
+		var oIFrame,
+			oElement,
+			nOffsetWidth;
+
+
+		// Keep the left-most submenu against the left edge of the browser viewport
+
+		if (this.id == "yahoo") {
+			
+			YAHOO.util.Dom.setX(this.element, 0);
+
+			oIFrame = this.iframe;            
+
+
+			if (oIFrame) {
+	
+				YAHOO.util.Dom.setX(oIFrame, 0);
+	
+			}
+			
+			this.cfg.setProperty("x", 0, true);
+		
+		}
+
+
+		/*
+			Need to set the width for submenus of submenus in IE to prevent the mouseout 
+			event from firing prematurely when the user mouses off of a MenuItem's 
+			text node.
+		*/
+
+		if ((this.id == "filemenu" || this.id == "editmenu") && YAHOO.env.ua.ie) {
+
+			oElement = this.element;
+			nOffsetWidth = oElement.offsetWidth;
+	
+			/*
+				Measuring the difference of the offsetWidth before and after
+				setting the "width" style attribute allows us to compute the 
+				about of padding and borders applied to the element, which in 
+				turn allows us to set the "width" property correctly.
+			*/
+			
+			oElement.style.width = nOffsetWidth + "px";
+			oElement.style.width = (nOffsetWidth - (oElement.offsetWidth - nOffsetWidth)) + "px";
+		
+		}
+
+	}
     
 
     // Subscribe to the "show" event for each submenu
@@ -228,10 +270,6 @@ of the MenuBar instance by deferring the initialization and rendering of each
 submenu until just before it is initially made visible.  The "itemdata" 
 property is set to the array of MenuItem configuration properties; each item
 in the array will be used to add a new item to the MenuBar when it is rendered.
-Lastly, it is necessary to add a "show" event handler to keep the position of 
-the first, left-most submenu positioned flush to the edge of the 
-browser's viewport.  This is because by default Menu instances try to keep 
-themselves positioned 10 pixels away from the edge of the browser viewport.
 </p>
 <p>
 Often the first item in a menu bar has an icon as its label, but no text.  It is
@@ -239,11 +277,11 @@ easy to achieve this using CSS, while still ensuring the text of the MenuItem
 is available to users of a screen reader.
 </p>
 <p>
-Start by wrapping the MenuItem's text label in an <code>&#60;em&#62;</code> 
-element.  Next, give the <code>&#60;em&#62;</code> a fixed width, and set the 
-"text-indent" property to a value that pushes the text beyond the boundaries of 
-the width.  Use the "overflow" property to hide the text.  Lastly, apply an 
-image to the MenuItem instance via the "background" property.
+Start by wrapping the MenuItem's text label in an <code>&#60;em&#62;</code> element.  Next, give 
+the <code>&#60;em&#62;</code> a fixed width, and set the "text-indent" property to a value that 
+pushes the text beyond the boundaries of element as defined by the width.  Use the "overflow" 
+property to hide the text.  Lastly, apply an image to the MenuItem instance via the 
+"background" property.
 </p>
 <textarea name="code" class="CSS" cols="60" rows="1">
 em#yahoolabel {

@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>imagecropper&nbsp; <span class="subtitle">2.5.1</span></h3>
+        <h3>imagecropper&nbsp; <span class="subtitle">2.5.2</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_imagecropper.html">imagecropper</a>
@@ -230,6 +230,7 @@
             <span class="k">this</span><span class="o">.</span><span class="nx">_setBackgroundPosition</span><span class="o">(-(</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;initialXY&#39;</span><span class="o">)[</span><span class="m">0</span><span class="o">]),</span>  <span class="o">-(</span><span class="k">this</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;initialXY&#39;</span><span class="o">)[</span><span class="m">1</span><span class="o">]));</span>
 
             <span class="k">this</span><span class="o">.</span><span class="nx">_resize</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="s1">&#39;startResize&#39;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">_handleStartResizeEvent</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+            <span class="k">this</span><span class="o">.</span><span class="nx">_resize</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="s1">&#39;endResize&#39;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">_handleEndResizeEvent</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">_resize</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="s1">&#39;dragEvent&#39;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">_handleDragEvent</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">_resize</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="s1">&#39;beforeResize&#39;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">_handleBeforeResizeEvent</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">_resize</span><span class="o">.</span><span class="nx">on</span><span class="o">(</span><span class="s1">&#39;resize&#39;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="nx">_handleResizeEvent</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
@@ -491,8 +492,16 @@
         
         <span class="c">/**</span>
 <span class="c">        * @private</span>
+<span class="c">        * @method _handleEndResizeEvent</span>
+<span class="c">        * @description Handles the Resize Utilitys endResize event</span>
+<span class="c">        */</span>
+        <span class="nx">_handleEndResizeEvent</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="nx">_setConstraints</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="o">},</span>
+        <span class="c">/**</span>
+<span class="c">        * @private</span>
 <span class="c">        * @method _handleStartResizeEvent</span>
-<span class="c">        * @description Handles the Resize Utilitys startResizeEvent event</span>
+<span class="c">        * @description Handles the Resize Utilitys startResize event</span>
 <span class="c">        */</span>
         <span class="nx">_handleStartResizeEvent</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">_setConstraints</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
@@ -550,7 +559,6 @@
             <span class="nx">resize</span><span class="o">.</span><span class="nx">dd</span><span class="o">.</span><span class="nx">resetConstraints</span><span class="o">();</span>
             <span class="k">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="o">(</span><span class="nx">resize</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;height&#39;</span><span class="o">),</span> <span class="m">10</span><span class="o">),</span>
                 <span class="nx">width</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="o">(</span><span class="nx">resize</span><span class="o">.</span><span class="nx">get</span><span class="o">(</span><span class="s1">&#39;width&#39;</span><span class="o">),</span> <span class="m">10</span><span class="o">);</span>
-
             <span class="k">if</span> <span class="o">(</span><span class="nx">inside</span><span class="o">)</span> <span class="o">{</span>
                 <span class="c">//Called from inside the resize callback</span>
 <span class="c"></span>                <span class="nx">height</span> <span class="o">=</span> <span class="nx">resize</span><span class="o">.</span><span class="nx">_cache</span><span class="o">.</span><span class="nx">height</span><span class="o">;</span>
@@ -583,7 +591,6 @@
             
             <span class="nx">resize</span><span class="o">.</span><span class="nx">dd</span><span class="o">.</span><span class="nx">setXConstraint</span><span class="o">(</span><span class="nx">left</span><span class="o">,</span> <span class="nx">right</span><span class="o">);</span> 
             <span class="nx">resize</span><span class="o">.</span><span class="nx">dd</span><span class="o">.</span><span class="nx">setYConstraint</span><span class="o">(</span><span class="nx">top</span><span class="o">,</span> <span class="nx">bottom</span><span class="o">);</span>
-
             <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;Constraints: &#39;</span> <span class="o">+</span> <span class="nx">top</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="nx">right</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="nx">bottom</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="nx">left</span><span class="o">,</span> <span class="s1">&#39;log&#39;</span><span class="o">,</span> <span class="s1">&#39;ImageCropper&#39;</span><span class="o">);</span>
 
             <span class="k">return</span> <span class="o">{</span>

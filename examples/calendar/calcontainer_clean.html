@@ -134,7 +134,13 @@ body {
             dialog.fireEvent("changeContent");
         });
 
-        YAHOO.util.Event.on("show", "click", dialog.show, dialog, true);
+        YAHOO.util.Event.on("show", "click", function() {
+            dialog.show();
+            if (YAHOO.env.ua.opera && document.documentElement) {
+                // Opera needs to force a repaint
+                document.documentElement.style += "";
+            } 
+        });
     });
 </script>
 <div class="box">

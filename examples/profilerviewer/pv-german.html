@@ -43,12 +43,15 @@
 			<a href="http://help.yahoo.com/help/us/ysearch">Help</a>
 			</em>
 		</p>
-		<form action="http://search.yahoo.com/search"><label for="ygsp">YDN Site Search</label> 
+		<form action="http://search.yahoo.com/search" id="sitesearchform">
 		<input name="vs" type="hidden" value="developer.yahoo.com">
-		<input name="fr" type="hidden" value="ush-myweb">
-		<input id="ygsp" name="va" size="22"> 
-		<input type="submit" value="Search" class="ygbt"></form>
-	</div>
+		<input name="vs" type="hidden" value="yuiblog.com">
+		<div id="sitesearch">
+			<label for="searchinput">Site Search (YDN &amp; YUIBlog): </label>
+			<input type="text" id="searchinput" name="p">
+			<input type="submit" value="Search" id="searchsubmit" class="ygbt">
+		</div>
+		</form>	</div>
 	<div id="ygma"><a href="../../"><img src="../../assets/yui.gif"  border="0" width="378" height="28"></a></div>
 	<div id="pagetitle"><h1>YUI Library Examples: ProfilerViewer Control (beta): ProfilerViewer Internationalization: German</h1></div>
 </div>
@@ -84,15 +87,15 @@
 
 <p>This example has the following dependencies:</p>
 
-<textarea name="code" class="HTML" cols="60" rows="1"><link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/http://yui.yahooapis.com/2.5.1//build/calendar/assets/skins/sam/calendar.css"> 
-<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.1/build/profilerviewer/assets/skins/sam/profilerviewer.css">
+<textarea name="code" class="HTML" cols="60" rows="1"><link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/http://yui.yahooapis.com/2.5.2//build/calendar/assets/skins/sam/calendar.css"> 
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/profilerviewer/assets/skins/sam/profilerviewer.css">
 
-<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/utilities/utilities.js"></script>
-<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/element/element-beta-min.js"></script>
-<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/calendar/calendar.js"></script>
-<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/yuiloader/yuiloader-beta-min.js"></script>
-<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/profiler/profiler-beta-min.js"></script>
-<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/profilerviewer/profilerviewer-beta-min.js"></script></textarea>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/utilities/utilities.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/element/element-beta-min.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/calendar/calendar.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/yuiloader/yuiloader-beta-min.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/profiler/profiler-beta-min.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/profilerviewer/profilerviewer-beta-min.js"></script></textarea>
 
 <p>All of the interface's language strings live in the static member <code>YAHOO.widget.ProfilerViewer.STRINGS</code>.  Customizing the interface simply involves modifying or replacing that object prior to creating your ProfilerViewer instance.</p>
 

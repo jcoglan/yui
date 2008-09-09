@@ -13,6 +13,8 @@
 
 </style>
 
+<!--Script and CSS includes for YUI dependencies on this page-->
+<script type="text/javascript" src="../../build/yuiloader-dom-event/yuiloader-dom-event.js"></script>
 
 </head>
 <body id="yahoo-com" class="">
@@ -24,12 +26,15 @@
 			<a href="http://help.yahoo.com/help/us/ysearch">Help</a>
 			</em>
 		</p>
-		<form action="http://search.yahoo.com/search"><label for="ygsp">YDN Site Search</label> 
+		<form action="http://search.yahoo.com/search" id="sitesearchform">
 		<input name="vs" type="hidden" value="developer.yahoo.com">
-		<input name="fr" type="hidden" value="ush-myweb">
-		<input id="ygsp" name="va" size="22"> 
-		<input type="submit" value="Search" class="ygbt"></form>
-	</div>
+		<input name="vs" type="hidden" value="yuiblog.com">
+		<div id="sitesearch">
+			<label for="searchinput">Site Search (YDN &amp; YUIBlog): </label>
+			<input type="text" id="searchinput" name="p">
+			<input type="submit" value="Search" id="searchsubmit" class="ygbt">
+		</div>
+		</form>	</div>
 	<div id="ygma"><a href="../"><img src="../assets/yui.gif"  border="0" width="378" height="28"></a></div>
 	<div id="pagetitle"><h1>Yahoo! User Interface Library (YUI): Index of Library Examples</h1></div>
 </div>
@@ -57,7 +62,7 @@
 	
 <h1 class="firstContent">YUI Library: Index of Official Examples</h1>
 	
-<p>Every YUI Library component ships with a series of 275 examples that illustrate its implementation.  These examples can serve as starting points for your exploration of YUI, as code snippets to get you started in your own programming, or simply as an inspiration as to how various interaction patterns can be enabled in the web browser via YUI.</p>
+<p>Every YUI Library component ships with a series of 276 examples that illustrate its implementation.  These examples can serve as starting points for your exploration of YUI, as code snippets to get you started in your own programming, or simply as an inspiration as to how various interaction patterns can be enabled in the web browser via YUI.</p>
 
 <p>The navigation controls on the left side of this page allow you to explore these examples component-by-component; on this page you'll find the full index of library examples with a link to and short description of each one.</p>
 
@@ -373,28 +378,29 @@
 <tr class='odd'><td class='title'><a href='datatable/dt_basic.html'>Basic Example</a></td><td class='description'>A demonstration of the DataTable's basic feature set.</td></tr>
 <tr class='even'><td class='title'><a href='datatable/dt_enhanced.html'>Progressive Enhancement</a></td><td class='description'>A progressively enhanced DataTable based on existing markup.</td></tr>
 <tr class='odd'><td class='title'><a href='datatable/dt_formatting.html'>Custom Cell Formatting</a></td><td class='description'>Custom formatting for DataTable cells.</td></tr>
-<tr class='even'><td class='title'><a href='datatable/dt_nestedheaders.html'>Nested Headers</a></td><td class='description'>Nested column headers.</td></tr>
-<tr class='odd'><td class='title'><a href='datatable/dt_xhrjson.html'>JSON Data Over XHR</a></td><td class='description'>The display of tabular JSON data retrieved via XHR.</td></tr>
-<tr class='even'><td class='title'><a href='datatable/dt_xhrpostxml.html'>XML Data Over XHR With POST</a></td><td class='description'>The display of XML data retrieved via an XHR POST request.</td></tr>
-<tr class='odd'><td class='title'><a href='datatable/dt_xhrtext.html'>Textual Data Over XHR</a></td><td class='description'>The display of textual data retrieved over XHR</td></tr>
-<tr class='even'><td class='title'><a href='datatable/dt_xhrlocalxml.html'>Local XML Data</a></td><td class='description'>The display of XML data placed locally within the page by Connection Manager.</td></tr>
-<tr class='odd'><td class='title'><a href='datatable/dt_rowadddelete.html'>Adding and Deleting Rows</a></td><td class='description'>Adding and deleting rows with dynamic data.</td></tr>
-<tr class='even'><td class='title'><a href='datatable/dt_clientpagination.html'>Client-side Pagination</a></td><td class='description'>The use of client-side pagination to break up a dataset into manageable, page-sized chunks.</td></tr>
-<tr class='odd'><td class='title'><a href='datatable/dt_clientsorting.html'>Client-side Sorting</a></td><td class='description'>Client-side Column sort using a custom function.</td></tr>
-<tr class='even'><td class='title'><a href='datatable/paginator_datatable_serverpaging.html'>Server-side Pagination</a></td><td class='description'>Server-side pagination using the Paginator widget.</td></tr>
-<tr class='odd'><td class='title'><a href='datatable/dt_serversorting.html'>Server-side Sorting</a></td><td class='description'>Sorting handled by a server.</td></tr>
-<tr class='even'><td class='title'><a href='datatable/dt_server_pag_sort.html'>Server-side Pagination and Sorting, with Browser History Manager</a></td><td class='description'>Integration of server-side pagination and sorting, integrated with the Browser History Manager.</td></tr>
-<tr class='odd'><td class='title'><a href='datatable/dt_fixedscroll.html'>XY-scrolling, Y-scrolling, and X-scrolling</a></td><td class='description'>Scrolling along x, y, or xy axes.</td></tr>
-<tr class='even'><td class='title'><a href='datatable/dt_rowselect.html'>Row Selection</a></td><td class='description'>Row selection models.</td></tr>
-<tr class='odd'><td class='title'><a href='datatable/dt_cellselect.html'>Cell Selection</a></td><td class='description'>Cell selection models.</td></tr>
-<tr class='even'><td class='title'><a href='datatable/dt_cellediting.html'>Inline Cell Editing</a></td><td class='description'>Implementing inline cell editing.</td></tr>
-<tr class='odd'><td class='title'><a href='datatable/dt_contextmenu.html'>Context Menu Integration</a></td><td class='description'>Integration of DataTable with the the <a href='http://developer.yahoo.com/yui/menu'>Menu Control</a>'s ContextMenu feature.</td></tr>
-<tr class='even'><td class='title'><a href='datatable/dt_colshowhide.html'>Showing, Hiding, and Reordering Columns.</a></td><td class='description'>Showing, hiding, and reordering Columns.</td></tr>
-<tr class='odd'><td class='title'><a href='datatable/dt_highlighting.html'>Highlighting Cells, Rows, or Columns</a></td><td class='description'>Enable highlighting on cells, rows, or columns</td></tr>
-<tr class='even'><td class='title'><a href='datatable/dt_complex.html'>Complex Example of Multiple Features</a></td><td class='description'>Several features combined into one DataTable.</td></tr>
-<tr class='odd'><td class='title'><a href='datatable/dt_autocomplete.html'>Datatable with Autocomplete</a></td><td class='description'>Use an AutoComplete Control to filter Datatable results.</td></tr>
-<tr class='even'><td class='title'><a href='datatable/dt_skinning.html'>Skinning Model</a></td><td class='description'>An explanation of DataTable's skinning model.</td></tr>
-<tr class='odd'><td class='title'><a href='datatable/pg_paginator_exhibition.html'>Configuring the Paginator</a></td><td class='description'>Exhibition of Paginator instance configuration.</td></tr>
+<tr class='even'><td class='title'><a href='datatable/dt_row_coloring.html'>Conditional row coloring</a></td><td class='description'>Coloring DataTable rows using custom column formatters.</td></tr>
+<tr class='odd'><td class='title'><a href='datatable/dt_nestedheaders.html'>Nested Headers</a></td><td class='description'>Nested column headers.</td></tr>
+<tr class='even'><td class='title'><a href='datatable/dt_xhrjson.html'>JSON Data Over XHR</a></td><td class='description'>The display of tabular JSON data retrieved via XHR.</td></tr>
+<tr class='odd'><td class='title'><a href='datatable/dt_xhrpostxml.html'>XML Data Over XHR With POST</a></td><td class='description'>The display of XML data retrieved via an XHR POST request.</td></tr>
+<tr class='even'><td class='title'><a href='datatable/dt_xhrtext.html'>Textual Data Over XHR</a></td><td class='description'>The display of textual data retrieved over XHR</td></tr>
+<tr class='odd'><td class='title'><a href='datatable/dt_xhrlocalxml.html'>Local XML Data</a></td><td class='description'>The display of XML data placed locally within the page by Connection Manager.</td></tr>
+<tr class='even'><td class='title'><a href='datatable/dt_rowadddelete.html'>Adding and Deleting Rows</a></td><td class='description'>Adding and deleting rows with dynamic data.</td></tr>
+<tr class='odd'><td class='title'><a href='datatable/dt_clientpagination.html'>Client-side Pagination</a></td><td class='description'>The use of client-side pagination to break up a dataset into manageable, page-sized chunks.</td></tr>
+<tr class='even'><td class='title'><a href='datatable/dt_clientsorting.html'>Client-side Sorting</a></td><td class='description'>Client-side Column sort using a custom function.</td></tr>
+<tr class='odd'><td class='title'><a href='datatable/paginator_datatable_serverpaging.html'>Server-side Pagination</a></td><td class='description'>Server-side pagination using the Paginator widget.</td></tr>
+<tr class='even'><td class='title'><a href='datatable/dt_serversorting.html'>Server-side Sorting</a></td><td class='description'>Sorting handled by a server.</td></tr>
+<tr class='odd'><td class='title'><a href='datatable/dt_server_pag_sort.html'>Server-side Pagination and Sorting, with Browser History Manager</a></td><td class='description'>Integration of server-side pagination and sorting, integrated with the Browser History Manager.</td></tr>
+<tr class='even'><td class='title'><a href='datatable/dt_fixedscroll.html'>XY-scrolling, Y-scrolling, and X-scrolling</a></td><td class='description'>Scrolling along x, y, or xy axes.</td></tr>
+<tr class='odd'><td class='title'><a href='datatable/dt_rowselect.html'>Row Selection</a></td><td class='description'>Row selection models.</td></tr>
+<tr class='even'><td class='title'><a href='datatable/dt_cellselect.html'>Cell Selection</a></td><td class='description'>Cell selection models.</td></tr>
+<tr class='odd'><td class='title'><a href='datatable/dt_cellediting.html'>Inline Cell Editing</a></td><td class='description'>Implementing inline cell editing.</td></tr>
+<tr class='even'><td class='title'><a href='datatable/dt_contextmenu.html'>Context Menu Integration</a></td><td class='description'>Integration of DataTable with the the <a href='http://developer.yahoo.com/yui/menu'>Menu Control</a>'s ContextMenu feature.</td></tr>
+<tr class='odd'><td class='title'><a href='datatable/dt_colshowhide.html'>Showing, Hiding, and Reordering Columns.</a></td><td class='description'>Showing, hiding, and reordering Columns.</td></tr>
+<tr class='even'><td class='title'><a href='datatable/dt_highlighting.html'>Highlighting Cells, Rows, or Columns</a></td><td class='description'>Enable highlighting on cells, rows, or columns</td></tr>
+<tr class='odd'><td class='title'><a href='datatable/dt_complex.html'>Complex Example of Multiple Features</a></td><td class='description'>Several features combined into one DataTable.</td></tr>
+<tr class='even'><td class='title'><a href='datatable/dt_autocomplete.html'>Datatable with Autocomplete</a></td><td class='description'>Use an AutoComplete Control to filter Datatable results.</td></tr>
+<tr class='odd'><td class='title'><a href='datatable/dt_skinning.html'>Skinning Model</a></td><td class='description'>An explanation of DataTable's skinning model.</td></tr>
+<tr class='even'><td class='title'><a href='datatable/pg_paginator_exhibition.html'>Configuring the Paginator</a></td><td class='description'>Exhibition of Paginator instance configuration.</td></tr>
 </tbody>
 </table>
 <table class='examplesTable'>
@@ -451,7 +457,9 @@
 <tr class='even'><td class='title'><a href='menu/programsmenu.html'>OS-Style Programs Menu</a></td><td class='description'>OS-Style Programs Menu</td></tr>
 <tr class='odd'><td class='title'><a href='menu/applicationmenubar.html'>Application Menubar</a></td><td class='description'>Application Menubar</td></tr>
 <tr class='even'><td class='title'><a href='menu/menuwaiaria.html'>Implementing ARIA Roles and States with Menu</a></td><td class='description'>This example demonstrates how use the <a href='http://www.w3.org/TR/aria-role/'>WAI-ARIA Roles and States</a> 
-as implemented for <a href='http://www.mozilla.com/en-US/firefox/all-beta.html'>Firefox 3</a> with the <a href='http://developer.yahoo.com/yui/menu'>YUI Menu Control</a>.</td></tr>
+as implemented for <a href='http://www.mozilla.com/en-US/firefox/all-beta.html'>Firefox 3</a> and 
+<a href="http://www.microsoft.com/windows/products/winfamily/ie/ie8/default.mspx">Internet Explorer 8</a> 
+with the <a href='http://developer.yahoo.com/yui/menu'>YUI Menu Control</a>.</td></tr>
 </tbody>
 </table>
 <table class='examplesTable'>

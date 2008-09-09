@@ -18,7 +18,7 @@
 <link rel="stylesheet" type="text/css" href="../../build/colorpicker/assets/skins/sam/colorpicker.css" />
 <link rel="stylesheet" type="text/css" href="../../build/menu/assets/skins/sam/menu.css" />
 <link rel="stylesheet" type="text/css" href="../../build/button/assets/skins/sam/button.css" />
-<script type="text/javascript" src="../../build/yahoo/yahoo-min.js"></script>
+<script type="text/javascript" src="../../build/yuiloader/yuiloader-beta-min.js"></script>
 <script type="text/javascript" src="../../build/dom/dom-min.js"></script>
 <script type="text/javascript" src="../../build/event/event-min.js"></script>
 <script type="text/javascript" src="../../build/dragdrop/dragdrop-min.js"></script>
@@ -154,12 +154,15 @@
 			<a href="http://help.yahoo.com/help/us/ysearch">Help</a>
 			</em>
 		</p>
-		<form action="http://search.yahoo.com/search"><label for="ygsp">YDN Site Search</label> 
+		<form action="http://search.yahoo.com/search" id="sitesearchform">
 		<input name="vs" type="hidden" value="developer.yahoo.com">
-		<input name="fr" type="hidden" value="ush-myweb">
-		<input id="ygsp" name="va" size="22"> 
-		<input type="submit" value="Search" class="ygbt"></form>
-	</div>
+		<input name="vs" type="hidden" value="yuiblog.com">
+		<div id="sitesearch">
+			<label for="searchinput">Site Search (YDN &amp; YUIBlog): </label>
+			<input type="text" id="searchinput" name="p">
+			<input type="submit" value="Search" id="searchsubmit" class="ygbt">
+		</div>
+		</form>	</div>
 	<div id="ygma"><a href="../../"><img src="../../assets/yui.gif"  border="0" width="378" height="28"></a></div>
 	<div id="pagetitle"><h1>YUI Library Examples: Button Control: Color Picker Button</h1></div>
 </div>
@@ -196,24 +199,6 @@ that should be applied to the image.
         function onButtonOption() {
 
             /*
-                Create an empty body element for the Menu instance in order to 
-                reserve space to render the ColorPicker instance into.
-            */
-
-            oColorPickerMenu.setBody("&#32;");
-
-            oColorPickerMenu.body.id = "color-picker-container";
-
-
-
-            // Render the Menu into the Button instance's parent element
-
-            oColorPickerMenu.render(this.get("container"));
-
-
-
-
-            /*
                  Create a new ColorPicker instance, placing it inside the body 
                  element of the Menu instance.
             */
@@ -225,14 +210,6 @@ that should be applied to the image.
                                         HUE_THUMB: "../../build/colorpicker/assets/hue_thumb.png"
                                     }
                                 });
-
-
-            // Align the Menu to its Button
-
-            oColorPickerMenu.align();
-
-  
-
 
 
             /*
@@ -256,8 +233,6 @@ that should be applied to the image.
             // Remove this event listener so that this code runs only once
 
             this.unsubscribe("option", onButtonOption);
-            
-
         
         }
 
@@ -274,7 +249,27 @@ that should be applied to the image.
                                             id: "color-picker-button", 
                                             label: "<em id=\"current-color\">Current color is #FFFFFF.</em>", 
                                             menu: oColorPickerMenu, 
-                                            container: this });
+                                            container: "button-container" });
+        
+        
+        oButton.on("appendTo", function () {
+        
+			/*
+				Create an empty body element for the Menu instance in order to 
+				reserve space to render the ColorPicker instance into.
+			*/
+	
+			oColorPickerMenu.setBody("&#32;");
+	
+			oColorPickerMenu.body.id = "color-picker-container";
+	
+	
+	
+			// Render the Menu into the Button instance's parent element
+	
+			oColorPickerMenu.render(this.get("container"));
+        
+        });
         
         
         /*
@@ -333,14 +328,14 @@ var oButton = new YAHOO.widget.Button({
 									menu: oColorPickerMenu, 
 									container: this });
 </textarea>
+
 <p>
-Once the new Button is created, add a listener for its "option" event that 
-will be used to render its Menu as well as to create a new ColorPicker 
-instance.  (Defering the rendering of the Menu until the firing of the "option" 
-event improves the intial load time of the Button instance.)
+Once the new Button is created, add a listener for its "appendTo" event that 
+will be used to render its Menu instance into the same DOM element specified as the 
+containing element for the Button.
 </p>
 <textarea name="code" class="JScript" cols="60" rows="1">
-function onButtonOption() {
+oButton.on("appendTo", function () {
 
 	/*
 		Create an empty body element for the Menu instance in order to 
@@ -357,8 +352,16 @@ function onButtonOption() {
 
 	oColorPickerMenu.render(this.get("container"));
 
+});
+</textarea>
 
-
+<p>
+Once the new Button is created, add a listener for its "option" event that will be used to create a 
+new ColorPicker instance.  (Defering the creation of the ColorPicker until the firing of the 
+"option" event improves the intial load time of the Button instance.)
+</p>
+<textarea name="code" class="JScript" cols="60" rows="1">
+function onButtonOption() {
 
 	/*
 		 Create a new ColorPicker instance, placing it inside the body 
@@ -372,14 +375,6 @@ function onButtonOption() {
 								HUE_THUMB: "../../build/colorpicker/assets/hue_thumb.png"
 							}
 						});
-
-
-	// Align the Menu to its Button
-
-	oColorPickerMenu.align();
-
-
-
 
 
 	/*

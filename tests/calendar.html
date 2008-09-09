@@ -390,12 +390,17 @@
 			},
 
 			testToDate : function() {
+
+				var expectedDate = new Date(2007, 9, 1);
+
 				var cal = this.createInstance();
-				cal.selectEvent.subscribe(function() {
-					DateAssert.datesAreEqual(new Date(2007, 10, 01), cal.toDate(args[0]));
-					DateAssert.datesAreEqual(new Date(2007, 10, 27), cal.toDate(args[1]));
+
+				cal.selectEvent.subscribe(function(type, args) {
+						DateAssert.datesAreEqual(expectedDate, cal.toDate(args[0][0]));
 				});
-				cal.select("10/01/2007", "10/27/2007");
+
+				cal.select("10/01/2007");
+
 				cal = null;
 			},
 
@@ -734,7 +739,7 @@
 
 				// Assert State
 				this.assertSelectedDates(cal, expectedDt);
-				
+
 				// Assert Rendering
 				if (this.isGroupCalTest) {
 					for (var i = 0; i < 2; i++) {

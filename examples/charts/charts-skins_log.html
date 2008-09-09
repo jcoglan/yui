@@ -17,7 +17,7 @@
 <!--Script and CSS includes for YUI dependencies on this page-->
 <link rel="stylesheet" type="text/css" href="../../build/logger/assets/skins/sam/logger.css" />
 <link rel="stylesheet" type="text/css" href="../../build/button/assets/skins/sam/button.css" />
-<script type="text/javascript" src="../../build/yahoo/yahoo-min.js"></script>
+<script type="text/javascript" src="../../build/yuiloader/yuiloader-beta-min.js"></script>
 <script type="text/javascript" src="../../build/event/event-min.js"></script>
 <script type="text/javascript" src="../../build/dom/dom-min.js"></script>
 <script type="text/javascript" src="../../build/logger/logger-min.js"></script>
@@ -57,12 +57,15 @@
 			<a href="http://help.yahoo.com/help/us/ysearch">Help</a>
 			</em>
 		</p>
-		<form action="http://search.yahoo.com/search"><label for="ygsp">YDN Site Search</label> 
+		<form action="http://search.yahoo.com/search" id="sitesearchform">
 		<input name="vs" type="hidden" value="developer.yahoo.com">
-		<input name="fr" type="hidden" value="ush-myweb">
-		<input id="ygsp" name="va" size="22"> 
-		<input type="submit" value="Search" class="ygbt"></form>
-	</div>
+		<input name="vs" type="hidden" value="yuiblog.com">
+		<div id="sitesearch">
+			<label for="searchinput">Site Search (YDN &amp; YUIBlog): </label>
+			<input type="text" id="searchinput" name="p">
+			<input type="submit" value="Search" id="searchsubmit" class="ygbt">
+		</div>
+		</form>	</div>
 	<div id="ygma"><a href="../../"><img src="../../assets/yui.gif"  border="0" width="378" height="28"></a></div>
 	<div id="pagetitle"><h1>YUI Library Examples: Charts Control (experimental): Skinning a Chart Example</h1></div>
 </div>
@@ -164,6 +167,7 @@
 				majorGridLines: {size: 0}
 			}
 		},
+		//only needed for flash player express install
 		expressInstall: "assets/expressinstall.swf"
 	});
 </script>	
@@ -208,7 +212,7 @@ style:
 
 <h2>Setting Series Skins</h2>
 
-<p>The series definition includes <code>style</code> values for both series with declarations for background images abd colors and the size of each marker.</p>
+<p>The series definition includes <code>style</code> values for both series with declarations the for background image and color. These particular skins are transparent PNG images, and they allow the base color of the marker to show through. The marker size matches the image width.</p>
 	
 <textarea name="code" class="JScript" rows="10" cols="60">
 var seriesDef =

@@ -17,7 +17,7 @@
 <!--Script and CSS includes for YUI dependencies on this page-->
 <link rel="stylesheet" type="text/css" href="../../build/calendar/assets/skins/sam/calendar.css" />
 <link rel="stylesheet" type="text/css" href="../../build/button/assets/skins/sam/button.css" />
-<script type="text/javascript" src="../../build/yahoo/yahoo-min.js"></script>
+<script type="text/javascript" src="../../build/yuiloader/yuiloader-beta-min.js"></script>
 <script type="text/javascript" src="../../build/event/event-min.js"></script>
 <script type="text/javascript" src="../../build/dom/dom-min.js"></script>
 <script type="text/javascript" src="../../build/calendar/calendar-min.js"></script>
@@ -111,12 +111,15 @@
 			<a href="http://help.yahoo.com/help/us/ysearch">Help</a>
 			</em>
 		</p>
-		<form action="http://search.yahoo.com/search"><label for="ygsp">YDN Site Search</label> 
+		<form action="http://search.yahoo.com/search" id="sitesearchform">
 		<input name="vs" type="hidden" value="developer.yahoo.com">
-		<input name="fr" type="hidden" value="ush-myweb">
-		<input id="ygsp" name="va" size="22"> 
-		<input type="submit" value="Search" class="ygbt"></form>
-	</div>
+		<input name="vs" type="hidden" value="yuiblog.com">
+		<div id="sitesearch">
+			<label for="searchinput">Site Search (YDN &amp; YUIBlog): </label>
+			<input type="text" id="searchinput" name="p">
+			<input type="submit" value="Search" id="searchsubmit" class="ygbt">
+		</div>
+		</form>	</div>
 	<div id="ygma"><a href="../../"><img src="../../assets/yui.gif"  border="0" width="378" height="28"></a></div>
 	<div id="pagetitle"><h1>YUI Library Examples: Button Control: Calendar Menu Button</h1></div>
 </div>
@@ -149,26 +152,6 @@ This example demonstrates how to create a Menu Button whose Menu instance displa
     YAHOO.util.Event.onDOMReady(function () {
 
         function onButtonClick() {
-
-            /*
-                 Create an empty body element for the Overlay instance in order 
-                 to reserve space to render the Calendar instance into.
-            */
-
-            oCalendarMenu.setBody("&#32;");
-
-            oCalendarMenu.body.id = "calendarcontainer";
-
-
-            // Render the Overlay instance into the Button's parent element
-
-            oCalendarMenu.render(this.get("container"));
-            
-
-            // Align the Overlay to the Button instance
-
-            oCalendarMenu.align();
-            
             
             /*
                  Create a Calendar instance and render it into the body 
@@ -234,7 +217,7 @@ This example demonstrates how to create a Menu Button whose Menu instance displa
 
         // Create an Overlay instance to house the Calendar instance
 
-        var oCalendarMenu = new YAHOO.widget.Overlay("calendarmenu");
+        var oCalendarMenu = new YAHOO.widget.Overlay("calendarmenu", { visible: false });
 
 
         // Create a Button instance of type "menu"
@@ -245,6 +228,23 @@ This example demonstrates how to create a Menu Button whose Menu instance displa
                                             label: "Choose A Date", 
                                             menu: oCalendarMenu, 
                                             container: "datefields" });
+
+		oButton.on("appendTo", function () {
+
+			/*
+				 Create an empty body element for the Overlay instance in order 
+				 to reserve space to render the Calendar instance into.
+			*/
+	
+			oCalendarMenu.setBody("&#32;");
+	
+			oCalendarMenu.body.id = "calendarcontainer";
+	
+			// Render the Overlay instance into the Button's parent element
+	
+			oCalendarMenu.render(this.get("container"));
+		
+        });
         
 
         /*
@@ -292,7 +292,7 @@ house a Calendar instance.
 <textarea name="code" class="JScript" cols="60" rows="1">
 // Create an Overlay instance to house the Calendar instance
 
-var oCalendarMenu = new YAHOO.widget.Overlay("calendarmenu");
+var oCalendarMenu = new YAHOO.widget.Overlay("calendarmenu", { visible: false });
 
 
 // Create a Button instance of type "menu"
@@ -304,14 +304,14 @@ var oButton = new YAHOO.widget.Button({
 									menu: oCalendarMenu, 
 									container: "datefields" });
 </textarea>
+
 <p>
-Once the new Button is created, add a listener for its "click" event that 
-will be used to render its Overlay instance as well as to create a new Calendar 
-instance.  (Defering the rendering of the Overlay until the firing of the 
-"click" event improves the intial load time of the Button instance.)
+Once the new Button is created, add a listener for its "appendTo" event that 
+will be used to render its Overlay instance into the same DOM element specified as the 
+containing element for the Button.
 </p>
 <textarea name="code" class="JScript" cols="60" rows="1">
-function onButtonClick() {
+oButton.on("appendTo", function () {
 
 	/*
 		 Create an empty body element for the Overlay instance in order 
@@ -322,16 +322,20 @@ function onButtonClick() {
 
 	oCalendarMenu.body.id = "calendarcontainer";
 
-
 	// Render the Overlay instance into the Button's parent element
 
 	oCalendarMenu.render(this.get("container"));
-	
 
-	// Align the Overlay to the Button instance
+});
+</textarea>
 
-	oCalendarMenu.align();
-	
+<p>
+Once the new Button is created, add a listener for its "click" event that will be used to create a 
+new Calendar instance.  (Defering the creation and rendering of the Calendar until the firing of 
+the "click" event improves the intial load time of the Button instance.)
+</p>
+<textarea name="code" class="JScript" cols="60" rows="1">
+function onButtonClick() {
 	
 	/*
 		 Create a Calendar instance and render it into the body 

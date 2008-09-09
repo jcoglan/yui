@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css" href="../../assets/dpSyntaxHighlighter.css">
 <!--Script and CSS includes for YUI dependencies on this page-->
 <link rel="stylesheet" type="text/css" href="../../build/button/assets/skins/sam/button.css" />
-<script type="text/javascript" src="../../build/yahoo/yahoo-min.js"></script>
+<script type="text/javascript" src="../../build/yuiloader/yuiloader-beta-min.js"></script>
 <script type="text/javascript" src="../../build/dom/dom-min.js"></script>
 <script type="text/javascript" src="../../build/event/event-min.js"></script>
 <script type="text/javascript" src="../../build/json/json-min.js"></script>
@@ -56,12 +56,15 @@
 			<a href="http://help.yahoo.com/help/us/ysearch">Help</a>
 			</em>
 		</p>
-		<form action="http://search.yahoo.com/search"><label for="ygsp">YDN Site Search</label> 
+		<form action="http://search.yahoo.com/search" id="sitesearchform">
 		<input name="vs" type="hidden" value="developer.yahoo.com">
-		<input name="fr" type="hidden" value="ush-myweb">
-		<input id="ygsp" name="va" size="22"> 
-		<input type="submit" value="Search" class="ygbt"></form>
-	</div>
+		<input name="vs" type="hidden" value="yuiblog.com">
+		<div id="sitesearch">
+			<label for="searchinput">Site Search (YDN &amp; YUIBlog): </label>
+			<input type="text" id="searchinput" name="p">
+			<input type="submit" value="Search" id="searchsubmit" class="ygbt">
+		</div>
+		</form>	</div>
 	<div id="ygma"><a href="../../"><img src="../../assets/yui.gif"  border="0" width="378" height="28"></a></div>
 	<div id="pagetitle"><h1>YUI Library Examples: Charts Control (experimental): Chart with DataSource Polling</h1></div>
 </div>
@@ -118,6 +121,7 @@
 		yField: "Value",
 		yAxis: yAxis,
 		polling: 2000,
+		//only needed for flash player express install
 		expressInstall: "assets/expressinstall.swf"
 	});
 </script>	
@@ -158,7 +162,7 @@ var mychart = new YAHOO.widget.ColumnChart( "chart", jsonData,
 });
 </textarea>
 
-<p>In this case, the Chart control will ask the DataSource to reload its data every 2.5 seconds. When new data is available, the chart will redraw or animate to display the new information.</p>				</div>
+<p>In this case, the Chart control will ask the DataSource to reload its data every two seconds. When new data is available, the chart will redraw or animate to display the new information.</p>				</div>
 				<div class="yui-u">
 						<div id="loggerModule" class="yui-skin-sam">
 						<h3 class="firstContent">YUI Logger Output:</h3>

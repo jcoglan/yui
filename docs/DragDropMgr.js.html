@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Drag and Drop&nbsp; <span class="subtitle">2.5.1</span></h3>
+        <h3>Drag and Drop&nbsp; <span class="subtitle">2.5.2</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_dragdrop.html">dragdrop</a>
@@ -633,6 +633,7 @@
                     <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;mouseup detected - completing drag&quot;</span><span class="o">,</span> <span class="s2">&quot;info&quot;</span><span class="o">,</span> <span class="s2">&quot;DragDropMgr&quot;</span><span class="o">);</span>
                     <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">fromTimeout</span><span class="o">)</span> <span class="o">{</span>
                         <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;fromTimeout is true (mouse didn\&#39;t move), call handleMouseMove so we can get the dragOver event&#39;</span><span class="o">,</span> <span class="s1">&#39;info&#39;</span><span class="o">,</span> <span class="s1">&#39;DragDropMgr&#39;</span><span class="o">);</span>
+                        <span class="k">this</span><span class="o">.</span><span class="nx">fromTimeout</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
                         <span class="k">this</span><span class="o">.</span><span class="nx">handleMouseMove</span><span class="o">(</span><span class="nx">e</span><span class="o">);</span>
                     <span class="o">}</span>
                     <span class="k">this</span><span class="o">.</span><span class="nx">fromTimeout</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>

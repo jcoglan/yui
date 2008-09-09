@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>DataTable Widget&nbsp; <span class="subtitle">2.5.1</span></h3>
+        <h3>DataTable Widget&nbsp; <span class="subtitle">2.5.2</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_datatable.html">datatable</a>
@@ -217,6 +217,54 @@ the case of totalRecords to indicate unlimited pagination.
                         <div class="section method details">
                             <h3 id="methods">Methods</h3>
                             <div class="content">
+                                    <div class="private">
+                                    <h4>
+                                        <a name="method__syncRecordOffset">_syncRecordOffset</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        void
+                                            <strong>_syncRecordOffset</strong>
+                                           (
+                                                
+                                                        
+                                                         v
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Setting totalRecords to a value lower than the current recordOffset
+will result in the recordOffset being adjusted to the starting index
+of the previous page.  Called from totalRecords attribute method.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>v &lt;int&gt;</code>
+                                                              new value for totalRecords
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
                                     <div class="">
                                     <h4>
                                         <a name="method_destroy">destroy</a></h4>
@@ -2409,6 +2457,9 @@ new values in the paginator to trigger repaint.
                     <div class="module">
                         <h4>Methods</h4>
                         <ul class="content">        
+                                <li class="private"><!--<code>void</code>-->
+                                <a href="#method__syncRecordOffset">_syncRecordOffset</a>
+                                </li>
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#method_destroy">destroy</a>
                                 </li>

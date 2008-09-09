@@ -16,9 +16,9 @@
 <link rel="stylesheet" type="text/css" href="../../assets/dpSyntaxHighlighter.css">
 <!--Script and CSS includes for YUI dependencies on this page-->
 <link rel="stylesheet" type="text/css" href="../../build/button/assets/skins/sam/button.css" />
-<script type="text/javascript" src="../../build/yahoo/yahoo-min.js"></script>
-<script type="text/javascript" src="../../build/dom/dom-min.js"></script>
+<script type="text/javascript" src="../../build/yuiloader/yuiloader-beta-min.js"></script>
 <script type="text/javascript" src="../../build/event/event-min.js"></script>
+<script type="text/javascript" src="../../build/dom/dom-min.js"></script>
 <script type="text/javascript" src="../../build/element/element-beta-min.js"></script>
 <script type="text/javascript" src="../../build/button/button-min.js"></script>
 
@@ -35,12 +35,15 @@
 			<a href="http://help.yahoo.com/help/us/ysearch">Help</a>
 			</em>
 		</p>
-		<form action="http://search.yahoo.com/search"><label for="ygsp">YDN Site Search</label> 
+		<form action="http://search.yahoo.com/search" id="sitesearchform">
 		<input name="vs" type="hidden" value="developer.yahoo.com">
-		<input name="fr" type="hidden" value="ush-myweb">
-		<input id="ygsp" name="va" size="22"> 
-		<input type="submit" value="Search" class="ygbt"></form>
-	</div>
+		<input name="vs" type="hidden" value="yuiblog.com">
+		<div id="sitesearch">
+			<label for="searchinput">Site Search (YDN &amp; YUIBlog): </label>
+			<input type="text" id="searchinput" name="p">
+			<input type="submit" value="Search" id="searchsubmit" class="ygbt">
+		</div>
+		</form>	</div>
 	<div id="ygma"><a href="../../"><img src="../../assets/yui.gif"  border="0" width="378" height="28"></a></div>
 	<div id="pagetitle"><h1>YUI Library Examples: Menu Family: Context Menu</h1></div>
 </div>
@@ -222,87 +225,53 @@ function deleteEwe(p_oLI) {
 }
 
 
-/*
-     Returns the <li> instance that is the parent node of the  
-     target of a "contextmenu" event.
-*/
-
-function getListItemFromEventTarget(p_oNode) {
-
-    if (p_oNode.tagName.toUpperCase() == "LI") {
-    
-        return p_oNode;
-
-    }
-    else {
-
-
-        /*
-             If the target of the event was a child of an <li>, 
-             get the parent <li> element.
-        */
-
-        do {
-
-            if (p_oNode.tagName.toUpperCase() == "LI") {
-
-                return p_oNode;                            
-            
-            }
-
-        }
-        while ((p_oNode = p_oNode.parentNode));
-    
-    }
-
-}
-
-
 // "click" event handler for each item in the ewe context menu
 
 function onEweContextMenuClick(p_sType, p_aArgs) {
 
-    /*
-         The second item in the arguments array (p_aArgs) 
-         passed back to the "click" event handler is the 
-         MenuItem instance that was the target of the 
-         "click" event.
-    */
+	/*
+		 The second item in the arguments array (p_aArgs) 
+		 passed back to the "click" event handler is the 
+		 MenuItem instance that was the target of the 
+		 "click" event.
+	*/
 
-    var oItem = p_aArgs[1], // The MenuItem that was clicked
-        oLI;
-
-
-    if (oItem) {
-
-        oLI = getListItemFromEventTarget(this.contextEventTarget);
+	var oItem = p_aArgs[1], // The MenuItem that was clicked
+		oTarget = this.contextEventTarget,
+		oLI;
 
 
-        switch (oItem.index) {
-        
-            case 0:     // Edit name
+	if (oItem) {
 
-                editEweName(oLI);
-            
-            break;
+		oLI = oTarget.nodeName.toUpperCase() == "LI" ? 
+				oTarget : YAHOO.util.Dom.getAncestorByTagName(oTarget, "LI");
 
 
-            case 1:     // Clone
+		switch (oItem.index) {
+		
+			case 0:     // Edit name
 
-                cloneEwe(oLI, this);
+				editEweName(oLI);
+			
+			break;
 
-            break;
-            
 
-            case 2:     // Delete
+			case 1:     // Clone
 
-                deleteEwe(oLI);
+				cloneEwe(oLI, this);
 
-            break;                    
-        
-        }
-    
-    }
+			break;
+			
+
+			case 2:     // Delete
+
+				deleteEwe(oLI);
+
+			break;                    
+		
+		}
+	
+	}
 
 }
 

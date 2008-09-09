@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Calendar&nbsp; <span class="subtitle">2.5.1</span></h3>
+        <h3>Calendar&nbsp; <span class="subtitle">2.5.2</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_calendar.html">calendar</a>
@@ -957,8 +957,8 @@
 <span class="c">	 * @method setInitialFocus</span>
 <span class="c">	 */</span>
 	<span class="nx">setInitialFocus</span> <span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
-		<span class="k">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">submitEl</span><span class="o">;</span>
-		<span class="k">var</span> <span class="nx">f</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">__getCfg</span><span class="o">(</span><span class="s2">&quot;initialFocus&quot;</span><span class="o">);</span>
+		<span class="k">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">submitEl</span><span class="o">,</span>
+			<span class="nx">f</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">__getCfg</span><span class="o">(</span><span class="s2">&quot;initialFocus&quot;</span><span class="o">);</span>
 
 		<span class="k">if</span> <span class="o">(</span><span class="nx">f</span> <span class="o">&amp;&amp;</span> <span class="nx">f</span><span class="o">.</span><span class="nx">toLowerCase</span><span class="o">)</span> <span class="o">{</span>
 			<span class="nx">f</span> <span class="o">=</span> <span class="nx">f</span><span class="o">.</span><span class="nx">toLowerCase</span><span class="o">();</span>
@@ -966,7 +966,7 @@
 				<span class="nx">el</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">yearEl</span><span class="o">;</span>
 				<span class="k">try</span> <span class="o">{</span>
 					<span class="k">this</span><span class="o">.</span><span class="nx">yearEl</span><span class="o">.</span><span class="nx">select</span><span class="o">();</span>
-				<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">{</span>
+				<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nx">err</span><span class="o">)</span> <span class="o">{</span>
 					<span class="c">// Ignore;</span>
 <span class="c"></span>				<span class="o">}</span>
 			<span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nx">f</span> <span class="o">==</span> <span class="s2">&quot;month&quot;</span><span class="o">)</span> <span class="o">{</span>
@@ -977,7 +977,7 @@
 		<span class="k">if</span> <span class="o">(</span><span class="nx">el</span> <span class="o">&amp;&amp;</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isFunction</span><span class="o">(</span><span class="nx">el</span><span class="o">.</span><span class="nx">focus</span><span class="o">))</span> <span class="o">{</span>
 			<span class="k">try</span> <span class="o">{</span>
 				<span class="nx">el</span><span class="o">.</span><span class="nx">focus</span><span class="o">();</span>
-			<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">{</span>
+			<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nx">err</span><span class="o">)</span> <span class="o">{</span>
 				<span class="c">// TODO: Fall back if focus fails?</span>
 <span class="c"></span>			<span class="o">}</span>
 		<span class="o">}</span>
@@ -1159,9 +1159,9 @@
 <span class="c">	 * @param {Event} e The DOM event being handled</span>
 <span class="c">	 */</span>
 	<span class="nx">_handleDirectionKeys</span> <span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">{</span>
-		<span class="k">var</span> <span class="nx">E</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">;</span>
-		<span class="k">var</span> <span class="nx">KEYS</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">KeyListener</span><span class="o">.</span><span class="nx">KEY</span><span class="o">;</span>
-		<span class="k">var</span> <span class="nx">NAV</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">CalendarNavigator</span><span class="o">;</span>
+		<span class="k">var</span> <span class="nx">E</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">,</span>
+			<span class="nx">KEYS</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">KeyListener</span><span class="o">.</span><span class="nx">KEY</span><span class="o">,</span>
+			<span class="nx">NAV</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">CalendarNavigator</span><span class="o">;</span>
 
 		<span class="k">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">yearEl</span><span class="o">.</span><span class="nx">value</span><span class="o">)</span> <span class="o">?</span> <span class="nb">parseInt</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">yearEl</span><span class="o">.</span><span class="nx">value</span><span class="o">,</span> <span class="m">10</span><span class="o">)</span> <span class="o">:</span> <span class="kc">null</span><span class="o">;</span>
 		<span class="k">if</span> <span class="o">(</span><span class="nb">isFinite</span><span class="o">(</span><span class="nx">value</span><span class="o">))</span> <span class="o">{</span>
@@ -1190,7 +1190,7 @@
 				<span class="nx">E</span><span class="o">.</span><span class="nx">preventDefault</span><span class="o">(</span><span class="nx">e</span><span class="o">);</span>
 				<span class="k">try</span> <span class="o">{</span>
 					<span class="k">this</span><span class="o">.</span><span class="nx">yearEl</span><span class="o">.</span><span class="nx">select</span><span class="o">();</span>
-				<span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">{</span>
+				<span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="nx">err</span><span class="o">)</span> <span class="o">{</span>
 					<span class="c">// Ignore</span>
 <span class="c"></span>				<span class="o">}</span>
 			<span class="o">}</span>
@@ -1206,14 +1206,14 @@
 <span class="c">	 * @param {Event} e The DOM event being handled</span>
 <span class="c">	 */</span>
 	<span class="nx">_handleTabKey</span> <span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">{</span>
-		<span class="k">var</span> <span class="nx">E</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">;</span>
-		<span class="k">var</span> <span class="nx">KEYS</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">KeyListener</span><span class="o">.</span><span class="nx">KEY</span><span class="o">;</span>
+		<span class="k">var</span> <span class="nx">E</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">,</span>
+			<span class="nx">KEYS</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">KeyListener</span><span class="o">.</span><span class="nx">KEY</span><span class="o">;</span>
 
 		<span class="k">if</span> <span class="o">(</span><span class="nx">E</span><span class="o">.</span><span class="nx">getCharCode</span><span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">==</span> <span class="nx">KEYS</span><span class="o">.</span><span class="nx">TAB</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">e</span><span class="o">.</span><span class="nx">shiftKey</span><span class="o">)</span> <span class="o">{</span>
 			<span class="k">try</span> <span class="o">{</span>
 				<span class="nx">E</span><span class="o">.</span><span class="nx">preventDefault</span><span class="o">(</span><span class="nx">e</span><span class="o">);</span>
 				<span class="k">this</span><span class="o">.</span><span class="nx">firstCtrl</span><span class="o">.</span><span class="nx">focus</span><span class="o">();</span>
-			<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">{</span>
+			<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nx">err</span><span class="o">)</span> <span class="o">{</span>
 				<span class="c">// Ignore - mainly for focus edge cases</span>
 <span class="c"></span>			<span class="o">}</span>
 		<span class="o">}</span>
@@ -1228,14 +1228,14 @@
 <span class="c">	 * @param {Event} e The DOM event being handled</span>
 <span class="c">	 */</span>
 	<span class="nx">_handleShiftTabKey</span> <span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">{</span>
-		<span class="k">var</span> <span class="nx">E</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">;</span>
-		<span class="k">var</span> <span class="nx">KEYS</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">KeyListener</span><span class="o">.</span><span class="nx">KEY</span><span class="o">;</span>
+		<span class="k">var</span> <span class="nx">E</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">,</span>
+			<span class="nx">KEYS</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">KeyListener</span><span class="o">.</span><span class="nx">KEY</span><span class="o">;</span>
 
 		<span class="k">if</span> <span class="o">(</span><span class="nx">e</span><span class="o">.</span><span class="nx">shiftKey</span> <span class="o">&amp;&amp;</span> <span class="nx">E</span><span class="o">.</span><span class="nx">getCharCode</span><span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">==</span> <span class="nx">KEYS</span><span class="o">.</span><span class="nx">TAB</span><span class="o">)</span> <span class="o">{</span>
 			<span class="k">try</span> <span class="o">{</span>
 				<span class="nx">E</span><span class="o">.</span><span class="nx">preventDefault</span><span class="o">(</span><span class="nx">e</span><span class="o">);</span>
 				<span class="k">this</span><span class="o">.</span><span class="nx">lastCtrl</span><span class="o">.</span><span class="nx">focus</span><span class="o">();</span>
-			<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">{</span>
+			<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nx">err</span><span class="o">)</span> <span class="o">{</span>
 				<span class="c">// Ignore - mainly for focus edge cases</span>
 <span class="c"></span>			<span class="o">}</span>
 		<span class="o">}</span>

@@ -65,9 +65,13 @@
                     YAHOO.util.Get.script('assets/js/buttons.js');
                     YAHOO.util.Get.script('assets/js/calendar.js');
                 }, 0);
+
+                YAHOO.example.app.layout.getUnitByPosition('right').set('animate', false);
+                YAHOO.example.app.layout.getUnitByPosition('right').collapse();
                 YAHOO.util.Dom.setStyle(document.body, 'visibility', 'visible');
                 setTimeout(function() {
                     YAHOO.example.app.layout.resize();
+                    YAHOO.example.app.layout.getUnitByPosition('right').set('animate', true);
                 }, 1000);
             });
             //Render the layout
