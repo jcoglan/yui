@@ -8,12 +8,15 @@
 <h1>Example: Client-side Pagination of Large RecordSet</h1>
 <div id="paginated"></div>
 
+<script type="text/javascript" src="../../build/yuiloader/yuiloader-beta.js"></script>
+<script type="text/javascript" src="./assets/js/data.js"></script>
 <script type="text/javascript">
-YAHOO_config = {
-    load: {
-        require: ['fonts','yahoo', 'connection','datatable'],
-        base: '../../build/',
-        onLoadComplete: function(loader) {
+var loader = new YAHOO.util.YUILoader();
+loader.insert({
+    require: ['fonts','connection','json','datatable'],
+    base: '../../build/',
+    onSuccess: function() {
+        YAHOO.util.Event.onDOMReady(function() {
             YAHOO.example.ClientPagination = new function() {
                 var myColumnDefs = [
                     {key:"id", label:"ID"},
@@ -50,10 +53,9 @@ YAHOO_config = {
                 this.myDataTable = new YAHOO.widget.DataTable("paginated", myColumnDefs,
                         this.myDataSource, oConfigs);
             };
-        }
+        });
     }
-};
+});
 </script>
-<script type="text/javascript" src="../../build/yuiloader/yuiloader-beta.js"></script>
 </body>
 </html>

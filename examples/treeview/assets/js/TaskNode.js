@@ -256,7 +256,8 @@ YAHOO.extend(YAHOO.widget.TaskNode, YAHOO.widget.TextNode, {
             sb[sb.length] = 'YAHOO.widget.TreeView.getNode(\'';
             sb[sb.length] = this.tree.id + '\',' + this.index +  ').getStyle()"';
         }
-        sb[sb.length] = ' onclick="javascript:' + this.getToggleLink() + '">&#160;';
+        //sb[sb.length] = ' onclick="javascript:' + this.getToggleLink() + '">&#160;';
+        sb[sb.length] = ' onclick="javascript:' + this.getToggleLink() + '">';
         //sb[sb.length] = '</td>';
         sb[sb.length] = '<div class="ygtvspacer"></div></td>';
 
@@ -272,6 +273,9 @@ YAHOO.extend(YAHOO.widget.TaskNode, YAHOO.widget.TextNode, {
         sb[sb.length] = '<td>';
         sb[sb.length] = '<a';
         sb[sb.length] = ' id="' + this.labelElId + '"';
+        if (this.title) {
+            sb[sb.length] = ' title="' + this.title + '"';
+        }
         sb[sb.length] = ' class="' + this.labelStyle + '"';
         sb[sb.length] = ' href="' + this.href + '"';
         sb[sb.length] = ' target="' + this.target + '"';

@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Event Utility&nbsp; <span class="subtitle">2.3.1</span></h3>
+        <h3>Event Utility&nbsp; <span class="subtitle">2.4.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_event.html">event</a>
@@ -61,6 +61,21 @@ registers during the unload event.
                             <h3 id="properties">Properties</h3>
                             <div class="content">
                                     <div class="private">
+                                    <h4><a name="_dri">_dri</a>
+                                        <code>- private static object</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            document readystate poll handle
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
                                     <h4><a name="_interval">_interval</a>
                                         <code>- private static object</code>
                                     </h4>
@@ -106,9 +121,9 @@ on or the custom object passed in by the listener, int constant
 
                                     <hr />
                                     </div>
-                                    <div class="private">
+                                    <div class="">
                                     <h4><a name="DOMReady">DOMReady</a>
-                                        <code>- private static boolean</code>
+                                        <code>- static boolean</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
@@ -1370,8 +1385,8 @@ Optionally, you can specify a specific type of event to return.
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>el &lt;HTMLElement&gt;</code>
-                                                              the element to inspect
+                                                            <code>el &lt;HTMLElement|string&gt;</code>
+                                                              the element or element id to inspect
                                                         </dd>
                                                         <dd>
                                                             <code>sType &lt;string&gt;</code>
@@ -1751,6 +1766,10 @@ event is modified using the current time.
                                                          p_override
                                                     
                                                 
+                                                        , 
+                                                         checkContent
+                                                    
+                                                
                                             )
                                         </code>
                                         
@@ -1770,8 +1789,9 @@ the custom object parameter, if provided.</p>
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>p_id &lt;string&gt;</code>
-                                                             the id of the element to look for.
+                                                            <code>p_id &lt;string||string[]&gt;</code>
+                                                             the id of the element, or an array
+of ids to look for.
                                                         </dd>
                                                         <dd>
                                                             <code>p_fn &lt;function&gt;</code>
@@ -1787,6 +1807,10 @@ a parameter to p_fn.
                                                              If set to true, p_fn will execute
 in the scope of p_obj, if set to an object it
 will execute in the scope of that object
+                                                        </dd>
+                                                        <dd>
+                                                            <code>checkContent &lt;boolean&gt;</code>
+                                                              check child node readiness (onContentReady)
                                                         </dd>
                                                 </dl>
 
@@ -1921,7 +1945,7 @@ instead of included inline?  Is there a way to know whether the
 window onload event has fired without having had a listener attached 
 to it when it did so?
 <p>The callback is a CustomEvent, so the signature is:</p>
-<p>type <string>, args <array>, customobject <object></p>
+<p>type &lt;string&gt;, args &lt;array&gt;, customobject &lt;object&gt;</p>
 <p>For DOMReady events, there are no fire argments, so the
 signature is:</p>
 <p>"DOMReady", [], obj</p>
@@ -2448,6 +2472,8 @@ Safari browsers with a broken preventDefault
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_charts.html">charts</a></li>
+
                                 <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
 
                                 <li class=""><a href="module_connection.html">connection</a></li>
@@ -2457,6 +2483,8 @@ Safari browsers with a broken preventDefault
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
+
+                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -2468,13 +2496,23 @@ Safari browsers with a broken preventDefault
 
                                 <li class="selected"><a href="module_event.html">event</a></li>
 
+                                <li class=""><a href="module_get.html">get</a></li>
+
                                 <li class=""><a href="module_history.html">history</a></li>
 
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
+                                <li class=""><a href="module_json.html">json</a></li>
+
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
+
+                                <li class=""><a href="module_number.html">number</a></li>
+
+                                <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_selector.html">selector</a></li>
 
                                 <li class=""><a href="module_slider.html">slider</a></li>
 
@@ -2514,6 +2552,9 @@ Safari browsers with a broken preventDefault
                     <div class="module">
                         <h4>Properties</h4>
                         <ul class="content">        
+                                <li class="private"><a href="#_dri">_dri</a>
+                                        <!--<code>&lt;int&gt;</code>-->
+                                </li>
                                 <li class="private"><a href="#_interval">_interval</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
@@ -2523,7 +2564,7 @@ Safari browsers with a broken preventDefault
                                 <li class="private"><a href="#counter">counter</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
-                                <li class="private"><a href="#DOMReady">DOMReady</a>
+                                <li class=""><a href="#DOMReady">DOMReady</a>
                                         <!--<code>&lt;int&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#EL">EL</a>

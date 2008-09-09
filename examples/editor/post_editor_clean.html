@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title>Editor Data Post with Connection Manager</title>
 
 <style type="text/css">
@@ -24,7 +24,7 @@ body {
 <script type="text/javascript" src="../../build/utilities/utilities.js"></script>
 <script type="text/javascript" src="../../build/container/container.js"></script>
 <script type="text/javascript" src="../../build/menu/menu.js"></script>
-<script type="text/javascript" src="../../build/button/button-beta.js"></script>
+<script type="text/javascript" src="../../build/button/button.js"></script>
 <script type="text/javascript" src="../../build/editor/editor-beta.js"></script>
 
 <!--there is no custom header content for this example-->
@@ -73,13 +73,15 @@ This is some more test text.<br>This is some more test text.<br>This is some mor
 
         var handleSuccess = function(o) {
             YAHOO.log('Post success', 'info', 'example');
-            var data = eval('(' + o.responseText + ')');
+            var json = o.responseText.substring(o.responseText.indexOf('{'), o.responseText.lastIndexOf('}') + 1);
+            var data = eval('(' + json + ')');
             status.innerHTML = 'Status: ' + data.Results.status + '<br>Filter: ' + data.Results.filter + '<br>' + (new Date().toString());
             myEditor.setEditorHTML(data.Results.data);
         }
         var handleFailure = function(o) {
             YAHOO.log('Post failed', 'info', 'example');
-            var data = eval('(' + o.responseText + ')');
+            var json = o.responseText.substring(o.responseText.indexOf('{'), o.responseText.lastIndexOf('}') + 1);
+            var data = eval('(' + json + ')');
             status.innerHTML = 'Status: ' + data.Results.status + '<br>';
         }
 
@@ -109,12 +111,13 @@ This is some more test text.<br>This is some more test text.<br>This is some mor
         myEditor.saveHTML();
         window.setTimeout(function() {
             var sUrl = "assets/post.php";
-            var data = 'filter=' + ((Dom.get('filter').checked) ? 'yes' : 'no') + '&editor_data=' + encodeURI(myEditor.get('textarea').value);
+            var data = 'filter=' + ((Dom.get('filter').checked) ? 'yes' : 'no') + '&editor_data=' + encodeURIComponent(myEditor.get('textarea').value);
             var request = YAHOO.util.Connect.asyncRequest('POST', sUrl, callback, data);
         }, 200);
     });
 
-    Event.on(window, 'load', function() {
+
+    Event.onDOMReady(function() {
         status = Dom.get('status');
     });
 })();

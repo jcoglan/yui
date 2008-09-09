@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>DataSource Utility&nbsp; <span class="subtitle">2.3.1</span></h3>
+        <h3>DataSource Utility&nbsp; <span class="subtitle">2.4.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_datasource.html">datasource</a>
@@ -110,6 +110,21 @@ remote data such as data retrieved through an XHR connection.
                                     <div class="detail">
                                         <div class="description">
                                             Local cache of data result object literals indexed chronologically.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="private">
+                                    <h4><a name="_aIntervals">_aIntervals</a>
+                                        <code>- private Array</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Array of polling interval IDs that have been enabled, needed to clear all intervals.
                                         </div>
                                     </div>
      
@@ -709,6 +724,86 @@ before adding the new item.
                                                         <dd>
                                                             <code>oResponse &lt;Object&gt;</code>
                                                               Response object to cache.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="clearAllIntervals">clearAllIntervals</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>clearAllIntervals</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Disables all known polling intervals.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="clearInterval">clearInterval</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>clearInterval</strong>
+                                           (
+                                                
+                                                        
+                                                         nId
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Disables polling mechanism associated with the given interval ID.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>nId &lt;Number&gt;</code>
+                                                              Interval ID.
                                                         </dd>
                                                 </dl>
 
@@ -1626,6 +1721,77 @@ to achieve more complex implementations.
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="setInterval">setInterval</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Number
+                                            <strong>setInterval</strong>
+                                           (
+                                                
+                                                        
+                                                         nMsec
+                                                    
+                                                
+                                                        , 
+                                                         oRequest
+                                                    
+                                                
+                                                        , 
+                                                         oCallback
+                                                    
+                                                
+                                                        , 
+                                                         oCaller
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Sets up a polling mechanism to send requests at set intervals and forward
+responses to given callback.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>nMsec &lt;Number&gt;</code>
+                                                              Length of interval in milliseconds.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>oRequest &lt;Object&gt;</code>
+                                                              Request object.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>oCallback &lt;Function&gt;</code>
+                                                              Handler function to receive the response.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>oCaller &lt;Object&gt;</code>
+                                                              The Calling object that is making the request.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Number
+                                                    </code></dt>
+                                                    <dd>Interval ID.</dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="toString">toString</a></h4>
                                     <div class="detail">
                                         <code>
@@ -2173,6 +2339,8 @@ to achieve more complex implementations.
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_charts.html">charts</a></li>
+
                                 <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
 
                                 <li class=""><a href="module_connection.html">connection</a></li>
@@ -2182,6 +2350,8 @@ to achieve more complex implementations.
                                 <li class="selected"><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
+
+                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -2193,13 +2363,23 @@ to achieve more complex implementations.
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
+                                <li class=""><a href="module_get.html">get</a></li>
+
                                 <li class=""><a href="module_history.html">history</a></li>
 
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
+                                <li class=""><a href="module_json.html">json</a></li>
+
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
+
+                                <li class=""><a href="module_number.html">number</a></li>
+
+                                <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_selector.html">selector</a></li>
 
                                 <li class=""><a href="module_slider.html">slider</a></li>
 
@@ -2233,6 +2413,9 @@ to achieve more complex implementations.
                         <h4>Properties</h4>
                         <ul class="content">        
                                 <li class="private"><a href="#_aCache">_aCache</a>
+                                        <!--<code>&lt;Number&gt;</code>-->
+                                </li>
+                                <li class="private"><a href="#_aIntervals">_aIntervals</a>
                                         <!--<code>&lt;Number&gt;</code>-->
                                 </li>
                                 <li class="private"><a href="#_oQueue">_oQueue</a>
@@ -2322,6 +2505,12 @@ to achieve more complex implementations.
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#addToCache">addToCache</a>
                                 </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#clearAllIntervals">clearAllIntervals</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#clearInterval">clearInterval</a>
+                                </li>
                                 <li class=""><!--<code>Date</code>-->
                                 <a href="#DataSource.parseDate">DataSource.parseDate</a>
                                 </li>
@@ -2369,6 +2558,9 @@ to achieve more complex implementations.
                                 </li>
                                 <li class=""><!--<code>Number</code>-->
                                 <a href="#sendRequest">sendRequest</a>
+                                </li>
+                                <li class=""><!--<code>Number</code>-->
+                                <a href="#setInterval">setInterval</a>
                                 </li>
                                 <li class=""><!--<code>String</code>-->
                                 <a href="#toString">toString</a>

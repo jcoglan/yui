@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title>Progressive Enhancement</title>
 
 <style type="text/css">
@@ -113,6 +113,11 @@ YAHOO.util.Event.addListener(window, "load", function() {
             {key:"amount",label:"Amount Due",formatter:YAHOO.widget.DataTable.formatCurrency,sortable:true}
         ];
 
+        this.parseNumberFromCurrency = function(sString) {
+            // Remove dollar sign and make it a float
+            return parseFloat(sString.substring(1));
+        };
+
         this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("accounts"));
         this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
         this.myDataSource.responseSchema = {
@@ -127,10 +132,6 @@ YAHOO.util.Event.addListener(window, "load", function() {
                 {sortedBy:{key:"due",dir:"desc"}});
         };
 
-        this.parseNumberFromCurrency = function(sString) {
-            // Remove dollar sign and make it a float
-            return parseFloat(sString.substring(1));
-        };
 });
 </script>
 

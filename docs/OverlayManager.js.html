@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Container&nbsp; <span class="subtitle">2.3.1</span></h3>
+        <h3>Container&nbsp; <span class="subtitle">2.4.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_container.html">container</a>
@@ -238,7 +238,7 @@
                     <span class="nx">i</span> <span class="o">=</span> <span class="nx">nOverlays</span> <span class="o">-</span> <span class="m">1</span><span class="o">;</span>
 
                     <span class="k">do</span> <span class="o">{</span>
-                        <span class="k">this</span><span class="o">.</span><span class="nx">overlays</span><span class="o">[</span><span class="nx">i</span><span class="o">].</span><span class="nx">blur</span><span class="o">();</span>                    
+                        <span class="k">this</span><span class="o">.</span><span class="nx">overlays</span><span class="o">[</span><span class="nx">i</span><span class="o">].</span><span class="nx">blur</span><span class="o">();</span>
                     <span class="o">}</span>
                     <span class="k">while</span><span class="o">(</span><span class="nx">i</span><span class="o">--);</span>
                 <span class="o">}</span>
@@ -399,22 +399,33 @@
                 <span class="nx">aOverlays</span><span class="o">.</span><span class="nx">sort</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">compareZIndexDesc</span><span class="o">);</span>
 
                 <span class="nx">oTopOverlay</span> <span class="o">=</span> <span class="nx">aOverlays</span><span class="o">[</span><span class="m">0</span><span class="o">];</span>
-                
-                <span class="k">if</span> <span class="o">(</span><span class="nx">oTopOverlay</span><span class="o">)</span> <span class="o">{</span>
 
+                <span class="k">if</span> <span class="o">(</span><span class="nx">oTopOverlay</span><span class="o">)</span> <span class="o">{</span>
                     <span class="nx">nTopZIndex</span> <span class="o">=</span> <span class="nx">Dom</span><span class="o">.</span><span class="nx">getStyle</span><span class="o">(</span><span class="nx">oTopOverlay</span><span class="o">.</span><span class="nx">element</span><span class="o">,</span> <span class="s2">&quot;zIndex&quot;</span><span class="o">);</span>
-    
-                    <span class="k">if</span> <span class="o">(!</span><span class="nb">isNaN</span><span class="o">(</span><span class="nx">nTopZIndex</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="nx">oTopOverlay</span> <span class="o">!=</span> <span class="nx">oOverlay</span><span class="o">)</span> <span class="o">{</span>
-    
-                        <span class="nx">oOverlay</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">setProperty</span><span class="o">(</span><span class="s2">&quot;zIndex&quot;</span><span class="o">,</span> 
-                            <span class="o">(</span><span class="nb">parseInt</span><span class="o">(</span><span class="nx">nTopZIndex</span><span class="o">,</span> <span class="m">10</span><span class="o">)</span> <span class="o">+</span> <span class="m">2</span><span class="o">));</span>
-    
+
+                    <span class="k">if</span> <span class="o">(!</span><span class="nb">isNaN</span><span class="o">(</span><span class="nx">nTopZIndex</span><span class="o">))</span> <span class="o">{</span>
+
+                        <span class="k">var</span> <span class="nx">bRequiresBump</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+                        <span class="k">if</span> <span class="o">(</span><span class="nx">oTopOverlay</span> <span class="o">!==</span> <span class="nx">oOverlay</span><span class="o">)</span> <span class="o">{</span>
+                            <span class="nx">bRequiresBump</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nx">aOverlays</span><span class="o">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="m">1</span><span class="o">)</span> <span class="o">{</span>
+                            <span class="k">var</span> <span class="nx">nNextZIndex</span> <span class="o">=</span> <span class="nx">Dom</span><span class="o">.</span><span class="nx">getStyle</span><span class="o">(</span><span class="nx">aOverlays</span><span class="o">[</span><span class="m">1</span><span class="o">].</span><span class="nx">element</span><span class="o">,</span> <span class="s2">&quot;zIndex&quot;</span><span class="o">);</span>
+                            <span class="c">// Don&#39;t rely on DOM order to stack if 2 overlays are at the same zindex.</span>
+<span class="c"></span>                            <span class="k">if</span> <span class="o">(!</span><span class="nb">isNaN</span><span class="o">(</span><span class="nx">nNextZIndex</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="nx">nTopZIndex</span> <span class="o">==</span> <span class="nx">nNextZIndex</span><span class="o">))</span> <span class="o">{</span>
+                                <span class="nx">bRequiresBump</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                            <span class="o">}</span>
+                        <span class="o">}</span>
+
+                        <span class="k">if</span> <span class="o">(</span><span class="nx">bRequiresBump</span><span class="o">)</span> <span class="o">{</span>
+                            <span class="nx">oOverlay</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">setProperty</span><span class="o">(</span><span class="s2">&quot;zindex&quot;</span><span class="o">,</span> <span class="o">(</span><span class="nb">parseInt</span><span class="o">(</span><span class="nx">nTopZIndex</span><span class="o">,</span> <span class="m">10</span><span class="o">)</span> <span class="o">+</span> <span class="m">2</span><span class="o">));</span>
+                        <span class="o">}</span>
                     <span class="o">}</span>
                     <span class="nx">aOverlays</span><span class="o">.</span><span class="nx">sort</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">compareZIndexDesc</span><span class="o">);</span>
                 <span class="o">}</span>
             <span class="o">}</span>
         <span class="o">},</span>
-        
+
         <span class="c">/**</span>
 <span class="c">        * Attempts to locate an Overlay by instance or ID.</span>
 <span class="c">        * @method find</span>
@@ -424,7 +435,7 @@
 <span class="c">        * cannot be located.</span>
 <span class="c">        */</span>
         <span class="nx">find</span><span class="o">:</span> <span class="k">function</span> <span class="o">(</span><span class="nx">overlay</span><span class="o">)</span> <span class="o">{</span>
-        
+
             <span class="k">var</span> <span class="nx">aOverlays</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">overlays</span><span class="o">,</span>
                 <span class="nx">nOverlays</span> <span class="o">=</span> <span class="nx">aOverlays</span><span class="o">.</span><span class="nx">length</span><span class="o">,</span>
                 <span class="nx">i</span><span class="o">;</span>
@@ -497,7 +508,7 @@
                 <span class="k">while</span><span class="o">(</span><span class="nx">i</span><span class="o">--);</span>
             <span class="o">}</span>
         <span class="o">},</span>
-        
+
         <span class="c">/**</span>
 <span class="c">        * Hides all Overlays in the manager.</span>
 <span class="c">        * @method hideAll</span>
@@ -516,7 +527,7 @@
                 <span class="k">while</span><span class="o">(</span><span class="nx">i</span><span class="o">--);</span>
             <span class="o">}</span>
         <span class="o">},</span>
-        
+
         <span class="c">/**</span>
 <span class="c">        * Returns a string representation of the object.</span>
 <span class="c">        * @method toString</span>
@@ -547,6 +558,8 @@
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_charts.html">charts</a></li>
+
                                 <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
 
                                 <li class=""><a href="module_connection.html">connection</a></li>
@@ -556,6 +569,8 @@
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
+
+                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -567,13 +582,23 @@
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
+                                <li class=""><a href="module_get.html">get</a></li>
+
                                 <li class=""><a href="module_history.html">history</a></li>
 
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
+                                <li class=""><a href="module_json.html">json</a></li>
+
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
+
+                                <li class=""><a href="module_number.html">number</a></li>
+
+                                <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_selector.html">selector</a></li>
 
                                 <li class=""><a href="module_slider.html">slider</a></li>
 

@@ -76,15 +76,22 @@
 
         <script type="text/javascript">
 
-            // Build the tree view when the "mytreeview" DIV is available in the DOM
+            /*
+                 Initialize the TreeView instance when the "mytreeview" <div>
+                 is ready to be scripted.
+            */
 
             YAHOO.util.Event.onAvailable("mytreeview", function () {
 
-                var oTreeView,      // The YAHOO.widget.TreeView instance
-                    oContextMenu,       // The YAHOO.widget.ContextMenu instance
-                    oTextNodeMap = {},      // Hash of YAHOO.widget.TextNode instances in the tree
-                    oCurrentTextNode = null;    // The YAHOO.widget.TextNode instance whose "contextmenu" DOM event triggered the display of the context menu
+                /*
+                     Map of YAHOO.widget.TextNode instances in the 
+                     TreeView instance.
+                */
+
+                var oTextNodeMap = {};
             
+
+                // Creates a TextNode instance and appends it to the TreeView 
 
                 function buildRandomTextBranch(p_oNode) {
 
@@ -108,15 +115,20 @@
                 }
 
 
-                // Create a tree
+                // Create a TreeView instance
 
-                oTreeView = new YAHOO.widget.TreeView("mytreeview");
+                var oTreeView = new YAHOO.widget.TreeView("mytreeview");
 
                 var n, oTextNode;
 
                 for (n = 0; n < Math.floor((Math.random()*4) + 3); n++) {
 
                     oTextNode = new YAHOO.widget.TextNode("label-" + n, oTreeView.getRoot(), false);
+                    
+                    /*
+                         Add the TextNode instance to the map, using its
+                         HTML id as the key.
+                    */
                     
                     oTextNodeMap[oTextNode.labelElId] = oTextNode;
                     
@@ -126,6 +138,21 @@
         
                 oTreeView.draw();
 
+
+                /*
+                     The YAHOO.widget.TextNode instance whose "contextmenu" 
+                     DOM event triggered the display of the 
+                     ContextMenu instance.
+                */
+
+                var oCurrentTextNode = null;
+
+
+                /*
+                     Adds a new TextNode as a child of the TextNode instance 
+                     that was the target of the "contextmenu" event that 
+                     triggered the display of the ContextMenu instance.
+                */
 
                 function addNode() {
 
@@ -146,6 +173,12 @@
                 }
                 
 
+                /*
+                     Edits the label of the TextNode that was the target of the
+                     "contextmenu" event that triggered the display of the 
+                     ContextMenu instance.
+                */
+
                 function editNodeLabel() {
 
                     var sLabel = window.prompt("Enter a new label for this node: ", oCurrentTextNode.getLabelEl().innerHTML);
@@ -159,6 +192,11 @@
                 }
                 
 
+                /*
+                    Deletes the TextNode that was the target of the "contextmenu"
+                    event that triggered the display of the ContextMenu instance.
+                */
+
                 function deleteNode() {
 
                     delete oTextNodeMap[oCurrentTextNode.labelElId];
@@ -170,30 +208,35 @@
 
 
                 /*
-                    "contextmenu" event handler for the element(s) that triggered the display of the context menu
+                    "contextmenu" event handler for the element(s) that 
+                    triggered the display of the ContextMenu instance - used
+                    to set a reference to the TextNode instance that triggered
+                    the display of the ContextMenu instance.
                 */
-                function onTriggerContextMenu(p_oEvent) {
 
+                function onTriggerContextMenu(p_oEvent) {
 
 
                     /*
                          Returns a TextNode instance that corresponds to the DOM
                          element whose "contextmenu" event triggered the display
-                         of the context menu.
+                         of the ContextMenu instance.
                     */
         
-                    function GetTextNodeFromEventTarget(p_oTarget) {
+                    function getTextNodeFromEventTarget(p_oTarget) {
         
-                        if (p_oTarget.tagName.toUpperCase() == "A" && p_oTarget.className == "ygtvlabel") {
+                        if (p_oTarget.tagName.toUpperCase() == "A" && 
+                                p_oTarget.className == "ygtvlabel") {
 
                             return oTextNodeMap[p_oTarget.id];
         
                         }
                         else {
     
-                            if (p_oTarget.parentNode && p_oTarget.parentNode.nodeType == 1) {
+                            if (p_oTarget.parentNode && 
+                                    p_oTarget.parentNode.nodeType == 1) {
     
-                                return GetTextNodeFromEventTarget(p_oTarget.parentNode);
+                                return getTextNodeFromEventTarget(p_oTarget.parentNode);
                             
                             }
                         
@@ -201,7 +244,14 @@
                     
                     }
 
-                    var oTextNode = GetTextNodeFromEventTarget(this.contextEventTarget);
+
+                    /*
+                         Get the TextNode instance that that triggered the 
+                         display of the ContextMenu instance.
+                    */
+
+                    var oTextNode = getTextNodeFromEventTarget(this.contextEventTarget);
+
 
                     if (oTextNode) {
 
@@ -210,6 +260,8 @@
                     }
                     else {
                     
+                        // Cancel the display of the ContextMenu instance.
+                    
                         this.cancel();
                         
                     }
@@ -217,9 +269,13 @@
                 }
 
 
-                // Create the context menu for the tree
+                /*
+                     Instantiate a ContextMenu:  The first argument passed to 
+                     the constructor is the id of the element to be created; the 
+                     second is an object literal of configuration properties.
+                */
 
-                oContextMenu = new YAHOO.widget.ContextMenu("mytreecontextmenu", {
+                var oContextMenu = new YAHOO.widget.ContextMenu("mytreecontextmenu", {
                                                                 trigger: "mytreeview",
                                                                 lazyload: true, 
                                                                 itemdata: [
@@ -229,7 +285,12 @@
                                                                 ] });
 
 
-                oContextMenu.triggerContextMenuEvent.subscribe(onTriggerContextMenu);
+                /*
+                     Subscribe to the "contextmenu" event for the element(s)
+                     specified as the "trigger" for the ContextMenu instance.
+                */
+
+                oContextMenu.subscribe("triggerContextMenu", onTriggerContextMenu);
             
             });
 
@@ -237,32 +298,6 @@
 
     </head>
     <body class="yui-skin-sam">
-        <h1>Example: Adding A Context Menu To A TreeView (YUI Library)</h1>
-
-        <p>
-            When adding context menus to large data structures like a 
-            <code>&#60;table&#62;</code> or large list (<code>&#60;ol&#62;</code> 
-            or <code>&#60;ul&#62;</code>), it is recommended to bind a single 
-            YAHOO.widget.ContextMenu instance to the structure's root element, than to a set 
-            of its child nodes (<code>&#60;tr&#62;</code>s or <code>&#60;li&#62;</code>s).
-            
-            Doing so significantly improves the performance of a web page or 
-            application by reducing the number of "contextmenu" event handlers 
-            as well as the number of YAHOO.widget.ContextMenu instances in memory.
-        </p>
-
-        <p>
-            This example demonstrates how to display a context menu when the 
-            user clicks on any of the labels of the nodes in a YAHOO.widget.TreeView instance.
-        </p>
-
-        <p><em>Please Note:</em> Opera users will need to do the following to use this example:</p>
-
-        <ul id="operainstructions">
-            <li><em>Opera for Windows:</em>  Hold down the control key and click with the left mouse button.</li>
-            <li><em>Opera for OS X:</em>  Hold down the command key (&#8984;) and click with the left mouse button.</li>
-        </ul>
-        
         <div id="mytreeview"></div>
     </body>
 </html>

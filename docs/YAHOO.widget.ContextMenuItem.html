@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Menu&nbsp; <span class="subtitle">2.3.1</span></h3>
+        <h3>Menu&nbsp; <span class="subtitle">2.4.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_menu.html">menu</a>
@@ -49,6 +49,8 @@
                     <!-- class tree goes here -->
                     
                 
+                        <div class="deprecated"><strong>Deprecated:</strong>As of version 2.4.0 items for YAHOO.widget.ContextMenu instances
+are of type YAHOO.widget.MenuItem.</div>
   
 
                     <div class="summary description">
@@ -131,164 +133,34 @@ documentation for more details.
                                 <code>
                                     
                                         <a class="private" href="YAHOO.widget.MenuItem.html#_oAnchor">_oAnchor</a><span class="private">,</span>
-                                        <a class="private" href="YAHOO.widget.MenuItem.html#_oCheckedIndicator">_oCheckedIndicator</a><span class="private">,</span>
                                         <a class="private" href="YAHOO.widget.MenuItem.html#_oHelpTextEM">_oHelpTextEM</a><span class="private">,</span>
                                         <a class="private" href="YAHOO.widget.MenuItem.html#_oOnclickAttributeValue">_oOnclickAttributeValue</a><span class="private">,</span>
                                         <a class="private" href="YAHOO.widget.MenuItem.html#_oSubmenu">_oSubmenu</a><span class="private">,</span>
                                         <a class="private" href="YAHOO.widget.MenuItem.html#_sClassName">_sClassName</a><span class="private">,</span>
                                         <a class="" href="YAHOO.widget.MenuItem.html#browser">browser</a><span class="">,</span>
-                                        <a class="" href="YAHOO.widget.MenuItem.html#CHECKED_TEXT">CHECKED_TEXT</a><span class="">,</span>
-                                        <a class="" href="YAHOO.widget.MenuItem.html#COLLAPSED_SUBMENU_INDICATOR_TEXT">COLLAPSED_SUBMENU_INDICATOR_TEXT</a><span class="">,</span>
                                         <a class="" href="YAHOO.widget.MenuItem.html#constructor">constructor</a><span class="">,</span>
                                         <a class="" href="YAHOO.widget.MenuItem.html#CSS_CLASS_NAME">CSS_CLASS_NAME</a><span class="">,</span>
                                         <a class="" href="YAHOO.widget.MenuItem.html#CSS_LABEL_CLASS_NAME">CSS_LABEL_CLASS_NAME</a><span class="">,</span>
                                         <a class="private" href="YAHOO.widget.MenuItem.html#DEFAULT_CONFIG">DEFAULT_CONFIG</a><span class="private">,</span>
-                                        <a class="" href="YAHOO.widget.MenuItem.html#DISABLED_CHECKED_TEXT">DISABLED_CHECKED_TEXT</a><span class="">,</span>
-                                        <a class="" href="YAHOO.widget.MenuItem.html#DISABLED_SUBMENU_INDICATOR_TEXT">DISABLED_SUBMENU_INDICATOR_TEXT</a><span class="">,</span>
                                         <a class="" href="YAHOO.widget.MenuItem.html#element">element</a><span class="">,</span>
                                         <a class="private" href="YAHOO.widget.MenuItem.html#EVENT_TYPES">EVENT_TYPES</a><span class="private">,</span>
-                                        <a class="" href="YAHOO.widget.MenuItem.html#EXPANDED_SUBMENU_INDICATOR_TEXT">EXPANDED_SUBMENU_INDICATOR_TEXT</a><span class="">,</span>
                                         <a class="" href="YAHOO.widget.MenuItem.html#groupIndex">groupIndex</a><span class="">,</span>
                                         <a class="" href="YAHOO.widget.MenuItem.html#id">id</a><span class="">,</span>
                                         <a class="" href="YAHOO.widget.MenuItem.html#index">index</a><span class="">,</span>
                                         <a class="" href="YAHOO.widget.MenuItem.html#parent">parent</a><span class="">,</span>
                                         <a class="" href="YAHOO.widget.MenuItem.html#srcElement">srcElement</a><span class="">,</span>
                                         <a class="" href="YAHOO.widget.MenuItem.html#SUBMENU_TYPE">SUBMENU_TYPE</a><span class="">,</span>
-                                        <a class="" href="YAHOO.widget.MenuItem.html#submenuIndicator">submenuIndicator</a><span class="">,</span>
                                         <a class="" href="YAHOO.widget.MenuItem.html#value">value</a>
                                 </code>
                             </div>
                         </div>
 
-                        <div class="section method details">
-                            <h3 id="methods">Methods</h3>
-                            <div class="content">
-                                    <div class="">
-                                    <h4>
-                                        <a name="init">init</a></h4>
-                                    <div class="detail">
-                                        <code>
-                                        
-                                        
-                                        
-                                        void
-                                            <strong>init</strong>
-                                           (
-                                                
-                                                        
-                                                         p_oObject
-                                                    
-                                                
-
-                                                
-
-                                                
-
-                                                
-                                                        , 
-                                                         p_oConfig
-                                                    
-                                                
-                                            )
-                                        </code>
-                                        
-                                        <div class="description">
-                                            The ContextMenuItem class's initialization method. This method 
-is automatically called by the constructor, and sets up all DOM references 
-for pre-existing markup, and creates required markup if it is not 
-already present.
-                                        </div>
-
-                                        <div class="description">
-
-                                                <dl>
-                                                    <dt>Parameters:</dt>
-                                                        <dd>
-                                                            <code>p_oObject &lt;String&gt;</code>
-                                                             String specifying the text of the context menu item.
-                                                        </dd>
-                                                        <dd>
-                                                            <code>p_oObject &lt;<a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-
-one-html.html#ID-74680021">HTMLLIElement</a>&gt;</code>
-                                                             Object specifying the 
-<code>&#60;li&#62;</code> element of the context menu item.
-                                                        </dd>
-                                                        <dd>
-                                                            <code>p_oObject &lt;<a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-
-one-html.html#ID-38450247">HTMLOptGroupElement</a>&gt;</code>
-                                                             Object 
-specifying the <code>&#60;optgroup&#62;</code> element of the context 
-menu item.
-                                                        </dd>
-                                                        <dd>
-                                                            <code>p_oObject &lt;<a href="http://www.w3.org/TR/2000/WD-DOM-Level-1-20000929/level-
-one-html.html#ID-70901257">HTMLOptionElement</a>&gt;</code>
-                                                             Object specifying 
-the <code>&#60;option&#62;</code> element of the context menu item.
-                                                        </dd>
-                                                        <dd>
-                                                            <code>p_oConfig &lt;Object&gt;</code>
-                                                             Optional. Object literal specifying the 
-configuration for the context menu item. See configuration class 
-documentation for more details.
-                                                        </dd>
-                                                </dl>
-
-                                                <dl>
-                                                    <dt>Returns:
-                                                    <code>
-                                                        void
-                                                    </code></dt>
-                                                    <dd></dd>
-                                                </dl>
-             
-                                        </div>
-
-                                    </div>
-                                    <hr />
-                                    </div>
-                                    <div class="">
-                                    <h4>
-                                        <a name="toString">toString</a></h4>
-                                    <div class="detail">
-                                        <code>
-                                        
-                                        
-                                        
-                                        String
-                                            <strong>toString</strong>
-                                           (
-                                            )
-                                        </code>
-                                        
-                                        <div class="description">
-                                            Returns a string representing the context menu item.
-                                        </div>
-
-                                        <div class="description">
-
-
-                                                <dl>
-                                                    <dt>Returns:
-                                                    <code>
-                                                        String
-                                                    </code></dt>
-                                                    <dd></dd>
-                                                </dl>
-             
-                                        </div>
-
-                                    </div>
-                                    <hr />
-                                    </div>
-                            </div>
-                        </div>
 
                             <div class="section field inheritance">
                                 <h4>Methods inherited from <a href="YAHOO.widget.MenuItem.html">YAHOO.widget.MenuItem</a>:</h4>
                                 <div class="content">
                                     <code>
-                                            <a class="private" href="YAHOO.widget.MenuItem.html#_createRootNodeStructure">_createRootNodeStructure</a><span class="private">,</span>                                            <a class="private" href="YAHOO.widget.MenuItem.html#_initSubTree">_initSubTree</a><span class="private">,</span>                                            <a class="private" href="YAHOO.widget.MenuItem.html#_onSubmenuBeforeHide">_onSubmenuBeforeHide</a><span class="private">,</span>                                            <a class="private" href="YAHOO.widget.MenuItem.html#_onSubmenuHide">_onSubmenuHide</a><span class="private">,</span>                                            <a class="private" href="YAHOO.widget.MenuItem.html#_onSubmenuShow">_onSubmenuShow</a><span class="private">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#blur">blur</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#configChecked">configChecked</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#configClassName">configClassName</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#configDisabled">configDisabled</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#configEmphasis">configEmphasis</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#configHelpText">configHelpText</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#configOnClick">configOnClick</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#configSelected">configSelected</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#configStrongEmphasis">configStrongEmphasis</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#configSubmenu">configSubmenu</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#configTarget">configTarget</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#configText">configText</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#configURL">configURL</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#destroy">destroy</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#focus">focus</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#getNextEnabledSibling">getNextEnabledSibling</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#getPreviousEnabledSibling">getPreviousEnabledSibling</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#hasFocus">hasFocus</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#init">init</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#initDefaultConfig">initDefaultConfig</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#toString">toString</a>
+                                            <a class="private" href="YAHOO.widget.MenuItem.html#_createRootNodeStructure">_createRootNodeStructure</a><span class="private">,</span>                                            <a class="private" href="YAHOO.widget.MenuItem.html#_initSubTree">_initSubTree</a><span class="private">,</span>                                            <a class="private" href="YAHOO.widget.MenuItem.html#_onSubmenuBeforeHide">_onSubmenuBeforeHide</a><span class="private">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#blur">blur</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#configChecked">configChecked</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#configClassName">configClassName</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#configDisabled">configDisabled</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#configEmphasis">configEmphasis</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#configHelpText">configHelpText</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#configOnClick">configOnClick</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#configSelected">configSelected</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#configStrongEmphasis">configStrongEmphasis</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#configSubmenu">configSubmenu</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#configTarget">configTarget</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#configText">configText</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#configURL">configURL</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#destroy">destroy</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#focus">focus</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#getNextEnabledSibling">getNextEnabledSibling</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#getPreviousEnabledSibling">getPreviousEnabledSibling</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#hasFocus">hasFocus</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#init">init</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#initDefaultConfig">initDefaultConfig</a><span class="">,</span>                                            <a class="" href="YAHOO.widget.MenuItem.html#toString">toString</a>
                                     </code>
                                 </div>
                             </div>
@@ -309,7 +181,7 @@ documentation for more details.
                             <h4>Configuration attributes inherited from <a href="YAHOO.widget.MenuItem.html">YAHOO.widget.MenuItem</a>:</h4>
                             <div class="content">
                                 <code>
-                                        <a class="" href="YAHOO.widget.MenuItem.html#checked">checked</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.MenuItem.html#classname">classname</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.MenuItem.html#disabled">disabled</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.MenuItem.html#emphasis">emphasis</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.MenuItem.html#helptext">helptext</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.MenuItem.html#onclick">onclick</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.MenuItem.html#selected">selected</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.MenuItem.html#strongemphasis">strongemphasis</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.MenuItem.html#submenu">submenu</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.MenuItem.html#target">target</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.MenuItem.html#text">text</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.MenuItem.html#url">url</a><span class="">,</span>
+                                        <a class="" href="YAHOO.widget.MenuItem.html#checked">checked</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.MenuItem.html#classname">classname</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.MenuItem.html#disabled">disabled</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.MenuItem.html#emphasis">emphasis</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.MenuItem.html#helptext">helptext</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.MenuItem.html#onclick">onclick</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.MenuItem.html#selected">selected</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.MenuItem.html#strongemphasis">strongemphasis</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.MenuItem.html#submenu">submenu</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.MenuItem.html#target">target</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.MenuItem.html#text">text</a><span class="">,</span>                                        <a class="" href="YAHOO.widget.MenuItem.html#url">url</a>
                                 </code>
                             </div>
                         </div>
@@ -331,6 +203,8 @@ documentation for more details.
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_charts.html">charts</a></li>
+
                                 <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
 
                                 <li class=""><a href="module_connection.html">connection</a></li>
@@ -340,6 +214,8 @@ documentation for more details.
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
+
+                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -351,13 +227,23 @@ documentation for more details.
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
+                                <li class=""><a href="module_get.html">get</a></li>
+
                                 <li class=""><a href="module_history.html">history</a></li>
 
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
+                                <li class=""><a href="module_json.html">json</a></li>
+
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class="selected"><a href="module_menu.html">menu</a></li>
+
+                                <li class=""><a href="module_number.html">number</a></li>
+
+                                <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_selector.html">selector</a></li>
 
                                 <li class=""><a href="module_slider.html">slider</a></li>
 
@@ -400,17 +286,6 @@ documentation for more details.
                     </div>
 
 
-                    <div class="module">
-                        <h4>Methods</h4>
-                        <ul class="content">        
-                                <li class=""><!--<code>void</code>-->
-                                <a href="#init">init</a>
-                                </li>
-                                <li class=""><!--<code>String</code>-->
-                                <a href="#toString">toString</a>
-                                </li>
-                        </ul>
-                    </div>
 
 
 

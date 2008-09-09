@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title>Setting Menu Configuration Properties At Runtime</title>
 
 <style type="text/css">
@@ -18,24 +18,35 @@ body {
 
 <link rel="stylesheet" type="text/css" href="../../build/fonts/fonts-min.css" />
 <link rel="stylesheet" type="text/css" href="../../build/menu/assets/skins/sam/menu.css" />
-<!-- The following modules were requested but are not defined: container-core -->
 <script type="text/javascript" src="../../build/yahoo-dom-event/yahoo-dom-event.js"></script>
 <script type="text/javascript" src="../../build/container/container_core.js"></script>
 <script type="text/javascript" src="../../build/menu/menu.js"></script>
-<!-- The following modules were requested but are not defined: container-core -->
 
 
 <!--begin custom header content for this example-->
 <style type="text/css">
 
-    li.yuimenuitem a em {
+    /*
+        Set the "zoom" property to "normal" since it is set to "1" by the 
+        ".example-container .bd" rule in yui.css and this causes a Menu
+        instance's width to expand to 100% of the browser viewport.
+    */
     
-        font-style: italic;
+    div.yuimenu .bd {
+    
+        zoom: normal;
+    
     }
     
-    li.yuimenuitem strong {
+
+    /*
+        Overrides for the ".example-container a:visited" in the 
+        the yui.css file.
+    */
+
+    div.yuimenu a.yuimenuitemlabel-disabled:visited {
     
-        font-weight: bold;
+            color: #A6A6A6;
     
     }
 
@@ -49,19 +60,33 @@ body {
 <h1>Setting Menu Configuration Properties At Runtime</h1>
 
 <div class="exampleIntro">
-	<p>This example demonstrates how to set MenuItem configuration properties at runtime and listen for the changes through the "configChangedEvent."</p>
-<p id="clicknote"><em>Note:</em> By default clicking outside of a menu will hide it.  Additionally, menu items without a submenu or a URL to navigate will hide their parent menu when clicked.  Click the "Show Menu" button below to make the menu visible if it is hidden.</p>			
+	<p>
+This example demonstrates how to set MenuItem configuration properties at 
+runtime and listen for the changes through the "configChanged" event.
+</p>
+<p id="clicknote">
+<em>Note:</em> By default clicking outside of a menu will hide it.  
+Additionally, menu items without a submenu or a URL to navigate to will hide their 
+parent menu when clicked.  Click the "Show Menu" button below to make the menu 
+visible if it is hidden.
+</p>			
 </div>
 
 <!--BEGIN SOURCE CODE FOR EXAMPLE =============================== -->
 
 <script type="text/javascript">
 
-    // Instantiate and render the menu when the page's DOM is ready
+    /*
+         Initialize and render the Menu when the element it is to be 
+         rendered into is ready to be scripted.
+    */
 
-    YAHOO.example.onDOMReady = function(p_sType) {
+    YAHOO.util.Event.onAvailable("rendertarget", function () {
 
-        // "config change" event handler for each menu item
+        /*
+             "configChange" event handler for each MenuItem instance - used 
+             to log info about the configuration property that was changed.
+        */
 
         function onMenuItemConfigChange(p_sType, p_aArgs) {
 
@@ -78,76 +103,79 @@ body {
 
 
         /*
-             Instantiate the menu.  The first argument passed to the 
-             constructor is the id of the DOM element to be created for the 
-             menu; the second is an object literal representing a set of 
-             configuration properties for the menu.
+             Instantiate a Menu:  The first argument passed to the 
+             constructor is the id of the element in the page 
+             representing the Menu; the second is an object literal 
+             of configuration properties.
         */
 
         var oMenu = new YAHOO.widget.Menu("basicmenu", { fixedcenter: true });
 
-        oMenu.itemAddedEvent.subscribe(function (p_sType, p_aArgs) {
+
+        /*
+             Subscribe to the Menu instance's "itemAdded" event in order to 
+             subscribe to the "configChange" event handler of each MenuItem 
+             instance's configuration object.
+        */
+
+        oMenu.subscribe("itemAdded", function (p_sType, p_aArgs) {
 
             var oMenuItem = p_aArgs[0];
            
             /*
-                 Subscribe to each of the menu item's "configChanged" event as each 
-                 one is added to the menu.
+                 Subscribe to the "configChange" event handler of each MenuItem 
+                 instance's configuration object.
             */
 
-            oMenuItem.cfg.configChangedEvent.subscribe(onMenuItemConfigChange);
+            oMenuItem.cfg.subscribe("configChanged", onMenuItemConfigChange);
 
         });
 
-        oMenu.showEvent.subscribe(function () {
-
-            this.focus();
-        
-        });
 
         /*
-            Add items to the menu by passing an array of strings (each of which 
-            represents the "text" configuration property of a 
+            Add items to the Menu instance by passing an array of strings 
+            (each of which represents the "text" configuration property of a 
             YAHOO.widget.MenuItem instance) to the "addItems" method.
         */
 
         oMenu.addItems([
             
-                "MenuItem 0",
-                "MenuItem 1",
-                "MenuItem 2",
-                "MenuItem 3",
-                "MenuItem 4",
-                "MenuItem 5"
+                "Selected MenuItem",
+                "Disabled MenuItem",
+                "MenuItem With A URL",
+                "Checked MenuItem"
 
             ]);
 
+
         /*
-             Since this menu is built completely from script, call the "render" 
-             method passing in the id of the DOM element that the menu's 
-             root element should be appended to.
+            Since this Menu instance is built completely from script, call the 
+            "render" method passing in the DOM element that it should be 
+            appended to.
         */
 
         oMenu.render("rendertarget");
 
+
         /*
-             Set a configuration property of each menu item to trigger 
-             the configChangedEvent for each menu item.
+             Set a configuration property of each MenuItem to trigger the firing
+             of its configuration object's "configChanged" event.
         */
 
         oMenu.getItem(0).cfg.setProperty("selected", true);
         oMenu.getItem(1).cfg.setProperty("disabled", true);
-        oMenu.getItem(2).cfg.setProperty("helptext", "Help Me!");
-        oMenu.getItem(3).cfg.setProperty("emphasis", true);
-        oMenu.getItem(4).cfg.setProperty("strongemphasis", true);  
-        oMenu.getItem(5).cfg.setProperty("checked", true);
+        oMenu.getItem(2).cfg.setProperty("url", "http://www.yahoo.com");
+        oMenu.getItem(3).cfg.setProperty("checked", true);
         
+
+        // Set focus to the Menu when it is made visible
+
+        oMenu.subscribe("show", oMenu.focus);
+
+
         YAHOO.util.Event.addListener("menutoggle", "click", oMenu.show, null, oMenu);
 
-    };
-
-
-    YAHOO.util.Event.onDOMReady(YAHOO.example.onDOMReady);
+    });
     
 </script>
 

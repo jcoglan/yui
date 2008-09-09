@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Logger Widget&nbsp; <span class="subtitle">2.3.1</span></h3>
+        <h3>Logger Widget&nbsp; <span class="subtitle">2.4.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_logger.html">logger</a>
@@ -638,6 +638,42 @@ by the Firebug extension to Firefox as well as Safari.
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="handleWindowErrors">handleWindowErrors</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>handleWindowErrors</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Surpresses native JavaScript errors and outputs to console. By default,
+Logger does not handle JavaScript window error events.
+NB: Not all browsers support the window.onerror event.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="log">log</a></h4>
                                     <div class="detail">
                                         <code>
@@ -717,6 +753,42 @@ outputs the log message to browser console.
                                         
                                         <div class="description">
                                             Resets internal stack and startTime, enables Logger, and fires logResetEvent.
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="unhandleWindowErrors">unhandleWindowErrors</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>unhandleWindowErrors</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Unsurpresses native JavaScript errors. By default,
+Logger does not handle JavaScript window error events.
+NB: Not all browsers support the window.onerror event.
                                         </div>
 
                                         <div class="description">
@@ -918,6 +990,8 @@ outputs the log message to browser console.
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_charts.html">charts</a></li>
+
                                 <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
 
                                 <li class=""><a href="module_connection.html">connection</a></li>
@@ -927,6 +1001,8 @@ outputs the log message to browser console.
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
+
+                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -938,13 +1014,23 @@ outputs the log message to browser console.
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
+                                <li class=""><a href="module_get.html">get</a></li>
+
                                 <li class=""><a href="module_history.html">history</a></li>
 
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
+                                <li class=""><a href="module_json.html">json</a></li>
+
                                 <li class="selected"><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
+
+                                <li class=""><a href="module_number.html">number</a></li>
+
+                                <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_selector.html">selector</a></li>
 
                                 <li class=""><a href="module_slider.html">slider</a></li>
 
@@ -1044,10 +1130,16 @@ outputs the log message to browser console.
                                 <a href="#getStartTime">getStartTime</a>
                                 </li>
                                 <li class=""><!--<code>void</code>-->
+                                <a href="#handleWindowErrors">handleWindowErrors</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#log">log</a>
                                 </li>
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#reset">reset</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#unhandleWindowErrors">unhandleWindowErrors</a>
                                 </li>
                         </ul>
                     </div>

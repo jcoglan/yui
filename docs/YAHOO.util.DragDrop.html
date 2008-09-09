@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Drag and Drop&nbsp; <span class="subtitle">2.3.1</span></h3>
+        <h3>Drag and Drop&nbsp; <span class="subtitle">2.4.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_dragdrop.html">dragdrop</a>
@@ -308,6 +308,21 @@ YAHOO.util.DDProxy
                                     <hr />
                                     </div>
                                     <div class="">
+                                    <h4><a name="dragOnly">dragOnly</a>
+                                        <code>- Boolean</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            If this flag is true, do not fire drop events. The element is a drag only element (for movement not dropping)
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="groups">groups</a>
                                         <code>- {string: string}</code>
                                     </h4>
@@ -429,6 +444,22 @@ if clicked.
 
                                     <hr />
                                     </div>
+                                    <div class="">
+                                    <h4><a name="isTarget">isTarget</a>
+                                        <code>- boolean</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            By default, all instances can be a drop target.  This can be disabled by
+setting isTarget to false.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
                                     <div class="private">
                                     <h4><a name="locked">locked</a>
                                         <code>- private boolean</code>
@@ -534,6 +565,22 @@ that represents the area the draggable element overlaps this target.
 DDM.getBestMatch uses this property to compare the size of the overlap
 to that of other targets in order to determine the closest match in
 INTERSECT mode when multiple targets are part of the same interaction.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4><a name="padding">padding</a>
+                                        <code>- int[]</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            The padding configured for this drag and drop object for calculating
+the drop zone intersection with this object.
                                         </div>
                                     </div>
      
@@ -1181,6 +1228,53 @@ since they can't exist independent of a constraint at this time.
                                     </div>
                                     <hr />
                                     </div>
+                                    <div class="private">
+                                    <h4>
+                                        <a name="clickValidator">clickValidator</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         private 
+                                        
+                                        
+                                        void
+                                            <strong>clickValidator</strong>
+                                           (
+                                                
+                                                        
+                                                         e
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Method validates that the clicked element
+was indeed the handle or a valid child of the handle
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>e &lt;Event&gt;</code>
+                                                            
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
                                     <div class="">
                                     <h4>
                                         <a name="endDrag">endDrag</a></h4>
@@ -1651,41 +1745,6 @@ get a mousedown handler.
                                                     </code></dt>
                                                     <dd>true if this obj or all drag/drop is locked, else 
 false</dd>
-                                                </dl>
-             
-                                        </div>
-
-                                    </div>
-                                    <hr />
-                                    </div>
-                                    <div class="">
-                                    <h4>
-                                        <a name="isTarget">isTarget</a></h4>
-                                    <div class="detail">
-                                        <code>
-                                        
-                                        
-                                        
-                                        void
-                                            <strong>isTarget</strong>
-                                           (
-                                            )
-                                        </code>
-                                        
-                                        <div class="description">
-                                            By default, all instances can be a drop target.  This can be disabled by
-setting isTarget to false.
-                                        </div>
-
-                                        <div class="description">
-
-
-                                                <dl>
-                                                    <dt>Returns:
-                                                    <code>
-                                                        void
-                                                    </code></dt>
-                                                    <dd></dd>
                                                 </dl>
              
                                         </div>
@@ -2207,41 +2266,6 @@ drop target
                                                              the mouseup event
                                                         </dd>
                                                 </dl>
-
-                                                <dl>
-                                                    <dt>Returns:
-                                                    <code>
-                                                        void
-                                                    </code></dt>
-                                                    <dd></dd>
-                                                </dl>
-             
-                                        </div>
-
-                                    </div>
-                                    <hr />
-                                    </div>
-                                    <div class="">
-                                    <h4>
-                                        <a name="padding">padding</a></h4>
-                                    <div class="detail">
-                                        <code>
-                                        
-                                        
-                                        
-                                        void
-                                            <strong>padding</strong>
-                                           (
-                                            )
-                                        </code>
-                                        
-                                        <div class="description">
-                                            The padding configured for this drag and drop object for calculating
-the drop zone intersection with this object.
-                                        </div>
-
-                                        <div class="description">
-
 
                                                 <dl>
                                                     <dt>Returns:
@@ -3181,6 +3205,8 @@ and the drag or mousedown time thresholds have beeen met.
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_charts.html">charts</a></li>
+
                                 <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
 
                                 <li class=""><a href="module_connection.html">connection</a></li>
@@ -3190,6 +3216,8 @@ and the drag or mousedown time thresholds have beeen met.
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
+
+                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -3201,13 +3229,23 @@ and the drag or mousedown time thresholds have beeen met.
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
+                                <li class=""><a href="module_get.html">get</a></li>
+
                                 <li class=""><a href="module_history.html">history</a></li>
 
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
+                                <li class=""><a href="module_json.html">json</a></li>
+
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
+
+                                <li class=""><a href="module_number.html">number</a></li>
+
+                                <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_selector.html">selector</a></li>
 
                                 <li class=""><a href="module_slider.html">slider</a></li>
 
@@ -3279,6 +3317,9 @@ and the drag or mousedown time thresholds have beeen met.
                                 <li class="private"><a href="#dragElId">dragElId</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
+                                <li class=""><a href="#dragOnly">dragOnly</a>
+                                        <!--<code>&lt;int[]&gt;</code>-->
+                                </li>
                                 <li class=""><a href="#groups">groups</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
@@ -3300,6 +3341,9 @@ and the drag or mousedown time thresholds have beeen met.
                                 <li class=""><a href="#invalidHandleTypes">invalidHandleTypes</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
+                                <li class=""><a href="#isTarget">isTarget</a>
+                                        <!--<code>&lt;int[]&gt;</code>-->
+                                </li>
                                 <li class="private"><a href="#locked">locked</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
@@ -3319,6 +3363,9 @@ and the drag or mousedown time thresholds have beeen met.
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#overlap">overlap</a>
+                                        <!--<code>&lt;int[]&gt;</code>-->
+                                </li>
+                                <li class=""><a href="#padding">padding</a>
                                         <!--<code>&lt;int[]&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#primaryButtonOnly">primaryButtonOnly</a>
@@ -3384,6 +3431,9 @@ and the drag or mousedown time thresholds have beeen met.
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#clearTicks">clearTicks</a>
                                 </li>
+                                <li class="private"><!--<code>void</code>-->
+                                <a href="#clickValidator">clickValidator</a>
+                                </li>
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#endDrag">endDrag</a>
                                 </li>
@@ -3413,9 +3463,6 @@ and the drag or mousedown time thresholds have beeen met.
                                 </li>
                                 <li class=""><!--<code>boolean</code>-->
                                 <a href="#isLocked">isLocked</a>
-                                </li>
-                                <li class=""><!--<code>void</code>-->
-                                <a href="#isTarget">isTarget</a>
                                 </li>
                                 <li class=""><!--<code>boolean</code>-->
                                 <a href="#isValidHandleChild">isValidHandleChild</a>
@@ -3449,9 +3496,6 @@ and the drag or mousedown time thresholds have beeen met.
                                 </li>
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#onMouseUp">onMouseUp</a>
-                                </li>
-                                <li class=""><!--<code>void</code>-->
-                                <a href="#padding">padding</a>
                                 </li>
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#removeFromGroup">removeFromGroup</a>

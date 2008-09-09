@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Calendar&nbsp; <span class="subtitle">2.3.1</span></h3>
+        <h3>Calendar&nbsp; <span class="subtitle">2.4.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_calendar.html">calendar</a>
@@ -64,8 +64,27 @@ months and years.
 <p>To construct the placeholder for the calendar widget, the code is as
 follows:
 <xmp>
-<div id="cal1Container"></div>
+<div id="calContainer"></div>
 </xmp>
+</p>
+<p>
+<strong>NOTE: As of 2.4.0, the constructor's ID argument is optional.</strong>
+The Calendar can be constructed by simply providing a container ID string, 
+or a reference to a container DIV HTMLElement (the element needs to exist 
+in the document).
+E.g.:
+<xmp>
+var c = new YAHOO.widget.Calendar("calContainer", configOptions);
+</xmp>
+or:
+<xmp>
+var containerDiv = YAHOO.util.Dom.get("calContainer");
+var c = new YAHOO.widget.Calendar(containerDiv, configOptions);
+</xmp>
+</p>
+<p>
+If not provided, the ID will be generated from the container DIV ID by adding an "_t" suffix.
+For example if an ID is not provided, and the container's ID is "calContainer", the Calendar's ID will be set to "calContainer_t".
 </p>
                     </div>
 
@@ -82,7 +101,7 @@ follows:
                                                 id
 
                                                 , 
-                                                containerId
+                                                container
 
                                                 , 
                                                 config
@@ -95,19 +114,19 @@ follows:
                                                     <code>id
                                                     &lt;String&gt; 
                                                     </code>
-                                                    			The id of the table element that will represent the calendar widget
+                                                     optional The id of the table element that will represent the Calendar widget. As of 2.4.0, this argument is optional.
                                                 </dd>
                                                 <dd>
-                                                    <code>containerId
-                                                    &lt;String&gt; 
+                                                    <code>container
+                                                    &lt;String | HTMLElement&gt; 
                                                     </code>
-                                                    	The id of the container div element that will wrap the calendar table
+                                                     The id of the container div element that will wrap the Calendar table, or a reference to a DIV element which exists in the document.
                                                 </dd>
                                                 <dd>
                                                     <code>config
                                                     &lt;Object&gt; 
                                                     </code>
-                                                    		The configuration object containing the Calendar's arguments
+                                                     optional The configuration object containing the initial configuration values for the Calendar.
                                                 </dd>
                                         </dl>
                                     
@@ -232,6 +251,21 @@ follows:
                                     <hr />
                                     </div>
                                     <div class="">
+                                    <h4><a name="containerId">containerId</a>
+                                        <code>- String</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            The unique id associated with the Calendar's container
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
                                     <h4><a name="domEventMap">domEventMap</a>
                                         <code>- Object</code>
                                     </h4>
@@ -252,7 +286,7 @@ follows:
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            The id that uniquely identifies this calendar. This id should match the id of the placeholder element on the page.
+                                            The id that uniquely identifies this Calendar.
                                         </div>
                                     </div>
      
@@ -298,6 +332,22 @@ follows:
                                     <div class="detail">
                                         <div class="description">
                                             The DOM element reference that points to this calendar's container element. The calendar will be inserted into this element when the shell is rendered.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4><a name="oNavigator">oNavigator</a>
+                                        <code>- CalendarNavigator</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            A reference to the CalendarNavigator instance created for this Calendar.
+Will be null if the "navigator" configuration property has not been set
                                         </div>
                                     </div>
      
@@ -698,6 +748,21 @@ follows:
                                     </div>
                                     <div class="">
                                     <h4><a name="Style.CSS_HEADER_TEXT">Style.CSS_HEADER_TEXT</a>
+                                        <code>- object</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4><a name="Style.CSS_NAV">Style.CSS_NAV</a>
                                         <code>- object</code>
                                     </h4>
                                     <div class="detail">
@@ -1235,6 +1300,56 @@ on the renderer type
                                     </div>
                                     <hr />
                                     </div>
+                                    <div class="protected">
+                                    <h4>
+                                        <a name="_parseArgs">_parseArgs</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                         protected 
+                                        
+                                        
+                                        Object
+                                            <strong>_parseArgs</strong>
+                                           (
+                                                
+                                                        
+                                                         Function
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Protected helper used to parse Calendar constructor/init arguments.
+As of 2.4.0, Calendar supports a simpler constructor 
+signature. This method reconciles arguments
+received in the pre 2.4.0 and 2.4.0 formats.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>Function &lt;Array&gt;</code>
+                                                             "arguments" array
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Object
+                                                    </code></dt>
+                                                    <dd>Object with id, container, config properties containing
+the reconciled argument values.</dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
                                     <div class="private">
                                     <h4>
                                         <a name="_parseDate">_parseDate</a></h4>
@@ -1469,6 +1584,9 @@ and is parsed into a Date object normalized to the first day of the month. If no
                                                     <dd>JavaScript Date object representing the date field array</dd>
                                                 </dl>
              
+                                            <div class="deprecated">
+                                                <strong>Deprecated</strong> Made public, toDate
+                                            </div>        
                                         </div>
 
                                     </div>
@@ -1993,7 +2111,7 @@ to the current month and year.
                                            (
                                                 
                                                         
-                                                         The
+                                                         style
                                                     
                                                 
                                             )
@@ -2008,8 +2126,8 @@ to the current month and year.
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>The &lt;style&gt;</code>
-                                                             CSS class name to remove from all calendar body cells
+                                                            <code>style &lt;style&gt;</code>
+                                                             The CSS class name to remove from all calendar body cells
                                                         </dd>
                                                 </dl>
 
@@ -2039,7 +2157,7 @@ to the current month and year.
                                            (
                                                 
                                                         
-                                                         The
+                                                         cell
                                                     
                                                 
                                             )
@@ -2054,8 +2172,8 @@ to the current month and year.
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>The &lt;HTMLTableCellElement&gt;</code>
-                                                             cell to clear
+                                                            <code>cell &lt;HTMLTableCellElement&gt;</code>
+                                                             The cell to clear
                                                         </dd>
                                                 </dl>
 
@@ -2259,6 +2377,40 @@ renders the built-in IFRAME shim if the container is relatively or absolutely po
                                         
                                         <div class="description">
                                             The default handler for the "mindate" property
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="configNavigator">configNavigator</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>configNavigator</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            The default handler for the "navigator" property
                                         </div>
 
                                         <div class="description">
@@ -2800,6 +2952,60 @@ when the calendar is rendered.
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="getCellIndex">getCellIndex</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Number
+                                            <strong>getCellIndex</strong>
+                                           (
+                                                
+                                                        
+                                                         date
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Find the Calendar's cell index for a given date.
+If the date is not found, the method returns -1.
+<p>
+The returned index can be used to lookup the cell HTMLElement  
+using the Calendar's cells array or passed to selectCell to select 
+cells by index. 
+</p>
+See <a href="#cells">cells</a>, <a href="#selectCell">selectCell</a>.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>date &lt;Date&gt;</code>
+                                                             JavaScript Date object, for which to find a cell index.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Number
+                                                    </code></dt>
+                                                    <dd>The index of the date in Calendars cellDates/cells arrays, or -1 if the date 
+is not on the curently rendered Calendar page.</dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="getDateByCellId">getDateByCellId</a></h4>
                                     <div class="detail">
                                         <code>
@@ -2975,7 +3181,7 @@ when the calendar is rendered.
                                                     
                                                 
                                                         , 
-                                                         containerId
+                                                         container
                                                     
                                                 
                                                         , 
@@ -2995,15 +3201,15 @@ when the calendar is rendered.
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>id &lt;String&gt;</code>
-                                                            			The id of the table element that will represent the calendar widget
+                                                             optional The id of the table element that will represent the Calendar widget. As of 2.4.0, this argument is optional.
                                                         </dd>
                                                         <dd>
-                                                            <code>containerId &lt;String&gt;</code>
-                                                            	The id of the container div element that will wrap the calendar table
+                                                            <code>container &lt;String | HTMLElement&gt;</code>
+                                                             The id of the container div element that will wrap the Calendar table, or a reference to a DIV element which exists in the document.
                                                         </dd>
                                                         <dd>
                                                             <code>config &lt;Object&gt;</code>
-                                                            		The configuration object containing the Calendar's arguments
+                                                             optional The configuration object containing the initial configuration values for the Calendar.
                                                         </dd>
                                                 </dl>
 
@@ -3686,6 +3892,42 @@ when the calendar is rendered.
                                         
                                         <div class="description">
                                             Removes the close button HTML element from the DOM
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="removeRenderers">removeRenderers</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>removeRenderers</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Removes all custom renderers added to the Calendar through the addRenderer, addMonthRenderer and 
+addWeekdayRenderer methods. Calendar's render method needs to be called after removing renderers 
+to re-render the Calendar without custom renderers applied.
                                         </div>
 
                                         <div class="description">
@@ -5029,6 +5271,53 @@ calendar page date to the new month.
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="toDate">toDate</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Date
+                                            <strong>toDate</strong>
+                                           (
+                                                
+                                                        
+                                                         dateFieldArray
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Converts a date field array [yyyy,mm,dd] to a JavaScript Date object. The date field array
+is the format in which dates are as provided as arguments to selectEvent and deselectEvent listeners.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>dateFieldArray &lt;Number[]&gt;</code>
+                                                            	The date field array to convert to a JavaScript Date.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Date
+                                                    </code></dt>
+                                                    <dd>JavaScript Date object representing the date field array.</dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="toString">toString</a></h4>
                                     <div class="detail">
                                         <code>
@@ -5135,6 +5424,64 @@ it doesn't.</dd>
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="beforeHideEvent">beforeHideEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeHideEvent</strong>
+
+                                            (
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fired just before the Calendar is to be hidden
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeHideNavEvent">beforeHideNavEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeHideNavEvent</strong>
+
+                                            (
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fired just before the CalendarNavigator is to be hidden
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="beforeRenderEvent">beforeRenderEvent</a></h4>
                                     <div class="detail">
                                         <code>
@@ -5164,6 +5511,35 @@ it doesn't.</dd>
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="beforeRenderNavEvent">beforeRenderNavEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeRenderNavEvent</strong>
+
+                                            (
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fired just before the CalendarNavigator is to be rendered
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="beforeSelectEvent">beforeSelectEvent</a></h4>
                                     <div class="detail">
                                         <code>
@@ -5179,6 +5555,64 @@ it doesn't.</dd>
                                         
                                         <div class="description">
                                             Fired before a selection is made
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeShowEvent">beforeShowEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeShowEvent</strong>
+
+                                            (
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fired just before the Calendar is to be shown
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="beforeShowNavEvent">beforeShowNavEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>beforeShowNavEvent</strong>
+
+                                            (
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fired just before the CalendarNavigator is to be shown
                                         </div>
 
                                         <div class="description">
@@ -5292,6 +5726,64 @@ it doesn't.</dd>
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="hideEvent">hideEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>hideEvent</strong>
+
+                                            (
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fired after the Calendar is hidden
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="hideNavEvent">hideNavEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>hideNavEvent</strong>
+
+                                            (
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fired after the CalendarNavigator is hidden
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="renderEvent">renderEvent</a></h4>
                                     <div class="detail">
                                         <code>
@@ -5307,6 +5799,35 @@ it doesn't.</dd>
                                         
                                         <div class="description">
                                             Fired when the Calendar is rendered
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="renderNavEvent">renderNavEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>renderNavEvent</strong>
+
+                                            (
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fired after the CalendarNavigator is rendered
                                         </div>
 
                                         <div class="description">
@@ -5382,6 +5903,64 @@ it doesn't.</dd>
                                                              of Date field arrays in the format [YYYY, MM, DD].
                                                         </dd>
                                                 </dl>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="showEvent">showEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>showEvent</strong>
+
+                                            (
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fired after the Calendar is shown
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="showNavEvent">showNavEvent</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                            <strong>showNavEvent</strong>
+
+                                            (
+                                            )
+
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Fired after the CalendarNavigator is shown
+                                        </div>
+
+                                        <div class="description">
+
+
 
 
                                         </div>
@@ -5848,6 +6427,63 @@ enabled if required.
                                     <hr />
                                     </div>        
                                     <div class="">
+                                    <h4><a name="navigator">navigator</a>
+                                        <code>- {Object|Boolean}</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Configuration for the Month/Year CalendarNavigator UI which allows the user to jump directly to a 
+specific Month/Year without having to scroll sequentially through months.
+<p>
+Setting this property to null (default value) or false, will disable the CalendarNavigator UI.
+</p>
+<p>
+Setting this property to true will enable the CalendarNavigatior UI with the default CalendarNavigator configuration values.
+</p>
+<p>
+This property can also be set to an object literal containing configuration properties for the CalendarNavigator UI.
+The configuration object expects the the following case-sensitive properties, with the "strings" property being a nested object.
+Any properties which are not provided will use the default values (defined in the CalendarNavigator class).
+</p>
+<dl>
+<dt>strings</dt>
+<dd><em>Object</em> :  An object with the properties shown below, defining the string labels to use in the Navigator's UI
+<dl>
+<dt>month</dt><dd><em>String</em> : The string to use for the month label. Defaults to "Month".</dd>
+<dt>year</dt><dd><em>String</em> : The string to use for the year label. Defaults to "Year".</dd>
+<dt>submit</dt><dd><em>String</em> : The string to use for the submit button label. Defaults to "Okay".</dd>
+<dt>cancel</dt><dd><em>String</em> : The string to use for the cancel button label. Defaults to "Cancel".</dd>
+<dt>invalidYear</dt><dd><em>String</em> : The string to use for invalid year values. Defaults to "Year needs to be a number".</dd>
+</dl>
+</dd>
+<dt>monthFormat</dt><dd><em>String</em> : The month format to use. Either YAHOO.widget.Calendar.LONG, or YAHOO.widget.Calendar.SHORT. Defaults to YAHOO.widget.Calendar.LONG</dd>
+<dt>initialFocus</dt><dd><em>String</em> : Either "year" or "month" specifying which input control should get initial focus. Defaults to "year"</dd>
+</dl>
+<p>E.g.</p>
+<pre>
+var navConfig = {
+strings: {
+month:"Calendar Month",
+year:"Calendar Year",
+submit: "Submit",
+cancel: "Cancel",
+invalidYear: "Please enter a valid year"
+},
+monthFormat: YAHOO.widget.Calendar.SHORT,
+initialFocus: "month"
+}
+</pre>
+                                        </div>
+                                    </div>
+ 
+     
+                                    <div class="default">
+                                        Default Value: null
+                                    </div>        
+
+                                    <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="pagedate">pagedate</a>
                                         <code>- String</code>
                                     </h4>
@@ -6056,6 +6692,8 @@ enabled if required.
 
                                 <li class="selected"><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_charts.html">charts</a></li>
+
                                 <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
 
                                 <li class=""><a href="module_connection.html">connection</a></li>
@@ -6065,6 +6703,8 @@ enabled if required.
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
+
+                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -6076,13 +6716,23 @@ enabled if required.
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
+                                <li class=""><a href="module_get.html">get</a></li>
+
                                 <li class=""><a href="module_history.html">history</a></li>
 
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
+                                <li class=""><a href="module_json.html">json</a></li>
+
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
+
+                                <li class=""><a href="module_number.html">number</a></li>
+
+                                <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_selector.html">selector</a></li>
 
                                 <li class=""><a href="module_slider.html">slider</a></li>
 
@@ -6105,6 +6755,7 @@ enabled if required.
                                 <li class=""><a href="YAHOO.widget.Calendar2up.html">YAHOO.widget.Calendar2up</a></li>
                                 <li class=""><a href="YAHOO.widget.Calendar_Core.html">YAHOO.widget.Calendar_Core</a></li>
                                 <li class=""><a href="YAHOO.widget.CalendarGroup.html">YAHOO.widget.CalendarGroup</a></li>
+                                <li class=""><a href="YAHOO.widget.CalendarNavigator.html">YAHOO.widget.CalendarNavigator</a></li>
                                 <li class=""><a href="YAHOO.widget.DateMath.html">YAHOO.widget.DateMath</a></li>
                         </ul>
                     </div>
@@ -6114,6 +6765,7 @@ enabled if required.
                         <ul class="content">        
                                 <li class=""><a href="Calendar.js.html">Calendar.js</a></li>
                                 <li class=""><a href="CalendarGroup.js.html">CalendarGroup.js</a></li>
+                                <li class=""><a href="CalendarNavigator.js.html">CalendarNavigator.js</a></li>
                                 <li class=""><a href="DateMath.js.html">DateMath.js</a></li>
                         </ul>
                     </div>
@@ -6142,6 +6794,9 @@ enabled if required.
                                 <li class="private"><a href="#Config">Config</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
+                                <li class=""><a href="#containerId">containerId</a>
+                                        <!--<code>&lt;String&gt;</code>-->
+                                </li>
                                 <li class=""><a href="#domEventMap">domEventMap</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
@@ -6155,6 +6810,9 @@ enabled if required.
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#oDomContainer">oDomContainer</a>
+                                        <!--<code>&lt;String&gt;</code>-->
+                                </li>
+                                <li class=""><a href="#oNavigator">oNavigator</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#Options">Options</a>
@@ -6236,6 +6894,9 @@ enabled if required.
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#Style.CSS_HEADER_TEXT">Style.CSS_HEADER_TEXT</a>
+                                        <!--<code>&lt;String&gt;</code>-->
+                                </li>
+                                <li class=""><a href="#Style.CSS_NAV">Style.CSS_NAV</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#Style.CSS_NAV_LEFT">Style.CSS_NAV_LEFT</a>
@@ -6322,6 +6983,9 @@ enabled if required.
                                 <li class="private"><!--<code>Number</code>-->
                                 <a href="#_indexOfSelectedFieldArray">_indexOfSelectedFieldArray</a>
                                 </li>
+                                <li class="protected"><!--<code>Object</code>-->
+                                <a href="#_parseArgs">_parseArgs</a>
+                                </li>
                                 <li class="private"><!--<code>void</code>-->
                                 <a href="#_parseDate">_parseDate</a>
                                 </li>
@@ -6395,6 +7059,9 @@ enabled if required.
                                 <a href="#configMinDate">configMinDate</a>
                                 </li>
                                 <li class=""><!--<code>void</code>-->
+                                <a href="#configNavigator">configNavigator</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
                                 <a href="#configOptions">configOptions</a>
                                 </li>
                                 <li class=""><!--<code>void</code>-->
@@ -6429,6 +7096,9 @@ enabled if required.
                                 </li>
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#doSelectCell">doSelectCell</a>
+                                </li>
+                                <li class=""><!--<code>Number</code>-->
+                                <a href="#getCellIndex">getCellIndex</a>
                                 </li>
                                 <li class=""><!--<code>Date</code>-->
                                 <a href="#getDateByCellId">getDateByCellId</a>
@@ -6498,6 +7168,9 @@ enabled if required.
                                 </li>
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#removeCloseButton">removeCloseButton</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#removeRenderers">removeRenderers</a>
                                 </li>
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#removeTitleBar">removeTitleBar</a>
@@ -6580,6 +7253,9 @@ enabled if required.
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#subtractYears">subtractYears</a>
                                 </li>
+                                <li class=""><!--<code>Date</code>-->
+                                <a href="#toDate">toDate</a>
+                                </li>
                                 <li class=""><!--<code>String</code>-->
                                 <a href="#toString">toString</a>
                                 </li>
@@ -6596,10 +7272,25 @@ enabled if required.
                                 <a href="#beforeDeselectEvent">beforeDeselectEvent</a>
                                 </li>
                                 <li class="">
+                                <a href="#beforeHideEvent">beforeHideEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeHideNavEvent">beforeHideNavEvent</a>
+                                </li>
+                                <li class="">
                                 <a href="#beforeRenderEvent">beforeRenderEvent</a>
                                 </li>
                                 <li class="">
+                                <a href="#beforeRenderNavEvent">beforeRenderNavEvent</a>
+                                </li>
+                                <li class="">
                                 <a href="#beforeSelectEvent">beforeSelectEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeShowEvent">beforeShowEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#beforeShowNavEvent">beforeShowNavEvent</a>
                                 </li>
                                 <li class="">
                                 <a href="#changePageEvent">changePageEvent</a>
@@ -6611,13 +7302,28 @@ enabled if required.
                                 <a href="#deselectEvent">deselectEvent</a>
                                 </li>
                                 <li class="">
+                                <a href="#hideEvent">hideEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#hideNavEvent">hideNavEvent</a>
+                                </li>
+                                <li class="">
                                 <a href="#renderEvent">renderEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#renderNavEvent">renderNavEvent</a>
                                 </li>
                                 <li class="">
                                 <a href="#resetEvent">resetEvent</a>
                                 </li>
                                 <li class="">
                                 <a href="#selectEvent">selectEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#showEvent">showEvent</a>
+                                </li>
+                                <li class="">
+                                <a href="#showNavEvent">showNavEvent</a>
                                 </li>
                         </ul>
                     </div>
@@ -6702,6 +7408,9 @@ enabled if required.
                                 </li>
                                 <li class="">
                                 <a href="#NAV_ARROW_RIGHT">NAV_ARROW_RIGHT</a>
+                                </li>
+                                <li class="">
+                                <a href="#navigator">navigator</a>
                                 </li>
                                 <li class="">
                                 <a href="#pagedate">pagedate</a>

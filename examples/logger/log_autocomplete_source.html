@@ -16,28 +16,26 @@
 </div>
 <!-- AutoComplete ends -->
 <script type="text/javascript" src="../autocomplete/assets/js/states_jsfunction.js"></script>
-<script type="text/javascript">
-YAHOO_config = {
-    load: {
-        require: ['autocomplete','logger'],
-        filter: 'DEBUG',
-        base: '../../build/',
-
-        onLoadComplete: function(loader) {
-            YAHOO.example.LogAutoComplete = new function() {
-                // Instantiate LogReader
-                this.oLogReader = new YAHOO.widget.LogReader();
-
-                // Instantiate DataSource
-                this.oACDS = new YAHOO.widget.DS_JSFunction(getStates);
-
-                // Instantiate AutoComplete
-                this.oAutoComp = new YAHOO.widget.AutoComplete('statesinput','statescontainer', this.oACDS);
-            };
-        }
-    }
-};
-</script>
 <script type="text/javascript" src="../../build/yuiloader/yuiloader-beta.js"></script>
+<script type="text/javascript">
+var loader = new YAHOO.util.YUILoader();
+loader.insert({
+    require: ['autocomplete','logger'],
+    base: '../../build/',
+    filter: 'DEBUG',
+    onSuccess: function(loader) {
+        YAHOO.example.LogAutoComplete = new function() {
+            // Instantiate LogReader
+            this.oLogReader = new YAHOO.widget.LogReader();
+
+            // Instantiate DataSource
+            this.oACDS = new YAHOO.widget.DS_JSFunction(getStates);
+
+            // Instantiate AutoComplete
+            this.oAutoComp = new YAHOO.widget.AutoComplete('statesinput','statescontainer', this.oACDS);
+        };
+    }
+});
+</script>
 </body>
 </html>

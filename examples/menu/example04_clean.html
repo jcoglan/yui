@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title>Grouped Menu Items Using JavaScript</title>
 
 <style type="text/css">
@@ -18,13 +18,28 @@ body {
 
 <link rel="stylesheet" type="text/css" href="../../build/fonts/fonts-min.css" />
 <link rel="stylesheet" type="text/css" href="../../build/menu/assets/skins/sam/menu.css" />
-<!-- The following modules were requested but are not defined: container-core -->
 <script type="text/javascript" src="../../build/yahoo-dom-event/yahoo-dom-event.js"></script>
 <script type="text/javascript" src="../../build/container/container_core.js"></script>
 <script type="text/javascript" src="../../build/menu/menu.js"></script>
-<!-- The following modules were requested but are not defined: container-core -->
 
-<!--there is no custom header content for this example-->
+
+<!--begin custom header content for this example-->
+<style type="text/css">
+
+    /*
+        Set the "zoom" property to "normal" since it is set to "1" by the 
+        ".example-container .bd" rule in yui.css and this causes a Menu
+        instance's width to expand to 100% of the browser viewport.
+    */
+    
+    div.yuimenu .bd {
+    
+        zoom: normal;
+    
+    }
+
+</style>
+<!--end custom header content for this example-->
 
 </head>
 
@@ -34,31 +49,38 @@ body {
 
 <div class="exampleIntro">
 	<p>This example demonstrates how to group MenuItem instances.</p>
-<p id="clicknote"><em>Note:</em> By default clicking outside of a menu will hide it.  Additionally, menu items without a submenu or a URL to navigate will hide their parent menu when clicked.  Click the "Show Menu" button below to make the menu visible if it is hidden.</p>			
+<p id="clicknote">
+<em>Note:</em> By default clicking outside of a Menu instance will hide it.  
+Additionally, MenuItem instances without a submenu or a URL to navigate to will 
+hide their parent Menu instance when clicked.  Click the "Show Menu" button 
+below to make the Menu instance visible if it is hidden.
+</p>			
 </div>
 
 <!--BEGIN SOURCE CODE FOR EXAMPLE =============================== -->
 
 <script type="text/javascript">
 
-    // Instantiate and render the menu when the page's DOM is ready
+    /*
+         Initialize and render the Menu when the element it is to be 
+         rendered into is ready to be scripted.
+    */
 
-    YAHOO.util.Event.onDOMReady(function () {
+    YAHOO.util.Event.onAvailable("rendertarget", function () {
 
         /*
-             Instantiate the menu.  The first argument passed to the 
-             constructor is the id of the DOM element to be created for the 
-             menu; the second is an object literal representing a set of 
-             configuration properties for the menu.
+             Instantiate a Menu:  The first argument passed to the 
+             constructor is the id of the element in the page 
+             representing the Menu; the second is an object literal 
+             of configuration properties.
         */
 
         var oMenu = new YAHOO.widget.Menu("menuwithgroups", { fixedcenter: true });
 
         /*
-            Add items to the menu by passing a multi-dimensional array of 
-            object literals (each of which represents a set of 
-            YAHOO.widget.MenuItem configuration properties) to the 
-            "addItems" method.
+            Add items to the Menu instance by passing an array of object literals 
+            (each of which represents a set of YAHOO.widget.MenuItem 
+            configuration properties) to the "addItems" method.
         */
 
         oMenu.addItems([
@@ -84,25 +106,26 @@ body {
                 { text: "Yahoo! Messenger", url: "http://messenger.yahoo.com" },
                 { text: "Yahoo! 360", url: "http://360.yahoo.com" },
                 { text: "Yahoo! Groups", url: "http://groups.yahoo.com" },
-                { text: "Yahoo! Photos", url: "http://photos.yahoo.com" }
+                { text: "Flickr Photo Sharing", url: "http://www.flickr.com" }
             
             ]
         
         ]);
 
-        oMenu.showEvent.subscribe(function () {
-
-            this.focus();
-        
-        });
 
         /*
-             Since this menu is built completely from script, call the "render" 
-             method passing in the id of the DOM element that the menu's 
-             root element should be appended to.
+            Since this Menu instance is built completely from script, call the 
+            "render" method passing in the DOM element that it should be 
+            appended to.
         */
 
         oMenu.render("rendertarget");
+
+
+        // Set focus to the Menu when it is made visible
+
+        oMenu.subscribe("show", oMenu.focus);
+
 
         YAHOO.util.Event.addListener("menutoggle", "click", oMenu.show, null, oMenu);
     

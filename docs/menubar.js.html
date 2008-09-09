@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Menu&nbsp; <span class="subtitle">2.3.1</span></h3>
+        <h3>Menu&nbsp; <span class="subtitle">2.4.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_menu.html">menu</a>
@@ -89,7 +89,6 @@
 
 
 <span class="k">var</span> <span class="nx">Event</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">,</span>
-    <span class="nx">Dom</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">,</span>
     <span class="nx">MenuBar</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">MenuBar</span><span class="o">,</span>
 
     <span class="c">/**</span>
@@ -110,13 +109,15 @@
     
         <span class="s2">&quot;SUBMENU_ALIGNMENT&quot;</span><span class="o">:</span> <span class="o">{</span> 
             <span class="nx">key</span><span class="o">:</span> <span class="s2">&quot;submenualignment&quot;</span><span class="o">,</span> 
-            <span class="nx">value</span><span class="o">:</span> <span class="o">[</span><span class="s2">&quot;tl&quot;</span><span class="o">,</span><span class="s2">&quot;bl&quot;</span><span class="o">]</span> 
+            <span class="nx">value</span><span class="o">:</span> <span class="o">[</span><span class="s2">&quot;tl&quot;</span><span class="o">,</span><span class="s2">&quot;bl&quot;</span><span class="o">],</span>
+            <span class="nx">suppressEvent</span><span class="o">:</span> <span class="kc">true</span> 
         <span class="o">},</span>
     
         <span class="s2">&quot;AUTO_SUBMENU_DISPLAY&quot;</span><span class="o">:</span> <span class="o">{</span> 
             <span class="nx">key</span><span class="o">:</span> <span class="s2">&quot;autosubmenudisplay&quot;</span><span class="o">,</span> 
             <span class="nx">value</span><span class="o">:</span> <span class="kc">false</span><span class="o">,</span> 
-            <span class="nx">validator</span><span class="o">:</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isBoolean</span> 
+            <span class="nx">validator</span><span class="o">:</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isBoolean</span><span class="o">,</span>
+            <span class="nx">suppressEvent</span><span class="o">:</span> <span class="kc">true</span>
         <span class="o">}</span>
     
     <span class="o">};</span>
@@ -371,7 +372,7 @@
         <span class="nx">oSubmenu</span> <span class="o">=</span> <span class="nx">oItem</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="s2">&quot;submenu&quot;</span><span class="o">);</span>
 
 
-        <span class="k">if</span><span class="o">(</span><span class="nx">oSubmenu</span> <span class="o">&amp;&amp;</span> <span class="nx">oTarget</span> <span class="o">!=</span> <span class="nx">oItem</span><span class="o">.</span><span class="nx">submenuIndicator</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span><span class="o">(</span><span class="nx">oSubmenu</span><span class="o">)</span> <span class="o">{</span>
         
             <span class="k">if</span><span class="o">(</span><span class="nx">oSubmenu</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="s2">&quot;visible&quot;</span><span class="o">))</span> <span class="o">{</span>
             
@@ -473,7 +474,8 @@
     <span class="nx">oConfig</span><span class="o">.</span><span class="nx">addProperty</span><span class="o">(</span>
         <span class="nx">DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">SUBMENU_ALIGNMENT</span><span class="o">.</span><span class="nx">key</span><span class="o">,</span> 
         <span class="o">{</span>
-            <span class="nx">value</span><span class="o">:</span> <span class="nx">DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">SUBMENU_ALIGNMENT</span><span class="o">.</span><span class="nx">value</span>
+            <span class="nx">value</span><span class="o">:</span> <span class="nx">DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">SUBMENU_ALIGNMENT</span><span class="o">.</span><span class="nx">value</span><span class="o">,</span>
+            <span class="nx">suppressEvent</span><span class="o">:</span> <span class="nx">DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">SUBMENU_ALIGNMENT</span><span class="o">.</span><span class="nx">suppressEvent</span>
         <span class="o">}</span>
     <span class="o">);</span>
 
@@ -494,7 +496,8 @@
 	   <span class="nx">DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">AUTO_SUBMENU_DISPLAY</span><span class="o">.</span><span class="nx">key</span><span class="o">,</span> 
 	   <span class="o">{</span>
 	       <span class="nx">value</span><span class="o">:</span> <span class="nx">DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">AUTO_SUBMENU_DISPLAY</span><span class="o">.</span><span class="nx">value</span><span class="o">,</span> 
-	       <span class="nx">validator</span><span class="o">:</span> <span class="nx">DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">AUTO_SUBMENU_DISPLAY</span><span class="o">.</span><span class="nx">validator</span>
+	       <span class="nx">validator</span><span class="o">:</span> <span class="nx">DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">AUTO_SUBMENU_DISPLAY</span><span class="o">.</span><span class="nx">validator</span><span class="o">,</span>
+	       <span class="nx">suppressEvent</span><span class="o">:</span> <span class="nx">DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">AUTO_SUBMENU_DISPLAY</span><span class="o">.</span><span class="nx">suppressEvent</span>
        <span class="o">}</span> 
     <span class="o">);</span>
 
@@ -522,6 +525,8 @@
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_charts.html">charts</a></li>
+
                                 <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
 
                                 <li class=""><a href="module_connection.html">connection</a></li>
@@ -531,6 +536,8 @@
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
+
+                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -542,13 +549,23 @@
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
+                                <li class=""><a href="module_get.html">get</a></li>
+
                                 <li class=""><a href="module_history.html">history</a></li>
 
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
+                                <li class=""><a href="module_json.html">json</a></li>
+
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class="selected"><a href="module_menu.html">menu</a></li>
+
+                                <li class=""><a href="module_number.html">number</a></li>
+
+                                <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_selector.html">selector</a></li>
 
                                 <li class=""><a href="module_slider.html">slider</a></li>
 

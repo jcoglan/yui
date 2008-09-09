@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Calendar&nbsp; <span class="subtitle">2.3.1</span></h3>
+        <h3>Calendar&nbsp; <span class="subtitle">2.4.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_calendar.html">calendar</a>
@@ -515,6 +515,74 @@ used for adding, subtracting, and comparing dates.
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="getDate">getDate</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Date
+                                            <strong>getDate</strong>
+                                           (
+                                                
+                                                        
+                                                         y
+                                                    
+                                                
+                                                        , 
+                                                         m
+                                                    
+                                                
+                                                        , 
+                                                         d
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Returns a new JavaScript Date object, representing the given year, month and date. Time fields (hr, min, sec, ms) on the new Date object
+are set to 0. The method allows Date instances to be created with the a year less than 100. "new Date(year, month, date)" implementations 
+set the year to 19xx if a year (xx) which is less than 100 is provided.
+<p>
+<em>NOTE:</em>Validation on argument values is not performed. It is the caller's responsibility to ensure
+arguments are valid as per the ECMAScript-262 Date object specification for the new Date(year, month[, date]) constructor.
+</p>
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>y &lt;Number&gt;</code>
+                                                             Year.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>m &lt;Number&gt;</code>
+                                                             Month index from 0 (Jan) to 11 (Dec).
+                                                        </dd>
+                                                        <dd>
+                                                            <code>d &lt;Number&gt;</code>
+                                                             (optional) Date from 1 to 31. If not provided, defaults to 1.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Date
+                                                    </code></dt>
+                                                    <dd>The JavaScript date object with year, month, date set as provided.</dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="getDayOffset">getDayOffset</a></h4>
                                     <div class="detail">
                                         <code>
@@ -854,6 +922,8 @@ the calendar year of parameter "date".
 
                                 <li class="selected"><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_charts.html">charts</a></li>
+
                                 <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
 
                                 <li class=""><a href="module_connection.html">connection</a></li>
@@ -863,6 +933,8 @@ the calendar year of parameter "date".
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
+
+                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -874,13 +946,23 @@ the calendar year of parameter "date".
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
+                                <li class=""><a href="module_get.html">get</a></li>
+
                                 <li class=""><a href="module_history.html">history</a></li>
 
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
+                                <li class=""><a href="module_json.html">json</a></li>
+
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
+
+                                <li class=""><a href="module_number.html">number</a></li>
+
+                                <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_selector.html">selector</a></li>
 
                                 <li class=""><a href="module_slider.html">slider</a></li>
 
@@ -903,6 +985,7 @@ the calendar year of parameter "date".
                                 <li class=""><a href="YAHOO.widget.Calendar2up.html">YAHOO.widget.Calendar2up</a></li>
                                 <li class=""><a href="YAHOO.widget.Calendar_Core.html">YAHOO.widget.Calendar_Core</a></li>
                                 <li class=""><a href="YAHOO.widget.CalendarGroup.html">YAHOO.widget.CalendarGroup</a></li>
+                                <li class=""><a href="YAHOO.widget.CalendarNavigator.html">YAHOO.widget.CalendarNavigator</a></li>
                                 <li class="selected"><a href="YAHOO.widget.DateMath.html">YAHOO.widget.DateMath</a></li>
                         </ul>
                     </div>
@@ -912,6 +995,7 @@ the calendar year of parameter "date".
                         <ul class="content">        
                                 <li class=""><a href="Calendar.js.html">Calendar.js</a></li>
                                 <li class=""><a href="CalendarGroup.js.html">CalendarGroup.js</a></li>
+                                <li class=""><a href="CalendarNavigator.js.html">CalendarNavigator.js</a></li>
                                 <li class=""><a href="DateMath.js.html">DateMath.js</a></li>
                         </ul>
                     </div>
@@ -960,6 +1044,9 @@ the calendar year of parameter "date".
                                 </li>
                                 <li class=""><!--<code>Date</code>-->
                                 <a href="#findMonthStart">findMonthStart</a>
+                                </li>
+                                <li class=""><!--<code>Date</code>-->
+                                <a href="#getDate">getDate</a>
                                 </li>
                                 <li class=""><!--<code>Number</code>-->
                                 <a href="#getDayOffset">getDayOffset</a>

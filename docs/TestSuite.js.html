@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>yuitest&nbsp; <span class="subtitle">2.3.1</span></h3>
+        <h3>yuitest&nbsp; <span class="subtitle">2.4.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_yuitest.html">yuitest</a>
@@ -44,23 +44,38 @@
 <span class="c"></span>
 <span class="c">/**</span>
 <span class="c"> * A test suite that can contain a collection of TestCase and TestSuite objects.</span>
-<span class="c"> * @param {String} name The name of the test fixture.</span>
+<span class="c"> * @param {String||Object} data The name of the test suite or an object containing</span>
+<span class="c"> *      a name property as well as setUp and tearDown methods.</span>
 <span class="c"> * @namespace YAHOO.tool</span>
 <span class="c"> * @class TestSuite</span>
 <span class="c"> * @constructor</span>
 <span class="c"> */</span>
-<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">tool</span><span class="o">.</span><span class="nx">TestSuite</span> <span class="o">=</span> <span class="k">function</span> <span class="o">(</span><span class="nx">name</span> <span class="c">/*:String*/</span><span class="o">)</span> <span class="o">{</span>
+<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">tool</span><span class="o">.</span><span class="nx">TestSuite</span> <span class="o">=</span> <span class="k">function</span> <span class="o">(</span><span class="nx">data</span> <span class="c">/*:String||Object*/</span><span class="o">)</span> <span class="o">{</span>
 
     <span class="c">/**</span>
 <span class="c">     * The name of the test suite.</span>
+<span class="c">     * @type String</span>
+<span class="c">     * @property name</span>
 <span class="c">     */</span>
-    <span class="k">this</span><span class="o">.</span><span class="nx">name</span> <span class="c">/*:String*/</span> <span class="o">=</span> <span class="nx">name</span> <span class="o">||</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">generateId</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="s2">&quot;testSuite&quot;</span><span class="o">);</span>
+    <span class="k">this</span><span class="o">.</span><span class="nx">name</span> <span class="c">/*:String*/</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">;</span>
 
     <span class="c">/**</span>
 <span class="c">     * Array of test suites and</span>
 <span class="c">     * @private</span>
 <span class="c">     */</span>
     <span class="k">this</span><span class="o">.</span><span class="nx">items</span> <span class="c">/*:Array*/</span> <span class="o">=</span> <span class="o">[];</span>
+
+    <span class="c">//initialize the properties</span>
+<span class="c"></span>    <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isString</span><span class="o">(</span><span class="nx">data</span><span class="o">)){</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">data</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isObject</span><span class="o">(</span><span class="nx">data</span><span class="o">)){</span>
+        <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">augmentObject</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="nx">data</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c">//double-check name</span>
+<span class="c"></span>    <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">name</span> <span class="o">===</span> <span class="s2">&quot;&quot;</span><span class="o">){</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">generateId</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="s2">&quot;testSuite&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
 
 <span class="o">};</span>
 
@@ -69,11 +84,33 @@
     <span class="c">/**</span>
 <span class="c">     * Adds a test suite or test case to the test suite.</span>
 <span class="c">     * @param {YAHOO.tool.TestSuite||YAHOO.tool.TestCase} testObject The test suite or test case to add.</span>
+<span class="c">     * @return {Void}</span>
+<span class="c">     * @method add</span>
 <span class="c">     */</span>
     <span class="nx">add</span> <span class="o">:</span> <span class="k">function</span> <span class="o">(</span><span class="nx">testObject</span> <span class="c">/*:YAHOO.tool.TestSuite*/</span><span class="o">)</span> <span class="c">/*:Void*/</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="nx">testObject</span> <span class="k">instanceof</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">tool</span><span class="o">.</span><span class="nx">TestSuite</span> <span class="o">||</span> <span class="nx">testObject</span> <span class="k">instanceof</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">tool</span><span class="o">.</span><span class="nx">TestCase</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">items</span><span class="o">.</span><span class="nx">push</span><span class="o">(</span><span class="nx">testObject</span><span class="o">);</span>
         <span class="o">}</span>
+    <span class="o">},</span>
+    
+    <span class="c">//-------------------------------------------------------------------------</span>
+<span class="c"></span>    <span class="c">// Stub Methods</span>
+<span class="c"></span>    <span class="c">//-------------------------------------------------------------------------</span>
+<span class="c"></span>
+    <span class="c">/**</span>
+<span class="c">     * Function to run before each test is executed.</span>
+<span class="c">     * @return {Void}</span>
+<span class="c">     * @method setUp</span>
+<span class="c">     */</span>
+    <span class="nx">setUp</span> <span class="o">:</span> <span class="k">function</span> <span class="o">()</span> <span class="c">/*:Void*/</span> <span class="o">{</span>
+    <span class="o">},</span>
+    
+    <span class="c">/**</span>
+<span class="c">     * Function to run after each test is executed.</span>
+<span class="c">     * @return {Void}</span>
+<span class="c">     * @method tearDown</span>
+<span class="c">     */</span>
+    <span class="nx">tearDown</span><span class="o">:</span> <span class="k">function</span> <span class="o">()</span> <span class="c">/*:Void*/</span> <span class="o">{</span>
     <span class="o">}</span>
     
 <span class="o">};</span>
@@ -96,6 +133,8 @@
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_charts.html">charts</a></li>
+
                                 <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
 
                                 <li class=""><a href="module_connection.html">connection</a></li>
@@ -105,6 +144,8 @@
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
+
+                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -116,13 +157,23 @@
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
+                                <li class=""><a href="module_get.html">get</a></li>
+
                                 <li class=""><a href="module_history.html">history</a></li>
 
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
+                                <li class=""><a href="module_json.html">json</a></li>
+
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
+
+                                <li class=""><a href="module_number.html">number</a></li>
+
+                                <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_selector.html">selector</a></li>
 
                                 <li class=""><a href="module_slider.html">slider</a></li>
 
@@ -142,8 +193,10 @@
                         <h4>Classes</h4>
                         <ul class="content">
                                 <li class=""><a href="YAHOO.tool.TestCase.html">YAHOO.tool.TestCase</a></li>
+                                <li class=""><a href="YAHOO.tool.TestCase.Wait.html">YAHOO.tool.TestCase.Wait</a></li>
                                 <li class=""><a href="YAHOO.tool.TestLogger.html">YAHOO.tool.TestLogger</a></li>
                                 <li class=""><a href="YAHOO.tool.TestManager.html">YAHOO.tool.TestManager</a></li>
+                                <li class=""><a href="YAHOO.tool.TestNode.html">YAHOO.tool.TestNode</a></li>
                                 <li class=""><a href="YAHOO.tool.TestRunner.html">YAHOO.tool.TestRunner</a></li>
                                 <li class=""><a href="YAHOO.tool.TestSuite.html">YAHOO.tool.TestSuite</a></li>
                                 <li class=""><a href="YAHOO.util.ArrayAssert.html">YAHOO.util.ArrayAssert</a></li>

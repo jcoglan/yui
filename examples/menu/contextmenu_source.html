@@ -120,23 +120,31 @@
 
         <script type="text/javascript">
 
-            YAHOO.example.onDOMReady = function(p_sType) {
+            /*
+                 Initialize the ContextMenu instances when the the elements 
+                 that trigger their display are ready to be scripted.
+            */
 
+            YAHOO.util.Event.onContentReady("clones", function () {
 
-                var oClones = document.getElementById("clones");
+                // Maintain a reference to the "clones" <ul>
+
+                var oClones = this;
+
 
                 // Clone the first ewe so that we can create more later
 
                 var oLI = oClones.getElementsByTagName("li")[0];
-                var oClone = oLI.cloneNode(true);
+                var oEweTemplate = oLI.cloneNode(true);
 
 
-               // Renames an "Ewe"
+                // Renames an "ewe"
     
-                function EditEweName(p_oLI) {
+                function editEweName(p_oLI) {
     
                     var oCite = p_oLI.lastChild;
     
+
                     if (oCite.nodeType != 1) {
                     
                         oCite = oCite.previousSibling;
@@ -148,6 +156,7 @@
                     var sName = window.prompt("Enter a new name for ", 
                                 oTextNode.nodeValue);
     
+
                     if (sName && sName.length > 0) {
                         
                         oTextNode.nodeValue = sName;
@@ -157,11 +166,9 @@
                 }
                 
     
-                // Clones an "Ewe"
+                // Clones an "ewe"
     
-                function CloneEwe(p_oLI, p_oMenu) {
-
-                    p_oMenu.cfg.setProperty("trigger", null);
+                function cloneEwe(p_oLI, p_oMenu) {
 
                     var oClone = p_oLI.cloneNode(true);
     
@@ -172,9 +179,9 @@
                 }
                 
     
-                // Deletes an "Ewe"
+                // Deletes an "ewe"
     
-                function DeleteEwe(p_oLI) {
+                function deleteEwe(p_oLI) {
     
                     var oUL = p_oLI.parentNode;
     
@@ -184,11 +191,11 @@
     
     
                 /*
-                     Returns the LI instance that is the parent node of the target 
-                     of a "contextmenu" event
+                     Returns the <li> instance that is the parent node of the  
+                     target of a "contextmenu" event.
                 */
     
-                function GetListItemFromEventTarget(p_oNode) {
+                function getListItemFromEventTarget(p_oNode) {
     
                     if (p_oNode.tagName.toUpperCase() == "LI") {
                     
@@ -197,9 +204,10 @@
                     }
                     else {
     
+
                         /*
-                             If the target of the event was a child of an LI, 
-                             get the parent LI element
+                             If the target of the event was a child of an <li>, 
+                             get the parent <li> element.
                         */
     
                         do {
@@ -222,32 +230,41 @@
                 
                 function onEweContextMenuClick(p_sType, p_aArgs) {
     
-                    var oItem = p_aArgs[1],
+                    /*
+                         The second item in the arguments array (p_aArgs) 
+                         passed back to the "click" event handler is the 
+                         MenuItem instance that was the target of the 
+                         "click" event.
+                    */
+
+                    var oItem = p_aArgs[1], // The MenuItem that was clicked
                         oLI;
+
 
                     if (oItem) {
 
-                        oLI = GetListItemFromEventTarget(this.contextEventTarget);
+                        oLI = getListItemFromEventTarget(this.contextEventTarget);
         
+
                         switch (oItem.index) {
                         
                             case 0:     // Edit name
         
-                                EditEweName(oLI);
+                                editEweName(oLI);
                             
                             break;
         
         
                             case 1:     // Clone
         
-                                CloneEwe(oLI, this);
+                                cloneEwe(oLI, this);
         
                             break;
                             
         
                             case 2:     // Delete
         
-                                DeleteEwe(oLI);
+                                deleteEwe(oLI);
         
                             break;                    
                         
@@ -256,50 +273,30 @@
                     }
                 
                 }
-    
-    
-                // "keydown" event handler for the ewe context menu
-    
-                function onEweContextMenuKeyDown(p_sType, p_aArgs) {
-    
-                    var oDOMEvent = p_aArgs[0],
-                        oLI;
-    
-                    if (oDOMEvent.shiftKey) {
-                    
-                        oLI = GetListItemFromEventTarget(this.contextEventTarget);
-    
-                        switch (oDOMEvent.keyCode) {
-                        
-                            case 69:     // Edit name
-    
-                                EditEweName(oLI);
-    
-                                this.hide();
-    
-                            break;
-                            
-                            case 67:     // Clone
-                            
-                                CloneEwe(oLI, this);
-    
-                                this.hide();
-    
-                            break;
-                            
-                            case 68:     // Delete
-    
-                                DeleteEwe(oLI);
-    
-                                this.hide();
-                            
-                            break;
-                        
-                        }
-                    
-                    }
-    
-                }
+
+
+                /*
+                     Array of text labels for the MenuItem instances to be
+                     added to the ContextMenu instanc.
+                */
+
+                var aMenuItems = ["Edit Name", "Clone", "Delete" ]; 
+
+
+                /*
+                     Instantiate a ContextMenu:  The first argument passed to 
+                     the constructor is the id of the element to be created; the 
+                     second is an object literal of configuration properties.
+                */
+
+                var oEweContextMenu = new YAHOO.widget.ContextMenu(
+                                            "ewecontextmenu", 
+                                            {
+                                                trigger: oClones.childNodes,
+                                                itemdata: aMenuItems,
+                                                lazyload: true                                    
+                                            } 
+                                        );
 
 
                 // "render" event handler for the ewe context menu
@@ -308,90 +305,72 @@
     
                     //  Add a "click" event handler to the ewe context menu
     
-                    this.clickEvent.subscribe(onEweContextMenuClick);
-                        
-    
-                    // Add a "keydown" event handler to the ewe context menu
-    
-                    this.keyDownEvent.subscribe(onEweContextMenuKeyDown);
+                    this.subscribe("click", onEweContextMenuClick);
                 
                 }
 
 
-                // "click" event handler for the field context menu
+                // Add a "render" event handler to the ewe context menu
 
-                function onFieldMenuClick(p_sType, p_aArgs) {
-
-                    // Get a reference to the item in the menu that was clicked
-
-                    var oItem = p_aArgs[1],
-                        oLI;
+                oEweContextMenu.subscribe("render", onContextMenuRender);
 
 
-                    if (oItem) {
+                // Deletes an ewe from the field
+
+                function deleteEwes() {
+
+                    oEweContextMenu.cfg.setProperty("target", null);
+
+                    oClones.innerHTML = "";
+
+
+                    function onHide(p_sType, p_aArgs, p_oItem) {
+
+                        p_oItem.cfg.setProperty("disabled", true);
                     
-                        switch (oItem.index) {
-                        
-                            case 1:
-
-                                oClones.innerHTML = "";
-
-                                oEweContextMenu.cfg.setProperty("target", null);
-
-                                oItem.cfg.setProperty("disabled", true);
-
-                            break;
-                            
-                            case 2:
-
-                                oLI = this.clone.cloneNode(true);
-                                
-                                oClones.appendChild(oLI);
-
-                                this.getItem(1).cfg.setProperty("disabled", false);
-
-                                oEweContextMenu.cfg.setProperty("trigger", oClones.childNodes);
-
-                            break;
-                        
-                        }
-
-                    }
-                
-                }
-                
-
-                // "click" event handler for the field colors submenu
-
-                function onFieldColorsClick(p_sType, p_aArgs) {
-
-                    // Get a reference to the item in the menu that was clicked
-
-                    var oItem = p_aArgs[1];
-                        
-
-                    if (oItem && this.checkedItem != oItem) {
-
-                        YAHOO.util.Dom.setStyle("clones", "backgroundColor", oItem.value);
-                        
-                        oItem.cfg.setProperty("checked", true);
-
-
-                        this.checkedItem.cfg.setProperty("checked", false);
-
-                        this.checkedItem = oItem;
+                        p_oItem.parent.unsubscribe("hide", onHide, p_oItem);
                     
                     }
 
+                    this.parent.subscribe("hide", onHide, this);
+
                 }
 
 
-                // "render" event handler for the field colors submenu
+                // Creates a new ewe and appends it to the field
 
-                function onFieldColorsRender(p_sType, p_aArgs) {
+                function createNewEwe() {
                 
-                    this.checkedItem = this.getItem(0);
+                    var oLI = oEweTemplate.cloneNode(true);
+                    
+                    oClones.appendChild(oLI);
+
+                    this.parent.getItem(1).cfg.setProperty("disabled", false);
+
+                    oEweContextMenu.cfg.setProperty("trigger", oClones.childNodes);
                 
+                }
+
+
+                // Sets the color of the grass in the field
+
+                function setFieldColor(p_sType, p_aArgs, p_sColor) {
+
+                    var oCheckedItem = this.parent.checkedItem;
+
+                    if (oCheckedItem != this) {
+
+                        YAHOO.util.Dom.setStyle("clones", "backgroundColor", p_sColor);
+                        
+                        this.cfg.setProperty("checked", true);
+
+
+                        oCheckedItem.cfg.setProperty("checked", false);
+
+                        this.parent.checkedItem = this;
+                    
+                    }
+
                 }
 
 
@@ -399,120 +378,66 @@
 
                 function onFieldMenuRender(p_sType, p_aArgs) {
 
-                    // Get a reference to the field colors submenu
+                    if (this.parent) {  // submenu
 
-                    var oFieldColors = this.getItem(0).cfg.getProperty("submenu");
+                        this.checkedItem = this.getItem(0);
 
-
-                    // Add a "render" event handler to the field colors submenu
-
-                    oFieldColors.renderEvent.subscribe(onFieldColorsRender);
-
-
-                    // Add a "render" event handler to the field colors submenu
-
-                    oFieldColors.clickEvent.subscribe(onFieldColorsClick);
-                    
-
-                    // Add a "click" event handler to the field context menu
-
-                    this.clickEvent.subscribe(onFieldMenuClick);
+                    }
 
                 }
 
 
-                // Define the items for the ewe context menu
-
-                var aMenuItems = [
-                        { text: "Edit Name", helptext: "Shift + E" }, 
-                        { text: "Clone", helptext: "Shift + C" }, 
-                        { text: "Delete", helptext: "Shift + D" }
-                    ];
-
-
-                // Create the ewe context menu
-
-                var oEweContextMenu = new YAHOO.widget.ContextMenu(
-                                            "ewecontextmenu", 
-                                            {
-                                                trigger: oClones.childNodes,
-                                                itemdata: aMenuItems,
-                                                lazyload: true,
-                                                effect: { 
-                                                    effect:YAHOO.widget.ContainerEffect.FADE,
-                                                    duration:0.25
-                                                }                                                 
-                                            } 
-                                        );
-
-
-                // Add a "render" event handler to the ewe context menu
-
-                oEweContextMenu.renderEvent.subscribe(onContextMenuRender);
-
-
-                // Define the items for the field context menu
+                /*
+                     Array of object literals - each containing configuration 
+                     properties for the items for the context menu.
+                */
 
                 var oFieldContextMenuItemData = [
                 
                     {
                         text: "Field color", 
-                        submenu: { id: "fieldcolors", itemdata: [
-                         { text: "Light Green", value: "#99cc66", checked: true }, 
-                         { text: "Medium Green", value: "#669933" }, 
-                         { text: "Dark Green", value: "#336600" }                        
-                        ] } 
+                        submenu: { 
+                            id: "fieldcolors", 
+                            itemdata: [
+                                { text: "Light Green", onclick: { fn: setFieldColor, obj: "#99cc66" }, checked: true }, 
+                                { text: "Medium Green", onclick: { fn: setFieldColor, obj: "#669933" } }, 
+                                { text: "Dark Green", onclick: { fn: setFieldColor, obj: "#336600" } }
+                            ] 
+                        } 
                     },
-                    "Delete all", 
-                    "New Ewe"
+                    { text: "Delete all", onclick: { fn: deleteEwes } },
+                    { text: "New Ewe", onclick: { fn: createNewEwe } }
                 
                 ];
 
 
-                // Create a context menu for the field the ewes live in
+                /*
+                     Instantiate a ContextMenu:  The first argument passed to 
+                     the constructor is the id of the element to be created; the 
+                     second is an object literal of configuration properties.
+                */
 
                 var oFieldContextMenu = new YAHOO.widget.ContextMenu(
                                                 "fieldcontextmenu",
                                                 {
                                                     trigger: "clones",
                                                     itemdata: oFieldContextMenuItemData,
-                                                    lazyload: true,
-                                                    effect: { 
-                                                        effect: YAHOO.widget.ContainerEffect.FADE,
-                                                        duration: 0.1
-                                                    }                                                     
+                                                    lazyload: true
                                                 }
                                             );
-                
-                oFieldContextMenu.clone = oClone;
 
 
                 // Add a "render" event handler to the field context menu
 
-                oFieldContextMenu.renderEvent.subscribe(onFieldMenuRender);
-
-            };
-
-
-            // Assign a "load" event handler to the window
-
-            YAHOO.util.Event.onDOMReady(YAHOO.example.onDOMReady);
+                oFieldContextMenu.subscribe("render", onFieldMenuRender);
+            
+            
+            });
                     
         </script>
 
     </head>
     <body class="yui-skin-sam">
-
-        <h1>Example: Context Menu (YUI Library)</h1>
-
-        <p>This example features two context menus.  There is one for each ewe that is created and one for the green field that the ewes graze in.  You can use the ewe context menu to rename, clone or delete Dolly.   The field's context menu allows you to delete all the ewes from the field, add a new ewe and modify the color of the grass.</p>
-
-        <p><em>Please Note:</em> Opera users will need to do the following to use this example:</p>
-
-        <ul id="operainstructions">
-            <li><em>Opera for Windows:</em>  Hold down the control key and click with the left mouse button.</li>
-            <li><em>Opera for OS X:</em>  Hold down the command key (&#8984;) and click with the left mouse button.</li>
-        </ul>
 
         <ul id="clones">
             <li><a href="http://en.wikipedia.org/wiki/Dolly_%28clone%29"><img src="assets/dolly.jpg" width="100" height="100" alt="Dolly, a ewe, the first mammal to have been successfully cloned from an adult cell."></a><cite>Dolly</cite></li>

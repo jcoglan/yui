@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title>Split Buttons</title>
 
 <style type="text/css">
@@ -19,17 +19,27 @@ body {
 <link rel="stylesheet" type="text/css" href="../../build/fonts/fonts-min.css" />
 <link rel="stylesheet" type="text/css" href="../../build/menu/assets/skins/sam/menu.css" />
 <link rel="stylesheet" type="text/css" href="../../build/button/assets/skins/sam/button.css" />
-<!-- The following modules were requested but are not defined: container-core -->
 <script type="text/javascript" src="../../build/yahoo-dom-event/yahoo-dom-event.js"></script>
 <script type="text/javascript" src="../../build/container/container_core.js"></script>
 <script type="text/javascript" src="../../build/menu/menu.js"></script>
 <script type="text/javascript" src="../../build/element/element-beta.js"></script>
-<script type="text/javascript" src="../../build/button/button-beta.js"></script>
-<!-- The following modules were requested but are not defined: container-core -->
+<script type="text/javascript" src="../../build/button/button.js"></script>
 
 
 <!--begin custom header content for this example-->
 <style type="text/css">
+
+    /*
+        Set the "zoom" property to "normal" since it is set to "1" by the 
+        ".example-container .bd" rule in yui.css and this causes a Menu
+        instance's width to expand to 100% of the browser viewport.
+    */
+    
+    div.yuimenu .bd {
+    
+        zoom: normal;
+    
+    }
 
     #button-example-form fieldset {
 

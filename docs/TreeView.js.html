@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>TreeView Widget&nbsp; <span class="subtitle">2.3.1</span></h3>
+        <h3>TreeView Widget&nbsp; <span class="subtitle">2.4.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_treeview.html">treeview</a>
@@ -128,9 +128,7 @@
 <span class="c">     * in YAHOO.widget.TVAnim)</span>
 <span class="c">     */</span>
     <span class="nx">setExpandAnim</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">type</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">TVAnim</span><span class="o">.</span><span class="nx">isValid</span><span class="o">(</span><span class="nx">type</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_expandAnim</span> <span class="o">=</span> <span class="nx">type</span><span class="o">;</span>
-        <span class="o">}</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">_expandAnim</span> <span class="o">=</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">TVAnim</span><span class="o">.</span><span class="nx">isValid</span><span class="o">(</span><span class="nx">type</span><span class="o">))</span> <span class="o">?</span> <span class="nx">type</span> <span class="o">:</span> <span class="kc">null</span><span class="o">;</span>
     <span class="o">},</span>
 
     <span class="c">/**</span>
@@ -140,9 +138,7 @@
 <span class="c">     * YAHOO.widget.TVAnim)</span>
 <span class="c">     */</span>
     <span class="nx">setCollapseAnim</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">type</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">TVAnim</span><span class="o">.</span><span class="nx">isValid</span><span class="o">(</span><span class="nx">type</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">_collapseAnim</span> <span class="o">=</span> <span class="nx">type</span><span class="o">;</span>
-        <span class="o">}</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">_collapseAnim</span> <span class="o">=</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">TVAnim</span><span class="o">.</span><span class="nx">isValid</span><span class="o">(</span><span class="nx">type</span><span class="o">))</span> <span class="o">?</span> <span class="nx">type</span> <span class="o">:</span> <span class="kc">null</span><span class="o">;</span>
     <span class="o">},</span>
 
     <span class="c">/**</span>
@@ -459,6 +455,39 @@
     <span class="o">},</span>
 
     <span class="c">/**</span>
+<span class="c">     * Returns the treeview node reference for an anscestor element</span>
+<span class="c">     * of the node, or null if it is not contained within any node</span>
+<span class="c">     * in this tree.</span>
+<span class="c">     * @method getNodeByElement</span>
+<span class="c">     * @param {HTMLElement} the element to test</span>
+<span class="c">     * @return {YAHOO.widget.Node} a node reference or null</span>
+<span class="c">     */</span>
+    <span class="nx">getNodeByElement</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">el</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="k">var</span> <span class="nx">p</span><span class="o">=</span><span class="nx">el</span><span class="o">,</span> <span class="nx">m</span><span class="o">,</span> <span class="nx">re</span><span class="o">=</span><span class="sr">/ygtv([^\d]*)(.*)/</span><span class="o">;</span>
+
+        <span class="k">do</span> <span class="o">{</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="nx">p</span> <span class="o">&amp;&amp;</span> <span class="nx">p</span><span class="o">.</span><span class="nx">id</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nx">m</span> <span class="o">=</span> <span class="nx">p</span><span class="o">.</span><span class="nx">id</span><span class="o">.</span><span class="nx">match</span><span class="o">(</span><span class="nx">re</span><span class="o">);</span>
+                <span class="k">if</span> <span class="o">(</span><span class="nx">m</span> <span class="o">&amp;&amp;</span> <span class="nx">m</span><span class="o">[</span><span class="m">2</span><span class="o">])</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="nx">getNodeByIndex</span><span class="o">(</span><span class="nx">m</span><span class="o">[</span><span class="m">2</span><span class="o">]);</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+
+            <span class="nx">p</span> <span class="o">=</span> <span class="nx">p</span><span class="o">.</span><span class="nx">parentNode</span><span class="o">;</span>
+
+            <span class="k">if</span> <span class="o">(!</span><span class="nx">p</span> <span class="o">||</span> <span class="o">!</span><span class="nx">p</span><span class="o">.</span><span class="nx">tagName</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="o">}</span>
+
+        <span class="o">}</span> 
+        <span class="k">while</span> <span class="o">(</span><span class="nx">p</span><span class="o">.</span><span class="nx">id</span> <span class="o">!==</span> <span class="k">this</span><span class="o">.</span><span class="nx">id</span> <span class="o">&amp;&amp;</span> <span class="nx">p</span><span class="o">.</span><span class="nx">tagName</span><span class="o">.</span><span class="nx">toLowerCase</span><span class="o">()</span> <span class="o">!==</span> <span class="s2">&quot;body&quot;</span><span class="o">);</span>
+
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">},</span>
+
+    <span class="c">/**</span>
 <span class="c">     * Removes the node and its children, and optionally refreshes the </span>
 <span class="c">     * branch of the tree that was affected.</span>
 <span class="c">     * @method removeNode</span>
@@ -518,7 +547,7 @@
 <span class="c"></span>            <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">_collapseAnim</span><span class="o">)</span> <span class="o">{</span>
                 <span class="k">this</span><span class="o">.</span><span class="nx">subscribe</span><span class="o">(</span><span class="s2">&quot;animComplete&quot;</span><span class="o">,</span> 
                         <span class="k">this</span><span class="o">.</span><span class="nx">_removeChildren_animComplete</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
-                <span class="nx">node</span><span class="o">.</span><span class="nx">collapse</span><span class="o">();</span>
+                <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Node</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">collapse</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="nx">node</span><span class="o">);</span>
                 <span class="k">return</span><span class="o">;</span>
             <span class="o">}</span>
 
@@ -528,6 +557,10 @@
         <span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;Removing children for &quot;</span> <span class="o">+</span> <span class="nx">node</span><span class="o">);</span>
         <span class="k">while</span> <span class="o">(</span><span class="nx">node</span><span class="o">.</span><span class="nx">children</span><span class="o">.</span><span class="nx">length</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">_deleteNode</span><span class="o">(</span><span class="nx">node</span><span class="o">.</span><span class="nx">children</span><span class="o">[</span><span class="m">0</span><span class="o">]);</span>
+        <span class="o">}</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="nx">node</span><span class="o">.</span><span class="nx">isRoot</span><span class="o">())</span> <span class="o">{</span>
+            <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Node</span><span class="o">.</span><span class="nx">prototype</span><span class="o">.</span><span class="nx">expand</span><span class="o">.</span><span class="nx">call</span><span class="o">(</span><span class="nx">node</span><span class="o">);</span>
         <span class="o">}</span>
 
         <span class="nx">node</span><span class="o">.</span><span class="nx">childrenRendered</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
@@ -786,6 +819,8 @@
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_charts.html">charts</a></li>
+
                                 <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
 
                                 <li class=""><a href="module_connection.html">connection</a></li>
@@ -795,6 +830,8 @@
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
+
+                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -806,13 +843,23 @@
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
+                                <li class=""><a href="module_get.html">get</a></li>
+
                                 <li class=""><a href="module_history.html">history</a></li>
 
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
+                                <li class=""><a href="module_json.html">json</a></li>
+
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
+
+                                <li class=""><a href="module_number.html">number</a></li>
+
+                                <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_selector.html">selector</a></li>
 
                                 <li class=""><a href="module_slider.html">slider</a></li>
 

@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>yuiloader&nbsp; <span class="subtitle">2.3.1</span></h3>
+        <h3>yuiloader&nbsp; <span class="subtitle">2.4.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_yuiloader.html">yuiloader</a>
@@ -74,6 +74,22 @@ so that css is inserted prior to js
 
                                     <hr />
                                     </div>
+                                    <div class="private">
+                                    <h4><a name="_useYahooListener">_useYahooListener</a>
+                                        <code>- private object</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Use the YAHOO environment listener to detect script load.  This
+is only switched on for Safari 2.x and below.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
                                     <div class="">
                                     <h4><a name="allowRollup">allowRollup</a>
                                         <code>- boolean</code>
@@ -104,8 +120,23 @@ so that css is inserted prior to js
      
                                         
                                     <div class="default">
-                                        Default Value: build
+                                        Default Value: http://yui.yahooapis.com/[YUI VERSION]/build/
                                     </div>        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4><a name="data">data</a>
+                                        <code>- object</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Data that is passed to all callbacks
+                                        </div>
+                                    </div>
+     
+                                        
 
 
                                     <hr />
@@ -131,11 +162,66 @@ if insert is called again.
                                     </div>
                                     <div class="">
                                     <h4><a name="filter">filter</a>
-                                        <code>- string|object</code>
+                                        <code>- string|{searchExp: string, replaceStr: string}</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Filter to apply to result url
+                                            Filter to apply to result url.  This filter will modify the default
+path for all modules.  The default path for the YUI library is the
+minified version of the files (e.g., event-min.js).  The filter property
+can be a predefined filter or a custom filter.  The valid predefined 
+filters are:
+<dl>
+<dt>debug</dt>
+<dd>Selects the debug versions of the library (e.g., event-debug.js).
+This option will automatically include the logger widget</dd>
+<dt>raw</dt>
+<dd>Selects the non-minified version of the library (e.g., event.js).
+</dl>
+You can also define a custom filter, which must be an object literal 
+containing a search expression and a replace string:
+<pre>
+myFilter: &#123; 
+'searchExp': "-min\\.js", 
+'replaceStr': "-debug.js"
+&#125;
+</pre>
+Note: the default base path for the YUI library is http://yui.yahooapis.com.
+Only the minified versions of the components are available on this host,
+so if you choose to use the raw or debug versions of the files, you will
+have to host these files locally, and change the "base" property.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4><a name="force">force</a>
+                                        <code>- string</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            A list of modules that should always be loaded, even
+if they have already been inserted into the page.
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4><a name="ignore">ignore</a>
+                                        <code>- string[]</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            A list of modules that should not be loaded, even if
+they turn up in the dependency tree
                                         </div>
                                     </div>
      
@@ -241,20 +327,18 @@ the requested modules
                                     <hr />
                                     </div>
                                     <div class="">
-                                    <h4><a name="sandbox">sandbox</a>
-                                        <code>- boolean</code>
+                                    <h4><a name="scope">scope</a>
+                                        <code>- object</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
-                                            Create a sandbox rather than inserting into lib into.
-the current context.  Not currently supported
-property sandbox
+                                            The execution scope for all callbacks
                                         </div>
                                     </div>
      
                                         
                                     <div class="default">
-                                        Default Value: false
+                                        Default Value: this
                                     </div>        
 
 
@@ -312,6 +396,25 @@ calendar: ['skin1', 'skin2']
                                             All of the derived dependencies in sorted order, which
 will be populated when either calculate() or insert()
 is called
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4><a name="varName">varName</a>
+                                        <code>- string</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            The name of the variable in a sandbox or script node 
+(for external script support in Safari 2.x and earlier)
+to reference when the load is complete.  If this variable 
+is not available in the specified scripts, the operation will 
+fail.
                                         </div>
                                     </div>
      
@@ -410,6 +513,11 @@ required modules.  Called by calculate()
                                         void
                                             <strong>_pushEvents</strong>
                                            (
+                                                
+                                                        
+                                                         optional
+                                                    
+                                                
                                             )
                                         </code>
                                         
@@ -420,6 +528,13 @@ loaded dynamically
 
                                         <div class="description">
 
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>optional &lt;Function&gt;</code>
+                                                             function reference
+                                                        </dd>
+                                                </dl>
 
                                                 <dl>
                                                     <dt>Returns:
@@ -517,11 +632,6 @@ by calculate()
                                         void
                                             <strong>_setup</strong>
                                            (
-                                                
-                                                        
-                                                         o
-                                                    
-                                                
                                             )
                                         </code>
                                         
@@ -533,13 +643,6 @@ option is encountered.  Called by calculate()
 
                                         <div class="description">
 
-                                                <dl>
-                                                    <dt>Parameters:</dt>
-                                                        <dd>
-                                                            <code>o &lt;object&gt;</code>
-                                                             optional options object
-                                                        </dd>
-                                                </dl>
 
                                                 <dl>
                                                     <dt>Returns:
@@ -690,10 +793,7 @@ method _url
                                         </code>
                                         
                                         <div class="description">
-                                            Add a new module to the component metadata.  The javascript 
-component must also use YAHOO.register to notify the loader 
-when it has been loaded, or a verifier function must be
-provided
+                                            Add a new module to the component metadata.         
 <dl>
 <dt>name:</dt>       <dd>required, the component name</dd>
 <dt>type:</dt>       <dd>required, the component type (js or css)</dd>
@@ -702,7 +802,6 @@ provided
 <dt>optional:</dt>   <dd>the optional modules for this component</dd>
 <dt>supersedes:</dt> <dd>the modules this component replaces</dd>
 <dt>rollup:</dt>     <dd>the number of superseded modules required for automatic rollup</dd>
-<dt>verifier:</dt>   <dd>a function that is executed to determine when the module is fully loaded</dd>
 <dt>fullpath:</dt>   <dd>If fullpath is specified, this is used instead of the configured base + path</dd>
 <dt>skinnable:</dt>  <dd>flag to determine if skin assets should automatically be pulled in</dd>
 </dl>
@@ -941,10 +1040,6 @@ in order to load the requested module
                                            (
                                                 
                                                         
-                                                         callback
-                                                    
-                                                
-                                                        , 
                                                          o
                                                     
                                                 
@@ -966,125 +1061,12 @@ css are inserted if type is not provided.
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>callback &lt;Function&gt;</code>
-                                                              a function to execute when the load
-is complete.
-                                                        </dd>
-                                                        <dd>
                                                             <code>o &lt;object&gt;</code>
                                                              optional options object
                                                         </dd>
                                                         <dd>
                                                             <code>type &lt;string&gt;</code>
                                                               the type of dependency to insert
-                                                        </dd>
-                                                </dl>
-
-                                                <dl>
-                                                    <dt>Returns:
-                                                    <code>
-                                                        void
-                                                    </code></dt>
-                                                    <dd></dd>
-                                                </dl>
-             
-                                        </div>
-
-                                    </div>
-                                    <hr />
-                                    </div>
-                                    <div class="">
-                                    <h4>
-                                        <a name="insertCss">insertCss</a></h4>
-                                    <div class="detail">
-                                        <code>
-                                        
-                                        
-                                        
-                                        void
-                                            <strong>insertCss</strong>
-                                           (
-                                                
-                                                        
-                                                         url
-                                                    
-                                                
-                                                        , 
-                                                         win
-                                                    
-                                                
-                                            )
-                                        </code>
-                                        
-                                        <div class="description">
-                                            Inserts a css link node
-                                        </div>
-
-                                        <div class="description">
-
-                                                <dl>
-                                                    <dt>Parameters:</dt>
-                                                        <dd>
-                                                            <code>url &lt;string&gt;</code>
-                                                              the full url for the script
-                                                        </dd>
-                                                        <dd>
-                                                            <code>win &lt;Window&gt;</code>
-                                                              optional window to target
-                                                        </dd>
-                                                </dl>
-
-                                                <dl>
-                                                    <dt>Returns:
-                                                    <code>
-                                                        void
-                                                    </code></dt>
-                                                    <dd></dd>
-                                                </dl>
-             
-                                        </div>
-
-                                    </div>
-                                    <hr />
-                                    </div>
-                                    <div class="">
-                                    <h4>
-                                        <a name="insertScript">insertScript</a></h4>
-                                    <div class="detail">
-                                        <code>
-                                        
-                                        
-                                        
-                                        void
-                                            <strong>insertScript</strong>
-                                           (
-                                                
-                                                        
-                                                         url
-                                                    
-                                                
-                                                        , 
-                                                         win
-                                                    
-                                                
-                                            )
-                                        </code>
-                                        
-                                        <div class="description">
-                                            Inserts a script node
-                                        </div>
-
-                                        <div class="description">
-
-                                                <dl>
-                                                    <dt>Parameters:</dt>
-                                                        <dd>
-                                                            <code>url &lt;string&gt;</code>
-                                                              the full url for the script
-                                                        </dd>
-                                                        <dd>
-                                                            <code>win &lt;Window&gt;</code>
-                                                              optional window to target
                                                         </dd>
                                                 </dl>
 
@@ -1154,14 +1136,82 @@ one)
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="onLoadComplete">onLoadComplete</a></h4>
+                                        <a name="onFailure">onFailure</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
                                         void
-                                            <strong>onLoadComplete</strong>
+                                            <strong>onFailure</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Callback that will be executed if there is a failure
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="onProgress">onProgress</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>onProgress</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Callback that will be executed each time a new module is loaded
+                                        </div>
+
+                                        <div class="description">
+
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="onSuccess">onSuccess</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>onSuccess</strong>
                                            (
                                             )
                                         </code>
@@ -1308,6 +1358,8 @@ the skin pattern</dd>
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_charts.html">charts</a></li>
+
                                 <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
 
                                 <li class=""><a href="module_connection.html">connection</a></li>
@@ -1317,6 +1369,8 @@ the skin pattern</dd>
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
+
+                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -1328,13 +1382,23 @@ the skin pattern</dd>
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
+                                <li class=""><a href="module_get.html">get</a></li>
+
                                 <li class=""><a href="module_history.html">history</a></li>
 
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
+                                <li class=""><a href="module_json.html">json</a></li>
+
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
+
+                                <li class=""><a href="module_number.html">number</a></li>
+
+                                <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_selector.html">selector</a></li>
 
                                 <li class=""><a href="module_slider.html">slider</a></li>
 
@@ -1368,46 +1432,61 @@ the skin pattern</dd>
                         <h4>Properties</h4>
                         <ul class="content">        
                                 <li class="private"><a href="#_internalCallback">_internalCallback</a>
-                                        <!--<code>&lt;string[]&gt;</code>-->
+                                        <!--<code>&lt;string&gt;</code>-->
+                                </li>
+                                <li class="private"><a href="#_useYahooListener">_useYahooListener</a>
+                                        <!--<code>&lt;string&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#allowRollup">allowRollup</a>
-                                        <!--<code>&lt;string[]&gt;</code>-->
+                                        <!--<code>&lt;string&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#base">base</a>
-                                        <!--<code>&lt;string[]&gt;</code>-->
+                                        <!--<code>&lt;string&gt;</code>-->
+                                </li>
+                                <li class=""><a href="#data">data</a>
+                                        <!--<code>&lt;string&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#dirty">dirty</a>
-                                        <!--<code>&lt;string[]&gt;</code>-->
+                                        <!--<code>&lt;string&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#filter">filter</a>
-                                        <!--<code>&lt;string[]&gt;</code>-->
+                                        <!--<code>&lt;string&gt;</code>-->
+                                </li>
+                                <li class=""><a href="#force">force</a>
+                                        <!--<code>&lt;string&gt;</code>-->
+                                </li>
+                                <li class=""><a href="#ignore">ignore</a>
+                                        <!--<code>&lt;string&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#inserted">inserted</a>
-                                        <!--<code>&lt;string[]&gt;</code>-->
+                                        <!--<code>&lt;string&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#loaded">loaded</a>
-                                        <!--<code>&lt;string[]&gt;</code>-->
+                                        <!--<code>&lt;string&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#loadOptional">loadOptional</a>
-                                        <!--<code>&lt;string[]&gt;</code>-->
+                                        <!--<code>&lt;string&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#moduleInfo">moduleInfo</a>
-                                        <!--<code>&lt;string[]&gt;</code>-->
+                                        <!--<code>&lt;string&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#required">required</a>
-                                        <!--<code>&lt;string[]&gt;</code>-->
+                                        <!--<code>&lt;string&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#rollups">rollups</a>
-                                        <!--<code>&lt;string[]&gt;</code>-->
+                                        <!--<code>&lt;string&gt;</code>-->
                                 </li>
-                                <li class=""><a href="#sandbox">sandbox</a>
-                                        <!--<code>&lt;string[]&gt;</code>-->
+                                <li class=""><a href="#scope">scope</a>
+                                        <!--<code>&lt;string&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#skin">skin</a>
-                                        <!--<code>&lt;string[]&gt;</code>-->
+                                        <!--<code>&lt;string&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#sorted">sorted</a>
-                                        <!--<code>&lt;string[]&gt;</code>-->
+                                        <!--<code>&lt;string&gt;</code>-->
+                                </li>
+                                <li class=""><a href="#varName">varName</a>
+                                        <!--<code>&lt;string&gt;</code>-->
                                 </li>
                         </ul>
                     </div>
@@ -1461,16 +1540,16 @@ the skin pattern</dd>
                                 <a href="#insert">insert</a>
                                 </li>
                                 <li class=""><!--<code>void</code>-->
-                                <a href="#insertCss">insertCss</a>
-                                </li>
-                                <li class=""><!--<code>void</code>-->
-                                <a href="#insertScript">insertScript</a>
-                                </li>
-                                <li class=""><!--<code>void</code>-->
                                 <a href="#loadNext">loadNext</a>
                                 </li>
                                 <li class=""><!--<code>void</code>-->
-                                <a href="#onLoadComplete">onLoadComplete</a>
+                                <a href="#onFailure">onFailure</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#onProgress">onProgress</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#onSuccess">onSuccess</a>
                                 </li>
                                 <li class=""><!--<code>skin: string, module: string</code>-->
                                 <a href="#parseSkin">parseSkin</a>

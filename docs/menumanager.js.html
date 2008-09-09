@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Menu&nbsp; <span class="subtitle">2.3.1</span></h3>
+        <h3>Menu&nbsp; <span class="subtitle">2.4.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_menu.html">menu</a>
@@ -43,7 +43,6 @@
 <span class="c">* context menus, or application-style menu bars with just a small amount of </span>
 <span class="c">* scripting.&lt;/p&gt;&lt;p&gt;The Menu family of controls features:&lt;/p&gt;</span>
 <span class="c">* &lt;ul&gt;</span>
-<span class="c">*    &lt;li&gt;Screen-reader accessibility.&lt;/li&gt;</span>
 <span class="c">*    &lt;li&gt;Keyboard and mouse navigation.&lt;/li&gt;</span>
 <span class="c">*    &lt;li&gt;A rich event model that provides access to all of a menu&#39;s </span>
 <span class="c">*    interesting moments.&lt;/li&gt;</span>
@@ -299,11 +298,11 @@
 <span class="c">                    dynamically positioned menus</span>
 <span class="c">                */</span>
                 
-                <span class="k">for</span> <span class="o">(</span><span class="k">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">m_oMenus</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">for</span> <span class="o">(</span><span class="k">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">m_oVisibleMenus</span><span class="o">)</span> <span class="o">{</span>
         
-                    <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">hasOwnProperty</span><span class="o">(</span><span class="nx">m_oMenus</span><span class="o">,</span> <span class="nx">i</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">hasOwnProperty</span><span class="o">(</span><span class="nx">m_oVisibleMenus</span><span class="o">,</span> <span class="nx">i</span><span class="o">))</span> <span class="o">{</span>
         
-                        <span class="nx">oMenu</span> <span class="o">=</span> <span class="nx">m_oMenus</span><span class="o">[</span><span class="nx">i</span><span class="o">];</span>
+                        <span class="nx">oMenu</span> <span class="o">=</span> <span class="nx">m_oVisibleMenus</span><span class="o">[</span><span class="nx">i</span><span class="o">];</span>
         
                         <span class="k">if</span> <span class="o">(</span><span class="nx">oMenu</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">getProperty</span><span class="o">(</span><span class="s2">&quot;clicktohide&quot;</span><span class="o">)</span> <span class="o">&amp;&amp;</span> 
                             <span class="o">!(</span><span class="nx">oMenu</span> <span class="k">instanceof</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">MenuBar</span><span class="o">)</span> <span class="o">&amp;&amp;</span> 
@@ -673,11 +672,24 @@
                 <span class="o">}</span>        
     
             <span class="o">},</span>
-    
+
+
+            <span class="c">/**</span>
+<span class="c">            * @method getVisible</span>
+<span class="c">            * @description Returns a collection of all visible menus registered</span>
+<span class="c">            * with the menu manger.</span>
+<span class="c">            * @return {Array}</span>
+<span class="c">            */</span>
+            <span class="nx">getVisible</span><span class="o">:</span> <span class="k">function</span> <span class="o">()</span> <span class="o">{</span>
+            
+                <span class="k">return</span> <span class="nx">m_oVisibleMenus</span><span class="o">;</span>
+            
+            <span class="o">},</span>
+
     
             <span class="c">/**</span>
 <span class="c">            * @method getMenus</span>
-<span class="c">            * @description Returns an array of all menus registered with the </span>
+<span class="c">            * @description Returns a collection of all menus registered with the </span>
 <span class="c">            * menu manger.</span>
 <span class="c">            * @return {Array}</span>
 <span class="c">            */</span>
@@ -857,6 +869,8 @@
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_charts.html">charts</a></li>
+
                                 <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
 
                                 <li class=""><a href="module_connection.html">connection</a></li>
@@ -866,6 +880,8 @@
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
+
+                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -877,13 +893,23 @@
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
+                                <li class=""><a href="module_get.html">get</a></li>
+
                                 <li class=""><a href="module_history.html">history</a></li>
 
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
+                                <li class=""><a href="module_json.html">json</a></li>
+
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class="selected"><a href="module_menu.html">menu</a></li>
+
+                                <li class=""><a href="module_number.html">number</a></li>
+
+                                <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_selector.html">selector</a></li>
 
                                 <li class=""><a href="module_slider.html">slider</a></li>
 

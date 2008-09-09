@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>YUI Library Examples: YUI Loader Utility (beta): Using addModule to Add Custom (Non-YUI) Content with YUILoader</title>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
     	<link rel="stylesheet" type="text/css" href="../../assets/yui.css" >
 
 <style>
@@ -22,7 +22,7 @@
 <script type="text/javascript" src="../../build/dom/dom-min.js"></script>
 <script type="text/javascript" src="../../build/logger/logger-min.js"></script>
 <script type="text/javascript" src="../../build/element/element-beta-min.js"></script>
-<script type="text/javascript" src="../../build/button/button-beta-min.js"></script>
+<script type="text/javascript" src="../../build/button/button-min.js"></script>
 <script type="text/javascript" src="../../build/yuiloader/yuiloader-beta-debug.js"></script>
 
 
@@ -134,41 +134,22 @@ YAHOO.example.loaderinit = function() {
 	//Begin by creating a new Loader instance:
 	var loader = new YAHOO.util.YUILoader();
 	
-	//In this example, we're going to use a verifier
-	//method that will verify when the added module is
-	//completely loaded.  The verifier is passed a callback
-	//that it will fire to let YUILoader know that loading
-	//is complete.  Verifiers typically use a polling
-	//mechanism to check for completeness.
-	function checkJSON(name, loaderCallback) {
-		YAHOO.log("Running verifier function to see if JSON Utility is loaded...", "info", "example");
-		//When the JSON utility is loaded, this will evaluate
-		//to true:
-        if (Object.prototype.toJSONString) {
- 			YAHOO.log("Verified! JSON Utility is loaded.", "info", "example");
-			loaderCallback();
-        } else {
-			//not loaded yet; try again in 50ms
- 			YAHOO.log("Verifier determined that JSON Utility is not yet loaded; will try back in 50ms.", "info", "example");
-            setTimeout(function() {
-                    checkJSON(name, loaderCallback);
-                }, 50);
-        }
-    }
-
 	//Add the module to YUILoader
     loader.addModule({
         name: "json", //module name; must be unique
         type: "js", //can be "js" or "css"
-        fullpath: "http://www.json.org/json.js", //can use a path instead, extending base path
-        verifier: checkJSON //the verifier function we just defined
+        fullpath: "http://www.json.org/json2.js", //can use a path instead, extending base path
+        varName: "JSON" // a variable that will be available when the script is loaded.  Needed
+                        // in order to act on the script immediately in Safari 2.x and below.
 		//requires: ['yahoo', 'event'] //if this module had dependencies, we could define here
     });
 
     loader.require("json"); //include the new  module
 
 	//Insert JSON utility on the page, passing in our callback:
-    loader.insert(YAHOO.example.onJsonLoad);
+    loader.insert({
+        onSuccess: YAHOO.example.onJsonLoad
+    });
 	
 };
 </script>
@@ -193,44 +174,17 @@ YAHOO.example.loaderinit = function() {
 
 <p>In this example, we'll use YUILoader's <code>addModule</code> function to load the JSON Utility from <code>http://www.json.org/json.js</code>.</p>
 
-<h3>Providing Load Verification for the External Component</h3>
-
-<p>First, we need to come up with a strategy for identifying when the external content is loaded.  In the case of scripts that you write for use with YUI, we recommend you use the <code>YAHOO.register</code> method to register your component with the <code>YAHOO</code> global object once it's loaded (this is the mechanism that native YUI modules use).  If you do that, YUILoader will be notified automatically when your custom module is loaded.</p>
-
-<p>In this case, we are loading an external module that we don't control, so we need to write a <code>verifier</code> function that will determine for us when the JSON Utility has successfully loaded.  That <code>verifier</code> method is passed a callback function for us to fire when it has successfully verified that the load is complete.  Here's our <code>verifier</code> method for the JSON Utility, predicated on the fact that this utility makes a modification to the Object prototype &mdash; when that modification is there, we know the script has been loaded and processed.  The <code>verifier</code> runs on a timer; it checks every 50ms until it verifies the load state of the JSON Utility:</p>
-
-<textarea name="code" class="JScript" cols="60" rows="1">//In this example, we're going to use a verifier
-//method that will verify when the added module is
-//completely loaded.  The verifier is passed a callback
-//that it will fire to let YUILoader know that loading
-//is complete.  Verifiers typically use a polling
-//mechanism to check for completeness.
-function checkJSON(name, loaderCallback) {
-	YAHOO.log("Running verifier function to see if JSON Utility is loaded...", "info", "example");
-	//When the JSON utility is loaded, this will evaluate
-	//to true:
-	if (Object.prototype.toJSONString) {
-		YAHOO.log("Verified! JSON Utility is loaded.", "info", "example");
-		loaderCallback();
-	} else {
-		//not loaded yet; try again in 50ms
-		YAHOO.log("Verifier determined that JSON Utility is not yet loaded; will try back in 50ms.", "info", "example");
-		setTimeout(function() {
-				checkJSON(name, loaderCallback);
-			}, 50);
-	}
-}</textarea>
-
 <h3>Invoke <code>addModule</code> to Make YUILoader Aware of the JSON Utility</h3>
 
-<p>Now that we have a <code>verifier</code> function, we're ready to tell YUILoader about the JSON Utility.  This is a simple step in which we invoke <code>addModule</code> and pass in relevant metadata about our new module:</p>
+<pThis is a simple step in which we invoke <code>addModule</code> and pass in relevant metadata about our new module:</p>
 
 <textarea name="code" class="JScript" cols="60" rows="1">//Add the module to YUILoader
 loader.addModule({
 	name: "json", //module name; must be unique
 	type: "js", //can be "js" or "css"
-	fullpath: "http://www.json.org/json.js", //can use a path instead, extending base path
-	verifier: checkJSON //the verifier function we just defined
+    fullpath: "http://www.json.org/json2.js", //can use a path instead, extending base path
+    varName: "JSON" // a variable that will be available when the script is loaded.  Needed
+                    // in order to act on the script immediately in Safari 2.x and below.
 	//requires: ['yahoo', 'event'] //if this module had dependencies, we could define here
 });</textarea>
 
@@ -238,7 +192,11 @@ loader.addModule({
 
 <h3>Full Source for This Example</h3>
 
-<p>The <code>addModule</code> and <code>verifier</code> steps are the most important elements of this example with respect to adding non-YUI content to the page via YUILoader.  The full source of the example, including the use of the YUI Button Control to actuate the loading of the JSON Utility, follows here.</p>
+<p>The <code>addModule</code> step is the most important elements of this example with respect to adding non-YUI content to the page via YUILoader.  The full source of the example, including the use of the YUI Button Control to actuate the loading of the JSON Utility, follows here.</p>
+
+<p>The varName property is required for external scripts that need to run in Safari 2.x or lower.
+   This is the name a variable that the downloaded script will contain.  The onSuccess handler
+   will only be executed once this property is detected.</p>
 
 <textarea name="code" class="JScript" cols="60" rows="1"><!--Container for our call-to-action button-->
 <div id="jsonInsertButtonContainer"></div>
@@ -299,41 +257,23 @@ YAHOO.example.loaderinit = function() {
 	//Begin by creating a new Loader instance:
 	var loader = new YAHOO.util.YUILoader();
 	
-	//In this example, we're going to use a verifier
-	//method that will verify when the added module is
-	//completely loaded.  The verifier is passed a callback
-	//that it will fire to let YUILoader know that loading
-	//is complete.  Verifiers typically use a polling
-	//mechanism to check for completeness.
-	function checkJSON(name, loaderCallback) {
-		YAHOO.log("Running verifier function to see if JSON Utility is loaded...", "info", "example");
-		//When the JSON utility is loaded, this will evaluate
-		//to true:
-        if (Object.prototype.toJSONString) {
- 			YAHOO.log("Verified! JSON Utility is loaded.", "info", "example");
-			loaderCallback();
-        } else {
-			//not loaded yet; try again in 50ms
- 			YAHOO.log("Verifier determined that JSON Utility is not yet loaded; will try back in 50ms.", "info", "example");
-            setTimeout(function() {
-                    checkJSON(name, loaderCallback);
-                }, 50);
-        }
-    }
-
 	//Add the module to YUILoader
     loader.addModule({
         name: "json", //module name; must be unique
         type: "js", //can be "js" or "css"
-        fullpath: "http://www.json.org/json.js", //can use a path instead, extending base path
-        verifier: checkJSON //the verifier function we just defined
+        fullpath: "http://www.json.org/json2.js", //can use a path instead, extending base path
+        varName: "JSON" // a variable that will be available when the script is loaded.  Needed
+                        // in order to act on the script immediately in Safari 2.x and below.
 		//requires: ['yahoo', 'event'] //if this module had dependencies, we could define here
     });
 
     loader.require("json"); //include the new  module
 
-	//Insert JSON utility on the page, passing in our callback:
-    loader.insert(YAHOO.example.onJsonLoad);
+    // set the function that should exectute when the file loads
+    loader.onSuccess = YAHOO.example.onJsonLoad;
+
+	//Insert JSON utility on the page
+    loader.insert();
 	
 };
 </script></textarea>
@@ -359,9 +299,10 @@ YAHOO.example.loaderinit = function() {
 						<h3>More YUI Loader Utility (beta) Resources:</h3>
 						<ul>
 							<li><a href="http://developer.yahoo.com/yui/yuiloader/">User's Guide</a> (external)</li>
-							<li><a href="../../docs/module_yuiloader.html">API Documentation</a></li>
-							<li><a href="http://yuiblog.com/assets/pdf/cheatsheets/yuiloader.pdf">Cheat Sheet PDF</a> (external)</li>
-						</ul>
+						<li><a href="../../docs/module_yuiloader.html">API Documentation</a></li>
+                            
+                            
+							<li><a href="http://yuiblog.com/assets/pdf/cheatsheets/yuiloader.pdf">Cheat Sheet PDF</a> (external)</li></ul>
 					</div>
 					
 	
@@ -377,9 +318,10 @@ YAHOO.example.loaderinit = function() {
 <div id="toc">
 	
 <ul>
-<li class="sect first">Yahoo! UI Library</li><li class="item"><a title="The Yahoo! User Interface Library (YUI)" href="http://developer.yahoo.com/yui/">Home (external)</a></li><li class="item"><a title="The Yahoo! User Interface Blog" href="http://yuiblog.com">YUIBlog (external)</a></li><li class="item"><a title="The Yahoo! Group YDN-JavaScript hosts the YUI community forum" href="http://tech.groups.yahoo.com/group/ydn-javascript/">YUI Discussion Forum (external)</a></li><li class="item"><a title="The YUI Library can be downloaded from SourceForge" href="http://sourceforge.net/projects/yui/">YUI on Sourceforge (external)</a></li><li class="item"><a title="Instantly searchable API documentation for the entire YUI library." href="../../docs/index.html">API Documentation</a></li><li class="item"><a title="Examples of every YUI utility and control in action" href="../../examples/">Functional Examples</a></li><li class="item"><a title="Videos and podcasts from the YUI Team and from the Yahoo! frontend engineering community." href="http://developer.yahoo.com/yui/theater/">YUI Theater (external)</a></li><li class="item"><a title="YUI is free and open, offered under a BSD license." href="http://developer.yahoo.com/yui/license.html">YUI License (external)</a></li><li class="sect">YUI Functional Examples</li><li class="item"><a title="The YUI Animation Utility - Functional Examples" href="../../examples/animation/index.html">Animation</a></li><li class="item"><a title="The YUI AutoComplete Control - Functional Examples" href="../../examples/autocomplete/index.html">AutoComplete</a></li><li class="item"><a title="The YUI Browser History Manager - Functional Examples" href="../../examples/history/index.html">Browser History Manager (beta)</a></li><li class="item"><a title="The YUI Button Control - Functional Examples" href="../../examples/button/index.html">Button (beta)</a></li><li class="item"><a title="The YUI Calendar Control - Functional Examples" href="../../examples/calendar/index.html">Calendar</a></li><li class="item"><a title="The YUI Color Picker Control - Functional Examples" href="../../examples/colorpicker/index.html">Color Picker (beta)</a></li><li class="item"><a title="The YUI Connection Manager (AJAX) - Functional Examples" href="../../examples/connection/index.html">Connection Manager</a></li><li class="item"><a title="The YUI Container Family (Module, Overlay, Tooltip, Panel, Dialog, SimpleDialog) - Functional Examples" href="../../examples/container/index.html">Container</a></li><li class="item"><a title="The YUI DataTable Control - Functional Examples" href="../../examples/datatable/index.html">DataTable (beta)</a></li><li class="item"><a title="The YUI Dom Collection - Functional Examples" href="../../examples/dom/index.html">Dom</a></li><li class="item"><a title="The YUI Drag &amp; Drop Utility - Functional Examples" href="../../examples/dragdrop/index.html">Drag &amp; Drop</a></li><li class="item"><a title="The YUI Event Utility - Functional Examples" href="../../examples/event/index.html">Event</a></li><li class="item"><a title="The YUI ImageLoader Utility - Functional Examples" href="../../examples/imageloader/index.html">ImageLoader (experimental)</a></li><li class="item"><a title="The YUI Logger Control - Functional Examples" href="../../examples/logger/index.html">Logger</a></li><li class="item"><a title="The YUI Menu Control - Functional Examples" href="../../examples/menu/index.html">Menu</a></li><li class="item"><a title="The YUI Rich Text Editor - Functional Examples" href="../../examples/editor/index.html">Rich Text Editor (beta)</a></li><li class="item"><a title="The YUI Slider Control - Functional Examples" href="../../examples/slider/index.html">Slider</a></li><li class="item"><a title="The YUI TabView Control - Functional Examples" href="../../examples/tabview/index.html">TabView</a></li><li class="item"><a title="The YUI TreeView Control - Functional Examples" href="../../examples/treeview/index.html">TreeView</a></li><li class="selected "><a title="The YUI Loader Utility - Functional Examples" href="../../examples/yuiloader/index.html">YUI Loader (beta)</a></li><li class="item"><a title="The YUI Test Utility - Functional Examples" href="../../examples/yuitest/index.html">YUI Test (beta)</a></li><li class="item"><a title="YUI Reset CSS - Functional Examples" href="../../examples/reset/index.html">Reset CSS</a></li><li class="item"><a title="YUI Base CSS - Functional Examples" href="../../examples/base/index.html">Base CSS</a></li><li class="item"><a title="YUI Fonts CSS - Functional Examples" href="../../examples/fonts/index.html">Fonts CSS</a></li><li class="item"><a title="YUI Grids CSS - Functional Examples" href="../../examples/grids/index.html">Grids CSS</a></li><li class="sect">YUI Articles on the YUI Website</li><li class="item"><a title="Answers to Frequently Asked Questions about the YUI Library" href="http://developer.yahoo.com/yui/articles/faq/">YUI FAQ (external)</a></li><li class="item"><a title="Yahoo!'s philosophy of Graded Browser Support" href="http://developer.yahoo.com/yui/articles/gbs/">Graded Browser Support (external)</a></li><li class="item"><a title="Reporting Bugs and Making Feature Requests for YUI Components" href="http://developer.yahoo.com/yui/articles/reportingbugs/">Bug Reports/Feature Requests (external)</a></li><li class="item"><a title="Serve YUI source files from Yahoo! -- free, fast, and simple" href="http://developer.yahoo.com/yui/articles/hosting/">Serving YUI Files from Yahoo! (external)</a></li><li class="item"><a title="Best practices for working with web services while protecting user privacy" href="http://developer.yahoo.com/security/">Security Best Practices (external)</a></li></ul>
+<li class="sect first">Yahoo! UI Library</li><li class="item"><a title="The Yahoo! User Interface Library (YUI)" href="http://developer.yahoo.com/yui/">Home (external)</a></li><li class="item"><a title="The Yahoo! User Interface Blog" href="http://yuiblog.com">YUIBlog (external)</a></li><li class="item"><a title="The Yahoo! Group YDN-JavaScript hosts the YUI community forum" href="http://tech.groups.yahoo.com/group/ydn-javascript/">YUI Discussion Forum (external)</a></li><li class="item"><a title="The YUI Library can be downloaded from SourceForge" href="http://sourceforge.net/projects/yui/">YUI on Sourceforge (external)</a></li><li class="item"><a title="Instantly searchable API documentation for the entire YUI library." href="../../docs/index.html">API Documentation</a></li><li class="item"><a title="Examples of every YUI utility and control in action" href="../../examples/">Functional Examples</a></li><li class="item"><a title="Videos and podcasts from the YUI Team and from the Yahoo! frontend engineering community." href="http://developer.yahoo.com/yui/theater/">YUI Theater (external)</a></li><li class="item"><a title="YUI is free and open, offered under a BSD license." href="http://developer.yahoo.com/yui/license.html">YUI License (external)</a></li><li class="sect">YUI Functional Examples</li><li class="item"><a title="The YUI Animation Utility - Functional Examples" href="../../examples/animation/index.html">Animation</a></li><li class="item"><a title="The YUI AutoComplete Control - Functional Examples" href="../../examples/autocomplete/index.html">AutoComplete</a></li><li class="item"><a title="The YUI Browser History Manager - Functional Examples" href="../../examples/history/index.html">Browser History Manager</a></li><li class="item"><a title="The YUI Button Control - Functional Examples" href="../../examples/button/index.html">Button</a></li><li class="item"><a title="The YUI Calendar Control - Functional Examples" href="../../examples/calendar/index.html">Calendar</a></li><li class="item"><a title="The YUI Charts Control - Functional Examples" href="../../examples/charts/index.html">Charts (experimental)</a></li><li class="item"><a title="The YUI Color Picker Control - Functional Examples" href="../../examples/colorpicker/index.html">Color Picker (beta)</a></li><li class="item"><a title="The YUI Connection Manager (AJAX) - Functional Examples" href="../../examples/connection/index.html">Connection Manager</a></li><li class="item"><a title="The YUI Container Family (Module, Overlay, Tooltip, Panel, Dialog, SimpleDialog) - Functional Examples" href="../../examples/container/index.html">Container</a></li><li class="item"><a title="The YUI DataTable Control - Functional Examples" href="../../examples/datatable/index.html">DataTable (beta)</a></li><li class="item"><a title="The YUI Dom Collection - Functional Examples" href="../../examples/dom/index.html">Dom</a></li><li class="item"><a title="The YUI Drag &amp; Drop Utility - Functional Examples" href="../../examples/dragdrop/index.html">Drag &amp; Drop</a></li><li class="item"><a title="The YUI Event Utility - Functional Examples" href="../../examples/event/index.html">Event</a></li><li class="item"><a title="The YUI Get Utility - Functional Examples" href="../../examples/get/index.html">Get (beta)</a></li><li class="item"><a title="The YUI ImageLoader Utility - Functional Examples" href="../../examples/imageloader/index.html">ImageLoader (beta)</a></li><li class="item"><a title="The YUI JSON Utility - Functional Examples" href="../../examples/json/index.html">JSON (beta)</a></li><li class="item"><a title="The YUI Logger Control - Functional Examples" href="../../examples/logger/index.html">Logger</a></li><li class="item"><a title="The YUI Menu Control - Functional Examples" href="../../examples/menu/index.html">Menu</a></li><li class="item"><a title="The YUI Profiler Utility - Functional Examples" href="../../examples/profiler/index.html">Profiler (beta)</a></li><li class="item"><a title="The YUI Rich Text Editor - Functional Examples" href="../../examples/editor/index.html">Rich Text Editor (beta)</a></li><li class="item"><a title="The YUI Selector Utility - Functional Examples" href="../../examples/selector/index.html">Selector (beta)</a></li><li class="item"><a title="The YUI Slider Control - Functional Examples" href="../../examples/slider/index.html">Slider</a></li><li class="item"><a title="The YUI TabView Control - Functional Examples" href="../../examples/tabview/index.html">TabView</a></li><li class="item"><a title="The YUI TreeView Control - Functional Examples" href="../../examples/treeview/index.html">TreeView</a></li><li class="item"><a title="The YUI YAHOO Global Object - Functional Examples" href="../../examples/yahoo/index.html">YAHOO Global Object</a></li><li class="selected "><a title="The YUI Loader Utility - Functional Examples" href="../../examples/yuiloader/index.html">YUI Loader (beta)</a></li><li class="item"><a title="The YUI Test Utility - Functional Examples" href="../../examples/yuitest/index.html">YUI Test (beta)</a></li><li class="item"><a title="YUI Reset CSS - Functional Examples" href="../../examples/reset/index.html">Reset CSS</a></li><li class="item"><a title="YUI Base CSS - Functional Examples" href="../../examples/base/index.html">Base CSS</a></li><li class="item"><a title="YUI Fonts CSS - Functional Examples" href="../../examples/fonts/index.html">Fonts CSS</a></li><li class="item"><a title="YUI Grids CSS - Functional Examples" href="../../examples/grids/index.html">Grids CSS</a></li><li class="sect">YUI Articles on the YUI Website</li><li class="item"><a title="Answers to Frequently Asked Questions about the YUI Library" href="http://developer.yahoo.com/yui/articles/faq/">YUI FAQ (external)</a></li><li class="item"><a title="Yahoo!'s philosophy of Graded Browser Support" href="http://developer.yahoo.com/yui/articles/gbs/">Graded Browser Support (external)</a></li><li class="item"><a title="Reporting Bugs and Making Feature Requests for YUI Components" href="http://developer.yahoo.com/yui/articles/reportingbugs/">Bug Reports/Feature Requests (external)</a></li><li class="item"><a title="Serve YUI source files from Yahoo! -- free, fast, and simple" href="http://developer.yahoo.com/yui/articles/hosting/">Serving YUI Files from Yahoo! (external)</a></li><li class="item"><a title="Best practices for working with web services while protecting user privacy" href="http://developer.yahoo.com/security/">Security Best Practices (external)</a></li></ul>
 </div>
 </div>
+	</div><!--closes bd-->
 
 	<div id="ft">
         <p class="first">Copyright &copy; 2007 Yahoo! Inc. All rights reserved.</p>
@@ -388,7 +330,6 @@ YAHOO.example.loaderinit = function() {
             <a href="http://docs.yahoo.com/info/copyright/copyright.html">Copyright Policy</a> - 
             <a href="http://careers.yahoo.com/">Job Openings</a></p>
 	</div>
-</div>
 </div>
 <script src="../../assets/dpSyntaxHighlighter.js"></script>
 <script language="javascript"> 

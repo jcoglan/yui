@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Menu&nbsp; <span class="subtitle">2.3.1</span></h3>
+        <h3>Menu&nbsp; <span class="subtitle">2.4.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_menu.html">menu</a>
@@ -69,16 +69,19 @@
 
 <span class="o">};</span>
 
+
 <span class="k">var</span> <span class="nx">Event</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Event</span><span class="o">,</span>
     <span class="nx">ContextMenu</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">ContextMenu</span><span class="o">,</span>
 
-<span class="c">/**</span>
-<span class="c">* Constant representing the name of the ContextMenu&#39;s events</span>
-<span class="c">* @property EVENT_TYPES</span>
-<span class="c">* @private</span>
-<span class="c">* @final</span>
-<span class="c">* @type Object</span>
-<span class="c">*/</span>
+
+
+    <span class="c">/**</span>
+<span class="c">    * Constant representing the name of the ContextMenu&#39;s events</span>
+<span class="c">    * @property EVENT_TYPES</span>
+<span class="c">    * @private</span>
+<span class="c">    * @final</span>
+<span class="c">    * @type Object</span>
+<span class="c">    */</span>
     <span class="nx">EVENT_TYPES</span> <span class="o">=</span> <span class="o">{</span>
 
         <span class="s2">&quot;TRIGGER_CONTEXT_MENU&quot;</span><span class="o">:</span> <span class="s2">&quot;triggerContextMenu&quot;</span><span class="o">,</span>
@@ -98,10 +101,29 @@
     <span class="nx">DEFAULT_CONFIG</span> <span class="o">=</span> <span class="o">{</span>
     
         <span class="s2">&quot;TRIGGER&quot;</span><span class="o">:</span> <span class="o">{</span> 
-            <span class="nx">key</span><span class="o">:</span> <span class="s2">&quot;trigger&quot;</span> 
+            <span class="nx">key</span><span class="o">:</span> <span class="s2">&quot;trigger&quot;</span><span class="o">,</span>
+            <span class="nx">suppressEvent</span><span class="o">:</span> <span class="kc">true</span>
         <span class="o">}</span>
     
     <span class="o">};</span>
+
+
+<span class="c">/**</span>
+<span class="c">* @method position</span>
+<span class="c">* @description &quot;beforeShow&quot; event handler used to position the contextmenu.</span>
+<span class="c">* @private</span>
+<span class="c">* @param {String} p_sType String representing the name of the event that </span>
+<span class="c">* was fired.</span>
+<span class="c">* @param {Array} p_aArgs Array of arguments sent when the event was fired.</span>
+<span class="c">* @param {Array} p_aPos Array representing the xy position for the context menu.</span>
+<span class="c">*/</span>
+<span class="k">function</span> <span class="nx">position</span><span class="o">(</span><span class="nx">p_sType</span><span class="o">,</span> <span class="nx">p_aArgs</span><span class="o">,</span> <span class="nx">p_aPos</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">setProperty</span><span class="o">(</span><span class="s2">&quot;xy&quot;</span><span class="o">,</span> <span class="nx">p_aPos</span><span class="o">);</span>
+    
+    <span class="k">this</span><span class="o">.</span><span class="nx">beforeShowEvent</span><span class="o">.</span><span class="nx">unsubscribe</span><span class="o">(</span><span class="nx">position</span><span class="o">,</span> <span class="nx">p_aPos</span><span class="o">);</span>
+
+<span class="o">}</span>
 
 
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">extend</span><span class="o">(</span><span class="nx">ContextMenu</span><span class="o">,</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">Menu</span><span class="o">,</span> <span class="o">{</span>
@@ -186,12 +208,6 @@
 <span class="c">* for more details.</span>
 <span class="c">*/</span>
 <span class="nx">init</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">p_oElement</span><span class="o">,</span> <span class="nx">p_oConfig</span><span class="o">)</span> <span class="o">{</span>
-
-    <span class="k">if</span><span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">ITEM_TYPE</span><span class="o">)</span> <span class="o">{</span>
-
-        <span class="k">this</span><span class="o">.</span><span class="nx">ITEM_TYPE</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">ContextMenuItem</span><span class="o">;</span>
-
-    <span class="o">}</span>
 
 
     <span class="c">// Call the init of the superclass (YAHOO.widget.Menu)</span>
@@ -282,6 +298,7 @@
 <span class="c">// Private event handlers</span>
 <span class="c"></span>
 
+
 <span class="c">/**</span>
 <span class="c">* @method _onTriggerClick</span>
 <span class="c">* @description &quot;click&quot; event handler for the HTML element(s) identified as the </span>
@@ -315,11 +332,14 @@
 <span class="c">*/</span>
 <span class="nx">_onTriggerContextMenu</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">p_oEvent</span><span class="o">,</span> <span class="nx">p_oMenu</span><span class="o">)</span> <span class="o">{</span>
 
-    <span class="k">if</span><span class="o">(</span><span class="nx">p_oEvent</span><span class="o">.</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">&quot;mousedown&quot;</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">p_oEvent</span><span class="o">.</span><span class="nx">ctrlKey</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="nx">p_oEvent</span><span class="o">.</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">&quot;mousedown&quot;</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">p_oEvent</span><span class="o">.</span><span class="nx">ctrlKey</span><span class="o">)</span> <span class="o">{</span>
 
         <span class="k">return</span><span class="o">;</span>
 
     <span class="o">}</span>
+
+
+    <span class="k">var</span> <span class="nx">aXY</span><span class="o">;</span>
 
 
     <span class="c">/*</span>
@@ -331,21 +351,35 @@
     <span class="nx">Event</span><span class="o">.</span><span class="nx">stopEvent</span><span class="o">(</span><span class="nx">p_oEvent</span><span class="o">);</span>
 
 
-    <span class="c">// Hide any other ContextMenu instances that might be visible</span>
-<span class="c"></span>
-    <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">MenuManager</span><span class="o">.</span><span class="nx">hideVisible</span><span class="o">();</span>
-
-
     <span class="k">this</span><span class="o">.</span><span class="nx">contextEventTarget</span> <span class="o">=</span> <span class="nx">Event</span><span class="o">.</span><span class="nx">getTarget</span><span class="o">(</span><span class="nx">p_oEvent</span><span class="o">);</span>
 
     <span class="k">this</span><span class="o">.</span><span class="nx">triggerContextMenuEvent</span><span class="o">.</span><span class="nx">fire</span><span class="o">(</span><span class="nx">p_oEvent</span><span class="o">);</span>
 
 
+    <span class="c">// Hide any other Menu instances that might be visible</span>
+<span class="c"></span>
+    <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">widget</span><span class="o">.</span><span class="nx">MenuManager</span><span class="o">.</span><span class="nx">hideVisible</span><span class="o">();</span>
+    
+
+
     <span class="k">if</span><span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">_bCancelled</span><span class="o">)</span> <span class="o">{</span>
 
         <span class="c">// Position and display the context menu</span>
-<span class="c"></span>    
-        <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">setProperty</span><span class="o">(</span><span class="s2">&quot;xy&quot;</span><span class="o">,</span> <span class="nx">Event</span><span class="o">.</span><span class="nx">getXY</span><span class="o">(</span><span class="nx">p_oEvent</span><span class="o">));</span>
+<span class="c"></span>
+        <span class="nx">aXY</span> <span class="o">=</span> <span class="nx">Event</span><span class="o">.</span><span class="nx">getXY</span><span class="o">(</span><span class="nx">p_oEvent</span><span class="o">);</span>
+
+
+        <span class="k">if</span> <span class="o">(!</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Dom</span><span class="o">.</span><span class="nx">inDocument</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">element</span><span class="o">))</span> <span class="o">{</span>
+
+            <span class="k">this</span><span class="o">.</span><span class="nx">beforeShowEvent</span><span class="o">.</span><span class="nx">subscribe</span><span class="o">(</span><span class="nx">position</span><span class="o">,</span> <span class="nx">aXY</span><span class="o">);</span>
+
+        <span class="o">}</span>
+        <span class="k">else</span> <span class="o">{</span>
+
+            <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">setProperty</span><span class="o">(</span><span class="s2">&quot;xy&quot;</span><span class="o">,</span> <span class="nx">aXY</span><span class="o">);</span>
+        
+        <span class="o">}</span>
+
 
         <span class="k">this</span><span class="o">.</span><span class="nx">show</span><span class="o">();</span>
 
@@ -401,7 +435,11 @@
 <span class="c">    * level-one-html.html#ID-58190037&quot;&gt;HTMLElement&lt;/a&gt;|Array</span>
 <span class="c">    */</span>
     <span class="k">this</span><span class="o">.</span><span class="nx">cfg</span><span class="o">.</span><span class="nx">addProperty</span><span class="o">(</span><span class="nx">DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">TRIGGER</span><span class="o">.</span><span class="nx">key</span><span class="o">,</span> 
-        <span class="o">{</span> <span class="nx">handler</span><span class="o">:</span> <span class="k">this</span><span class="o">.</span><span class="nx">configTrigger</span> <span class="o">});</span>
+        <span class="o">{</span>
+            <span class="nx">handler</span><span class="o">:</span> <span class="k">this</span><span class="o">.</span><span class="nx">configTrigger</span><span class="o">,</span> 
+            <span class="nx">suppressEvent</span><span class="o">:</span> <span class="nx">DEFAULT_CONFIG</span><span class="o">.</span><span class="nx">TRIGGER</span><span class="o">.</span><span class="nx">suppressEvent</span> 
+        <span class="o">}</span>
+    <span class="o">);</span>
 
 <span class="o">},</span>
 
@@ -416,7 +454,7 @@
     <span class="c">// Remove the DOM event handlers from the current trigger(s)</span>
 <span class="c"></span>
     <span class="k">this</span><span class="o">.</span><span class="nx">_removeEventHandlers</span><span class="o">();</span>
-    
+
 
     <span class="c">// Continue with the superclass implementation of this method</span>
 <span class="c"></span>
@@ -511,6 +549,8 @@
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_charts.html">charts</a></li>
+
                                 <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
 
                                 <li class=""><a href="module_connection.html">connection</a></li>
@@ -520,6 +560,8 @@
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
+
+                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -531,13 +573,23 @@
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
+                                <li class=""><a href="module_get.html">get</a></li>
+
                                 <li class=""><a href="module_history.html">history</a></li>
 
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
+                                <li class=""><a href="module_json.html">json</a></li>
+
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class="selected"><a href="module_menu.html">menu</a></li>
+
+                                <li class=""><a href="module_number.html">number</a></li>
+
+                                <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_selector.html">selector</a></li>
 
                                 <li class=""><a href="module_slider.html">slider</a></li>
 

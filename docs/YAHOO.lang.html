@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>YAHOO Global&nbsp; <span class="subtitle">2.3.1</span></h3>
+        <h3>YAHOO Global&nbsp; <span class="subtitle">2.4.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_yahoo.html">yahoo</a>
@@ -902,6 +902,94 @@ including 0/false/''
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="later">later</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>later</strong>
+                                           (
+                                                
+                                                        
+                                                         when
+                                                    
+                                                
+                                                        , 
+                                                         o
+                                                    
+                                                
+                                                        , 
+                                                         fn
+                                                    
+                                                
+                                                        , 
+                                                         data
+                                                    
+                                                
+                                                        , 
+                                                         periodic
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Executes the supplied function in the scope of the supplied 
+object 'when' milliseconds later.  Executes the function a 
+single time unless periodic is set to true.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>when &lt;int&gt;</code>
+                                                              the number of milliseconds to wait until the fn 
+is executed
+                                                        </dd>
+                                                        <dd>
+                                                            <code>o &lt;object&gt;</code>
+                                                             the scope object
+                                                        </dd>
+                                                        <dd>
+                                                            <code>fn &lt;Function|String&gt;</code>
+                                                              the function to execute or the name of 
+the method in the 'o' object to execute
+                                                        </dd>
+                                                        <dd>
+                                                            <code>data &lt;object&gt;</code>
+                                                             [Array] data that is provided to the function.  This accepts
+either a single item or an array.  If an array is provided, the
+function is executed with one parameter for each array item.  If
+you need to pass a single array parameter, it needs to be wrapped in
+an array [myarray]
+                                                        </dd>
+                                                        <dd>
+                                                            <code>periodic &lt;boolean&gt;</code>
+                                                              if true, executes continuously at supplied 
+interval until canceled
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd>a timer object. Call the cancel() method on this object to 
+stop the timer.</dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="merge">merge</a></h4>
                                     <div class="detail">
                                         <code>
@@ -1097,6 +1185,8 @@ the input is not a string, the input will be returned untouched.
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_charts.html">charts</a></li>
+
                                 <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
 
                                 <li class=""><a href="module_connection.html">connection</a></li>
@@ -1106,6 +1196,8 @@ the input is not a string, the input will be returned untouched.
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
+
+                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -1117,13 +1209,23 @@ the input is not a string, the input will be returned untouched.
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
+                                <li class=""><a href="module_get.html">get</a></li>
+
                                 <li class=""><a href="module_history.html">history</a></li>
 
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
+                                <li class=""><a href="module_json.html">json</a></li>
+
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
+
+                                <li class=""><a href="module_number.html">number</a></li>
+
+                                <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_selector.html">selector</a></li>
 
                                 <li class=""><a href="module_slider.html">slider</a></li>
 
@@ -1215,6 +1317,9 @@ the input is not a string, the input will be returned untouched.
                                 </li>
                                 <li class=""><!--<code>boolean</code>-->
                                 <a href="#isValue">isValue</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#later">later</a>
                                 </li>
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#merge">merge</a>

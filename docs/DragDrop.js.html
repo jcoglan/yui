@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Drag and Drop&nbsp; <span class="subtitle">2.3.1</span></h3>
+        <h3>Drag and Drop&nbsp; <span class="subtitle">2.4.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_dragdrop.html">dragdrop</a>
@@ -205,7 +205,7 @@
     <span class="c">/**</span>
 <span class="c">     * By default, all instances can be a drop target.  This can be disabled by</span>
 <span class="c">     * setting isTarget to false.</span>
-<span class="c">     * @method isTarget</span>
+<span class="c">     * @property isTarget</span>
 <span class="c">     * @type boolean</span>
 <span class="c">     */</span>
     <span class="nx">isTarget</span><span class="o">:</span> <span class="kc">true</span><span class="o">,</span>
@@ -213,10 +213,16 @@
     <span class="c">/**</span>
 <span class="c">     * The padding configured for this drag and drop object for calculating</span>
 <span class="c">     * the drop zone intersection with this object.</span>
-<span class="c">     * @method padding</span>
+<span class="c">     * @property padding</span>
 <span class="c">     * @type int[]</span>
 <span class="c">     */</span>
     <span class="nx">padding</span><span class="o">:</span> <span class="kc">null</span><span class="o">,</span>
+    <span class="c">/**</span>
+<span class="c">     * If this flag is true, do not fire drop events. The element is a drag only element (for movement not dropping)</span>
+<span class="c">     * @property dragOnly</span>
+<span class="c">     * @type Boolean</span>
+<span class="c">     */</span>
+    <span class="nx">dragOnly</span><span class="o">:</span> <span class="kc">false</span><span class="o">,</span>
 
     <span class="c">/**</span>
 <span class="c">     * Cached reference to the linked element</span>
@@ -637,7 +643,7 @@
         <span class="k">this</span><span class="o">.</span><span class="nx">isTarget</span>          <span class="o">=</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">config</span><span class="o">.</span><span class="nx">isTarget</span> <span class="o">!==</span> <span class="kc">false</span><span class="o">);</span>
         <span class="k">this</span><span class="o">.</span><span class="nx">maintainOffset</span>    <span class="o">=</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">config</span><span class="o">.</span><span class="nx">maintainOffset</span><span class="o">);</span>
         <span class="k">this</span><span class="o">.</span><span class="nx">primaryButtonOnly</span> <span class="o">=</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">config</span><span class="o">.</span><span class="nx">primaryButtonOnly</span> <span class="o">!==</span> <span class="kc">false</span><span class="o">);</span>
-
+        <span class="k">this</span><span class="o">.</span><span class="nx">dragOnly</span> <span class="o">=</span> <span class="o">((</span><span class="k">this</span><span class="o">.</span><span class="nx">config</span><span class="o">.</span><span class="nx">dragOnly</span> <span class="o">===</span> <span class="kc">true</span><span class="o">)</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="kc">false</span><span class="o">);</span>
     <span class="o">},</span>
 
     <span class="c">/**</span>
@@ -849,8 +855,13 @@
         <span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;firing onMouseDown events&quot;</span><span class="o">);</span>
 
         <span class="c">// firing the mousedown events prior to calculating positions</span>
-<span class="c"></span>        <span class="k">this</span><span class="o">.</span><span class="nx">b4MouseDown</span><span class="o">(</span><span class="nx">e</span><span class="o">);</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">onMouseDown</span><span class="o">(</span><span class="nx">e</span><span class="o">);</span>
+<span class="c"></span>        <span class="k">var</span> <span class="nx">b4Return</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">b4MouseDown</span><span class="o">(</span><span class="nx">e</span><span class="o">);</span>
+        <span class="k">var</span> <span class="nx">mDownReturn</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">onMouseDown</span><span class="o">(</span><span class="nx">e</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">((</span><span class="nx">b4Return</span> <span class="o">===</span> <span class="kc">false</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="nx">mDownReturn</span> <span class="o">===</span> <span class="kc">false</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s1">&#39;b4MouseDown or onMouseDown returned false, exiting drag&#39;</span><span class="o">);</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
 
         <span class="k">this</span><span class="o">.</span><span class="nx">DDM</span><span class="o">.</span><span class="nx">refreshCache</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">groups</span><span class="o">);</span>
         <span class="c">// var self = this;</span>
@@ -887,6 +898,13 @@
         <span class="o">}</span>
     <span class="o">},</span>
 
+    <span class="c">/**</span>
+<span class="c">     * @method clickValidator</span>
+<span class="c">     * @description Method validates that the clicked element</span>
+<span class="c">     * was indeed the handle or a valid child of the handle</span>
+<span class="c">     * @param {Event} e </span>
+<span class="c">     * @private</span>
+<span class="c">     */</span>
     <span class="nx">clickValidator</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">e</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">Event</span><span class="o">.</span><span class="nx">getTarget</span><span class="o">(</span><span class="nx">e</span><span class="o">);</span>
         <span class="k">return</span> <span class="o">(</span> <span class="k">this</span><span class="o">.</span><span class="nx">isValidHandleChild</span><span class="o">(</span><span class="nx">target</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
@@ -1275,6 +1293,8 @@
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_charts.html">charts</a></li>
+
                                 <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
 
                                 <li class=""><a href="module_connection.html">connection</a></li>
@@ -1284,6 +1304,8 @@
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
+
+                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -1295,13 +1317,23 @@
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
+                                <li class=""><a href="module_get.html">get</a></li>
+
                                 <li class=""><a href="module_history.html">history</a></li>
 
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
+                                <li class=""><a href="module_json.html">json</a></li>
+
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
+
+                                <li class=""><a href="module_number.html">number</a></li>
+
+                                <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_selector.html">selector</a></li>
 
                                 <li class=""><a href="module_slider.html">slider</a></li>
 

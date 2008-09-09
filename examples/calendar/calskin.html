@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>YUI Library Examples: Calendar Control: Skinning The Calendar</title>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
     	<link rel="stylesheet" type="text/css" href="../../assets/yui.css" >
 
 <style>
@@ -22,7 +22,7 @@
 <script type="text/javascript" src="../../build/dom/dom-min.js"></script>
 <script type="text/javascript" src="../../build/calendar/calendar-min.js"></script>
 <script type="text/javascript" src="../../build/element/element-beta-min.js"></script>
-<script type="text/javascript" src="../../build/button/button-beta-min.js"></script>
+<script type="text/javascript" src="../../build/button/button-min.js"></script>
 
 <!--there is no custom header content for this example-->
 
@@ -324,6 +324,128 @@
 .yui-skin-sam .yui-calendar td.calcell.highlight2 { background-color:#99ccff; }
 .yui-skin-sam .yui-calendar td.calcell.highlight3 { background-color:#ffcccc; }
 .yui-skin-sam .yui-calendar td.calcell.highlight4 { background-color:#ccff99; }
+
+/* CalendarNavigator */
+
+/* MONTH/YEAR LABEL */
+.yui-skin-sam .yui-calendar a.calnav { 
+	border: 1px solid #f2f2f2;
+	padding:0 4px;
+	text-decoration:none;
+	color:#000;
+	zoom:1;
+}
+
+.yui-skin-sam .yui-calendar a.calnav:hover { 
+	background: url(../../../../assets/skins/sam/sprite.png) repeat-x 0 0;
+	border-color:#A0A0A0;
+	cursor:pointer;
+}
+
+/* NAVIGATOR MASK */
+.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask {
+	background-color:#000;
+	opacity:0.25;
+	*filter:alpha(opacity=25); /* IE */
+}
+
+/* NAVIGATOR BOUNDING BOX */
+.yui-skin-sam .yui-calcontainer .yui-cal-nav {
+	font-family:arial,helvetica,clean,sans-serif;
+	font-size:93%;
+	border:1px solid #808080;
+	left:50%;
+	margin-left:-7em;
+	width:14em;
+	padding:0;
+	top:2.5em;
+	background-color:#f2f2f2;
+}
+
+.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav {
+	top:4.5em;
+}
+
+/* NAVIGATOR BOUNDING BOX */
+.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav {
+	width:16em;
+	margin-left:-8em;
+}
+
+/* NAVIGATOR YEAR/MONTH/BUTTON/ERROR BOUNDING BLOCKS */
+.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,
+.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,
+.yui-skin-sam .yui-calcontainer .yui-cal-nav-b {
+	padding:5px 10px 5px 10px;
+}
+
+.yui-skin-sam .yui-calcontainer .yui-cal-nav-b {
+	text-align:center;
+}
+
+.yui-skin-sam .yui-calcontainer .yui-cal-nav-e {
+	margin-top:5px;
+	padding:5px;
+	background-color:#EDF5FF;
+	border-top:1px solid black;
+	display:none;
+}
+
+/* NAVIGATOR LABELS */
+.yui-skin-sam .yui-calcontainer .yui-cal-nav label {
+	display:block;
+	font-weight:bold;
+}
+
+/* NAVIGATOR MONTH CONTROL */
+.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc {
+	width:100%;
+	_width:auto; /* IE6, IE7 Quirks don't handle 100% well */
+}
+
+/* NAVIGATOR MONTH CONTROL, VALIDATION ERROR */
+.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid {
+	background-color:#FFEE69;
+	border: 1px solid #000;
+}
+
+/* NAVIGATOR YEAR CONTROL */
+.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc {
+	width:4em;
+}
+
+/* NAVIGATOR BUTTONS */
+
+/* BUTTON WRAPPER */
+.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn {
+	border:1px solid #808080;
+	background: url(../../../../assets/skins/sam/sprite.png) repeat-x 0 0;
+	background-color:#ccc;
+	margin: auto .15em;
+}
+
+/* BUTTON (based on button-skin.css) */
+.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button {
+	padding:0 8px;
+	font-size:93%;
+	line-height: 2;  /* ~24px */
+	*line-height: 1.7; /* For IE */
+	min-height: 2em; /* For Gecko */
+	*min-height: auto; /* For IE */
+	color: #000;
+}
+
+/* DEFAULT BUTTONS */
+/* NOTE: IE6 will only pickup the yui-default specifier from the multiple class specifier */
+.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default {
+	border:1px solid #304369;
+	background-color: #426fd9;
+	background: url(../../../../assets/skins/sam/sprite.png) repeat-x 0 -1400px;
+}
+
+.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button {
+	color:#fff;
+}
 </textarea>
 
 <h3>Core CSS</h3>
@@ -407,6 +529,44 @@
 	text-align:center;
 }
 
+/* CalendarNavigator */
+.yui-calcontainer .yui-cal-nav-mask {
+	position:absolute;
+	z-index:2;
+	margin:0;
+	padding:0;
+	width:100%;
+	height:100%;
+	_width:0;    /* IE6, IE7 quirks - width/height set programmatically to match container */
+	_height:0;
+	left:0;
+	top:0;
+	display:none;
+}
+
+/* NAVIGATOR BOUNDING BOX */
+.yui-calcontainer .yui-cal-nav {
+	position:absolute;
+	z-index:3;
+	top:0;
+	display:none;
+}
+
+/* NAVIGATOR BUTTONS (based on button-core.css) */
+.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn  {
+	display: -moz-inline-box; /* Gecko */
+	display: inline-block; /* IE, Opera and Safari */
+}
+
+.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button {
+	display: block;
+	*display: inline-block; /* IE */
+	*overflow: visible; /* Remove superfluous padding for IE */
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+}
+
 /* Specific changes for calendar running under fonts/reset */
 .yui-calendar .calbody a:hover {background:inherit;}
 p#clear {clear:left; padding-top:10px;}
@@ -421,7 +581,7 @@ p#clear {clear:left; padding-top:10px;}
 	
 						<div id="exampleToc">
 							<ul>
-								<li><a href='../calendar/quickstart.html'>Quickstart Tutorial</a></li><li><a href='../calendar/multi.html'>Multi-Select Calendar</a></li><li><a href='../calendar/calgrp.html'>Multi-Page Calendar</a></li><li><a href='../calendar/minmax.html'>Minimum/Maximum Dates</a></li><li><a href='../calendar/events.html'>Handling Calendar Events</a></li><li><a href='../calendar/formtxt.html'>Calendar and Text Fields</a></li><li><a href='../calendar/formsel.html'>Calendar and Select Fields</a></li><li><a href='../calendar/render.html'>Using the Render Stack</a></li><li><a href='../calendar/popup.html'>Popup Calendar</a></li><li><a href='../calendar/germany.html'>Localization - Germany</a></li><li><a href='../calendar/japan.html'>Localization - Japan</a></li><li class='selected'><a href='../calendar/calskin.html'>Skinning The Calendar</a></li><li><a href='../editor/cal_editor.html'>Calendar Plugin (included with examples for Rich Text Editor (beta))</a></li><li><a href='../datatable/dt_cellediting.html'>Inline Cell Editing (included with examples for DataTable Control (beta))</a></li><li><a href='../yuiloader/yl-basic.html'>Using YUI Loader to Load the Calendar Control (included with examples for YUI Loader Utility (beta))</a></li>							</ul>
+								<li><a href='../calendar/quickstart.html'>Quickstart Tutorial</a></li><li><a href='../calendar/multi.html'>Multi-Select Calendar</a></li><li><a href='../calendar/calgrp.html'>Multi-Page Calendar</a></li><li><a href='../calendar/minmax.html'>Minimum/Maximum Dates</a></li><li><a href='../calendar/calnavigator.html'>Calendar Navigator</a></li><li><a href='../calendar/events.html'>Handling Calendar Events</a></li><li><a href='../calendar/formtxt.html'>Calendar and Text Fields</a></li><li><a href='../calendar/formsel.html'>Calendar and Select Fields</a></li><li><a href='../calendar/render.html'>Using the Render Stack</a></li><li><a href='../calendar/popup.html'>Popup Calendar</a></li><li><a href='../calendar/germany.html'>Localization - Germany</a></li><li><a href='../calendar/japan.html'>Localization - Japan</a></li><li><a href='../calendar/calcontainer.html'>Calendar inside a Container</a></li><li class='selected'><a href='../calendar/calskin.html'>Skinning The Calendar</a></li><li><a href='../button/btn_example09.html'>Calendar Menu Button (included with examples for Button Control)</a></li><li><a href='../editor/cal_editor.html'>Calendar Plugin (included with examples for Rich Text Editor (beta))</a></li><li><a href='../button/btn_example10.html'>Calendar Split Button (included with examples for Button Control)</a></li><li><a href='../datatable/dt_cellediting.html'>Inline Cell Editing (included with examples for DataTable Control (beta))</a></li><li><a href='../yuiloader/yl-basic.html'>Using YUI Loader to Load the Calendar Control (included with examples for YUI Loader Utility (beta))</a></li>							</ul>
 						</div>
 					</div>
 					
@@ -429,9 +589,10 @@ p#clear {clear:left; padding-top:10px;}
 						<h3>More Calendar Control Resources:</h3>
 						<ul>
 							<li><a href="http://developer.yahoo.com/yui/calendar/">User's Guide</a> (external)</li>
-							<li><a href="../../docs/module_calendar.html">API Documentation</a></li>
-							<li><a href="http://yuiblog.com/assets/pdf/cheatsheets/calendar.pdf">Cheat Sheet PDF</a> (external)</li>
-						</ul>
+						<li><a href="../../docs/module_calendar.html">API Documentation</a></li>
+                            
+                            
+							<li><a href="http://yuiblog.com/assets/pdf/cheatsheets/calendar.pdf">Cheat Sheet PDF</a> (external)</li></ul>
 					</div>
 					
 	
@@ -447,9 +608,10 @@ p#clear {clear:left; padding-top:10px;}
 <div id="toc">
 	
 <ul>
-<li class="sect first">Yahoo! UI Library</li><li class="item"><a title="The Yahoo! User Interface Library (YUI)" href="http://developer.yahoo.com/yui/">Home (external)</a></li><li class="item"><a title="The Yahoo! User Interface Blog" href="http://yuiblog.com">YUIBlog (external)</a></li><li class="item"><a title="The Yahoo! Group YDN-JavaScript hosts the YUI community forum" href="http://tech.groups.yahoo.com/group/ydn-javascript/">YUI Discussion Forum (external)</a></li><li class="item"><a title="The YUI Library can be downloaded from SourceForge" href="http://sourceforge.net/projects/yui/">YUI on Sourceforge (external)</a></li><li class="item"><a title="Instantly searchable API documentation for the entire YUI library." href="../../docs/index.html">API Documentation</a></li><li class="item"><a title="Examples of every YUI utility and control in action" href="../../examples/">Functional Examples</a></li><li class="item"><a title="Videos and podcasts from the YUI Team and from the Yahoo! frontend engineering community." href="http://developer.yahoo.com/yui/theater/">YUI Theater (external)</a></li><li class="item"><a title="YUI is free and open, offered under a BSD license." href="http://developer.yahoo.com/yui/license.html">YUI License (external)</a></li><li class="sect">YUI Functional Examples</li><li class="item"><a title="The YUI Animation Utility - Functional Examples" href="../../examples/animation/index.html">Animation</a></li><li class="item"><a title="The YUI AutoComplete Control - Functional Examples" href="../../examples/autocomplete/index.html">AutoComplete</a></li><li class="item"><a title="The YUI Browser History Manager - Functional Examples" href="../../examples/history/index.html">Browser History Manager (beta)</a></li><li class="item"><a title="The YUI Button Control - Functional Examples" href="../../examples/button/index.html">Button (beta)</a></li><li class="selected "><a title="The YUI Calendar Control - Functional Examples" href="../../examples/calendar/index.html">Calendar</a></li><li class="item"><a title="The YUI Color Picker Control - Functional Examples" href="../../examples/colorpicker/index.html">Color Picker (beta)</a></li><li class="item"><a title="The YUI Connection Manager (AJAX) - Functional Examples" href="../../examples/connection/index.html">Connection Manager</a></li><li class="item"><a title="The YUI Container Family (Module, Overlay, Tooltip, Panel, Dialog, SimpleDialog) - Functional Examples" href="../../examples/container/index.html">Container</a></li><li class="item"><a title="The YUI DataTable Control - Functional Examples" href="../../examples/datatable/index.html">DataTable (beta)</a></li><li class="item"><a title="The YUI Dom Collection - Functional Examples" href="../../examples/dom/index.html">Dom</a></li><li class="item"><a title="The YUI Drag &amp; Drop Utility - Functional Examples" href="../../examples/dragdrop/index.html">Drag &amp; Drop</a></li><li class="item"><a title="The YUI Event Utility - Functional Examples" href="../../examples/event/index.html">Event</a></li><li class="item"><a title="The YUI ImageLoader Utility - Functional Examples" href="../../examples/imageloader/index.html">ImageLoader (experimental)</a></li><li class="item"><a title="The YUI Logger Control - Functional Examples" href="../../examples/logger/index.html">Logger</a></li><li class="item"><a title="The YUI Menu Control - Functional Examples" href="../../examples/menu/index.html">Menu</a></li><li class="item"><a title="The YUI Rich Text Editor - Functional Examples" href="../../examples/editor/index.html">Rich Text Editor (beta)</a></li><li class="item"><a title="The YUI Slider Control - Functional Examples" href="../../examples/slider/index.html">Slider</a></li><li class="item"><a title="The YUI TabView Control - Functional Examples" href="../../examples/tabview/index.html">TabView</a></li><li class="item"><a title="The YUI TreeView Control - Functional Examples" href="../../examples/treeview/index.html">TreeView</a></li><li class="item"><a title="The YUI Loader Utility - Functional Examples" href="../../examples/yuiloader/index.html">YUI Loader (beta)</a></li><li class="item"><a title="The YUI Test Utility - Functional Examples" href="../../examples/yuitest/index.html">YUI Test (beta)</a></li><li class="item"><a title="YUI Reset CSS - Functional Examples" href="../../examples/reset/index.html">Reset CSS</a></li><li class="item"><a title="YUI Base CSS - Functional Examples" href="../../examples/base/index.html">Base CSS</a></li><li class="item"><a title="YUI Fonts CSS - Functional Examples" href="../../examples/fonts/index.html">Fonts CSS</a></li><li class="item"><a title="YUI Grids CSS - Functional Examples" href="../../examples/grids/index.html">Grids CSS</a></li><li class="sect">YUI Articles on the YUI Website</li><li class="item"><a title="Answers to Frequently Asked Questions about the YUI Library" href="http://developer.yahoo.com/yui/articles/faq/">YUI FAQ (external)</a></li><li class="item"><a title="Yahoo!'s philosophy of Graded Browser Support" href="http://developer.yahoo.com/yui/articles/gbs/">Graded Browser Support (external)</a></li><li class="item"><a title="Reporting Bugs and Making Feature Requests for YUI Components" href="http://developer.yahoo.com/yui/articles/reportingbugs/">Bug Reports/Feature Requests (external)</a></li><li class="item"><a title="Serve YUI source files from Yahoo! -- free, fast, and simple" href="http://developer.yahoo.com/yui/articles/hosting/">Serving YUI Files from Yahoo! (external)</a></li><li class="item"><a title="Best practices for working with web services while protecting user privacy" href="http://developer.yahoo.com/security/">Security Best Practices (external)</a></li></ul>
+<li class="sect first">Yahoo! UI Library</li><li class="item"><a title="The Yahoo! User Interface Library (YUI)" href="http://developer.yahoo.com/yui/">Home (external)</a></li><li class="item"><a title="The Yahoo! User Interface Blog" href="http://yuiblog.com">YUIBlog (external)</a></li><li class="item"><a title="The Yahoo! Group YDN-JavaScript hosts the YUI community forum" href="http://tech.groups.yahoo.com/group/ydn-javascript/">YUI Discussion Forum (external)</a></li><li class="item"><a title="The YUI Library can be downloaded from SourceForge" href="http://sourceforge.net/projects/yui/">YUI on Sourceforge (external)</a></li><li class="item"><a title="Instantly searchable API documentation for the entire YUI library." href="../../docs/index.html">API Documentation</a></li><li class="item"><a title="Examples of every YUI utility and control in action" href="../../examples/">Functional Examples</a></li><li class="item"><a title="Videos and podcasts from the YUI Team and from the Yahoo! frontend engineering community." href="http://developer.yahoo.com/yui/theater/">YUI Theater (external)</a></li><li class="item"><a title="YUI is free and open, offered under a BSD license." href="http://developer.yahoo.com/yui/license.html">YUI License (external)</a></li><li class="sect">YUI Functional Examples</li><li class="item"><a title="The YUI Animation Utility - Functional Examples" href="../../examples/animation/index.html">Animation</a></li><li class="item"><a title="The YUI AutoComplete Control - Functional Examples" href="../../examples/autocomplete/index.html">AutoComplete</a></li><li class="item"><a title="The YUI Browser History Manager - Functional Examples" href="../../examples/history/index.html">Browser History Manager</a></li><li class="item"><a title="The YUI Button Control - Functional Examples" href="../../examples/button/index.html">Button</a></li><li class="selected "><a title="The YUI Calendar Control - Functional Examples" href="../../examples/calendar/index.html">Calendar</a></li><li class="item"><a title="The YUI Charts Control - Functional Examples" href="../../examples/charts/index.html">Charts (experimental)</a></li><li class="item"><a title="The YUI Color Picker Control - Functional Examples" href="../../examples/colorpicker/index.html">Color Picker (beta)</a></li><li class="item"><a title="The YUI Connection Manager (AJAX) - Functional Examples" href="../../examples/connection/index.html">Connection Manager</a></li><li class="item"><a title="The YUI Container Family (Module, Overlay, Tooltip, Panel, Dialog, SimpleDialog) - Functional Examples" href="../../examples/container/index.html">Container</a></li><li class="item"><a title="The YUI DataTable Control - Functional Examples" href="../../examples/datatable/index.html">DataTable (beta)</a></li><li class="item"><a title="The YUI Dom Collection - Functional Examples" href="../../examples/dom/index.html">Dom</a></li><li class="item"><a title="The YUI Drag &amp; Drop Utility - Functional Examples" href="../../examples/dragdrop/index.html">Drag &amp; Drop</a></li><li class="item"><a title="The YUI Event Utility - Functional Examples" href="../../examples/event/index.html">Event</a></li><li class="item"><a title="The YUI Get Utility - Functional Examples" href="../../examples/get/index.html">Get (beta)</a></li><li class="item"><a title="The YUI ImageLoader Utility - Functional Examples" href="../../examples/imageloader/index.html">ImageLoader (beta)</a></li><li class="item"><a title="The YUI JSON Utility - Functional Examples" href="../../examples/json/index.html">JSON (beta)</a></li><li class="item"><a title="The YUI Logger Control - Functional Examples" href="../../examples/logger/index.html">Logger</a></li><li class="item"><a title="The YUI Menu Control - Functional Examples" href="../../examples/menu/index.html">Menu</a></li><li class="item"><a title="The YUI Profiler Utility - Functional Examples" href="../../examples/profiler/index.html">Profiler (beta)</a></li><li class="item"><a title="The YUI Rich Text Editor - Functional Examples" href="../../examples/editor/index.html">Rich Text Editor (beta)</a></li><li class="item"><a title="The YUI Selector Utility - Functional Examples" href="../../examples/selector/index.html">Selector (beta)</a></li><li class="item"><a title="The YUI Slider Control - Functional Examples" href="../../examples/slider/index.html">Slider</a></li><li class="item"><a title="The YUI TabView Control - Functional Examples" href="../../examples/tabview/index.html">TabView</a></li><li class="item"><a title="The YUI TreeView Control - Functional Examples" href="../../examples/treeview/index.html">TreeView</a></li><li class="item"><a title="The YUI YAHOO Global Object - Functional Examples" href="../../examples/yahoo/index.html">YAHOO Global Object</a></li><li class="item"><a title="The YUI Loader Utility - Functional Examples" href="../../examples/yuiloader/index.html">YUI Loader (beta)</a></li><li class="item"><a title="The YUI Test Utility - Functional Examples" href="../../examples/yuitest/index.html">YUI Test (beta)</a></li><li class="item"><a title="YUI Reset CSS - Functional Examples" href="../../examples/reset/index.html">Reset CSS</a></li><li class="item"><a title="YUI Base CSS - Functional Examples" href="../../examples/base/index.html">Base CSS</a></li><li class="item"><a title="YUI Fonts CSS - Functional Examples" href="../../examples/fonts/index.html">Fonts CSS</a></li><li class="item"><a title="YUI Grids CSS - Functional Examples" href="../../examples/grids/index.html">Grids CSS</a></li><li class="sect">YUI Articles on the YUI Website</li><li class="item"><a title="Answers to Frequently Asked Questions about the YUI Library" href="http://developer.yahoo.com/yui/articles/faq/">YUI FAQ (external)</a></li><li class="item"><a title="Yahoo!'s philosophy of Graded Browser Support" href="http://developer.yahoo.com/yui/articles/gbs/">Graded Browser Support (external)</a></li><li class="item"><a title="Reporting Bugs and Making Feature Requests for YUI Components" href="http://developer.yahoo.com/yui/articles/reportingbugs/">Bug Reports/Feature Requests (external)</a></li><li class="item"><a title="Serve YUI source files from Yahoo! -- free, fast, and simple" href="http://developer.yahoo.com/yui/articles/hosting/">Serving YUI Files from Yahoo! (external)</a></li><li class="item"><a title="Best practices for working with web services while protecting user privacy" href="http://developer.yahoo.com/security/">Security Best Practices (external)</a></li></ul>
 </div>
 </div>
+	</div><!--closes bd-->
 
 	<div id="ft">
         <p class="first">Copyright &copy; 2007 Yahoo! Inc. All rights reserved.</p>
@@ -458,7 +620,6 @@ p#clear {clear:left; padding-top:10px;}
             <a href="http://docs.yahoo.com/info/copyright/copyright.html">Copyright Policy</a> - 
             <a href="http://careers.yahoo.com/">Job Openings</a></p>
 	</div>
-</div>
 </div>
 <script src="../../assets/dpSyntaxHighlighter.js"></script>
 <script language="javascript"> 

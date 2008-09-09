@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>yuitest&nbsp; <span class="subtitle">2.3.1</span></h3>
+        <h3>yuitest&nbsp; <span class="subtitle">2.4.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_yuitest.html">yuitest</a>
@@ -169,8 +169,8 @@
                 <span class="k">break</span><span class="o">;</span>
                 
             <span class="nx">case</span> <span class="nx">TestRunner</span><span class="o">.</span><span class="nx">COMPLETE_EVENT</span><span class="o">:</span>
-                <span class="nx">message</span> <span class="o">=</span> <span class="s2">&quot;Testing completed at &quot;</span> <span class="o">+</span> <span class="o">(</span><span class="k">new</span> <span class="nb">Date</span><span class="o">()).</span><span class="nx">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s2">&quot;.\nPassed:&quot;</span> 
-                    <span class="o">+</span> <span class="nx">data</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">passed</span> <span class="o">+</span> <span class="s2">&quot; Failed:&quot;</span> <span class="o">+</span> <span class="nx">data</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">failed</span> <span class="o">+</span> <span class="s2">&quot; Total:&quot;</span> <span class="o">+</span> <span class="nx">data</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">total</span><span class="o">;</span>
+                <span class="nx">message</span> <span class="o">=</span> <span class="s2">&quot;Testing completed at &quot;</span> <span class="o">+</span> <span class="o">(</span><span class="k">new</span> <span class="nb">Date</span><span class="o">()).</span><span class="nx">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s2">&quot;.\nPassed:&quot;</span> <span class="o">+</span> 
+                    <span class="nx">data</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">passed</span> <span class="o">+</span> <span class="s2">&quot; Failed:&quot;</span> <span class="o">+</span> <span class="nx">data</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">failed</span> <span class="o">+</span> <span class="s2">&quot; Total:&quot;</span> <span class="o">+</span> <span class="nx">data</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">total</span><span class="o">;</span>
                 <span class="nx">messageType</span> <span class="o">=</span> <span class="s2">&quot;info&quot;</span><span class="o">;</span>
                 <span class="k">break</span><span class="o">;</span>
                 
@@ -195,8 +195,8 @@
                 <span class="k">break</span><span class="o">;</span>
                 
             <span class="nx">case</span> <span class="nx">TestRunner</span><span class="o">.</span><span class="nx">TEST_SUITE_COMPLETE_EVENT</span><span class="o">:</span>
-                <span class="nx">message</span> <span class="o">=</span> <span class="s2">&quot;Test suite \&quot;&quot;</span> <span class="o">+</span> <span class="nx">data</span><span class="o">.</span><span class="nx">testSuite</span><span class="o">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot;\&quot; completed.\nPassed:&quot;</span> 
-                    <span class="o">+</span> <span class="nx">data</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">passed</span> <span class="o">+</span> <span class="s2">&quot; Failed:&quot;</span> <span class="o">+</span> <span class="nx">data</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">failed</span> <span class="o">+</span> <span class="s2">&quot; Total:&quot;</span> <span class="o">+</span> <span class="nx">data</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">total</span><span class="o">;</span>
+                <span class="nx">message</span> <span class="o">=</span> <span class="s2">&quot;Test suite \&quot;&quot;</span> <span class="o">+</span> <span class="nx">data</span><span class="o">.</span><span class="nx">testSuite</span><span class="o">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot;\&quot; completed.\nPassed:&quot;</span> <span class="o">+</span> 
+                    <span class="nx">data</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">passed</span> <span class="o">+</span> <span class="s2">&quot; Failed:&quot;</span> <span class="o">+</span> <span class="nx">data</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">failed</span> <span class="o">+</span> <span class="s2">&quot; Total:&quot;</span> <span class="o">+</span> <span class="nx">data</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">total</span><span class="o">;</span>
                 <span class="nx">messageType</span> <span class="o">=</span> <span class="s2">&quot;info&quot;</span><span class="o">;</span>
                 <span class="k">break</span><span class="o">;</span>
                 
@@ -206,8 +206,8 @@
                 <span class="k">break</span><span class="o">;</span>
                 
             <span class="nx">case</span> <span class="nx">TestRunner</span><span class="o">.</span><span class="nx">TEST_CASE_COMPLETE_EVENT</span><span class="o">:</span>
-                <span class="nx">message</span> <span class="o">=</span> <span class="s2">&quot;Test case \&quot;&quot;</span> <span class="o">+</span> <span class="nx">data</span><span class="o">.</span><span class="nx">testCase</span><span class="o">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot;\&quot; completed.\nPassed:&quot;</span> 
-                    <span class="o">+</span> <span class="nx">data</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">passed</span> <span class="o">+</span> <span class="s2">&quot; Failed:&quot;</span> <span class="o">+</span> <span class="nx">data</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">failed</span> <span class="o">+</span> <span class="s2">&quot; Total:&quot;</span> <span class="o">+</span> <span class="nx">data</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">total</span><span class="o">;</span>
+                <span class="nx">message</span> <span class="o">=</span> <span class="s2">&quot;Test case \&quot;&quot;</span> <span class="o">+</span> <span class="nx">data</span><span class="o">.</span><span class="nx">testCase</span><span class="o">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot;\&quot; completed.\nPassed:&quot;</span> <span class="o">+</span> 
+                    <span class="nx">data</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">passed</span> <span class="o">+</span> <span class="s2">&quot; Failed:&quot;</span> <span class="o">+</span> <span class="nx">data</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">failed</span> <span class="o">+</span> <span class="s2">&quot; Total:&quot;</span> <span class="o">+</span> <span class="nx">data</span><span class="o">.</span><span class="nx">results</span><span class="o">.</span><span class="nx">total</span><span class="o">;</span>
                 <span class="nx">messageType</span> <span class="o">=</span> <span class="s2">&quot;info&quot;</span><span class="o">;</span>
                 <span class="k">break</span><span class="o">;</span>
             <span class="nx">default</span><span class="o">:</span>
@@ -238,6 +238,8 @@
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_charts.html">charts</a></li>
+
                                 <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
 
                                 <li class=""><a href="module_connection.html">connection</a></li>
@@ -247,6 +249,8 @@
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
+
+                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -258,13 +262,23 @@
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
+                                <li class=""><a href="module_get.html">get</a></li>
+
                                 <li class=""><a href="module_history.html">history</a></li>
 
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
+                                <li class=""><a href="module_json.html">json</a></li>
+
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
+
+                                <li class=""><a href="module_number.html">number</a></li>
+
+                                <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_selector.html">selector</a></li>
 
                                 <li class=""><a href="module_slider.html">slider</a></li>
 
@@ -284,8 +298,10 @@
                         <h4>Classes</h4>
                         <ul class="content">
                                 <li class=""><a href="YAHOO.tool.TestCase.html">YAHOO.tool.TestCase</a></li>
+                                <li class=""><a href="YAHOO.tool.TestCase.Wait.html">YAHOO.tool.TestCase.Wait</a></li>
                                 <li class=""><a href="YAHOO.tool.TestLogger.html">YAHOO.tool.TestLogger</a></li>
                                 <li class=""><a href="YAHOO.tool.TestManager.html">YAHOO.tool.TestManager</a></li>
+                                <li class=""><a href="YAHOO.tool.TestNode.html">YAHOO.tool.TestNode</a></li>
                                 <li class=""><a href="YAHOO.tool.TestRunner.html">YAHOO.tool.TestRunner</a></li>
                                 <li class=""><a href="YAHOO.tool.TestSuite.html">YAHOO.tool.TestSuite</a></li>
                                 <li class=""><a href="YAHOO.util.ArrayAssert.html">YAHOO.util.ArrayAssert</a></li>

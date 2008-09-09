@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>yuitest&nbsp; <span class="subtitle">2.3.1</span></h3>
+        <h3>yuitest&nbsp; <span class="subtitle">2.4.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_yuitest.html">yuitest</a>
@@ -73,23 +73,81 @@
 
 <span class="o">};</span>
 
+
 <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">tool</span><span class="o">.</span><span class="nx">TestCase</span><span class="o">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="o">{</span>  
 
+    <span class="c">/**</span>
+<span class="c">     * Resumes a paused test and runs the given function.</span>
+<span class="c">     * @param {Function} segment (Optional) The function to run.</span>
+<span class="c">     *      If omitted, the test automatically passes.</span>
+<span class="c">     * @return {Void}</span>
+<span class="c">     * @method resume</span>
+<span class="c">     */</span>
+    <span class="nx">resume</span> <span class="o">:</span> <span class="k">function</span> <span class="o">(</span><span class="nx">segment</span> <span class="c">/*:Function*/</span><span class="o">)</span> <span class="c">/*:Void*/</span> <span class="o">{</span>
+        <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">tool</span><span class="o">.</span><span class="nx">TestRunner</span><span class="o">.</span><span class="nx">resume</span><span class="o">(</span><span class="nx">segment</span><span class="o">);</span>
+    <span class="o">},</span>
+
+    <span class="c">/**</span>
+<span class="c">     * Causes the test case to wait a specified amount of time and then</span>
+<span class="c">     * continue executing the given code.</span>
+<span class="c">     * @param {Function} segment (Optional) The function to run after the delay.</span>
+<span class="c">     *      If omitted, the TestRunner will wait until resume() is called.</span>
+<span class="c">     * @param {int} delay (Optional) The number of milliseconds to wait before running</span>
+<span class="c">     *      the function. If omitted, defaults to zero.</span>
+<span class="c">     * @return {Void}</span>
+<span class="c">     * @method wait</span>
+<span class="c">     */</span>
+    <span class="nx">wait</span> <span class="o">:</span> <span class="k">function</span> <span class="o">(</span><span class="nx">segment</span> <span class="c">/*:Function*/</span><span class="o">,</span> <span class="nx">delay</span> <span class="c">/*:int*/</span><span class="o">)</span> <span class="c">/*:Void*/</span><span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">tool</span><span class="o">.</span><span class="nx">TestCase</span><span class="o">.</span><span class="nx">Wait</span><span class="o">(</span><span class="nx">segment</span><span class="o">,</span> <span class="nx">delay</span><span class="o">);</span>
+    <span class="o">},</span>
+
     <span class="c">//-------------------------------------------------------------------------</span>
-<span class="c"></span>    <span class="c">// Test Methods</span>
+<span class="c"></span>    <span class="c">// Stub Methods</span>
 <span class="c"></span>    <span class="c">//-------------------------------------------------------------------------</span>
 <span class="c"></span>
     <span class="c">/**</span>
 <span class="c">     * Function to run before each test is executed.</span>
+<span class="c">     * @return {Void}</span>
+<span class="c">     * @method setUp</span>
 <span class="c">     */</span>
     <span class="nx">setUp</span> <span class="o">:</span> <span class="k">function</span> <span class="o">()</span> <span class="c">/*:Void*/</span> <span class="o">{</span>
     <span class="o">},</span>
     
     <span class="c">/**</span>
 <span class="c">     * Function to run after each test is executed.</span>
+<span class="c">     * @return {Void}</span>
+<span class="c">     * @method tearDown</span>
 <span class="c">     */</span>
     <span class="nx">tearDown</span><span class="o">:</span> <span class="k">function</span> <span class="o">()</span> <span class="c">/*:Void*/</span> <span class="o">{</span>    
     <span class="o">}</span>
+<span class="o">};</span>
+
+<span class="c">/**</span>
+<span class="c"> * Represents a stoppage in test execution to wait for an amount of time before</span>
+<span class="c"> * continuing.</span>
+<span class="c"> * @param {Function} segment A function to run when the wait is over.</span>
+<span class="c"> * @param {int} delay The number of milliseconds to wait before running the code.</span>
+<span class="c"> * @class Wait</span>
+<span class="c"> * @namespace YAHOO.tool.TestCase</span>
+<span class="c"> * @constructor</span>
+<span class="c"> *</span>
+<span class="c"> */</span>
+<span class="nx">YAHOO</span><span class="o">.</span><span class="nx">tool</span><span class="o">.</span><span class="nx">TestCase</span><span class="o">.</span><span class="nx">Wait</span> <span class="o">=</span> <span class="k">function</span> <span class="o">(</span><span class="nx">segment</span> <span class="c">/*:Function*/</span><span class="o">,</span> <span class="nx">delay</span> <span class="c">/*:int*/</span><span class="o">)</span> <span class="o">{</span>
+    
+    <span class="c">/**</span>
+<span class="c">     * The segment of code to run when the wait is over.</span>
+<span class="c">     * @type Function</span>
+<span class="c">     * @property segment</span>
+<span class="c">     */</span>
+    <span class="k">this</span><span class="o">.</span><span class="nx">segment</span> <span class="c">/*:Function*/</span> <span class="o">=</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isFunction</span><span class="o">(</span><span class="nx">segment</span><span class="o">)</span> <span class="o">?</span> <span class="nx">segment</span> <span class="o">:</span> <span class="kc">null</span><span class="o">);</span>
+
+    <span class="c">/**</span>
+<span class="c">     * The delay before running the segment of code.</span>
+<span class="c">     * @type int</span>
+<span class="c">     * @property delay</span>
+<span class="c">     */</span>
+    <span class="k">this</span><span class="o">.</span><span class="nx">delay</span> <span class="c">/*:int*/</span> <span class="o">=</span> <span class="o">(</span><span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">isNumber</span><span class="o">(</span><span class="nx">delay</span><span class="o">)</span> <span class="o">?</span> <span class="nx">delay</span> <span class="o">:</span> <span class="m">0</span><span class="o">);</span>
+
 <span class="o">};</span>
 </pre></div>
                     </div>
@@ -110,6 +168,8 @@
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_charts.html">charts</a></li>
+
                                 <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
 
                                 <li class=""><a href="module_connection.html">connection</a></li>
@@ -119,6 +179,8 @@
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
+
+                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -130,13 +192,23 @@
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
+                                <li class=""><a href="module_get.html">get</a></li>
+
                                 <li class=""><a href="module_history.html">history</a></li>
 
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
+                                <li class=""><a href="module_json.html">json</a></li>
+
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
+
+                                <li class=""><a href="module_number.html">number</a></li>
+
+                                <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_selector.html">selector</a></li>
 
                                 <li class=""><a href="module_slider.html">slider</a></li>
 
@@ -156,8 +228,10 @@
                         <h4>Classes</h4>
                         <ul class="content">
                                 <li class=""><a href="YAHOO.tool.TestCase.html">YAHOO.tool.TestCase</a></li>
+                                <li class=""><a href="YAHOO.tool.TestCase.Wait.html">YAHOO.tool.TestCase.Wait</a></li>
                                 <li class=""><a href="YAHOO.tool.TestLogger.html">YAHOO.tool.TestLogger</a></li>
                                 <li class=""><a href="YAHOO.tool.TestManager.html">YAHOO.tool.TestManager</a></li>
+                                <li class=""><a href="YAHOO.tool.TestNode.html">YAHOO.tool.TestNode</a></li>
                                 <li class=""><a href="YAHOO.tool.TestRunner.html">YAHOO.tool.TestRunner</a></li>
                                 <li class=""><a href="YAHOO.tool.TestSuite.html">YAHOO.tool.TestSuite</a></li>
                                 <li class=""><a href="YAHOO.util.ArrayAssert.html">YAHOO.util.ArrayAssert</a></li>

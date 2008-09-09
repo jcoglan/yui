@@ -1,5 +1,4 @@
 <?php
-
 function getRawEditorData($paramName) {
 	if ($paramName) {
 		if (isset($_POST[$paramName])) {

@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>YAHOO Global&nbsp; <span class="subtitle">2.3.1</span></h3>
+        <h3>YAHOO Global&nbsp; <span class="subtitle">2.4.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_yahoo.html">yahoo</a>
@@ -84,7 +84,15 @@
 <span class="c"> * @see yuiloader</span>
 <span class="c"> */</span>
 
-<span class="k">if</span> <span class="o">(</span><span class="k">typeof</span> <span class="nx">YAHOO</span> <span class="o">==</span> <span class="s2">&quot;undefined&quot;</span><span class="o">)</span> <span class="o">{</span>
+<span class="c">/**</span>
+<span class="c"> * Forces the use of the supplied locale where applicable in the library</span>
+<span class="c"> * @property locale</span>
+<span class="c"> * @type string</span>
+<span class="c"> * @static</span>
+<span class="c"> * @default undefined</span>
+<span class="c"> */</span>
+
+<span class="k">if</span> <span class="o">(</span><span class="k">typeof</span> <span class="nx">YAHOO</span> <span class="o">==</span> <span class="s2">&quot;undefined&quot;</span> <span class="o">||</span> <span class="o">!</span><span class="nx">YAHOO</span><span class="o">)</span> <span class="o">{</span>
     <span class="c">/**</span>
 <span class="c">     * The YAHOO global namespace object.  If YAHOO is already defined, the</span>
 <span class="c">     * existing YAHOO object will not be overwritten so that defined</span>
@@ -211,6 +219,8 @@
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_charts.html">charts</a></li>
+
                                 <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
 
                                 <li class=""><a href="module_connection.html">connection</a></li>
@@ -220,6 +230,8 @@
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
+
+                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -231,13 +243,23 @@
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
+                                <li class=""><a href="module_get.html">get</a></li>
+
                                 <li class=""><a href="module_history.html">history</a></li>
 
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
+                                <li class=""><a href="module_json.html">json</a></li>
+
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
+
+                                <li class=""><a href="module_number.html">number</a></li>
+
+                                <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_selector.html">selector</a></li>
 
                                 <li class=""><a href="module_slider.html">slider</a></li>
 

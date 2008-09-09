@@ -24,6 +24,7 @@
             html {
             
                 overflow: hidden;
+                background-color: #dfb8df;
             
             }
 
@@ -34,14 +35,13 @@
             }
 
             body {
-            
-                background-color: #dfb8df;
+
                 overflow: hidden;
             
             }
 
 
-            /* Define a style for the H1 "toolbar" */
+            /* Define a style for the <H1> "toolbar" */
 
             .ytoolbar {
 
@@ -50,6 +50,7 @@
                 border-top-style: solid;
                 background-color: #ccc;
                 position: absolute;
+                bottom: 0;
                 width: 100%;
             
             }
@@ -63,8 +64,8 @@
                 border-color: #ddd #666 #666 #ddd;
                 border-style: solid;
                 float: left;
-                *float: none;
-                *display: inline-block;
+                *float: none;   /* For IE */
+                *display: inline-block; /* For IE */
                 padding: 4px 12px 4px 28px;
                 margin: 4px;
                 background-color: #ccc;
@@ -83,6 +84,13 @@
 
             /* Define a new style for each menu */
 
+            .yui-skin-sam .yuimenu {
+            
+                line-height: 2;  /* ~24px */
+                *line-height: 1.9; /* For IE */
+            
+            }
+
             .yui-skin-sam .yuimenu .bd {
 
                 border-width: 2px;
@@ -93,33 +101,45 @@
             }
 
 
-            /* Define a new style for each menu item */
+            /* Define a new style for each MenuItem instance. */
 
             .yui-skin-sam #yproducts li.yuimenuitem .yuimenuitemlabel {
 
                 background: url(http://us.i1.yimg.com/us.yimg.com/i/us/nt/b/purpley.1.0.gif) no-repeat 4px;
                 padding: 0 20px 0 24px;
-                line-height: 2;  /* ~24px */
-                *line-height: 1.9; /* For IE */
 
             }
 
-            /* Define a new style for an item's "selected" state */
+            .yui-skin-sam #yproducts li.yuimenuitem {
+            
+                /*
+                    For IE 7 Quirks and IE 6 Strict Mode and Quirks Mode:
+                    Used to collapse superfluous white space between <li> 
+                    elements that is triggered by the "display" property of the
+                    <a> elements being set to "block."
+                */
+            
+                _border-bottom: solid 1px #ccc;
+            
+            }
 
-            .yui-skin-sam #yproducts li.yuimenuitem a.selected {
+
+            /* Define a new style for a MenuItem instance's "selected" state. */
+
+            .yui-skin-sam #yproducts .yuimenuitem-selected {
 
                 background-color: #039;
+
+            }
+
+            .yui-skin-sam #yproducts .yuimenuitemlabel-selected {
+
                 color: #fff;
 
             }
             
-            .yui-skin-sam .visible li.yuimenuitem .yuimenuitemlabel {
-            
-                *height: 1.9em; /* For IE */
-            
-            }
-            
-            /* Add icons to menu items */
+
+            /* Add unique icons to some of the MenuItem instances. */
 
             .yui-skin-sam #yproducts li#help .yuimenuitemlabel {
 
@@ -139,18 +159,6 @@
 
             }
 
-            .yui-skin-sam .visible .yuimenuitemlabel .submenuindicator {
-            
-                *margin: -1.2em 8px 0 8px;
-            
-            }
-
-            .yui-skin-sam #yproducts.visible li.yuimenuitem .hassubmenu {
-
-                *padding-right: 0;                
-            
-            }
-
         </style>
 
         <!-- Dependency source files -->
@@ -168,10 +176,63 @@
 
         <script type="text/javascript">
 
-            // Initialize and render the menu when it is available in the DOM
+            /*
+                 Initialize and render the MenuBar when its elements are ready 
+                 to be scripted.
+            */
 
             YAHOO.util.Event.onContentReady("yproducts", function () {
+
+                var oPanel = new YAHOO.widget.Panel(
+                                    "exampleinfo", 
+                                    { 
+                                        constraintoviewport: true,
+                                        fixedcenter: true,
+                                        width: "400px",
+                                        zindex: 1
+                                    }
+                                );
+
+                 oPanel.setHeader("OS-Style Programs Menu Example");
+                 oPanel.setBody("This example demonstrates how to transform existing markup on the page into an operating-system-like menu.");
+
+                 oPanel.render(document.body);            
+
             
+
+                /*
+                    Apply the "ytoolbar" class to the <H1> so that it is styled 
+                    like an application toolbar.
+                */
+
+                var oH1 = document.getElementsByTagName("h1")[0];
+
+                YAHOO.util.Dom.addClass(oH1, "ytoolbar");
+
+
+                /*
+                     Instantiate a Menu:  The first argument passed to the 
+                     constructor is the id of the element in the page 
+                     representing the Menu; the second is an object literal 
+                     of configuration properties.
+                */
+
+                var oMenu = new YAHOO.widget.Menu("yproducts", { zindex: 2 });
+
+
+                /*
+                     Aligns the bottom-left corner of Menu instance to the  
+                     top-left corner of the Yahoo! anchor element that is 
+                     its context element.
+                */
+
+                function positionMenu() {
+
+                    oMenu.align("bl", "tl");
+
+                }
+
+
                 // "click" handler for the "Go to..." menu item
     
                 function onGotoClick() {
@@ -187,62 +248,42 @@
                 }
 
 
-                var oH1 = document.getElementsByTagName("h1")[0];
-
-
                 /*
-                    Apply the "ytoolbar" class to the H1 so that it is styled 
-                    like an application toolbar
+                      Add an additional item to the Menu instance.  Unlike the 
+                      other items in the Menu instance, this item is added via 
+                      script since its functionality requires JavaScript.
                 */
-
-                YAHOO.util.Dom.addClass(oH1, "ytoolbar");
-
-
-                function PositionToolbar() {
-
-                    // Position the H1 "toolbar" to the bottom of the viewport
-    
-                    var nViewportHeight = YAHOO.util.Dom.getViewportHeight(),
-                        nToolbarHeight = oH1.offsetHeight;
-                    
-                    oH1.style.top = (nViewportHeight - nToolbarHeight) + "px";                
-
-                }
-
-                PositionToolbar();
-
-
-                // Instantiate the root menu and submenus
-
-                var oMenu = new YAHOO.widget.Menu(
-                                    "yproducts", 
-                                    { constraintoviewport: true, zindex: 2 } 
-                                );
-
 
                 oMenu.addItem({ text: "Go to...", id: "goto", onclick: { fn: onGotoClick } });
 
 
-                oMenu.beforeShowEvent.subscribe(PositionMenu);
+                /*
+                    "beforeShow" event listener - used to position the 
+                    root Menu instance when it is displayed.
+                */
+
+                oMenu.subscribe("beforeShow", function () {
+                
+                    if (this.getRoot() == this) {
+
+                        positionMenu();
+
+                    }
+                
+                });
 
 
                 /*
                      Call the "render" method with no arguments since the 
-                     markup for this menu already exists in the DOM.
+                     markup for this menu already exists in the pages.
                 */
 
                 oMenu.render();
 
-                function PositionMenu() {
-
-                    oMenu.align("bl", "tl");
-
-                }
-
 
                 /*
                     Position the bottom-left corner of the root menu to the 
-                    top-left corner of the "Yahoo!" anchor
+                    top-left corner of the "Yahoo!" anchor element.
                 */
 
                 oMenu.cfg.setProperty("context", ["yahoo", "bl", "tl"]);
@@ -253,23 +294,11 @@
                 function onYahooClick(p_oEvent) {
     
                     // Position and display the menu
-
-                    var IE = YAHOO.env.ua.ie,
-                        bStrictMode = (document.compatMode == "CSS1Compat");
-
-                    if ((IE == 7 && bStrictMode) || !IE) {
                     
-                        PositionMenu();
-                    
-                    }
+                    positionMenu();
 
                     oMenu.show();
 
-                    if (IE == 6 || (IE == 7 && !bStrictMode)) {
-                    
-                        PositionMenu();
-                    
-                    }
   
                     // Stop propagation and prevent the default "click" behavior
     
@@ -286,39 +315,12 @@
                 YAHOO.util.Event.addListener("yahoo", "click", onYahooClick);
 
 
-                // "resize" handler for the window
-    
-                function onWindowResize() {
-
-                    PositionToolbar();
-                    
-                    PositionMenu();
-                
-                }
-
-
                 /*
                     Add a "resize" event handler for the window that will 
                     reposition the H1 "toolbar" to the bottom of the viewport
                 */
 
-                YAHOO.widget.Overlay.windowResizeEvent.subscribe(onWindowResize);
-
-                var oPanel = new YAHOO.widget.Panel(
-                                    "exampleinfo", 
-                                    { 
-                                        constraintoviewport: true,
-                                        fixedcenter: true,
-                                        width: "400px",
-                                        zindex: 1
-                                    }
-                                );
-                
-                
-                oPanel.setHeader("OS-Style Programs Menu Example");
-                oPanel.setBody("This example demonstrates how to transform existing markup on the page into an operating-system-like menu.");
-
-                oPanel.render(document.body);
+                YAHOO.widget.Overlay.windowResizeEvent.subscribe(positionMenu);
             
             });
 
@@ -342,7 +344,7 @@
                                 	<li><a href="http://notepad.yahoo.com">Yahoo! Notepad</a></li>
                                 	<li><a href="http://messenger.yahoo.com">Yahoo! Messenger</a></li>
                                 	<li><a href="http://360.yahoo.com">Yahoo! 360</a></li>
-                                	<li><a href="http://photos.yahoo.com">Yahoo! Photos</a></li>
+                                	<li><a href="http://www.flickr.com">Flickr Photo Sharing</a></li>
                                     <li><a href="http://finance.yahoo.com/">Finance</a></li>
                                     <li><a href="http://entertainment.yahoo.com/">Entertainment</a>
                                         <div id="entertainmentproducts">

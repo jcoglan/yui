@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>editor&nbsp; <span class="subtitle">2.3.1</span></h3>
+        <h3>editor&nbsp; <span class="subtitle">2.4.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_editor.html">editor</a>
@@ -156,21 +156,6 @@
 
                                     <hr />
                                     </div>
-                                    <div class="">
-                                    <h4><a name="_disabled">_disabled</a>
-                                        <code>- Object</code>
-                                    </h4>
-                                    <div class="detail">
-                                        <div class="description">
-                                            Object to track button status when enabling/disabling the toolbar
-                                        </div>
-                                    </div>
-     
-                                        
-
-
-                                    <hr />
-                                    </div>
                                     <div class="protected">
                                     <h4><a name="_sep">_sep</a>
                                         <code>- protected HTMLElement</code>
@@ -238,6 +223,21 @@
                                     <div class="detail">
                                         <div class="description">
                                             Standard browser detection
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4><a name="buttonType">buttonType</a>
+                                        <code>- Object</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            The default button to use
                                         </div>
                                     </div>
      
@@ -626,7 +626,7 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>_oButton &lt;Object&gt;</code>
-                                                             <a href="YAHOO.widget.Button.html">YAHOO.widget.Button</a> reference
+                                                             <a href="YAHOO.widget.ToolbarButton.html">YAHOO.widget.ToolbarButton</a> reference
                                                         </dd>
                                                 </dl>
 
@@ -676,7 +676,7 @@
                                                     <dt>Parameters:</dt>
                                                         <dd>
                                                             <code>_button &lt;Object&gt;</code>
-                                                             <a href="YAHOO.widget.Button.html">YAHOO.widget.Button</a> reference
+                                                             <a href="YAHOO.widget.ToolbarButton.html">YAHOO.widget.ToolbarButton</a> reference
                                                         </dd>
                                                         <dd>
                                                             <code>oButton &lt;Object&gt;</code>
@@ -1323,7 +1323,7 @@ push, split, menu, select, color, spin
                                         
                                         
                                         
-                                        <a href="YAHOO.widget.Button.html">YAHOO.widget.Button</a>
+                                        <a href="YAHOO.widget.ToolbarButton.html">YAHOO.widget.ToolbarButton</a>
                                             <strong>getButtonById</strong>
                                            (
                                                 
@@ -1351,7 +1351,7 @@ push, split, menu, select, color, spin
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
-                                                        <a href="YAHOO.widget.Button.html">YAHOO.widget.Button</a>
+                                                        <a href="YAHOO.widget.ToolbarButton.html">YAHOO.widget.ToolbarButton</a>
                                                     </code></dt>
                                                     <dd></dd>
                                                 </dl>
@@ -1369,7 +1369,7 @@ push, split, menu, select, color, spin
                                         
                                         
                                         
-                                        <a href="YAHOO.widget.Button.html">YAHOO.widget.Button</a>
+                                        <a href="YAHOO.widget.ToolbarButton.html">YAHOO.widget.ToolbarButton</a>
                                             <strong>getButtonByIndex</strong>
                                            (
                                                 
@@ -1397,7 +1397,7 @@ push, split, menu, select, color, spin
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
-                                                        <a href="YAHOO.widget.Button.html">YAHOO.widget.Button</a>
+                                                        <a href="YAHOO.widget.ToolbarButton.html">YAHOO.widget.ToolbarButton</a>
                                                     </code></dt>
                                                     <dd></dd>
                                                 </dl>
@@ -1415,7 +1415,7 @@ push, split, menu, select, color, spin
                                         
                                         
                                         
-                                        <a href="YAHOO.widget.Button.html">YAHOO.widget.Button</a> or <a href="YAHOO.widget.MenuItem.html">YAHOO.widget.MenuItem</a>
+                                        <a href="YAHOO.widget.ToolbarButton.html">YAHOO.widget.ToolbarButton</a> or <a href="YAHOO.widget.MenuItem.html">YAHOO.widget.MenuItem</a>
                                             <strong>getButtonByValue</strong>
                                            (
                                                 
@@ -1443,7 +1443,7 @@ push, split, menu, select, color, spin
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
-                                                        <a href="YAHOO.widget.Button.html">YAHOO.widget.Button</a> or <a href="YAHOO.widget.MenuItem.html">YAHOO.widget.MenuItem</a>
+                                                        <a href="YAHOO.widget.ToolbarButton.html">YAHOO.widget.ToolbarButton</a> or <a href="YAHOO.widget.MenuItem.html">YAHOO.widget.MenuItem</a>
                                                     </code></dt>
                                                     <dd></dd>
                                                 </dl>
@@ -1745,13 +1745,13 @@ configuration attributes used to create the toolbar.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="beforeCollapseChangeEvent">beforeCollapseChangeEvent</a></h4>
+                                        <a name="beforeButtontypeChangeEvent">beforeButtontypeChangeEvent</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>beforeCollapseChangeEvent</strong>
+                                            <strong>beforeButtontypeChangeEvent</strong>
 
                                             (
                                                 
@@ -1764,7 +1764,7 @@ configuration attributes used to create the toolbar.
                                         </code>
                                         
                                         <div class="description">
-                                            Fires before the value for the configuration attribute 'collapse' changes. Return false to cancel the attribute change.
+                                            Fires before the value for the configuration attribute 'buttonType' changes. Return false to cancel the attribute change.
                                         </div>
 
                                         <div class="description">
@@ -1786,13 +1786,13 @@ configuration attributes used to create the toolbar.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="beforeContChangeEvent">beforeContChangeEvent</a></h4>
+                                        <a name="beforeCollapseChangeEvent">beforeCollapseChangeEvent</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>beforeContChangeEvent</strong>
+                                            <strong>beforeCollapseChangeEvent</strong>
 
                                             (
                                                 
@@ -1805,7 +1805,7 @@ configuration attributes used to create the toolbar.
                                         </code>
                                         
                                         <div class="description">
-                                            Fires before the value for the configuration attribute 'cont' changes. Return false to cancel the attribute change.
+                                            Fires before the value for the configuration attribute 'collapse' changes. Return false to cancel the attribute change.
                                         </div>
 
                                         <div class="description">
@@ -2073,13 +2073,13 @@ configuration attributes used to create the toolbar.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="collapseChangeEvent">collapseChangeEvent</a></h4>
+                                        <a name="buttonTypeChangeEvent">buttonTypeChangeEvent</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>collapseChangeEvent</strong>
+                                            <strong>buttonTypeChangeEvent</strong>
 
                                             (
                                                 
@@ -2092,7 +2092,7 @@ configuration attributes used to create the toolbar.
                                         </code>
                                         
                                         <div class="description">
-                                            Fires when the value for the configuration attribute 'collapse' changes.
+                                            Fires when the value for the configuration attribute 'buttonType' changes.
                                         </div>
 
                                         <div class="description">
@@ -2114,13 +2114,13 @@ configuration attributes used to create the toolbar.
                                     </div>
                                     <div class="">
                                     <h4>
-                                        <a name="contChangeEvent">contChangeEvent</a></h4>
+                                        <a name="collapseChangeEvent">collapseChangeEvent</a></h4>
                                     <div class="detail">
                                         <code>
                                         
                                         
                                         
-                                            <strong>contChangeEvent</strong>
+                                            <strong>collapseChangeEvent</strong>
 
                                             (
                                                 
@@ -2133,7 +2133,7 @@ configuration attributes used to create the toolbar.
                                         </code>
                                         
                                         <div class="description">
-                                            Fires when the value for the configuration attribute 'cont' changes.
+                                            Fires when the value for the configuration attribute 'collapse' changes.
                                         </div>
 
                                         <div class="description">
@@ -2462,6 +2462,20 @@ menu: [
                                     <hr />
                                     </div>        
                                     <div class="">
+                                    <h4><a name="buttonType">buttonType</a>
+                                        <code>- String</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            The buttonType to use (advanced or basic)
+                                        </div>
+                                    </div>
+ 
+     
+
+                                    <hr />
+                                    </div>        
+                                    <div class="">
                                     <h4><a name="collapse">collapse</a>
                                         <code>- Boolean</code>
                                     </h4>
@@ -2584,6 +2598,8 @@ passed a string, it will use that as the titlebar text
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_charts.html">charts</a></li>
+
                                 <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
 
                                 <li class=""><a href="module_connection.html">connection</a></li>
@@ -2593,6 +2609,8 @@ passed a string, it will use that as the titlebar text
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
+
+                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -2604,13 +2622,23 @@ passed a string, it will use that as the titlebar text
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
+                                <li class=""><a href="module_get.html">get</a></li>
+
                                 <li class=""><a href="module_history.html">history</a></li>
 
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
+                                <li class=""><a href="module_json.html">json</a></li>
+
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
+
+                                <li class=""><a href="module_number.html">number</a></li>
+
+                                <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_selector.html">selector</a></li>
 
                                 <li class=""><a href="module_slider.html">slider</a></li>
 
@@ -2632,7 +2660,10 @@ passed a string, it will use that as the titlebar text
                                 <li class=""><a href="YAHOO.widget.Editor.html">YAHOO.widget.Editor</a></li>
                                 <li class=""><a href="YAHOO.widget.EditorInfo.html">YAHOO.widget.EditorInfo</a></li>
                                 <li class=""><a href="YAHOO.widget.EditorWindow.html">YAHOO.widget.EditorWindow</a></li>
+                                <li class=""><a href="YAHOO.widget.SimpleEditor.html">YAHOO.widget.SimpleEditor</a></li>
                                 <li class="selected"><a href="YAHOO.widget.Toolbar.html">YAHOO.widget.Toolbar</a></li>
+                                <li class=""><a href="YAHOO.widget.ToolbarButton.html">YAHOO.widget.ToolbarButton</a></li>
+                                <li class=""><a href="YAHOO.widget.ToolbarButtonAdvanced.html">YAHOO.widget.ToolbarButtonAdvanced</a></li>
                         </ul>
                     </div>
 
@@ -2640,6 +2671,8 @@ passed a string, it will use that as the titlebar text
                         <h4>Files</h4>
                         <ul class="content">        
                                 <li class=""><a href="editor.js.html">editor.js</a></li>
+                                <li class=""><a href="simple-editor.js.html">simple-editor.js</a></li>
+                                <li class=""><a href="toolbar-button.js.html">toolbar-button.js</a></li>
                                 <li class=""><a href="toolbar.js.html">toolbar.js</a></li>
                         </ul>
                     </div>
@@ -2659,9 +2692,6 @@ passed a string, it will use that as the titlebar text
                                 <li class=""><a href="#_colorPicker">_colorPicker</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
-                                <li class=""><a href="#_disabled">_disabled</a>
-                                        <!--<code>&lt;String&gt;</code>-->
-                                </li>
                                 <li class="protected"><a href="#_sep">_sep</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
@@ -2675,6 +2705,9 @@ passed a string, it will use that as the titlebar text
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#browser">browser</a>
+                                        <!--<code>&lt;String&gt;</code>-->
+                                </li>
+                                <li class=""><a href="#buttonType">buttonType</a>
                                         <!--<code>&lt;String&gt;</code>-->
                                 </li>
                                 <li class="protected"><a href="#CLASS_CONTAINER">CLASS_CONTAINER</a>
@@ -2776,13 +2809,13 @@ passed a string, it will use that as the titlebar text
                                 <li class=""><!--<code>Boolean</code>-->
                                 <a href="#enableButton">enableButton</a>
                                 </li>
-                                <li class=""><!--<code><a href="YAHOO.widget.Button.html">YAHOO.widget.Button</a></code>-->
+                                <li class=""><!--<code><a href="YAHOO.widget.ToolbarButton.html">YAHOO.widget.ToolbarButton</a></code>-->
                                 <a href="#getButtonById">getButtonById</a>
                                 </li>
-                                <li class=""><!--<code><a href="YAHOO.widget.Button.html">YAHOO.widget.Button</a></code>-->
+                                <li class=""><!--<code><a href="YAHOO.widget.ToolbarButton.html">YAHOO.widget.ToolbarButton</a></code>-->
                                 <a href="#getButtonByIndex">getButtonByIndex</a>
                                 </li>
-                                <li class=""><!--<code><a href="YAHOO.widget.Button.html">YAHOO.widget.Button</a> or <a href="YAHOO.widget.MenuItem.html">YAHOO.widget.MenuItem</a></code>-->
+                                <li class=""><!--<code><a href="YAHOO.widget.ToolbarButton.html">YAHOO.widget.ToolbarButton</a> or <a href="YAHOO.widget.MenuItem.html">YAHOO.widget.MenuItem</a></code>-->
                                 <a href="#getButtonByValue">getButtonByValue</a>
                                 </li>
                                 <li class=""><!--<code>Array</code>-->
@@ -2813,10 +2846,10 @@ passed a string, it will use that as the titlebar text
                                 <a href="#beforeButtonsChangeEvent">beforeButtonsChangeEvent</a>
                                 </li>
                                 <li class="">
-                                <a href="#beforeCollapseChangeEvent">beforeCollapseChangeEvent</a>
+                                <a href="#beforeButtontypeChangeEvent">beforeButtontypeChangeEvent</a>
                                 </li>
                                 <li class="">
-                                <a href="#beforeContChangeEvent">beforeContChangeEvent</a>
+                                <a href="#beforeCollapseChangeEvent">beforeCollapseChangeEvent</a>
                                 </li>
                                 <li class="">
                                 <a href="#beforeDisabledChangeEvent">beforeDisabledChangeEvent</a>
@@ -2837,10 +2870,10 @@ passed a string, it will use that as the titlebar text
                                 <a href="#buttonsChangeEvent">buttonsChangeEvent</a>
                                 </li>
                                 <li class="">
-                                <a href="#collapseChangeEvent">collapseChangeEvent</a>
+                                <a href="#buttonTypeChangeEvent">buttonTypeChangeEvent</a>
                                 </li>
                                 <li class="">
-                                <a href="#contChangeEvent">contChangeEvent</a>
+                                <a href="#collapseChangeEvent">collapseChangeEvent</a>
                                 </li>
                                 <li class="">
                                 <a href="#disabledChangeEvent">disabledChangeEvent</a>
@@ -2871,6 +2904,9 @@ passed a string, it will use that as the titlebar text
                         <ul class="content">        
                                 <li class="">
                                 <a href="#buttons">buttons</a>
+                                </li>
+                                <li class="">
+                                <a href="#buttonType">buttonType</a>
                                 </li>
                                 <li class="">
                                 <a href="#collapse">collapse</a>

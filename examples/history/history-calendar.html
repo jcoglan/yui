@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>YUI Library Examples: Browser History Manager (beta): Calendar Control</title>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
     	<link rel="stylesheet" type="text/css" href="../../assets/yui.css" >
 
 <style>
@@ -21,9 +21,9 @@
 <script type="text/javascript" src="../../build/dom/dom-min.js"></script>
 <script type="text/javascript" src="../../build/event/event-min.js"></script>
 <script type="text/javascript" src="../../build/calendar/calendar-min.js"></script>
-<script type="text/javascript" src="../../build/history/history-beta-min.js"></script>
+<script type="text/javascript" src="../../build/history/history-min.js"></script>
 <script type="text/javascript" src="../../build/element/element-beta-min.js"></script>
-<script type="text/javascript" src="../../build/button/button-beta-min.js"></script>
+<script type="text/javascript" src="../../build/button/button-min.js"></script>
 
 <!--there is no custom header content for this example-->
 
@@ -74,77 +74,128 @@
 		
 	<!--BEGIN SOURCE CODE FOR EXAMPLE =============================== -->
 	
-	<script>
+	<style>
 
-// The initial month will be chosen in the following order:
-//
-// URL fragment identifier (it will be there if the user previously
-// bookmarked the application in a specific state)
-//
-//         or
-//
-// today's corresponding month (default)
-
-var today = new Date();
-var defaultCalendarState = ( today.getMonth() + 1 ) + "_" + today.getFullYear();
-var bookmarkedCalendarState = YAHOO.util.History.getBookmarkedState( "calendar" );
-var initialCalendarState = bookmarkedCalendarState || defaultCalendarState;
-
-var calendar;
-
-// Register our calendar module. Module registration MUST
-// take place before calling YAHOO.util.History.initialize.
-YAHOO.util.History.register( "calendar", initialCalendarState, function( state ) {
-    // This is called after calling YAHOO.util.History.navigate, or after the user
-    // has trigerred the back/forward button. We cannot discrminate between
-    // these two situations.
-
-    // Show the right month according to the "state" parameter:
-    calendar.cfg.setProperty( "pagedate", state.replace( "_", "/" ) );
-    calendar.render();
-} );
-
-// Subscribe to this event before calling YAHOO.util.History.initialize,
-// or it may never get fired! Note that this is guaranteed to be fired
-// after the window's onload event.
-YAHOO.util.History.onLoadEvent.subscribe( function() {
-    // This is the tricky part... The onLoad event is fired when the user
-    // comes back to the page using the back button. In this case, the
-    // actual month that needs to be loaded corresponds to the last month
-    // visited before leaving the page, and not the initial month. This can
-    // be retrieved using getCurrentState:
-    var currentState = YAHOO.util.History.getCurrentState( "calendar" );
-    var startDate = { pagedate: currentState.replace( "_", "/" ) };
-
-    // Instantiate the calendar control...
-    calendar = new YAHOO.widget.Calendar( "calendar", "calendarContainer", startDate );
-    calendar.beforeRenderEvent.subscribe( handleCalendarBeforeRender, calendar, true );
-    calendar.render();
-} );
-
-function handleCalendarBeforeRender() {
-    var calDate = calendar.cfg.getProperty( "pageDate" );
-    var pageDate = ( calDate.getMonth() + 1 ) + "_" + calDate.getFullYear();
-    // The following test is crucial. Otherwise, we end up circling forever.
-    // Indeed, YAHOO.util.History.navigate will call the module onStateChange callback,
-    // which will call createCalendar, which will call calendar.render(), which will
-    // end up calling handleCalendarBeforeRender, and it keeps going from here...
-    var currentState = YAHOO.util.History.getCurrentState( "calendar" );
-    if ( pageDate != currentState )
-        YAHOO.util.History.navigate( "calendar", pageDate );
+#yui-history-iframe {
+  position:absolute;
+  top:0; left:0;
+  width:1px; height:1px; /* avoid scrollbars */
+  visibility:hidden;
 }
 
-// The call to YAHOO.util.History.initialize should ALWAYS be from within
-// a script block located RIGHT AFTER the body tag (this seems to prevent
-// an edge case bug on IE - IE seems to sometimes forget the history when
-// coming back to a page, and the back - or forward button depending on the
-// situation - is disabled...)
-YAHOO.util.History.initialize();
+</style>
 
-</script>
+<!-- Static markup required for browser history management. Note that these
+     could be created using document.write in a script block. But they have
+     to be created while the page is being parsed, so it cannot be done
+     from an imported script file. Also, these have to be created as early
+     as possible to avoid problems on Internet Explorer.
+     Note that "magic URLs" such as:
+
+         javascript:document.open();document.write(new Date().getTime());document.close();
+
+     and such do NOT work on IE6! Only a real document works (that "real
+     document" does not need to be an HTML document. It can be an image
+     as well. Using an asset that you use somewhere else on your site,
+     instead of a separate asset avoids an unnecessary server round trip.
+     Finally, note that the iframe is only used on Internet Explorer.
+     If this page is server generated (by a PHP script for example), it is
+     a good idea to create the IFrame ONLY for Internet Explorer (use
+     server side user agent sniffing) -->
+
+<iframe id="yui-history-iframe" src="assets/blank.html"></iframe>
+<input id="yui-history-field" type="hidden">
+
+<!-- Static markup required for the calendar widget. -->
 <div id="container">
   <div id="calendarContainer"></div>
 </div>
+
+<script>
+
+(function () {
+
+    // The initial month will be chosen in the following order:
+    //
+    // URL fragment identifier (it will be there if the user previously
+    // bookmarked the application in a specific state)
+    //
+    //         or
+    //
+    // today's corresponding month (default)
+
+    var today = new Date();
+    var defaultCalendarState = (today.getMonth() + 1) + "_" + today.getFullYear();
+    var bookmarkedCalendarState = YAHOO.util.History.getBookmarkedState("calendar");
+    var initialCalendarState = bookmarkedCalendarState || defaultCalendarState;
+
+    var calendar;
+
+    // Register our calendar module. Module registration MUST
+    // take place before calling YAHOO.util.History.initialize.
+    YAHOO.util.History.register("calendar", initialCalendarState, function (state) {
+        // This is called after calling YAHOO.util.History.navigate, or after the user
+        // has trigerred the back/forward button. We cannot discrminate between
+        // these two situations.
+
+        // Show the right month according to the "state" parameter:
+        calendar.cfg.setProperty("pagedate", state.replace("_", "/"));
+        calendar.render();
+    });
+
+    function handleCalendarBeforeRender () {
+        var calDate, newState, currentState;
+
+        calDate = calendar.cfg.getProperty("pageDate");
+        newState = (calDate.getMonth() + 1) + "_" + calDate.getFullYear();
+
+        try {
+            currentState = YAHOO.util.History.getCurrentState("calendar");
+            // The following test is crucial. Otherwise, we end up circling forever.
+            // Indeed, YAHOO.util.History.navigate will call the module onStateChange
+            // callback, which will call createCalendar, which will call calendar.render(),
+            // which will end up calling handleCalendarBeforeRender, and it keeps going
+            // from here...
+            if (newState !== currentState) {
+                YAHOO.util.History.navigate("calendar", newState);
+            }
+        } catch (e) {
+            calendar.cfg.setProperty("pagedate", newState.replace("_", "/"));
+            calendar.render();
+        }
+    }
+
+    function initCalendar (startDate) {
+        // Instantiate the calendar control...
+        calendar = new YAHOO.widget.Calendar("calendar", "calendarContainer", startDate);
+        calendar.beforeRenderEvent.subscribe(handleCalendarBeforeRender, calendar, true);
+        calendar.render();
+    }
+
+    // Use the Browser History Manager onReady method to instantiate the calendar widget.
+    YAHOO.util.History.onReady(function () {
+        var currentState;
+        // This is the tricky part... The onLoad event is fired when the user
+        // comes back to the page using the back button. In this case, the
+        // actual month that needs to be loaded corresponds to the last month
+        // visited before leaving the page, and not the initial month. This can
+        // be retrieved using getCurrentState:
+        currentState = YAHOO.util.History.getCurrentState("calendar");
+        initCalendar({ pagedate: currentState.replace("_", "/") });
+    });
+
+    // Initialize the browser history management library.
+    try {
+        YAHOO.util.History.initialize("yui-history-field", "yui-history-iframe");
+    } catch (e) {
+        // The only exception that gets thrown here is when the browser is
+        // not supported (Opera, or not A-grade) Degrade gracefully.
+        initCalendar({ pagedate: initialCalendarState.replace("_", "/") });
+    }
+
+})();
+
+</script>
 	
 	<!--END SOURCE CODE FOR EXAMPLE =============================== -->
 	
@@ -155,22 +206,7 @@ YAHOO.util.History.initialize();
 	</div>			
 	</div>
 		
-	<h2 class="first">Import the source files and dependencies</h2>
-
-<p>
-  In our example, we need the Event Utility, DOM Utility, Calendar Widget, and the Browser History Manager:
-</p>
-
-<textarea name="code" class="HTML" cols="60" rows="1">
-<link type="text/css" rel="stylesheet" href="calendar.css"/>
-<script src="yahoo.js"></script>
-<script src="event.js"></script>
-<script src="dom.js"></script>
-<script src="calendar.js"></script>
-<script src="history-beta.js"></script>
-</textarea>
-
-<h2>Basic markup</h2>
+	<h2>Basic markup</h2>
 
 <p>
   In our example, the calendar widget relies on the following markup:
@@ -180,110 +216,148 @@ YAHOO.util.History.initialize();
 <div id="calendarContainer"></div>
 </textarea>
 
+<h2>Add the markup required by the Browser History Manager</h2>
+
+<textarea name="code" class="HTML" cols="60" rows="1">
+<iframe id="yui-history-iframe" src="assets/blank.html"></iframe>
+<input id="yui-history-field" type="hidden">
+</textarea>
+
+<p>
+  This markup should be inserted right after the opening <code>body</code> tag.
+</p>
+
+<h2 class="first">Import the source files and dependencies</h2>
+
+<p>
+  In our example, we need the Event Utility, DOM Utility, Calendar Widget, and the Browser History Manager:
+</p>
+
+<textarea name="code" class="HTML" cols="60" rows="1">
+<link type="text/css" rel="stylesheet" href="calendar.css"/>
+<script src="yahoo-dom-event.js"></script>
+<script src="calendar.js"></script>
+<script src="history.js"></script>
+</textarea>
+
 <h2>Design your application</h2>
 
 <p>
-  In our simple example, we have only one module, represented by the
-  calendar widget. We will refer to this module using the identifier
-  "calendar". The state of the calendar module will be represented
-  by a string composed of the month and the year the widget currently
-  renders, separated by <code>"_"</code>
-  (e.g. <code>"2_2007"</code> for February 2007)
+  In our simple example, we have only one module, represented by the calendar widget. We will refer to this module using the identifier
+  "calendar". The state of the calendar module will be represented by a string composed of the month and the year the widget currently
+  renders, separated by <code>"_"</code> (e.g. <code>"2_2007"</code> for February 2007)
 </p>
 
 <h2>Retrieve the initial state of the calendar module</h2>
 
 <p>
-  Use the <code>YAHOO.util.History.getBookmarkedState</code> method
-  and default to the month corresponding to today's date:
+  Use the <code>YAHOO.util.History.getBookmarkedState</code> method and default to the month corresponding to today's date:
 </p>
 
 <textarea name="code" class="JScript" cols="60" rows="1">
 var today = new Date();
-var defaultCalendarState = ( today.getMonth() + 1 ) + "_" + today.getFullYear();
-var bookmarkedCalendarState = YAHOO.util.History.getBookmarkedState( "calendar" );
+var defaultCalendarState = (today.getMonth() + 1) + "_" + today.getFullYear();
+var bookmarkedCalendarState = YAHOO.util.History.getBookmarkedState("calendar");
 var initialCalendarState = bookmarkedCalendarState || defaultCalendarState;
 </textarea>
 
 <h2>Register the calendar module</h2>
 
 <p>
-  Use the <code>YAHOO.util.History.register</code> method, passing in
-  the calendar module identifier, the initial state of the calendar
-  module, and the callback function that will be called when the
-  state of the calendar module has changed:
+  Use the <code>YAHOO.util.History.register</code> method, passing in the calendar module identifier, the initial state of the calendar
+  module, and the callback function that will be called when the state of the calendar module has changed:
 </p>
 
 <textarea name="code" class="JScript" cols="60" rows="1">
-YAHOO.util.History.register( "calendar", initialCalendarState, function( state ) {
+YAHOO.util.History.register("calendar", initialCalendarState, function (state) {
     // Show the right month according to the "state" parameter:
-    calendar.cfg.setProperty( "pagedate", state.replace( "_", "/" ) );
+    calendar.cfg.setProperty("pagedate", state.replace("_", "/"));
     calendar.render();
-} );
+});
 </textarea>
 
-<h2>Subscribe to the Browser History Manager <code>onLoad</code> event</h2>
-
-<p>
-  Use the Browser History Manager <code>onLoad</code> event handler
-  to instantiate the calendar widget. Also, retrieve the current
-  state of the calendar module, and use that state to show the
-  right month (the current state may be different from the initial
-  state under certain circumstances - see the User's Guide)
-</p>
+<h2>Write the code that initializes your application</h2>
 
 <textarea name="code" class="JScript" cols="60" rows="1">
 var calendar;
 
-YAHOO.util.History.onLoadEvent.subscribe( function() {
-    // Retrieve the current state of the calendar module
-    var currentCalState = YAHOO.util.History.getCurrentState( "cal" );
-    var startDate = { pagedate: currentCalState.replace( "_", "/" ) };
-
-    // Instantiate the calendar widget
-    calendar = new YAHOO.widget.Calendar( "calendar", "calendarContainer", startDate );
-    calendar.beforeRenderEvent.subscribe( handleCalendarBeforeRender, calendar, true );
+function initCalendar (startDate) {
+    // Instantiate the calendar control...
+    calendar = new YAHOO.widget.Calendar("calendar", "calendarContainer", startDate);
+    calendar.beforeRenderEvent.subscribe(handleCalendarBeforeRender, calendar, true);
     calendar.render();
-} );
+}
+</textarea>
+
+<h2>Use the Browser History Manager <code>onReady</code> method</h2>
+
+<p>
+  Use the Browser History Manager <code>onReady</code> method to instantiate the calendar widget. Also, retrieve the current
+  state of the calendar module, and use that state to show the right month (the current state may be different from the initial
+  state under certain circumstances - see the User's Guide)
+</p>
+
+<textarea name="code" class="JScript" cols="60" rows="1">
+YAHOO.util.History.onReady(function () {
+    var currentState;
+    // This is the tricky part... The onLoad event is fired when the user
+    // comes back to the page using the back button. In this case, the
+    // actual month that needs to be loaded corresponds to the last month
+    // visited before leaving the page, and not the initial month. This can
+    // be retrieved using getCurrentState:
+    currentState = YAHOO.util.History.getCurrentState("calendar");
+    initCalendar({ pagedate: currentState.replace("_", "/") });
+});
 </textarea>
 
 <h2>Add history entries</h2>
 
 <p>
-  A new history entry must be added every time the user views
-  a new month. Use the calendar widget's <code>beforeRender</code>
-  event handler (set to <code>handleCalendarBeforeRender</code> -
-  see above):
+  A new history entry must be added every time the user views a new month. Use the calendar widget's <code>beforeRender</code>
+  event handler (set to <code>handleCalendarBeforeRender</code> - see above):
 </p>
 
 <textarea name="code" class="JScript" cols="60" rows="1">
-function handleCalendarBeforeRender() {
-    var calDate = calendar.cfg.getProperty( "pageDate" );
-    var pageDate = ( calDate.getMonth() + 1 ) + "_" + calDate.getFullYear();
-    // The following test is crucial. Otherwise, we end up circling forever.
-    // Indeed, YAHOO.util.History.navigate will call the module onStateChange callback,
-    // which will call createCalendar, which will call calendar.render(), which will
-    // end up calling handleCalendarBeforeRender, and it keeps going from here...
-    var currentCalState = YAHOO.util.History.getCurrentState( "cal" );
-    if ( pageDate != currentCalState )
-        YAHOO.util.History.navigate( "cal", pageDate );
+function handleCalendarBeforeRender () {
+    var calDate, newState, currentState;
+
+    calDate = calendar.cfg.getProperty("pageDate");
+    newState = (calDate.getMonth() + 1) + "_" + calDate.getFullYear();
+
+    try {
+        currentState = YAHOO.util.History.getCurrentState("calendar");
+        // The following test is crucial. Otherwise, we end up circling forever.
+        // Indeed, YAHOO.util.History.navigate will call the module onStateChange
+        // callback, which will call createCalendar, which will call calendar.render(),
+        // which will end up calling handleCalendarBeforeRender, and it keeps going
+        // from here...
+        if (newState !== currentState) {
+            YAHOO.util.History.navigate("calendar", newState);
+        }
+    } catch (e) {
+        calendar.cfg.setProperty("pagedate", newState.replace("_", "/"));
+        calendar.render();
+    }
 }
 </textarea>
 
 <h2>Initialize the Browser History Manager</h2>
 
 <p>
-  Simply call <code>YAHOO.util.History.initialize</code> from a script
-  block located right after the opening body tag:
+  Simply call <code>YAHOO.util.History.initialize</code>, passing in the id of the input field and IFrame we inserted
+  in our static markup:
 </p>
 
 <textarea name="code" class="JScript" cols="60" rows="1">
-YAHOO.util.History.initialize();
+// Initialize the browser history management library.
+try {
+    YAHOO.util.History.initialize("yui-history-field", "yui-history-iframe");
+} catch (e) {
+    // The only exception that gets thrown here is when the browser is
+    // not supported (Opera, or not A-grade) Degrade gracefully.
+    initCalendar({ pagedate: initialCalendarState.replace("_", "/") });
+}
 </textarea>
-
-<div id="stepnav">
-  <a class="next" href="solution.html">Continue to <em>Functional Example</em> &gt;</a>
-</div>
 				</div>
 				<div class="yui-u">
 					
@@ -293,7 +367,7 @@ YAHOO.util.History.initialize();
 	
 						<div id="exampleToc">
 							<ul>
-								<li><a href='../history/history-navbar.html'>Simple Navigation Bar</a></li><li class='selected'><a href='../history/history-calendar.html'>Calendar Control</a></li>							</ul>
+								<li><a href='../history/history-navbar.html'>Simple Navigation Bar</a></li><li><a href='../history/history-tabview.html'>TabView Control</a></li><li class='selected'><a href='../history/history-calendar.html'>Calendar Control</a></li><li><a href='../history/history-multiple.html'>Multiple Modules</a></li>							</ul>
 						</div>
 					</div>
 					
@@ -301,9 +375,10 @@ YAHOO.util.History.initialize();
 						<h3>More Browser History Manager (beta) Resources:</h3>
 						<ul>
 							<li><a href="http://developer.yahoo.com/yui/history/">User's Guide</a> (external)</li>
-							<li><a href="../../docs/module_history.html">API Documentation</a></li>
-							<li><a href="http://yuiblog.com/assets/pdf/cheatsheets/history.pdf">Cheat Sheet PDF</a> (external)</li>
-						</ul>
+						<li><a href="../../docs/module_history.html">API Documentation</a></li>
+                            
+                            
+							<li><a href="http://yuiblog.com/assets/pdf/cheatsheets/history.pdf">Cheat Sheet PDF</a> (external)</li></ul>
 					</div>
 					
 	
@@ -319,9 +394,10 @@ YAHOO.util.History.initialize();
 <div id="toc">
 	
 <ul>
-<li class="sect first">Yahoo! UI Library</li><li class="item"><a title="The Yahoo! User Interface Library (YUI)" href="http://developer.yahoo.com/yui/">Home (external)</a></li><li class="item"><a title="The Yahoo! User Interface Blog" href="http://yuiblog.com">YUIBlog (external)</a></li><li class="item"><a title="The Yahoo! Group YDN-JavaScript hosts the YUI community forum" href="http://tech.groups.yahoo.com/group/ydn-javascript/">YUI Discussion Forum (external)</a></li><li class="item"><a title="The YUI Library can be downloaded from SourceForge" href="http://sourceforge.net/projects/yui/">YUI on Sourceforge (external)</a></li><li class="item"><a title="Instantly searchable API documentation for the entire YUI library." href="../../docs/index.html">API Documentation</a></li><li class="item"><a title="Examples of every YUI utility and control in action" href="../../examples/">Functional Examples</a></li><li class="item"><a title="Videos and podcasts from the YUI Team and from the Yahoo! frontend engineering community." href="http://developer.yahoo.com/yui/theater/">YUI Theater (external)</a></li><li class="item"><a title="YUI is free and open, offered under a BSD license." href="http://developer.yahoo.com/yui/license.html">YUI License (external)</a></li><li class="sect">YUI Functional Examples</li><li class="item"><a title="The YUI Animation Utility - Functional Examples" href="../../examples/animation/index.html">Animation</a></li><li class="item"><a title="The YUI AutoComplete Control - Functional Examples" href="../../examples/autocomplete/index.html">AutoComplete</a></li><li class="selected "><a title="The YUI Browser History Manager - Functional Examples" href="../../examples/history/index.html">Browser History Manager (beta)</a></li><li class="item"><a title="The YUI Button Control - Functional Examples" href="../../examples/button/index.html">Button (beta)</a></li><li class="item"><a title="The YUI Calendar Control - Functional Examples" href="../../examples/calendar/index.html">Calendar</a></li><li class="item"><a title="The YUI Color Picker Control - Functional Examples" href="../../examples/colorpicker/index.html">Color Picker (beta)</a></li><li class="item"><a title="The YUI Connection Manager (AJAX) - Functional Examples" href="../../examples/connection/index.html">Connection Manager</a></li><li class="item"><a title="The YUI Container Family (Module, Overlay, Tooltip, Panel, Dialog, SimpleDialog) - Functional Examples" href="../../examples/container/index.html">Container</a></li><li class="item"><a title="The YUI DataTable Control - Functional Examples" href="../../examples/datatable/index.html">DataTable (beta)</a></li><li class="item"><a title="The YUI Dom Collection - Functional Examples" href="../../examples/dom/index.html">Dom</a></li><li class="item"><a title="The YUI Drag &amp; Drop Utility - Functional Examples" href="../../examples/dragdrop/index.html">Drag &amp; Drop</a></li><li class="item"><a title="The YUI Event Utility - Functional Examples" href="../../examples/event/index.html">Event</a></li><li class="item"><a title="The YUI ImageLoader Utility - Functional Examples" href="../../examples/imageloader/index.html">ImageLoader (experimental)</a></li><li class="item"><a title="The YUI Logger Control - Functional Examples" href="../../examples/logger/index.html">Logger</a></li><li class="item"><a title="The YUI Menu Control - Functional Examples" href="../../examples/menu/index.html">Menu</a></li><li class="item"><a title="The YUI Rich Text Editor - Functional Examples" href="../../examples/editor/index.html">Rich Text Editor (beta)</a></li><li class="item"><a title="The YUI Slider Control - Functional Examples" href="../../examples/slider/index.html">Slider</a></li><li class="item"><a title="The YUI TabView Control - Functional Examples" href="../../examples/tabview/index.html">TabView</a></li><li class="item"><a title="The YUI TreeView Control - Functional Examples" href="../../examples/treeview/index.html">TreeView</a></li><li class="item"><a title="The YUI Loader Utility - Functional Examples" href="../../examples/yuiloader/index.html">YUI Loader (beta)</a></li><li class="item"><a title="The YUI Test Utility - Functional Examples" href="../../examples/yuitest/index.html">YUI Test (beta)</a></li><li class="item"><a title="YUI Reset CSS - Functional Examples" href="../../examples/reset/index.html">Reset CSS</a></li><li class="item"><a title="YUI Base CSS - Functional Examples" href="../../examples/base/index.html">Base CSS</a></li><li class="item"><a title="YUI Fonts CSS - Functional Examples" href="../../examples/fonts/index.html">Fonts CSS</a></li><li class="item"><a title="YUI Grids CSS - Functional Examples" href="../../examples/grids/index.html">Grids CSS</a></li><li class="sect">YUI Articles on the YUI Website</li><li class="item"><a title="Answers to Frequently Asked Questions about the YUI Library" href="http://developer.yahoo.com/yui/articles/faq/">YUI FAQ (external)</a></li><li class="item"><a title="Yahoo!'s philosophy of Graded Browser Support" href="http://developer.yahoo.com/yui/articles/gbs/">Graded Browser Support (external)</a></li><li class="item"><a title="Reporting Bugs and Making Feature Requests for YUI Components" href="http://developer.yahoo.com/yui/articles/reportingbugs/">Bug Reports/Feature Requests (external)</a></li><li class="item"><a title="Serve YUI source files from Yahoo! -- free, fast, and simple" href="http://developer.yahoo.com/yui/articles/hosting/">Serving YUI Files from Yahoo! (external)</a></li><li class="item"><a title="Best practices for working with web services while protecting user privacy" href="http://developer.yahoo.com/security/">Security Best Practices (external)</a></li></ul>
+<li class="sect first">Yahoo! UI Library</li><li class="item"><a title="The Yahoo! User Interface Library (YUI)" href="http://developer.yahoo.com/yui/">Home (external)</a></li><li class="item"><a title="The Yahoo! User Interface Blog" href="http://yuiblog.com">YUIBlog (external)</a></li><li class="item"><a title="The Yahoo! Group YDN-JavaScript hosts the YUI community forum" href="http://tech.groups.yahoo.com/group/ydn-javascript/">YUI Discussion Forum (external)</a></li><li class="item"><a title="The YUI Library can be downloaded from SourceForge" href="http://sourceforge.net/projects/yui/">YUI on Sourceforge (external)</a></li><li class="item"><a title="Instantly searchable API documentation for the entire YUI library." href="../../docs/index.html">API Documentation</a></li><li class="item"><a title="Examples of every YUI utility and control in action" href="../../examples/">Functional Examples</a></li><li class="item"><a title="Videos and podcasts from the YUI Team and from the Yahoo! frontend engineering community." href="http://developer.yahoo.com/yui/theater/">YUI Theater (external)</a></li><li class="item"><a title="YUI is free and open, offered under a BSD license." href="http://developer.yahoo.com/yui/license.html">YUI License (external)</a></li><li class="sect">YUI Functional Examples</li><li class="item"><a title="The YUI Animation Utility - Functional Examples" href="../../examples/animation/index.html">Animation</a></li><li class="item"><a title="The YUI AutoComplete Control - Functional Examples" href="../../examples/autocomplete/index.html">AutoComplete</a></li><li class="selected "><a title="The YUI Browser History Manager - Functional Examples" href="../../examples/history/index.html">Browser History Manager</a></li><li class="item"><a title="The YUI Button Control - Functional Examples" href="../../examples/button/index.html">Button</a></li><li class="item"><a title="The YUI Calendar Control - Functional Examples" href="../../examples/calendar/index.html">Calendar</a></li><li class="item"><a title="The YUI Charts Control - Functional Examples" href="../../examples/charts/index.html">Charts (experimental)</a></li><li class="item"><a title="The YUI Color Picker Control - Functional Examples" href="../../examples/colorpicker/index.html">Color Picker (beta)</a></li><li class="item"><a title="The YUI Connection Manager (AJAX) - Functional Examples" href="../../examples/connection/index.html">Connection Manager</a></li><li class="item"><a title="The YUI Container Family (Module, Overlay, Tooltip, Panel, Dialog, SimpleDialog) - Functional Examples" href="../../examples/container/index.html">Container</a></li><li class="item"><a title="The YUI DataTable Control - Functional Examples" href="../../examples/datatable/index.html">DataTable (beta)</a></li><li class="item"><a title="The YUI Dom Collection - Functional Examples" href="../../examples/dom/index.html">Dom</a></li><li class="item"><a title="The YUI Drag &amp; Drop Utility - Functional Examples" href="../../examples/dragdrop/index.html">Drag &amp; Drop</a></li><li class="item"><a title="The YUI Event Utility - Functional Examples" href="../../examples/event/index.html">Event</a></li><li class="item"><a title="The YUI Get Utility - Functional Examples" href="../../examples/get/index.html">Get (beta)</a></li><li class="item"><a title="The YUI ImageLoader Utility - Functional Examples" href="../../examples/imageloader/index.html">ImageLoader (beta)</a></li><li class="item"><a title="The YUI JSON Utility - Functional Examples" href="../../examples/json/index.html">JSON (beta)</a></li><li class="item"><a title="The YUI Logger Control - Functional Examples" href="../../examples/logger/index.html">Logger</a></li><li class="item"><a title="The YUI Menu Control - Functional Examples" href="../../examples/menu/index.html">Menu</a></li><li class="item"><a title="The YUI Profiler Utility - Functional Examples" href="../../examples/profiler/index.html">Profiler (beta)</a></li><li class="item"><a title="The YUI Rich Text Editor - Functional Examples" href="../../examples/editor/index.html">Rich Text Editor (beta)</a></li><li class="item"><a title="The YUI Selector Utility - Functional Examples" href="../../examples/selector/index.html">Selector (beta)</a></li><li class="item"><a title="The YUI Slider Control - Functional Examples" href="../../examples/slider/index.html">Slider</a></li><li class="item"><a title="The YUI TabView Control - Functional Examples" href="../../examples/tabview/index.html">TabView</a></li><li class="item"><a title="The YUI TreeView Control - Functional Examples" href="../../examples/treeview/index.html">TreeView</a></li><li class="item"><a title="The YUI YAHOO Global Object - Functional Examples" href="../../examples/yahoo/index.html">YAHOO Global Object</a></li><li class="item"><a title="The YUI Loader Utility - Functional Examples" href="../../examples/yuiloader/index.html">YUI Loader (beta)</a></li><li class="item"><a title="The YUI Test Utility - Functional Examples" href="../../examples/yuitest/index.html">YUI Test (beta)</a></li><li class="item"><a title="YUI Reset CSS - Functional Examples" href="../../examples/reset/index.html">Reset CSS</a></li><li class="item"><a title="YUI Base CSS - Functional Examples" href="../../examples/base/index.html">Base CSS</a></li><li class="item"><a title="YUI Fonts CSS - Functional Examples" href="../../examples/fonts/index.html">Fonts CSS</a></li><li class="item"><a title="YUI Grids CSS - Functional Examples" href="../../examples/grids/index.html">Grids CSS</a></li><li class="sect">YUI Articles on the YUI Website</li><li class="item"><a title="Answers to Frequently Asked Questions about the YUI Library" href="http://developer.yahoo.com/yui/articles/faq/">YUI FAQ (external)</a></li><li class="item"><a title="Yahoo!'s philosophy of Graded Browser Support" href="http://developer.yahoo.com/yui/articles/gbs/">Graded Browser Support (external)</a></li><li class="item"><a title="Reporting Bugs and Making Feature Requests for YUI Components" href="http://developer.yahoo.com/yui/articles/reportingbugs/">Bug Reports/Feature Requests (external)</a></li><li class="item"><a title="Serve YUI source files from Yahoo! -- free, fast, and simple" href="http://developer.yahoo.com/yui/articles/hosting/">Serving YUI Files from Yahoo! (external)</a></li><li class="item"><a title="Best practices for working with web services while protecting user privacy" href="http://developer.yahoo.com/security/">Security Best Practices (external)</a></li></ul>
 </div>
 </div>
+	</div><!--closes bd-->
 
 	<div id="ft">
         <p class="first">Copyright &copy; 2007 Yahoo! Inc. All rights reserved.</p>
@@ -330,7 +406,6 @@ YAHOO.util.History.initialize();
             <a href="http://docs.yahoo.com/info/copyright/copyright.html">Copyright Policy</a> - 
             <a href="http://careers.yahoo.com/">Job Openings</a></p>
 	</div>
-</div>
 </div>
 <script src="../../assets/dpSyntaxHighlighter.js"></script>
 <script language="javascript"> 

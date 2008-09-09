@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>TreeView Widget&nbsp; <span class="subtitle">2.3.1</span></h3>
+        <h3>TreeView Widget&nbsp; <span class="subtitle">2.4.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_treeview.html">treeview</a>
@@ -614,7 +614,9 @@
 <span class="c">     */</span>
     <span class="nx">expand</span><span class="o">:</span> <span class="k">function</span><span class="o">(</span><span class="nx">lazySource</span><span class="o">)</span> <span class="o">{</span>
         <span class="c">// Only expand if currently collapsed.</span>
-<span class="c"></span>        <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">expanded</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span><span class="o">;</span> <span class="o">}</span>
+<span class="c"></span>        <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">expanded</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">lazySource</span><span class="o">)</span> <span class="o">{</span> 
+            <span class="k">return</span><span class="o">;</span> 
+        <span class="o">}</span>
 
         <span class="k">var</span> <span class="nx">ret</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
 
@@ -643,11 +645,11 @@
             <span class="k">return</span><span class="o">;</span>
         <span class="o">}</span>
 
-        <span class="k">if</span> <span class="o">(!</span> <span class="k">this</span><span class="o">.</span><span class="nx">childrenRendered</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="nx">childrenRendered</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;children not rendered yet&quot;</span><span class="o">);</span>
             <span class="k">this</span><span class="o">.</span><span class="nx">getChildrenEl</span><span class="o">().</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">renderChildren</span><span class="o">();</span>
         <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;CHILDREN RENDERED&quot;</span><span class="o">);</span>
+            <span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;children already rendered&quot;</span><span class="o">);</span>
         <span class="o">}</span>
 
         <span class="k">this</span><span class="o">.</span><span class="nx">expanded</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
@@ -883,6 +885,12 @@
         <span class="o">}</span>
         <span class="nx">sb</span><span class="o">[</span><span class="nx">sb</span><span class="o">.</span><span class="nx">length</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;&gt;&#39;</span><span class="o">;</span>
 
+        <span class="c">// this.logger.log([&quot;index&quot;, this.index, </span>
+<span class="c"></span>                         <span class="c">// &quot;hasChildren&quot;, this.hasChildren(true), </span>
+<span class="c"></span>                         <span class="c">// &quot;expanded&quot;, this.expanded, </span>
+<span class="c"></span>                         <span class="c">// &quot;renderHidden&quot;, this.renderHidden, </span>
+<span class="c"></span>                         <span class="c">// &quot;isDynamic&quot;, this.isDynamic()]);</span>
+<span class="c"></span>
         <span class="c">// Don&#39;t render the actual child node HTML unless this node is expanded.</span>
 <span class="c"></span>        <span class="k">if</span> <span class="o">(</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">hasChildren</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="nx">expanded</span><span class="o">)</span> <span class="o">||</span>
                 <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">renderHidden</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="o">.</span><span class="nx">isDynamic</span><span class="o">())</span> <span class="o">)</span> <span class="o">{</span>
@@ -970,7 +978,7 @@
 <span class="c">     * @method loadComplete</span>
 <span class="c">     */</span>
     <span class="nx">loadComplete</span><span class="o">:</span> <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;loadComplete: &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="nx">index</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="nx">logger</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">index</span> <span class="o">+</span> <span class="s2">&quot; loadComplete, children: &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="nx">children</span><span class="o">.</span><span class="nx">length</span><span class="o">);</span>
         <span class="k">this</span><span class="o">.</span><span class="nx">getChildrenEl</span><span class="o">().</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">completeRender</span><span class="o">();</span>
         <span class="k">this</span><span class="o">.</span><span class="nx">dynamicLoadComplete</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
         <span class="k">this</span><span class="o">.</span><span class="nx">isLoading</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
@@ -1072,6 +1080,8 @@
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_charts.html">charts</a></li>
+
                                 <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
 
                                 <li class=""><a href="module_connection.html">connection</a></li>
@@ -1081,6 +1091,8 @@
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
+
+                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -1092,13 +1104,23 @@
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
+                                <li class=""><a href="module_get.html">get</a></li>
+
                                 <li class=""><a href="module_history.html">history</a></li>
 
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
+                                <li class=""><a href="module_json.html">json</a></li>
+
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
+
+                                <li class=""><a href="module_number.html">number</a></li>
+
+                                <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_selector.html">selector</a></li>
 
                                 <li class=""><a href="module_slider.html">slider</a></li>
 

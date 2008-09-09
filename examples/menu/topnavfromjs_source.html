@@ -12,7 +12,7 @@
 
         <!-- CSS for Menu -->
 
-        <link rel="stylesheet" type="text/css" href="../../build/menu/assets/skins/sam/menu.css"> 
+        <link rel="stylesheet" type="text/css" href="../../build/menu/assets/skins/sam/menu.css">  
 
 
         <!-- Page-specific styles -->
@@ -72,56 +72,77 @@
 
         <script type="text/javascript">
 
-            // Initialize and render the menu bar when it is available in the DOM
+            /*
+                 Initialize and render the MenuBar when its elements are ready 
+                 to be scripted.
+            */
 
             YAHOO.util.Event.onContentReady("productsandservices", function () {
 
-                // "beforerender" event handler for the menu bar
+                /*
+                     Instantiate a MenuBar:  The first argument passed to the 
+                     constructor is the id of the element in the page 
+                     representing the MenuBar; the second is an object literal 
+                     of configuration properties.
+                */
 
-                function onMenuBarBeforeRender(p_sType, p_sArgs) {
+                var oMenuBar = new YAHOO.widget.MenuBar("productsandservices", { 
+                                                            autosubmenudisplay: true, 
+                                                            hidedelay: 750, 
+                                                            lazyload: true });
 
-                    var oSubmenuData = {
-                    
-                        "communication": [ 
-                        
+                /*
+                     Define an array of object literals, each containing 
+                     the data necessary to create a submenu.
+                */
+
+                var aSubmenuData = [
+                
+                    {
+                        id: "communication", 
+                        itemdata: [ 
                             { text: "360", url: "http://360.yahoo.com" },
                             { text: "Alerts", url: "http://alerts.yahoo.com" },
                             { text: "Avatars", url: "http://avatars.yahoo.com" },
                             { text: "Groups", url: "http://groups.yahoo.com " },
                             { text: "Internet Access", url: "http://promo.yahoo.com/broadband" },
-                            { text: "PIM", submenu: { id: "pim", itemdata: [
-        
-                                    { text: "Yahoo! Mail", url: "http://mail.yahoo.com" },
-                                    { text: "Yahoo! Address Book", url: "http://addressbook.yahoo.com" },
-                                    { text: "Yahoo! Calendar",  url: "http://calendar.yahoo.com" },
-                                    { text: "Yahoo! Notepad", url: "http://notepad.yahoo.com" }
-        
-                                ] }
+                            {
+                                text: "PIM", 
+                                submenu: { 
+                                            id: "pim", 
+                                            itemdata: [
+                                                { text: "Yahoo! Mail", url: "http://mail.yahoo.com" },
+                                                { text: "Yahoo! Address Book", url: "http://addressbook.yahoo.com" },
+                                                { text: "Yahoo! Calendar",  url: "http://calendar.yahoo.com" },
+                                                { text: "Yahoo! Notepad", url: "http://notepad.yahoo.com" }
+                                            ] 
+                                        }
                             
                             }, 
                             { text: "Member Directory", url: "http://members.yahoo.com" },
                             { text: "Messenger", url: "http://messenger.yahoo.com" },
                             { text: "Mobile", url: "http://mobile.yahoo.com" },
-                            { text: "Photos", url: "http://photos.yahoo.com" },
-                        
-                        ],
-    
-                        "shopping": [
-    
+                            { text: "Flickr Photo Sharing", url: "http://www.flickr.com" },
+                        ]
+                    },
+
+                    {
+                        id: "shopping", 
+                        itemdata: [
                             { text: "Auctions", url: "http://auctions.shopping.yahoo.com" },
                             { text: "Autos", url: "http://autos.yahoo.com" },
                             { text: "Classifieds", url: "http://classifieds.yahoo.com" },
                             { text: "Flowers & Gifts", url: "http://shopping.yahoo.com/b:Flowers%20%26%20Gifts:20146735" },
-                            { text: "Points", url: "http://points.yahoo.com" },
                             { text: "Real Estate", url: "http://realestate.yahoo.com" },
                             { text: "Travel", url: "http://travel.yahoo.com" },
                             { text: "Wallet", url: "http://wallet.yahoo.com" },
                             { text: "Yellow Pages", url: "http://yp.yahoo.com" }                    
-    
-                        ],
-                        
-                        "entertainment": [
-    
+                        ]    
+                    },
+                    
+                    {
+                        id: "entertainment", 
+                        itemdata: [
                             { text: "Fantasy Sports", url: "http://fantasysports.yahoo.com" },
                             { text: "Games", url: "http://games.yahoo.com" },
                             { text: "Kids", url: "http://www.yahooligans.com" },
@@ -130,11 +151,12 @@
                             { text: "Radio", url: "http://music.yahoo.com/launchcast" },
                             { text: "Travel", url: "http://travel.yahoo.com" },
                             { text: "TV", url: "http://tv.yahoo.com" }              
-                        
-                        ],
-                        
-                        "information": [
-    
+                        ] 
+                    },
+                    
+                    {
+                        id: "information",
+                        itemdata: [
                             { text: "Downloads", url: "http://downloads.yahoo.com" },
                             { text: "Finance", url: "http://finance.yahoo.com" },
                             { text: "Health", url: "http://health.yahoo.com" },
@@ -145,43 +167,37 @@
                             { text: "Search", url: "http://search.yahoo.com" },
                             { text: "Small Business", url: "http://smallbusiness.yahoo.com" },
                             { text: "Weather", url: "http://weather.yahoo.com" }
-                        
                         ]
-                    
-                    };
-
-                    // Add a submenu to each of the menu items in the menu bar
-
-                    this.getItem(0).cfg.setProperty("submenu", { id: "communication", itemdata: oSubmenuData["communication"] });
-                    this.getItem(1).cfg.setProperty("submenu", { id: "shopping", itemdata: oSubmenuData["shopping"] });
-                    this.getItem(2).cfg.setProperty("submenu", { id: "entertainment", itemdata: oSubmenuData["entertainment"] });
-                    this.getItem(3).cfg.setProperty("submenu", { id: "information", itemdata: oSubmenuData["information"] });
-
-                }
+                    }                    
+                ];
 
 
                 /*
-                     Instantiate the menubar.  The first argument passed to the 
-                     constructor is the id of the element in the DOM that 
-                     represents the menubar; the second is an object literal 
-                     representing a set of configuration properties for 
-                     the menubar.
+                     Subscribe to the "beforerender" event, adding a submenu 
+                     to each of the items in the MenuBar instance.
                 */
 
-                var oMenuBar = new YAHOO.widget.MenuBar("productsandservices", { autosubmenudisplay: true, showdelay: 250, hidedelay:  750, lazyload: true });
+                oMenuBar.subscribe("beforeRender", function () {
 
+                    if (this.getRoot() == this) {
 
-                // Subscribe to the "beforerender" event
+                        this.getItem(0).cfg.setProperty("submenu", aSubmenuData[0]);
+                        this.getItem(1).cfg.setProperty("submenu", aSubmenuData[1]);
+                        this.getItem(2).cfg.setProperty("submenu", aSubmenuData[2]);
+                        this.getItem(3).cfg.setProperty("submenu", aSubmenuData[3]);
 
-                oMenuBar.beforeRenderEvent.subscribe(onMenuBarBeforeRender);
+                    }
+
+                });
 
 
                 /*
-                     Call the "render" method with no arguments since the markup for 
-                     this menu already exists in the DOM.
+                     Call the "render" method with no arguments since the 
+                     markup for this MenuBar instance is already exists in 
+                     the page.
                 */
 
-                oMenuBar.render();            
+                oMenuBar.render();         
             
             });
 
@@ -208,10 +224,18 @@
                         <div id="productsandservices" class="yuimenubar yuimenubarnav">
                             <div class="bd">
                                 <ul class="first-of-type">
-                                    <li class="yuimenubaritem first-of-type"><a class="yuimenubaritemlabel" href="http://communication.yahoo.com">Communication</a></li>
-                                    <li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="http://shopping.yahoo.com">Shopping</a></li>
-                                    <li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="http://entertainment.yahoo.com">Entertainment</a></li>
-                                    <li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="#">Information</a></li>
+                                    <li class="yuimenubaritem first-of-type">
+                                        <a class="yuimenubaritemlabel" href="#communication">Communication</a>
+                                    </li>
+                                    <li class="yuimenubaritem">
+                                        <a class="yuimenubaritemlabel" href="http://shopping.yahoo.com">Shopping</a>
+                                    </li>
+                                    <li class="yuimenubaritem">
+                                        <a class="yuimenubaritemlabel" href="http://entertainment.yahoo.com">Entertainment</a>
+                                    </li>
+                                    <li class="yuimenubaritem">
+                                        <a class="yuimenubaritemlabel" href="#">Information</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

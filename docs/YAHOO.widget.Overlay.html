@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Container&nbsp; <span class="subtitle">2.3.1</span></h3>
+        <h3>Container&nbsp; <span class="subtitle">2.4.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_container.html">container</a>
@@ -258,6 +258,25 @@ configuring the context element alignment
                                     </div>
      
                                         
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4><a name="YAHOO.widget.Overlay.VIEWPORT_OFFSET">YAHOO.widget.Overlay.VIEWPORT_OFFSET</a>
+                                        <code>- static final Number</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            Number representing the minimum distance an Overlay instance should be 
+positioned relative to the boundaries of the browser's viewport, in pixels.
+                                        </div>
+                                    </div>
+     
+                                        
+                                    <div class="default">
+                                        Default Value: 10
+                                    </div>        
 
 
                                     <hr />
@@ -1257,6 +1276,62 @@ this will usually equal the owner.
                                                         void
                                                     </code></dt>
                                                     <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
+                                        <a name="getConstrainedXY">getConstrainedXY</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        Array
+                                            <strong>getConstrainedXY</strong>
+                                           (
+                                                
+                                                        
+                                                         x
+                                                    
+                                                
+                                                        , 
+                                                         y
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Given x, y coordinate values, returns the calculated coordinates required to 
+position the Overlay if it is to be constrained to the viewport, based on the 
+current element size, viewport dimensions and scroll values.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>x &lt;Number&gt;</code>
+                                                             The X coordinate value to be constrained
+                                                        </dd>
+                                                        <dd>
+                                                            <code>y &lt;Number&gt;</code>
+                                                             The Y coordinate value to be constrained
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        Array
+                                                    </code></dt>
+                                                    <dd>The constrained x and y coordinates at index 0 and 1 respectively;</dd>
                                                 </dl>
              
                                         </div>
@@ -2286,6 +2361,8 @@ made visible.
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_charts.html">charts</a></li>
+
                                 <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
 
                                 <li class=""><a href="module_connection.html">connection</a></li>
@@ -2295,6 +2372,8 @@ made visible.
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
+
+                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -2306,13 +2385,23 @@ made visible.
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
+                                <li class=""><a href="module_get.html">get</a></li>
+
                                 <li class=""><a href="module_history.html">history</a></li>
 
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
+                                <li class=""><a href="module_json.html">json</a></li>
+
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
+
+                                <li class=""><a href="module_number.html">number</a></li>
+
+                                <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_selector.html">selector</a></li>
 
                                 <li class=""><a href="module_slider.html">slider</a></li>
 
@@ -2362,31 +2451,34 @@ made visible.
                         <h4>Properties</h4>
                         <ul class="content">        
                                 <li class="private"><a href="#DEFAULT_CONFIG">DEFAULT_CONFIG</a>
-                                        <!--<code>&lt;String&gt;</code>-->
+                                        <!--<code>&lt;Number&gt;</code>-->
                                 </li>
                                 <li class="private"><a href="#EVENT_TYPES">EVENT_TYPES</a>
-                                        <!--<code>&lt;String&gt;</code>-->
+                                        <!--<code>&lt;Number&gt;</code>-->
                                 </li>
                                 <li class="private"><a href="#YAHOO.widget.Overlay._initialized">YAHOO.widget.Overlay._initialized</a>
-                                        <!--<code>&lt;String&gt;</code>-->
+                                        <!--<code>&lt;Number&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#YAHOO.widget.Overlay.BOTTOM_LEFT">YAHOO.widget.Overlay.BOTTOM_LEFT</a>
-                                        <!--<code>&lt;String&gt;</code>-->
+                                        <!--<code>&lt;Number&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#YAHOO.widget.Overlay.BOTTOM_RIGHT">YAHOO.widget.Overlay.BOTTOM_RIGHT</a>
-                                        <!--<code>&lt;String&gt;</code>-->
+                                        <!--<code>&lt;Number&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#YAHOO.widget.Overlay.CSS_OVERLAY">YAHOO.widget.Overlay.CSS_OVERLAY</a>
-                                        <!--<code>&lt;String&gt;</code>-->
+                                        <!--<code>&lt;Number&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#YAHOO.widget.Overlay.IFRAME_SRC">YAHOO.widget.Overlay.IFRAME_SRC</a>
-                                        <!--<code>&lt;String&gt;</code>-->
+                                        <!--<code>&lt;Number&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#YAHOO.widget.Overlay.TOP_LEFT">YAHOO.widget.Overlay.TOP_LEFT</a>
-                                        <!--<code>&lt;String&gt;</code>-->
+                                        <!--<code>&lt;Number&gt;</code>-->
                                 </li>
                                 <li class=""><a href="#YAHOO.widget.Overlay.TOP_RIGHT">YAHOO.widget.Overlay.TOP_RIGHT</a>
-                                        <!--<code>&lt;String&gt;</code>-->
+                                        <!--<code>&lt;Number&gt;</code>-->
+                                </li>
+                                <li class=""><a href="#YAHOO.widget.Overlay.VIEWPORT_OFFSET">YAHOO.widget.Overlay.VIEWPORT_OFFSET</a>
+                                        <!--<code>&lt;Number&gt;</code>-->
                                 </li>
                         </ul>
                     </div>
@@ -2444,6 +2536,9 @@ made visible.
                                 </li>
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#enforceConstraints">enforceConstraints</a>
+                                </li>
+                                <li class=""><!--<code>Array</code>-->
+                                <a href="#getConstrainedXY">getConstrainedXY</a>
                                 </li>
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#hideIframe">hideIframe</a>

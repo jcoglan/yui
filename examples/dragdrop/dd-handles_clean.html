@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title>Drag and Drop Handles</title>
 
 <style type="text/css">
@@ -25,8 +25,13 @@ body {
 
 <style type="text/css">
 
+#playground {
+    position: relative;
+    height: 200px;
+}
+
 .dd-demo {
-    position:relative;
+    position:absolute;
     border:4px solid #666;
     text-align:center;
     color:#fff;
@@ -35,17 +40,17 @@ body {
 }
 
 .dd-demo .dd-handle {
-    height: 0.5 em; background: #003366;
+    background: #003366;
     cursor:move;
 }
 
 .dd-demo .dd-multi-handle-1 {
-    height: 0.5 em; background: #336699; float: left;
+    background: #336699; float: left;
     cursor:move;
 }
 
 .dd-demo .dd-multi-handle-2 {
-    height: 0.5 em; background: #336699; float: right;
+    background: #336699; float: right;
     cursor:move;
 }
 
@@ -53,9 +58,10 @@ body {
     position:relative;
     background: red;
     cursor:move;
+    height: 20px;
     width: 3em;
     text-align:center;
-    top:-150px; left:200px;
+    top:0px; left:200px;
 }
 
 
@@ -73,7 +79,7 @@ body {
 
 #dd-demo-3 {
     background-color:#7E5B60;
-    top:-150px; left:200px;
+    top:20px; left:200px;
 }
 
 </style>
@@ -95,6 +101,7 @@ body {
 
 <!--BEGIN SOURCE CODE FOR EXAMPLE =============================== -->
 
+<div id="playground">
 <div id="dd-demo-1" class="dd-demo">
     <div id="dd-handle-1a" class="dd-multi-handle-1">H1</div>
     <div id="dd-handle-1b" class="dd-multi-handle-2">H2</div>
@@ -105,7 +112,7 @@ body {
 
 <div id="dd-handle-3b" class="dd-outer-handle">Outer</div>
 <div id="dd-demo-3" class="dd-demo"></div>
-
+</div>
 <script type="text/javascript">
 
 (function() {

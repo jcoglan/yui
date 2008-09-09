@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Browser History Manager&nbsp; <span class="subtitle">2.3.1</span></h3>
+        <h3>Browser History Manager&nbsp; <span class="subtitle">2.4.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_history.html">history</a>
@@ -77,24 +77,6 @@ be bookmarked in a specific state.
                             <h3 id="properties">Properties</h3>
                             <div class="content">
                                     <div class="private">
-                                    <h4><a name="_bhmReady">_bhmReady</a>
-                                        <code>- private boolean</code>
-                                    </h4>
-                                    <div class="detail">
-                                        <div class="description">
-                                            Flag used to tell whether the Browser History Manager is ready.
-                                        </div>
-                                    </div>
-     
-                                        
-                                    <div class="default">
-                                        Default Value: false
-                                    </div>        
-
-
-                                    <hr />
-                                    </div>
-                                    <div class="private">
                                     <h4><a name="_fqstates">_fqstates</a>
                                         <code>- private array</code>
                                     </h4>
@@ -113,7 +95,7 @@ be bookmarked in a specific state.
                                     <hr />
                                     </div>
                                     <div class="private">
-                                    <h4><a name="_iframe">_iframe</a>
+                                    <h4><a name="_histFrame">_histFrame</a>
                                         <code>- private HTMLIFrameElement</code>
                                     </h4>
                                     <div class="detail">
@@ -167,7 +149,7 @@ be bookmarked in a specific state.
                                     <hr />
                                     </div>
                                     <div class="private">
-                                    <h4><a name="_storageField">_storageField</a>
+                                    <h4><a name="_stateField">_stateField</a>
                                         <code>- private HTMLInputElement|HTMLTextAreaElement</code>
                                     </h4>
                                     <div class="detail">
@@ -181,24 +163,6 @@ the list of all states across pages within a single browser session.
                                         
                                     <div class="default">
                                         Default Value: null
-                                    </div>        
-
-
-                                    <hr />
-                                    </div>
-                                    <div class="private">
-                                    <h4><a name="_storageFieldReady">_storageFieldReady</a>
-                                        <code>- private boolean</code>
-                                    </h4>
-                                    <div class="detail">
-                                        <div class="description">
-                                            Flag used to tell whether the storage field is ready to be used.
-                                        </div>
-                                    </div>
-     
-                                        
-                                    <div class="default">
-                                        Default Value: false
                                     </div>        
 
 
@@ -405,43 +369,31 @@ place in the form field specified during initialization.
                                     </div>
                                     <div class="private">
                                     <h4>
-                                        <a name="_trim">_trim</a></h4>
+                                        <a name="_updateIFrame">_updateIFrame</a></h4>
                                     <div class="detail">
                                         <code>
                                          private 
                                         
                                         
-                                        string
-                                            <strong>_trim</strong>
+                                        boolean
+                                            <strong>_updateIFrame</strong>
                                            (
-                                                
-                                                        
-                                                         str
-                                                    
-                                                
                                             )
                                         </code>
                                         
                                         <div class="description">
-                                            Trims a string.
+                                            Update the IFrame with our new state.
                                         </div>
 
                                         <div class="description">
 
-                                                <dl>
-                                                    <dt>Parameters:</dt>
-                                                        <dd>
-                                                            <code>str &lt;string&gt;</code>
-                                                             The string to be trimmed.
-                                                        </dd>
-                                                </dl>
 
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
-                                                        string
+                                                        boolean
                                                     </code></dt>
-                                                    <dd>The trimmed string</dd>
+                                                    <dd>true if successful. false otherwise.</dd>
                                                 </dl>
              
                                         </div>
@@ -615,7 +567,11 @@ this method uses the URL in the address bar.
                                            (
                                                 
                                                         
-                                                         iframeTarget
+                                                         stateField
+                                                    
+                                                
+                                                        , 
+                                                         histFrame
                                                     
                                                 
                                             )
@@ -631,11 +587,14 @@ from a script block located right after the opening body tag.
                                                 <dl>
                                                     <dt>Parameters:</dt>
                                                         <dd>
-                                                            <code>iframeTarget &lt;string&gt;</code>
-                                                             Optional - Path to an existing
-HTML document accessible from the same domain. If not
-specified, defaults to "blank.html". This is only useful
-if you use https.
+                                                            <code>stateField &lt;string|HTML Element&gt;</code>
+                                                             <input type="hidden"> used
+to store application states. Must be in the static markup.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>histFrame &lt;string|HTML Element&gt;</code>
+                                                             IFrame used to store
+the history (only required on Internet Explorer)
                                                         </dd>
                                                 </dl>
 
@@ -754,6 +713,70 @@ if you use https.
                                     </div>
                                     <div class="">
                                     <h4>
+                                        <a name="onReady">onReady</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong>onReady</strong>
+                                           (
+                                                
+                                                        
+                                                         fn
+                                                    
+                                                
+                                                        , 
+                                                         obj
+                                                    
+                                                
+                                                        , 
+                                                         override
+                                                    
+                                                
+                                            )
+                                        </code>
+                                        
+                                        <div class="description">
+                                            Executes the supplied callback when the Browser History Manager is
+ready. This will execute immediately if called after the Browser
+History Manager onLoad event has fired.
+                                        </div>
+
+                                        <div class="description">
+
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                        <dd>
+                                                            <code>fn &lt;function&gt;</code>
+                                                             what to execute when the Browser History Manager is ready.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>obj &lt;object&gt;</code>
+                                                             an optional object to be passed back as a parameter to fn.
+                                                        </dd>
+                                                        <dd>
+                                                            <code>override &lt;boolean|object&gt;</code>
+                                                             If true, the obj passed in becomes fn's execution scope.
+                                                        </dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        void
+                                                    </code></dt>
+                                                    <dd></dd>
+                                                </dl>
+             
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="">
+                                    <h4>
                                         <a name="register">register</a></h4>
                                     <div class="detail">
                                         <code>
@@ -858,7 +881,10 @@ execution scope of the listener.
                                         </code>
                                         
                                         <div class="description">
-                                            Fired when the Browser History Manager is ready.
+                                            Fired when the Browser History Manager is ready. If you subscribe to
+this event after the Browser History Manager has been initialized,
+it will not fire. Therefore, it is recommended to use the onReady
+method instead.
                                         </div>
 
                                         <div class="description">
@@ -895,6 +921,8 @@ execution scope of the listener.
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_charts.html">charts</a></li>
+
                                 <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
 
                                 <li class=""><a href="module_connection.html">connection</a></li>
@@ -904,6 +932,8 @@ execution scope of the listener.
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
+
+                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -915,13 +945,23 @@ execution scope of the listener.
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
+                                <li class=""><a href="module_get.html">get</a></li>
+
                                 <li class="selected"><a href="module_history.html">history</a></li>
 
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
+                                <li class=""><a href="module_json.html">json</a></li>
+
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
+
+                                <li class=""><a href="module_number.html">number</a></li>
+
+                                <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_selector.html">selector</a></li>
 
                                 <li class=""><a href="module_slider.html">slider</a></li>
 
@@ -954,26 +994,20 @@ execution scope of the listener.
                     <div class="module">
                         <h4>Properties</h4>
                         <ul class="content">        
-                                <li class="private"><a href="#_bhmReady">_bhmReady</a>
-                                        <!--<code>&lt;boolean&gt;</code>-->
-                                </li>
                                 <li class="private"><a href="#_fqstates">_fqstates</a>
-                                        <!--<code>&lt;boolean&gt;</code>-->
+                                        <!--<code>&lt;HTMLInputElement|HTMLTextAreaElement&gt;</code>-->
                                 </li>
-                                <li class="private"><a href="#_iframe">_iframe</a>
-                                        <!--<code>&lt;boolean&gt;</code>-->
+                                <li class="private"><a href="#_histFrame">_histFrame</a>
+                                        <!--<code>&lt;HTMLInputElement|HTMLTextAreaElement&gt;</code>-->
                                 </li>
                                 <li class="private"><a href="#_initialized">_initialized</a>
-                                        <!--<code>&lt;boolean&gt;</code>-->
+                                        <!--<code>&lt;HTMLInputElement|HTMLTextAreaElement&gt;</code>-->
                                 </li>
                                 <li class="private"><a href="#_modules">_modules</a>
-                                        <!--<code>&lt;boolean&gt;</code>-->
+                                        <!--<code>&lt;HTMLInputElement|HTMLTextAreaElement&gt;</code>-->
                                 </li>
-                                <li class="private"><a href="#_storageField">_storageField</a>
-                                        <!--<code>&lt;boolean&gt;</code>-->
-                                </li>
-                                <li class="private"><a href="#_storageFieldReady">_storageFieldReady</a>
-                                        <!--<code>&lt;boolean&gt;</code>-->
+                                <li class="private"><a href="#_stateField">_stateField</a>
+                                        <!--<code>&lt;HTMLInputElement|HTMLTextAreaElement&gt;</code>-->
                                 </li>
                         </ul>
                     </div>
@@ -996,8 +1030,8 @@ execution scope of the listener.
                                 <li class="private"><!--<code>void</code>-->
                                 <a href="#_storeStates">_storeStates</a>
                                 </li>
-                                <li class="private"><!--<code>string</code>-->
-                                <a href="#_trim">_trim</a>
+                                <li class="private"><!--<code>boolean</code>-->
+                                <a href="#_updateIFrame">_updateIFrame</a>
                                 </li>
                                 <li class=""><!--<code>string</code>-->
                                 <a href="#getBookmarkedState">getBookmarkedState</a>
@@ -1016,6 +1050,9 @@ execution scope of the listener.
                                 </li>
                                 <li class=""><!--<code>boolean</code>-->
                                 <a href="#navigate">navigate</a>
+                                </li>
+                                <li class=""><!--<code>void</code>-->
+                                <a href="#onReady">onReady</a>
                                 </li>
                                 <li class=""><!--<code>void</code>-->
                                 <a href="#register">register</a>

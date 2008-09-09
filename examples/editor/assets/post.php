@@ -1,8 +1,9 @@
 <?php
+header('Content-Type: application/json');
 
+/* yadl_spaceid - Skip Stamping */
 include('exampleslib.inc');
 
-header('Content-type: application/json');
 
 // Use Services_JSON
 require_once('JSON.php');

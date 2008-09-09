@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>YUI Library Examples: DataTable Control (beta): Server-side Pagination and Sorting, with Browser History Manager</title>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
     	<link rel="stylesheet" type="text/css" href="../../assets/yui.css" >
 
 <style>
@@ -23,17 +23,23 @@
 <script type="text/javascript" src="../../build/dom/dom-min.js"></script>
 <script type="text/javascript" src="../../build/logger/logger-min.js"></script>
 <script type="text/javascript" src="../../build/connection/connection-min.js"></script>
-<script type="text/javascript" src="../../build/history/history-beta-min.js"></script>
+<script type="text/javascript" src="../../build/history/history-min.js"></script>
 <script type="text/javascript" src="../../build/element/element-beta-min.js"></script>
 <script type="text/javascript" src="../../build/datasource/datasource-beta-debug.js"></script>
 <script type="text/javascript" src="../../build/datatable/datatable-beta-debug.js"></script>
-<script type="text/javascript" src="../../build/button/button-beta-min.js"></script>
+<script type="text/javascript" src="../../build/button/button-min.js"></script>
 
 
 <!--begin custom header content for this example-->
 <style type="text/css">
 /* custom styles for this example */
 #dt-pag-nav { margin-bottom:1em; } /* custom pagination UI */
+#yui-history-iframe {
+  position:absolute;
+  top:0; left:0;
+  width:1px; height:1px; /* avoid scrollbars */
+  visibility:hidden;
+}
 </style>
 
 <!--end custom header content for this example-->
@@ -81,7 +87,10 @@ History Manager for managing states.</p>
 		
 	<!--BEGIN SOURCE CODE FOR EXAMPLE =============================== -->
 	
-	<div id="dt-pag-nav">
+	<iframe id="yui-history-iframe" src="assets/html/blank.html"></iframe>
+<input id="yui-history-field" type="hidden">
+
+<div id="dt-pag-nav">
     <span id="prevLink">&lt;</span> Showing items
     <span id="startIndex">0</span> - <span id="endIndex">24</span>
     <span id="ofTotal"></span> <span id="nextLink">&gt;</span>
@@ -157,8 +166,9 @@ YAHOO.example.ServerIntegration = new function() {
         var oSelf = YAHOO.example.ServerIntegration;
         oSelf.myDataSource.sendRequest(newBookmark, oSelf.myDataTable.onDataReturnInitializeTable, oSelf.myDataTable);
     };
+
     YAHOO.util.History.register("myDataTable", this.myInitialState, this.myBookmarkHandler);
-    YAHOO.util.History.initialize();
+
     YAHOO.util.History.onLoadEvent.subscribe(function() {
         // Column definitions
         var myColumnDefs = [
@@ -272,12 +282,14 @@ YAHOO.example.ServerIntegration = new function() {
                 sDir = (this.get("sortedBy").dir === "asc") ?
                         "desc" : "asc";
             }
-            
+
             var oPag = this.get("paginator");
             var newBookmark = "sort=" + oColumn.key + "&dir=" + sDir + "&results=" + oPag.rowsThisPage + "&startIndex=0";
             YAHOO.util.History.navigate("myDataTable", newBookmark);
         };
     }, this, true);
+
+    YAHOO.util.History.initialize("yui-history-field", "yui-history-iframe");
 };
 </script>
 	
@@ -327,7 +339,10 @@ YAHOO.example.ServerIntegration = new function() {
 
 <p>Markup:</p>
 
-<textarea name="code" class="HTML" cols="60" rows="1">&lt;div id="dt-pag-nav"&gt;
+<textarea name="code" class="HTML" cols="60" rows="1">
+&lt;iframe id="yui-history-iframe" src="assets/html/blank.html"&gt;&lt;/iframe&gt;
+&lt;input id="yui-history-field" type="hidden"&gt;
+&lt;div id="dt-pag-nav"&gt;
     &lt;span id="prevLink"&gt;&lt;&lt;/span&gt; Showing items
     &lt;span id="startIndex"&gt;0&lt;/span&gt; - &lt;span id="endIndex"&gt;24&lt;/span&gt;
     &lt;span id="ofTotal"&gt;&lt;/span&gt; &lt;span id="nextLink"&gt;&gt;&lt;/span&gt;
@@ -405,8 +420,9 @@ YAHOO.example.ServerIntegration = new function() {
             var oSelf = YAHOO.example.ServerIntegration;
             oSelf.myDataSource.sendRequest(newBookmark, oSelf.myDataTable.onDataReturnInitializeTable, oSelf.myDataTable);
         };
+
         YAHOO.util.History.register("myDataTable", this.myInitialState, this.myBookmarkHandler);
-        YAHOO.util.History.initialize();
+
         YAHOO.util.History.onLoadEvent.subscribe(function() {
             // Column definitions
             var myColumnDefs = [
@@ -535,6 +551,8 @@ YAHOO.example.ServerIntegration = new function() {
                 YAHOO.util.History.navigate("myDataTable", newBookmark);
             };
         }, this, true);
+
+        YAHOO.util.History.initialize("yui-history-field", "yui-history-iframe");
     };
 });
 </textarea>
@@ -564,9 +582,10 @@ YAHOO.example.ServerIntegration = new function() {
 						<h3>More DataTable Control (beta) Resources:</h3>
 						<ul>
 							<li><a href="http://developer.yahoo.com/yui/datatable/">User's Guide</a> (external)</li>
-							<li><a href="../../docs/module_datatable.html">API Documentation</a></li>
-							<li><a href="http://yuiblog.com/assets/pdf/cheatsheets/datatable.pdf">Cheat Sheet PDF</a> (external)</li>
-						</ul>
+						<li><a href="../../docs/module_datatable.html">API Documentation</a></li>
+                            
+                            
+							<li><a href="http://yuiblog.com/assets/pdf/cheatsheets/datatable.pdf">Cheat Sheet PDF</a> (external)</li></ul>
 					</div>
 					
 	
@@ -582,9 +601,10 @@ YAHOO.example.ServerIntegration = new function() {
 <div id="toc">
 	
 <ul>
-<li class="sect first">Yahoo! UI Library</li><li class="item"><a title="The Yahoo! User Interface Library (YUI)" href="http://developer.yahoo.com/yui/">Home (external)</a></li><li class="item"><a title="The Yahoo! User Interface Blog" href="http://yuiblog.com">YUIBlog (external)</a></li><li class="item"><a title="The Yahoo! Group YDN-JavaScript hosts the YUI community forum" href="http://tech.groups.yahoo.com/group/ydn-javascript/">YUI Discussion Forum (external)</a></li><li class="item"><a title="The YUI Library can be downloaded from SourceForge" href="http://sourceforge.net/projects/yui/">YUI on Sourceforge (external)</a></li><li class="item"><a title="Instantly searchable API documentation for the entire YUI library." href="../../docs/index.html">API Documentation</a></li><li class="item"><a title="Examples of every YUI utility and control in action" href="../../examples/">Functional Examples</a></li><li class="item"><a title="Videos and podcasts from the YUI Team and from the Yahoo! frontend engineering community." href="http://developer.yahoo.com/yui/theater/">YUI Theater (external)</a></li><li class="item"><a title="YUI is free and open, offered under a BSD license." href="http://developer.yahoo.com/yui/license.html">YUI License (external)</a></li><li class="sect">YUI Functional Examples</li><li class="item"><a title="The YUI Animation Utility - Functional Examples" href="../../examples/animation/index.html">Animation</a></li><li class="item"><a title="The YUI AutoComplete Control - Functional Examples" href="../../examples/autocomplete/index.html">AutoComplete</a></li><li class="item"><a title="The YUI Browser History Manager - Functional Examples" href="../../examples/history/index.html">Browser History Manager (beta)</a></li><li class="item"><a title="The YUI Button Control - Functional Examples" href="../../examples/button/index.html">Button (beta)</a></li><li class="item"><a title="The YUI Calendar Control - Functional Examples" href="../../examples/calendar/index.html">Calendar</a></li><li class="item"><a title="The YUI Color Picker Control - Functional Examples" href="../../examples/colorpicker/index.html">Color Picker (beta)</a></li><li class="item"><a title="The YUI Connection Manager (AJAX) - Functional Examples" href="../../examples/connection/index.html">Connection Manager</a></li><li class="item"><a title="The YUI Container Family (Module, Overlay, Tooltip, Panel, Dialog, SimpleDialog) - Functional Examples" href="../../examples/container/index.html">Container</a></li><li class="selected "><a title="The YUI DataTable Control - Functional Examples" href="../../examples/datatable/index.html">DataTable (beta)</a></li><li class="item"><a title="The YUI Dom Collection - Functional Examples" href="../../examples/dom/index.html">Dom</a></li><li class="item"><a title="The YUI Drag &amp; Drop Utility - Functional Examples" href="../../examples/dragdrop/index.html">Drag &amp; Drop</a></li><li class="item"><a title="The YUI Event Utility - Functional Examples" href="../../examples/event/index.html">Event</a></li><li class="item"><a title="The YUI ImageLoader Utility - Functional Examples" href="../../examples/imageloader/index.html">ImageLoader (experimental)</a></li><li class="item"><a title="The YUI Logger Control - Functional Examples" href="../../examples/logger/index.html">Logger</a></li><li class="item"><a title="The YUI Menu Control - Functional Examples" href="../../examples/menu/index.html">Menu</a></li><li class="item"><a title="The YUI Rich Text Editor - Functional Examples" href="../../examples/editor/index.html">Rich Text Editor (beta)</a></li><li class="item"><a title="The YUI Slider Control - Functional Examples" href="../../examples/slider/index.html">Slider</a></li><li class="item"><a title="The YUI TabView Control - Functional Examples" href="../../examples/tabview/index.html">TabView</a></li><li class="item"><a title="The YUI TreeView Control - Functional Examples" href="../../examples/treeview/index.html">TreeView</a></li><li class="item"><a title="The YUI Loader Utility - Functional Examples" href="../../examples/yuiloader/index.html">YUI Loader (beta)</a></li><li class="item"><a title="The YUI Test Utility - Functional Examples" href="../../examples/yuitest/index.html">YUI Test (beta)</a></li><li class="item"><a title="YUI Reset CSS - Functional Examples" href="../../examples/reset/index.html">Reset CSS</a></li><li class="item"><a title="YUI Base CSS - Functional Examples" href="../../examples/base/index.html">Base CSS</a></li><li class="item"><a title="YUI Fonts CSS - Functional Examples" href="../../examples/fonts/index.html">Fonts CSS</a></li><li class="item"><a title="YUI Grids CSS - Functional Examples" href="../../examples/grids/index.html">Grids CSS</a></li><li class="sect">YUI Articles on the YUI Website</li><li class="item"><a title="Answers to Frequently Asked Questions about the YUI Library" href="http://developer.yahoo.com/yui/articles/faq/">YUI FAQ (external)</a></li><li class="item"><a title="Yahoo!'s philosophy of Graded Browser Support" href="http://developer.yahoo.com/yui/articles/gbs/">Graded Browser Support (external)</a></li><li class="item"><a title="Reporting Bugs and Making Feature Requests for YUI Components" href="http://developer.yahoo.com/yui/articles/reportingbugs/">Bug Reports/Feature Requests (external)</a></li><li class="item"><a title="Serve YUI source files from Yahoo! -- free, fast, and simple" href="http://developer.yahoo.com/yui/articles/hosting/">Serving YUI Files from Yahoo! (external)</a></li><li class="item"><a title="Best practices for working with web services while protecting user privacy" href="http://developer.yahoo.com/security/">Security Best Practices (external)</a></li></ul>
+<li class="sect first">Yahoo! UI Library</li><li class="item"><a title="The Yahoo! User Interface Library (YUI)" href="http://developer.yahoo.com/yui/">Home (external)</a></li><li class="item"><a title="The Yahoo! User Interface Blog" href="http://yuiblog.com">YUIBlog (external)</a></li><li class="item"><a title="The Yahoo! Group YDN-JavaScript hosts the YUI community forum" href="http://tech.groups.yahoo.com/group/ydn-javascript/">YUI Discussion Forum (external)</a></li><li class="item"><a title="The YUI Library can be downloaded from SourceForge" href="http://sourceforge.net/projects/yui/">YUI on Sourceforge (external)</a></li><li class="item"><a title="Instantly searchable API documentation for the entire YUI library." href="../../docs/index.html">API Documentation</a></li><li class="item"><a title="Examples of every YUI utility and control in action" href="../../examples/">Functional Examples</a></li><li class="item"><a title="Videos and podcasts from the YUI Team and from the Yahoo! frontend engineering community." href="http://developer.yahoo.com/yui/theater/">YUI Theater (external)</a></li><li class="item"><a title="YUI is free and open, offered under a BSD license." href="http://developer.yahoo.com/yui/license.html">YUI License (external)</a></li><li class="sect">YUI Functional Examples</li><li class="item"><a title="The YUI Animation Utility - Functional Examples" href="../../examples/animation/index.html">Animation</a></li><li class="item"><a title="The YUI AutoComplete Control - Functional Examples" href="../../examples/autocomplete/index.html">AutoComplete</a></li><li class="item"><a title="The YUI Browser History Manager - Functional Examples" href="../../examples/history/index.html">Browser History Manager</a></li><li class="item"><a title="The YUI Button Control - Functional Examples" href="../../examples/button/index.html">Button</a></li><li class="item"><a title="The YUI Calendar Control - Functional Examples" href="../../examples/calendar/index.html">Calendar</a></li><li class="item"><a title="The YUI Charts Control - Functional Examples" href="../../examples/charts/index.html">Charts (experimental)</a></li><li class="item"><a title="The YUI Color Picker Control - Functional Examples" href="../../examples/colorpicker/index.html">Color Picker (beta)</a></li><li class="item"><a title="The YUI Connection Manager (AJAX) - Functional Examples" href="../../examples/connection/index.html">Connection Manager</a></li><li class="item"><a title="The YUI Container Family (Module, Overlay, Tooltip, Panel, Dialog, SimpleDialog) - Functional Examples" href="../../examples/container/index.html">Container</a></li><li class="selected "><a title="The YUI DataTable Control - Functional Examples" href="../../examples/datatable/index.html">DataTable (beta)</a></li><li class="item"><a title="The YUI Dom Collection - Functional Examples" href="../../examples/dom/index.html">Dom</a></li><li class="item"><a title="The YUI Drag &amp; Drop Utility - Functional Examples" href="../../examples/dragdrop/index.html">Drag &amp; Drop</a></li><li class="item"><a title="The YUI Event Utility - Functional Examples" href="../../examples/event/index.html">Event</a></li><li class="item"><a title="The YUI Get Utility - Functional Examples" href="../../examples/get/index.html">Get (beta)</a></li><li class="item"><a title="The YUI ImageLoader Utility - Functional Examples" href="../../examples/imageloader/index.html">ImageLoader (beta)</a></li><li class="item"><a title="The YUI JSON Utility - Functional Examples" href="../../examples/json/index.html">JSON (beta)</a></li><li class="item"><a title="The YUI Logger Control - Functional Examples" href="../../examples/logger/index.html">Logger</a></li><li class="item"><a title="The YUI Menu Control - Functional Examples" href="../../examples/menu/index.html">Menu</a></li><li class="item"><a title="The YUI Profiler Utility - Functional Examples" href="../../examples/profiler/index.html">Profiler (beta)</a></li><li class="item"><a title="The YUI Rich Text Editor - Functional Examples" href="../../examples/editor/index.html">Rich Text Editor (beta)</a></li><li class="item"><a title="The YUI Selector Utility - Functional Examples" href="../../examples/selector/index.html">Selector (beta)</a></li><li class="item"><a title="The YUI Slider Control - Functional Examples" href="../../examples/slider/index.html">Slider</a></li><li class="item"><a title="The YUI TabView Control - Functional Examples" href="../../examples/tabview/index.html">TabView</a></li><li class="item"><a title="The YUI TreeView Control - Functional Examples" href="../../examples/treeview/index.html">TreeView</a></li><li class="item"><a title="The YUI YAHOO Global Object - Functional Examples" href="../../examples/yahoo/index.html">YAHOO Global Object</a></li><li class="item"><a title="The YUI Loader Utility - Functional Examples" href="../../examples/yuiloader/index.html">YUI Loader (beta)</a></li><li class="item"><a title="The YUI Test Utility - Functional Examples" href="../../examples/yuitest/index.html">YUI Test (beta)</a></li><li class="item"><a title="YUI Reset CSS - Functional Examples" href="../../examples/reset/index.html">Reset CSS</a></li><li class="item"><a title="YUI Base CSS - Functional Examples" href="../../examples/base/index.html">Base CSS</a></li><li class="item"><a title="YUI Fonts CSS - Functional Examples" href="../../examples/fonts/index.html">Fonts CSS</a></li><li class="item"><a title="YUI Grids CSS - Functional Examples" href="../../examples/grids/index.html">Grids CSS</a></li><li class="sect">YUI Articles on the YUI Website</li><li class="item"><a title="Answers to Frequently Asked Questions about the YUI Library" href="http://developer.yahoo.com/yui/articles/faq/">YUI FAQ (external)</a></li><li class="item"><a title="Yahoo!'s philosophy of Graded Browser Support" href="http://developer.yahoo.com/yui/articles/gbs/">Graded Browser Support (external)</a></li><li class="item"><a title="Reporting Bugs and Making Feature Requests for YUI Components" href="http://developer.yahoo.com/yui/articles/reportingbugs/">Bug Reports/Feature Requests (external)</a></li><li class="item"><a title="Serve YUI source files from Yahoo! -- free, fast, and simple" href="http://developer.yahoo.com/yui/articles/hosting/">Serving YUI Files from Yahoo! (external)</a></li><li class="item"><a title="Best practices for working with web services while protecting user privacy" href="http://developer.yahoo.com/security/">Security Best Practices (external)</a></li></ul>
 </div>
 </div>
+	</div><!--closes bd-->
 
 	<div id="ft">
         <p class="first">Copyright &copy; 2007 Yahoo! Inc. All rights reserved.</p>
@@ -593,7 +613,6 @@ YAHOO.example.ServerIntegration = new function() {
             <a href="http://docs.yahoo.com/info/copyright/copyright.html">Copyright Policy</a> - 
             <a href="http://careers.yahoo.com/">Job Openings</a></p>
 	</div>
-</div>
 </div>
 <script src="../../assets/dpSyntaxHighlighter.js"></script>
 <script language="javascript"> 

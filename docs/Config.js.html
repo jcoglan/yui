@@ -13,7 +13,7 @@
 
 	<div id="hd">
         <a href="http://developer.yahoo.com/yui/"><h1>Yahoo! UI Library</h1></a>
-        <h3>Container&nbsp; <span class="subtitle">2.3.1</span></h3>
+        <h3>Container&nbsp; <span class="subtitle">2.4.0</span></h3>
         <p>
         <a href="./index.html">Yahoo! UI Library</a> 
             &gt; <a href="./module_container.html">container</a>
@@ -49,26 +49,20 @@
 <span class="c">    * @param {Object} owner The owner Object to which this Config Object belongs</span>
 <span class="c">    */</span>
     <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Config</span> <span class="o">=</span> <span class="k">function</span> <span class="o">(</span><span class="nx">owner</span><span class="o">)</span> <span class="o">{</span>
-    
+
         <span class="k">if</span> <span class="o">(</span><span class="nx">owner</span><span class="o">)</span> <span class="o">{</span>
-    
             <span class="k">this</span><span class="o">.</span><span class="nx">init</span><span class="o">(</span><span class="nx">owner</span><span class="o">);</span>
-    
         <span class="o">}</span>
-    
-        <span class="k">if</span> <span class="o">(!</span><span class="nx">owner</span><span class="o">)</span> <span class="o">{</span> 
-        
-            <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;No owner specified for Config object&quot;</span><span class="o">,</span> <span class="s2">&quot;error&quot;</span><span class="o">);</span> 
-    
-        <span class="o">}</span>
-    
+
+        <span class="k">if</span> <span class="o">(!</span><span class="nx">owner</span><span class="o">)</span> <span class="o">{</span>  <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;No owner specified for Config object&quot;</span><span class="o">,</span> <span class="s2">&quot;error&quot;</span><span class="o">,</span> <span class="s2">&quot;Config&quot;</span><span class="o">);</span> <span class="o">}</span>
+
     <span class="o">};</span>
 
 
     <span class="k">var</span> <span class="nx">Lang</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">,</span>
-        <span class="nx">CustomEvent</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">CustomEvent</span><span class="o">,</span>        
+        <span class="nx">CustomEvent</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">CustomEvent</span><span class="o">,</span>
         <span class="nx">Config</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">Config</span><span class="o">;</span>
-    
+
 
     <span class="c">/**</span>
 <span class="c">     * Constant representing the CustomEvent type for the config changed event.</span>
@@ -188,7 +182,7 @@
 <span class="c">        * @param {value} Object The value of the correct type for the property</span>
 <span class="c">        */</span> 
         <span class="nx">fireEvent</span><span class="o">:</span> <span class="k">function</span> <span class="o">(</span> <span class="nx">key</span><span class="o">,</span> <span class="nx">value</span> <span class="o">)</span> <span class="o">{</span>
-            <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;Firing Config event: &quot;</span> <span class="o">+</span> <span class="nx">key</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">+</span> <span class="nx">value</span><span class="o">,</span> <span class="s2">&quot;info&quot;</span><span class="o">);</span>
+            <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;Firing Config event: &quot;</span> <span class="o">+</span> <span class="nx">key</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">+</span> <span class="nx">value</span><span class="o">,</span> <span class="s2">&quot;info&quot;</span><span class="o">,</span> <span class="s2">&quot;Config&quot;</span><span class="o">);</span>
             <span class="k">var</span> <span class="nx">property</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">config</span><span class="o">[</span><span class="nx">key</span><span class="o">];</span>
         
             <span class="k">if</span> <span class="o">(</span><span class="nx">property</span> <span class="o">&amp;&amp;</span> <span class="nx">property</span><span class="o">.</span><span class="nx">event</span><span class="o">)</span> <span class="o">{</span>
@@ -205,7 +199,7 @@
 <span class="c">        */</span>
         <span class="nx">addProperty</span><span class="o">:</span> <span class="k">function</span> <span class="o">(</span> <span class="nx">key</span><span class="o">,</span> <span class="nx">propertyObject</span> <span class="o">)</span> <span class="o">{</span>
             <span class="nx">key</span> <span class="o">=</span> <span class="nx">key</span><span class="o">.</span><span class="nx">toLowerCase</span><span class="o">();</span>
-            <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;Added property: &quot;</span> <span class="o">+</span> <span class="nx">key</span><span class="o">,</span> <span class="s2">&quot;info&quot;</span><span class="o">);</span>
+            <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;Added property: &quot;</span> <span class="o">+</span> <span class="nx">key</span><span class="o">,</span> <span class="s2">&quot;info&quot;</span><span class="o">,</span> <span class="s2">&quot;Config&quot;</span><span class="o">);</span>
         
             <span class="k">this</span><span class="o">.</span><span class="nx">config</span><span class="o">[</span><span class="nx">key</span><span class="o">]</span> <span class="o">=</span> <span class="nx">propertyObject</span><span class="o">;</span>
         
@@ -310,7 +304,7 @@
             <span class="k">var</span> <span class="nx">property</span><span class="o">;</span>
         
             <span class="nx">key</span> <span class="o">=</span> <span class="nx">key</span><span class="o">.</span><span class="nx">toLowerCase</span><span class="o">();</span>
-            <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;setProperty: &quot;</span> <span class="o">+</span> <span class="nx">key</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">+</span> <span class="nx">value</span><span class="o">,</span> <span class="s2">&quot;info&quot;</span><span class="o">);</span>
+            <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;setProperty: &quot;</span> <span class="o">+</span> <span class="nx">key</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">+</span> <span class="nx">value</span><span class="o">,</span> <span class="s2">&quot;info&quot;</span><span class="o">,</span> <span class="s2">&quot;Config&quot;</span><span class="o">);</span>
         
             <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="nx">queueInProgress</span> <span class="o">&amp;&amp;</span> <span class="o">!</span> <span class="nx">silent</span><span class="o">)</span> <span class="o">{</span>
                 <span class="c">// Currently running through a queue... </span>
@@ -349,7 +343,7 @@
         <span class="nx">queueProperty</span><span class="o">:</span> <span class="k">function</span> <span class="o">(</span><span class="nx">key</span><span class="o">,</span> <span class="nx">value</span><span class="o">)</span> <span class="o">{</span>
         
             <span class="nx">key</span> <span class="o">=</span> <span class="nx">key</span><span class="o">.</span><span class="nx">toLowerCase</span><span class="o">();</span>
-            <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;queueProperty: &quot;</span> <span class="o">+</span> <span class="nx">key</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">+</span> <span class="nx">value</span><span class="o">,</span> <span class="s2">&quot;info&quot;</span><span class="o">);</span>
+            <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;queueProperty: &quot;</span> <span class="o">+</span> <span class="nx">key</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">+</span> <span class="nx">value</span><span class="o">,</span> <span class="s2">&quot;info&quot;</span><span class="o">,</span> <span class="s2">&quot;Config&quot;</span><span class="o">);</span>
         
             <span class="k">var</span> <span class="nx">property</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">config</span><span class="o">[</span><span class="nx">key</span><span class="o">],</span>
                 <span class="nx">foundDuplicate</span> <span class="o">=</span> <span class="kc">false</span><span class="o">,</span>
@@ -389,7 +383,7 @@
                         <span class="k">if</span> <span class="o">(</span><span class="nx">queueItem</span><span class="o">)</span> <span class="o">{</span>
                             <span class="nx">queueItemKey</span> <span class="o">=</span> <span class="nx">queueItem</span><span class="o">[</span><span class="m">0</span><span class="o">];</span>
                             <span class="nx">queueItemValue</span> <span class="o">=</span> <span class="nx">queueItem</span><span class="o">[</span><span class="m">1</span><span class="o">];</span>
-                            
+
                             <span class="k">if</span> <span class="o">(</span><span class="nx">queueItemKey</span> <span class="o">==</span> <span class="nx">key</span><span class="o">)</span> <span class="o">{</span>
     
                                 <span class="c">/*</span>
@@ -417,38 +411,38 @@
                 <span class="o">}</span>
         
                 <span class="k">if</span> <span class="o">(</span><span class="nx">property</span><span class="o">.</span><span class="nx">supercedes</span><span class="o">)</span> <span class="o">{</span>
-        
+
                     <span class="nx">sLen</span> <span class="o">=</span> <span class="nx">property</span><span class="o">.</span><span class="nx">supercedes</span><span class="o">.</span><span class="nx">length</span><span class="o">;</span>
-        
+
                     <span class="k">for</span> <span class="o">(</span><span class="nx">s</span> <span class="o">=</span> <span class="m">0</span><span class="o">;</span> <span class="nx">s</span> <span class="o">&lt;</span> <span class="nx">sLen</span><span class="o">;</span> <span class="nx">s</span><span class="o">++)</span> <span class="o">{</span>
-        
+
                         <span class="nx">supercedesCheck</span> <span class="o">=</span> <span class="nx">property</span><span class="o">.</span><span class="nx">supercedes</span><span class="o">[</span><span class="nx">s</span><span class="o">];</span>
                         <span class="nx">qLen</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">eventQueue</span><span class="o">.</span><span class="nx">length</span><span class="o">;</span>
-        
+
                         <span class="k">for</span> <span class="o">(</span><span class="nx">q</span> <span class="o">=</span> <span class="m">0</span><span class="o">;</span> <span class="nx">q</span> <span class="o">&lt;</span> <span class="nx">qLen</span><span class="o">;</span> <span class="nx">q</span><span class="o">++)</span> <span class="o">{</span>
                             <span class="nx">queueItemCheck</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">eventQueue</span><span class="o">[</span><span class="nx">q</span><span class="o">];</span>
-        
+
                             <span class="k">if</span> <span class="o">(</span><span class="nx">queueItemCheck</span><span class="o">)</span> <span class="o">{</span>
                                 <span class="nx">queueItemCheckKey</span> <span class="o">=</span> <span class="nx">queueItemCheck</span><span class="o">[</span><span class="m">0</span><span class="o">];</span>
                                 <span class="nx">queueItemCheckValue</span> <span class="o">=</span> <span class="nx">queueItemCheck</span><span class="o">[</span><span class="m">1</span><span class="o">];</span>
-                                
+
                                 <span class="k">if</span> <span class="o">(</span><span class="nx">queueItemCheckKey</span> <span class="o">==</span> 
                                     <span class="nx">supercedesCheck</span><span class="o">.</span><span class="nx">toLowerCase</span><span class="o">()</span> <span class="o">)</span> <span class="o">{</span>
-    
+
                                     <span class="k">this</span><span class="o">.</span><span class="nx">eventQueue</span><span class="o">.</span><span class="nx">push</span><span class="o">([</span><span class="nx">queueItemCheckKey</span><span class="o">,</span> 
                                         <span class="nx">queueItemCheckValue</span><span class="o">]);</span>
-    
+
                                     <span class="k">this</span><span class="o">.</span><span class="nx">eventQueue</span><span class="o">[</span><span class="nx">q</span><span class="o">]</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
                                     <span class="k">break</span><span class="o">;</span>
-    
+
                                 <span class="o">}</span>
                             <span class="o">}</span>
                         <span class="o">}</span>
                     <span class="o">}</span>
                 <span class="o">}</span>
 
-                <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;Config event queue: &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="nx">outputEventQueue</span><span class="o">(),</span> <span class="s2">&quot;info&quot;</span><span class="o">);</span>
-        
+                <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">log</span><span class="o">(</span><span class="s2">&quot;Config event queue: &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="nx">outputEventQueue</span><span class="o">(),</span> <span class="s2">&quot;info&quot;</span><span class="o">,</span> <span class="s2">&quot;Config&quot;</span><span class="o">);</span>
+
                 <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
             <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
                 <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
@@ -497,37 +491,23 @@
         <span class="nx">applyConfig</span><span class="o">:</span> <span class="k">function</span> <span class="o">(</span><span class="nx">userConfig</span><span class="o">,</span> <span class="nx">init</span><span class="o">)</span> <span class="o">{</span>
         
             <span class="k">var</span> <span class="nx">sKey</span><span class="o">,</span>
-                <span class="nx">oValue</span><span class="o">,</span>
                 <span class="nx">oConfig</span><span class="o">;</span>
 
             <span class="k">if</span> <span class="o">(</span><span class="nx">init</span><span class="o">)</span> <span class="o">{</span>
-
                 <span class="nx">oConfig</span> <span class="o">=</span> <span class="o">{};</span>
-
                 <span class="k">for</span> <span class="o">(</span><span class="nx">sKey</span> <span class="k">in</span> <span class="nx">userConfig</span><span class="o">)</span> <span class="o">{</span>
-                
                     <span class="k">if</span> <span class="o">(</span><span class="nx">Lang</span><span class="o">.</span><span class="nx">hasOwnProperty</span><span class="o">(</span><span class="nx">userConfig</span><span class="o">,</span> <span class="nx">sKey</span><span class="o">))</span> <span class="o">{</span>
-
                         <span class="nx">oConfig</span><span class="o">[</span><span class="nx">sKey</span><span class="o">.</span><span class="nx">toLowerCase</span><span class="o">()]</span> <span class="o">=</span> <span class="nx">userConfig</span><span class="o">[</span><span class="nx">sKey</span><span class="o">];</span>
-
                     <span class="o">}</span>
-                
                 <span class="o">}</span>
-
                 <span class="k">this</span><span class="o">.</span><span class="nx">initialConfig</span> <span class="o">=</span> <span class="nx">oConfig</span><span class="o">;</span>
-
             <span class="o">}</span>
 
             <span class="k">for</span> <span class="o">(</span><span class="nx">sKey</span> <span class="k">in</span> <span class="nx">userConfig</span><span class="o">)</span> <span class="o">{</span>
-            
                 <span class="k">if</span> <span class="o">(</span><span class="nx">Lang</span><span class="o">.</span><span class="nx">hasOwnProperty</span><span class="o">(</span><span class="nx">userConfig</span><span class="o">,</span> <span class="nx">sKey</span><span class="o">))</span> <span class="o">{</span>
-            
                     <span class="k">this</span><span class="o">.</span><span class="nx">queueProperty</span><span class="o">(</span><span class="nx">sKey</span><span class="o">,</span> <span class="nx">userConfig</span><span class="o">[</span><span class="nx">sKey</span><span class="o">]);</span>
-                
                 <span class="o">}</span>
-
             <span class="o">}</span>
-
         <span class="o">},</span>
         
         <span class="c">/**</span>
@@ -594,19 +574,12 @@
             <span class="k">var</span> <span class="nx">property</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="nx">config</span><span class="o">[</span><span class="nx">key</span><span class="o">.</span><span class="nx">toLowerCase</span><span class="o">()];</span>
     
             <span class="k">if</span> <span class="o">(</span><span class="nx">property</span> <span class="o">&amp;&amp;</span> <span class="nx">property</span><span class="o">.</span><span class="nx">event</span><span class="o">)</span> <span class="o">{</span>
-    
                 <span class="k">if</span> <span class="o">(!</span><span class="nx">Config</span><span class="o">.</span><span class="nx">alreadySubscribed</span><span class="o">(</span><span class="nx">property</span><span class="o">.</span><span class="nx">event</span><span class="o">,</span> <span class="nx">handler</span><span class="o">,</span> <span class="nx">obj</span><span class="o">))</span> <span class="o">{</span>
-    
                     <span class="nx">property</span><span class="o">.</span><span class="nx">event</span><span class="o">.</span><span class="nx">subscribe</span><span class="o">(</span><span class="nx">handler</span><span class="o">,</span> <span class="nx">obj</span><span class="o">,</span> <span class="nx">override</span><span class="o">);</span>
-    
                 <span class="o">}</span>
-    
                 <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-    
             <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-    
                 <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-    
             <span class="o">}</span>
     
         <span class="o">},</span>
@@ -726,28 +699,20 @@
             <span class="nx">i</span><span class="o">;</span>
 
         <span class="k">if</span> <span class="o">(</span><span class="nx">nSubscribers</span> <span class="o">&gt;</span> <span class="m">0</span><span class="o">)</span> <span class="o">{</span>
-
             <span class="nx">i</span> <span class="o">=</span> <span class="nx">nSubscribers</span> <span class="o">-</span> <span class="m">1</span><span class="o">;</span>
-        
             <span class="k">do</span> <span class="o">{</span>
-
                 <span class="nx">subsc</span> <span class="o">=</span> <span class="nx">evt</span><span class="o">.</span><span class="nx">subscribers</span><span class="o">[</span><span class="nx">i</span><span class="o">];</span>
-
                 <span class="k">if</span> <span class="o">(</span><span class="nx">subsc</span> <span class="o">&amp;&amp;</span> <span class="nx">subsc</span><span class="o">.</span><span class="nx">obj</span> <span class="o">==</span> <span class="nx">obj</span> <span class="o">&amp;&amp;</span> <span class="nx">subsc</span><span class="o">.</span><span class="nx">fn</span> <span class="o">==</span> <span class="nx">fn</span><span class="o">)</span> <span class="o">{</span>
-        
                     <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-        
-                <span class="o">}</span>    
-            
+                <span class="o">}</span>
             <span class="o">}</span>
             <span class="k">while</span> <span class="o">(</span><span class="nx">i</span><span class="o">--);</span>
-        
         <span class="o">}</span>
-    
+
         <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-    
+
     <span class="o">};</span>
-    
+
     <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">lang</span><span class="o">.</span><span class="nx">augmentProto</span><span class="o">(</span><span class="nx">Config</span><span class="o">,</span> <span class="nx">YAHOO</span><span class="o">.</span><span class="nx">util</span><span class="o">.</span><span class="nx">EventProvider</span><span class="o">);</span>
 
 <span class="o">}());</span>
@@ -770,6 +735,8 @@
 
                                 <li class=""><a href="module_calendar.html">calendar</a></li>
 
+                                <li class=""><a href="module_charts.html">charts</a></li>
+
                                 <li class=""><a href="module_colorpicker.html">colorpicker</a></li>
 
                                 <li class=""><a href="module_connection.html">connection</a></li>
@@ -779,6 +746,8 @@
                                 <li class=""><a href="module_datasource.html">datasource</a></li>
 
                                 <li class=""><a href="module_datatable.html">datatable</a></li>
+
+                                <li class=""><a href="module_date.html">date</a></li>
 
                                 <li class=""><a href="module_dom.html">dom</a></li>
 
@@ -790,13 +759,23 @@
 
                                 <li class=""><a href="module_event.html">event</a></li>
 
+                                <li class=""><a href="module_get.html">get</a></li>
+
                                 <li class=""><a href="module_history.html">history</a></li>
 
                                 <li class=""><a href="module_imageloader.html">imageloader</a></li>
 
+                                <li class=""><a href="module_json.html">json</a></li>
+
                                 <li class=""><a href="module_logger.html">logger</a></li>
 
                                 <li class=""><a href="module_menu.html">menu</a></li>
+
+                                <li class=""><a href="module_number.html">number</a></li>
+
+                                <li class=""><a href="module_profiler.html">profiler</a></li>
+
+                                <li class=""><a href="module_selector.html">selector</a></li>
 
                                 <li class=""><a href="module_slider.html">slider</a></li>
 
